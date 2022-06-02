@@ -22471,11 +22471,207 @@ void clif_parse_refineui_refine( int fd, struct map_session_data* sd ){
 		return;
 	}
 
+	if( battle_config.Head_Gear_1 && item->refine == 0 && id->equip&EQP_HELM )
+		cost->randomopt_group = battle_config.Head_Gear_1;
+	if( battle_config.Head_Gear_2 && item->refine == 1 && id->equip&EQP_HELM )
+		cost->randomopt_group = battle_config.Head_Gear_2; 
+	if( battle_config.Head_Gear_3 && item->refine == 3 && id->equip&EQP_HELM )
+		cost->randomopt_group = battle_config.Head_Gear_3; 
+	if( battle_config.Head_Gear_4 && item->refine == 3 && id->equip&EQP_HELM )
+		cost->randomopt_group = battle_config.Head_Gear_4;
+	if( battle_config.Head_Gear_5 && item->refine == 4 && id->equip&EQP_HELM )
+		cost->randomopt_group = battle_config.Head_Gear_5; 
+	if( battle_config.Head_Gear_6 && item->refine == 5 && id->equip&EQP_HELM )
+		cost->randomopt_group = battle_config.Head_Gear_6;
+	if( battle_config.Head_Gear_7 && item->refine == 6 && id->equip&EQP_HELM )
+		cost->randomopt_group = battle_config.Head_Gear_7;
+	if( battle_config.Head_Gear_8 && item->refine == 7 && id->equip&EQP_HELM )
+		cost->randomopt_group = battle_config.Head_Gear_8;
+	if( battle_config.Head_Gear_9 && item->refine == 8 && id->equip&EQP_HELM )
+		cost->randomopt_group = battle_config.Head_Gear_9;
+	if( battle_config.Head_Gear_10 && item->refine == 9 && id->equip&EQP_HELM )
+		cost->randomopt_group = battle_config.Head_Gear_10;
+	if( battle_config.Armor_1 && item->refine == 0 && id->equip == EQP_ARMOR )
+		cost->randomopt_group = battle_config.Armor_1;	
+	if( battle_config.Armor_2 && item->refine == 1 && id->equip == EQP_ARMOR )
+		cost->randomopt_group = battle_config.Armor_2;
+	if( battle_config.Armor_3 && item->refine == 2 && id->equip == EQP_ARMOR )
+		cost->randomopt_group = battle_config.Armor_3;	
+	if( battle_config.Armor_4 && item->refine == 3 && id->equip == EQP_ARMOR )
+		cost->randomopt_group = battle_config.Armor_4;
+	if( battle_config.Armor_5 && item->refine == 4 && id->equip == EQP_ARMOR )
+		cost->randomopt_group = battle_config.Armor_5;	
+	if( battle_config.Armor_6 && item->refine == 5 && id->equip == EQP_ARMOR )
+		cost->randomopt_group = battle_config.Armor_6;	
+	if( battle_config.Armor_7 && item->refine == 6 && id->equip == EQP_ARMOR )
+		cost->randomopt_group = battle_config.Armor_7;
+	if( battle_config.Armor_8 && item->refine == 7 && id->equip == EQP_ARMOR )
+		cost->randomopt_group = battle_config.Armor_8;
+	if( battle_config.Armor_9 && item->refine == 8 && id->equip == EQP_ARMOR )
+		cost->randomopt_group = battle_config.Armor_9;
+	if( battle_config.Armor_10 && item->refine == 9 && id->equip == EQP_ARMOR )
+		cost->randomopt_group = battle_config.Armor_10;
+	if( battle_config.Shield_1 && item->refine == 0 && id->equip&EQP_SHIELD )
+		cost->randomopt_group = battle_config.Shield_1;
+	if( battle_config.Shield_2 && item->refine == 1 && id->equip&EQP_SHIELD )
+		cost->randomopt_group = battle_config.Shield_2;
+	if( battle_config.Shield_3 && item->refine == 2 && id->equip&EQP_SHIELD )
+		cost->randomopt_group = battle_config.Shield_3;	
+	if( battle_config.Shield_4 && item->refine == 3 && id->equip&EQP_SHIELD )
+		cost->randomopt_group = battle_config.Shield_4;	
+	if( battle_config.Shield_5 && item->refine == 4 && id->equip&EQP_SHIELD )
+		cost->randomopt_group = battle_config.Shield_5;
+	if( battle_config.Shield_6 && item->refine == 5 && id->equip&EQP_SHIELD )
+		cost->randomopt_group = battle_config.Shield_6;
+	if( battle_config.Shield_7 && item->refine == 6 && id->equip&EQP_SHIELD )
+		cost->randomopt_group = battle_config.Shield_7;
+	if( battle_config.Shield_8 && item->refine == 7 && id->equip&EQP_SHIELD )
+		cost->randomopt_group = battle_config.Shield_8;
+	if( battle_config.Shield_9 && item->refine == 8 && id->equip&EQP_SHIELD )
+		cost->randomopt_group = battle_config.Shield_9;
+	if( battle_config.Shield_10 && item->refine == 9 && id->equip&EQP_SHIELD )
+		cost->randomopt_group = battle_config.Shield_10;
+	if( battle_config.Foot_Gear_1 && item->refine == 0 && id->equip == EQP_SHOES )
+		cost->randomopt_group = battle_config.Foot_Gear_1;
+	if( battle_config.Foot_Gear_2 && item->refine == 1 && id->equip == EQP_SHOES )
+		cost->randomopt_group = battle_config.Foot_Gear_2;
+	if( battle_config.Foot_Gear_3 && item->refine == 2 && id->equip == EQP_SHOES )
+		cost->randomopt_group = battle_config.Foot_Gear_3;
+	if( battle_config.Foot_Gear_4 && item->refine == 3 && id->equip == EQP_SHOES )
+		cost->randomopt_group = battle_config.Foot_Gear_4;
+	if( battle_config.Foot_Gear_5 && item->refine == 4 && id->equip == EQP_SHOES )
+		cost->randomopt_group = battle_config.Foot_Gear_5;
+	if( battle_config.Foot_Gear_6 && item->refine == 5 && id->equip == EQP_SHOES )
+		cost->randomopt_group = battle_config.Foot_Gear_6;
+	if( battle_config.Foot_Gear_7 && item->refine == 6 && id->equip == EQP_SHOES )
+		cost->randomopt_group = battle_config.Foot_Gear_7;
+	if( battle_config.Foot_Gear_8 && item->refine == 7 && id->equip == EQP_SHOES )
+		cost->randomopt_group = battle_config.Foot_Gear_8;
+	if( battle_config.Foot_Gear_9 && item->refine == 8 && id->equip == EQP_SHOES )
+		cost->randomopt_group = battle_config.Foot_Gear_9;
+	if( battle_config.Foot_Gear_10 && item->refine == 9 && id->equip == EQP_SHOES )
+		cost->randomopt_group = battle_config.Foot_Gear_10;
+	if( battle_config.Garment_1 && item->refine == 2 && id->equip == EQP_GARMENT )
+		cost->randomopt_group = battle_config.Garment_1;
+	if( battle_config.Garment_2 && item->refine == 1 && id->equip == EQP_GARMENT )
+		cost->randomopt_group = battle_config.Garment_2;
+	if( battle_config.Garment_3 && item->refine == 2 && id->equip == EQP_GARMENT )
+		cost->randomopt_group = battle_config.Garment_3;
+	if( battle_config.Garment_4 && item->refine == 3 && id->equip == EQP_GARMENT )
+		cost->randomopt_group = battle_config.Garment_4;
+	if( battle_config.Garment_5 && item->refine == 4 && id->equip == EQP_GARMENT )
+		cost->randomopt_group = battle_config.Garment_5;
+	if( battle_config.Garment_6 && item->refine == 5 && id->equip == EQP_GARMENT )
+		cost->randomopt_group = battle_config.Garment_6;
+	if( battle_config.Garment_7 && item->refine == 6 && id->equip == EQP_GARMENT )
+		cost->randomopt_group = battle_config.Garment_7;
+	if( battle_config.Garment_8 && item->refine == 7 && id->equip == EQP_GARMENT )
+		cost->randomopt_group = battle_config.Garment_8;
+	if( battle_config.Garment_9 && item->refine == 8 && id->equip == EQP_GARMENT )
+		cost->randomopt_group = battle_config.Garment_9;
+	if( battle_config.Garment_10 && item->refine == 9 && id->equip == EQP_GARMENT )
+		cost->randomopt_group = battle_config.Garment_10;
+	if( battle_config.Weapon_LV1_1 && item->refine == 0 && id->weapon_level == 1 )
+		cost->randomopt_group = battle_config.Weapon_LV1_1;
+	if( battle_config.Weapon_LV1_2 && item->refine == 1 && id->weapon_level == 1 )
+		cost->randomopt_group = battle_config.Weapon_LV1_2;
+	if( battle_config.Weapon_LV1_3 && item->refine == 2 && id->weapon_level == 1 )
+		cost->randomopt_group = battle_config.Weapon_LV1_3;	
+	if( battle_config.Weapon_LV1_4 && item->refine == 3 && id->weapon_level == 1 )
+		cost->randomopt_group = battle_config.Weapon_LV1_4;
+	if( battle_config.Weapon_LV1_5 && item->refine == 4 && id->weapon_level == 1 )
+		cost->randomopt_group = battle_config.Weapon_LV1_5;
+	if( battle_config.Weapon_LV1_6 && item->refine == 5 && id->weapon_level == 1 )
+		cost->randomopt_group = battle_config.Weapon_LV1_6;
+	if( battle_config.Weapon_LV1_7 && item->refine == 6 && id->weapon_level == 1 )
+		cost->randomopt_group = battle_config.Weapon_LV1_7;	
+	if( battle_config.Weapon_LV1_8 && item->refine == 7 && id->weapon_level == 1 )
+		cost->randomopt_group = battle_config.Weapon_LV1_8;
+	if( battle_config.Weapon_LV1_9 && item->refine == 8 && id->weapon_level == 1 )
+		cost->randomopt_group = battle_config.Weapon_LV1_9;
+	if( battle_config.Weapon_LV1_10 && item->refine == 9 && id->weapon_level == 1 )
+		cost->randomopt_group = battle_config.Weapon_LV1_10;
+	if( battle_config.Weapon_LV2_1 && item->refine == 0 && id->weapon_level == 2 )
+		cost->randomopt_group = battle_config.Weapon_LV2_1;
+	if( battle_config.Weapon_LV2_2 && item->refine == 1 && id->weapon_level == 2 )
+		cost->randomopt_group = battle_config.Weapon_LV2_2;
+	if( battle_config.Weapon_LV2_3 && item->refine == 2 && id->weapon_level == 2 )
+		cost->randomopt_group = battle_config.Weapon_LV2_3;
+	if( battle_config.Weapon_LV2_4 && item->refine == 3 && id->weapon_level == 2 )
+		cost->randomopt_group = battle_config.Weapon_LV2_4;
+	if( battle_config.Weapon_LV2_5 && item->refine == 4 && id->weapon_level == 2 )
+		cost->randomopt_group = battle_config.Weapon_LV2_5;
+	if( battle_config.Weapon_LV2_6 && item->refine == 5 && id->weapon_level == 2 )
+		cost->randomopt_group = battle_config.Weapon_LV2_6;
+	if( battle_config.Weapon_LV2_7 && item->refine == 6 && id->weapon_level == 2 )
+		cost->randomopt_group = battle_config.Weapon_LV2_7;
+	if( battle_config.Weapon_LV2_8 && item->refine == 7 && id->weapon_level == 2 )
+		cost->randomopt_group = battle_config.Weapon_LV2_8;
+	if( battle_config.Weapon_LV2_9 && item->refine == 8 && id->weapon_level == 2 )
+		cost->randomopt_group = battle_config.Weapon_LV2_9;
+	if( battle_config.Weapon_LV2_10 && item->refine == 9 && id->weapon_level == 2 )
+		cost->randomopt_group = battle_config.Weapon_LV2_10;
+	if( battle_config.Weapon_LV3_1 && item->refine == 0 && id->weapon_level == 3 )
+		cost->randomopt_group = battle_config.Weapon_LV3_1;
+	if( battle_config.Weapon_LV3_2 && item->refine == 1 && id->weapon_level == 3 )
+		cost->randomopt_group = battle_config.Weapon_LV3_2;
+	if( battle_config.Weapon_LV3_3 && item->refine == 2 && id->weapon_level == 3 )
+		cost->randomopt_group = battle_config.Weapon_LV3_3;
+	if( battle_config.Weapon_LV3_4 && item->refine == 3 && id->weapon_level == 3 )
+		cost->randomopt_group = battle_config.Weapon_LV3_4;
+	if( battle_config.Weapon_LV3_5 && item->refine == 4 && id->weapon_level == 3 )
+		cost->randomopt_group = battle_config.Weapon_LV3_5;
+	if( battle_config.Weapon_LV3_6 && item->refine == 5 && id->weapon_level == 3 )
+		cost->randomopt_group = battle_config.Weapon_LV3_6;	
+	if( battle_config.Weapon_LV3_7 && item->refine == 6 && id->weapon_level == 3 )
+		cost->randomopt_group = battle_config.Weapon_LV3_7;
+	if( battle_config.Weapon_LV3_8 && item->refine == 7 && id->weapon_level == 3 )
+		cost->randomopt_group = battle_config.Weapon_LV3_8;
+	if( battle_config.Weapon_LV3_9 && item->refine == 8 && id->weapon_level == 3 )
+		cost->randomopt_group = battle_config.Weapon_LV3_9;
+	if( battle_config.Weapon_LV3_10 && item->refine == 9 && id->weapon_level == 3 )
+		cost->randomopt_group = battle_config.Weapon_LV3_10;
+	if( battle_config.Weapon_LV4_1 && item->refine == 0 && id->weapon_level == 4 )
+		cost->randomopt_group = battle_config.Weapon_LV4_1;
+	if( battle_config.Weapon_LV4_2 && item->refine == 1 && id->weapon_level == 4 )
+		cost->randomopt_group = battle_config.Weapon_LV4_2;	
+	if( battle_config.Weapon_LV4_3 && item->refine == 2 && id->weapon_level == 4 )
+		cost->randomopt_group = battle_config.Weapon_LV4_3;
+	if( battle_config.Weapon_LV4_4 && item->refine == 3 && id->weapon_level == 4 )
+		cost->randomopt_group = battle_config.Weapon_LV4_4;
+	if( battle_config.Weapon_LV4_5 && item->refine == 4 && id->weapon_level == 4 )
+		cost->randomopt_group = battle_config.Weapon_LV4_5;
+	if( battle_config.Weapon_LV4_6 && item->refine == 5 && id->weapon_level == 4 )
+		cost->randomopt_group = battle_config.Weapon_LV4_6;
+	if( battle_config.Weapon_LV4_7 && item->refine == 6 && id->weapon_level == 4 )
+		cost->randomopt_group = battle_config.Weapon_LV4_7;
+	if( battle_config.Weapon_LV4_8 && item->refine == 7 && id->weapon_level == 4 )
+		cost->randomopt_group = battle_config.Weapon_LV4_8;
+	if( battle_config.Weapon_LV4_9 && item->refine == 8 && id->weapon_level == 4 )
+		cost->randomopt_group = battle_config.Weapon_LV4_9;
+	if( battle_config.Weapon_LV4_10 && item->refine == 9 && id->weapon_level == 4 )
+		cost->randomopt_group = battle_config.Weapon_LV4_10;
+	if( battle_config.Shadow_7 && item->refine == 6 && id->equip&EQP_SHADOW_GEAR )
+		cost->randomopt_group = battle_config.Shadow_7;
+	if( battle_config.Shadow_8 && item->refine == 7 && id->equip&EQP_SHADOW_GEAR )
+		cost->randomopt_group = battle_config.Shadow_8;
+	if( battle_config.Shadow_9 && item->refine == 8 && id->equip&EQP_SHADOW_GEAR )
+		cost->randomopt_group = battle_config.Shadow_9;
+	if( battle_config.Shadow_10 && item->refine == 9 && id->equip&EQP_SHADOW_GEAR )
+		cost->randomopt_group = battle_config.Shadow_10;
+
 	// Try to refine the item
 	if( cost->chance >= ( rnd() % 10000 ) ){
 		log_pick_pc( sd, LOG_TYPE_OTHER, -1, item );
 		// Success
 		item->refine = cap_value( item->refine + 1, 0, MAX_REFINE );
+
+		if( cost->randomopt_group ){
+			refine_setdropitem_option(item, cost->randomopt_group);
+			clif_delitem(sd, index, 1, 3);
+			clif_additem(sd, index, 1, 0);
+		}
+		
 		log_pick_pc( sd, LOG_TYPE_OTHER, 1, item );
 		clif_misceffect( &sd->bl, 3 );
 		clif_refine( fd, 0, index, item->refine );

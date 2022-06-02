@@ -347,6 +347,24 @@ uint64 RefineDatabase::parseBodyNode( const ryml::NodeRef& node ){
 									cost->downgrade_amount = 0;
 								}
 							}
+							uint16 group = 0;
+
+							if( this->nodeExists( chanceNode, "RandomOptionGroup" ) ){
+								std::string group_name;
+
+								if( !this->asString( chanceNode, "RandomOptionGroup", group_name ) ){
+									return 0;
+								}
+
+								if ( !random_option_group.option_get_id( group_name.c_str(), group ) )
+									this->invalidWarning( chanceNode["RandomOptionGroup"], "Unknown random option group %s , defaulting to no group.\n", group_name.c_str());
+
+								cost->randomopt_group = group;
+							}else{
+								if( !cost_exists ){
+									cost->randomopt_group = 0;
+								}
+							}
 
 							if( !cost_exists ){
 								level_info->costs[index] = cost;
@@ -15244,4 +15262,54 @@ void do_final_status(void) {
 	refine_db.clear();
 	status_db.clear();
 	elemental_attribute_db.clear();
+}
+
+void refine_setitem_option(s_item_randomoption &refine_option, const std::shared_ptr<s_random_opt_group_entry> &option) {
+	refine_option.id = option->id;
+	refine_option.value = rnd_value(option->min_value, option->max_value);
+	refine_option.param = option->param;
+}
+
+void refine_setdropitem_option(item *item, int rndopt) {
+	if (!item)
+		return;
+
+	std::shared_ptr<s_random_opt_group> group = random_option_group.find(rndopt);
+
+	if (group != nullptr) {
+		// Apply Must options
+		for (size_t i = 0; i < group->slots.size(); i++) {
+			// Try to apply an entry
+			for (size_t j = 0, max = group->slots[static_cast<uint16>(i)].size() * 3; j < max; j++) {
+				std::shared_ptr<s_random_opt_group_entry> option = util::vector_random(group->slots[static_cast<uint16>(i)]);
+
+				if (rnd() % 10000 < option->chance) {
+					refine_setitem_option(item->option[i], option);
+					break;
+				}
+			}
+
+			// If no entry was applied, assign one
+			if (item->option[i].id == 0) {
+				std::shared_ptr<s_random_opt_group_entry> option = util::vector_random(group->slots[static_cast<uint16>(i)]);
+
+				// Apply an entry without checking the chance
+				refine_setitem_option(item->option[i], option);
+			}
+		}
+
+		// Apply Random options (if available)
+		if (group->max_random > 0) {
+			for (size_t i = 0; i < min(group->max_random, MAX_ITEM_RDM_OPT); i++) {
+				// If item already has an option in this slot, skip it
+				if (item->option[i].id > 0)
+					continue;
+
+				std::shared_ptr<s_random_opt_group_entry> option = util::vector_random(group->random_options);
+
+				if (rnd() % 10000 < option->chance)
+					refine_setitem_option(item->option[i], option);
+			}
+		}
+	}
 }

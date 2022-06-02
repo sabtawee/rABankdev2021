@@ -10749,9 +10749,23 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 			val2 *= val1; // 20% per level
 			val3 *= val1;
 			break;
+		case SC_VIPSTATUS:
+			val1 = 0;
+			break;			
 		case SC_EXPBOOST:
 		case SC_JEXPBOOST:
 		case SC_JP_EVENT04:
+		case SC_EXPBOOK_DROP:
+		case SC_EXTRABOOST_EXP:
+		case SC_EXTRABOOST_DROP:
+		case SC_GLOBAL_EXP:
+		case SC_GLOBAL_DROP:		
+		case SC_CARDBOOST:
+		case SC_EXTRABOOST_HEALING:
+		case SC_EXTRABOOST_USABLE:
+		case SC_EXTRABOOST_ETC:
+		case SC_EXTRABOOST_EQUIPMENT:
+		case SC_EXTRABOOST_CARD:
 			if (val1 < 0)
 				val1 = 0;
 			break;

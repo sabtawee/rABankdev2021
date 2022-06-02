@@ -1,0 +1,99 @@
+////////////////////////////////////////////////////////////////////////////////////////
+////-- Whispering Rain
+
+function	script	F_EXPBOOK	{
+	doevent "exp_book_CONTROL::OnMenu";
+	end;
+}
+
+-	script	exp_book_CONTROL	-1,{
+
+OnMenu:
+	mes	.npcname$;
+	mes "EXP ตัวละคร : ^ff0000" + (100-exp_book_split) + "^000000%";
+	mes "EXP หนังสือ : ^ff0000" + exp_book_split + "^000000%";
+	mes "EXP ที่มี : ^030ffc" + exp_book + "^000000/^bf5000" + $@exp_limit + "^000000";
+	mes "DROP ถาวร : ^ff0000" + exp_book_drop + "^000000%";
+
+	menu "^FF0000•^000000 [ ^1100ffปรับแต่งการเก็บ EXP^000000 ]",-,"^FF0000•^000000 [ ^1100ffแลกรางวัล^000000 ]",-,"^FF0000•^000000 [ ปิด ]",-;
+	set .@menu_selected,@menu;
+
+	if(.@menu_selected == 1){
+		mes "------------------------";
+		mes "โปรดระบุ % 0 - 100";
+		mes "เพื่อทำการแบ่งเก็บเข้าสมุด";
+		input .@input_numb,0,100;
+		next;
+		mes	.npcname$;
+		mes "EXP ตัวละคร : ^ff0000" + (100-exp_book_split) + "^000000%";
+		mes "EXP หนังสือ : ^ff0000" + exp_book_split + "^000000%";
+		mes "------------------------";
+		mes "คุณต้องการแบ่ง EXP ^ff0000" + .@input_numb + "^000000%";
+		mes "เพื่อเก็บเข้าสมุดใช่หรือไม่?";
+		menu "^FF0000•^000000 ตกลง",-,"^FF0000•^000000 ยกเลิก",-;
+		set .@confirm,@menu;
+		next;
+		if(.@confirm == 2){end;}
+		if(.@confirm == 1){
+			exp_book_split = .@input_numb;
+			mes	.npcname$;
+			mes "EXP ตัวละคร : ^ff0000" + (100-exp_book_split) + "^000000%";
+			mes "EXP หนังสือ : ^ff0000" + exp_book_split + "^000000%";
+			mes "------------------------";
+			mes "ทำการปรับ % EXP เสร็จสิ้น";
+			end;
+		}
+		end;
+	}
+	if(.@menu_selected == 2){
+		next;
+		mes	.npcname$;
+		mes "EXP ตัวละคร : ^ff0000" + (100-exp_book_split) + "^000000%";
+		mes "EXP หนังสือ : ^ff0000" + exp_book_split + "^000000%";
+		mes "DROP ถาวร : ^ff0000" + exp_book_drop + "^000000%";
+		mes "EXP ที่มี : ^030ffc" + exp_book + "^000000/^bf5000" + $@exp_limit + "^000000";
+		mes "------------------------";
+		menu "^FF0000•^000000 Drop ถาวร +1% ^ff0000EXP 50M^000000 [^030ffcMax 10%^000000]",-,"^FF0000•^000000 ยกเลิก",-;
+		set .@sel,@menu;
+		if(.@sel == 1){
+			if(exp_book < 50000000){
+				mes	.npcname$;
+				mes "EXP ไม่เพียงพอในการแลก";
+				end;				
+			}			
+			if(exp_book_drop >= 10){
+				mes	.npcname$;
+				mes "ไม่สามารถแลกได้มากกว่าแล้ว";
+				end;
+			}
+			next;
+			exp_book_drop++;
+			exp_book -= 50000000;
+			sc_end SC_EXPBOOK_DROP;
+			sc_start SC_EXPBOOK_DROP,INFINITE_TICK,exp_book_drop;
+			mes	.npcname$;
+			mes "EXP ตัวละคร : ^ff0000" + (100-exp_book_split) + "^000000%";
+			mes "EXP หนังสือ : ^ff0000" + exp_book_split + "^000000%";
+			mes "DROP ถาวร : ^ff0000" + exp_book_drop + "^000000%";
+			mes "EXP ที่มี : ^030ffc" + exp_book + "^000000/^bf5000" + $@exp_limit + "^000000";
+			mes "แลกบัฟเสร็จสิ้น";
+			end;
+		}
+		end;
+	}
+	if(.@menu_selected == 3){end;}
+	end;
+
+OnInit:
+	.npcname$ = "[^FF0000•^000000 ^2f00ffEXP Book^000000 ^FF0000•^000000]";
+	$@exp_limit = 100000000;
+	end;
+
+OnPCLoginEvent:
+	if(exp_book_drop){
+		sc_end SC_EXPBOOK_DROP;
+		sc_start SC_EXPBOOK_DROP,INFINITE_TICK,exp_book_drop;
+	}
+	end;
+
+}

@@ -56,6 +56,7 @@
 #include "storage.hpp"
 #include "unit.hpp" // unit_stop_attack(), unit_stop_walking()
 #include "vending.hpp" // struct s_vending
+#include "mapreg.hpp"
 
 using namespace rathena;
 
@@ -7708,6 +7709,17 @@ static void pc_calcexp(struct map_session_data *sd, t_exp *base_exp, t_exp *job_
 		if (battle_config.vip_bm_increase && pc_isvip(sd)) // Increase Battle Manual EXP rate for VIP
 			bonus += (sd->sc.data[SC_EXPBOOST]->val1 / battle_config.vip_bm_increase);
 	}
+	
+///////////////////////////////////////////////////////////////////
+	/* VIP + Extra SC */
+	if (sd->sc.data[SC_EXTRABOOST_EXP]) {
+		bonus += sd->sc.data[SC_EXTRABOOST_EXP]->val1;
+	}
+	
+	if (sd->sc.data[SC_GLOBAL_EXP]) {
+		bonus += sd->sc.data[SC_GLOBAL_EXP]->val1;
+	}
+///////////////////////////////////////////////////////////////////	
 
 	if (*base_exp) {
 		t_exp exp = (t_exp)(*base_exp + ((double)*base_exp * ((bonus + vip_bonus_base) / 100.)));
@@ -7717,6 +7729,17 @@ static void pc_calcexp(struct map_session_data *sd, t_exp *base_exp, t_exp *job_
 	// Give JEXPBOOST for quests even if src is NULL.
 	if (sd->sc.data[SC_JEXPBOOST])
 		bonus += sd->sc.data[SC_JEXPBOOST]->val1;
+
+///////////////////////////////////////////////////////////////////
+	/* VIP + Extra SC */
+	if (sd->sc.data[SC_EXTRABOOST_EXP]) {
+		bonus += sd->sc.data[SC_EXTRABOOST_EXP]->val1;
+	}
+	
+	if (sd->sc.data[SC_GLOBAL_EXP]) {
+		bonus += sd->sc.data[SC_GLOBAL_EXP]->val1;
+	}
+///////////////////////////////////////////////////////////////////	
 
 	if (*job_exp) {
 		t_exp exp = (t_exp)(*job_exp + ((double)*job_exp * ((bonus + vip_bonus_job) / 100.)));
@@ -7745,6 +7768,28 @@ void pc_gainexp_disp(struct map_session_data *sd, t_exp base_exp, t_exp next_bas
 		(long)base_exp * (lost ? -1 : 1), (base_exp / (float)next_base_exp * 100 * (lost ? -1 : 1)),
 		(long)job_exp * (lost ? -1 : 1), (job_exp / (float)next_job_exp * 100 * (lost ? -1 : 1)));
 	clif_messagecolor(&sd->bl, color_table[COLOR_LIGHT_GREEN], output, false, SELF);
+}
+
+static t_exp pc_exp_book_split(struct map_session_data *sd,t_exp exp)
+{
+	nullpo_ret(sd);
+
+	if (!exp) return 0;
+
+	int64 percent = pc_readregistry(sd, reference_uid(add_str("exp_book_split"), 0));
+	int64 current_exp = pc_readregistry(sd, reference_uid(add_str("exp_book"), 0));
+
+	if (percent < 100)
+		exp = exp * percent / 100;
+
+	pc_setregistry(sd, reference_uid(add_str("exp_book"), 0), current_exp + exp);
+	int64 after_exp = pc_readregistry(sd, reference_uid(add_str("exp_book"), 0));
+	int64 exp_limit = static_cast<int64>(mapreg_readreg(add_str("$@exp_limit")));
+	if(after_exp > exp_limit){
+		pc_setregistry(sd, reference_uid(add_str("exp_book"), 0), exp_limit);
+	}
+
+	return exp;
 }
 
 /**
@@ -7782,6 +7827,8 @@ void pc_gainexp(struct map_session_data *sd, struct block_list *src, t_exp base_
 
 	if (!(exp_flag&2))
 		pc_calcexp(sd, &base_exp, &job_exp, src);
+
+	base_exp -= pc_exp_book_split(sd,base_exp);
 
 	nextb = pc_nextbaseexp(sd);
 	nextj = pc_nextjobexp(sd);

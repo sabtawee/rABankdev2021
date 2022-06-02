@@ -7702,6 +7702,39 @@ ACMD_FUNC(mobinfo)
 				continue;
 
 			int droprate = mob_getdroprate( &sd->bl, mob, mob->dropitem[i].rate, drop_modifier );
+			
+			if (pc_isvip(sd)) // Display drop rate increase for VIP
+ 				droprate += (droprate * battle_config.vip_drop_increase) / 100;
+				
+			if(item_data->type == IT_CARD && sd->sc.data[SC_CARDBOOST])
+				droprate += droprate * sd->sc.data[SC_CARDBOOST]->val1 /100;
+				
+			if(item_data->type == IT_HEALING && sd->sc.data[SC_EXTRABOOST_HEALING])
+				droprate += droprate * sd->sc.data[SC_EXTRABOOST_HEALING]->val1/ 100;
+			
+			if(item_data->type == IT_USABLE && sd->sc.data[SC_EXTRABOOST_USABLE])
+				droprate += droprate * sd->sc.data[SC_EXTRABOOST_USABLE]->val1/ 100;
+			
+			if(item_data->type == IT_ETC && sd->sc.data[SC_EXTRABOOST_ETC])
+				droprate += droprate * sd->sc.data[SC_EXTRABOOST_ETC]->val1/ 100;
+			
+			if((item_data->type == IT_ARMOR || item_data->type == IT_WEAPON) && sd->sc.data[SC_EXTRABOOST_EQUIPMENT])
+				droprate += droprate * sd->sc.data[SC_EXTRABOOST_EQUIPMENT]->val1/ 100;
+			
+			if(item_data->type == IT_CARD && sd->sc.data[SC_EXTRABOOST_CARD])
+				droprate += droprate * sd->sc.data[SC_EXTRABOOST_CARD]->val1/ 100;
+				
+			if (sd->sc.data[SC_ITEMBOOST])
+				droprate += droprate * sd->sc.data[SC_ITEMBOOST]->val1 / 100;
+					
+			if (sd->sc.data[SC_EXTRABOOST_DROP])
+				droprate += droprate * sd->sc.data[SC_EXPBOOK_DROP]->val1 / 100;
+				
+			if (sd->sc.data[SC_GLOBAL_DROP])
+				droprate += droprate * sd->sc.data[SC_EXPBOOK_DROP]->val1 / 100;
+				
+			if (sd->sc.data[SC_EXPBOOK_DROP])
+				droprate += droprate * sd->sc.data[SC_EXPBOOK_DROP]->val1 / 100;
 
 			if (item_data->slots)
 				sprintf(atcmd_output2, " - %s[%d]  %02.02f%%", item_data->ename.c_str(), item_data->slots, (float)droprate / 100);

@@ -1,0 +1,56 @@
+prt_fild08,180,355,3	script	Boost Shop	112,{
+	
+	mes .npcname$;
+	mes "เลือก Boost ที่ท่านต้องการ";
+
+	for(.@i=0; .@i<getarraysize(.sc_name$); .@i++){
+		set .@sc_menu$, .@sc_menu$ + " ^FF0000•^000000 " + .sc_name$[.@i] + "^000000 [^ff03ab" + .sc_rate[.@i] + "CP^000000/^0307ff1%^000000]:";
+	}
+	set .@sc_sel, select(.@sc_menu$) - 1;	
+	
+	mes "Boost ที่เลือก : ^000dff" + .sc_name$[.@sc_sel] + "^000000 [^ff03ab" + .sc_rate[.@sc_sel] + "CP^000000/^0307ff1%^000000]";
+	input .@pc_want_number,0,20;
+	
+	if(.@pc_want_number == 0){
+		mes "เลขที่ระบุผิดพลาด";
+		end;
+	}
+	
+	if(.@pc_want_number >= 20){
+		mes "ไม่สามารถระบุเกิน 20% ได้";
+		end;
+	}
+	
+	mes "ต้องการบัฟ : ^ff0303" + .@pc_want_number + "^000000%";
+	
+	.@total_cp = .sc_rate[.@sc_sel] * .@pc_want_number;
+	
+	mes "CP ที่ต้องจ่าย : ^0515ff" + .@total_cp + "^000000 CP";
+	
+	if(#CRYPTOPOINTS < .@total_cp){
+		mes "คุณที่ CP พ้อยท์ไม่เพียงพอ";
+		end;
+	}
+	
+	menu "^FF0000•^000000 ยืนยัน ",-,"^FF0000•^000000 ยกเลิก",-;
+	set .@menu2,@menu;
+	
+	if(.@menu2 == 2) {end;}
+	
+	#CRYPTOPOINTS -= .@total_cp;
+	sc_start .sc_real[.@sc_sel],1800000,.@pc_want_number;
+	specialeffect2 100;
+	end;	
+	
+Oninit:
+
+	.npcname$ = "[^FF0000•^000000 ^2f00ffBoost Shop^000000 ^FF0000•^000000]";
+	
+	setarray .sc_name$[0],"ดรอปปั้ม","ดรอปของกดใช้","ดรอปขยะ","ดรอปอุปกรณ์สวมใส่","ดรอปการ์ด";
+	setarray .sc_real[0],SC_EXTRABOOST_HEALING,SC_EXTRABOOST_USABLE,SC_EXTRABOOST_ETC,SC_EXTRABOOST_EQUIPMENT,SC_EXTRABOOST_CARD;
+	setarray .sc_rate[0],2,1,1,3,5;	
+
+	waitingroom "ขาย Boost ต่างๆ",0;
+	end;	
+	
+}

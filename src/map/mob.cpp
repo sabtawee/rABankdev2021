@@ -2478,6 +2478,18 @@ int mob_getdroprate(struct block_list *src, std::shared_ptr<s_mob_db> mob, int b
 			if (sd->sc.data[SC_ITEMBOOST])
 				drop_rate_bonus += sd->sc.data[SC_ITEMBOOST]->val1;
 
+			///////////////////////////////////////////////////////////////////
+			/* VIP + Extra SC */
+			if (sd->sc.data[SC_EXTRABOOST_DROP])
+				drop_rate_bonus += sd->sc.data[SC_EXTRABOOST_DROP]->val1;
+
+			if (sd->sc.data[SC_GLOBAL_DROP])
+				drop_rate_bonus += sd->sc.data[SC_GLOBAL_DROP]->val1;
+
+			if (sd->sc.data[SC_EXPBOOK_DROP])
+				drop_rate_bonus += sd->sc.data[SC_EXPBOOK_DROP]->val1;
+			///////////////////////////////////////////////////////////////////
+
 			int cap;
 
 			if (pc_isvip(sd)) { // Increase item drop rate for VIP.
@@ -2797,7 +2809,25 @@ int mob_dead(struct mob_data *md, struct block_list *src, int type)
 				continue;
 			
 			drop_rate = mob_getdroprate(src, md->db, md->db->dropitem[i].rate, drop_modifier);
-
+			
+			if(it->type == IT_CARD && sd->sc.data[SC_CARDBOOST])
+				drop_rate += sd->sc.data[SC_CARDBOOST]->val1;			
+			
+			if (it->type == IT_HEALING && sd->sc.data[SC_EXTRABOOST_HEALING])
+				drop_rate += sd->sc.data[SC_EXTRABOOST_HEALING]->val1;
+				
+			if (it->type == IT_USABLE && sd->sc.data[SC_EXTRABOOST_USABLE])
+				drop_rate += sd->sc.data[SC_EXTRABOOST_USABLE]->val1;
+				
+			if (it->type == IT_ETC && sd->sc.data[SC_EXTRABOOST_ETC])
+				drop_rate += sd->sc.data[SC_EXTRABOOST_ETC]->val1;
+				
+			if ((it->type == IT_ARMOR || it->type == IT_WEAPON) && sd->sc.data[SC_EXTRABOOST_EQUIPMENT])
+				drop_rate += sd->sc.data[SC_EXTRABOOST_EQUIPMENT]->val1;
+				
+			if (it->type == IT_CARD && sd->sc.data[SC_EXTRABOOST_CARD])
+				drop_rate += sd->sc.data[SC_EXTRABOOST_CARD]->val1;			
+			
 			// attempt to drop the item
 			if (rnd() % 10000 >= drop_rate)
 				continue;

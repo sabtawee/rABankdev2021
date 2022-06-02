@@ -25994,6 +25994,21 @@ BUILDIN_FUNC(getjobexp_ratio){
 	return SCRIPT_CMD_SUCCESS;
 }
 
+BUILDIN_FUNC(fakeIcon)
+{
+	TBL_PC* sd = map_charid2sd(script_getnum(st, 2));
+	int icon = script_getnum(st, 3);
+	int time = script_getnum(st, 4);
+	bool state = (script_getnum(st, 5) == 1);
+
+	if (sd == NULL)
+		return SCRIPT_CMD_FAILURE;
+
+	clif_status_change(&sd->bl, icon, state, time, 0, 0, 0);
+
+	return SCRIPT_CMD_SUCCESS;
+}
+
 #include "../custom/script.inc"
 
 // declarations that were supposed to be exported from npc_chat.cpp
@@ -26713,6 +26728,9 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(openbank,"?"),
 	BUILDIN_DEF(getbaseexp_ratio, "i??"),
 	BUILDIN_DEF(getjobexp_ratio, "i??"),
+	
+	BUILDIN_DEF(fakeIcon,"iiii"),
+	
 #include "../custom/script_def.inc"
 
 	{NULL,NULL,NULL},

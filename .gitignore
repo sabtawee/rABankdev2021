@@ -85,7 +85,7 @@ Thumbs.db
 /src/common/version.hpp
 
 # /src/custom/
-/src/custom
+#/src/custom
 
 # /src/login/
 /src/login/Makefile

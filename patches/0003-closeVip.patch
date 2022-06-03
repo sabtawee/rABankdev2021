@@ -1,0 +1,25 @@
+From b3b04591d69e2e56ef6b275cb2b086ab60b6c874 Mon Sep 17 00:00:00 2001
+From: sabtawee <sabtawee.bank@gmail.com>
+Date: Thu, 2 Jun 2022 18:48:52 +0700
+Subject: [PATCH 3/4] closeVip
+
+---
+ src/config/core.hpp | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/src/config/core.hpp b/src/config/core.hpp
+index 1fe6c9f..bb44ce6 100644
+--- a/src/config/core.hpp
++++ b/src/config/core.hpp
+@@ -47,7 +47,7 @@
+ #define HP_SP_TABLES
+ 
+ /// Uncomment to enable VIP system.
+-#define VIP_ENABLE
++//#define VIP_ENABLE
+ 
+ /// Enable VIP script changes? (requires VIP_ENABLE)
+ /// The primary effects of this are restrictions on non-VIP players, such as requiring
+-- 
+2.36.0.windows.1
+

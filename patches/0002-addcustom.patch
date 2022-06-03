@@ -1,0 +1,394 @@
+From 97671821fa521ee9e882698c007159cc2282b374 Mon Sep 17 00:00:00 2001
+From: sabtawee <sabtawee.bank@gmail.com>
+Date: Thu, 2 Jun 2022 18:46:29 +0700
+Subject: [PATCH 2/4] addcustom
+
+---
+ .gitignore                          |   2 +-
+ src/custom/atcommand.inc            |  19 +++++
+ src/custom/atcommand_def.inc        |  11 +++
+ src/custom/battle_config_init.inc   | 107 +++++++++++++++++++++++++++
+ src/custom/battle_config_struct.inc | 108 ++++++++++++++++++++++++++++
+ src/custom/defines_post.hpp         |  14 ++++
+ src/custom/defines_pre.hpp          |  14 ++++
+ src/custom/script.inc               |  19 +++++
+ src/custom/script_def.inc           |  11 +++
+ 9 files changed, 304 insertions(+), 1 deletion(-)
+ create mode 100644 src/custom/atcommand.inc
+ create mode 100644 src/custom/atcommand_def.inc
+ create mode 100644 src/custom/battle_config_init.inc
+ create mode 100644 src/custom/battle_config_struct.inc
+ create mode 100644 src/custom/defines_post.hpp
+ create mode 100644 src/custom/defines_pre.hpp
+ create mode 100644 src/custom/script.inc
+ create mode 100644 src/custom/script_def.inc
+
+diff --git a/.gitignore b/.gitignore
+index a069110..15b4e2d 100644
+--- a/.gitignore
++++ b/.gitignore
+@@ -85,7 +85,7 @@ Thumbs.db
+ /src/common/version.hpp
+ 
+ # /src/custom/
+-/src/custom
++#/src/custom
+ 
+ # /src/login/
+ /src/login/Makefile
+diff --git a/src/custom/atcommand.inc b/src/custom/atcommand.inc
+new file mode 100644
+index 0000000..9dd4a38
+--- /dev/null
++++ b/src/custom/atcommand.inc
+@@ -0,0 +1,19 @@
++// Copyright (c) rAthena Dev Teams - Licensed under GNU GPL
++// For more information, see LICENCE in the main folder
++
++/**
++ * Custom Atcommands
++ * Place the body of custom atcommands in this file.
++ * Format:
++ *	ACMD_FUNC(command_name)
++ *	{
++ *		<code>;
++ *	}
++ **/
++
++//ACMD_FUNC(newcommand)
++//{
++//	clif_displaymessage(fd, "It works!");
++//	clif_specialeffect(&sd->bl, EF_HEARTCASTING, AREA);
++//	return 0;
++//}
+diff --git a/src/custom/atcommand_def.inc b/src/custom/atcommand_def.inc
+new file mode 100644
+index 0000000..54d9e74
+--- /dev/null
++++ b/src/custom/atcommand_def.inc
+@@ -0,0 +1,11 @@
++// Copyright (c) rAthena Dev Teams - Licensed under GNU GPL
++// For more information, see LICENCE in the main folder
++
++/**
++ * Custom Atcommands
++ * Place the definition of custom atcommands in this file.
++ * Format:
++ *	ACMD_DEF(command_name),
++ **/
++
++//ACMD_DEF(newcommand),
+diff --git a/src/custom/battle_config_init.inc b/src/custom/battle_config_init.inc
+new file mode 100644
+index 0000000..3bc1dbf
+--- /dev/null
++++ b/src/custom/battle_config_init.inc
+@@ -0,0 +1,107 @@
++// Copyright (c) rAthena Dev Teams - Licensed under GNU GPL
++// For more information, see LICENCE in the main folder
++
++/**
++ * Custom battle config initializations
++ * Place the definition of custom battle configuration initializations in this file.
++ *
++ * Do not forget to add a comma at the end of the line, if you want to add another config
++ *
++ * Format:
++ *	 { "name", &battle_config.<variable name>, <default value>, <minimum value>, <maximum value> },
++ **/
++
++	{ "Head_Gear_1",             &battle_config.Head_Gear_1,              0,   0,      INT_MAX,        },
++	{ "Head_Gear_2",             &battle_config.Head_Gear_2,              0,   0,      INT_MAX,        },
++	{ "Head_Gear_3",             &battle_config.Head_Gear_3,              0,   0,      INT_MAX,        },
++	{ "Head_Gear_4",             &battle_config.Head_Gear_4,              0,   0,      INT_MAX,        },
++	{ "Head_Gear_5",             &battle_config.Head_Gear_5,              0,   0,      INT_MAX,        },
++	{ "Head_Gear_6",             &battle_config.Head_Gear_6,              0,   0,      INT_MAX,        },
++	{ "Head_Gear_7",             &battle_config.Head_Gear_7,              0,   0,      INT_MAX,        },
++	{ "Head_Gear_8",             &battle_config.Head_Gear_8,              0,   0,      INT_MAX,        },
++	{ "Head_Gear_9",             &battle_config.Head_Gear_9,              0,   0,      INT_MAX,        },
++	{ "Head_Gear_10",            &battle_config.Head_Gear_10,             0,   0,      INT_MAX,        },
++	{ "Armor_1",                 &battle_config.Armor_1,                  0,   0,      INT_MAX,        },
++	{ "Armor_2",                 &battle_config.Armor_2,                  0,   0,      INT_MAX,        },
++	{ "Armor_3",                 &battle_config.Armor_3,                  0,   0,      INT_MAX,        },
++	{ "Armor_4",                 &battle_config.Armor_4,                  0,   0,      INT_MAX,        },
++	{ "Armor_5",                 &battle_config.Armor_5,                  0,   0,      INT_MAX,        },
++	{ "Armor_6",                 &battle_config.Armor_6,                  0,   0,      INT_MAX,        },	
++	{ "Armor_7",                 &battle_config.Armor_7,                  0,   0,      INT_MAX,        },
++	{ "Armor_8",                 &battle_config.Armor_8,                  0,   0,      INT_MAX,        },
++	{ "Armor_9",                 &battle_config.Armor_9,                  0,   0,      INT_MAX,        },
++	{ "Armor_10",                &battle_config.Armor_10,                 0,   0,      INT_MAX,        },
++	{ "Shield_1",                &battle_config.Shield_1,                 0,   0,      INT_MAX,        },
++	{ "Shield_2",                &battle_config.Shield_2,                 0,   0,      INT_MAX,        },
++	{ "Shield_3",                &battle_config.Shield_3,                 0,   0,      INT_MAX,        },
++	{ "Shield_4",                &battle_config.Shield_4,                 0,   0,      INT_MAX,        },
++	{ "Shield_5",                &battle_config.Shield_5,                 0,   0,      INT_MAX,        },
++	{ "Shield_6",                &battle_config.Shield_6,                 0,   0,      INT_MAX,        },
++	{ "Shield_7",                &battle_config.Shield_7,                 0,   0,      INT_MAX,        },
++	{ "Shield_8",                &battle_config.Shield_8,                 0,   0,      INT_MAX,        },
++	{ "Shield_9",                &battle_config.Shield_9,                 0,   0,      INT_MAX,        },
++	{ "Shield_10",               &battle_config.Shield_10,                0,   0,      INT_MAX,        },
++	{ "Foot_Gear_1",             &battle_config.Foot_Gear_1,              0,   0,      INT_MAX,        },
++	{ "Foot_Gear_2",             &battle_config.Foot_Gear_2,              0,   0,      INT_MAX,        },
++	{ "Foot_Gear_3",             &battle_config.Foot_Gear_3,              0,   0,      INT_MAX,        },
++	{ "Foot_Gear_4",             &battle_config.Foot_Gear_4,              0,   0,      INT_MAX,        },
++	{ "Foot_Gear_5",             &battle_config.Foot_Gear_5,              0,   0,      INT_MAX,        },
++	{ "Foot_Gear_6",             &battle_config.Foot_Gear_6,              0,   0,      INT_MAX,        },
++	{ "Foot_Gear_7",             &battle_config.Foot_Gear_7,              0,   0,      INT_MAX,        },
++	{ "Foot_Gear_8",             &battle_config.Foot_Gear_8,              0,   0,      INT_MAX,        },
++	{ "Foot_Gear_9",             &battle_config.Foot_Gear_9,              0,   0,      INT_MAX,        },
++	{ "Foot_Gear_10",            &battle_config.Foot_Gear_10,             0,   0,      INT_MAX,        },
++	{ "Garment_1",               &battle_config.Garment_1,                0,   0,      INT_MAX,        },
++	{ "Garment_2",               &battle_config.Garment_2,                0,   0,      INT_MAX,        },
++	{ "Garment_3",               &battle_config.Garment_3,                0,   0,      INT_MAX,        },
++	{ "Garment_4",               &battle_config.Garment_4,                0,   0,      INT_MAX,        },
++	{ "Garment_5",               &battle_config.Garment_5,                0,   0,      INT_MAX,        },
++	{ "Garment_6",               &battle_config.Garment_6,                0,   0,      INT_MAX,        },
++	{ "Garment_7",               &battle_config.Garment_7,                0,   0,      INT_MAX,        },
++	{ "Garment_8",               &battle_config.Garment_8,                0,   0,      INT_MAX,        },
++	{ "Garment_9",               &battle_config.Garment_9,                0,   0,      INT_MAX,        },
++	{ "Garment_10",              &battle_config.Garment_10,               0,   0,      INT_MAX,        },
++	{ "Weapon_LV1_1",            &battle_config.Weapon_LV1_1,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV1_2",            &battle_config.Weapon_LV1_2,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV1_3",            &battle_config.Weapon_LV1_3,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV1_4",            &battle_config.Weapon_LV1_4,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV1_5",            &battle_config.Weapon_LV1_5,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV1_6",            &battle_config.Weapon_LV1_6,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV1_7",            &battle_config.Weapon_LV1_7,             0,   0,      INT_MAX,        },	
++	{ "Weapon_LV1_8",            &battle_config.Weapon_LV1_8,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV1_9",            &battle_config.Weapon_LV1_9,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV1_10",           &battle_config.Weapon_LV1_10,            0,   0,      INT_MAX,        },
++	{ "Weapon_LV2_1",            &battle_config.Weapon_LV2_1,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV2_2",            &battle_config.Weapon_LV2_2,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV2_3",            &battle_config.Weapon_LV2_3,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV2_4",            &battle_config.Weapon_LV2_4,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV2_5",            &battle_config.Weapon_LV2_5,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV2_6",            &battle_config.Weapon_LV2_6,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV2_7",            &battle_config.Weapon_LV2_7,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV2_8",            &battle_config.Weapon_LV2_8,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV2_9",            &battle_config.Weapon_LV2_9,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV2_10",           &battle_config.Weapon_LV2_10,            0,   0,      INT_MAX,        },
++	{ "Weapon_LV3_1",            &battle_config.Weapon_LV3_1,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV3_2",            &battle_config.Weapon_LV3_2,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV3_3",            &battle_config.Weapon_LV3_3,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV3_4",            &battle_config.Weapon_LV3_4,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV3_5",            &battle_config.Weapon_LV3_5,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV3_6",            &battle_config.Weapon_LV3_6,             0,   0,      INT_MAX,        },	
++	{ "Weapon_LV3_7",            &battle_config.Weapon_LV3_7,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV3_8",            &battle_config.Weapon_LV3_8,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV3_9",            &battle_config.Weapon_LV3_9,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV3_10",           &battle_config.Weapon_LV3_10,            0,   0,      INT_MAX,        },
++	{ "Weapon_LV4_1",            &battle_config.Weapon_LV4_1,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV4_2",            &battle_config.Weapon_LV4_2,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV4_3",            &battle_config.Weapon_LV4_3,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV4_4",            &battle_config.Weapon_LV4_4,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV4_5",            &battle_config.Weapon_LV4_5,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV4_6",            &battle_config.Weapon_LV4_6,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV4_7",            &battle_config.Weapon_LV4_7,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV4_8",            &battle_config.Weapon_LV4_8,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV4_9",            &battle_config.Weapon_LV4_9,             0,   0,      INT_MAX,        },
++	{ "Weapon_LV4_10",           &battle_config.Weapon_LV4_10,            0,   0,      INT_MAX,        },
++	{ "Shadow_7",                &battle_config.Shadow_7,                 0,   0,      INT_MAX,        },
++	{ "Shadow_8",                &battle_config.Shadow_8,                 0,   0,      INT_MAX,        },
++	{ "Shadow_9",                &battle_config.Shadow_9,                 0,   0,      INT_MAX,        },
++	{ "Shadow_10",               &battle_config.Shadow_10,                0,   0,      INT_MAX,        },
+\ No newline at end of file
+diff --git a/src/custom/battle_config_struct.inc b/src/custom/battle_config_struct.inc
+new file mode 100644
+index 0000000..0a19b6d
+--- /dev/null
++++ b/src/custom/battle_config_struct.inc
+@@ -0,0 +1,108 @@
++// Copyright (c) rAthena Dev Teams - Licensed under GNU GPL
++// For more information, see LICENCE in the main folder
++
++/**
++ * Custom battle config structure
++ * Place the definition of custom battle configuration structure members in this file.
++ *
++ * Make sure that the name you want is not already taken by looking into battle.hpp
++ * Do not forget to add initilization logic to battle_config_init.inc
++ *
++ * Format:
++ *	 <datatype> name;
++ **/
++
++	int Head_Gear_1;
++	int Head_Gear_2;
++	int Head_Gear_3;
++	int Head_Gear_4;
++	int Head_Gear_5; 
++	int Head_Gear_6;
++	int Head_Gear_7;
++	int Head_Gear_8;
++	int Head_Gear_9;
++	int Head_Gear_10;
++	int Armor_1;
++	int Armor_2;	
++	int Armor_3;
++	int Armor_4;
++	int Armor_5;
++	int Armor_6;
++	int Armor_7;
++	int Armor_8;
++	int Armor_9;
++	int Armor_10;
++	int Shield_1;
++	int Shield_2;
++	int Shield_3;
++	int Shield_4;
++	int Shield_5;
++	int Shield_6;
++	int Shield_7;
++	int Shield_8;
++	int Shield_9;
++	int Shield_10;
++	int Foot_Gear_1;
++	int Foot_Gear_2;
++	int Foot_Gear_3;
++	int Foot_Gear_4;
++	int Foot_Gear_5;
++	int Foot_Gear_6;
++	int Foot_Gear_7;
++	int Foot_Gear_8;
++	int Foot_Gear_9;
++	int Foot_Gear_10;
++	int Garment_1;
++	int Garment_2;
++	int Garment_3;
++	int Garment_4;
++	int Garment_5;
++	int Garment_6;
++	int Garment_7;
++	int Garment_8;
++	int Garment_9;
++	int Garment_10;
++	int Weapon_LV1_1;
++	int Weapon_LV1_2;
++	int Weapon_LV1_3;
++	int Weapon_LV1_4;
++	int Weapon_LV1_5;
++	int Weapon_LV1_6;
++	int Weapon_LV1_7;
++	int Weapon_LV1_8;
++	int Weapon_LV1_9;
++	int Weapon_LV1_10;
++	int Weapon_LV2_1;
++	int Weapon_LV2_2;
++	int Weapon_LV2_3;
++	int Weapon_LV2_4;
++	int Weapon_LV2_5;
++	int Weapon_LV2_6;
++	int Weapon_LV2_7;	
++	int Weapon_LV2_8;
++	int Weapon_LV2_9;
++	int Weapon_LV2_10;
++	int Weapon_LV3_1;
++	int Weapon_LV3_2;
++	int Weapon_LV3_3;
++	int Weapon_LV3_4;
++	int Weapon_LV3_5;
++	int Weapon_LV3_6;
++	int Weapon_LV3_7;
++	int Weapon_LV3_8;
++	int Weapon_LV3_9;
++	int Weapon_LV3_10;
++	int Weapon_LV4_1;
++	int Weapon_LV4_2;
++	int Weapon_LV4_3;
++	int Weapon_LV4_4;
++	int Weapon_LV4_5;
++	int Weapon_LV4_6;
++	int Weapon_LV4_7;
++	int Weapon_LV4_8;
++	int Weapon_LV4_9;
++	int Weapon_LV4_10;
++	int Shadow_7;
++	int Shadow_8;
++	int Shadow_9;
++	int Shadow_10;
+\ No newline at end of file
+diff --git a/src/custom/defines_post.hpp b/src/custom/defines_post.hpp
+new file mode 100644
+index 0000000..253b8cd
+--- /dev/null
++++ b/src/custom/defines_post.hpp
+@@ -0,0 +1,14 @@
++// Copyright (c) rAthena Dev Teams - Licensed under GNU GPL
++// For more information, see LICENCE in the main folder
++
++#ifndef CONFIG_CUSTOM_DEFINES_POST_HPP
++#define CONFIG_CUSTOM_DEFINES_POST_HPP
++
++/**
++ * rAthena configuration file (http://rathena.org)
++ * For detailed guidance on these check http://rathena.org/wiki/SRC/config/
++ **/
++
++
++
++#endif /* CONFIG_CUSTOM_DEFINES_POST_HPP */
+diff --git a/src/custom/defines_pre.hpp b/src/custom/defines_pre.hpp
+new file mode 100644
+index 0000000..93b1780
+--- /dev/null
++++ b/src/custom/defines_pre.hpp
+@@ -0,0 +1,14 @@
++// Copyright (c) rAthena Dev Teams - Licensed under GNU GPL
++// For more information, see LICENCE in the main folder
++
++#ifndef CONFIG_CUSTOM_DEFINES_PRE_HPP
++#define CONFIG_CUSTOM_DEFINES_PRE_HPP
++
++/**
++ * rAthena configuration file (http://rathena.org)
++ * For detailed guidance on these check http://rathena.org/wiki/SRC/config/
++ **/
++
++
++
++#endif /* CONFIG_CUSTOM_DEFINES_PRE_HPP */
+diff --git a/src/custom/script.inc b/src/custom/script.inc
+new file mode 100644
+index 0000000..839b990
+--- /dev/null
++++ b/src/custom/script.inc
+@@ -0,0 +1,19 @@
++// Copyright (c) rAthena Dev Teams - Licensed under GNU GPL
++// For more information, see LICENCE in the main folder
++
++/**
++ * Custom Script Commands
++ * Place the body of custom script commands in this file.
++ * Format:
++ *	BUILDIN_FUNC(command_name)
++ *	{
++ *		<code>;
++ *	}
++ **/
++
++//BUILDIN_FUNC(example)
++//{
++//	ShowInfo("buildin_example: It works!\n");
++//	script_pushint(st,1);
++//	return 0;
++//}
+diff --git a/src/custom/script_def.inc b/src/custom/script_def.inc
+new file mode 100644
+index 0000000..8863992
+--- /dev/null
++++ b/src/custom/script_def.inc
+@@ -0,0 +1,11 @@
++// Copyright (c) rAthena Dev Teams - Licensed under GNU GPL
++// For more information, see LICENCE in the main folder
++
++/**
++ * Custom Script Commands
++ * Place the definition of custom script commands in this file.
++ * Format:
++ *	BUILDIN_DEF(command_name,"parameters"),
++ **/
++
++//BUILDIN_DEF(example,""),
+-- 
+2.36.0.windows.1
+

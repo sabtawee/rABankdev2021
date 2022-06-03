@@ -1,0 +1,3368 @@
+From e16accb79401b435c8be9310dbd046a3f4e9e60b Mon Sep 17 00:00:00 2001
+From: sabtawee <sabtawee.bank@gmail.com>
+Date: Thu, 2 Jun 2022 18:45:46 +0700
+Subject: [PATCH 1/4] refineoptui
+
+---
+ conf/battle/misc.conf              |  108 +-
+ db/item_randomopt_db.yml           |    2 +-
+ db/item_randomopt_group.yml        |    2 +-
+ db/pre-re/item_randomopt_db.yml    | 1031 ++++++++++++++++
+ db/pre-re/item_randomopt_group.yml | 1846 ++++++++++++++++++++++++++++
+ src/map/clif.cpp                   |  196 +++
+ src/map/status.cpp                 |   68 +
+ src/map/status.hpp                 |    2 +
+ 8 files changed, 3252 insertions(+), 3 deletions(-)
+ create mode 100644 db/pre-re/item_randomopt_db.yml
+ create mode 100644 db/pre-re/item_randomopt_group.yml
+
+diff --git a/conf/battle/misc.conf b/conf/battle/misc.conf
+index 5850705..c59d514 100644
+--- a/conf/battle/misc.conf
++++ b/conf/battle/misc.conf
+@@ -91,7 +91,7 @@ duel_time_interval: 60
+ 
+ // Restrict duel usage to same map
+ duel_only_on_same_map: no
+-
++ 
+ // Determines max number of characters that can stack within a single cell. 
+ // Official - Only affects the walking routines of characters, including monsters.
+ // If a unit stops walking and is on a cell with more than stack limit
+@@ -183,3 +183,109 @@ mail_delay: 1000
+ 
+ // Hides items from the player's favorite tab from being sold to a NPC. (Note 1)
+ hide_fav_sell: no
++
++
++//Randon group option of refine level by item type
++//Head
++Head_Gear_1: 101
++Head_Gear_2: 101
++Head_Gear_3: 101
++Head_Gear_4: 101
++Head_Gear_5: 101
++Head_Gear_6: 101
++Head_Gear_7: 101
++Head_Gear_8: 102
++Head_Gear_9: 103
++Head_Gear_10: 104
++//Armor
++Armor_1: 105
++Armor_2: 105
++Armor_3: 105
++Armor_4: 105
++Armor_5: 105
++Armor_6: 105
++Armor_7: 105
++Armor_8: 106
++Armor_9: 107
++Armor_10: 108
++//Shield
++Shield_1: 109
++Shield_2: 109
++Shield_3: 109
++Shield_4: 109
++Shield_5: 109
++Shield_6: 109
++Shield_7: 109
++Shield_8: 110
++Shield_9: 111
++Shield_10: 112
++//Foot_Gear
++Foot_Gear_1: 113
++Foot_Gear_2: 113
++Foot_Gear_3: 113
++Foot_Gear_4: 113
++Foot_Gear_5: 113
++Foot_Gear_6: 113
++Foot_Gear_7: 113
++Foot_Gear_8: 114
++Foot_Gear_9: 115
++Foot_Gear_10: 116
++//Garment
++Garment_1: 117
++Garment_2: 117
++Garment_3: 117
++Garment_4: 117
++Garment_5: 117
++Garment_6: 117
++Garment_7: 117
++Garment_8: 118
++Garment_9: 119
++Garment_10: 120
++//Weapon_LV1
++Weapon_LV1_1: 121
++Weapon_LV1_2: 121
++Weapon_LV1_3: 121
++Weapon_LV1_4: 121
++Weapon_LV1_5: 121
++Weapon_LV1_6: 121
++Weapon_LV1_7: 121
++Weapon_LV1_8: 121
++Weapon_LV1_9: 122
++Weapon_LV1_10: 123
++//Weapon_LV2
++Weapon_LV2_1: 124
++Weapon_LV2_2: 124
++Weapon_LV2_3: 124
++Weapon_LV2_4: 124
++Weapon_LV2_5: 124
++Weapon_LV2_6: 124
++Weapon_LV2_7: 124
++Weapon_LV2_8: 124
++Weapon_LV2_9: 125
++Weapon_LV2_10: 126
++//Weapon_LV3
++Weapon_LV3_1: 127
++Weapon_LV3_2: 127
++Weapon_LV3_3: 127
++Weapon_LV3_4: 127
++Weapon_LV3_5: 127
++Weapon_LV3_6: 127
++Weapon_LV3_7: 127
++Weapon_LV3_8: 128
++Weapon_LV3_9: 129
++Weapon_LV3_10: 130
++//Weapon_LV4
++Weapon_LV4_1: 131
++Weapon_LV4_2: 131
++Weapon_LV4_3: 131
++Weapon_LV4_4: 131
++Weapon_LV4_5: 131
++Weapon_LV4_6: 131
++Weapon_LV4_7: 131
++Weapon_LV4_8: 132
++Weapon_LV4_9: 133
++Weapon_LV4_10: 134
++Shadow_7: 135
++Shadow_8: 136
++Shadow_9: 137
++Shadow_10: 138
+diff --git a/db/item_randomopt_db.yml b/db/item_randomopt_db.yml
+index 00dd23a..c5e8844 100644
+--- a/db/item_randomopt_db.yml
++++ b/db/item_randomopt_db.yml
+@@ -35,4 +35,4 @@ Footer:
+   Imports:
+   - Path: db/re/item_randomopt_db.yml
+     Mode: Renewal
+-  - Path: db/import/item_randomopt_db.yml
++  - Path: db/pre-re/item_randomopt_db.yml
+diff --git a/db/item_randomopt_group.yml b/db/item_randomopt_group.yml
+index 2800af5..bddf1ad 100644
+--- a/db/item_randomopt_group.yml
++++ b/db/item_randomopt_group.yml
+@@ -49,4 +49,4 @@ Footer:
+   Imports:
+   - Path: db/re/item_randomopt_group.yml
+     Mode: Renewal
+-  - Path: db/import/item_randomopt_group.yml
++  - Path: db/pre-re/item_randomopt_group.yml
+diff --git a/db/pre-re/item_randomopt_db.yml b/db/pre-re/item_randomopt_db.yml
+new file mode 100644
+index 0000000..5d7ebc4
+--- /dev/null
++++ b/db/pre-re/item_randomopt_db.yml
+@@ -0,0 +1,1031 @@
++# This file is a part of rAthena.
++#   Copyright(C) 2021 rAthena Development Team
++#   https://rathena.org - https://github.com/rathena
++#
++# This program is free software: you can redistribute it and/or modify
++# it under the terms of the GNU General Public License as published by
++# the Free Software Foundation, either version 3 of the License, or
++# (at your option) any later version.
++#
++# This program is distributed in the hope that it will be useful,
++# but WITHOUT ANY WARRANTY; without even the implied warranty of
++# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
++# GNU General Public License for more details.
++#
++# You should have received a copy of the GNU General Public License
++# along with this program. If not, see <http://www.gnu.org/licenses/>.
++#
++###########################################################################
++# Item Random Option Database
++###########################################################################
++#
++# Item Random Option Settings
++#
++###########################################################################
++# - Id          Item Random Option ID matching the ID defined in enumvar.lub in the client.
++#   Option      Item Random Option constant.
++#   Script      Bonus script used for option.
++###########################################################################
++
++Header:
++  Type: RANDOM_OPTION_DB
++  Version: 1
++
++Body:
++  - Id: 1
++    Option: VAR_MAXHPAMOUNT
++    Script: |
++      bonus bMaxHP,getrandomoptinfo(ROA_VALUE);
++  - Id: 2
++    Option: VAR_MAXSPAMOUNT
++    Script: |
++      bonus bMaxSP,getrandomoptinfo(ROA_VALUE);
++  - Id: 3
++    Option: VAR_STRAMOUNT
++    Script: |
++      bonus bStr,getrandomoptinfo(ROA_VALUE);
++  - Id: 4
++    Option: VAR_AGIAMOUNT
++    Script: |
++      bonus bAgi,getrandomoptinfo(ROA_VALUE);
++  - Id: 5
++    Option: VAR_VITAMOUNT
++    Script: |
++      bonus bVit,getrandomoptinfo(ROA_VALUE);
++  - Id: 6
++    Option: VAR_INTAMOUNT
++    Script: |
++      bonus bInt,getrandomoptinfo(ROA_VALUE);
++  - Id: 7
++    Option: VAR_DEXAMOUNT
++    Script: |
++      bonus bDex,getrandomoptinfo(ROA_VALUE);
++  - Id: 8
++    Option: VAR_LUKAMOUNT
++    Script: |
++      bonus bLuk,getrandomoptinfo(ROA_VALUE);
++  - Id: 9
++    Option: VAR_MAXHPPERCENT
++    Script: |
++      bonus bMaxHPrate,getrandomoptinfo(ROA_VALUE);
++  - Id: 10
++    Option: VAR_MAXSPPERCENT
++    Script: |
++      bonus bMaxSPrate,getrandomoptinfo(ROA_VALUE);
++  - Id: 11
++    Option: VAR_HPACCELERATION
++    Script: |
++      bonus bHPrecovRate,getrandomoptinfo(ROA_VALUE);
++  - Id: 12
++    Option: VAR_SPACCELERATION
++    Script: |
++      bonus bSPrecovRate,getrandomoptinfo(ROA_VALUE);
++  - Id: 13
++    Option: VAR_ATKPERCENT
++    Script: |
++      bonus2 bAddClass,Class_All,getrandomoptinfo(ROA_VALUE);
++  - Id: 14
++    Option: VAR_MAGICATKPERCENT
++    Script: |
++      bonus bMatkRate,getrandomoptinfo(ROA_VALUE);
++  - Id: 15
++    Option: VAR_PLUSASPD
++    Script: |
++      bonus bAspd,getrandomoptinfo(ROA_VALUE);
++  - Id: 16
++    Option: VAR_PLUSASPDPERCENT
++    Script: |
++      bonus bAspdRate,getrandomoptinfo(ROA_VALUE);
++  - Id: 17
++    Option: VAR_ATTPOWER
++    Script: |
++      bonus bAtk,getrandomoptinfo(ROA_VALUE);
++  - Id: 18
++    Option: VAR_HITSUCCESSVALUE
++    Script: |
++      bonus bHit,getrandomoptinfo(ROA_VALUE);
++  - Id: 19
++    Option: VAR_ATTMPOWER
++    Script: |
++      bonus bMatk,getrandomoptinfo(ROA_VALUE);
++  - Id: 20
++    Option: VAR_ITEMDEFPOWER
++    Script: |
++      bonus bDef,getrandomoptinfo(ROA_VALUE);
++  - Id: 21
++    Option: VAR_MDEFPOWER
++    Script: |
++      bonus bMdef,getrandomoptinfo(ROA_VALUE);
++  - Id: 22
++    Option: VAR_AVOIDSUCCESSVALUE
++    Script: |
++      bonus bFlee,getrandomoptinfo(ROA_VALUE);
++  - Id: 23
++    Option: VAR_PLUSAVOIDSUCCESSVALUE
++    Script: |
++      bonus bFlee2,getrandomoptinfo(ROA_VALUE);
++  - Id: 24
++    Option: VAR_CRITICALSUCCESSVALUE
++    Script: |
++      bonus bCritical,getrandomoptinfo(ROA_VALUE);
++  - Id: 25
++    Option: ATTR_TOLERACE_NOTHING
++    Script: |
++      bonus2 bSubEle,Ele_Neutral,getrandomoptinfo(ROA_VALUE);
++  - Id: 26
++    Option: ATTR_TOLERACE_WATER
++    Script: |
++      bonus2 bSubEle,Ele_Water,getrandomoptinfo(ROA_VALUE);
++  - Id: 27
++    Option: ATTR_TOLERACE_GROUND
++    Script: |
++      bonus2 bSubEle,Ele_Earth,getrandomoptinfo(ROA_VALUE);
++  - Id: 28
++    Option: ATTR_TOLERACE_FIRE
++    Script: |
++      bonus2 bSubEle,Ele_Fire,getrandomoptinfo(ROA_VALUE);
++  - Id: 29
++    Option: ATTR_TOLERACE_WIND
++    Script: |
++      bonus2 bSubEle,Ele_Wind,getrandomoptinfo(ROA_VALUE);
++  - Id: 30
++    Option: ATTR_TOLERACE_POISON
++    Script: |
++      bonus2 bSubEle,Ele_Poison,getrandomoptinfo(ROA_VALUE);
++  - Id: 31
++    Option: ATTR_TOLERACE_SAINT
++    Script: |
++      bonus2 bSubEle,Ele_Holy,getrandomoptinfo(ROA_VALUE);
++  - Id: 32
++    Option: ATTR_TOLERACE_DARKNESS
++    Script: |
++      bonus2 bSubEle,Ele_Dark,getrandomoptinfo(ROA_VALUE);
++  - Id: 33
++    Option: ATTR_TOLERACE_TELEKINESIS
++    Script: |
++      bonus2 bSubEle,Ele_Ghost,getrandomoptinfo(ROA_VALUE);
++  - Id: 34
++    Option: ATTR_TOLERACE_UNDEAD
++    Script: |
++      bonus2 bSubEle,Ele_Undead,getrandomoptinfo(ROA_VALUE);
++  - Id: 35
++    Option: ATTR_TOLERACE_ALLBUTNOTHING
++    Script: |
++      for(.@i = Ele_Water; .@i < Ele_Undead; ++.@i)
++        bonus2 bSubEle,.@i,getrandomoptinfo(ROA_VALUE);
++  - Id: 36
++    Option: DAMAGE_PROPERTY_NOTHING_USER
++    Script: |
++      bonus2 bSubDefEle,Ele_Neutral,getrandomoptinfo(ROA_VALUE);
++  - Id: 37
++    Option: DAMAGE_PROPERTY_NOTHING_TARGET
++    Script: |
++      bonus2 bAddEle,Ele_Neutral,getrandomoptinfo(ROA_VALUE);
++  - Id: 38
++    Option: DAMAGE_PROPERTY_WATER_USER
++    Script: |
++      bonus2 bSubDefEle,Ele_Water,getrandomoptinfo(ROA_VALUE);
++  - Id: 39
++    Option: DAMAGE_PROPERTY_WATER_TARGET
++    Script: |
++      bonus2 bAddEle,Ele_Water,getrandomoptinfo(ROA_VALUE);
++  - Id: 40
++    Option: DAMAGE_PROPERTY_GROUND_USER
++    Script: |
++      bonus2 bSubDefEle,Ele_Earth,getrandomoptinfo(ROA_VALUE);
++  - Id: 41
++    Option: DAMAGE_PROPERTY_GROUND_TARGET
++    Script: |
++      bonus2 bAddEle,Ele_Earth,getrandomoptinfo(ROA_VALUE);
++  - Id: 42
++    Option: DAMAGE_PROPERTY_FIRE_USER
++    Script: |
++      bonus2 bSubDefEle,Ele_Fire,getrandomoptinfo(ROA_VALUE);
++  - Id: 43
++    Option: DAMAGE_PROPERTY_FIRE_TARGET
++    Script: |
++      bonus2 bAddEle,Ele_Fire,getrandomoptinfo(ROA_VALUE);
++  - Id: 44
++    Option: DAMAGE_PROPERTY_WIND_USER
++    Script: |
++      bonus2 bSubDefEle,Ele_Wind,getrandomoptinfo(ROA_VALUE);
++  - Id: 45
++    Option: DAMAGE_PROPERTY_WIND_TARGET
++    Script: |
++      bonus2 bAddEle,Ele_Wind,getrandomoptinfo(ROA_VALUE);
++  - Id: 46
++    Option: DAMAGE_PROPERTY_POISON_USER
++    Script: |
++      bonus2 bSubDefEle,Ele_Poison,getrandomoptinfo(ROA_VALUE);
++  - Id: 47
++    Option: DAMAGE_PROPERTY_POISON_TARGET
++    Script: |
++      bonus2 bAddEle,Ele_Poison,getrandomoptinfo(ROA_VALUE);
++  - Id: 48
++    Option: DAMAGE_PROPERTY_SAINT_USER
++    Script: |
++      bonus2 bSubDefEle,Ele_Holy,getrandomoptinfo(ROA_VALUE);
++  - Id: 49
++    Option: DAMAGE_PROPERTY_SAINT_TARGET
++    Script: |
++      bonus2 bAddEle,Ele_Holy,getrandomoptinfo(ROA_VALUE);
++  - Id: 50
++    Option: DAMAGE_PROPERTY_DARKNESS_USER
++    Script: |
++      bonus2 bSubDefEle,Ele_Dark,getrandomoptinfo(ROA_VALUE);
++  - Id: 51
++    Option: DAMAGE_PROPERTY_DARKNESS_TARGET
++    Script: |
++      bonus2 bAddEle,Ele_Dark,getrandomoptinfo(ROA_VALUE);
++  - Id: 52
++    Option: DAMAGE_PROPERTY_TELEKINESIS_USER
++    Script: |
++      bonus2 bSubDefEle,Ele_Ghost,getrandomoptinfo(ROA_VALUE);
++  - Id: 53
++    Option: DAMAGE_PROPERTY_TELEKINESIS_TARGET
++    Script: |
++      bonus2 bAddEle,Ele_Ghost,getrandomoptinfo(ROA_VALUE);
++  - Id: 54
++    Option: DAMAGE_PROPERTY_UNDEAD_USER
++    Script: |
++      bonus2 bSubDefEle,Ele_Undead,getrandomoptinfo(ROA_VALUE);
++  - Id: 55
++    Option: DAMAGE_PROPERTY_UNDEAD_TARGET
++    Script: |
++      bonus2 bAddEle,Ele_Undead,getrandomoptinfo(ROA_VALUE);
++  - Id: 56
++    Option: MDAMAGE_PROPERTY_NOTHING_USER
++    Script: |
++      bonus2 bMagicSubDefEle,Ele_Neutral,getrandomoptinfo(ROA_VALUE);
++  - Id: 57
++    Option: MDAMAGE_PROPERTY_NOTHING_TARGET
++    Script: |
++      bonus2 bMagicAddEle,Ele_Neutral,getrandomoptinfo(ROA_VALUE);
++  - Id: 58
++    Option: MDAMAGE_PROPERTY_WATER_USER
++    Script: |
++      bonus2 bMagicSubDefEle,Ele_Water,getrandomoptinfo(ROA_VALUE);
++  - Id: 59
++    Option: MDAMAGE_PROPERTY_WATER_TARGET
++    Script: |
++      bonus2 bMagicAddEle,Ele_Water,getrandomoptinfo(ROA_VALUE);
++  - Id: 60
++    Option: MDAMAGE_PROPERTY_GROUND_USER
++    Script: |
++      bonus2 bMagicSubDefEle,Ele_Earth,getrandomoptinfo(ROA_VALUE);
++  - Id: 61
++    Option: MDAMAGE_PROPERTY_GROUND_TARGET
++    Script: |
++      bonus2 bMagicAddEle,Ele_Earth,getrandomoptinfo(ROA_VALUE);
++  - Id: 62
++    Option: MDAMAGE_PROPERTY_FIRE_USER
++    Script: |
++      bonus2 bMagicSubDefEle,Ele_Fire,getrandomoptinfo(ROA_VALUE);
++  - Id: 63
++    Option: MDAMAGE_PROPERTY_FIRE_TARGET
++    Script: |
++      bonus2 bMagicAddEle,Ele_Fire,getrandomoptinfo(ROA_VALUE);
++  - Id: 64
++    Option: MDAMAGE_PROPERTY_WIND_USER
++    Script: |
++      bonus2 bMagicSubDefEle,Ele_Wind,getrandomoptinfo(ROA_VALUE);
++  - Id: 65
++    Option: MDAMAGE_PROPERTY_WIND_TARGET
++    Script: |
++      bonus2 bMagicAddEle,Ele_Wind,getrandomoptinfo(ROA_VALUE);
++  - Id: 66
++    Option: MDAMAGE_PROPERTY_POISON_USER
++    Script: |
++      bonus2 bMagicSubDefEle,Ele_Poison,getrandomoptinfo(ROA_VALUE);
++  - Id: 67
++    Option: MDAMAGE_PROPERTY_POISON_TARGET
++    Script: |
++      bonus2 bMagicAddEle,Ele_Poison,getrandomoptinfo(ROA_VALUE);
++  - Id: 68
++    Option: MDAMAGE_PROPERTY_SAINT_USER
++    Script: |
++      bonus2 bMagicSubDefEle,Ele_Holy,getrandomoptinfo(ROA_VALUE);
++  - Id: 69
++    Option: MDAMAGE_PROPERTY_SAINT_TARGET
++    Script: |
++      bonus2 bMagicAddEle,Ele_Holy,getrandomoptinfo(ROA_VALUE);
++  - Id: 70
++    Option: MDAMAGE_PROPERTY_DARKNESS_USER
++    Script: |
++      bonus2 bMagicSubDefEle,Ele_Dark,getrandomoptinfo(ROA_VALUE);
++  - Id: 71
++    Option: MDAMAGE_PROPERTY_DARKNESS_TARGET
++    Script: |
++      bonus2 bMagicAddEle,Ele_Dark,getrandomoptinfo(ROA_VALUE);
++  - Id: 72
++    Option: MDAMAGE_PROPERTY_TELEKINESIS_USER
++    Script: |
++      bonus2 bMagicSubDefEle,Ele_Ghost,getrandomoptinfo(ROA_VALUE);
++  - Id: 73
++    Option: MDAMAGE_PROPERTY_TELEKINESIS_TARGET
++    Script: |
++      bonus2 bMagicAddEle,Ele_Ghost,getrandomoptinfo(ROA_VALUE);
++  - Id: 74
++    Option: MDAMAGE_PROPERTY_UNDEAD_USER
++    Script: |
++      bonus2 bMagicSubDefEle,Ele_Undead,getrandomoptinfo(ROA_VALUE);
++  - Id: 75
++    Option: MDAMAGE_PROPERTY_UNDEAD_TARGET
++    Script: |
++      bonus2 bMagicAddEle,Ele_Undead,getrandomoptinfo(ROA_VALUE);
++  - Id: 76
++    Option: BODY_ATTR_NOTHING
++    Script: |
++      bonus bDefEle,Ele_Neutral;
++  - Id: 77
++    Option: BODY_ATTR_WATER
++    Script: |
++      bonus bDefEle,Ele_Water;
++  - Id: 78
++    Option: BODY_ATTR_GROUND
++    Script: |
++      bonus bDefEle,Ele_Earth;
++  - Id: 79
++    Option: BODY_ATTR_FIRE
++    Script: |
++      bonus bDefEle,Ele_Fire;
++  - Id: 80
++    Option: BODY_ATTR_WIND
++    Script: |
++      bonus bDefEle,Ele_Wind;
++  - Id: 81
++    Option: BODY_ATTR_POISON
++    Script: |
++      bonus bDefEle,Ele_Poison;
++  - Id: 82
++    Option: BODY_ATTR_SAINT
++    Script: |
++      bonus bDefEle,Ele_Holy;
++  - Id: 83
++    Option: BODY_ATTR_DARKNESS
++    Script: |
++      bonus bDefEle,Ele_Dark;
++  - Id: 84
++    Option: BODY_ATTR_TELEKINESIS
++    Script: |
++      bonus bDefEle,Ele_Ghost;
++  - Id: 85
++    Option: BODY_ATTR_UNDEAD
++    Script: |
++      bonus bDefEle,Ele_Undead;
++  - Id: 87
++    Option: RACE_TOLERACE_NOTHING
++    Script: |
++      bonus2 bSubRace,RC_Formless,getrandomoptinfo(ROA_VALUE);
++  - Id: 88
++    Option: RACE_TOLERACE_UNDEAD
++    Script: |
++      bonus2 bSubRace,RC_Undead,getrandomoptinfo(ROA_VALUE);
++  - Id: 89
++    Option: RACE_TOLERACE_ANIMAL
++    Script: |
++      bonus2 bSubRace,RC_Brute,getrandomoptinfo(ROA_VALUE);
++  - Id: 90
++    Option: RACE_TOLERACE_PLANT
++    Script: |
++      bonus2 bSubRace,RC_Plant,getrandomoptinfo(ROA_VALUE);
++  - Id: 91
++    Option: RACE_TOLERACE_INSECT
++    Script: |
++      bonus2 bSubRace,RC_Insect,getrandomoptinfo(ROA_VALUE);
++  - Id: 92
++    Option: RACE_TOLERACE_FISHS
++    Script: |
++      bonus2 bSubRace,RC_Fish,getrandomoptinfo(ROA_VALUE);
++  - Id: 93
++    Option: RACE_TOLERACE_DEVIL
++    Script: |
++      bonus2 bSubRace,RC_Demon,getrandomoptinfo(ROA_VALUE);
++  - Id: 94
++    Option: RACE_TOLERACE_HUMAN
++    Script: |
++      bonus2 bSubRace,RC_DemiHuman,getrandomoptinfo(ROA_VALUE);
++  - Id: 95
++    Option: RACE_TOLERACE_ANGEL
++    Script: |
++      bonus2 bSubRace,RC_Angel,getrandomoptinfo(ROA_VALUE);
++  - Id: 96
++    Option: RACE_TOLERACE_DRAGON
++    Script: |
++      bonus2 bSubRace,RC_Dragon,getrandomoptinfo(ROA_VALUE);
++  - Id: 97
++    Option: RACE_DAMAGE_NOTHING
++    Script: |
++      bonus2 bAddRace,RC_Formless,getrandomoptinfo(ROA_VALUE);
++  - Id: 98
++    Option: RACE_DAMAGE_UNDEAD
++    Script: |
++      bonus2 bAddRace,RC_Undead,getrandomoptinfo(ROA_VALUE);
++  - Id: 99
++    Option: RACE_DAMAGE_ANIMAL
++    Script: |
++      bonus2 bAddRace,RC_Brute,getrandomoptinfo(ROA_VALUE);
++  - Id: 100
++    Option: RACE_DAMAGE_PLANT
++    Script: |
++      bonus2 bAddRace,RC_Plant,getrandomoptinfo(ROA_VALUE);
++  - Id: 101
++    Option: RACE_DAMAGE_INSECT
++    Script: |
++      bonus2 bAddRace,RC_Insect,getrandomoptinfo(ROA_VALUE);
++  - Id: 102
++    Option: RACE_DAMAGE_FISHS
++    Script: |
++      bonus2 bAddRace,RC_Fish,getrandomoptinfo(ROA_VALUE);
++  - Id: 103
++    Option: RACE_DAMAGE_DEVIL
++    Script: |
++      bonus2 bAddRace,RC_Demon,getrandomoptinfo(ROA_VALUE);
++  - Id: 104
++    Option: RACE_DAMAGE_HUMAN
++    Script: |
++      bonus2 bAddRace,RC_DemiHuman,getrandomoptinfo(ROA_VALUE);
++  - Id: 105
++    Option: RACE_DAMAGE_ANGEL
++    Script: |
++      bonus2 bAddRace,RC_Angel,getrandomoptinfo(ROA_VALUE);
++  - Id: 106
++    Option: RACE_DAMAGE_DRAGON
++    Script: |
++      bonus2 bAddRace,RC_Dragon,getrandomoptinfo(ROA_VALUE);
++  - Id: 107
++    Option: RACE_MDAMAGE_NOTHING
++    Script: |
++      bonus2 bMagicAddRace,RC_Formless,getrandomoptinfo(ROA_VALUE);
++  - Id: 108
++    Option: RACE_MDAMAGE_UNDEAD
++    Script: |
++      bonus2 bMagicAddRace,RC_Undead,getrandomoptinfo(ROA_VALUE);
++  - Id: 109
++    Option: RACE_MDAMAGE_ANIMAL
++    Script: |
++      bonus2 bMagicAddRace,RC_Brute,getrandomoptinfo(ROA_VALUE);
++  - Id: 110
++    Option: RACE_MDAMAGE_PLANT
++    Script: |
++      bonus2 bMagicAddRace,RC_Plant,getrandomoptinfo(ROA_VALUE);
++  - Id: 111
++    Option: RACE_MDAMAGE_INSECT
++    Script: |
++      bonus2 bMagicAddRace,RC_Insect,getrandomoptinfo(ROA_VALUE);
++  - Id: 112
++    Option: RACE_MDAMAGE_FISHS
++    Script: |
++      bonus2 bMagicAddRace,RC_Fish,getrandomoptinfo(ROA_VALUE);
++  - Id: 113
++    Option: RACE_MDAMAGE_DEVIL
++    Script: |
++      bonus2 bMagicAddRace,RC_Demon,getrandomoptinfo(ROA_VALUE);
++  - Id: 114
++    Option: RACE_MDAMAGE_HUMAN
++    Script: |
++      bonus2 bMagicAddRace,RC_DemiHuman,getrandomoptinfo(ROA_VALUE);
++  - Id: 115
++    Option: RACE_MDAMAGE_ANGEL
++    Script: |
++      bonus2 bMagicAddRace,RC_Angel,getrandomoptinfo(ROA_VALUE);
++  - Id: 116
++    Option: RACE_MDAMAGE_DRAGON
++    Script: |
++      bonus2 bMagicAddRace,RC_Dragon,getrandomoptinfo(ROA_VALUE);
++  - Id: 117
++    Option: RACE_CRI_PERCENT_NOTHING
++    Script: |
++      bonus2 bCriticalAddRace,RC_Formless,getrandomoptinfo(ROA_VALUE)/10;
++  - Id: 118
++    Option: RACE_CRI_PERCENT_UNDEAD
++    Script: |
++      bonus2 bCriticalAddRace,RC_Undead,getrandomoptinfo(ROA_VALUE)/10;
++  - Id: 119
++    Option: RACE_CRI_PERCENT_ANIMAL
++    Script: |
++      bonus2 bCriticalAddRace,RC_Brute,getrandomoptinfo(ROA_VALUE)/10;
++  - Id: 120
++    Option: RACE_CRI_PERCENT_PLANT
++    Script: |
++      bonus2 bCriticalAddRace,RC_Plant,getrandomoptinfo(ROA_VALUE)/10;
++  - Id: 121
++    Option: RACE_CRI_PERCENT_INSECT
++    Script: |
++      bonus2 bCriticalAddRace,RC_Insect,getrandomoptinfo(ROA_VALUE)/10;
++  - Id: 122
++    Option: RACE_CRI_PERCENT_FISHS
++    Script: |
++      bonus2 bCriticalAddRace,RC_Fish,getrandomoptinfo(ROA_VALUE)/10;
++  - Id: 123
++    Option: RACE_CRI_PERCENT_DEVIL
++    Script: |
++      bonus2 bCriticalAddRace,RC_Demon,getrandomoptinfo(ROA_VALUE)/10;
++  - Id: 124
++    Option: RACE_CRI_PERCENT_HUMAN
++    Script: |
++      bonus2 bCriticalAddRace,RC_DemiHuman,getrandomoptinfo(ROA_VALUE)/10;
++  - Id: 125
++    Option: RACE_CRI_PERCENT_ANGEL
++    Script: |
++      bonus2 bCriticalAddRace,RC_Angel,getrandomoptinfo(ROA_VALUE)/10;
++  - Id: 126
++    Option: RACE_CRI_PERCENT_DRAGON
++    Script: |
++      bonus2 bCriticalAddRace,RC_Dragon,getrandomoptinfo(ROA_VALUE)/10;
++  - Id: 127
++    Option: RACE_IGNORE_DEF_PERCENT_NOTHING
++    Script: |
++      bonus2 bIgnoreDefRaceRate,RC_Formless,getrandomoptinfo(ROA_VALUE);
++  - Id: 128
++    Option: RACE_IGNORE_DEF_PERCENT_UNDEAD
++    Script: |
++      bonus2 bIgnoreDefRaceRate,RC_Undead,getrandomoptinfo(ROA_VALUE);
++  - Id: 129
++    Option: RACE_IGNORE_DEF_PERCENT_ANIMAL
++    Script: |
++      bonus2 bIgnoreDefRaceRate,RC_Brute,getrandomoptinfo(ROA_VALUE);
++  - Id: 130
++    Option: RACE_IGNORE_DEF_PERCENT_PLANT
++    Script: |
++      bonus2 bIgnoreDefRaceRate,RC_Plant,getrandomoptinfo(ROA_VALUE);
++  - Id: 131
++    Option: RACE_IGNORE_DEF_PERCENT_INSECT
++    Script: |
++      bonus2 bIgnoreDefRaceRate,RC_Insect,getrandomoptinfo(ROA_VALUE);
++  - Id: 132
++    Option: RACE_IGNORE_DEF_PERCENT_FISHS
++    Script: |
++      bonus2 bIgnoreDefRaceRate,RC_Fish,getrandomoptinfo(ROA_VALUE);
++  - Id: 133
++    Option: RACE_IGNORE_DEF_PERCENT_DEVIL
++    Script: |
++      bonus2 bIgnoreDefRaceRate,RC_Demon,getrandomoptinfo(ROA_VALUE);
++  - Id: 134
++    Option: RACE_IGNORE_DEF_PERCENT_HUMAN
++    Script: |
++      bonus2 bIgnoreDefRaceRate,RC_DemiHuman,getrandomoptinfo(ROA_VALUE);
++  - Id: 135
++    Option: RACE_IGNORE_DEF_PERCENT_ANGEL
++    Script: |
++      bonus2 bIgnoreDefRaceRate,RC_Angel,getrandomoptinfo(ROA_VALUE);
++  - Id: 136
++    Option: RACE_IGNORE_DEF_PERCENT_DRAGON
++    Script: |
++      bonus2 bIgnoreDefRaceRate,RC_Dragon,getrandomoptinfo(ROA_VALUE);
++  - Id: 137
++    Option: RACE_IGNORE_MDEF_PERCENT_NOTHING
++    Script: |
++      bonus2 bIgnoreMdefRaceRate,RC_Formless,getrandomoptinfo(ROA_VALUE);
++  - Id: 138
++    Option: RACE_IGNORE_MDEF_PERCENT_UNDEAD
++    Script: |
++      bonus2 bIgnoreMdefRaceRate,RC_Undead,getrandomoptinfo(ROA_VALUE);
++  - Id: 139
++    Option: RACE_IGNORE_MDEF_PERCENT_ANIMAL
++    Script: |
++      bonus2 bIgnoreMdefRaceRate,RC_Brute,getrandomoptinfo(ROA_VALUE);
++  - Id: 140
++    Option: RACE_IGNORE_MDEF_PERCENT_PLANT
++    Script: |
++      bonus2 bIgnoreMdefRaceRate,RC_Plant,getrandomoptinfo(ROA_VALUE);
++  - Id: 141
++    Option: RACE_IGNORE_MDEF_PERCENT_INSECT
++    Script: |
++      bonus2 bIgnoreMdefRaceRate,RC_Insect,getrandomoptinfo(ROA_VALUE);
++  - Id: 142
++    Option: RACE_IGNORE_MDEF_PERCENT_FISHS
++    Script: |
++      bonus2 bIgnoreMdefRaceRate,RC_Fish,getrandomoptinfo(ROA_VALUE);
++  - Id: 143
++    Option: RACE_IGNORE_MDEF_PERCENT_DEVIL
++    Script: |
++      bonus2 bIgnoreMdefRaceRate,RC_Demon,getrandomoptinfo(ROA_VALUE);
++  - Id: 144
++    Option: RACE_IGNORE_MDEF_PERCENT_HUMAN
++    Script: |
++      bonus2 bIgnoreMdefRaceRate,RC_DemiHuman,getrandomoptinfo(ROA_VALUE);
++  - Id: 145
++    Option: RACE_IGNORE_MDEF_PERCENT_ANGEL
++    Script: |
++      bonus2 bIgnoreMdefRaceRate,RC_Angel,getrandomoptinfo(ROA_VALUE);
++  - Id: 146
++    Option: RACE_IGNORE_MDEF_PERCENT_DRAGON
++    Script: |
++      bonus2 bIgnoreMdefRaceRate,RC_Dragon,getrandomoptinfo(ROA_VALUE);
++  - Id: 147
++    Option: CLASS_DAMAGE_NORMAL_TARGET
++    Script: |
++      bonus2 bAddClass,Class_Normal,getrandomoptinfo(ROA_VALUE);
++  - Id: 148
++    Option: CLASS_DAMAGE_BOSS_TARGET
++    Script: |
++      bonus2 bAddClass,Class_Boss,getrandomoptinfo(ROA_VALUE);
++  - Id: 149
++    Option: CLASS_DAMAGE_NORMAL_USER
++    Script: |
++      bonus2 bSubClass,Class_Normal,getrandomoptinfo(ROA_VALUE);
++  - Id: 150
++    Option: CLASS_DAMAGE_BOSS_USER
++    Script: |
++      bonus2 bSubClass,Class_Boss,getrandomoptinfo(ROA_VALUE);
++  - Id: 151
++    Option: CLASS_MDAMAGE_NORMAL
++    Script: |
++      bonus2 bMagicAddClass,Class_Normal,getrandomoptinfo(ROA_VALUE);
++  - Id: 152
++    Option: CLASS_MDAMAGE_BOSS
++    Script: |
++      bonus2 bMagicAddClass,Class_Boss,getrandomoptinfo(ROA_VALUE);
++  - Id: 153
++    Option: CLASS_IGNORE_DEF_PERCENT_NORMAL
++    Script: |
++      bonus2 bIgnoreDefClassRate,Class_Normal,getrandomoptinfo(ROA_VALUE);
++  - Id: 154
++    Option: CLASS_IGNORE_DEF_PERCENT_BOSS
++    Script: |
++      bonus2 bIgnoreDefClassRate,Class_Boss,getrandomoptinfo(ROA_VALUE);
++  - Id: 155
++    Option: CLASS_IGNORE_MDEF_PERCENT_NORMAL
++    Script: |
++      bonus2 bIgnoreMdefClassRate,Class_Normal,getrandomoptinfo(ROA_VALUE);
++  - Id: 156
++    Option: CLASS_IGNORE_MDEF_PERCENT_BOSS
++    Script: |
++      bonus2 bIgnoreMdefClassRate,Class_Boss,getrandomoptinfo(ROA_VALUE);
++  - Id: 157
++    Option: DAMAGE_SIZE_SMALL_TARGET
++    Script: |
++      bonus2 bAddSize,Size_Small,getrandomoptinfo(ROA_VALUE);
++  - Id: 158
++    Option: DAMAGE_SIZE_MIDIUM_TARGET
++    Script: |
++      bonus2 bAddSize,Size_Medium,getrandomoptinfo(ROA_VALUE);
++  - Id: 159
++    Option: DAMAGE_SIZE_LARGE_TARGET
++    Script: |
++      bonus2 bAddSize,Size_Large,getrandomoptinfo(ROA_VALUE);
++  - Id: 160
++    Option: DAMAGE_SIZE_SMALL_USER
++    Script: |
++      bonus2 bSubSize,Size_Small,getrandomoptinfo(ROA_VALUE);
++  - Id: 161
++    Option: DAMAGE_SIZE_MIDIUM_USER
++    Script: |
++      bonus2 bSubSize,Size_Medium,getrandomoptinfo(ROA_VALUE);
++  - Id: 162
++    Option: DAMAGE_SIZE_LARGE_USER
++    Script: |
++      bonus2 bSubSize,Size_Large,getrandomoptinfo(ROA_VALUE);
++  - Id: 163
++    Option: DAMAGE_SIZE_PERFECT
++    Script: |
++      bonus bNoSizeFix,1;
++  - Id: 164
++    Option: DAMAGE_CRI_TARGET
++    Script: |
++      bonus bCritAtkRate,getrandomoptinfo(ROA_VALUE);
++  - Id: 165
++    Option: DAMAGE_CRI_USER
++    Script: |
++      bonus bCritDefRate,getrandomoptinfo(ROA_VALUE);
++  - Id: 166
++    Option: RANGE_ATTACK_DAMAGE_TARGET
++    Script: |
++      bonus bLongAtkRate,getrandomoptinfo(ROA_VALUE);
++  - Id: 167
++    Option: RANGE_ATTACK_DAMAGE_USER
++    Script: |
++      bonus bLongAtkDef,getrandomoptinfo(ROA_VALUE);
++  - Id: 168
++    Option: HEAL_VALUE
++    Script: |
++      bonus bHealPower,getrandomoptinfo(ROA_VALUE);
++  - Id: 169
++    Option: HEAL_MODIFY_PERCENT
++    Script: |
++      bonus bHealPower2,getrandomoptinfo(ROA_VALUE);
++  - Id: 170
++    Option: DEC_SPELL_CAST_TIME
++    Script: |
++      bonus bVariableCastrate,-(getrandomoptinfo(ROA_VALUE));
++  - Id: 171
++    Option: DEC_SPELL_DELAY_TIME
++    Script: |
++      bonus bDelayrate,-(getrandomoptinfo(ROA_VALUE));
++  - Id: 172
++    Option: DEC_SP_CONSUMPTION
++    Script: |
++      bonus bUseSPrate,-(getrandomoptinfo(ROA_VALUE));
++  - Id: 175
++    Option: WEAPON_ATTR_NOTHING
++    Script: |
++      bonus bAtkEle,Ele_Neutral;
++  - Id: 176
++    Option: WEAPON_ATTR_WATER
++    Script: |
++      bonus bAtkEle,Ele_Water;
++  - Id: 177
++    Option: WEAPON_ATTR_GROUND
++    Script: |
++      bonus bAtkEle,Ele_Earth;
++  - Id: 178
++    Option: WEAPON_ATTR_FIRE
++    Script: |
++      bonus bAtkEle,Ele_Fire;
++  - Id: 179
++    Option: WEAPON_ATTR_WIND
++    Script: |
++      bonus bAtkEle,Ele_Wind;
++  - Id: 180
++    Option: WEAPON_ATTR_POISON
++    Script: |
++      bonus bAtkEle,Ele_Poison;
++  - Id: 181
++    Option: WEAPON_ATTR_SAINT
++    Script: |
++      bonus bAtkEle,Ele_Holy;
++  - Id: 182
++    Option: WEAPON_ATTR_DARKNESS
++    Script: |
++      bonus bAtkEle,Ele_Dark;
++  - Id: 183
++    Option: WEAPON_ATTR_TELEKINESIS
++    Script: |
++      bonus bAtkEle,Ele_Ghost;
++  - Id: 184
++    Option: WEAPON_ATTR_UNDEAD
++    Script: |
++      bonus bAtkEle,Ele_Undead;
++  - Id: 185
++    Option: WEAPON_INDESTRUCTIBLE
++    Script: |
++      bonus bUnbreakableWeapon,1;
++  - Id: 186
++    Option: BODY_INDESTRUCTIBLE
++    Script: |
++      bonus bUnbreakableArmor,1;
++  - Id: 187
++    Option: MDAMAGE_SIZE_SMALL_TARGET
++    Script: |
++      bonus2 bMagicAddSize,Size_Small,getrandomoptinfo(ROA_VALUE);
++  - Id: 188
++    Option: MDAMAGE_SIZE_MIDIUM_TARGET
++    Script: |
++      bonus2 bMagicAddSize,Size_Medium,getrandomoptinfo(ROA_VALUE);
++  - Id: 189
++    Option: MDAMAGE_SIZE_LARGE_TARGET
++    Script: |
++      bonus2 bMagicAddSize,Size_Large,getrandomoptinfo(ROA_VALUE);
++  - Id: 190
++    Option: MDAMAGE_SIZE_SMALL_USER
++    Script: |
++      bonus2 bMagicSubSize,Size_Small,getrandomoptinfo(ROA_VALUE);
++  - Id: 191
++    Option: MDAMAGE_SIZE_MIDIUM_USER
++    Script: |
++      bonus2 bMagicSubSize,Size_Medium,getrandomoptinfo(ROA_VALUE);
++  - Id: 192
++    Option: MDAMAGE_SIZE_LARGE_USER
++    Script: |
++      bonus2 bMagicSubSize,Size_Large,getrandomoptinfo(ROA_VALUE);
++  - Id: 193
++    Option: ATTR_TOLERACE_ALL
++    Script: |
++      bonus2 bSubEle,Ele_All,getrandomoptinfo(ROA_VALUE);
++  - Id: 194
++    Option: RACE_WEAPON_TOLERACE_NOTHING
++    Script: |
++      bonus3 bSubRace,RC_Formless,getrandomoptinfo(ROA_VALUE),BF_WEAPON;
++  - Id: 195
++    Option: RACE_WEAPON_TOLERACE_UNDEAD
++    Script: |
++      bonus3 bSubRace,RC_Undead,getrandomoptinfo(ROA_VALUE),BF_WEAPON;
++  - Id: 196
++    Option: RACE_WEAPON_TOLERACE_ANIMAL
++    Script: |
++      bonus3 bSubRace,RC_Brute,getrandomoptinfo(ROA_VALUE),BF_WEAPON;
++  - Id: 197
++    Option: RACE_WEAPON_TOLERACE_PLANT
++    Script: |
++      bonus3 bSubRace,RC_Plant,getrandomoptinfo(ROA_VALUE),BF_WEAPON;
++  - Id: 198
++    Option: RACE_WEAPON_TOLERACE_INSECT
++    Script: |
++      bonus3 bSubRace,RC_Insect,getrandomoptinfo(ROA_VALUE),BF_WEAPON;
++  - Id: 199
++    Option: RACE_WEAPON_TOLERACE_FISHS
++    Script: |
++      bonus3 bSubRace,RC_Fish,getrandomoptinfo(ROA_VALUE),BF_WEAPON;
++  - Id: 200
++    Option: RACE_WEAPON_TOLERACE_DEVIL
++    Script: |
++      bonus3 bSubRace,RC_Demon,getrandomoptinfo(ROA_VALUE),BF_WEAPON;
++  - Id: 201
++    Option: RACE_WEAPON_TOLERACE_HUMAN
++    Script: |
++      bonus3 bSubRace,RC_DemiHuman,getrandomoptinfo(ROA_VALUE),BF_WEAPON;
++  - Id: 202
++    Option: RACE_WEAPON_TOLERACE_ANGEL
++    Script: |
++      bonus3 bSubRace,RC_Angel,getrandomoptinfo(ROA_VALUE),BF_WEAPON;
++  - Id: 203
++    Option: RACE_WEAPON_TOLERACE_DRAGON
++    Script: |
++      bonus3 bSubRace,RC_Dragon,getrandomoptinfo(ROA_VALUE),BF_WEAPON;
++  - Id: 206
++    Option: RACE_TOLERACE_PLAYER_HUMAN
++    Script: |
++      bonus2 bSubRace,RC_Player_Human,getrandomoptinfo(ROA_VALUE);
++  - Id: 207
++    Option: RACE_TOLERACE_PLAYER_DORAM
++    Script: |
++      bonus2 bSubRace,RC_Player_Doram,getrandomoptinfo(ROA_VALUE);
++  - Id: 208
++    Option: RACE_DAMAGE_PLAYER_HUMAN
++    Script: |
++      bonus2 bAddRace,RC_Player_Human,getrandomoptinfo(ROA_VALUE);
++  - Id: 209
++    Option: RACE_DAMAGE_PLAYER_DORAM
++    Script: |
++      bonus2 bAddRace,RC_Player_Doram,getrandomoptinfo(ROA_VALUE);
++  - Id: 210
++    Option: RACE_MDAMAGE_PLAYER_HUMAN
++    Script: |
++      bonus2 bMagicAddRace,RC_Player_Human,getrandomoptinfo(ROA_VALUE); 
++  - Id: 211
++    Option: RACE_MDAMAGE_PLAYER_DORAM
++    Script: |
++      bonus2 bMagicAddRace,RC_Player_Doram,getrandomoptinfo(ROA_VALUE);
++  - Id: 212
++    Option: RACE_CRI_PERCENT_PLAYER_HUMAN
++    Script: |
++      bonus2 bCriticalAddRace,RC_Player_Human,getrandomoptinfo(ROA_VALUE);
++  - Id: 213
++    Option: RACE_CRI_PERCENT_PLAYER_DORAM
++    Script: |
++      bonus2 bCriticalAddRace,RC_Player_Doram,getrandomoptinfo(ROA_VALUE);
++  - Id: 214
++    Option: RACE_IGNORE_DEF_PERCENT_PLAYER_HUMAN
++    Script: |
++      bonus2 bIgnoreDefRaceRate,RC_Player_Human,getrandomoptinfo(ROA_VALUE);
++  - Id: 215
++    Option: RACE_IGNORE_DEF_PERCENT_PLAYER_DORAM
++    Script: |
++      bonus2 bIgnoreDefRaceRate,RC_Player_Doram,getrandomoptinfo(ROA_VALUE);
++  - Id: 216
++    Option: RACE_IGNORE_MDEF_PERCENT_PLAYER_HUMAN
++    Script: |
++      bonus2 bIgnoreMdefRaceRate,RC_Player_Human,getrandomoptinfo(ROA_VALUE);
++  - Id: 217
++    Option: RACE_IGNORE_MDEF_PERCENT_PLAYER_DORAM
++    Script: |
++      bonus2 bIgnoreMdefRaceRate,RC_Player_Doram,getrandomoptinfo(ROA_VALUE);
++  - Id: 218
++    Option: REFLECT_DAMAGE_PERCENT
++    Script: |
++      bonus bReduceDamageReturn,getrandomoptinfo(ROA_VALUE);
++  - Id: 219
++    Option: MELEE_ATTACK_DAMAGE_TARGET
++    Script: |
++      bonus bShortAtkRate,getrandomoptinfo(ROA_VALUE);
++  - Id: 220
++    Option: MELEE_ATTACK_DAMAGE_USER
++    Script: |
++      bonus bNearAtkDef,getrandomoptinfo(ROA_VALUE);
++  - Id: 221
++    Option: ADDSKILLMDAMAGE_NOTHING
++    Script: |
++      bonus2 bMagicAtkEle,Ele_Neutral,getrandomoptinfo(ROA_VALUE);
++  - Id: 222
++    Option: ADDSKILLMDAMAGE_WATER
++    Script: |
++      bonus2 bMagicAtkEle,Ele_Water,getrandomoptinfo(ROA_VALUE);
++  - Id: 223
++    Option: ADDSKILLMDAMAGE_GROUND
++    Script: |
++      bonus2 bMagicAtkEle,Ele_Earth,getrandomoptinfo(ROA_VALUE);
++  - Id: 224
++    Option: ADDSKILLMDAMAGE_FIRE
++    Script: |
++      bonus2 bMagicAtkEle,Ele_Fire,getrandomoptinfo(ROA_VALUE);
++  - Id: 225
++    Option: ADDSKILLMDAMAGE_WIND
++    Script: |
++      bonus2 bMagicAtkEle,Ele_Wind,getrandomoptinfo(ROA_VALUE);
++  - Id: 226
++    Option: ADDSKILLMDAMAGE_POISON
++    Script: |
++      bonus2 bMagicAtkEle,Ele_Poison,getrandomoptinfo(ROA_VALUE);
++  - Id: 227
++    Option: ADDSKILLMDAMAGE_SAINT
++    Script: |
++      bonus2 bMagicAtkEle,Ele_Holy,getrandomoptinfo(ROA_VALUE);
++  - Id: 228
++    Option: ADDSKILLMDAMAGE_DARKNESS
++    Script: |
++      bonus2 bMagicAtkEle,Ele_Dark,getrandomoptinfo(ROA_VALUE);
++  - Id: 229
++    Option: ADDSKILLMDAMAGE_TELEKINESIS
++    Script: |
++      bonus2 bMagicAtkEle,Ele_Ghost,getrandomoptinfo(ROA_VALUE);
++  - Id: 230
++    Option: ADDSKILLMDAMAGE_UNDEAD
++    Script: |
++      bonus2 bMagicAtkEle,Ele_Undead,getrandomoptinfo(ROA_VALUE);
++  - Id: 231
++    Option: ADDSKILLMDAMAGE_ALL
++    Script: |
++      bonus2 bMagicAtkEle,Ele_All,getrandomoptinfo(ROA_VALUE);
++  - Id: 232
++    Option: ADDEXPPERCENT_KILLRACE_NOTHING
++    Script: |
++      bonus2 bExpAddRace,RC_Formless,getrandomoptinfo(ROA_VALUE);
++  - Id: 233
++    Option: ADDEXPPERCENT_KILLRACE_UNDEAD
++    Script: |
++      bonus2 bExpAddRace,RC_Undead,getrandomoptinfo(ROA_VALUE);
++  - Id: 234
++    Option: ADDEXPPERCENT_KILLRACE_ANIMAL
++    Script: |
++      bonus2 bExpAddRace,RC_Brute,getrandomoptinfo(ROA_VALUE);
++  - Id: 235
++    Option: ADDEXPPERCENT_KILLRACE_PLANT
++    Script: |
++      bonus2 bExpAddRace,RC_Plant,getrandomoptinfo(ROA_VALUE);
++  - Id: 236
++    Option: ADDEXPPERCENT_KILLRACE_INSECT
++    Script: |
++      bonus2 bExpAddRace,RC_Insect,getrandomoptinfo(ROA_VALUE);
++  - Id: 237
++    Option: ADDEXPPERCENT_KILLRACE_FISHS
++    Script: |
++      bonus2 bExpAddRace,RC_Fish,getrandomoptinfo(ROA_VALUE);
++  - Id: 238
++    Option: ADDEXPPERCENT_KILLRACE_DEVIL
++    Script: |
++      bonus2 bExpAddRace,RC_Demon,getrandomoptinfo(ROA_VALUE);
++  - Id: 239
++    Option: ADDEXPPERCENT_KILLRACE_HUMAN
++    Script: |
++      bonus2 bExpAddRace,RC_DemiHuman,getrandomoptinfo(ROA_VALUE);
++  - Id: 240
++    Option: ADDEXPPERCENT_KILLRACE_ANGEL
++    Script: |
++      bonus2 bExpAddRace,RC_Angel,getrandomoptinfo(ROA_VALUE);
++  - Id: 241
++    Option: ADDEXPPERCENT_KILLRACE_DRAGON
++    Script: |
++      bonus2 bExpAddRace,RC_Dragon,getrandomoptinfo(ROA_VALUE);
++  - Id: 242
++    Option: ADDEXPPERCENT_KILLRACE_ALL
++    Script: |
++      bonus2 bExpAddRace,RC_All,getrandomoptinfo(ROA_VALUE);
++  - Id: 243
++    Option: VAR_POWAMOUNT
++    Script: |
++      bonus bPow,getrandomoptinfo(ROA_VALUE);
++  - Id: 244
++    Option: VAR_SPLAMOUNT
++    Script: |
++      bonus bSpl,getrandomoptinfo(ROA_VALUE);
++  - Id: 245
++    Option: VAR_STAAMOUNT
++    Script: |
++      bonus bSta,getrandomoptinfo(ROA_VALUE);
++  - Id: 246
++    Option: VAR_WISAMOUNT
++    Script: |
++      bonus bWis,getrandomoptinfo(ROA_VALUE);
++  - Id: 247
++    Option: VAR_CONAMOUNT
++    Script: |
++      bonus bCon,getrandomoptinfo(ROA_VALUE);
++  - Id: 248
++    Option: VAR_CRTAMOUNT
++    Script: |
++      bonus bCrt,getrandomoptinfo(ROA_VALUE);
++  - Id: 249
++    Option: VAR_PATKAMOUNT
++    Script: |
++      bonus bPAtk,getrandomoptinfo(ROA_VALUE);
++  - Id: 250
++    Option: VAR_SMATKAMOUNT
++    Script: |
++      bonus bSMatk,getrandomoptinfo(ROA_VALUE);
++  - Id: 251
++    Option: VAR_RESAMOUNT
++    Script: |
++      bonus bRes,getrandomoptinfo(ROA_VALUE);
++  - Id: 252
++    Option: VAR_MRESAMOUNT
++    Script: |
++      bonus bMRes,getrandomoptinfo(ROA_VALUE);
++  - Id: 253
++    Option: VAR_HEAL_PLUS
++    Script: |
++      bonus bHPlus,getrandomoptinfo(ROA_VALUE);
++  - Id: 254
++    Option: VAR_CRITICAL_RATE
++    Script: |
++      bonus bCRate,getrandomoptinfo(ROA_VALUE);
+diff --git a/db/pre-re/item_randomopt_group.yml b/db/pre-re/item_randomopt_group.yml
+new file mode 100644
+index 0000000..727b8ef
+--- /dev/null
++++ b/db/pre-re/item_randomopt_group.yml
+@@ -0,0 +1,1846 @@
++# This file is a part of rAthena.
++#   Copyright(C) 2021 rAthena Development Team
++#   https://rathena.org - https://github.com/rathena
++#
++# This program is free software: you can redistribute it and/or modify
++# it under the terms of the GNU General Public License as published by
++# the Free Software Foundation, either version 3 of the License, or
++# (at your option) any later version.
++#
++# This program is distributed in the hope that it will be useful,
++# but WITHOUT ANY WARRANTY; without even the implied warranty of
++# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
++# GNU General Public License for more details.
++#
++# You should have received a copy of the GNU General Public License
++# along with this program. If not, see <http://www.gnu.org/licenses/>.
++#
++###########################################################################
++# Item Random Option Group Database
++###########################################################################
++#
++# Item Random Option Group Settings
++#
++###########################################################################
++# - Id                  Item Random Option Group ID.
++#   Group               Item Random Option Group constant.
++#   Slots:              Slot in which an Item Random Option is guaranteed to be applied. Max of MAX_ITEM_RDM_OPT.
++#     - Slot            Slot number.
++#       Options:        List of possible Item Random Options for slot.
++#         - Option      Item Random Option constant.
++#           MinValue    Minimum value. (Default: 0)
++#           MaxValue    Maximum value. (Default: 0)
++#           Param       Parameter value. (Default: 0)
++#           Chance      Chance applied specifically to this Item Random Option (1 = 0.01%, 10000 = 100%). (Default: 0)
++#   MaxRandom           Maximum amount of random options applied. These options are not guaranteed to be applied. Max of (MAX_ITEM_RDM_OPT - Total 'Slots'). (Default: 0)
++#   Random:             List of possible Item Random Options for remaining slots. (Optional)
++#     - Option          Item Random Option constant.
++#       MinValue        Minimum value. (Default: 0)
++#       MaxValue        Maximum value. (Default: 0)
++#       Param           Parameter value. (Default: 0)
++#       Chance          Chance applied specifically to this Item Random Option (1 = 0.01%, 10000 = 100%). (Default: 0)
++###########################################################################
++
++Header:
++  Type: RANDOM_OPTION_GROUP
++  Version: 1
++
++Body:
++  - Id: 101
++    Group: Head_Gear_7
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_MAXHPAMOUNT
++            MinValue: 50
++            MaxValue: 50
++            Chance: 5000
++          - Option: VAR_ITEMDEFPOWER
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_MDEFPOWER
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: RANGE_ATTACK_DAMAGE_USER
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: ATTR_TOLERACE_ALLBUTNOTHING
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++  - Id: 102
++    Group: Head_Gear_8
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_MAXHPAMOUNT
++            MinValue: 100
++            MaxValue: 100
++            Chance: 5000
++          - Option: VAR_ITEMDEFPOWER
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_MDEFPOWER
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: RANGE_ATTACK_DAMAGE_USER
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: ATTR_TOLERACE_ALLBUTNOTHING
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++  - Id: 103
++    Group: Head_Gear_9
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_MAXHPAMOUNT
++            MinValue: 150
++            MaxValue: 150
++            Chance: 5000
++          - Option: VAR_ITEMDEFPOWER
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_MDEFPOWER
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: RANGE_ATTACK_DAMAGE_USER
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: ATTR_TOLERACE_ALLBUTNOTHING
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++  - Id: 104
++    Group: Head_Gear_10
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_MAXHPAMOUNT
++            MinValue: 250
++            MaxValue: 250
++            Chance: 5000
++          - Option: VAR_ITEMDEFPOWER
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: VAR_MDEFPOWER
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: RANGE_ATTACK_DAMAGE_USER
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: ATTR_TOLERACE_ALLBUTNOTHING
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++  - Id: 105
++    Group: Armor_7
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_MAXHPAMOUNT
++            MinValue: 50
++            MaxValue: 50
++            Chance: 5000
++          - Option: VAR_MAXHPPERCENT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: DAMAGE_CRI_TARGET
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: DAMAGE_CRI_USER
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_MDEFPOWER
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++  - Id: 106
++    Group: Armor_8
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_MAXHPAMOUNT
++            MinValue: 100
++            MaxValue: 100
++            Chance: 5000
++          - Option: VAR_MAXHPPERCENT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: DAMAGE_CRI_TARGET
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: DAMAGE_CRI_USER
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_MDEFPOWER
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++  - Id: 107
++    Group: Armor_9
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_MAXHPAMOUNT
++            MinValue: 150
++            MaxValue: 150
++            Chance: 5000
++          - Option: VAR_MAXHPPERCENT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: DAMAGE_CRI_TARGET
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: DAMAGE_CRI_USER
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_MDEFPOWER
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++  - Id: 108
++    Group: Armor_10
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_MAXHPAMOUNT
++            MinValue: 250
++            MaxValue: 250
++            Chance: 5000
++          - Option: VAR_MAXHPPERCENT
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: DAMAGE_CRI_TARGET
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: DAMAGE_CRI_USER
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: VAR_MDEFPOWER
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++  - Id: 109
++    Group: Shield_7
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_MAXHPAMOUNT
++            MinValue: 50
++            MaxValue: 50
++            Chance: 5000
++          - Option: VAR_ITEMDEFPOWER
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_MDEFPOWER
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_TARGET
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_USER
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_ATTPOWER
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: ATTR_TOLERACE_NOTHING
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: RANGE_ATTACK_DAMAGE_USER
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++  - Id: 110
++    Group: Shield_8
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_MAXHPAMOUNT
++            MinValue: 100
++            MaxValue: 100
++            Chance: 5000
++          - Option: VAR_ITEMDEFPOWER
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_MDEFPOWER
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_TARGET
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_USER
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_ATTPOWER
++            MinValue: 7
++            MaxValue: 7
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: ATTR_TOLERACE_NOTHING
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: RANGE_ATTACK_DAMAGE_USER
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++  - Id: 111
++    Group: Shield_9
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_MAXHPAMOUNT
++            MinValue: 150
++            MaxValue: 150
++            Chance: 5000
++          - Option: VAR_ITEMDEFPOWER
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_MDEFPOWER
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_TARGET
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_USER
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_ATTPOWER
++            MinValue: 10
++            MaxValue: 10
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: ATTR_TOLERACE_NOTHING
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: RANGE_ATTACK_DAMAGE_USER
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++  - Id: 112
++    Group: Shield_10
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_MAXHPAMOUNT
++            MinValue: 250
++            MaxValue: 250
++            Chance: 5000
++          - Option: VAR_ITEMDEFPOWER
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: VAR_MDEFPOWER
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_TARGET
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_USER
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: VAR_ATTPOWER
++            MinValue: 15
++            MaxValue: 15
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: ATTR_TOLERACE_NOTHING
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: RANGE_ATTACK_DAMAGE_USER
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++  - Id: 113
++    Group: Foot_Gear_7
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_MAXHPAMOUNT
++            MinValue: 50
++            MaxValue: 50
++            Chance: 5000
++          - Option: VAR_MAXSPAMOUNT
++            MinValue: 60
++            MaxValue: 60
++            Chance: 5000
++          - Option: VAR_MAXHPPERCENT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_MAXSPPERCENT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_CRITICALSUCCESSVALUE
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_PLUSASPDPERCENT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++  - Id: 114
++    Group: Foot_Gear_8
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_MAXHPAMOUNT
++            MinValue: 100
++            MaxValue: 100
++            Chance: 5000
++          - Option: VAR_MAXSPAMOUNT
++            MinValue: 120
++            MaxValue: 120
++            Chance: 5000
++          - Option: VAR_MAXHPPERCENT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_MAXSPPERCENT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_CRITICALSUCCESSVALUE
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: VAR_PLUSASPDPERCENT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: RACE_TOLERACE_HUMAN
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++  - Id: 115
++    Group: Foot_Gear_9
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_MAXHPAMOUNT
++            MinValue: 150
++            MaxValue: 150
++            Chance: 5000
++          - Option: VAR_MAXSPAMOUNT
++            MinValue: 180
++            MaxValue: 180
++            Chance: 5000
++          - Option: VAR_MAXHPPERCENT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_MAXSPPERCENT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_CRITICALSUCCESSVALUE
++            MinValue: 6
++            MaxValue: 6
++            Chance: 5000
++          - Option: VAR_PLUSASPDPERCENT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: RACE_TOLERACE_HUMAN
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++  - Id: 116
++    Group: Foot_Gear_10
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_MAXHPAMOUNT
++            MinValue: 250
++            MaxValue: 250
++            Chance: 5000
++          - Option: VAR_MAXSPAMOUNT
++            MinValue: 300
++            MaxValue: 300
++            Chance: 5000
++          - Option: VAR_MAXHPPERCENT
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: VAR_MAXSPPERCENT
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: VAR_CRITICALSUCCESSVALUE
++            MinValue: 8
++            MaxValue: 8
++            Chance: 5000
++          - Option: VAR_PLUSASPDPERCENT
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: RACE_TOLERACE_HUMAN
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++  - Id: 117
++    Group: Garment_7
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_MAXHPAMOUNT
++            MinValue: 50
++            MaxValue: 50
++            Chance: 5000
++          - Option: VAR_MAXSPAMOUNT
++            MinValue: 60
++            MaxValue: 60
++            Chance: 5000
++          - Option: VAR_HITSUCCESSVALUE
++            MinValue: 5
++            MaxValue: 5
++            Chance: 5000
++          - Option: VAR_AVOIDSUCCESSVALUE
++            MinValue: 5
++            MaxValue: 5
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: CLASS_IGNORE_DEF_PERCENT_NORMAL
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: CLASS_IGNORE_MDEF_PERCENT_NORMAL
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++  - Id: 118
++    Group: Garment_8
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_MAXHPAMOUNT
++            MinValue: 100
++            MaxValue: 100
++            Chance: 5000
++          - Option: VAR_MAXSPAMOUNT
++            MinValue: 120
++            MaxValue: 120
++            Chance: 5000
++          - Option: VAR_HITSUCCESSVALUE
++            MinValue: 7
++            MaxValue: 7
++            Chance: 5000
++          - Option: VAR_AVOIDSUCCESSVALUE
++            MinValue: 7
++            MaxValue: 7
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5020
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: CLASS_IGNORE_DEF_PERCENT_NORMAL
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: CLASS_IGNORE_MDEF_PERCENT_NORMAL
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++  - Id: 119
++    Group: Garment_9
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_MAXHPAMOUNT
++            MinValue: 150
++            MaxValue: 150
++            Chance: 5000
++          - Option: VAR_MAXSPAMOUNT
++            MinValue: 180
++            MaxValue: 180
++            Chance: 5000
++          - Option: VAR_HITSUCCESSVALUE
++            MinValue: 10
++            MaxValue: 10
++            Chance: 5000
++          - Option: VAR_AVOIDSUCCESSVALUE
++            MinValue: 10
++            MaxValue: 10
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5020
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: CLASS_IGNORE_DEF_PERCENT_NORMAL
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: CLASS_IGNORE_MDEF_PERCENT_NORMAL
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++  - Id: 120
++    Group: Garment_10
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_MAXHPAMOUNT
++            MinValue: 250
++            MaxValue: 250
++            Chance: 5000
++          - Option: VAR_MAXSPAMOUNT
++            MinValue: 300
++            MaxValue: 300
++            Chance: 5000
++          - Option: VAR_HITSUCCESSVALUE
++            MinValue: 15
++            MaxValue: 15
++            Chance: 5000
++          - Option: VAR_AVOIDSUCCESSVALUE
++            MinValue: 15
++            MaxValue: 15
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5020
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: CLASS_IGNORE_DEF_PERCENT_NORMAL
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: CLASS_IGNORE_MDEF_PERCENT_NORMAL
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++  - Id: 121
++    Group: Weapon_LV1_8
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_STRAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_AGIAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_VITAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_INTAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_LUKAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_PLUSASPDPERCENT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: RANGE_ATTACK_DAMAGE_TARGET
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_TARGET
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++  - Id: 122
++    Group: Weapon_LV1_9
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_STRAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_AGIAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_VITAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_INTAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_LUKAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_PLUSASPDPERCENT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: RANGE_ATTACK_DAMAGE_TARGET
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_TARGET
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++  - Id: 123
++    Group: Weapon_LV1_10
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_STRAMOUNT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_AGIAMOUNT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_VITAMOUNT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_INTAMOUNT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_LUKAMOUNT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_PLUSASPDPERCENT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: RANGE_ATTACK_DAMAGE_TARGET
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_TARGET
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++  - Id: 124
++    Group: Weapon_LV2_8
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_STRAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_AGIAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_VITAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_INTAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_LUKAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_PLUSASPDPERCENT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: RANGE_ATTACK_DAMAGE_TARGET
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_TARGET
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++  - Id: 125
++    Group: Weapon_LV2_9
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_STRAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_AGIAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_VITAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_INTAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_LUKAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_PLUSASPDPERCENT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: RANGE_ATTACK_DAMAGE_TARGET
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_TARGET
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++  - Id: 126
++    Group: Weapon_LV2_10
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_STRAMOUNT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_AGIAMOUNT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_VITAMOUNT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_INTAMOUNT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_LUKAMOUNT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_PLUSASPDPERCENT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: RANGE_ATTACK_DAMAGE_TARGET
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_TARGET
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++  - Id: 127
++    Group: Weapon_LV3_7
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_STRAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_AGIAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_VITAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_INTAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_LUKAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_PLUSASPDPERCENT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: RANGE_ATTACK_DAMAGE_TARGET
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_TARGET
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++  - Id: 128
++    Group: Weapon_LV3_8
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_STRAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_AGIAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_VITAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_INTAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_LUKAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_PLUSASPDPERCENT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: RANGE_ATTACK_DAMAGE_TARGET
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_TARGET
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++  - Id: 129
++    Group: Weapon_LV3_9
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_STRAMOUNT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_AGIAMOUNT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_VITAMOUNT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_INTAMOUNT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_DEXAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_LUKAMOUNT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_PLUSASPDPERCENT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: RANGE_ATTACK_DAMAGE_TARGET
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_TARGET
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++  - Id: 130
++    Group: Weapon_LV3_10
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_STRAMOUNT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_AGIAMOUNT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_VITAMOUNT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_INTAMOUNT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_DEXAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_LUKAMOUNT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_PLUSASPDPERCENT
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: RANGE_ATTACK_DAMAGE_TARGET
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_TARGET
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++  - Id: 131
++    Group: Weapon_LV4_7
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_STRAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_AGIAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_VITAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_INTAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_LUKAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_PLUSASPDPERCENT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: RANGE_ATTACK_DAMAGE_TARGET
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_TARGET
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++  - Id: 132
++    Group: Weapon_LV4_8
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_STRAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_AGIAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_VITAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_INTAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_LUKAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_PLUSASPDPERCENT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: RANGE_ATTACK_DAMAGE_TARGET
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_TARGET
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++  - Id: 133
++    Group: Weapon_LV4_9
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_STRAMOUNT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_AGIAMOUNT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_VITAMOUNT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_INTAMOUNT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_DEXAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_LUKAMOUNT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_PLUSASPDPERCENT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: RANGE_ATTACK_DAMAGE_TARGET
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_TARGET
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++  - Id: 134
++    Group: Weapon_LV4_10
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_STRAMOUNT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_AGIAMOUNT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_VITAMOUNT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_INTAMOUNT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_DEXAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_LUKAMOUNT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_PLUSASPDPERCENT
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: RANGE_ATTACK_DAMAGE_TARGET
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_TARGET
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++  - Id: 135
++    Group: Shadow_7
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_HITSUCCESSVALUE
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_AVOIDSUCCESSVALUE
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_MAXHPAMOUNT
++            MinValue: 50
++            MaxValue: 50
++            Chance: 5000
++          - Option: VAR_ITEMDEFPOWER
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_MDEFPOWER
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_TARGET
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_USER
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: ATTR_TOLERACE_NOTHING
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: RANGE_ATTACK_DAMAGE_USER
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++  - Id: 136
++    Group: Shadow_8
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_INTAMOUNT
++            MinValue: 1
++            MaxValue: 1
++            Chance: 5000
++          - Option: VAR_HITSUCCESSVALUE
++            MinValue: 6
++            MaxValue: 6
++            Chance: 5000
++          - Option: VAR_AVOIDSUCCESSVALUE
++            MinValue: 6
++            MaxValue: 6
++            Chance: 5000
++          - Option: VAR_MAXHPAMOUNT
++            MinValue: 100
++            MaxValue: 100
++            Chance: 5000
++          - Option: VAR_ITEMDEFPOWER
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_MDEFPOWER
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_TARGET
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_USER
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: ATTR_TOLERACE_NOTHING
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: RANGE_ATTACK_DAMAGE_USER
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++  - Id: 137
++    Group: Shadow_9
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_INTAMOUNT
++            MinValue: 2
++            MaxValue: 2
++            Chance: 5000
++          - Option: VAR_HITSUCCESSVALUE
++            MinValue: 9
++            MaxValue: 9
++            Chance: 5000
++          - Option: VAR_AVOIDSUCCESSVALUE
++            MinValue: 9
++            MaxValue: 9
++            Chance: 5000
++          - Option: VAR_MAXHPAMOUNT
++            MinValue: 150
++            MaxValue: 150
++            Chance: 5000
++          - Option: VAR_ITEMDEFPOWER
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_MDEFPOWER
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_TARGET
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_USER
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: ATTR_TOLERACE_NOTHING
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: RANGE_ATTACK_DAMAGE_USER
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++  - Id: 138
++    Group: Shadow_10
++    Slots:
++      - Slot: 1
++        Options:
++          - Option: VAR_INTAMOUNT
++            MinValue: 3
++            MaxValue: 3
++            Chance: 5000
++          - Option: VAR_HITSUCCESSVALUE
++            MinValue: 12
++            MaxValue: 12
++            Chance: 5000
++          - Option: VAR_AVOIDSUCCESSVALUE
++            MinValue: 12
++            MaxValue: 12
++            Chance: 5000
++          - Option: VAR_MAXHPAMOUNT
++            MinValue: 250
++            MaxValue: 250
++            Chance: 5000
++          - Option: VAR_ITEMDEFPOWER
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: VAR_MDEFPOWER
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_TARGET
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: CLASS_DAMAGE_BOSS_USER
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: VAR_MAGICATKPERCENT
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: VAR_ATKPERCENT
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: RACE_DAMAGE_HUMAN
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: RACE_MDAMAGE_HUMAN
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: ATTR_TOLERACE_NOTHING
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
++          - Option: RANGE_ATTACK_DAMAGE_USER
++            MinValue: 4
++            MaxValue: 4
++            Chance: 5000
+diff --git a/src/map/clif.cpp b/src/map/clif.cpp
+index e8fd744..9e2c349 100644
+--- a/src/map/clif.cpp
++++ b/src/map/clif.cpp
+@@ -22471,11 +22471,207 @@ void clif_parse_refineui_refine( int fd, struct map_session_data* sd ){
+ 		return;
+ 	}
+ 
++	if( battle_config.Head_Gear_1 && item->refine == 0 && id->equip&EQP_HELM )
++		cost->randomopt_group = battle_config.Head_Gear_1;
++	if( battle_config.Head_Gear_2 && item->refine == 1 && id->equip&EQP_HELM )
++		cost->randomopt_group = battle_config.Head_Gear_2; 
++	if( battle_config.Head_Gear_3 && item->refine == 3 && id->equip&EQP_HELM )
++		cost->randomopt_group = battle_config.Head_Gear_3; 
++	if( battle_config.Head_Gear_4 && item->refine == 3 && id->equip&EQP_HELM )
++		cost->randomopt_group = battle_config.Head_Gear_4;
++	if( battle_config.Head_Gear_5 && item->refine == 4 && id->equip&EQP_HELM )
++		cost->randomopt_group = battle_config.Head_Gear_5; 
++	if( battle_config.Head_Gear_6 && item->refine == 5 && id->equip&EQP_HELM )
++		cost->randomopt_group = battle_config.Head_Gear_6;
++	if( battle_config.Head_Gear_7 && item->refine == 6 && id->equip&EQP_HELM )
++		cost->randomopt_group = battle_config.Head_Gear_7;
++	if( battle_config.Head_Gear_8 && item->refine == 7 && id->equip&EQP_HELM )
++		cost->randomopt_group = battle_config.Head_Gear_8;
++	if( battle_config.Head_Gear_9 && item->refine == 8 && id->equip&EQP_HELM )
++		cost->randomopt_group = battle_config.Head_Gear_9;
++	if( battle_config.Head_Gear_10 && item->refine == 9 && id->equip&EQP_HELM )
++		cost->randomopt_group = battle_config.Head_Gear_10;
++	if( battle_config.Armor_1 && item->refine == 0 && id->equip == EQP_ARMOR )
++		cost->randomopt_group = battle_config.Armor_1;	
++	if( battle_config.Armor_2 && item->refine == 1 && id->equip == EQP_ARMOR )
++		cost->randomopt_group = battle_config.Armor_2;
++	if( battle_config.Armor_3 && item->refine == 2 && id->equip == EQP_ARMOR )
++		cost->randomopt_group = battle_config.Armor_3;	
++	if( battle_config.Armor_4 && item->refine == 3 && id->equip == EQP_ARMOR )
++		cost->randomopt_group = battle_config.Armor_4;
++	if( battle_config.Armor_5 && item->refine == 4 && id->equip == EQP_ARMOR )
++		cost->randomopt_group = battle_config.Armor_5;	
++	if( battle_config.Armor_6 && item->refine == 5 && id->equip == EQP_ARMOR )
++		cost->randomopt_group = battle_config.Armor_6;	
++	if( battle_config.Armor_7 && item->refine == 6 && id->equip == EQP_ARMOR )
++		cost->randomopt_group = battle_config.Armor_7;
++	if( battle_config.Armor_8 && item->refine == 7 && id->equip == EQP_ARMOR )
++		cost->randomopt_group = battle_config.Armor_8;
++	if( battle_config.Armor_9 && item->refine == 8 && id->equip == EQP_ARMOR )
++		cost->randomopt_group = battle_config.Armor_9;
++	if( battle_config.Armor_10 && item->refine == 9 && id->equip == EQP_ARMOR )
++		cost->randomopt_group = battle_config.Armor_10;
++	if( battle_config.Shield_1 && item->refine == 0 && id->equip&EQP_SHIELD )
++		cost->randomopt_group = battle_config.Shield_1;
++	if( battle_config.Shield_2 && item->refine == 1 && id->equip&EQP_SHIELD )
++		cost->randomopt_group = battle_config.Shield_2;
++	if( battle_config.Shield_3 && item->refine == 2 && id->equip&EQP_SHIELD )
++		cost->randomopt_group = battle_config.Shield_3;	
++	if( battle_config.Shield_4 && item->refine == 3 && id->equip&EQP_SHIELD )
++		cost->randomopt_group = battle_config.Shield_4;	
++	if( battle_config.Shield_5 && item->refine == 4 && id->equip&EQP_SHIELD )
++		cost->randomopt_group = battle_config.Shield_5;
++	if( battle_config.Shield_6 && item->refine == 5 && id->equip&EQP_SHIELD )
++		cost->randomopt_group = battle_config.Shield_6;
++	if( battle_config.Shield_7 && item->refine == 6 && id->equip&EQP_SHIELD )
++		cost->randomopt_group = battle_config.Shield_7;
++	if( battle_config.Shield_8 && item->refine == 7 && id->equip&EQP_SHIELD )
++		cost->randomopt_group = battle_config.Shield_8;
++	if( battle_config.Shield_9 && item->refine == 8 && id->equip&EQP_SHIELD )
++		cost->randomopt_group = battle_config.Shield_9;
++	if( battle_config.Shield_10 && item->refine == 9 && id->equip&EQP_SHIELD )
++		cost->randomopt_group = battle_config.Shield_10;
++	if( battle_config.Foot_Gear_1 && item->refine == 0 && id->equip == EQP_SHOES )
++		cost->randomopt_group = battle_config.Foot_Gear_1;
++	if( battle_config.Foot_Gear_2 && item->refine == 1 && id->equip == EQP_SHOES )
++		cost->randomopt_group = battle_config.Foot_Gear_2;
++	if( battle_config.Foot_Gear_3 && item->refine == 2 && id->equip == EQP_SHOES )
++		cost->randomopt_group = battle_config.Foot_Gear_3;
++	if( battle_config.Foot_Gear_4 && item->refine == 3 && id->equip == EQP_SHOES )
++		cost->randomopt_group = battle_config.Foot_Gear_4;
++	if( battle_config.Foot_Gear_5 && item->refine == 4 && id->equip == EQP_SHOES )
++		cost->randomopt_group = battle_config.Foot_Gear_5;
++	if( battle_config.Foot_Gear_6 && item->refine == 5 && id->equip == EQP_SHOES )
++		cost->randomopt_group = battle_config.Foot_Gear_6;
++	if( battle_config.Foot_Gear_7 && item->refine == 6 && id->equip == EQP_SHOES )
++		cost->randomopt_group = battle_config.Foot_Gear_7;
++	if( battle_config.Foot_Gear_8 && item->refine == 7 && id->equip == EQP_SHOES )
++		cost->randomopt_group = battle_config.Foot_Gear_8;
++	if( battle_config.Foot_Gear_9 && item->refine == 8 && id->equip == EQP_SHOES )
++		cost->randomopt_group = battle_config.Foot_Gear_9;
++	if( battle_config.Foot_Gear_10 && item->refine == 9 && id->equip == EQP_SHOES )
++		cost->randomopt_group = battle_config.Foot_Gear_10;
++	if( battle_config.Garment_1 && item->refine == 2 && id->equip == EQP_GARMENT )
++		cost->randomopt_group = battle_config.Garment_1;
++	if( battle_config.Garment_2 && item->refine == 1 && id->equip == EQP_GARMENT )
++		cost->randomopt_group = battle_config.Garment_2;
++	if( battle_config.Garment_3 && item->refine == 2 && id->equip == EQP_GARMENT )
++		cost->randomopt_group = battle_config.Garment_3;
++	if( battle_config.Garment_4 && item->refine == 3 && id->equip == EQP_GARMENT )
++		cost->randomopt_group = battle_config.Garment_4;
++	if( battle_config.Garment_5 && item->refine == 4 && id->equip == EQP_GARMENT )
++		cost->randomopt_group = battle_config.Garment_5;
++	if( battle_config.Garment_6 && item->refine == 5 && id->equip == EQP_GARMENT )
++		cost->randomopt_group = battle_config.Garment_6;
++	if( battle_config.Garment_7 && item->refine == 6 && id->equip == EQP_GARMENT )
++		cost->randomopt_group = battle_config.Garment_7;
++	if( battle_config.Garment_8 && item->refine == 7 && id->equip == EQP_GARMENT )
++		cost->randomopt_group = battle_config.Garment_8;
++	if( battle_config.Garment_9 && item->refine == 8 && id->equip == EQP_GARMENT )
++		cost->randomopt_group = battle_config.Garment_9;
++	if( battle_config.Garment_10 && item->refine == 9 && id->equip == EQP_GARMENT )
++		cost->randomopt_group = battle_config.Garment_10;
++	if( battle_config.Weapon_LV1_1 && item->refine == 0 && id->weapon_level == 1 )
++		cost->randomopt_group = battle_config.Weapon_LV1_1;
++	if( battle_config.Weapon_LV1_2 && item->refine == 1 && id->weapon_level == 1 )
++		cost->randomopt_group = battle_config.Weapon_LV1_2;
++	if( battle_config.Weapon_LV1_3 && item->refine == 2 && id->weapon_level == 1 )
++		cost->randomopt_group = battle_config.Weapon_LV1_3;	
++	if( battle_config.Weapon_LV1_4 && item->refine == 3 && id->weapon_level == 1 )
++		cost->randomopt_group = battle_config.Weapon_LV1_4;
++	if( battle_config.Weapon_LV1_5 && item->refine == 4 && id->weapon_level == 1 )
++		cost->randomopt_group = battle_config.Weapon_LV1_5;
++	if( battle_config.Weapon_LV1_6 && item->refine == 5 && id->weapon_level == 1 )
++		cost->randomopt_group = battle_config.Weapon_LV1_6;
++	if( battle_config.Weapon_LV1_7 && item->refine == 6 && id->weapon_level == 1 )
++		cost->randomopt_group = battle_config.Weapon_LV1_7;	
++	if( battle_config.Weapon_LV1_8 && item->refine == 7 && id->weapon_level == 1 )
++		cost->randomopt_group = battle_config.Weapon_LV1_8;
++	if( battle_config.Weapon_LV1_9 && item->refine == 8 && id->weapon_level == 1 )
++		cost->randomopt_group = battle_config.Weapon_LV1_9;
++	if( battle_config.Weapon_LV1_10 && item->refine == 9 && id->weapon_level == 1 )
++		cost->randomopt_group = battle_config.Weapon_LV1_10;
++	if( battle_config.Weapon_LV2_1 && item->refine == 0 && id->weapon_level == 2 )
++		cost->randomopt_group = battle_config.Weapon_LV2_1;
++	if( battle_config.Weapon_LV2_2 && item->refine == 1 && id->weapon_level == 2 )
++		cost->randomopt_group = battle_config.Weapon_LV2_2;
++	if( battle_config.Weapon_LV2_3 && item->refine == 2 && id->weapon_level == 2 )
++		cost->randomopt_group = battle_config.Weapon_LV2_3;
++	if( battle_config.Weapon_LV2_4 && item->refine == 3 && id->weapon_level == 2 )
++		cost->randomopt_group = battle_config.Weapon_LV2_4;
++	if( battle_config.Weapon_LV2_5 && item->refine == 4 && id->weapon_level == 2 )
++		cost->randomopt_group = battle_config.Weapon_LV2_5;
++	if( battle_config.Weapon_LV2_6 && item->refine == 5 && id->weapon_level == 2 )
++		cost->randomopt_group = battle_config.Weapon_LV2_6;
++	if( battle_config.Weapon_LV2_7 && item->refine == 6 && id->weapon_level == 2 )
++		cost->randomopt_group = battle_config.Weapon_LV2_7;
++	if( battle_config.Weapon_LV2_8 && item->refine == 7 && id->weapon_level == 2 )
++		cost->randomopt_group = battle_config.Weapon_LV2_8;
++	if( battle_config.Weapon_LV2_9 && item->refine == 8 && id->weapon_level == 2 )
++		cost->randomopt_group = battle_config.Weapon_LV2_9;
++	if( battle_config.Weapon_LV2_10 && item->refine == 9 && id->weapon_level == 2 )
++		cost->randomopt_group = battle_config.Weapon_LV2_10;
++	if( battle_config.Weapon_LV3_1 && item->refine == 0 && id->weapon_level == 3 )
++		cost->randomopt_group = battle_config.Weapon_LV3_1;
++	if( battle_config.Weapon_LV3_2 && item->refine == 1 && id->weapon_level == 3 )
++		cost->randomopt_group = battle_config.Weapon_LV3_2;
++	if( battle_config.Weapon_LV3_3 && item->refine == 2 && id->weapon_level == 3 )
++		cost->randomopt_group = battle_config.Weapon_LV3_3;
++	if( battle_config.Weapon_LV3_4 && item->refine == 3 && id->weapon_level == 3 )
++		cost->randomopt_group = battle_config.Weapon_LV3_4;
++	if( battle_config.Weapon_LV3_5 && item->refine == 4 && id->weapon_level == 3 )
++		cost->randomopt_group = battle_config.Weapon_LV3_5;
++	if( battle_config.Weapon_LV3_6 && item->refine == 5 && id->weapon_level == 3 )
++		cost->randomopt_group = battle_config.Weapon_LV3_6;	
++	if( battle_config.Weapon_LV3_7 && item->refine == 6 && id->weapon_level == 3 )
++		cost->randomopt_group = battle_config.Weapon_LV3_7;
++	if( battle_config.Weapon_LV3_8 && item->refine == 7 && id->weapon_level == 3 )
++		cost->randomopt_group = battle_config.Weapon_LV3_8;
++	if( battle_config.Weapon_LV3_9 && item->refine == 8 && id->weapon_level == 3 )
++		cost->randomopt_group = battle_config.Weapon_LV3_9;
++	if( battle_config.Weapon_LV3_10 && item->refine == 9 && id->weapon_level == 3 )
++		cost->randomopt_group = battle_config.Weapon_LV3_10;
++	if( battle_config.Weapon_LV4_1 && item->refine == 0 && id->weapon_level == 4 )
++		cost->randomopt_group = battle_config.Weapon_LV4_1;
++	if( battle_config.Weapon_LV4_2 && item->refine == 1 && id->weapon_level == 4 )
++		cost->randomopt_group = battle_config.Weapon_LV4_2;	
++	if( battle_config.Weapon_LV4_3 && item->refine == 2 && id->weapon_level == 4 )
++		cost->randomopt_group = battle_config.Weapon_LV4_3;
++	if( battle_config.Weapon_LV4_4 && item->refine == 3 && id->weapon_level == 4 )
++		cost->randomopt_group = battle_config.Weapon_LV4_4;
++	if( battle_config.Weapon_LV4_5 && item->refine == 4 && id->weapon_level == 4 )
++		cost->randomopt_group = battle_config.Weapon_LV4_5;
++	if( battle_config.Weapon_LV4_6 && item->refine == 5 && id->weapon_level == 4 )
++		cost->randomopt_group = battle_config.Weapon_LV4_6;
++	if( battle_config.Weapon_LV4_7 && item->refine == 6 && id->weapon_level == 4 )
++		cost->randomopt_group = battle_config.Weapon_LV4_7;
++	if( battle_config.Weapon_LV4_8 && item->refine == 7 && id->weapon_level == 4 )
++		cost->randomopt_group = battle_config.Weapon_LV4_8;
++	if( battle_config.Weapon_LV4_9 && item->refine == 8 && id->weapon_level == 4 )
++		cost->randomopt_group = battle_config.Weapon_LV4_9;
++	if( battle_config.Weapon_LV4_10 && item->refine == 9 && id->weapon_level == 4 )
++		cost->randomopt_group = battle_config.Weapon_LV4_10;
++	if( battle_config.Shadow_7 && item->refine == 6 && id->equip&EQP_SHADOW_GEAR )
++		cost->randomopt_group = battle_config.Shadow_7;
++	if( battle_config.Shadow_8 && item->refine == 7 && id->equip&EQP_SHADOW_GEAR )
++		cost->randomopt_group = battle_config.Shadow_8;
++	if( battle_config.Shadow_9 && item->refine == 8 && id->equip&EQP_SHADOW_GEAR )
++		cost->randomopt_group = battle_config.Shadow_9;
++	if( battle_config.Shadow_10 && item->refine == 9 && id->equip&EQP_SHADOW_GEAR )
++		cost->randomopt_group = battle_config.Shadow_10;
++
+ 	// Try to refine the item
+ 	if( cost->chance >= ( rnd() % 10000 ) ){
+ 		log_pick_pc( sd, LOG_TYPE_OTHER, -1, item );
+ 		// Success
+ 		item->refine = cap_value( item->refine + 1, 0, MAX_REFINE );
++
++		if( cost->randomopt_group ){
++			refine_setdropitem_option(item, cost->randomopt_group);
++			clif_delitem(sd, index, 1, 3);
++			clif_additem(sd, index, 1, 0);
++		}
++		
+ 		log_pick_pc( sd, LOG_TYPE_OTHER, 1, item );
+ 		clif_misceffect( &sd->bl, 3 );
+ 		clif_refine( fd, 0, index, item->refine );
+diff --git a/src/map/status.cpp b/src/map/status.cpp
+index 8540a54..2a2eb9c 100644
+--- a/src/map/status.cpp
++++ b/src/map/status.cpp
+@@ -347,6 +347,24 @@ uint64 RefineDatabase::parseBodyNode( const ryml::NodeRef& node ){
+ 									cost->downgrade_amount = 0;
+ 								}
+ 							}
++							uint16 group = 0;
++
++							if( this->nodeExists( chanceNode, "RandomOptionGroup" ) ){
++								std::string group_name;
++
++								if( !this->asString( chanceNode, "RandomOptionGroup", group_name ) ){
++									return 0;
++								}
++
++								if ( !random_option_group.option_get_id( group_name.c_str(), group ) )
++									this->invalidWarning( chanceNode["RandomOptionGroup"], "Unknown random option group %s , defaulting to no group.\n", group_name.c_str());
++
++								cost->randomopt_group = group;
++							}else{
++								if( !cost_exists ){
++									cost->randomopt_group = 0;
++								}
++							}
+ 
+ 							if( !cost_exists ){
+ 								level_info->costs[index] = cost;
+@@ -15245,3 +15263,53 @@ void do_final_status(void) {
+ 	status_db.clear();
+ 	elemental_attribute_db.clear();
+ }
++
++void refine_setitem_option(s_item_randomoption &refine_option, const std::shared_ptr<s_random_opt_group_entry> &option) {
++	refine_option.id = option->id;
++	refine_option.value = rnd_value(option->min_value, option->max_value);
++	refine_option.param = option->param;
++}
++
++void refine_setdropitem_option(item *item, int rndopt) {
++	if (!item)
++		return;
++
++	std::shared_ptr<s_random_opt_group> group = random_option_group.find(rndopt);
++
++	if (group != nullptr) {
++		// Apply Must options
++		for (size_t i = 0; i < group->slots.size(); i++) {
++			// Try to apply an entry
++			for (size_t j = 0, max = group->slots[static_cast<uint16>(i)].size() * 3; j < max; j++) {
++				std::shared_ptr<s_random_opt_group_entry> option = util::vector_random(group->slots[static_cast<uint16>(i)]);
++
++				if (rnd() % 10000 < option->chance) {
++					refine_setitem_option(item->option[i], option);
++					break;
++				}
++			}
++
++			// If no entry was applied, assign one
++			if (item->option[i].id == 0) {
++				std::shared_ptr<s_random_opt_group_entry> option = util::vector_random(group->slots[static_cast<uint16>(i)]);
++
++				// Apply an entry without checking the chance
++				refine_setitem_option(item->option[i], option);
++			}
++		}
++
++		// Apply Random options (if available)
++		if (group->max_random > 0) {
++			for (size_t i = 0; i < min(group->max_random, MAX_ITEM_RDM_OPT); i++) {
++				// If item already has an option in this slot, skip it
++				if (item->option[i].id > 0)
++					continue;
++
++				std::shared_ptr<s_random_opt_group_entry> option = util::vector_random(group->random_options);
++
++				if (rnd() % 10000 < option->chance)
++					refine_setitem_option(item->option[i], option);
++			}
++		}
++	}
++}
+\ No newline at end of file
+diff --git a/src/map/status.hpp b/src/map/status.hpp
+index 7f95451..8e30bf6 100644
+--- a/src/map/status.hpp
++++ b/src/map/status.hpp
+@@ -66,6 +66,7 @@ struct s_refine_cost{
+ 	uint32 zeny;
+ 	uint16 breaking_rate;
+ 	uint16 downgrade_amount;
++	uint32 randomopt_group;
+ };
+ 
+ struct s_refine_level_info{
+@@ -3313,5 +3314,6 @@ uint16 status_efst_get_bl_type(enum efst_type efst);
+ void status_readdb( bool reload = false );
+ void do_init_status(void);
+ void do_final_status(void);
++void refine_setdropitem_option(struct item *itm, int rndopt);
+ 
+ #endif /* STATUS_HPP */
+-- 
+2.36.0.windows.1
+

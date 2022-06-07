@@ -71,12 +71,12 @@ turbo_room,72,132,3	duplicate(entrance#tt_main)	Solo Mode#n1	124
 	
 turbo_e_4,298,167,3	script	Helper#tt_main	124,{
 	mes "[Helper]";
-	mes "You are now in the";
-	mes "Waiting Room. You will";
-	mes "be guided to the Starting Line";
-	mes "after 30 seconds, so please use";
-	mes "this time to prepare your items";
-	mes "and equipment. Thank you.";
+	mes "ตอนนี้คุณอยู่ใน";
+	mes "ห้องรอ.คุณจะ";
+	mes "ชี้นำไปยังบรรทัดเริ่มต้น";
+	mes "หลังจาก 30 วินาทีโปรดใช้";
+	mes "เวลานี้เพื่อเตรียมสินค้าของคุณ";
+	mes "และอุปกรณ์ขอขอบคุณ.";
 	close;
 }
 turbo_e_4,298,167,3	duplicate(Helper#tt_main)	Helper#e4_F	124
@@ -120,55 +120,55 @@ OnEnable:
 	end;
 
 OnTimer2000:
-	mapannounce strnpcinfo(4),"You are now in the Waiting Room where you can check your items and prepare for the race.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"ตอนนี้คุณอยู่ในห้องรอที่คุณสามารถตรวจสอบสิ่งของและเตรียมพร้อมสำหรับการแข่งขัน",bc_map,"0x33FF66";
 	end;
 
 OnTimer7000:
-	mapannounce strnpcinfo(4),"You will have 30 seconds before you are transported to the Starting Line.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"คุณจะมี 30 วินาทีก่อนที่คุณจะถูกส่งไปยังบรรทัดเริ่มต้น",bc_map,"0x33FF66";
 	end;
 
 OnTimer10000:
-	mapannounce strnpcinfo(4),"Please make sure that you have suitable equipment and items with you.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"โปรดตรวจสอบให้แน่ใจว่าคุณมีอุปกรณ์และสิ่งของที่เหมาะสมกับคุณ",bc_map,"0x33FF66";
 	end;
 
 OnTimer15000:
-	mapannounce strnpcinfo(4),"The 30 second countdown will begin shortly.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"การนับถอยหลัง 30 วินาทีจะเริ่มขึ้นในไม่ช้า",bc_map,"0x33FF66";
 	end;
 
 OnTimer17000:
-	mapannounce strnpcinfo(4),"30 seconds remaining.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"เหลือ 30 วินาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer27000:
-	mapannounce strnpcinfo(4),"20 seconds remaining.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"เหลือ 20 วินาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer37000:
-	mapannounce strnpcinfo(4),"10 seconds remaining.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"เหลือ 10 วินาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer42000:
-	mapannounce strnpcinfo(4),"5 seconds remaining.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"เหลือ 5 วินาที.",bc_map,"0x33FF66";
 	end;
 
 OnTimer43000:
-	mapannounce strnpcinfo(4),"4 seconds remaining.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"เหลือ 4 วินาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer44000:
-	mapannounce strnpcinfo(4),"3 seconds remaining.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"เหลือ 3 วินาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer45000:
-	mapannounce strnpcinfo(4),"2 seconds remaining.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"เหลืออีก 2 วินาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer46000:
-	mapannounce strnpcinfo(4),"1 second remaining.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"1 วินาทีที่เหลืออยู่",bc_map,"0x33FF66";
 	end;
 
 OnTimer47000:
-	mapannounce strnpcinfo(4),"You will be transported to the Starting Line shortly.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"คุณจะถูกส่งไปยังบรรทัดเริ่มต้นในไม่ช้า",bc_map,"0x33FF66";
 	end;
 
 OnTimer49000:
@@ -217,23 +217,23 @@ OnDisable:
 	end;
 
 OnTimer7000:
-	mapannounce strnpcinfo(4),"Welcome to the Turbo Track.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"ยินดีต้อนรับสู่แทร็กเทอร์โบ",bc_map,"0x33FF66";
 	end;
 
 OnTimer9000:
-	mapannounce strnpcinfo(4),"The game will be hosted for 15 minutes and at least one person must complete the entire course.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"Tเกมของเขาจะเป็นเจ้าภาพเป็นเวลา 15 นาทีและอย่างน้อยหนึ่งคนจะต้องจบหลักสูตรทั้งหมด",bc_map,"0x33FF66";
 	end;
 
 OnTimer11000:
-	mapannounce strnpcinfo(4),"We hope you will do your best.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"เราหวังว่าคุณจะทำให้ดีที่สุด",bc_map,"0x33FF66";
 	end;
 
 OnTimer13000:
-	mapannounce strnpcinfo(4),"The game will begin after a 5 second countdown. Everyone, please take your positions behind the Starting Line.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"เกมจะเริ่มหลังจากการนับถอยหลัง 5 วินาทีทุกคนโปรดใช้ตำแหน่งของคุณหลังบรรทัดเริ่มต้น",bc_map,"0x33FF66";
 	end;
 
 OnTimer15000:
-	mapannounce strnpcinfo(4),"The countdown will commence shortly.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"การนับถอยหลังจะเริ่มขึ้นในไม่ช้า",bc_map,"0x33FF66";
 	end;
 
 OnTimer17000:
@@ -269,108 +269,108 @@ OnTimer23000:
 	end;
 
 OnTimer30000:
-	mapannounce strnpcinfo(4),"Remember that this is a 15 minute race. After 15 minutes, everyone will be transported out of the race track.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"โปรดจำไว้ว่านี่เป็นการแข่งขัน 15 นาทีหลังจาก 15 นาทีทุกคนจะถูกพาออกจากสนามแข่ง",bc_map,"0x33FF66";
 	end;
 
 OnTimer83000:
-	mapannounce strnpcinfo(4),"You have 14 minutes left.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"คุณเหลือเวลา 14 นาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer143000:
-	mapannounce strnpcinfo(4),"You have 13 minutes left.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"คุณเหลือเวลา 13 นาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer203000:
-	mapannounce strnpcinfo(4),"You have 12 minutes left.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"คุณเหลือเวลา 12 นาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer263000:
-	mapannounce strnpcinfo(4),"You have 11 minutes left.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"คุณเหลือเวลา 11 นาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer323000:
-	mapannounce strnpcinfo(4),"You have 10 minutes left.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"คุณเหลือเวลาอีก 10 นาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer383000:
-	mapannounce strnpcinfo(4),"You have 9 minutes left.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"คุณเหลือเวลา 9 นาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer443000:
-	mapannounce strnpcinfo(4),"You have 8 minutes left.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"คุณเหลือเวลา 8 นาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer503000:
-	mapannounce strnpcinfo(4),"You have 7 minutes left.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"คุณเหลืออีก 7 นาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer563000:
-	mapannounce strnpcinfo(4),"You have 6 minutes left.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"คุณเหลือเวลา 6 นาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer623000:
-	mapannounce strnpcinfo(4),"You have 5 minutes left.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"คุณเหลือ5นาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer683000:
-	mapannounce strnpcinfo(4),"You have 4 minutes left.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"คุณเหลือเวลา 4 นาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer743000:
-	mapannounce strnpcinfo(4),"You have 3 minutes left.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"คุณเหลือ 3 นาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer803000:
-	mapannounce strnpcinfo(4),"You have 2 minutes left.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"คุณเหลือ 2 นาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer863000:
-	mapannounce strnpcinfo(4),"You have 1 minute left.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"คุณเหลือ 1 นาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer893000:
-	mapannounce strnpcinfo(4),"You have 30 seconds left.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"คุณเหลือเวลา 30 วินาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer903000:
-	mapannounce strnpcinfo(4),"You have 20 seconds left.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"คุณเหลือเวลา 20 วินาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer913000:
-	mapannounce strnpcinfo(4),"You have 10 seconds left.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"คุณเหลือเวลาอีก 10 วินาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer918000:
-	mapannounce strnpcinfo(4),"You have 5 seconds left.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"คุณเหลือ 5 วินาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer919000:
-	mapannounce strnpcinfo(4),"You have 4 seconds left.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"คุณเหลือ 4 วินาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer920000:
-	mapannounce strnpcinfo(4),"You have 3 seconds left.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"คุณเหลือ 3 วินาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer921000:
-	mapannounce strnpcinfo(4),"You have 2 seconds left.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"คุณเหลือ 2 วินาที",bc_map,"0x33FF66";
 	end;
 
 OnTimer922000:
-	mapannounce strnpcinfo(4),"You have 1 second left.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"คุณมี 1 วินาทีที่เหลือ",bc_map,"0x33FF66";
 	end;
 
 OnTimer923000:
-	mapannounce strnpcinfo(4),"Time's up!",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"หมดเวลา!",bc_map,"0x33FF66";
 	end;
 
 OnTimer925000:
-	mapannounce strnpcinfo(4),"The race is over.",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"การแข่งขันสิ้นสุดลง",bc_map,"0x33FF66";
 	end;
 
 OnTimer927000:
 	set .@w$,callfunc("F_tt");
-	mapannounce strnpcinfo(4),"[Everyone will be transported to a Waiting Room.]",bc_map,"0x33FF66";
+	mapannounce strnpcinfo(4),"[ทุกคนจะถูกส่งไปยังห้องรอ.]",bc_map,"0x33FF66";
 	mapwarp strnpcinfo(4),"turbo_room",71,89;
 	disablenpc "Broadcast#"+.@w$;
 	donpcevent "Master#"+.@w$+"::OnDisable";

@@ -1856,61 +1856,61 @@ new_1-2,182,182,3	script	Somatology Instructor	754,{
 			mes "และความแข็งแกร่งของการโจมตีโดยเฉลี่ยของคุณ";
 			next;
 			mes "[Jare Riotte]";
-			mes "Let me explain...";
-			mes "If you have low DEX, the difference between the minimum damage and";
-			mes "the maximum damage you can inflict becomes huge. The damage of your attacks becomes unstable.";
+			mes "ให้ฉันอธิบาย ...";
+			mes "หากคุณมี DEX ต่ำความแตกต่างระหว่างความเสียหายขั้นต่ำและ";
+			mes "ความเสียหายสูงสุดที่คุณสามารถทำดาเมจได้มากความเสียหายจากการโจมตีของคุณไม่มั่นคง";
 			next;
 			mes "[Jare Riotte]";
-			mes "If you are using a ^4D4DFFBow^000000 as your";
-			mes "main weapon, your attack strength will be based on^4D4DFFDEX^000000. So Archers should focus on increasing their DEX.";
+			mes "หากคุณใช้ ^4d4dffbow ^000000 เป็นของคุณ";
+			mes "อาวุธหลักความแข็งแกร่งในการโจมตีของคุณจะขึ้นอยู่กับ^4D4DFFDEX^000000ดังนั้นนักธนูควรมุ่งเน้นไปที่การเพิ่ม DEX";
 			next;
 			mes "[Jare Riotte]";
-			mes "The amount of DEX that you";
-			mes "have will also affect your attack accuracy. Attack accuracy is calculated by the number of your Base Level added to your DEX.";
+			mes "จำนวน DEX ที่คุณ";
+			mes "จะมีผลต่อความแม่นยำในการโจมตีของคุณความแม่นยำในการโจมตีถูกคำนวณโดยจำนวนระดับฐานของคุณที่เพิ่มลงใน DEX ของคุณ";
 			next;
 			mes "[Jare Riotte]";
-			mes "For example, if you are at";
-			mes "Base Level 40 and have 20 DEX,";
-			mes "your attack accuracy would be 60.";
+			mes "ตัวอย่างเช่นหากคุณอยู่ที่";
+			mes "ระดับฐาน 40 และมี 20 Dex";
+			mes "ความแม่นยำในการโจมตีของคุณจะเป็น 60";
 			next;
 			mes "[Jare Riotte]";
-			mes "Finally, DEX also reduces the casting time of spells and skills. Therefore, having some DEX would";
-			mes "be handy for Mages and Wizards.";
+			mes "ในที่สุด Dex ก็ลดเวลาในการคัดเลือกนักแสดงและทักษะดังนั้นการมี DEX บางอย่างจะ";
+			mes "มีประโยชน์สำหรับผู้วิเศษและพ่อมด";
 			next;
 			mes "[Jare Riotte]";
-			mes "Now, let me tell";
-			mes "you about the LUK stat.";
+			mes "ตอนนี้ให้ฉันบอก";
+			mes "คุณเกี่ยวกับสถิติ Luk.";
 			next;
 			mes "[Jare Riotte]";
-			mes "Luck (LUK) affects the chance";
-			mes "for a critical attack, the Flee Rate and a small amount of damage you deal to monsters.";
+			mes "Luck (LUK) ส่งผลกระทบต่อโอกาส";
+			mes "สำหรับการโจมตีที่สำคัญอัตราการหลบหนีและความเสียหายเล็กน้อยที่คุณจัดการกับสัตว์ประหลาด";
 			next;
 			mes "[Jare Riotte]";
-			mes "For a critical attack, the start value is 1 for everyone and it's increased by^4d4dff 1^000000 for every ^4d4dff3 LUK^000000.";
+			mes "สำหรับการโจมตีที่สำคัญค่าเริ่มต้นคือ 1 สำหรับทุกคนและเพิ่มขึ้น^4d4dff 1^000000 สำหรับทุก^4d4dff3 luk^000000";
 			next;
 			mes "[Jare Riotte]";
-			mes "With more LUK, you have an increased change of inflicting ^3355FFcritical attacks^000000 to your enemies. Critical attacks are useful to you, as they pierce your enemy's defense.";
+			mes "ด้วย Luk ที่มากขึ้นคุณมีการเปลี่ยนแปลงที่เพิ่มขึ้นของการโจมตี ^3355ffcritical การโจมตี ^000000 เป็นศัตรูของคุณการโจมตีที่สำคัญมีประโยชน์สำหรับคุณเนื่องจากพวกเขาเจาะการป้องกันของศัตรู";
 			next;
 			mes "[Jare Riotte]";
-			mes "You can tell you've performed a critical attack when an attack has inflicted more damage than usual to an enemy, and the damage number is displayed with an explosive red visual effect.";
+			mes "คุณสามารถบอกได้ว่าคุณได้ทำการโจมตีที่สำคัญเมื่อการโจมตีเกิดความเสียหายมากกว่าปกติกับศัตรูและจำนวนความเสียหายจะแสดงด้วยเอฟเฟกต์ภาพสีแดงระเบิด";
 			next;
 			mes "[Jare Riotte]";
-			mes "For every 10 LUK, you add 1 point to your Perfect Dodge rate. Perfect Dodge is sort of like your Flee Rate. When you perform a Perfect Dodge, the word '^FF7F00Lucky^000000' will appear over your head.";
+			mes "สำหรับทุก ๆ 10 LUK คุณเพิ่ม 1 คะแนนให้กับอัตราการหลบที่สมบูรณ์แบบของคุณPerfect Dodge เป็นเหมือนอัตราการหลบหนีของคุณเมื่อคุณทำการหลบอย่างสมบูรณ์แบบคำว่า '^ff7f00lucky^000000' จะปรากฏบนหัวของคุณ";
 			next;
 			mes "[Jare Riotte]";
-			mes "Although similar to your Flee Rate, Perfect Dodge is a separate factor in attack evasion that is calculated differently.";
+			mes "แม้ว่าจะคล้ายกับอัตราการหลบหนีของคุณ Perfect Dodge เป็นปัจจัยแยกต่างหากในการหลีกเลี่ยงการโจมตีที่คำนวณแตกต่างกัน";
 			next;
 			mes "[Jare Riotte]";
-			mes "Well, I must say,";
-			mes "Luck is a good thing to have, but that doesn't mean you need it before everything else.";
+			mes "ฉันต้องบอกว่า ";
+			mes "โชคเป็นสิ่งที่ดีที่จะมี แต่นั่นไม่ได้หมายความว่าคุณต้องการมันก่อนทุกอย่างอื่น";
 			next;
 			break;
 		case 4:
 			mes "[Jare Riotte]";
-			mes "Do you have any";
-			mes "other questions?";
-			mes "I hope my class";
-			mes "was helpful to you.";
+			mes "คุณมีหรือไม่";
+			mes "คำถามอื่น ๆ ?";
+			mes "ฉันหวังว่าชั้นเรียนของฉัน";
+			mes "เป็นประโยชน์กับคุณ";
 			close;
 		}
 	}
@@ -1918,259 +1918,259 @@ new_1-2,182,182,3	script	Somatology Instructor	754,{
 
 new_1-2,184,172,1	script	Understandings of Skills	47,{
 	mes "[Leo Handerson]";
-	mes "Welcome~";
-	mes "Oh look at this";
-	mes "cute little Novice~!";
+	mes "ยินดีต้อนรับ ~";
+	mes "โอ้ดูสิ่งนี้";
+	mes "สามเณรน่ารัก ~!";
 	next;
 	mes "[Leo Handerson]";
-	mes "I, Leo Handerson,";
-	mes "feel so responsible for your performance and will be teaching you to the best of my ability. Now, please select the subject you wish to learn.";
+	mes "ฉัน Leo Handerson,";
+	mes "รู้สึกรับผิดชอบต่อการแสดงของคุณและจะสอนคุณให้ดีที่สุดเท่าที่จะทำได้ตอนนี้โปรดเลือกหัวข้อที่คุณต้องการเรียนรู้";
 	emotion ET_CHUP;
 	next;
 	while(1) {
-		switch(select("Passive and Active skills:Basic Skills:Use of Emoticons:Cancel.")) {
+		switch(select("ทักษะที่แฝงอยู่และกระตือรือร้น:ทักษะพื้นฐาน:การใช้อิโมติคอน: ยกเลิก")) {
 		case 1:
 			mes "[Leo Handerson]";
-			mes "First, let me explain";
-			mes "about the Passive Skills.";
-			mes "Would please you open";
-			mes "your Skill Window?";
+			mes "ก่อนอื่นให้ฉันอธิบาย";
+			mes "เกี่ยวกับทักษะการแฝง";
+			mes "จะโปรดคุณเปิด";
+			mes "หน้าต่างทักษะของคุณ?";
 			mes "('^3355FFAlt^000000' + '^3355FFS^000000')";
 			next;
 			mes "[Leo Handerson]";
-			mes "Now, you know that whenever";
-			mes "your Job Level goes up, you earn";
-			mes "a ^3355FFSkill Point^000000, right? Skill Points are used to learn your skills~";
+			mes "ตอนนี้คุณรู้ว่าเมื่อใดก็ตาม";
+			mes "ระดับงานของคุณเพิ่มขึ้นคุณจะได้รับ";
+			mes "A ^3355FFSKILL POINT ^000000 ใช่มั้ยคะแนนทักษะใช้เพื่อเรียนรู้ทักษะของคุณ ~";
 			next;
 			mes "[Leo Handerson]";
-			mes "Do you see your Basic Skill icon? It's at the very top of the Skill Window. Click on the 'Lv Up' button next to the Basic Skill icon to use a Skill Point on Basic Skills.";
+			mes "คุณเห็นไอคอนทักษะพื้นฐานของคุณหรือไม่?มันอยู่ที่ด้านบนสุดของหน้าต่างทักษะคลิกที่ปุ่ม 'LV UP' ถัดจากไอคอนทักษะพื้นฐานเพื่อใช้จุดทักษะในทักษะพื้นฐาน";
 			next;
 			mes "[Leo Handerson]";
-			mes "You'll see to the word 'Passive'";
-			mes "to the right of the Basic Skill icon. That means this skill is Passive, and doesn't use any SP.";
+			mes "คุณจะเห็นคำว่า 'แฝง'";
+			mes "ทางด้านขวาของไอคอนทักษะพื้นฐานนั่นหมายความว่าทักษะนี้อยู่เฉยๆและไม่ได้ใช้ SP ใด ๆ";
 			next;
 			mes "[Leo Handerson]";
-			mes "Now, please right-click the Basic Skill icon. You will then be able to read a brief description of the Basic Skills.";
+			mes "ตอนนี้โปรดคลิกขวาที่ไอคอนทักษะพื้นฐานจากนั้นคุณจะสามารถอ่านคำอธิบายสั้น ๆ เกี่ยวกับทักษะพื้นฐาน";
 			next;
 			mes "[Leo Handerson]";
-			mes "Active Skills, unlike Passive Skills which don't use any SP, require SP each time that";
-			mes "they are used.";
+			mes "ทักษะที่ใช้งานไม่เหมือนทักษะที่ไม่ได้ใช้ SP ใด ๆ จำเป็นต้องใช้ SP ทุกครั้ง";
+			mes "พวกเขาใช้";
 			next;
 			mes "[Leo Handerson]";
-			mes "You can use an Active Skill by double-clicking its icon in your Skill Window.";
+			mes "คุณสามารถใช้ทักษะที่ใช้งานได้โดยคลิกสองครั้งที่ไอคอนในหน้าต่างทักษะของคุณ";
 			next;
 			mes "[Leo Handerson]";
-			mes "You can also drag a skill icon from your Skill Window, and drop it into your Hotkey bar ('^3355FFF12^000000' key) to assign a Hotkey to that skill.";
+			mes "นอกจากนี้คุณยังสามารถลากไอคอนทักษะจากหน้าต่างทักษะของคุณและวางลงในบาร์ฮอตคีย์ของคุณ ('^3355FFF12^000000' คีย์) เพื่อกำหนดฮอตคีย์ให้กับทักษะนั้น";
 			next;
 			mes "[Leo Handerson]";
-			mes "The amount of SP required";
-			mes "to use an Active Skill will be displayed to the right of that skill's icon.";
+			mes "จำนวน SP ที่ต้องการ";
+			mes "หากต้องการใช้ทักษะที่ใช้งานอยู่จะแสดงทางด้านขวาของไอคอนทักษะนั้น";
 			next;
 			mes "[Leo Handerson]";
-			mes "Generally, Passive Skills are skills related to mental or physical training and conditioning. The use of special abilities or attacks are Active Skills.";
+			mes "โดยทั่วไปแล้วทักษะการพาสซีฟเป็นทักษะที่เกี่ยวข้องกับการฝึกอบรมทางจิตใจหรือทางกายภาพและการปรับสภาพการใช้ความสามารถพิเศษหรือการโจมตีเป็นทักษะที่ใช้งานอยู่";
 			next;
 			mes "[Leo Handerson]";
-			mes "If you're still not";
-			mes "sure about my lesson,";
-			mes "I'm willing to go over";
-			mes "it once again.";
+			mes "หากคุณยังไม่";
+			mes "แน่ใจเกี่ยวกับบทเรียนของฉัน";
+			mes "ฉันยินดีที่จะไป";
+			mes "มันอีกครั้ง";
 			next;
 			break;
 		case 2:
 			mes "[Leo Handerson]";
-			mes "The Basic Skills are";
-			mes "purely Passive Skills";
-			mes "that you need to play";
+			mes "ทักษะพื้นฐานคือ";
+			mes "ทักษะการแฝงอย่างหมดจด";
+			mes "ที่คุณต้องเล่น";
 			mes "Ragnarok Online.";
-			mes "Don't worry,";
-			mes "they're easy to learn.";
+			mes "ไม่ต้องกังวล,";
+			mes "พวกเขาเรียนรู้ง่าย";
 			next;
 			mes "[Leo Handerson]";
-			mes "When you right-click with your mouse in your Skill Window";
-			mes "('^3355FFAlt^000000' + '^3355FFS^000000'), you can check the descriptions of the skills, but I've prepared this lesson for";
-			mes "your better understanding.";
+			mes "เมื่อคุณคลิกขวากับเมาส์ในหน้าต่างทักษะของคุณ";
+			mes "('^3355FFAlt^000000' + '^3355FFS^000000'), คุณสามารถตรวจสอบคำอธิบายของทักษะได้ แต่ฉันได้เตรียมบทเรียนนี้ไว้สำหรับ";
+			mes "ความเข้าใจที่ดีขึ้นของคุณ";
 			next;
 			while(1) {
-				switch(select("Trade and Exchange:Organizing & Joining party:Opening Chat Room:Storage Use:No thanks, I know this already.")) {
+				switch(select("Trade and Exchange:Organizing & Joining party:Opening Chat Room:Storage Use:ไม่ขอบคุณฉันรู้เรื่องนี้แล้ว")) {
 				case 1:
 					mes "[Leo Handerson]";
-					mes "When you go visit our official website at ^0000FFiro.ragnarokonline.com^000000, you can find a full explanation about trading, illustrated with pictures.";
+					mes "เมื่อคุณไปเยี่ยมชมเว็บไซต์อย่างเป็นทางการของเราที่ คุณสามารถค้นหาคำอธิบายทั้งหมดเกี่ยวกับการซื้อขายภาพประกอบด้วยรูปภาพ";
 					next;
 					mes "[Leo Handerson]";
-					mes "In order to trade items";
-					mes "or zeny with other people,";
-					mes "you must learn at least ^3355FFBasic Skill Level 1^000000.";
+					mes "เพื่อซื้อขายสินค้า";
+					mes "หรือ Zeny กับคนอื่น ๆ";
+					mes "คุณต้องเรียนรู้อย่างน้อย ^3355FFBASIC SKILL ระดับ 1 ^000000";
 					next;
 					mes "[Leo Handerson]";
-					mes "When you trade, you must be";
-					mes "located close to the person with which you wish to exchange items or zeny. Otherwise, the trade will not work if that person is more than 2 cells away.";
+					mes "เมื่อคุณซื้อขายคุณต้องเป็น";
+					mes "ตั้งอยู่ใกล้กับบุคคลที่คุณต้องการแลกเปลี่ยนสิ่งของหรือ Zenyมิฉะนั้นการค้าจะไม่ทำงานหากบุคคลนั้นอยู่ห่างออกไปมากกว่า 2 เซลล์";
 					next;
 					mes "[Leo Handerson]";
-					mes "Right-click on the person";
-					mes "once and a small menu will appear.";
-					mes "From this menu, choose:";
-					mes "^800fffRequest a deal with^000000.";
+					mes "คลิกขวาที่บุคคล";
+					mes "หนึ่งครั้งและเมนูเล็ก ๆ จะปรากฏขึ้น";
+					mes "จากเมนูนี้เลือก:";
+					mes "^800fffrequest ข้อตกลงกับ^000000";
 					next;
 					mes "[Leo Handerson]";
-					mes "Afterwards, that person will";
-					mes "choose whether or not to accept your request. If your trade request is accepted, the Trade Window will appear.";
+					mes "หลังจากนั้นบุคคลนั้นจะ";
+					mes "เลือกว่าจะยอมรับคำขอของคุณหรือไม่หากคำขอการค้าของคุณได้รับการยอมรับหน้าต่างการค้าจะปรากฏขึ้น";
 					next;
 					mes "[Leo Handerson]";
-					mes "To trade items, drag items from your Inventory Window ('^3355FFAlt^000000' + '^3355FFE^000000') and drop them into the left side of the Trade Window.";
+					mes "ในการแลกเปลี่ยนสินค้าลากรายการจากหน้าต่างสินค้าคงคลังของคุณ ('^3355FFAlt^000000' + '^3355FFE^000000') และวางลงในด้านซ้ายของหน้าต่างการค้า";
 					next;
 					mes "[Leo Handerson]";
-					mes "Items given by the other person will appear in the right side of the Trade Window. Always check";
-					mes "if the other person is trading the items you have agreed to exchange.";
+					mes "รายการที่บุคคลอื่นมอบให้จะปรากฏทางด้านขวาของหน้าต่างการค้าตรวจสอบเสมอ";
+					mes "หากบุคคลอื่นซื้อขายรายการที่คุณตกลงแลกเปลี่ยน";
 					next;
 					mes "[Leo Handerson]";
-					mes "To trade Zeny, you can enter the amount of Zeny you want to trade. After placing items or Zeny into the Trade Window, press the 'OK' button at the bottom of the Window to confirm the trade.";
+					mes "ในการซื้อขาย Zeny คุณสามารถป้อนปริมาณของ Zeny ที่คุณต้องการซื้อขายหลังจากวางรายการหรือ Zeny ลงในหน้าต่างการค้าให้กดปุ่ม 'ตกลง' ที่ด้านล่างของหน้าต่างเพื่อยืนยันการค้า";
 					next;
 					mes "[Leo Handerson]";
-					mes "Once the trade is confirmed,";
-					mes "press the 'Trade' button to finish the trade. If either of the traders do not press the 'OK' button, the trade cannot be completed.";
+					mes "เมื่อการค้าได้รับการยืนยันแล้ว";
+					mes "กดปุ่ม 'การค้า' เพื่อให้การค้าเสร็จสิ้นหากผู้ค้ารายใดคนหนึ่งไม่กดปุ่ม 'ตกลง' การซื้อขายจะไม่เสร็จสมบูรณ์";
 					next;
 					mes "[Leo Handerson]";
-					mes "If either of the traders presses the 'Cancel' button to the right of the window, the trade will be cancelled.";
+					mes "หากผู้ค้าทั้งสองกดปุ่ม 'ยกเลิก' ทางด้านขวาของหน้าต่างการค้าจะถูกยกเลิก";
 					next;
 					break;
 				case 2:
 					mes "[Leo Handerson]";
-					mes "Now, let me explain";
-					mes "about the Party System.";
+					mes "ตอนนี้ให้ฉันอธิบาย";
+					mes "เกี่ยวกับระบบปาร์ตี้";
 					next;
 					mes "[Leo Handerson]";
-					mes "The Party system allows";
-					mes "you to organize a small group with people in order to cooperatively hunt monsters, or just to have fun together.";
+					mes "ระบบปาร์ตี้อนุญาต";
+					mes "คุณจัดกลุ่มเล็ก ๆ กับผู้คนเพื่อล่าสัตว์ประหลาดหรือเพื่อสนุกด้วยกัน";
 					next;
 					mes "[Leo Handerson]";
-					mes "You can organize";
-					mes "a party by typing";
-					mes "the command:";
+					mes "คุณสามารถจัดระเบียบ";
+					mes "ปาร์ตี้โดยพิมพ์";
+					mes "คำสั่ง:";
 					mes "^4F4FFF//organize ''Party Name''^000000";
-					mes "in your Chat Window.";
+					mes "ในหน้าต่างแชทของคุณ";
 					next;
 					mes "[Leo Handerson]";
-					mes "Of course, you";
-					mes "must be at least";
+					mes "แน่นอนคุณ";
+					mes "ต้องมีอย่างน้อย";
 					mes "^4d4dffBasic Skill Level 7^000000";
-					mes "or above to use the Party System.";
+					mes "หรือสูงกว่าเพื่อใช้ระบบปาร์ตี้";
 					next;
 					mes "[Leo Handerson]";
-					mes "I could explain more about";
-					mes "the distribution of items or the distribution of experience which party members have gained together, but it's that you try that out on your own later on.";
+					mes "ฉันสามารถอธิบายเพิ่มเติมเกี่ยวกับ";
+					mes "การแจกจ่ายรายการหรือการกระจายประสบการณ์ที่สมาชิกพรรคได้รับร่วมกัน แต่มันคือการที่คุณลองทำด้วยตัวเองในภายหลัง";
 					next;
 					mes "[Leo Handerson]";
-					mes "That's all for";
-					mes "the Party System~";
-					mes "An adorable Novice";
-					mes "like you should pick";
-					mes "on this really quickly~";
+					mes "นั่นคือทั้งหมดสำหรับ";
+					mes "ระบบปาร์ตี้ ~";
+					mes "สามเณรที่น่ารัก";
+					mes "เช่นคุณควรเลือก";
+					mes "ในเรื่องนี้เร็วจริงๆ ~";
 					emotion ET_CHUP;
 					next;
 					break;
 				case 3:
 					mes "[Leo Handerson]";
-					mes "When you have";
+					mes "เมื่อคุณมี";
 					mes "^4D4DFFLevel 4 Basic Skill^000000";
 					mes "or above, you can open your own Chat Room. You can either click";
-					mes "the ^3355FFchat^000000 button in the Basic Info Window or just press '^3355FFAlt^000000' + '^3355FFC^000000.'";
+					mes "ปุ่ม ^3355ffchat ^000000 ในหน้าต่างข้อมูลพื้นฐานหรือเพียงแค่กด '^3355FFAlt^000000' + '^3355FFC^000000.'";
 					next;
 					mes "[Leo Handerson]";
-					mes "Once you open a Chat Room,";
-					mes "you can check the chat room members' information by right-clicking on a character name.";
+					mes "เมื่อคุณเปิดห้องสนทนา";
+					mes "คุณสามารถตรวจสอบข้อมูลสมาชิกห้องแชทโดยคลิกขวาที่ชื่ออักขระ";
 					next;
 					mes "[Leo Handerson]";
-					mes "Also you can register that character as your friend in the same way. If you are the master";
-					mes "of the room, you can change";
-					mes "the room setup.";
+					mes "นอกจากนี้คุณสามารถลงทะเบียนตัวละครนั้นเป็นเพื่อนของคุณในลักษณะเดียวกันถ้าคุณเป็นอาจารย์";
+					mes "ของห้องคุณสามารถเปลี่ยนได้";
+					mes "การตั้งค่าห้อง";
 					next;
 					mes "[Leo Handerson]";
-					mes "While in the Chat Room,";
-					mes "you cannot hear any chat from outside of the Chat Room. Please remember that, okay?";
+					mes "ขณะอยู่ในห้องสนทนา";
+					mes "คุณไม่สามารถได้ยินการแชทจากนอกห้องสนทนาโปรดจำไว้ว่าโอเค?";
 					next;
 					break;
 				case 4:
 					mes "[Leo Handerson]";
-					mes "Kafra Employees of the";
-					mes "Kafra Corporation are scattered throughout the world, providing their convenient services and Storage.";
+					mes "พนักงาน Kafra ของ";
+					mes "Kafra Corporation กระจัดกระจายไปทั่วโลกให้บริการและการจัดเก็บที่สะดวกสบาย";
 					next;
 					mes "[Leo Handerson]";
-					mes "In fact, there's a Kafra Employee just outside of this room. Talk to her, and she'll be more than happy to fully explain Kafra's Services.";
+					mes "ในความเป็นจริงมีพนักงาน Kafra นอกห้องนี้พูดคุยกับเธอและเธอจะมีความสุขมากกว่าที่จะอธิบายบริการของ Kafra อย่างเต็มที่";
 					next;
 					mes "[Leo Handerson]";
-					mes "Anyway, you are";
-					mes "allowed to use your";
+					mes "อย่างไรก็ตามคุณคือ";
+					mes "อนุญาตให้ใช้ไฟล์";
 					mes "^4d4dffpersonal Kafra Storage^000000";
 					mes "at ^4D4DFFBasic Skill Level 6^000000 or above.";
 					next;
 					mes "[Leo Handerson]";
-					mes "When you carry too many items with you, your weight becomes too heavy and you won't be able to restore HP or SP by resting, or even fight monsters! So store what you don't need into Kafra Storage.";
+					mes "เมื่อคุณพกสิ่งของติดตัวไปกับคุณมากเกินไปน้ำหนักของคุณจะหนักเกินไปและคุณจะไม่สามารถกู้คืน HP หรือ SP ได้โดยการพักผ่อนหรือต่อสู้กับสัตว์ประหลาด!ดังนั้นเก็บสิ่งที่คุณไม่ต้องการในการจัดเก็บ Kafra";
 					next;
 					break;
 				case 5:
 					mes "[Leo Handerson]";
-					mes "Oh, do you?";
-					mes "As I expected,";
-					mes "you're as smart";
-					mes "as you are cute~!";
-					mes "I, Leo, am very impressed.";
+					mes "โอ้คุณ?";
+					mes "อย่างที่ฉันคาดไว้";
+					mes "คุณเป็นคนฉลาด";
+					mes "อย่างที่คุณน่ารัก ~!";
+					mes "ฉันลีโอประทับใจมาก";
 					next;
 					set .@end,1;
 				}
 				if (.@end) break;
 			}
 			mes "[Leo Handerson]";
-			mes "Do you wish to";
-			mes "learn more about";
-			mes "a different subject?";
+			mes "คุณต้องการที่จะ";
+			mes "เรียนรู้เพิ่มเติมเกี่ยวกับ";
+			mes "วิชาที่แตกต่างกัน?";
 			next;
 			break;
 		case 3:
 			mes "[Leo Handerson]";
 			mes "^4d4dffEmoticons^000000 are commonly used";
-			mes "online for ^4D4DFFdisplaying your feelings^000000. It's a fun way of communicating!";
+			mes "online for ^4D4DFFdisplaying your feelings^000000. เป็นวิธีการสื่อสารที่สนุก!";
 			next;
 			mes "[Leo Handerson]";
-			mes "You must first be at";
+			mes "คุณต้องอยู่ที่";
 			mes "^4D4DFFBasic Skill Level 2^000000";
-			mes "or above to use emoticons.";
+			mes "หรือสูงกว่าเพื่อใช้อิโมติคอน";
 			next;
 			mes "[Leo Handerson]";
-			mes "You can check the";
-			mes "Emotion icon List";
-			mes "('^3355FFAlt^000000' + '^3355FFL^000000') and click each icon to see the command to display";
-			mes "the emoticon.";
+			mes "คุณสามารถตรวจสอบไฟล์";
+			mes "รายการไอคอนอารมณ์";
+			mes "('^3355FFAlt^000000' + '^3355FFL^000000') และคลิกแต่ละไอคอนเพื่อดูคำสั่งที่จะแสดง";
+			mes "อิโมติคอน";
 			next;
 			mes "[Leo Handerson]";
-			mes "You can also register";
-			mes "emoticons into your Shortcut List ('^3355FFAlt^000000' + '^3355FFM^000000') so you can just use a Shortcut to use an emoticon. This is also fully explained on our official website as well.";
+			mes "คุณสามารถลงทะเบียนได้";
+			mes "อิโมติคอนในรายการทางลัดของคุณ ('^3355FFAlt^000000' + '^3355FFM^000000') ดังนั้นคุณสามารถใช้ทางลัดเพื่อใช้อิโมติคอนสิ่งนี้ยังอธิบายได้อย่างสมบูรณ์ในเว็บไซต์ทางการของเราเช่นกัน";
 			next;
 			mes "[Leo Handerson]";
-			mes "Ah~ I must say,";
-			mes "the honest expression";
-			mes "of one's feelings is essential";
-			mes "for a relationship.";
+			mes "อ่าน ~ ฉันต้องบอกว่า";
+			mes "การแสดงออกที่ซื่อสัตย์";
+			mes "ความรู้สึกของคนๆหนึ่งเป็นสิ่งจำเป็น";
+			mes "สำหรับความสัมพันธ์";
 			next;
 			mes "[Leo Handerson]";
-			mes "You can play";
-			mes "Rock, Paper, Scissors";
-			mes "by pressing the '^4D4DFFCtrl^000000' and the '^4D4DFF - ^000000,' '^4D4DFF = ^000000,' or '^4D4DFF \\ ^000000' keys.";
+			mes "คุณเล่นได้";
+			mes "หินกระดาษกรรไกร";
+			mes "โดยการกดไฟล์ '^4D4DFFCtrl^000000' and the '^4D4DFF - ^000000,' '^4D4DFF = ^000000,' or '^4D4DFF \\ ^000000' keys.";
 			next;
 			mes "[Leo Handerson]";
-			mes "Of course, you can type ^4D4DFF//bawi^000000, ^4D4DFF//bo^000000 and ^4D4DFF//gawi^000000, which mean rock, paper, scissors in Korean, into your Chat Window.";
+			mes "แน่นอนคุณสามารถพิมพ์ ^4D4DFF//bawi^000000, ^4D4DFF//bo^000000 and ^4D4DFF//gawi^000000, which mean rock, paper, scissors in Korean, into your Chat Window.";
 			next;
 			mes "[Leo Handerson]";
-			mes "To check out the commands for even more emoticons, type the command ^4d4dff//emotion^000000 into your Chat Window to see the list~";
+			mes "หากต้องการตรวจสอบคำสั่งสำหรับอิโมติคอนมากยิ่งขึ้นให้พิมพ์คำสั่ง ^4d4dff//emotion^000000 ลงในหน้าต่างแชทของคุณเพื่อดูรายการ ~";
 			emotion ET_THROB;
 			next;
 			break;
 		case 4:
 			mes "[Leo Handerson]";
-			mes "I see...";
-			mes "You don't need me";
-			mes "anymore! Oh! They";
-			mes "grow up so fast";
-			mes "nowadays!";
+			mes "เข้าใจแล้ว...";
+			mes "คุณไม่ต้องการฉัน";
+			mes "อีกต่อไป!โอ้!พวกเขา";
+			mes "เติบโตอย่างรวดเร็ว";
+			mes "ทุกวันนี้!";
 			close;
 		}
 	}
@@ -2178,66 +2178,66 @@ new_1-2,184,172,1	script	Understandings of Skills	47,{
 
 new_1-2,121,101,2	script	Guide Soldier#nv1	105,{
 	mes "[Guide Soldier]";
-	mes "We Guide Soldiers provide location information at the entrance of every town. You can easily find us by our special uniforms.";
+	mes "เราแนะนำทหารให้ข้อมูลสถานที่ที่ทางเข้าของทุกเมืองคุณสามารถค้นหาเราได้อย่างง่ายดายด้วยเครื่องแบบพิเศษของเรา";
 	next;
 	mes "[Guide Soldier]";
-	mes "Whenever you visit a town";
-	mes "for the first time, we would like to recommend that you check the locations of notable places in town with us.";
+	mes "เมื่อใดก็ตามที่คุณเยี่ยมชมเมือง";
+	mes "เป็นครั้งแรกที่เราอยากจะแนะนำให้คุณตรวจสอบสถานที่ของสถานที่ที่มีชื่อเสียงในเมืองกับเรา";
 	next;
 	mes "[Guide Soldier]";
-	mes "If you wish to take an Informative class, please walk around and speak to the various tutors in these Training Grounds. Have a good day.";
+	mes "หากคุณต้องการเข้าชั้นเรียนข้อมูลโปรดเดินไปรอบ ๆ และพูดคุยกับอาจารย์ผู้สอนต่าง ๆ ในพื้นที่ฝึกอบรมเหล่านี้ขอให้เป็นวันที่ดี.";
 	close;
 }
 
 new_1-2,17,182,5	script	Helper#nv	84,{
 	if (nov_2nd_cos < 11) {
 		mes "[Elmeen]";
-		mes "Congratulations!";
-		mes "You have passed the 1st training course! Wow~ I guess now you understand a little bit more about Ragnarok Online.";
+		mes "ยินดีด้วย!";
+		mes "คุณผ่านหลักสูตรการฝึกอบรมครั้งที่ 1 แล้ว!ว้าว ~ ฉันเดาว่าตอนนี้คุณเข้าใจอีกเล็กน้อยเกี่ยวกับ Ragnarok ออนไลน์";
 		next;
 		mes "[Elmeen]";
-		mes "You will learn the fundamentals of actual battle through this class. If you did your best through the Informative class, you are supposed to have been given some starting equipment.";
+		mes "คุณจะได้เรียนรู้พื้นฐานของการต่อสู้จริงผ่านชั้นเรียนนี้หากคุณทำดีที่สุดผ่านชั้นเรียนข้อมูลคุณควรได้รับอุปกรณ์เริ่มต้น";
 		next;
 		mes "[Elmeen]";
-		mes "Please check your";
-		mes "equipment before you engaging in battle. Are you sure you've equipped all of your equipment, your weapons and armor?";
+		mes "โปรดตรวจสอบไฟล์";
+		mes "อุปกรณ์ก่อนที่คุณจะมีส่วนร่วมในการต่อสู้คุณแน่ใจหรือว่าคุณติดตั้งอุปกรณ์อาวุธและชุดเกราะของคุณทั้งหมดแล้ว?";
 		next;
 		switch(select("Yes:No")) {
 		case 1:
 			mes "[Elmeen]";
-			mes "First, you place the cursor on a monster. When you left click, you will hit the monster once.";
+			mes "ก่อนอื่นคุณวางเคอร์เซอร์บนสัตว์ประหลาดเมื่อคุณคลิกซ้ายคุณจะตีสัตว์ประหลาดหนึ่งครั้ง";
 			next;
 			mes "[Elmeen]";
-			mes "If you are too lazy to keep left clicking, left click on the monster while holding the '^4D4DFFCtrl^000000' key. You will then continue attacking the monster until one of you is dead, or you run away.";
+			mes "หากคุณขี้เกียจเกินไปที่จะคลิกซ้ายให้คลิกซ้ายที่สัตว์ประหลาดในขณะที่ถือไฟล์ '^4D4DFFCtrl^000000' key.จากนั้นคุณจะโจมตีสัตว์ประหลาดต่อไปจนกว่าคุณจะตายหรือวิ่งหนีไป";
 			next;
 			mes "[Elmeen]";
 			mes "You can also just hold down the left mouse button while the cursor is on the monster. Still, there are some people who are even too lazy to use the '^4D4DFFCtrl^000000' key every time they attack a monster.";
 			next;
 			mes "[Elmeen]";
-			mes "If you're one of them, type the command ^E79E29//nc^000000 in your Chat Window. Then, when you left click";
-			mes "a monster, you'll just continuously attack it!";
+			mes "หากคุณเป็นหนึ่งในนั้นให้พิมพ์คำสั่ง ^E79E29//nc^000000 ในหน้าต่างแชทของคุณจากนั้นเมื่อคุณคลิกซ้าย";
+			mes "สัตว์ประหลาดคุณจะโจมตีมันอย่างต่อเนื่อง!";
 			next;
 			mes "[Elmeen]";
-			mes "If a monster happens to have the Undead property, you can use the 'Heal' skill to attack if you happen to have it.";
+			mes "หากสัตว์ประหลาดมีคุณสมบัติที่ไม่ตายคุณสามารถใช้ทักษะ 'รักษา' เพื่อโจมตีหากคุณมีมัน";
 			next;
 			mes "[Elmeen]";
-			mes "When you use the Heal skill while holding down the '^4D4DFFShift^000000' key, you can target the monster with the Heal skill to damage it.";
+			mes "เมื่อคุณใช้ทักษะการรักษาในขณะที่ถือไฟล์ '^4D4DFFShift^000000' key, คุณสามารถกำหนดเป้าหมายมอนสเตอร์ด้วยทักษะการรักษาเพื่อสร้างความเสียหาย";
 			next;
 			mes "[Elmeen]";
-			mes "Of course for this skill, we do have a very convenient option for lazy people too. Type the command ^E79E29//ns^000000 in your Chat Window.";
+			mes "แน่นอนสำหรับทักษะนี้เรามีตัวเลือกที่สะดวกมากสำหรับคนขี้เกียจด้วยพิมพ์คำสั่ง ^E79E29//ns^000000 ในหน้าต่างแชทของคุณ";
 			next;
 			mes "[Elmeen]";
-			mes "This will allow you to attack monsters by using the Heal skill without holding the shift key. Handy, huh?";
+			mes "สิ่งนี้จะช่วยให้คุณโจมตีสัตว์ประหลาดโดยใช้ทักษะการรักษาโดยไม่ต้องถือปุ่ม Shiftมีประโยชน์เหรอ?";
 			next;
 			mes "[Elmeen]";
-			mes "Do you understand these battle commands? Now, I will teaching you about monster behaviors and properties, experience gained through battle, and items you can earn from dead monsters.";
+			mes "คุณเข้าใจคำสั่งการต่อสู้เหล่านี้หรือไม่?ตอนนี้ฉันจะสอนคุณเกี่ยวกับพฤติกรรมและคุณสมบัติของสัตว์ประหลาดประสบการณ์ที่ได้รับจากการต่อสู้และรายการที่คุณสามารถได้รับจากสัตว์ประหลาดที่ตายแล้ว";
 			next;
 			mes "[Elmeen]";
-			mes "Field Combat Training can be actually be pretty dangerous for new adventurers. Let me give you";
-			mes "a little more strength through the power of my magic.";
+			mes "การฝึกอบรมการต่อสู้แบบฟิลด์อาจเป็นอันตรายสำหรับนักผจญภัยใหม่ให้ฉันให้คุณ";
+			mes "ความแข็งแกร่งอีกเล็กน้อยผ่านพลังแห่งเวทมนตร์ของฉัน";
 			next;
 			mes "[Elmeen]";
-			mes "Haaaaaaa~!";
+			mes "Haaaaaaa ~!";
 			if (nov_2nd_cos < 1) {
 				if (BaseLevel == 1) {
 					set nov_2nd_cos,12;
@@ -2270,205 +2270,205 @@ new_1-2,17,182,5	script	Helper#nv	84,{
 			}
 			next;
 			mes "[Elmeen]";
-			mes "Which subject";
-			mes "should I cover";
-			mes "first for you?";
+			mes "เรื่องใดเรื่องหนึ่ง";
+			mes "ฉันควรครอบคลุม";
+			mes "ก่อนอื่นสำหรับคุณ?";
 			next;
 			while(1) {
 				switch(select("Monsters:Experience:Items:Quit.")) {
 				case 1:
 					mes "[Elmeen]";
-					mes "There are many aggressive monsters that will attack you first before you even approach them. ";
+					mes "มีสัตว์ประหลาดที่ก้าวร้าวมากมายที่จะโจมตีคุณก่อนที่คุณจะเข้าหาพวกเขา";
 					next;
 					mes "[Elmeen]";
-					mes "There are also a few monsters that will cooperate with others of their kind. Attack one of them, and the whole pack of them will swarm around you, seeking revenge.";
+					mes "นอกจากนี้ยังมีสัตว์ประหลาดสองสามตัวที่จะร่วมมือกับคนอื่น ๆ ในประเภทของพวกเขาโจมตีหนึ่งในนั้นและพวกเขาทั้งหมดจะจับกลุ่มรอบตัวคุณเพื่อค้นหาการแก้แค้น";
 					next;
 					mes "[Elmeen]";
-					mes "Every monster can be specified by their types, sizes and properties. For example, there are Demi-human, Brute, Holy and Demon property monsters out there.";
+					mes "สัตว์ประหลาดทุกตัวสามารถระบุได้ตามประเภทขนาดและคุณสมบัติของพวกเขาตัวอย่างเช่นมีมอนสเตอร์อสังหาริมทรัพย์เดมี่-มนุษย์สัตว์เดรัจฉานและปีศาจ";
 					next;
 					mes "[Elmeen]";
-					mes "When you're aware of what property a monster is, you can use that knowledge to help you in battle.";
+					mes "เมื่อคุณทราบว่าสัตว์ประหลาดคืออะไรคุณสามารถใช้ความรู้นั้นเพื่อช่วยคุณในการต่อสู้";
 					next;
 					mes "[Elmeen]";
-					mes "If you manage to get cards for that increase your damage upon certain monster properties, or reduce damage from specific monster properties, you'll have a much easier time in battle.";
+					mes "หากคุณจัดการเพื่อรับการ์ดสำหรับการเพิ่มความเสียหายของคุณตามคุณสมบัติของสัตว์ประหลาดบางอย่างหรือลดความเสียหายจากคุณสมบัติของสัตว์ประหลาดที่เฉพาะเจาะจงคุณจะมีเวลาในการต่อสู้ที่ง่ายขึ้น";
 					next;
 					mes "[Elmeen]";
-					mes "Monsters are separated by their size: small, medium and large. There are a few cards that allow you to do more damage to";
-					mes "a specific monster size.";
+					mes "สัตว์ประหลาดจะถูกคั่นด้วยขนาด: ขนาดเล็กปานกลางและใหญ่มีการ์ดสองสามใบที่ช่วยให้คุณสร้างความเสียหายได้มากขึ้น";
+					mes "ขนาดมอนสเตอร์ที่เฉพาะเจาะจง";
 					next;
 					mes "[Elmeen]";
-					mes "Also, each weapon has its strengths and weaknesses. The size of the weapon will affect the damage it will deal to monsters.";
+					mes "นอกจากนี้อาวุธแต่ละตัวมีจุดแข็งและจุดอ่อนขนาดของอาวุธจะส่งผลกระทบต่อความเสียหายที่จะจัดการกับสัตว์ประหลาด";
 					next;
 					mes "[Elmeen]";
-					mes "For example, Dagger class weapons do 100 % damage on small sized monsters but only inflict 50 % on large monsters.";
+					mes "ตัวอย่างเช่นอาวุธของ Dagger Class ทำ 100 % damage ในสัตว์ประหลาดขนาดเล็ก แต่มีเพียงดาเมจ 50 % on large monsters.";
 					next;
 					mes "[Elmeen]";
-					mes "Common monster properties include Water, Wind, Earth, Fire, Shadow, Ghost and Holy. If you attack a monster with an opposing property, you can inflict additional damage~";
+					mes "คุณสมบัติของสัตว์ประหลาดทั่วไป ได้แก่ น้ำ, ลม, ดิน, ไฟ, เงา, เงา, ผีและศักดิ์สิทธิ์หากคุณโจมตีสัตว์ประหลาดที่มีคุณสมบัติตรงข้ามคุณสามารถสร้างความเสียหายเพิ่มเติมได้ ~";
 					next;
 					mes "[Elmeen]";
-					mes "But if you attack a monster with";
-					mes "a skill or weapon that inflicts damage of the same property as the monster, the damage will be greatly reduced, or completely negated. You might even heal the monster!";
+					mes "แต่ถ้าคุณโจมตีสัตว์ประหลาดด้วย";
+					mes "ทักษะหรืออาวุธที่ก่อให้เกิดความเสียหายจากทรัพย์สินเช่นเดียวกับสัตว์ประหลาดความเสียหายจะลดลงอย่างมากหรือไม่ทำให้ถูกรบกวนอย่างสมบูรณ์คุณอาจรักษาสัตว์ประหลาด!";
 					next;
 					mes "[Elmeen]";
-					mes "In the case of Ghost property monsters, normal weapons cannot do any harm. However, a weapon with any other property will be able to deal out some damage.";
+					mes "ในกรณีของสัตว์ประหลาดผีอาวุธปกติไม่สามารถทำอันตรายใด ๆ ได้อย่างไรก็ตามอาวุธที่มีทรัพย์สินอื่น ๆ จะสามารถสร้างความเสียหายได้";
 					next;
 					break;
 				case 2:
 					mes "[Elmeen]";
-					mes "Basically, a character who deals the most damage on a monster receives the most experience points from the monster.";
+					mes "โดยพื้นฐานแล้วตัวละครที่สร้างความเสียหายมากที่สุดในสัตว์ประหลาดจะได้รับคะแนนประสบการณ์มากที่สุดจากสัตว์ประหลาด";
 					next;
 					mes "[Elmeen]";
-					mes "Therefore, you receive a certain percentage of experience points in proportion to the damage you've inflicted on the monster, compared to its total HP.";
+					mes "ดังนั้นคุณจะได้รับเปอร์เซ็นต์ของคะแนนประสบการณ์ตามสัดส่วนกับความเสียหายที่คุณเกิดขึ้นกับสัตว์ประหลาดเมื่อเทียบกับ HP ทั้งหมด";
 					next;
 					mes "[Elmeen]";
-					mes "Let's say, there is a character named 'Z.' Z does 65 damage on a monster that has 100 total HP and gives 1000 experience points when it's dead. So, Z will receive 650 experience points.";
+					mes "สมมติว่ามีตัวละครชื่อ 'Z. 'Z สร้างความเสียหายได้ 65 ครั้งในสัตว์ประหลาดที่มี HP ทั้งหมด 100 ตัวและให้คะแนนประสบการณ์ 1,000 คะแนนเมื่อตายดังนั้น Z จะได้รับ 650 คะแนนประสบการณ์";
 					next;
 					mes "[Elmeen]";
-					mes "However, this rule applies differently following certain situations.";
+					mes "อย่างไรก็ตามกฎนี้ใช้แตกต่างกันตามสถานการณ์บางอย่าง";
 					next;
 					mes "[Elmeen]";
-					mes "If there are two people who both did 65 damage on the same monster, the experience points that each will receive differs, depending on the monster's remaining HP.";
+					mes "หากมีคนสองคนที่ทั้งคู่สร้างความเสียหาย 65 ครั้งในสัตว์ประหลาดตัวเดียวกันคะแนนประสบการณ์ที่แต่ละคนจะได้รับแตกต่างกันไปขึ้นอยู่กับ HP ที่เหลืออยู่ของสัตว์ประหลาด";
 					next;
 					mes "[Elmeen]";
-					mes "For instance, somebody does damage to a monster while you're already hitting it, and he did the same amount of damage you did.";
+					mes "ตัวอย่างเช่นใครบางคนสร้างความเสียหายให้กับสัตว์ประหลาดในขณะที่คุณกดปุ่มแล้วและเขาก็สร้างความเสียหายในปริมาณเท่ากันที่คุณทำ";
 					next;
 					mes "[Elmeen]";
-					mes "In this case, you will receive 2//3 of the whole experience points that monster can give you, the other one will receive 1//3.";
+					mes "ในกรณีนี้คุณจะได้รับ 2//3 จากประสบการณ์ทั้งหมดที่มอนสเตอร์สามารถให้คุณได้อีกอันหนึ่งจะได้รับ 1//3.";
 					next;
 					mes "[Elmeen]";
-					mes "However, attacking a monster that somebody already started to hit is not suggested in Ragnarok Online. That action is regarded as ill-mannered behavior.";
+					mes "อย่างไรก็ตามการโจมตีสัตว์ประหลาดที่มีคนเริ่มตีแล้วไม่แนะนำใน Ragnarok Onlineการกระทำนั้นถือเป็นพฤติกรรมที่ไม่สุภาพ";
 					next;
 					mes "[Elmeen]";
-					mes "For party play, the party master can set the experience distribution to the equally share option.";
+					mes "สำหรับการเล่นปาร์ตี้อาจารย์ปาร์ตี้สามารถตั้งค่าการกระจายประสบการณ์ไปยังตัวเลือกการแบ่งปันอย่างเท่าเทียมกัน";
 					next;
 					mes "[Elmeen]";
-					mes "With this method, party members can share their experience according to the their character levels, and the number of members in the party.";
+					mes "ด้วยวิธีนี้สมาชิกพรรคสามารถแบ่งปันประสบการณ์ของพวกเขาตามระดับตัวละครของพวกเขาและจำนวนสมาชิกในพรรค";
 					next;
 					mes "[Elmeen]";
-					mes "Also, there is the experience benefit for party play which allows you to gain more experience points than playing solo. You can take advantage of this system for faster leveling.";
+					mes "นอกจากนี้ยังมีประโยชน์จากประสบการณ์สำหรับการเล่นปาร์ตี้ซึ่งช่วยให้คุณได้รับคะแนนประสบการณ์มากกว่าการเล่นเดี่ยวคุณสามารถใช้ประโยชน์จากระบบนี้เพื่อปรับระดับได้เร็วขึ้น";
 					next;
 					break;
 				case 3:
 					mes "[Elmeen]";
-					mes "When you kill monsters,";
-					mes "you can obtain items by chance. Furthermore, certain characters can use the 'Steal' skill in order to steal items from monsters.";
+					mes "เมื่อคุณฆ่าสัตว์ประหลาด,";
+					mes "คุณสามารถรับรายการโดยบังเอิญนอกจากนี้ตัวละครบางตัวสามารถใช้ทักษะ 'ขโมย' เพื่อขโมยรายการจากสัตว์ประหลาด.";
 					next;
 					mes "[Elmeen]";
-					mes "Don't you worry about the Steal skill causing you to not find any items after you kill them. Using the Steal skill does not at all affect the item drop rate for monsters once they're killed.";
+					mes "คุณไม่ต้องกังวลเกี่ยวกับทักษะการขโมยที่ทำให้คุณไม่พบสิ่งของใด ๆ หลังจากที่คุณฆ่าพวกเขาการใช้ทักษะการขโมยไม่ได้ส่งผลกระทบต่ออัตราการตกของไอเท็มสำหรับสัตว์ประหลาดเมื่อพวกเขาถูกฆ่าตาย";
 					next;
 					mes "[Elmeen]";
-					mes "When a group of people kill a monster, the person who did the most damage receives priority in picking up item drops.";
+					mes "เมื่อกลุ่มคนฆ่าสัตว์ประหลาดคนที่ได้รับความเสียหายมากที่สุดจะได้รับความสำคัญในการหยดรายการ";
 					next;
 					break;
 				case 4:
 					mes "[Elmeen]";
-					mes "Feel free to";
-					mes "ask me if you";
-					mes "have any questions.";
+					mes "อย่าลังเล";
+					mes "ถามฉันว่าคุณ";
+					mes "มีคำถามใด ๆ";
 					close;
 				}
 			}
 		case 2:
 			mes "[Elmeen]";
-			mes "Please take care of the equipment you've received through the training courses. Once you lose the equipment, you can never get them back.";
+			mes "โปรดดูแลอุปกรณ์ที่คุณได้รับผ่านหลักสูตรการฝึกอบรมเมื่อคุณสูญเสียอุปกรณ์คุณจะไม่ได้รับคืน";
 			close;
 		}
 	}
 	else {
 		mes "[Elmeen]";
-		mes "Which subject";
-		mes "shall I expain?";
+		mes "เรื่องใดเรื่องหนึ่ง";
+		mes "ฉันจะอธิบายได้ไหม";
 		next;
 		while(1) {
 			switch(select("Monsters:Experience:Items:Quit.")) {
 			case 1:
 				mes "[Elmeen]";
-				mes "There are many aggressive monsters that will attack you first before you even approach them. ";
+				mes "มีสัตว์ประหลาดที่ก้าวร้าวมากมายที่จะโจมตีคุณก่อนที่คุณจะเข้าหาพวกเขา";
 				next;
 				mes "[Elmeen]";
-				mes "There are also a few monsters that will cooperate with others of their kind. Attack one of them, and the whole pack of them will swarm around you, seeking revenge.";
+				mes "นอกจากนี้ยังมีสัตว์ประหลาดสองสามตัวที่จะร่วมมือกับคนอื่น ๆ ในประเภทของพวกเขาโจมตีหนึ่งในนั้นและพวกเขาทั้งหมดจะจับกลุ่มรอบตัวคุณเพื่อค้นหาการแก้แค้น";
 				next;
 				mes "[Elmeen]";
-				mes "Every monster can be specified by their types, sizes and properties. For example, there are Demi-human, Brute, Holy and Demon property monsters out there.";
+				mes "สัตว์ประหลาดทุกตัวสามารถระบุได้ตามประเภทขนาดและคุณสมบัติของพวกเขาตัวอย่างเช่นมีมอนสเตอร์อสังหาริมทรัพย์เดมี่-มนุษย์สัตว์เดรัจฉานและปีศาจ";
 				next;
 				mes "[Elmeen]";
-				mes "When you're aware of what property a monster is, you can use that knowledge to help you in battle.";
+				mes "เมื่อคุณทราบว่าสัตว์ประหลาดคืออะไรคุณสามารถใช้ความรู้นั้นเพื่อช่วยคุณในการต่อสู้";
 				next;
 				mes "[Elmeen]";
-				mes "If you manage to get cards for that increase your damage upon certain monster properties, or reduce damage from specific monster properties, you'll have a much easier time in battle.";
+				mes "หากคุณจัดการเพื่อรับการ์ดสำหรับการเพิ่มความเสียหายของคุณตามคุณสมบัติของสัตว์ประหลาดบางอย่างหรือลดความเสียหายจากคุณสมบัติของสัตว์ประหลาดที่เฉพาะเจาะจงคุณจะมีเวลาในการต่อสู้ที่ง่ายขึ้น";
 				next;
 				mes "[Elmeen]";
-				mes "Monsters are separated by their size: small, medium and large. There are a few cards that allow you to do more damage to a specific monster size.";
+				mes "สัตว์ประหลาดจะถูกคั่นด้วยขนาด: ขนาดเล็กปานกลางและใหญ่มีการ์ดสองสามใบที่ช่วยให้คุณสร้างความเสียหายให้กับขนาดมอนสเตอร์ที่เฉพาะเจาะจงได้มากขึ้น";
 				next;
 				mes "[Elmeen]";
-				mes "Also, each weapon has its strengths and weaknesses. The size of the weapon will affect the damage it will deal to monsters.";
+				mes "นอกจากนี้อาวุธแต่ละตัวมีจุดแข็งและจุดอ่อนขนาดของอาวุธจะส่งผลกระทบต่อความเสียหายที่จะจัดการกับสัตว์ประหลาด";
 				next;
 				mes "[Elmeen]";
-				mes "For example, Dagger class weapons do 100 % damage on small sized monsters but only inflict 50 % on large monsters.";
+				mes "ตัวอย่างเช่นอาวุธของ Dagger Class สร้างความเสียหาย 100 % สำหรับสัตว์ประหลาดขนาดเล็ก แต่ทำดาเมจเพียง 50 % สำหรับสัตว์ประหลาดขนาดใหญ่";
 				next;
 				mes "[Elmeen]";
-				mes "Common monster properties include Water, Wind, Earth, Fire, Shadow, Ghost and Holy. If you attack a monster with an opposing property, you can inflict additional damage~";
+				mes "คุณสมบัติของสัตว์ประหลาดทั่วไป ได้แก่ น้ำ, ลม, ดิน, ไฟ, เงา, เงา, ผีและศักดิ์สิทธิ์หากคุณโจมตีสัตว์ประหลาดที่มีคุณสมบัติตรงข้ามคุณสามารถสร้างความเสียหายเพิ่มเติมได้ ~";
 				next;
 				mes "[Elmeen]";
-				mes "But if you attack a monster with";
-				mes "a skill or weapon that inflicts damage of the same property as the monster, the damage will be greatly reduced, or completely negated. You might even heal the monster!";
+				mes "แต่ถ้าคุณโจมตีสัตว์ประหลาดด้วย";
+				mes "ทักษะหรืออาวุธที่ก่อให้เกิดความเสียหายจากทรัพย์สินเช่นเดียวกับสัตว์ประหลาดความเสียหายจะลดลงอย่างมากหรือไม่ทำให้ถูกรบกวนอย่างสมบูรณ์คุณอาจรักษาสัตว์ประหลาด!";
 				next;
 				mes "[Elmeen]";
-				mes "In the case of Ghost property monsters, normal weapons cannot do any harm. However, a weapon with any other property will be able to deal out some damage.";
+				mes "ในกรณีของสัตว์ประหลาดผีอาวุธปกติไม่สามารถทำอันตรายใด ๆ ได้อย่างไรก็ตามอาวุธที่มีทรัพย์สินอื่น ๆ จะสามารถสร้างความเสียหายได้";
 				next;
 				break;
 			case 2:
 				mes "[Elmeen]";
-				mes "Basically, a character who deals the most damage on a monster receives the most experience points from the monster.";
+				mes "โดยพื้นฐานแล้วตัวละครที่สร้างความเสียหายมากที่สุดในสัตว์ประหลาดจะได้รับคะแนนประสบการณ์มากที่สุดจากสัตว์ประหลาด";
 				next;
 				mes "[Elmeen]";
-				mes "Therefore, you receive a certain percentage of experience points in proportion to the damage you've inflicted on the monster, compared to its total HP.";
+				mes "ดังนั้นคุณจะได้รับเปอร์เซ็นต์ของคะแนนประสบการณ์ตามสัดส่วนกับความเสียหายที่คุณเกิดขึ้นกับสัตว์ประหลาดเมื่อเทียบกับ HP ทั้งหมด";
 				next;
 				mes "[Elmeen]";
-				mes "Let's say, there is a character named 'Z.' Z does 65 damage on a monster that has 100 total HP and gives 1000 experience points when it's dead. So, Z will receive 650 experience points.";
+				mes "สมมติว่ามีตัวละครชื่อ 'Z. 'Z สร้างความเสียหายได้ 65 ครั้งในสัตว์ประหลาดที่มี HP ทั้งหมด 100 ตัวและให้คะแนนประสบการณ์ 1,000 คะแนนเมื่อตายดังนั้น Z จะได้รับ 650 คะแนนประสบการณ์";
 				next;
 				mes "[Elmeen]";
-				mes "However, this rule applies differently following certain situations.";
+				mes "อย่างไรก็ตามกฎนี้ใช้แตกต่างกันตามสถานการณ์บางอย่าง";
 				next;
 				mes "[Elmeen]";
-				mes "If there are two people who both did 65 damage on the same monster, the experience points that each will receive differs, depending on the monster's remaining HP.";
+				mes "หากมีคนสองคนที่ทั้งคู่สร้างความเสียหาย 65 ครั้งในสัตว์ประหลาดตัวเดียวกันคะแนนประสบการณ์ที่แต่ละคนจะได้รับแตกต่างกันไปขึ้นอยู่กับ HP ที่เหลืออยู่ของสัตว์ประหลาด";
 				next;
 				mes "[Elmeen]";
-				mes "For instance, somebody does damage to a monster while you're already hitting it, and he did the same amount of damage you did.";
+				mes "ตัวอย่างเช่นใครบางคนสร้างความเสียหายให้กับสัตว์ประหลาดในขณะที่คุณกดปุ่มแล้วและเขาก็สร้างความเสียหายในปริมาณเท่ากันที่คุณทำ";
 				next;
 				mes "[Elmeen]";
-				mes "In this case, you will receive 2//3 of the whole experience points that monster can give you, the other one will receive 1//3.";
+				mes "ในกรณีนี้คุณจะได้รับ 2//3 จากประสบการณ์ทั้งหมดที่มอนสเตอร์สามารถให้คุณได้อีกอันหนึ่งจะได้รับ 1//3.";
 				next;
 				mes "[Elmeen]";
-				mes "However, attacking a monster that somebody already started to hit is not suggested in Ragnarok Online. That action is regarded as ill-mannered behavior.";
+				mes "อย่างไรก็ตามการโจมตีสัตว์ประหลาดที่มีคนเริ่มตีแล้วไม่แนะนำใน Ragnarok Onlineการกระทำนั้นถือเป็นพฤติกรรมที่ไม่สุภาพ";
 				next;
 				mes "[Elmeen]";
-				mes "For party play, the party master can set the experience distribution to the equally share option.";
+				mes "สำหรับการเล่นปาร์ตี้อาจารย์ปาร์ตี้สามารถตั้งค่าการกระจายประสบการณ์ไปยังตัวเลือกการแบ่งปันอย่างเท่าเทียมกัน";
 				next;
 				mes "[Elmeen]";
-				mes "With this method, party members can share their experience according to the their character levels, and the number of members in the party.";
+				mes "ด้วยวิธีนี้สมาชิกพรรคสามารถแบ่งปันประสบการณ์ของพวกเขาตามระดับตัวละครของพวกเขาและจำนวนสมาชิกในพรรค";
 				next;
 				mes "[Elmeen]";
-				mes "Also, there is the experience benefit for party play which allows you to gain more experience points than playing solo. You can take advantage of this system for faster leveling.";
+				mes "นอกจากนี้ยังมีประโยชน์จากประสบการณ์สำหรับการเล่นปาร์ตี้ซึ่งช่วยให้คุณได้รับคะแนนประสบการณ์มากกว่าการเล่นเดี่ยวคุณสามารถใช้ประโยชน์จากระบบนี้เพื่อปรับระดับได้เร็วขึ้น";
 				next;
 				break;
 			case 3:
 				mes "[Elmeen]";
-				mes "When you kill monsters,";
-				mes "you can obtain items by chance. Furthermore, certain characters can use the 'Steal' skill in order to steal items from monsters.";
+				mes "เมื่อคุณฆ่าสัตว์ประหลาด";
+				mes "คุณสามารถรับรายการโดยบังเอิญนอกจากนี้ตัวละครบางตัวสามารถใช้ทักษะ 'ขโมย' เพื่อขโมยไอเท็มจากสัตว์ประหลาด";
 				next;
 				mes "[Elmeen]";
-				mes "Don't you worry about the Steal skill causing you to not find any items after you kill them. Using the Steal skill does not at all affect the item drop rate for monsters once they're killed.";
+				mes "คุณไม่ต้องกังวลเกี่ยวกับทักษะการขโมยที่ทำให้คุณไม่พบสิ่งของใด ๆ หลังจากที่คุณฆ่าพวกเขาการใช้ทักษะการขโมยไม่ได้ส่งผลกระทบต่ออัตราการตกของไอเท็มสำหรับสัตว์ประหลาดเมื่อพวกเขาถูกฆ่าตาย";
 				next;
 				mes "[Elmeen]";
-				mes "When a group of people kill a monster, the person who did the most damage receives priority in picking up item drops.";
+				mes "เมื่อกลุ่มคนฆ่าสัตว์ประหลาดคนที่ได้รับความเสียหายมากที่สุดจะได้รับความสำคัญในการหยิบไอเท็มหยด";
 				next;
 				break;
 			case 4:
 				mes "[Elmeen]";
-				mes "Feel free to";
-				mes "ask me if you";
-				mes "have any questions.";
+				mes "อย่าลังเล";
+				mes "ถามฉันว่าคุณ";
+				mes "มีคำถามใด ๆ";
 				close;
 			}
 		}
@@ -2478,35 +2478,35 @@ new_1-2,17,182,5	script	Helper#nv	84,{
 new_1-2,38,182,3	script	Entrance Guard#nv	92,{
 	if (nov_2nd_cos == 0) {
 		mes "[Muriel]";
-		mes "I'm sorry, but I can't let anybody who hasn't been instructed on fighting enter the Field Combat Training Grounds.";
+		mes "ฉันขอโทษ แต่ฉันไม่สามารถปล่อยให้ใครที่ไม่ได้รับคำสั่งในการต่อสู้เข้าสู่สนามฝึกซ้อมสนามต่อสู้";
 		next;
 		mes "[Muriel]";
-		mes "Why don't you speak to the Helper to the left side of this room first, so that you can receive some battle instruction?";
+		mes "ทำไมคุณไม่พูดกับผู้ช่วยทางด้านซ้ายของห้องนี้ก่อนเพื่อที่คุณจะได้รับคำแนะนำการต่อสู้?";
 		close;
 	}
 	else if (nov_2nd_cos > 0 && nov_2nd_cos < 21) {
 		mes "[Muriel]";
-		mes "Field Combat Training is an actual fight class where you can gain basic fighting skills that you can use to defend yourself in Midgard.";
+		mes "การฝึกอบรมการต่อสู้แบบฟิลด์เป็นชั้นเรียนการต่อสู้จริงที่คุณสามารถได้รับทักษะการต่อสู้ขั้นพื้นฐานที่คุณสามารถใช้เพื่อปกป้องตัวเองใน Midgard";
 		next;
 		mes "[Muriel]";
-		mes "Please kill as many monsters as you can to increase your base level at least 2 times.";
+		mes "กรุณาฆ่าสัตว์ประหลาดให้มากที่สุดเท่าที่จะทำได้เพื่อเพิ่มระดับฐานอย่างน้อย 2 ครั้ง";
 		next;
 		mes "[Muriel]";
-		mes "Gaining 2 base levels is required to complete your Field Combat Training. Although the monsters are all weak and easy to kill, I hope you will be careful.";
+		mes "การได้รับ 2 ระดับฐานจะต้องเสร็จสิ้นการฝึกอบรมการต่อสู้ภาคสนามของคุณแม้ว่าสัตว์ประหลาดทุกคนจะอ่อนแอและง่ายต่อการฆ่าฉันหวังว่าคุณจะระวัง";
 		next;
 		mes "[Muriel]";
-		mes "Do you wish";
-		mes "to take the test";
-		mes "right away?";
+		mes "คุณต้องการไหม";
+		mes "เพื่อทำการทดสอบ";
+		mes "ทันที?";
 		next;
-		switch(select("Yes:I need more time.")) {
+		switch(select("ใช่:ฉันต้องการเวลามากกว่านี้.")) {
 		case 1:
 			mes "[Muriel]";
-			mes "Please make sure you";
-			mes "talk to the staff at the North after you increase your base level by 2 levels through battle.";
+			mes "โปรดตรวจสอบให้แน่ใจว่าคุณ";
+			mes "พูดคุยกับพนักงานทางทิศเหนือหลังจากที่คุณเพิ่มระดับฐานของคุณ2ระดับผ่านการต่อสู้";
 			next;
 			mes "[Muriel]";
-			mes "I'm going to give you some useful supplies, so please use them in case of an emergency.";
+			mes "ฉันจะให้อุปกรณ์ที่มีประโยชน์แก่คุณดังนั้นโปรดใช้ในกรณีฉุกเฉิน";
 			if (nov_2nd_cos == 12) {
 				set nov_2nd_cos,22;
 			}
@@ -2543,31 +2543,31 @@ new_1-2,38,182,3	script	Entrance Guard#nv	92,{
 			end;
 		case 2:
 			mes "[Muriel]";
-			mes "No problem.";
-			mes "If you're not sure if you can pass the test or not, why don't you go talk to the Helper to the left one more time? Please come back";
-			mes "when you're ready.";
+			mes "ไม่มีปัญหา";
+			mes "หากคุณไม่แน่ใจว่าคุณสามารถผ่านการทดสอบหรือไม่ทำไมคุณไม่ไปคุยกับผู้ช่วยไปทางซ้ายอีกครั้ง?โปรดกลับมา";
+			mes "เมื่อคุณพร้อม";
 			close;
 		}
 		close;
 	}
 	else if ((nov_2nd_cos > 20) && (nov_2nd_cos < 31)) {
 		mes "[Muriel]";
-		mes "Oh well, I told you to be careful. Cheer up! It's not a big deal.";
+		mes "โอ้ดีฉันบอกให้คุณระวังเป็นกำลังใจมันไม่ใช่เรื่องใหญ่";
 		mes " ";
-		mes "Failure teaches success.";
-		mes "You have many chances";
-		mes "to re-take the test.";
+		mes "ความล้มเหลวสอนความสำเร็จ";
+		mes "คุณมีโอกาสมากมาย";
+		mes "เพื่อทำการทดสอบอีกครั้ง";
 		next;
 		mes "[Muriel]";
-		mes "Do you wish";
-		mes "to try again?";
+		mes "คุณต้องการไหม";
+		mes "ลองอีกครั้ง?";
 		next;
-		switch(select("Yes.:Can I have more time?")) {
+		switch(select("ใช่.:ฉันมีเวลามากขึ้นได้ไหม")) {
 		case 1:
 			mes "[Muriel]";
-			mes "I will give you";
-			mes "some supplies again.";
-			mes "Please be careful!";
+			mes "ฉันจะให้คุณ";
+			mes "บางเสบียงอีกครั้ง";
+			mes "โปรดระวัง!";
 			if (nov_2nd_cos == 22) {
 				set nov_2nd_cos,33;
 				getexp 16,0;
@@ -2607,36 +2607,36 @@ new_1-2,38,182,3	script	Entrance Guard#nv	92,{
 			end;
 		case 2:
 			mes "[Muriel]";
-			mes "No problem.";
-			mes "If you're not sure if you can pass the test or not, why don't you go talk to the Helper to the left one more time? Please come back";
-			mes "when you're ready.";
+			mes "ไม่มีปัญหา.";
+			mes "ถ้าคุณไม่แน่ใจว่าคุณสามารถผ่านการทดสอบหรือไม่ทำไมคุณไม่ไปคุยกับผู้ช่วยไปทางซ้ายอีกครั้ง?โปรดกลับมา";
+			mes "เมื่อคุณพร้อม.";
 			close;
 		}
 	}
 	else if (nov_2nd_cos > 30) {
 		mes "[Muriel]";
-		mes "Oh well, I told you to be careful. Cheer up! It's not a big deal.";
+		mes "โอ้ดีฉันบอกให้คุณระวังเป็นกำลังใจมันไม่ใช่เรื่องใหญ่";
 		mes " ";
-		mes "Failure teaches success.";
-		mes "You have many chances to re-take the test.";
+		mes "ความล้มเหลวสอนความสำเร็จ";
+		mes "คุณมีโอกาสมากมายที่จะทำการทดสอบอีกครั้ง";
 		next;
 		mes "[Muriel]";
-		mes "Do you wish to try again?";
+		mes "คุณต้องการลองอีกครั้งหรือไม่?";
 		next;
-		switch(select("Yes:Can I have more time?")) {
+		switch(select("ใช่:ฉันมีเวลามากขึ้นได้ไหม")) {
 		case 1:
 			mes "[Muriel]";
-			mes "I will restore";
-			mes "your HP. Please";
-			mes "be careful!";
+			mes " ฉันจะกู้คืน";
+			mes "HP ของคุณโปรด";
+			mes "ระวัง!";
 			percentheal 100,0;
 			close2;
 			warp "new_1-3",96,21;
 			end;
 		case 2:
 			mes "[Muriel]";
-			mes "No problem.";
-			mes "If you're not sure if you can pass the test or not, why don't you go talk to the Helper to the left one more time? Please come back when you're ready.";
+			mes "ไม่มีปัญหา.";
+			mes "หากคุณไม่แน่ใจว่าคุณสามารถผ่านการทดสอบหรือไม่ทำไมคุณไม่ไปคุยกับผู้ช่วยไปทางซ้ายอีกครั้ง?โปรดกลับมาเมื่อคุณพร้อม";
 			close;
 		}
 	}
@@ -2645,30 +2645,30 @@ new_1-2,38,182,3	script	Entrance Guard#nv	92,{
 //Teleport NPC
 new_1-3,95,30,4	script	Trainer#nv1::NovHoffman	84,{
 	mes "[Hoffman]";
-	mes "Hey there~";
-	mes "I'm here to provide";
-	mes "you with a little instruction.";
+	mes "เฮ้ ~";
+	mes "ฉันมาที่นี่เพื่อให้";
+	mes "คุณมีคำแนะนำเล็กน้อย";
 	next;
 	mes "[Hoffman]";
-	mes "These monsters are all weak";
-	mes "and easy to kill. But be careful,";
-	mes "a lot of them are aggressive";
-	mes "and out for blood!";
+	mes "สัตว์ประหลาดเหล่านี้อ่อนแอ";
+	mes "และง่ายต่อการฆ่าแต่ระวัง,";
+	mes "พวกเขาหลายคนก้าวร้าว";
+	mes "และออกมาเพื่อเลือด!";
 	next;
 	mes "[Hoffman]";
-	mes "If you think monsters here are too weak for you, I can send you to another training ground where the monsters are stronger than the ones over here.";
+	mes "ถ้าคุณคิดว่าสัตว์ประหลาดที่นี่อ่อนแอเกินไปสำหรับคุณฉันสามารถส่งคุณไปยังสนามฝึกอบรมอื่นที่สัตว์ประหลาดแข็งแกร่งกว่าตัวที่นี่";
 	next;
 	mes "[Hoffman]";
-	mes "But don't worry so much,";
-	mes "They're not impossible for";
-	mes "Novices. So would you";
-	mes "like to try?";
+	mes "แต่ไม่ต้องกังวลมาก";
+	mes "พวกเขาไม่สามารถทำได้";
+	mes "Novices. คุณจะ";
+	mes "ชอบลอง?";
 	next;
-	switch(select("I do want more of a challenge~:I wanna fight tough monsters!:Cancel")) {
+	switch(select("ฉันต้องการความท้าทายมากขึ้น ~:ฉันอยากจะต่อสู้กับสัตว์ประหลาดที่ยากลำบาก!: ยกเลิก")) {
 	case 1:
 		mes "[Hoffman]";
-		mes "I see, then let me guide";
-		mes "you to a training ground that has stronger monsters. May God be with you...";
+		mes "ฉันเห็นแล้วให้ฉันแนะนำ";
+		mes "คุณไปยังสนามฝึกซ้อมที่มีสัตว์ประหลาดที่แข็งแกร่งกว่าขอให้พระเจ้าอยู่กับคุณ ...";
 		next;
 		if (strnpcinfo(2) == "nv1") {
 			if (rand(2)) {
@@ -2684,11 +2684,11 @@ new_1-3,95,30,4	script	Trainer#nv1::NovHoffman	84,{
 		end;
 	case 2:
 		mes "[Hoffman]";
-		mes "You must like ";
-		mes "rough challenges,";
-		mes "don't you? Please";
-		mes "be careful, it can get";
-		mes "pretty difficult...";
+		mes "คุณต้องชอบ";
+		mes "ความท้าทายคร่าวๆ";
+		mes "คุณไม่?โปรด";
+		mes "ระวังมันจะได้รับ";
+		mes "ค่อนข้างยาก ...";
 		next;
 		if (strnpcinfo(2) == "nv1" || strnpcinfo(2) == "nv2" || strnpcinfo(2) == "nv3") {
 			if (rand(2)) {
@@ -2709,9 +2709,9 @@ new_1-3,95,30,4	script	Trainer#nv1::NovHoffman	84,{
 		end;
 	case 3:
 		mes "[Hoffman]";
-		mes "Hmm...?";
-		mes "Are you worried about going";
-		mes "to more challenging places? That's understandable, since you're still a new adventurer. Good luck~";
+		mes "อืม...?";
+		mes "คุณกังวลว่าจะไป";
+		mes "ไปยังสถานที่ที่ท้าทายมากขึ้น?เป็นที่เข้าใจได้เนื่องจากคุณยังเป็นนักผจญภัยคนใหม่ขอให้โชคดี ~ ";
 		close;
 	}
 }
@@ -2723,26 +2723,26 @@ new_5-3,95,30,4	duplicate(NovHoffman)	Trainer#nv5	84
 
 new_1-3,96,174,3	script	Test Examiner#nv1::NovKeyman	85,{
 	mes "[Keyman]";
-	mes "Good!!";
-	mes "Now you know how to fight";
-	mes "against monsters, don't you?";
-	mes "Would you like to move";
-	mes "to the next course?";
+	mes "ดี!!";
+	mes "ตอนนี้คุณรู้วิธีการต่อสู้";
+	mes "ต่อต้านสัตว์ประหลาดใช่ไหม";
+	mes "คุณต้องการย้าย";
+	mes "ไปยังหลักสูตรถัดไป?";
 	next;
 	switch(select("Yes:No")) {
 	case 1:
 		mes "[Keyman]";
-		mes "I hope you will be";
-		mes "a good fighter in the";
-		mes "future. Bon voyage.";
+		mes "ฉันหวังว่าคุณจะเป็น";
+		mes "นักสู้ที่ดีใน";
+		mes "อนาคตเดินทางโดยสวัสดิภาพ";
 		close2;
 		warp "new_1-4",99,10;
 		return
 		end;
 	case 2:
 		mes "[Keyman]";
-		mes "I see...";
-		mes "It can't hurt to practice until you're more comfortable with the basics of battle.";
+		mes "เข้าใจแล้ว...";
+		mes "ไม่สามารถทำร้ายการฝึกฝนได้จนกว่าคุณจะสบายใจกับพื้นฐานของการต่อสู้";
 		close;
 	}
 }
@@ -2758,52 +2758,52 @@ new_1-2,28,185,4	shop	Potato Merchant	90,516:15
 new_1-4,100,29,1	script	Hanson#nv	46,{
 	if (checkweight(909,400) == 0) {
 		mes "[Hanson]";
-		mes "All of the items you are carrying must be quite a burden. Where did you get so much things? Please lighten your weight by getting rid of things you don't need.";
+		mes "รายการทั้งหมดที่คุณถือจะต้องเป็นภาระคุณได้รับอะไรมากมาย?กรุณาทำให้น้ำหนักเบาขึ้นโดยการกำจัดสิ่งที่คุณไม่ต้องการ";
 		close;
 	}
 	if (nov_3_swordman == 20) {
 		mes "[Hanson]";
-		mes "Good day,";
+		mes "ขอให้เป็นวันที่ดี,";
 		mes "^A62A2A" + strcharinfo(0) + "'^000000.";
-		mes "You've made quite";
-		mes "an effort to come here.";
+		mes "คุณทำค่อนข้างมาก";
+		mes "ความพยายามที่จะมาที่นี่";
 		next;
 		mes "[Hanson]";
-		mes "This final test in the Training Grounds is a personality test,";
-		mes "but it's not a mandatory course.";
+		mes "การทดสอบขั้นสุดท้ายในพื้นที่ฝึกอบรมเป็นการทดสอบบุคลิกภาพ";
+		mes "แต่มันไม่ใช่หลักสูตรบังคับ";
 		next;
 		mes "[Hanson]";
-		mes "However, there are some benefits";
-		mes "to taking this test. When you take this test, you'll receive many health items which will help you when you join the Ragnarok Online community.";
+		mes "อย่างไรก็ตามมีประโยชน์บางอย่าง";
+		mes "เพื่อทำการทดสอบนี้เมื่อคุณทำการทดสอบนี้คุณจะได้รับรายการสุขภาพมากมายซึ่งจะช่วยคุณเมื่อคุณเข้าร่วมชุมชนออนไลน์ Ragnarok";
 		next;
 		mes "[Hanson]";
-		mes "Secondly, after you finish the course we will suggest the job class that seems best suited to your personality and teleport you to a town where you can change into the job we suggested.";
+		mes "ประการที่สองหลังจากที่คุณจบหลักสูตรเราจะแนะนำคลาสงานที่เหมาะสมที่สุดกับบุคลิกของคุณและส่งผ่านคุณไปยังเมืองที่คุณสามารถเปลี่ยนเป็นงานที่เราแนะนำ";
 		next;
 		mes "[Hanson]";
-		mes "Now...";
-		mes "What would";
-		mes "you like to do?";
+		mes "ตอนนี้...";
+		mes "สิ่งที่จะ";
+		mes "คุณชอบทำ?";
 		next;
 		mes "[Hanson]";
-		mes "Do you wish to start Ragnarok Online immediately, or take this personality test course first?";
+		mes "คุณต้องการเริ่ม Ragnarok ออนไลน์ทันทีหรือเข้าเรียนหลักสูตรการทดสอบบุคลิกภาพนี้ก่อนหรือไม่?";
 		next;
-		switch(select("I'll take the course.:Let me start Ragnarok Online please.")) {
+		switch(select("ฉันจะเรียนหลักสูตร:โปรดเริ่ม Ragnarok ออนไลน์")) {
 		case 1:
 			mes "[Hanson]";
-			mes "Excellent choice!";
-			mes "You're supposed to take every training course if you really want to be a well-prepared player!";
+			mes "ทางเลือกที่ยอดเยี่ยม!";
+			mes "คุณควรจะเข้าเรียนทุกหลักสูตรหากคุณต้องการเป็นผู้เล่นที่เตรียมมาอย่างดี!";
 			next;
 			mes "[Hanson]";
-			mes "Alright, let me start the 1st personality test. Please relax";
-			mes "and take it easy.";
+			mes "เอาล่ะให้ฉันเริ่มการทดสอบบุคลิกภาพครั้งที่ 1กรุณาผ่อนคลาย";
+			mes "และใช้ง่าย";
 			next;
 			mes "[Hanson]";
-			mes "Remember, this test is only to check your personality, there is no set standard for right and wrong. Now! Let's begin the test!";
+			mes "โปรดจำไว้ว่าการทดสอบนี้เป็นเพียงการตรวจสอบบุคลิกภาพของคุณไม่มีมาตรฐานที่กำหนดไว้สำหรับถูกและผิดตอนนี้!เริ่มต้นการทดสอบกันเถอะ!";
 			next;
 			mes "[Hanson]";
-			mes "Please choose the word";
-			mes "that best matches you from";
-			mes "among the following.";
+			mes "โปรดเลือกคำว่า";
+			mes "ที่ดีที่สุดตรงกับคุณจาก";
+			mes "ท่ามกลางสิ่งต่อไปนี้";
 			next;
 			switch(select("Study:Exercise:Public service:Violence")) {
 			case 1:
@@ -2870,15 +2870,15 @@ new_1-4,100,29,1	script	Hanson#nv	46,{
 				break;
 			}
 			mes "[Hanson]";
-			mes "Please answer";
-			mes "'Yes' or 'No' to";
-			mes "the following questions.";
+			mes "กรุณาตอบ";
+			mes "'ใช่ 'หรือ' ไม่ 'ถึง";
+			mes "คำถามต่อไปนี้";
 			next;
 			mes "[Hanson]";
-			mes "I'd rather die";
-			mes "than live submissively.";
+			mes "ฉันอยากตาย";
+			mes "กว่าสดที่ยอมแพ้";
 			next;
-			switch(select("Yes.:No.")) {
+			switch(select("ใช่.:ไม่.")) {
 			case 1:
 				set .@swordman_p,.@swordman_p+1;
 				break;
@@ -2888,11 +2888,11 @@ new_1-4,100,29,1	script	Hanson#nv	46,{
 				break;
 			}
 			mes "[Hanson]";
-			mes "You are often upset";
-			mes "to see someone better";
-			mes "than you.";
+			mes "คุณมักจะอารมณ์เสีย";
+			mes "เพื่อดูคนที่ดีกว่า";
+			mes "กว่าที่คุณ.";
 			next;
-			switch(select("Yes.:No.")) {
+			switch(select("ใช่.:ไม่.")) {
 			case 1:
 				set .@merchant_p,.@merchant_p+1;
 				break;
@@ -2901,11 +2901,11 @@ new_1-4,100,29,1	script	Hanson#nv	46,{
 				break;
 			}
 			mes "[Hanson]";
-			mes "You don't mind";
-			mes "exploring dangerous";
-			mes "places.";
+			mes "คุณไม่รังเกียจ";
+			mes "สำรวจอันตราย";
+			mes "สถานที่.";
 			next;
-			switch(select("Yes.:No.")) {
+			switch(select("ใช่.:ไม่.")) {
 			case 1:
 				set .@swordman_p,.@swordman_p+1;
 				break;
@@ -2914,11 +2914,11 @@ new_1-4,100,29,1	script	Hanson#nv	46,{
 				break;
 			}
 			mes "[Hanson]";
-			mes "You are";
-			mes "a leader-type";
-			mes "person.";
+			mes "คุณคือ";
+			mes "ประเภทผู้นำ";
+			mes "บุคคล.";
 			next;
-			switch(select("Yes.:No.")) {
+			switch(select("ใช่.:ไม่.")) {
 			case 1:
 				set .@swordman_p,.@swordman_p+1;
 				break;
@@ -2927,19 +2927,19 @@ new_1-4,100,29,1	script	Hanson#nv	46,{
 				break;
 			}
 			mes "[Hanson]";
-			mes "While exploring";
-			mes "a dungeon, you run";
-			mes "into a dead end.";
+			mes "ในขณะที่สำรวจ";
+			mes "ดันเจี้ยนคุณวิ่ง";
+			mes "สู่จุดจบ";
 			next;
 			mes "[Hanson]";
-			mes "However, there is a sign that reads 'Do Not Push' next to a stone that looks strangely like a button on the wall next to you.";
+			mes "อย่างไรก็ตามมีสัญญาณว่าการอ่าน 'อย่าดัน' ถัดจากหินที่ดูเหมือนปุ่มบนผนังถัดจากคุณ";
 			next;
 			mes "[Hanson]";
-			mes "Do you give in";
-			mes "to the urge to push";
-			mes "this button?";
+			mes "คุณยอมแพ้";
+			mes "เพื่อกระตุ้นให้ผลักดัน";
+			mes "ปุ่มนี้?";
 			next;
-			switch(select("Yes.:No.")) {
+			switch(select("ใช่.:ไม่.")) {
 			case 1:
 				set .@thief_p,.@thief_p+1;
 				break;
@@ -2948,10 +2948,10 @@ new_1-4,100,29,1	script	Hanson#nv	46,{
 				break;
 			}
 			mes "[Hanson]";
-			mes "You often see";
-			mes "things that don't exist.";
+			mes "คุณมักจะเห็น";
+			mes "สิ่งที่ไม่มีอยู่";
 			next;
-			switch(select("Yes.:No.")) {
+			switch(select("ใช่.:ไม่.")) {
 			case 1:
 				set .@acolyte_p,.@acolyte_p+1;
 				break;
@@ -2960,11 +2960,11 @@ new_1-4,100,29,1	script	Hanson#nv	46,{
 				break;
 			}
 			mes "[Hanson]";
-			mes "If you fell off";
-			mes "a cliff, you'd feel";
-			mes "like you were flying.";
+			mes "ถ้าคุณล้มลง";
+			mes "หน้าผาคุณจะรู้สึก";
+			mes "เหมือนคุณกำลังบิน";
 			next;
-			switch(select("Yes.:No.")) {
+			switch(select("ใช่.:ไม่.")) {
 			case 1:
 				set .@acolyte_p,.@acolyte_p+1;
 				break;
@@ -2973,9 +2973,9 @@ new_1-4,100,29,1	script	Hanson#nv	46,{
 				break;
 			}
 			mes "[Hanson]";
-			mes "Money talks.";
+			mes "การพูดคุยเรื่องเงิน";
 			next;
-			switch(select("Yes.:No.")) {
+			switch(select("ใช่.:ไม่.")) {
 			case 1:
 				set .@merchant_p,.@merchant_p+1;
 				break;
@@ -2984,13 +2984,13 @@ new_1-4,100,29,1	script	Hanson#nv	46,{
 				break;
 			}
 			mes "[Hanson]";
-			mes "Now, let me give you some different questions. Please relax and take it easy, and choose the answer that suits you best.";
+			mes "ตอนนี้ให้ฉันตั้งคำถามที่แตกต่างกันโปรดผ่อนคลายและใช้งานง่ายและเลือกคำตอบที่เหมาะกับคุณที่สุด";
 			next;
 			mes "[Hanson]";
-			mes "As you check";
-			mes "your tight schedule....";
+			mes "ตามที่คุณตรวจสอบ";
+			mes "กำหนดการแน่น ....";
 			next;
-			switch(select("You feel like a robot.:You are proud and satisfied.:Schedule? What schedule?")) {
+			switch(select("คุณรู้สึกเหมือนหุ่นยนต์:คุณภูมิใจและพอใจ:กำหนดการ?กำหนดเวลาอะไร?")) {
 			case 1:
 				set .@swordman_p,.@swordman_p+1;
 				set .@thief_p,.@thief_p+1;
@@ -3005,12 +3005,12 @@ new_1-4,100,29,1	script	Hanson#nv	46,{
 				break;
 			}
 			mes "[Hanson]";
-			mes "As you go window shopping,";
-			mes "you find a really interesting item in a store, debating whether or not to buy it. Before making";
-			mes "a purchase, the first thing";
-			mes "you do is...";
+			mes "เมื่อคุณไปซื้อของ";
+			mes "คุณพบไอเท็มที่น่าสนใจจริงๆในร้านค้าถกเถียงกันว่าจะซื้อหรือไม่ก่อนทำ";
+			mes "การซื้อสิ่งแรก";
+			mes "คุณทำคือ ...";
 			next;
-			switch(select("Consider if you need it.:Check the price.:Don't think twice, just buy it!")) {
+			switch(select("พิจารณาว่าคุณต้องการ:ตรวจสอบราคา:อย่าคิดว่าสองครั้งแค่ซื้อ!")) {
 			case 1:
 				set .@archer_p,.@archer_p+1;
 				break;
@@ -3022,11 +3022,11 @@ new_1-4,100,29,1	script	Hanson#nv	46,{
 				break;
 			}
 			mes "[Hanson]";
-			mes "Fill in the blank:";
-			mes "You ^3355FF_____^000000";
-			mes "competing with other people...";
+			mes "เติมลงในช่องว่าง:";
+			mes "คุณ ^3355FF_____^000000";
+			mes "แข่งขันกับคนอื่น ...";
 			next;
-			switch(select("don't mind...:don't like...:don't care about...")) {
+			switch(select("ไม่รังเกียจ ...:ไม่ชอบ ...:ไม่สนใจ ...")) {
 			case 1:
 				set .@merchant_p,.@merchant_p+1;
 				break;
@@ -3039,12 +3039,12 @@ new_1-4,100,29,1	script	Hanson#nv	46,{
 				break;
 			}
 			mes "[Hanson]";
-			mes "You're responsible for a task that requires you to cooperate with many people. If you handle it alone, it will take a lot of effort and time.";
+			mes "คุณต้องรับผิดชอบงานที่ต้องให้คุณร่วมมือกับผู้คนมากมายหากคุณจัดการกับมันเพียงอย่างเดียวมันจะต้องใช้ความพยายามและเวลาเป็นอย่างมาก";
 			next;
 			mes "[Hanson]";
-			mes "But if you cooperate with others, it will be simple and an enjoyable task. You would... ";
+			mes "แต่ถ้าคุณร่วมมือกับผู้อื่นมันจะเป็นเรื่องง่ายและเป็นงานที่สนุกสนานคุณจะ...";
 			next;
-			switch(select("Handle it myself, even if it's hard.:Ask friends to help.")) {
+			switch(select("จัดการกับตัวเองแม้ว่ามันจะยาก:ขอให้เพื่อนช่วย")) {
 			case 1:
 				set .@magician_p,.@magician_p+1;
 				break;
@@ -3053,12 +3053,12 @@ new_1-4,100,29,1	script	Hanson#nv	46,{
 				break;
 			}
 			mes "[Hanson]";
-			mes "You happen to";
-			mes "find a girl who";
-			mes "fainted on the street.";
-			mes "What would you do?";
+			mes "คุณเกิดขึ้นกับ";
+			mes "หาผู้หญิงที่";
+			mes "เป็นลมบนถนน";
+			mes "คุณจะทำอะไร?";
 			next;
-			switch(select("Carry her to a hospital.:Assess the situation before taking action.:Just ignore it.")) {
+			switch(select("พาเธอไปโรงพยาบาล:ประเมินสถานการณ์ก่อนดำเนินการ:เพียงแค่เพิกเฉย")) {
 			case 1:
 				set .@acolyte_p,.@acolyte_p+1;
 				break;
@@ -3073,11 +3073,11 @@ new_1-4,100,29,1	script	Hanson#nv	46,{
 				break;
 			}
 			mes "[Hanson]";
-			mes "You happen to";
-			mes "pick up 'Clothing.'";
-			mes "What would you do?";
+			mes "คุณเกิดขึ้นกับ";
+			mes "รับเสื้อผ้า ''";
+			mes "คุณจะทำอะไร?";
 			next;
-			switch(select("Check the brand.:Wonder who lost it.:Finder's keepers!:Leave it where it was.")) {
+			switch(select("ตรวจสอบแบรนด์:สงสัยว่าใครสูญเสียมัน:finder'skeepers!:ปล่อยให้มันอยู่ที่ไหน")) {
 			case 1:
 				set .@merchant_p,.@merchant_p+1;
 				break;
@@ -3093,9 +3093,9 @@ new_1-4,100,29,1	script	Hanson#nv	46,{
 				break;
 			}
 			mes "[Hanson]";
-			mes "You happened to accidentally slip your tongue in the middle of a conversation. How do you cope with this situation?";
+			mes "คุณเกิดขึ้นโดยไม่ตั้งใจลื่นลิ้นของคุณในช่วงกลางของการสนทนาคุณรับมือกับสถานการณ์นี้ได้อย่างไร?";
 			next;
-			switch(select("Pretend it's a joke.:Change the subject.:Analyze it.:Apologize honestly.")) {
+			switch(select("แกล้งทำเป็นเรื่องตลก.:เปลี่ยนวิชา.:วิเคราะห์.:ขอโทษอย่างตรงไปตรงมา.")) {
 			case 1:
 				set .@thief_p,.@thief_p+1;
 				break;
@@ -3110,9 +3110,9 @@ new_1-4,100,29,1	script	Hanson#nv	46,{
 				break;
 			}
 			mes "[Hanson]";
-			mes "You're on a trip with your beloved. Your significant other then asks you to buy a souvenir that's not particularly good. What do you do?";
+			mes "คุณกำลังเดินทางไปกับคนที่คุณรักคนสำคัญของคุณขอให้คุณซื้อของที่ระลึกที่ไม่ดีเป็นพิเศษคุณทำงานอะไร?";
 			next;
-			switch(select("Buy the item for her/him.:Say 'no.':Promise it for next time.")) {
+			switch(select("ซื้อสินค้าสำหรับเธอ/เขา:ปฏิเสธ.':สัญญาไว้ในครั้งต่อไป")) {
 			case 1:
 				set .@swordman_p,.@swordman_p+1;
 				break;
@@ -3124,10 +3124,10 @@ new_1-4,100,29,1	script	Hanson#nv	46,{
 				break;
 			}
 			mes "[Hanson]";
-			mes "Okay~! That's all for the test. You've finished all the Training Grounds courses. Congratulations!";
+			mes "โอเค ~!นั่นคือทั้งหมดสำหรับการทดสอบคุณจบหลักสูตรการฝึกอบรมทั้งหมดแล้วยินดีด้วย!";
 			next;
 			mes "[Hanson]";
-			mes "I've prepared some items for you since you passed the personality test. Please take them, you've earned it.";
+			mes "ฉันได้เตรียมสิ่งของบางอย่างให้คุณตั้งแต่คุณผ่านการทดสอบบุคลิกภาพโปรดพาพวกเขาไปแล้ว";
 			next;
 			//---------------------------------------------------------------------------------------------------------------------------------------------------
 			set nov_3_swordman,40;
@@ -3137,7 +3137,7 @@ new_1-4,100,29,1	script	Hanson#nv	46,{
 			//-------------------------------------------------------------------------------------------------------------------------------------------------
 			next;
 			mes "[Hanson]";
-			mes "Now, we will recommend a suitable job for you after analyzing the results of your personality test. Please wait a moment.";
+			mes "ตอนนี้เราจะแนะนำงานที่เหมาะสมสำหรับคุณหลังจากวิเคราะห์ผลการทดสอบบุคลิกภาพของคุณโปรดรอสักครู่";
 			next;
 			mes "[Hanson]";
 			mes "...";
@@ -3147,9 +3147,9 @@ new_1-4,100,29,1	script	Hanson#nv	46,{
 			mes "......";
 			next;
 			mes "[Hanson]";
-			mes "Here's the";
-			mes "final result";
-			mes "of your test.";
+			mes "นี่คือ";
+			mes "ผลลัพธ์สุดท้าย";
+			mes "จากการทดสอบของคุณ";
 			next;
 			if (.@swordman_p > .@magician_p) {
 				if (.@swordman_p > .@merchant_p) {
@@ -3309,24 +3309,24 @@ new_1-4,100,29,1	script	Hanson#nv	46,{
 			}
 			if (.@job_c == 1) {
 				mes "[Hanson]";
-				mes "Although you're very straight forward and simple minded, you";
-				mes "have a strong will and want to be an important person for this world.";
+				mes "แม้ว่าคุณจะตรงไปตรงมาและมีใจเรียบง่าย แต่คุณ";
+				mes "มีเจตจำนงที่แข็งแกร่งและต้องการเป็นคนสำคัญสำหรับโลกนี้";
 				next;
 				mes "[Hanson]";
-				mes "You're also always";
-				mes "trying to protect the weak.";
+				mes "คุณยังอยู่เสมอ";
+				mes "พยายามปกป้องคนอ่อนแอ";
 				next;
 				mes "[Hanson]";
-				mes "For you, who has your own will, ^696969Swordman^000000 class is the most suitable job.";
+				mes "สำหรับคุณที่มีความประสงค์ของคุณเอง ^696969Swordman^000000 ชั้นเรียนเหมาะสมที่สุด job.";
 				next;
 				mes "[Hanson]";
-				mes "So would you like to accept our recommendation, or would you like to choose a job on your own?";
+				mes "คุณต้องการยอมรับคำแนะนำของเราหรือคุณต้องการเลือกงานด้วยตัวเอง?";
 				next;
-				switch(select("Swordman!:My own choice!")) {
+				switch(select("Swordman!:ทางเลือกของฉันเอง!")) {
 				case 1:
 					mes "[Hanson]";
-					mes "That's a great choice!";
-					mes "After you receive all the supplies, I will teleport you to the Swordman Association.";
+					mes "นั่นเป็นตัวเลือกที่ยอดเยี่ยม!";
+					mes "หลังจากที่คุณได้รับเสบียงทั้งหมดฉันจะส่งคุณไปยังสมาคม Swordman";
 					next;
 					mes "^660000List of Supplies^000000";
 					mes "^0000335 Free Ticket for Kafra Storage^000000";
@@ -3342,26 +3342,26 @@ new_1-4,100,29,1	script	Hanson#nv	46,{
 					getitem 1010,7; //Phracon
 					////getgold 100
 					mes "[Hanson]";
-					mes "Please check your inventory to see if you have received all the supplies listed. Let me briefly inform you about the items you've received.";
+					mes "โปรดตรวจสอบสินค้าคงคลังของคุณเพื่อดูว่าคุณได้รับวัสดุทั้งหมดที่ระบุไว้หรือไม่ให้ฉันแจ้งสั้น ๆ เกี่ยวกับรายการที่คุณได้รับ";
 					next;
 					mes "[Hanson]";
-					mes "Free tickets for Kafra storage and transportation can be used for Kafra storage and teleport services.";
+					mes "ตั๋วฟรีสำหรับการจัดเก็บและการขนส่ง KAFRA สามารถใช้สำหรับบริการจัดเก็บข้อมูลและเทเลพอร์ต KAFRA";
 					next;
 					mes "[Hanson]";
-					mes "'Zeny' is the currency of Midgard. 'Falchion' is a weapon that will be very useful once you become a Swordman.";
+					mes "'Zeny' เป็นสกุลเงินของ Midgard. 'Falchion' เป็นอาวุธที่จะมีประโยชน์มากเมื่อคุณกลายเป็น Swordman.";
 					next;
 					mes "[Hanson]";
-					mes "'Phracon' is an ore which can be used to upgrade lvl 1 weapons. To strengthen your Falchion with this Phracon, please visit a forge in one of the towns.";
+					mes "'Phracon' เป็นแร่ที่สามารถใช้ในการอัพเกรดอาวุธ LVL 1เพื่อเสริมความแข็งแกร่งให้กับฟอร์ชออนของคุณด้วย phracon นี้โปรดไปที่ Forge ในหนึ่งในเมือง";
 					next;
 					mes "[Hanson]";
-					mes "The town you will be sent to is called Izlude which is a satellite of Prontera. The Swordman Association is located in the West of town. Please remember this.";
+					mes "เมืองที่คุณจะถูกส่งไปเรียกว่า Izlude ซึ่งเป็นดาวเทียมของ Pronteraสมาคมดาบตั้งอยู่ทางตะวันตกของเมืองโปรดจำไว้ว่าสิ่งนี้";
 					next;
 					mes "[Hanson]";
-					mes "You will now";
-					mes "be teleported.";
-					mes "Good luck,";
+					mes "ตอนนี้คุณจะ";
+					mes "ถูกเคลื่อนย้าย";
+					mes "ขอให้โชคดี,";
 					mes "^A62A2A" + strcharinfo(0) + "^000000";
-					mes "and farewell.";
+					mes "และอำลา";
 					close2;
 					set nov_1st_cos,0;
 					set nov_2nd_cos,0;
@@ -3381,19 +3381,19 @@ new_1-4,100,29,1	script	Hanson#nv	46,{
 			}
 			else if (.@job_c == 2) {
 				mes "[Hanson]";
-				mes "You enjoy analyzing things around you, and you're very independent. You have use insightful judgment and you can be very shy and logical.";
+				mes "คุณสนุกกับการวิเคราะห์สิ่งต่าง ๆ รอบตัวคุณและคุณเป็นอิสระมากคุณใช้การตัดสินที่ลึกซึ้งและคุณสามารถขี้อายและมีเหตุผลมาก";
 				next;
 				mes "[Hanson]";
-				mes "For you, the observative intellectual, ^696969Mage^000000 is the most suitable job.";
+				mes "สำหรับคุณปัญญาชนที่สังเกตได้ ^696969Mage^000000 เป็นงานที่เหมาะสมที่สุด";
 				next;
 				mes "[Hanson]";
-				mes "So, would you like to accept our recommendation or would you like to choose a job on your own?";
+				mes "ดังนั้นคุณต้องการยอมรับคำแนะนำของเราหรือคุณต้องการเลือกงานด้วยตัวเอง?";
 				next;
-				switch(select("Mage!:My own choice!")) {
+				switch(select("Mage!:ทางเลือกของฉันเอง!")) {
 				case 1:
 					mes "[Hanson]";
-					mes "That's a great choice!";
-					mes "After you receive all the supplies, I'll teleport you to the Mage town.";
+					mes "นั่นเป็นตัวเลือกที่ยอดเยี่ยม!";
+					mes "หลังจากที่คุณได้รับเสบียงทั้งหมดฉันจะส่งคุณไปยังเมืองผู้วิเศษ";
 					next;
 					mes "^660000List of Supplies^000000";
 					mes "^0000335 Free Ticket for Kafra Storage^000000";
@@ -3413,23 +3413,23 @@ new_1-4,100,29,1	script	Hanson#nv	46,{
 					////getgold 100
 					//---------------------------------------------------------------------------------------------------------------------------------------------------
 					mes "[Hanson]";
-					mes "Please check your inventory to see if you have received all the supplies listed. Let me briefly inform you about the items you've received.";
+					mes "โปรดตรวจสอบสินค้าคงคลังของคุณเพื่อดูว่าคุณได้รับวัสดุทั้งหมดที่ระบุไว้หรือไม่ให้ฉันแจ้งสั้น ๆ เกี่ยวกับรายการที่คุณได้รับ";
 					next;
 					mes "[Hanson]";
-					mes "Free tickets for Kafra storage and transportation can be used for Kafra storage and teleport services.";
+					mes "Free tickets for Kafra storage and transportation สามารถใช้สำหรับ Kafra Storage และ Teleport Services";
 					next;
 					mes "[Hanson]";
-					mes "'Zeny' is the currency of Midgard. That 'Cutter' has been given to you so that you can fight monsters before you become a Mage.";
+					mes "'Zeny' เป็นสกุลเงินของ Midgard. That 'Cutter' ได้รับมอบให้คุณเพื่อที่คุณจะได้ต่อสู้กับสัตว์ประหลาดก่อนที่คุณจะกลายเป็นนักเวทย์";
 					next;
 					mes "[Hanson]";
-					mes "Once you become a Mage, you can use the 'Rod' that has been given to you. It will be very useful during your early days as a Mage.";
+					mes "เมื่อคุณกลายเป็น Mage, คุณสามารถใช้ 'Rod' ที่มอบให้คุณ มันจะมีประโยชน์มากในช่วงแรก ๆ ของคุณในฐานะ Mage.";
 					next;
 					mes "[Hanson]";
-					mes "'Phracon' is an ore which can be used to upgrade lvl 1 weapons. To strengthen your Level 1 weapons with this Phracon, please visit a forge in one of the towns.";
+					mes "'Phracon' เป็นแร่ที่สามารถใช้ในการอัพเกรด lvl 1 weapons. เพื่อเสริมสร้างไฟล์ Level 1 weapons ด้วย phracon นี้กรุณาเยี่ยมชม Forge ในหนึ่งในเมือง";
 					next;
 					mes "[Hanson]";
-					mes "The town you will arrive is named 'Geffen'.";
-					mes "The mage academy is located in the Northwest part in town. Please remember this.";
+					mes "เมืองที่คุณจะมาถึงมีชื่อ 'Geffen'.";
+					mes "Mage Academy ตั้งอยู่ทางตะวันตกเฉียงเหนือในเมืองโปรดจำไว้ว่าสิ่งนี้";
 					next;
 					mes "[Hanson]";
 					mes "You'll now be teleported.";
@@ -3453,19 +3453,19 @@ new_1-4,100,29,1	script	Hanson#nv	46,{
 			}
 			else if (.@job_c == 3) {
 				mes "[Hanson]";
-				mes "You're very willful and very well organized. You've already set a goal in life and have become very responsible for your actions.";
+				mes "คุณจงใจและเป็นระเบียบมากคุณตั้งเป้าหมายในชีวิตแล้วและรับผิดชอบต่อการกระทำของคุณ";
 				next;
 				mes "[Hanson]";
-				mes "Because of your drive and desire to succeed, ^696969Merchant^000000 is the most suitable job for you.";
+				mes "เพราะแรงผลักดันและความปรารถนาที่จะประสบความสำเร็จ, ^696969Merchant^000000 เหมาะสมที่สุด job สำหรับคุณ.";
 				next;
 				mes "[Hanson]";
-				mes "So, would you like to accept our recommendation or would you like to choose a job on your own?";
+				mes "ดังนั้นคุณต้องการยอมรับคำแนะนำของเราหรือคุณต้องการเลือกงานด้วยตัวเอง?";
 				next;
-				switch(select("Merchant!:My own choice!")) {
+				switch(select("Merchant!:ทางเลือกของฉันเอง!")) {
 				case 1:
 					mes "[Hanson]";
-					mes "That's a great choice!";
-					mes "After you receive all the supplies, I will teleport you to the merchant town.";
+					mes "นั่นเป็นตัวเลือกที่ยอดเยี่ยม!";
+					mes "หลังจากที่คุณได้รับเสบียงทั้งหมดฉันจะส่งคุณไปยังเมืองพ่อค้า";
 					next;
 					mes "^660000List of Supplies^000000";
 					mes "^0000334 Free Ticket for Kafra Storage^000000";
@@ -3485,19 +3485,19 @@ new_1-4,100,29,1	script	Hanson#nv	46,{
 					////getgold 100
 					//---------------------------------------------------------------------------------------------------------------------------------------------------
 					mes "[Hanson]";
-					mes "Please check your inventory to see if you have received all the supplies listed. Let me briefly inform you about the items you've received.";
+					mes "โปรดตรวจสอบสินค้าคงคลังของคุณเพื่อดูว่าคุณได้รับวัสดุทั้งหมดที่ระบุไว้หรือไม่ให้ฉันแจ้งสั้น ๆ เกี่ยวกับรายการที่คุณได้รับ";
 					next;
 					mes "[Hanson]";
-					mes "Free tickets for Kafra storage and transportation can be used for Kafra storage and teleport services.";
+					mes "ตั๋วฟรีสำหรับการจัดเก็บและการขนส่ง KAFRA สามารถใช้สำหรับบริการจัดเก็บข้อมูลและเทเลพอร์ต KAFRA";
 					next;
 					mes "[Hanson]";
-					mes "'Zeny' is the currency of Midgard. 'Battle Axe' will come in handy once you become a Merchant.";
+					mes "'Zeny' เป็นสกุลเงินของ Midgard. 'Battle Axe' จะมีประโยชน์เมื่อคุณเป็น Merchant.";
 					next;
 					mes "[Hanson]";
-					mes "'Phracon' is an ore which can be used to upgrade lvl 1 weapons. To strengthen your Battle Axe with this Phracon, please visit a forge in one of the towns.";
+					mes "'Phracon' เป็นแร่ที่สามารถใช้ในการอัพเกรด lvl 1 weapons. เพื่อเสริมสร้างการต่อสู้ของคุณ Axe ด้วยสิ่งนี้ Phracon, กรุณาเยี่ยมชม Forge ในหนึ่งในเมือง";
 					next;
 					mes "[Hanson]";
-					mes "The town you will be sent to is named Alberta. The Merchant Guild is located to the SouthWest within Alberta. Please remember this.";
+					mes "เมืองที่คุณจะถูกส่งไปมีชื่อ Alberta. The Merchant Guild ตั้งอยู่ทางตะวันตกเฉียงใต้ภายใน Alberta. โปรดจำไว้ว่าสิ่งนี้";
 					next;
 					mes "[Hanson]";
 					mes "You will now";

@@ -1,0 +1,311 @@
+prt_in,49,172,3	script	Marianne#juice	53,{
+	if (MISC_QUEST&1 || morison_meat == 15) {
+		mes "[Housewife Marianne]";
+		mes "เฮ้อ!";
+		mes "เขาจะไม่กินอะไรทั้งนั้นนอกจาก เนื้อชิ้นโปรดของเขา แต่บางครั้งเขาอาจกินผลไม้ถ้าให้ทานแบบปรุงรสทำให้เขารู้สึกว่าน่ากิน ขอบคุณที่ช่วยเหลือเราสองแม่ลูก";
+		next;
+		set mother_marienu,0;
+		set morison_meat,0;
+		set MISC_QUEST,MISC_QUEST | 1;
+		mes "[Housewife Marianne]";
+		mes "อืม.!หากคุณต้องการที่จะทำน้ำผลไม้.. จงเดินทางไปที่เมือง Payon ?";
+		close;
+	}
+	if (mother_marienu == 1) {
+		mes "[Housewife Marianne]";
+		mes "Morrison!! ลูกของข้าไม่ชอบทานผลไม้เลย~!?";
+		next;
+		if (select("พูด:ยกเลิก") == 1) {
+			mes "[Housewife Marianne]";
+			mes "หืม? คุณ...!";
+			mes "คุณเหมือนคนที่เคยให้ลูกข้ากินเนื้อนั่น แล้วคุณมาที่นี่ต้องการอะไร!";
+			next;
+			mes "[Housewife Marianne]";
+			mes "ออกไปจากบ้านฉันเดี๋ยวนี้!!";
+			close;
+		}
+		mes "[Housewife Marianne]";
+		mes "Morrison!! ฉันชักจะโมโหแล้วนะ ถ้าเธอยังทำตัวแบบนี้!";
+		close;
+	}
+	if (morison_meat > 0) {
+		set mother_marienu,1;
+		mes "[Housewife Marianne]";
+		mes "โอ้!!.... นี่...";
+		mes "นี่คืออะไร...??";
+		mes "คุณทำอย่างไรกับลูกชายของฉัน?!";
+		next;
+		mes "[Housewife Marianne]";
+		mes "อ๊ากก! ออกไปจากบ้านฉัน!";
+		close;
+	}
+	mes "[Housewife Marianne]";
+	mes "Morrison!! กินผลไม้ซะ!! ได้โปรด~!";
+	next;
+	mes "[Housewife Marinaa]";
+	mes "ฮือฮือ~!! เหมือนกันทั้งพ่อทั้งลูกเลย...";
+	next;
+	switch(select("พูด:ยกเลิก")) {
+		mes "[Housewife Marianne]";
+		mes "*ฮือฮือ*... นี่คือ Morrison...";
+		mes "ลูกชายคนเดียวของฉัน";
+		next;
+		mes "[Housewife Marianne]";
+		mes "แต่วันนี้เขาไม่ยอมกินผลไม้เลย. ข้าต้องทำอะไรสักอย่างเพื่อให้เขากินผลไม้นี่...";
+		close;
+	}
+	mes "[Housewife Marianne]";
+	mes "Morrison!!!";
+	close;
+}
+
+prt_in,47,173,3	script	Morrison#juice	97,{
+	if (MISC_QUEST&1 || morison_meat == 15) {
+		mes "[Little Morrison]";
+		mes "เชอะ...ลืมซะเถอะ";
+		mes "ให้ผมตายยังดีกว่าที่จะกินผลไม้นั่น ไม่ต้องเป็นห่วงผม";
+		close;
+	}
+	if (morison_meat > 9) {
+		mes "[Little Morrison]";
+		mes "แจ่ม~";
+		mes "ผมคิดว่าผมทำได้";
+		mes "คุณไม่มีเนื้อมาให้ผมสักหน่อยหรอ. ผมรู้สึกดีเมื่อผมได้ทานมัน";
+		if (morison_meat == 10) {
+			next;
+			set morison_meat,morison_meat+1;
+			mes "[Little Morrison]";
+			mes "โอ้ว้าว แจ่มเลย";
+			mes "รับนี่ไป";
+			next;
+			mes "[Little Morrison]";
+			mes "ผมมีลูกอมแบ่งให้คุณด้วย";
+			close;
+			getitem 529,3; //Candy
+			getitem 530,1; //Candy_Striper
+		}
+		close;
+	}
+	mes "[Little Morrison]";
+	mes "อ๊ากกก....เย้!!!";
+	mes "ท่านมีเนื้อมาให้ข้าแล้ว...ข้าหิวมากเลยตอนนี้ขอข้าได้ชิมเนื้อได้ไหม";
+	next;
+	if (countitem(517) > 0) {
+		switch(select("คุย:ส่งเนื้อให้ดู:ยกเลิก")) {
+		case 1:
+			mes "[Little Morrison]";
+			mes "หื้อ..!! หนูไม่กินผลไม้! ฉันเกลียดน้ำผลไม้";
+			next;
+			mes "[Little Morrison]";
+			mes "เพราะผลไม้มันไม่น่ารับประทานเอาซะเลย  หากได้ทานเนื้อละก็ฉันคงจะมีความสุขมาก ๆ";
+			close;
+		case 2:
+			mes "[Little Morrison]";
+			mes "Ooh! เนื้อย่าง..หอม~";
+			mes "ฉันหิวเหลือเกินครับ";
+			mes "ผมขอกินเนื้อที่อยู่ในมือท่านได้ไหม";
+			mes "ได้โปรด....";
+			mes "ฉันต้องการเพียง ชิ้นเดียว?";
+			next;
+			if (select("ให้เนื้อ:ไม่ให้") == 1) {
+				delitem 517,1; //Meat
+				set morison_meat,morison_meat+1;
+				mes "[Little Morrison]";
+				mes "ว้าว.!!! เนื้อย่าง!!";
+				mes "โอ้ งั้มๆๆ งุงุ!";
+				mes "ขอบคุณมากครับ,";
+				mes "มีไรให้ผมช่วยบอกผล";
+				mes "ได้ตลอดเวลาเลยน่ะครับ";
+				mes "*อร่อย อร่อย*";
+				close;
+			}
+			set morison_meat,15;
+			mes "[Little Morrison]";
+			mes "เชอะ..!";
+			mes "เจ้าจะไม่มีทางเปลี่ยนใจข้าได้..";
+			mes "ยังไงข้าก็ไม่ชอบทานผัก!";
+			close;
+		case 3:
+			mes "[Little Morrison]";
+			mes "โอ้ย.!!! ข้าไม่ต้องการกินผัก เจ้าไม่ต้องมาพูดแทนแม่ข้าเลย ไป..!";
+			close;
+		}
+	}
+	if (select("พูดคุย:ยกเลิก") == 1) {
+		mes "[Little Morrison]";
+		mes "แง่ๆๆ!! ฉันไม่ชอบกินผัก ไปให้พ้นเลย!";
+		next;
+		mes "[Little Morrison]";
+		mes "ใช้เกลียดผลไม้..! ฉันเพียงต้องการเนื้อเท่านั้นไม่มีเนื้ออยู่ไม่ได้";
+		next;
+		mes "[Little Morrison]";
+		mes "ตอนนี้ฉันนั้นหิวมากมาย..ถ้าเอานี้มาให้ฉันจะยอมเป็นคนรับใช้..";
+		mes "Aaaah~!";
+		mes "โปรดให้เนื้อข้าที..ข้าทนความหิวไม่ไหวแล้ว!";
+		close;
+	}
+	mes "[Little Morrison]";
+	mes "โอ้ย.!!! ข้าไม่ต้องการกินผัก เจ้าไม่ต้องมาพูดแทนแม่ข้าเลย ไป..!";
+	close;
+}
+
+payon_in01,174,114,3	script	Marx Hansen#juice	86,{
+		if (checkweight(1201,1) == 0) {
+		mes "- ท่านไม่สามารถใช้รายการนี้ได้! -";
+		mes "- เนื่องจากน้ำหนกเกิน... -";
+		mes "- หรือช่องไอเท็มที่ใส่ไม่เพียงพอ -";
+		mes "- กรุณาไปฝากของที่ kafra ก่อน-";
+		mes "- แล้วค่อยกลับมาทำรายการนี้ใหม่. -";
+		close;
+	}
+	if (MISC_QUEST&1) {
+		mes "[Merchant Marx Hansen]";
+		mes "ยินดีต้อนรับ";
+		mes "คุณมานี่มีอะไรให้ช่วย";
+		mes "ต้องการน้ำผลไม้หรือ?";
+		next;
+		switch(select("ทำน้ำผลไม้:ส่วนผสมทำน้ำผลไม้:ยกเลิก")) {
+		case 1:
+			mes "[Merchant Marx Hansen]";
+			mes "คุณต้องการทำน้ำผลไม้อะไร เชิญเลือกตามสบาย";
+			next;
+			switch(select("Apple Juice:Banana Juice:Carrot Juice:Grape Juice:ยกเลิก")) {
+			case 1:
+				set .@fruit,512;
+				set .@juice,531;
+				break;
+			case 2:
+				set .@fruit,513;
+				set .@juice,532;
+				break;
+			case 3:
+				set .@fruit,515;
+				set .@juice,534;
+				break;
+			case 4:
+				set .@fruit,514;
+				set .@juice,533;
+				break;
+			case 5:
+				mes "[Merchant Marx Hansen]";
+				mes "ไม่เป็นไร....";
+				mes "แล้วพบกันวันหน้า";
+				close;
+			}
+			if (countitem(.@fruit) == 0 || countitem(713) == 0 || Zeny < 3) {
+				mes "[Merchant Marx Hansen]";
+				mes "โอ้ โน่......";
+				mes "คุณยังขาดของที่จะทำการผสมน้ำผลไม้ สิ่งที่ต้องใช้ "+getitemname(.@juice)+" ต้องการ 1 "+getitemname(.@fruit)+" และ 1 Empty Bottle. กับเงินค่าผสม 3 zeny";
+				next;
+				mes "[Merchant Marx Hansen]";
+				mes "หากคุณหาสิ่งที่ผมต้องการมาได้ก็จะได้เริ่มกำผสมน้ำผลไม้ได้ทันที";
+				close;
+			}
+
+			mes "[Merchant Marx Hansen]";
+			mes "คุณต้องการผสมน้ำผลไม้แบบไหน?";
+			next;
+			switch(select("ผสมทั้งหมด.:เลือก จำนวน:ยกเลิก")) {
+			case 1:
+				set .@make,countitem(.@fruit);
+				if (countitem(713) < .@make) set .@make, countitem(713);
+				if (Zeny/3 < .@make) set .@make, Zeny/3;
+				break;
+			case 2:
+				mes "[Merchant Marx Hansen]";
+				mes "โปรดเลือกจำนวกที่ต้องการจะผสมน้ำผลไม้..มันจะผสมจำนวน " + countitem(.@fruit) + "ชิ้นที่คุณจะได้ หากใส่เลข 0 มันจะไม่ผสมน้ำผลไม้ให้";
+				next;
+				while(1) {
+					input .@input;
+					if (.@input == 0) {
+						mes "[Merchant Marx Hansen]";
+						mes "ไม่เป็นไรครับ";
+						mes "ค่อยมาวันหลังก็ได้";
+						close;
+					}
+					else if (.@input > 100) {
+						mes "[Merchant Marx Hansen]";
+						mes "การผสมเกิน 100 ขวด นั้นไม่สามารถทำได้..";
+						next;
+					}
+					else {
+						break;
+					}
+				}
+				set .@make,.@input;
+				break;
+			case 3:
+				mes "[Merchant Marx Hansen]";
+				mes "ไม่เป็นไรครับ..";
+				mes "งั้นค่อยเจอกันใหม่น่ะครับ";
+				close;
+			}
+
+			set .@total_zeny,3 * .@make;
+
+			if (countitem(.@fruit) < .@make || countitem(713) < .@make || Zeny < .@total_zeny) {
+				mes "[Merchant Marx Hansen]";
+				mes "Oh ไม่....";
+				mes "คุณไม่สามารถผสมน้ำผลไม้ได้ เนื่องจากเงินคุณอาจจะไม่พอ,ผลไม้อาจไม่พอกับจำนวนที่จะผสม หรือ ขวดคุณเอาพกมาไม่เพียงพอ ขอให้ตรวจสอบก่อนว่าคุณทำตกไว้ที่ไหน";
+				close;
+			}
+			delitem .@fruit,.@make;
+			delitem 713,.@make;
+			set zeny,zeny-.@total_zeny;
+			getitem .@juice,.@make;
+
+			mes "[Merchant Marx Hansen]";
+			mes "เชิญรับไป! น้ำผลไม้ทำให้คุณสดชื่น เอาไว้ดื่มแก้กระหายน้ำได้";
+			next;
+			mes "[Merchant Marx Hansen]";
+			mes "ขอบคุณที่ใช้บริการ";
+			mes "ครั้งมาใหม่ได้เสมอ...";
+			close;
+		case 2:
+			mes "#ส่วนผสมที่ต้องใช้ ทำน้ำผลไม้ #";
+			mes "^CC4E5C- Apple Juice -^000000";
+			mes "Apple x 1 ea, Empty Bottle x 1 ea, 3 zeny.";
+			mes "";
+			mes "^E3CF57- Banana Juice -^000000";
+			mes "Banana x 1 ea, Empty Bottle x 1 ea, 3 zeny.";
+			mes "";
+			mes "^ED9121- Carrot Juice -^000000";
+			mes "Carrot x 1 ea, Empty Bottle x 1 ea, 3 zeny.";
+			mes "";
+			mes "^CC00FF- Grape Juice -^000000";
+			mes "Grape x 1 ea, Empty Bottle x 1 ea, 3 zeny.";
+			close;
+		case 3:
+			mes "[Merchant Marx Hansen]";
+			mes "จร้า!..";
+			mes "ยังไงก็มาเยี่ยมกันก็ได้";
+			mes "เผื่อคุณจะเปลี่ยนใจ..";
+			close;
+		}
+	}
+	else {
+		mes "[Merchant Marx Hansen]";
+		mes "ยินดีต้อนรับ...ครับ";
+		mes "มีอะไรให้ผมช่วยไหมครับ";
+		next;
+		if (select("พูดคุย:ยกเลิก") == 1) {
+			mes "[Merchant Marx Hansen]";
+			mes "ผมคือ Marx Hansen นักผสมน้ำผลไม้ระดับแนวหน้าที่มีแต่ผู้คนรู้จักทั่วโลกไม่มีใครไม่รู้จักชื่อผม.. สูตรต้นตำรับในการผสมน้ำผลไม้ที่มาจากเมืองจีน.. ปัจจุบันข้าได้มาอาศัยที่ เมืองป่าเขียวอุดมสมบูรณ์";
+			next;
+			mes "[Merchant Marx Hansen]";
+			mes "ทำให้คิดสูตรผสมน้ำผลไม้ที่สมบูรณ์ไร้ที่ติ แล้วรสชาติ ดีๆ.. ถ้าหากท่านต้องการผสมน้ำผลไม้ ท่านต้องทำงานให้ข้าชิ้นหนึ่ง เพื่อให้ข้ายอมที่จะเสียเวลาผสมน้ำผลไม้ให้..งานข้านั้นไม่อยากแค่เพียงท่าน ";
+			next;
+			mes "[Merchant Marx Hansen]";
+			mes "ไปที่เมือง Prontera แล้วไปที่โรงแรม ชั้น2 จะพบแม่ และ ลูก คู่หนึ่งจงไปหาเขาแล้วพูดคุยกับแม่และเด็ก และทำให้เด็กยอมที่จะกินผลไม้";
+			next;
+			mes "[Merchant Marx Hansen]";
+			mes "แล้วถ้าแม่ของเธอพอใจ เขาจะแนะนำท่านให้มาหาข้าเอง จงรีบไปจะได้ไม่เสียเวลา";
+			close;
+		}
+		mes "[Merchant Marx Hansen]";
+		mes "บ๊าย บาย...";
+		mes "ว่าง ๆ ก็มาเยี่ยมกันน่ะ";
+		mes "ขอให้โชคดี....";
+		close;
+	}
+}

@@ -1,0 +1,167 @@
+//======================== Prontera ===================================
+// West Side Inn -------------------
+prt_in,244,135,2	script	Inn Maid::Sammy	53,{
+
+	callfunc "F_InnMaid","[Sammy]","โรงแรมทางตะวันตก","prt_in",238,130;
+	addtimer 100, "Sammy::OnTimerWarp";
+	close;
+
+OnTimerWarp:
+	warp "prt_in",237,102;
+	sc_end SC_BLIND;
+	end;
+}
+// East Side Inn ------------------
+prt_in,61,141,2	script	Inn Maid::Ahlma	53,{
+
+	callfunc "F_InnMaid","[Ahlma]","โรงแรมทางตะวันออก","prt_in",64,136;
+	addtimer 100, "Ahlma::OnTimerWarp";
+	close;
+
+OnTimerWarp:
+	warp "prt_in",49,173;
+	sc_end SC_BLIND;
+	end;
+}
+
+//======================== Alberta ====================================
+// North --------------------------
+alberta_in,32,142,5	script	Inn Maid::Moira	53,{
+
+	callfunc "F_InnMaid","[Moira]","โรงแรมทางตอนเหนือ","alberta_in",26,138;
+	addtimer 100, "Moira::OnTimerWarp";
+	close;
+
+OnTimerWarp:
+	warp "alberta_in",18,188;
+	sc_end SC_BLIND;
+	end;
+}
+// South -----------------------------
+alberta_in,55,142,8	script	Inn Maid::Tina	53,{
+
+	callfunc "F_InnMaid","[Tina]","โรงแรมทางตอนใต้","alberta_in",60,140;
+	addtimer 100, "Tina::OnTimerWarp";
+	close;
+
+OnTimerWarp:
+	warp "alberta_in",68,188;
+	sc_end SC_BLIND;
+	end;
+}
+
+//====================== Geffen ======================================
+geffen_in,70,64,5	script	Inn Maid::Betty	53,{
+
+	callfunc "F_InnMaid","[Betty]","โรงแรม","geffen_in",74,60;
+	addtimer 100, "Betty::OnTimerWarp";
+	close;
+
+OnTimerWarp:
+	warp "geffen_in",106,106;
+	sc_end SC_BLIND;
+	end;
+}
+
+/*
+//======================= Payon ======================================
+
+payon_in01,67,64,5	script	Inn Maid::SunHee	53,{
+
+	callfunc "F_InnMaid","[Sun Hee]","โรงแรม","payon_in01",75,64;
+	addtimer 100, "SunHee::OnTimerWarp";
+	close;
+
+OnTimerWarp:
+	warp "payon_in01",75,64;
+	sc_end SC_BLIND;
+	close;
+}
+*/
+
+
+//======================== Morocc ====================================
+// North East --------------------------
+morocc_in,147,138,5	script	Inn Maid::Suzie	53,{
+
+	callfunc "F_InnMaid","[Suzie]","โรงแรมทางภาคตะวันออกเฉียงเหนือ","morocc_in",142,140;
+	addtimer 100, "Suzie::OnTimerWarp";
+	close;
+
+OnTimerWarp:
+	warp "morocc_in",174,144;
+	sc_end SC_BLIND;
+	end;
+}
+// South --------------------------------
+morocc_in,80,100,5	script	Inn Maid::Shala	53,{
+
+	callfunc "F_InnMaid","[Shala]","โรงแรมทางตอนใต้","morocc_in",78,95;
+	addtimer 100, "Shala::OnTimerWarp";
+	close;
+
+OnTimerWarp:
+	warp "morocc_in",74,128;
+	sc_end SC_BLIND;
+	end;
+}
+
+//====================== Aldebaran ======================================
+aldeba_in,93,61,4	script	Inn Maid::Rilim	53,{
+
+	callfunc "F_InnMaid","[Rilim]","โรงแรม","aldeba_in",92,50;
+	addtimer 100, "Rilim::OnTimerWarp";
+	close;
+
+OnTimerWarp:
+	warp "aldeba_in",91,108;
+	sc_end SC_BLIND;
+	end;
+}
+
+//======================= Inn Function ==============================
+function	script	F_InnMaid	{
+	mes getarg(0);
+	mes "ยินดีต้อนรับสู่ Nenkaras " + getarg(1) + ".  มีอะไรให้ฉันช่วยไหม?";
+	next;
+	menu "เซฟ",Msave, "พักผ่อน",Mrent, "ไม่มีอะไร",Mend;
+
+	Msave:
+		mes getarg(0);
+		mes "ฉันได้ทำการ.";
+		mes "บันทึกจุดเซฟแล้ว.";
+		mes "ขอบคุณค่ะ,";
+		mes "โปรดกลับมาใช้บริการใหม่นะคะ.";
+		savepoint getarg(2),getarg(3),getarg(4);
+		close;
+	Mrent:
+		set @cost,5000;
+		if(BaseLevel > 15) set @cost,5000;
+		if(BaseLevel > 30) set @cost,5000;
+		if(BaseLevel > 50) set @cost,5000;
+		if(BaseLevel > 75) set @cost,5000;
+		mes getarg(0);
+		mes "มันจะเสียค่าใช้จ่าย " + @cost + " บาทในการพักผ่อน 1 คืน.";
+		mes "ในตอนเช้า HP และ SP ของคุณจะถูกกู้คืนได้อย่างเต็มที่.";
+		next;
+		menu "โอเค",-,"ไม่ล่ะขอบคุณ",Mend;
+		
+		mes getarg(0);
+		mes "ขอบคุณค่ะละขอให้สนุกกับการพักผ่อนที่นี้นะคะ.";
+		emotion 15;
+		if(Zeny < @cost) goto NoZeny;
+		set Zeny,Zeny - @cost;
+		sc_start SC_BLIND,500000,1;
+		percentheal 100,100;
+		return;
+
+		NoZeny:
+			mes getarg(0);
+			mes "ขอโทษด้วยค่ะ แต่คุณมีเงินไม่พอ.";
+			close;
+	Mend:
+		mes getarg(0);
+		mes "ฉันรอที่จะทำงานต่อไป.";
+		close;
+}
+

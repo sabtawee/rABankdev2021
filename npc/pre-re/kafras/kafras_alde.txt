@@ -1,0 +1,38 @@
+//—>===============================================================<—|
+// -- # Ragnarok Online EP 4.0 BY Kelberwitz Blade's
+// -- # Aldebaran HiSo Kafra Corparation !!
+//—>===============================================================<—|
+
+// - - > สำนักงานใหญ่ Kafra Corparation
+aldeba_in,96,181,4	script	Kafra Express#Alde01	113,{
+	cutin "kafra_05",2;
+	mes "^0066FF[ Kafra Express ]^000000";
+	mes "Kafra Corparation ยินดีให้บริการ";
+	mes "เราจะอยู่เคียงข้างท่านตลอดไป  ~";
+	cutin "",255;
+	end;
+}
+
+// - - > กลางเมือง
+aldebaran,143,119,4	script	Kafra Express#Alde02	113,{
+	cutin "kafra_05",2;
+
+	cleararray @wrpC$[0],"",getarraysize(@wrpC$);
+	setarray @wrpP[0], 1200, 1200, 1800, 1700;
+	setarray @wrpD$[0], "Geffen", "Juno" , "Izlude", "Mjolnir Dead Pit";
+	set @wrpC$[0], @wrpD$[0]+" [ "+@wrpP[0]+" z ]";
+	set @wrpC$[1], @wrpD$[1]+" [ "+@wrpP[1]+" z ]";
+	set @wrpC$[2], @wrpD$[2]+" [ "+@wrpP[2]+" z ]";
+	set @wrpC$[3], @wrpD$[3]+" [ "+@wrpP[3]+" z ]";
+	set @wrpC$[4], "ยกเลิก";
+
+	mes "^0066FF[ Kafra Express ]^000000";
+	mes "สวัสดีค่ะ ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+	mes "Kafra Corporation ยินดีให้บริการ";
+	mes "ต้องการให้ข้าช่วยเหลืออะไรไหมคะ ?";
+	callfunc "F_Kafra",5,0,1,20,600;
+
+	M_Save:
+		savepoint "aldebaran",143,109;
+		callfunc "F_KafEnd",0,1,"in the city of Al De Baran";
+}

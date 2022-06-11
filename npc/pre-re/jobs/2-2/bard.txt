@@ -1,0 +1,453 @@
+comodo.gat,191,162,5	script	เปลี่ยน Bard	647,{
+	//callfunc "F_BlockHigh",Job_Archer_High,"High Archer",Job_Clown,"Clown","Wandering Bard";
+	if(JobLevel == 50) {
+	if (Class!=3) goto Notache;
+	if(Sex==0) goto L_nobard;
+	if(SkillPoint >0) goto L_notUseAll;
+
+	 mes "[ Jobchanger ]";
+	 mes "ท่านต้องการเปลื่ยนอาชีพเป็นbard ใช่หรือไม่";
+	 next;
+	 menu "ใช่",-,"ไม่ใช่",closego;
+	 mes "[ Jobchanger ]";
+	 mes "ถ้าเป็นอย่างนั้น ข้าก็จะเปลื่ยนให้เจ้าทันที";
+	 next;
+	 JobChange 19;
+	set zeny,zeny+50000;
+	 mes "เจ้าได้เป็น bardเรียบร้อยแล้ว";
+	 close;
+
+	closego:
+	 mes "[ Jobchanger ]";
+	 mes "เราคงมีโอกาศได้พบกันใหม่อีกแน่ บาย";
+	 close;
+
+
+	Notache:
+	 mes "[ Jobchanger ]";
+	 mes "คุณไม่ได้ นักธนูนิ";
+	 close;
+
+	L_notUseAll:
+	 mes "[ Jobchanger ]";
+	 mes "ท่านยังใช้ Skill Point ไม่หมด";
+	 close;
+
+ 	
+	L_nobard:
+	mes "[ Jobchanger ]";
+ 	mes "คุณจะเป็นผู้หญิงนะครับ";
+ 	close;
+	}
+	
+	if (BARD_Q == 1) goto L_BQ1;
+	if (BARD_Q == 2) goto L_BQ2;
+	if (BARD_Q == 3) goto L_SINGING;
+	if (BARD_Q == 4) goto L_BQ4;
+	if (BaseJob == Job_Bard) goto L_CLOSE;
+	if (BaseJob == Job_Archer && Sex == 1) goto L_ARCHER;
+
+	mes "[Lalo]";
+	mes " วันนี้มันเหมาะแก่การร้องเพลง";
+	close;
+
+L_ARCHER:
+
+	mes "[Lalo]";
+	mes " สวัสดี! ท่าน Archer.";
+	mes " นักพเนจรเช่นข้า ท่านต้องให้ข้าช่วยอะไรล่ะ?";
+	next;
+	menu " เสียงของท่านเพราะมาก",-," ช่วยร้องเพลงให้ข้าฟัง?",M_1," ไม่มีอะไร",M_NOTHING;
+
+	mes "[Lalo]";
+	mes " โฮ่โฮ่ เสียงของท่านก็เพราะเช่นกัน?";
+	mes " ท่านเคยคิดอยากร้องเพลงบ้างมั้ย?";
+	next;
+	menu " แน่นอน!",-," ข้าไม่มีพรสวรรค์หรอก",M_ICANT;
+
+	mes "[Lalo]";
+	mes " ฮ่า ฮ่า หากท่านต้องการจะร้องเพลงจริงๆ";
+	mes " ท่านจะต้องเป็น Bard.";
+	mes " และข้าสามารถช่วยให้ท่านเป็น Bard ได้ หากต้องการ";
+	next;
+	if(JobLevel >= 40) goto L_GONOW;
+	mes "[Lalo]";
+	mes " แต่ก่อนอื่น ท่านจะต้องมี";
+	mes " Job Level อย่างน้อย 40 ขึ้นไป";
+	next;
+	mes "[Lalo]";
+	mes " แล้วท่านก็กลับมาหาข้าที่นี่อีกครั้ง";
+	close;
+
+L_GONOW:
+	set JBLVL, JobLevel; // used to determine what item to get at the end
+	mes "[Lalo]";
+	mes " แต่ก่อนอื่น... ท่านช่วยหาดอกไม้ มาให้ข้าก่อนได้มั้ย?";
+	mes " ข้าต้องการกลิ่นหอมของมัน";
+	mes " กลิ่นของดอกไม้จะทำให้ข้า รู้สึกอยากจะสอนท่านขึ้นมาทันที";
+	next;
+	mes "[Lalo]"; 
+	mes " ดอกไม้ชนิดใดก็ได้ทั้งนั้น แต่ข้าอยากได้ดอกไม้ที่ข้าชอบ";
+	mes " และอย่าไปซื้อต่อคนอื่นเขามาล่ะ เข้าใจ?";
+	set BARD_Q,1;
+	close;
+
+M_ICANT:
+	mes "[Lalo]";
+	mes " ฮ่า ฮ่า ท่านคงจะรู้สึกอาย";
+	mes " และท่านก็อย่าดูถูกตัวเองเกินไปสิ";
+	next;
+	mes "[Lalo]";
+	mes " ความสามารถของท่านมีมากมาย";
+	mes " หากท่านเปลี่ยนความคิดละก็รีบกลับมาหาข้านะ";
+	close;
+
+M_1:
+	mes "[Lalo]";
+	mes " เอาล่ะ ตั้งใจฟังด้วย.. !!";
+	mes " โอเค จะเรื่มแล้ว...";
+	next;
+	mes "[Lalo]";
+	mes " ตึง ตึง ตึง โป๊ะ โป๊ะ.... เสียงของกลอง";
+	mes " *แฮ่ม...*ชา ด้า ชา ดาา...";
+	mes " 1, 2, 3, 4...";
+	next;
+	mes " ^000088บอกกับฉันได้ไหม มันเป็นความจริง";
+	mes " หรือว่าฉันคิดมาก ใจฉันเริ่มจะหวั่นไหว";
+	mes " กับคำถามที่ยังไม่ได้คำตอบ บอกความในใจกับฉัน";
+	mes " อยากจะรู้ว่าใจเธอคิดเช่นไร หรือว่าเธอคิดจะแกล้งกัน เธออยากเห็นน้ำตาของฉันใช่ไหม^000000";
+	next;
+	mes " ^000088อยากจะบอกให้เธอรู้ ว่าใจฉันนั้นมันกังวลแค่ไหน";
+	mes " ก่อนที่พูดอะไรออกมา อยากจะขอให้เธอสัญญา";
+	mes " ว่าเธอจะไม่ทำให้ฉันต้องเสียใจ (ร้องไห้)";
+	mes " ก็ความรักของเรายังดีใช่ไหม ในความฝันเรายังมีกันใช่ไหม.. บลา บลา^000000";
+	next;
+	mes "[Lalo]";
+	mes " อืม...  นี่มันคือเพลงที่ดีที่สุดสำหรับข้าเลยนะ";
+	mes " หรือท่านคิดว่ายังไงหล่ะ?";
+	close;
+
+M_NO:
+	mes "[Lalo]";
+	mes " อืม.. ท่านทำให้ข้าเสียความรู้สึก";
+	mes " ที่ข้าต้องพยายามอย่างหนัก";
+	mes " มาตลอด... ขอบคุณที่ฟังข้า";
+	close;
+
+M_NOTHING:
+	mes "[Lalo]";
+	mes " การจะเป็น Bard ไม่จำเป็นต้องสุภาพมากนัก";
+	mes " ข้าคงไม่สามารถช่วยอะไรท่านได้";
+	mes " ดูเหมือนว่าท่านกำลังรีบ";
+	next;
+	mes "[Lalo]";
+	mes " การล่าสัตว์เป็นเรื่องที่ดี... แต่ท่านคงจะไม่สามารถ";
+	mes " ลืมการพักผ่อน.. ที่ท่านได้เดินทางมาเหนื่อยจนเกินไป";
+	close;
+
+L_BQ1:
+	mes "[Lalo]";
+	mes " ยินดีต้อนรับ! Archer เพื่อนของข้า";
+	mes " ท่านคงจะนำดอกไม้มาให้ข้าดู?";
+	next;
+	if(countitem(1032) >= 1) goto L_UGLYFLOWER; //Items: Maneater_Blossom,
+	if(countitem(703) >= 1) goto L_FLOWER1; //Items: Hinalle,
+L_NEXT2:
+	if(countitem(708) >= 1) goto L_FLOWER2; //Items: Ment,
+L_NEXT3:
+	if(countitem(629) >= 1) goto L_FLOWER3; //Items: Singing_Flower,
+L_NEXT4:
+	if(countitem(710) >= 1) goto L_FLOWER4; //Items: Illusion_Flower,
+L_NEXT5:
+	if(countitem(748) >= 1) goto L_FLOWER5; //Items: Witherless_Rose,
+L_NEXT6:
+	if(countitem(709) >= 1) goto L_FLOWER6; //Item: Izidor
+L_NEXT7:
+	if(countitem(712) < 1) goto M_NOTHAVE; //Item: Flower//Items: Flower,
+
+	mes "[Lalo]";
+	mes " เอ๊ะ? นี่มันแค่ดอกไม้ธรรมดา";
+	mes " ข้าก็ชอบมันอยู่หรอกนะ แต่ว่ามันก็ไม่ถูกใจข้าสักเท่าไหร่";
+	mes " หาดอกที่ดีกว่านี้มาให้ข้าได้มั้ย";
+	close;
+
+L_UGLYFLOWER:
+	mes "[Lalo]";
+	mes " นี่มันอะไร?! เอามันออกไปห่างๆ จากหน้าของข้า";
+	mes " ข้าเกลียด maneater blossoms!!!";
+	mes " มันดูน่าเกลียดมาก!";
+	emotion e_omg;
+	close;
+
+M_NOTHAVE:
+	mes "[Lalo]";
+	mes " ดี มันคงจะเหมาะกับตัวท่าน";
+	mes " แต่ข้าไม่ชอบดอกไม้ที่มีอยู่ทั่วไป";
+	close;
+
+L_FLOWER1:
+	mes "[Lalo]";
+	mes " ท่านจะมอบดอก Hinalle ให้กับข้าเลยเหรอ?";
+	next;
+	menu " ใช่",-," ยกเลิก",L_NEXT2;
+	if(countitem(703) < 1) goto M_NOTHAVE;
+	delitem 703,1;	//Items: Hinalle,
+	goto L_GOOD;
+
+L_FLOWER2:
+	mes "[Lalo]";
+	mes " ท่านจะมอบดอก Ment ให้กับข้าเลยเหรอ?";
+	next;
+	menu " ใช่",-," ยกเลิก",L_NEXT3;
+	if(countitem(708) < 1) goto M_NOTHAVE;
+	delitem 708,1;	//Items: Ment,
+	goto L_GOOD;
+
+L_FLOWER3:
+	mes "[Lalo]";
+	mes " ท่านจะมอบดอก Singing Flower ให้กับข้าเลยเหรอ?";
+	next;
+	menu " ใช่",-," ยกเลิก",L_NEXT4;
+	if(countitem(629) < 1) goto M_NOTHAVE;
+	delitem 629,1;	//Items: Singing_Flower,
+	goto L_GOOD;
+
+L_FLOWER4:
+	mes "[Lalo]";
+	mes " ท่านจะมอบดอก Illusion Flower ให้กับข้าเลยเหรอ?";
+	next;
+	menu " ใช่",-," ยกเลิก",L_NEXT5;
+	if(countitem(710) < 1) goto M_NOTHAVE;
+	delitem 710,1;	//Items: Illusion_Flower,
+	goto L_GOOD;
+
+L_FLOWER5:
+	mes "[Lalo]";
+	mes " ท่านจะมอบดอก Witherless Rose ให้กับข้าเลยเหรอ?";
+	next;
+	menu " ใช่",-," ยกเลิก",L_NEXT6;
+	if(countitem(748) < 1) goto M_NOTHAVE;
+	delitem 748,1;	//Items: Witherless_Rose,
+	goto L_GOOD;
+
+L_FLOWER6:
+	mes "[Lalo]";
+	mes " ท่านจะมอบดอก Izidor ให้กับข้าเลยเหรอ?";
+	next;
+	menu " ใช่",-," ยกเลิก",L_NEXT7;
+	if(countitem(709) < 1) goto M_NOTHAVE;
+	delitem 709,1;	//Items: Izidor
+
+L_GOOD:
+	mes "[Lalo]";
+	mes " ข้าไม่ได้กลิ่นของมันเลย แต่มันก็";
+	mes " เป็นดอกไม้ที่น่ารักพอประมาณ";
+	mes " ใบที่ดูแข็งแรงของมันเมื่อข้าได้..";
+	mes " ดึงมันออก";
+	mes " ข้าชอบดอกไม้นี้ ขอบคุณ";
+	next;
+	mes "[Lalo]";
+	mes " ข้าเคยสัญญากับท่านไว้ว่าข้าจะให้ท่านเป็น Bard.";
+	mes " แต่มันไม่ง่ายนักหรอกเพื่อน ฮ่า ฮ่า!";
+	next;
+	mes "[Lalo]";
+	mes " มันเป็นเรื่องสำคัญที่จะต้องรับรู้";
+	mes " ผู้คนมากมายต้องการเรียนรู้ที่จะร้องเพลง";
+	mes " ท่านต้องทุ่มเทตังเองทั้งหมดให้กับมัน";
+	mes " มีหลายๆ สิ่งที่เกิดขึ้นจากหมู่บ้านที่ต่างกัน...";
+	next;
+	mes "[Lalo]";
+	mes " ไปหา มนุษย์หิมะพูดได้ในเมือง Lutie";
+	mes " ไปที่นั่น แล้วรับของขวัญ";
+	set BARD_Q,2;
+	// [D-reborn]
+	set xmas_npc,1;
+	close;
+L_BQ2:
+	if (xmas_npc == 11) goto L_BQ3; //this var is set in LUTIE.TXT
+	mes "[Lalo]";
+	mes " ข้ากำลังรอฟังข่าวดีของท่าน";
+	mes " ไปหา มนุษย์หิมะพูดได้ในเมือง Lutie";
+	mes " ไปที่นั่น แล้วรับของขวัญ";
+	close;
+L_BQ3:
+	mes "[Lalo]";
+	mes " Lutie เป็นอย่างไรบ้าง? ท่านพบผู้คนมากมายหรือเปล่า?";
+	mes " ข้าเชื่อว่าท่านคงรู้สิ่งสำคัญที่มีค่ามากกว่าของขวัญ";
+	set BARD_Q,3;
+	next;
+L_SINGING:
+	mes "[Lalo]";
+	mes " ถึงเวลาแล้ว ที่ท่านจะต้องร้องเพลง...?";
+	mes " ข้าจะขึ้นดนตรีให้สั้น ๆ...";
+	mes " และหลังจากนั้นท่านต้องพยายามเข้าล่ะ";
+	next;
+	mes "[Lalo]";
+	mes " เริ่มเลย.. !!";
+	mes " อะ *อะแฮ่ม*";
+	mes " 1, 2, 3, 4";
+	next;
+	mes "[Lalo]";
+//this should text input
+	mes "^3377FF-พ่อค้าเร่ไร้เงินและสิ่งของ-^000000";
+	mes " -ชีวิตหม่นหมองสิ้นทางหากิน-";
+	mes " -แม้กระนั้นเขายังหยิ่ง-";
+	mes " -ชีวิตไม่สิ้น-";
+	mes " -ต้องดิ้นกันไป-";
+	mes " -ขายของตน-";
+	mes " -เอาทุนขายเรด-";
+	mes " -ขายมันเผาในเมือง-";
+	mes " -พรอนเทร่า-";
+	
+	set @score,0;
+	next;
+	mes "[Lalo]";
+	mes " ท่านลองบ้าง...";
+	next;
+	
+	menu "พ่อค้าเร่ไร้เงินและสิ่งของ",-,"พ่อค้าเร่ไร้เงินและของสิ่ง",M_S2,"พ่อค้าร่อนเร่ไร้เงินและสิ่งของ",M_S2,"ลูกค้าเร่ไร้เงินและสิ่งของ",M_S2;
+	
+	set @score,@score+10;
+
+M_S2:
+	menu "ชีวิตหม่นหมองหาทางหากิน",M_S3,"ชีวิตหมองหม่นสิ้นทางหากิน",M_S3,"ชีวิตหม่นหมองสิ้นทางหาเงิน",M_S3,"ชีวิตหม่นหมองสิ้นทางหากิน",-;
+	
+	set @score,@score+10;
+
+M_S3:	
+	menu "แม้กระนั้นเขายังยุ่ง",M_S4,"แม้กระนั้นเขายืนหยิ่ง",M_S4,"แม้กระนั้นเขายังอยู่",M_S4,"แม้กระนั้นเขายังหยิ่ง",-;
+	
+	set @score,@score+10;
+M_S4:
+	menu "ชีวิตไม่ส้วม",M_S5,"ชีวาไม่สิ้น",M_S5,"ชีวิตไม่สิ้น",-,"ชีวิตไม่สน",M_S5;
+	
+	set @score,@score+10;
+M_S5:
+	menu "ต้องเดินกันไป",M_S6,"ต้องดิ้นกันมา",M_S6,"ต้องดิ้นกันไป",-,"ต้องดิ้นหาไป",M_S6;
+	
+	set @score,@score+10;
+M_S6:
+	menu "ขายของเขา",M_S7,"ขนของตน",M_S7,"ขายของตน",-,"ขายของตัว",M_S7;
+	
+	set @score,@score+10;
+M_S7:
+	menu "เอาทุนขายไวท์",M_S8,"เอาทุนขายแบล๊ค",M_S8,"เอาทุนขายเรด",-,"เอาทุนขายข้าว",M_S8;
+	
+	set @score,@score+10;
+M_S8:
+	menu "ขายมันเผากลางเมือง",M_S9,"ขายมันเผานอกเมือง",M_S9,"ขายมันเผาในเมือง",-;
+	
+	set @score,@score+10;
+M_S9:
+	menu "พาย่อน",M_S10,"พรอนเทร่า",-,"มอร๊อค",M_S10;
+	
+	set @score,@score+10;
+M_S10:
+	next;
+	if(@score >= 90) goto L_GOODWORK;
+	mes "[Lalo]";
+	mes " อ๊าา ท่านร้องผิด!";
+	mes " ที่ท่านร้องไม่ได้ก็เพราะ...?";
+	next;
+	mes "[Lalo]";
+	mes " ท่านออกเสียงมันไม่ชัดเจน";
+	mes " ท่านคงจะทำได้ดีกว่านี้ในครั้งหน้านะ";
+	close;
+	
+L_GOODWORK:
+	set BARD_Q,4;
+	mes "[Lalo]";
+	mes " ยอดเยี่ยม! ท่านทำสำเร็จได้ภายในครั้งเดียว! พรสวรรค์";
+	mes " ท่านจะต้องเป็นนักร้องที่ดีได้อย่างแน่นอน!";
+	next;
+	mes "[Lalo]";
+	mes " ท่านต้องการจะเปลี่ยนอาชีพเลยมั้ย?";
+	mes " หรือตอนนี้ท่านต้องการของขวัญ?";
+	next;
+	menu " ข้าต้องการเปลี่ยนอาชีพ",-," ข้าชอบของขวัญ",M_PRESENTPLZ;
+	
+	if(skillpoint != 0) goto L_SKILLSLEFT;
+	goto L_CHANGE;
+
+M_PRESENTPLZ:
+	mes "[Lalo]";
+	mes " อืม...ดีมากหากท่านนำ trunks มาบางส่วน";
+	mes " มันไม่จำเป็นว่าจะต้องเอามาจากที่ไหน";
+	next;
+	mes "[Lalo]";
+	mes " แล้วข้ามอบของขวัญให้กับท่าน";
+	mes " เดินทางอย่างปลอดภัย แล้วนำมันกลับมาด้วย.. !!";
+	close;
+
+L_SKILLSLEFT:
+	mes "[Lalo]";
+	mes " หืมม์... ท่านยังมีสกิลพ้อยหลงเหลืออยู่";
+	close;
+
+L_BQ4:
+	set @gift,0;
+	if (countitem(1019) >= 60) set @gift,5;	// Trunk//Items: Trunk,
+	if (countitem(1068) >= 60) set @gift,4;	// Barren_Trunk//Items: Barren_Trunk,
+	if (countitem(1067) >= 60) set @gift,3;	// Solid_Trunk//Items: Solid_Trunk,
+	if (countitem(1066) >= 60) set @gift,2;	// Fine-grained_Trunk//Items: Fine-grained_Trunk,
+	if (JBLVL == 50 && countitem(1066) >=60) set @gift,1;	// Fine-grained_Trunk//Items: Fine-grained_Trunk,
+
+	if (@gift!=0) goto L_CHANGE;
+
+	mes "[Lalo]";
+	mes " อืม? ดูเหมือนว่าท่านจะไม่ได้เตรียม trunks มาใช่มั้ย?";
+	mes " ท่านคงต้องการจะเปลี่ยนแค่อาชีพอย่างเดียว?";	
+	next;
+	menu " ใช่",L_CHANGE," รอข้าก่อน",-;
+
+	mes "[Lalo]";
+	mes " โอเค ข้าจะรอเจ้าที่นี่";
+	close;
+
+L_CHANGE:
+	if(skillpoint != 0) goto L_SKILLSLEFT;
+	callfunc "Job_Change",Job_Bard;
+	callfunc "F_ClearJobVar";
+
+	mes "[Lalo]";
+	if (@gift==0) goto L_NOGIFT;
+
+	mes " ดีมาก.. ข้าจะสร้างมันขึ้นมาให้ท่าน";
+	mes " เป็นของที่ระลึกสำหรับการเปลี่ยนอาชีพ";
+	mes " รอสักครู่";
+	next;
+
+	switch(@gift){
+		case 1:
+			delitem 1066,60;	//Fine-grained_Trunk + 50 JobLvl --> Harp [2]
+			getitem 1910,1;
+			break;
+		case 2:
+			delitem 1066,60;	//Fine-grained_Trunk --> Lute [2]
+			getitem 1905,1;
+			break;
+		case 3:
+			delitem 1067,60;	//Solid_Trunk --> Mandolin [2]
+			getitem 1903,1;
+			break;
+		case 4:
+			delitem 1068,60;	//Barren_Trunk --> Mandolin [2]
+			getitem 1903,1;
+			break;
+		case 5:
+			delitem 1019,60;	//Trunk --> Violin [3]
+			getitem 1901,1;
+	}
+
+	emotion e_grat;
+	mes "[Lalo]";
+	mes " นี่คือของขวัญของท่าน เมื่อท่านร้องเพลงมัน จะมีเสียงคลอไป";
+	mes " หวังว่าท่านจะร้องเพลงที่มอบความสุข";
+L_NOGIFT:
+	mes " หวังว่าท่านจะร้องเพลงที่มอบความสุข";
+	next;
+L_CLOSE:
+	mes "[Lalo]";
+	mes " ไว้เจอกันคราวหน้า!";
+	close;
+}

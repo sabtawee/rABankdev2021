@@ -1,15 +1,420 @@
-//===== rAthena Script =======================================
-//= Monster Tamers
-//===== By: ==================================================
-//= Euphy
-//===== Current Version: =====================================
-//= 1.0
-//===== Compatible With: =====================================
-//= rAthena Project
-//===== Description: =========================================
-//= Cute pet quest items
-//===== Additional Comments: =================================
-//= 1.0 Moved Izlude NPC to pre-re/re paths.
-//============================================================
 
-izlude_in,129,64,4	duplicate(MonsterTamer_izlude)	Monster Tamer#izu	125
+//<================================================= Alberta ===============================================>\\
+alberta_in,173,77,3	script	Monster Tamer	125,{
+	mes "[Monster Tamer Iwado]";
+	mes "Monster taming มันนิยมมากในขณะนี้ เจ้าต้องการอะไร หือ...";
+M_Menu:
+	next;
+	menu 	"^5555FFMonster Taming^000000",M_0,
+		"^5555FF'Monster Juice'^000000",M_1,
+		"^5555FF'Singing Flower'^000000",M_2,
+		"^5555FF'Wild Flower'^000000",M_3,
+		"ข้ามีสิ่งที่ต้องการ",M_Make,
+		"ยกเลิก",M_End;
+	M_0:
+		mes "[Monster Tamer Iwado]";
+		mes "Monster Taming มันคือสิ่งที่ทำให้มอนสเตอร์ เป็นสัตว์เลี้ยงของผู้เล่น.";
+		mes "โดยใช้ ^5555FF'Taming Item'^000000 โดยผู้เล่นสามารถที่จะจำมอนสเตอร์ได้.";
+		next;
+		mes "[Monster Tamer Iwado]";
+		mes "หากเจ้ามี Taming Items เจ้าจะมีความสุข เมื่อเจ้าได้จับมอนสเตอร์.";
+		next;
+		mes "[Monster Tamer Iwado]";
+		mes "สำหรับ Taming Items ข้าขอเสนอ:";
+		mes "^5555FF'Monster Juice'^000000";
+		mes "^5555FF'Singing Flower'^000000";
+		mes "^5555FF'Wild Flower'^000000";
+		next;
+		mes "[Monster Tamer Iwado]";
+		mes "มันเป็นสิ่งที่ยอดเยี่ยม ข้าอยากให้เจ้าลองให้สัตว์เลี้ยงของเจ้า!";
+		goto M_Menu;
+	M_1:
+		mes "[Monster Tamer Iwado]";
+		mes "มันเป็นเครื่องดื่มที่สร้างจากเลือดสัตว์ มันเหมาะสำหรับ'^FF5555'Hunter Fly'^000000.";
+		next;
+		mes "[Monster Tamer Iwado]";
+		mes "หากเจ้าต้องการ ^5555FF'Monster Juice'^000000 สิ่งท่ต้องการคือ:";
+		mes "-^FF5555'1 Animal Gore'";
+		mes "-'2 Apples'^000000";
+		next;
+		mes "[Monster Tamer Iwado]";
+		mes "เมื่อเจ้านำสิ่งที่ข้าบอกมาจนครบ ข้าจะทำมันให้เจ้าอีกครั้ง!";
+		goto M_Menu;
+	M_2:
+		mes "[Monster Tamer Iwado]";
+		mes "ดอกไม้ Singing Plant. มันเป็นสิ่งที่ดูเหมือนจะดึงดูด ^FF5555'Rockers'^000000.";
+		next;
+		mes "[Monster Tamer Iwado]";
+		mes "ข้าจะให้ ^5555FF'Singing Flower'^000000 แต่เจ้าต้องมี:";
+		mes "-^FF5555'1 Singing Plant'^000000";
+		next;
+		mes "[Monster Tamer Iwado]";
+		mes "เมื่อเจ้านำสิ่งที่ข้าบอกมาจนครบ ข้าจะทำมันให้เจ้าอีกครั้ง!";;
+		goto M_Menu;
+	M_3:
+		mes "[Monster Tamer Iwado]";
+		mes "ดอกไม้ตามธรรมชาติใน Rune-Midgard.มันสามารถทำมาเป็นเกราะ ^FF5555Orc Warrior^000000 นะ.";
+		mes "ข้าจะให้ ^5555FF'Wild Flower'^000000 แต่เจ้าต้องมี:";
+		mes "-^FF5555'1 Fancy Flower'";
+		mes "-'1 Clover'^000000";
+		next;
+		mes "[Monster Tamer Iwado]";
+		mes "เมื่อเจ้านำสิ่งที่ข้าบอกมาจนครบ ข้าจะทำมันให้เจ้าอีกครั้ง!";
+		goto M_Menu;
+	M_Make:
+		mes "[Monster Tamer Iwado]";
+		mes "อาหาร Taming Item ที่เจ้าต้องการ?";
+		next;
+		menu "^5555FF'Monster Juice'^000000",sM_1, "^5555FF'Singing Flower'^000000",sM_2, "^5555FF'Wild Flower'^000000",sM_3, "ยกเลิก",M_End;
+
+		sM_1:
+			if(countitem(702)<1 || countitem(512)<2) goto sL_NoItems;
+			mes "[Monster Tamer Iwado]";
+			mes "มันจะทำให้สัตว์เลี้ยงของเจ้าเกิดความสนิทสนมมากขึ้น";
+			next;
+			mes "[Monster Tamer Iwado]";
+			mes "เมื่อสัตว์เลี้ยงของเจ้าได้กิน น้ำผลไม้ของข้า.";
+			getitem 626,1;
+			delitem 702,1;
+			delitem 512,2;
+			close;
+		sM_2:
+			if(countitem(707)<1) goto sL_NoItems;
+			mes "[Monster Tamer Iwado]";
+			mes "มันจะทำให้สัตว์เลี้ยงของเจ้าเกิดความสนิทสนมมากขึ้น";
+			next;
+			mes "[Monster Tamer Iwado]";
+			mes "นี่คือ Singing Flower! ขอให้มีความสุข และ เจอกันใหม่ในครั้งหน้า.";
+			getitem 629,1;
+			delitem 707,1;
+			close;
+		sM_3:
+			if(countitem(2207)<1 || countitem(705)<1) goto sL_NoItems;
+			mes "[Monster Tamer Iwado]";
+			mes "มันจะทำให้สัตว์เลี้ยงของเจ้าเกิดความสนิทสนมมากขึ้น";
+			next;
+			mes "[Monster Tamer Iwado]";
+			mes "นี่คือ Wild Flower! ขอให้มีความสุข และ เจอกันใหม่ในครั้งหน้า.";
+			getitem 10009,1;
+			delitem 2207,1;
+			delitem 705,1;
+			close;
+
+			sL_NoItems:
+				mes "[Monster Tamer Iwado]";
+				mes "ไอเทมของเจ้าไม่เพียงพอสำหรับการสร้างไอเทมสำหรับสัตว์เลี้ยง.";
+				close;
+	M_End:
+		mes "[Monster Tamer Iwado]";
+		mes "เกี่ยวกับสัตว์เรื่องของเจ้า มันเป็นสิ่งที่จำเป็นมากที่จะทำให้สัตว์เลี้ยงของเจ้าสนิทสนมมากขึ้นนะ.";
+		close;
+
+}
+
+
+//<================================================= Al De Baran ===============================================>\\
+aldeba_in,167,177,3	script	Monster Tamer#2	125,{
+	mes "[Monster Tamer YuU]";
+	mes "เจ้ากำลังมองหา สิ่งที่ทำให้สัตว์เลี้ยงของเจ้าสนิทสนม ใน Rune Midgard.";
+M_Menu:
+	next;
+	menu 	"^5555FF'Monster Taming'^000000",M_0,
+		"^5555FF'Skull Helm'^000000",M_1,
+		"^5555FF'Monster Oxygen Mask'^000000",M_2,
+		"^5555FF'Silk Ribbon'^000000",M_3,
+		"^5555FF'Stellar Hairpin'^000000",M_4,
+		"^5555FF'Tiny Egg Shell'^000000",M_5,
+		"^5555FF'Rocker Glasses'^000000",M_6,
+		"ข้ามีสิ่งที่ต้องการ",M_Make,
+		"ยกเลิก",M_End;
+	M_0:
+		mes "[Monster Tamer YuU]";
+		mes "ข้าจะทำสิ่งที่ทำให้สัตว์เลี้ยงของเจ้าเกิดความสนิทสนม.";
+		mes "ด้วยการใช้ ^5555FF'Taming Item'^000000 ผู้เล่นสามารถจับมอนสเตอร์มาเป็นสัตว์เลี้ยง.";
+		next;
+		mes "[Monster Tamer YuU]";
+		mes "เมื่อเจ้าจับมอนสเตอร์ได้ มอนสเตอร์ตัวนั้น มันจะรู้สึกดี เมื่อมีเจ้าของ.";
+		next;
+		mes "[Monster Tamer YuU]";
+		mes "แต่หากจะทำให้สัตว์เลี้ยงของเจ้าดูดี เจ้าต้องสวมใส่ 'Accessory' ให้กับสัตว์เลี้ยงของเจ้า สามารถหาได้ใน Rune Midgard.";
+		next;
+		mes "[Monster Tamer YuU]";
+		mes "มันคือ ^5555FF'Cute Pet Accessories'^000000 หรืออุปกรณ์เพิ่มความสวยงามให้สัตว์เลี้ยงของเจ้า.";
+		next;
+		mes "[Monster Tamer YuU]";
+		mes "วิธีทำให้สัตว์เลี้ยงเจ้าสนิทสนมได้เร็วขึ้น ข้าขอแนะนำ:";
+		mes "^5555FF'Skull Helm'";
+		mes "'Monster Oxygen Mask'";
+		mes "'Silk Ribbon'";
+		mes "'Stellar Hairpin'";
+		mes "'Tiny Egg Shell'";
+		mes "'Rocker Glasses'^000000";
+		next;
+		mes "[Monster Tamer YuU]";
+		mes "มันเป็นสิ่งที่ยอดเยี่ยม ข้าอยากให้เจ้าได้ให้สัตว์เลี้ยงลอง!";
+		goto M_Menu;
+	M_1:
+		mes "[Monster Tamer YuU]";
+		mes "มันอาจดูไม่สวยงาม แต่มันมีพลังลึกลับนะ";
+		mes "มันเหมาะแก่การสมใส่ให้ '^FF5555'Baphomet Jr.'^000000 สัตว์เลี้ยงของเจ้า.";
+		next;
+		mes "[Monster Tamer YuU]";
+		mes "หากเจ้าต้องการ ^5555FF'Skull Helm'^000000 เจ้าต้องมีวัสดุดังนี้:";
+		mes "-^FF5555'1 Bone Helm'^000000";
+		next;
+		mes "[Monster Tamer YuU]";
+		mes "หากเจ้าต้องการไอเทมเพิ่มความสนิทสนมให้สัตว์เลี้ยง เจ้าต้องมีไอเทมครบทุกอย่าง!";
+		goto M_Menu;
+	M_2:
+		mes "[Monster Tamer YuU]";
+		mes "เมื่อสวมใส่ ทำให้แยกได้ยากว่า มันคือมอนสเตอร์หรือมนุษย์.";
+		mes "มันสวยงาม และสามารถใส่ให้กับ ^FF5555'Choncon', 'Steel Choncon', หรือ 'Hunter Fly'^000000.";
+		next;
+		mes "[Monster Tamer YuU]";
+		mes "หากเจ้าต้องการ ^5555FF'Monster Oxygen Mask'^000000 เจ้าต้องมีวัสดุดังนี้:";
+		mes "-^FF5555'1 Oxygen Mask'^000000";
+		next;
+		mes "[Monster Tamer YuU]";
+		mes "หากเจ้าต้องการไอเทมเพิ่มความสนิทสนมให้สัตว์เลี้ยง เจ้าต้องมีไอเทมครบทุกอย่าง!";
+		goto M_Menu;
+	M_3:
+		mes "[Monster Tamer YuU]";
+		mes "มันคือ ribbon คุณภาพสูง มันเหมาะกับ  ^FF5555'Lunatic'^000000 ที่น่ารัก!.";
+		next;
+		mes "[Monster Tamer YuU]";
+		mes "หากเจ้าต้องการ ^5555FF'Silk Ribbon'^000000 เจ้าต้องมีวัสดุดังนี้:";
+		mes "-^FF5555'1 Ribbon (0 Slotts)'^000000";
+		next;
+		mes "[Monster Tamer YuU]";
+		mes "หากเจ้าต้องการไอเทมเพิ่มความสนิทสนมให้สัตว์เลี้ยง เจ้าต้องมีไอเทมครบทุกอย่าง!";
+		goto M_Menu;
+	M_4:
+		mes "[Monster Tamer YuU]";
+		mes "ความรู้สึกของสัตว์เลี้ยงจะเปลี่ยนไปเมื่อสวมใส่.";
+		mes "มันชื่อว่า ^FF5555'Green Petite'^000000 มันสวยงามมาก!";
+		next;
+		mes "[Monster Tamer YuU]";
+		mes "หากเจ้าต้องการ ^5555FF'Stellar Hairpin'^000000 เจ้าต้องมีวัสดุดังนี้:";
+		mes "-^FF5555'1 Stellar'^000000";
+		next;
+		mes "[Monster Tamer YuU]";
+		mes "หากเจ้าต้องการไอเทมเพิ่มความสนิทสนมให้สัตว์เลี้ยง เจ้าต้องมีไอเทมครบทุกอย่าง!";
+		goto M_Menu;
+	M_5:
+		mes "[Monster Tamer YuU]";
+		mes "สิ่งที่มีกลิ่นหอมเช่น magnificent shine! มันคือชุดเกราะที่เหมาะกับ ^FF5555'Picky'^000000.";
+		mes "หากเจ้าต้องการ ^5555FF'Tiny Egg Shell'^000000 เจ้าต้องมีวัสดุดังนี้:";
+		mes "-^FF5555'1 Egg Shell'^000000";
+		next;
+		mes "[Monster Tamer YuU]";
+		mes "หากเจ้าต้องการไอเทมเพิ่มความสนิทสนมให้สัตว์เลี้ยง เจ้าต้องมีไอเทมครบทุกอย่าง!";
+		goto M_Menu;
+	M_6:
+		mes "[Monster Tamer YuU]";
+		mes "สิ่งที่ยอดเยี่ยม เช่น eye glasses มันเป็นสิ่งที่เหมาะกับ ^FF5555Rocker^000000 สัตว์เลี้ยงของเจ้า.";
+		next;
+		mes "[Monster Tamer YuU]";
+		mes "หากเจ้าต้องการ ^5555FF'Rocker Glasses'^000000 เจ้าต้องมีวัสดุดังนี้:";
+		mes "-^FF5555'1 Ribbon (0 Slotts)'";
+		mes "-'2 Zargon'";
+		mes "-'400 Zeny'^000000";
+		next;
+		mes "[Monster Tamer YuU]";
+		mes "หากเจ้าต้องการไอเทมเพิ่มความสนิทสนมให้สัตว์เลี้ยง เจ้าต้องมีไอเทมครบทุกอย่าง!";
+		goto M_Menu;
+	M_Make:
+		mes "[Monster Tamer YuU]";
+		mes "Taming Item แบบไหนที่เจ้าต้องการ?";
+		next;
+		menu 	"^5555FF'Skull Helm'^000000",sM_1,
+			"^5555FF'Monster Oxygen Mask'^000000",sM_2,
+			"^5555FF'Silk Ribbon'^000000",sM_3,
+			"^5555FF'Stellar Hairpin'^000000",sM_4,
+			"^5555FF'Tiny Egg Shell'^000000",sM_5,
+			"^5555FF'Rocker Glasses'^000000",sM_6,
+			"ยกเลิก",M_End;
+
+		sM_1:
+			if(countitem(5017)<1) goto sL_NoItems;
+			mes "[Monster Tamer YuU]";
+			mes "รอสักครู่ ข้ากำลังทำสิ่งที่เหมาะกับสัตว์เลี้ยงของเจ้า";
+			next;
+			mes "[Monster Tamer YuU]";
+			mes "นี่คือ Skull Helm! ขอให้มีความสุข และ เจอกันในครั้งต่อๆไป.";
+			getitem 10001,1;
+			delitem 5017,1;
+			close;
+		sM_2:
+			if(countitem(5004)<1) goto sL_NoItems;
+			mes "[Monster Tamer YuU]";
+			mes "รอสักครู่ ข้ากำลังทำสิ่งที่เหมาะกับสัตว์เลี้ยงของเจ้า";
+			next;
+			mes "[Monster Tamer YuU]";
+			mes "นี่คือ Oxygen Mask! ขอให้มีความสุข และ เจอกันในครั้งต่อๆไป.";
+			getitem 10002,1;
+			delitem 5004,1;
+			close;
+		sM_3:
+			if(countitem(2208)<1) goto sL_NoItems;
+			mes "[Monster Tamer YuU]";
+			mes "รอสักครู่ ข้ากำลังทำสิ่งที่เหมาะกับสัตว์เลี้ยงของเจ้า";
+			next;
+			mes "[Monster Tamer YuU]";
+			mes "นี่คือ Silk Ribbon! ขอให้มีความสุข และ เจอกันในครั้งต่อๆไป.";
+			getitem 10007,1;
+			delitem 2208,1;
+			close;
+		sM_4:
+			if(countitem(2294)<1) goto sL_NoItems;
+			mes "[Monster Tamer YuU]";
+			mes "รอสักครู่ ข้ากำลังทำสิ่งที่เหมาะกับสัตว์เลี้ยงของเจ้า";
+			next;
+			mes "[Monster Tamer YuU]";
+			mes "นี่คือ Stellar Hairpin! ขอให้มีความสุข และ เจอกันในครั้งต่อๆไป.";
+			getitem 10011,1;
+			delitem 2294,1;
+			close;
+		sM_5:
+			if(countitem(5015)<1) goto sL_NoItems;
+			mes "[Monster Tamer YuU]";
+			mes "รอสักครู่ ข้ากำลังทำสิ่งที่เหมาะกับสัตว์เลี้ยงของเจ้า";
+			next;
+			mes "[Monster Tamer YuU]";
+			mes "นี่คือ Tiny Egg Shell! ขอให้มีความสุข และ เจอกันในครั้งต่อๆไป.";
+			getitem 10012,1;
+			delitem 5015,1;
+			close;
+		sM_6:
+			if(countitem(2208)<1 || countitem(912)<2 || Zeny<400) goto sL_NoItems;
+			mes "[Monster Tamer YuU]";
+			mes "รอสักครู่ ข้ากำลังทำสิ่งที่เหมาะกับสัตว์เลี้ยงของเจ้า";
+			next;
+			mes "[Monster Tamer YuU]";
+			mes "นี่คือ Rocker Glasses! ขอให้มีความสุข และ เจอกันในครั้งต่อๆไป.";
+			getitem 10014,1;
+			delitem 2208,1;
+			delitem 912,2;
+			set Zeny, Zeny-400;
+			close;
+
+			sL_NoItems:
+				mes "[Monster Tamer YuU]";
+				mes "เจ้าไม่มีไอเทมเพียงพอที่จะแลกสิ่งที่ทำให้สัตว์เลี้ยงมีความสนิทสนม.";
+				close;
+	M_End:
+		mes "[Monster Tamer YuU]";
+		mes "เจ้าน่าจะใช้เวลาในการตัดสินใจเกี่ยวกับสัตว์เลี้ยงของเจ้านะ.";
+		close;
+
+}
+
+
+//<================================================= Izlude ===============================================>\\
+izlude_in,128,64,3	script	Monster Tamer#3	125,{
+	mes "[Monster Tamer Shogo]";
+	mes "หากเจ้ามีไอเทมบางอย่าง แต่หากต้องการสิ่งที่ทำให้สัตว์เลี้ยงมีความสนิทสนม เจ้าจงเลือกให้เหมาะสม";
+M_Menu:
+	next;
+	menu 	"ข้าต้องการแลก",M_Make,
+		"ยกเลิก",M_End;
+	M_0:
+		mes "[Monster Tamer Shogo]";
+		mes "สิ่งนี้ มันจะทำให้มอนสเตอร์เป็นสัตว์เลี้ยงของเจ้า.";
+		mes "โดยการใช้ ^5555FF'Taming Item'^000000 คือการจับมอนสเตอร์ให้เป็นสัตว์เลี้ยง.";
+		next;
+		mes "[Monster Tamer Shogo]";
+		mes "มันอาจยาก ที่จะทำให้มอนสเตอร์ให้เป็นสัตว์เลี้ยง แต่ทุกอย่างมันเป็นไปได้.";
+		next;
+		mes "[Monster Tamer Shogo]";
+		mes "นี่คือ Taming Items สิ่งที่เจ้าต้องการ:";
+		mes "^5555FF'Book of Devil'^000000,";
+		mes "^5555FF'No Recipient'^000000,";
+		mes "^5555FF'Horror of Tribe'^000000.";
+		next;
+		mes "[Monster Tamer Shogo]";
+		mes "สิ่งที่ข้านำเสนอเจ้า มันเป็นสิ่งที่ยอดเยี่ยมเลยทีเดียว!";
+		goto M_Menu;
+	M_1:
+		mes "[Monster Tamer Shogo]";
+		mes "หนังสือเล่มนี้มนุษย์ยากที่จะอ่านออก!";
+		mes "มันเหมาะกับ ^FF5555'Deviruchi.'^000000.";
+		next;
+		mes "[Monster Tamer Shogo]";
+		mes "สิ่งที่ข้าจะให้เจ้าคือ ^5555FF'Book of Devil'^000000 แต่มันจำเป็นต้องมีวัสดุ:";
+		mes "-^FF5555'1 Old Magic Book'";
+		mes "-'2 Horrendous Mouth'^000000";
+		next;
+		mes "[Monster Tamer Shogo]";
+		mes "หากเจ้านำไอเทมมาให้ครบ ข้าจะทำให้สัตว์เลี้ยงของเจ้ามีความสนิทสนมได้รวดเร็วขึ้น!";
+		goto M_Menu;
+	M_2:
+		mes "[Monster Tamer Shogo]";
+		mes "หนังสือที่ไม่ทราบชื่อของผู้รับ.";
+		mes "มันไม่มีความหมายใดๆ กับมนุษย์ แต่มันเหมาะกับ ^FF5555'Munaks'^000000 มากๆ.";
+		next;
+		mes "[Monster Tamer Shogo]";
+		mes "สิ่งที่ข้าจะให้เจ้าคือ ^5555FF'No Recipient'^000000 แต่มันจำเป็นต้องมีวัสดุ:";
+		mes "-^FF5555'1 Old Portrait'^000000";
+		next;
+		mes "[Monster Tamer Shogo]";
+		mes "หากเจ้านำไอเทมมาให้ครบ ข้าจะทำให้สัตว์เลี้ยงของเจ้ามีความสนิทสนมได้รวดเร็วขึ้น!";
+		goto M_Menu;
+	M_3:
+		mes "[Monster Tamer Shogo]";
+		mes "สิ่งนี้เป็นของ ^FF5555'Orc Warrior's'^000000 มันชื่นชอบของสิ่งนี้.";
+		mes "สิ่งที่ข้าจะให้เจ้าคือ ^5555FF'Horror of Tribe'^000000 แต่มันจำเป็นต้องมีวัสดุ:";
+		mes "-^FF5555'1 Chivalry Emblem'";
+		mes "-'1 Scorpion Tail'^000000";
+		next;
+		mes "[Monster Tamer Shogo]";
+		mes "หากเจ้านำไอเทมมาให้ครบ ข้าจะทำให้สัตว์เลี้ยงของเจ้ามีความสนิทสนมได้รวดเร็วขึ้น!";
+		goto M_Menu;
+	M_Make:
+		mes "[Monster Tamer Shogo]";
+		mes "เจ้าต้องการ Taming Item แบบใด?";
+		next;
+		menu "^5555FF'Book of Devil'^000000",sM_1, "^5555FF'No Recipient'^000000",sM_2, "^5555FF'Horror of Tribe'^000000",sM_3, "ยกเลิก",M_End;
+
+		sM_1:
+			if(countitem(1006)<1 || countitem(958)<2) goto sL_NoItems;
+			mes "[Monster Tamer Shogo]";
+			mes "รอสักครู่ ข้ากำลังทำสิ่งที่เหมาะกับสัตว์เลี้ยงของเจ้า";
+			next;
+			mes "[Monster Tamer Shogo]";
+			mes "นี่คือ Book of Devil! ขอให้มีความสุข และ เจอกันในครั้งต่อๆไป.";
+			getitem 642,1;
+			delitem 1006,1;
+			delitem 958,2;
+			close;
+		sM_2:
+			if(countitem(7014)<1) goto sL_NoItems;
+			mes "[Monster Tamer Shogo]";
+			mes "รอสักครู่ ข้ากำลังทำสิ่งที่เหมาะกับสัตว์เลี้ยงของเจ้า";
+			next;
+			mes "[Monster Tamer Shogo]";
+			mes "มันไม่มีสิ่งที่จำเป็นต่อสัตว์เลี้ยงของเจ้า! ขอให้มีความสุข และ เจอกันในครั้งต่อๆไป.";
+			getitem 636,1;
+			delitem 7014,1;
+			close;
+		sM_3:
+			if(countitem(1004)<1 || countitem(904)<1) goto sL_NoItems;
+			mes "[Monster Tamer Shogo]";
+			mes "รอสักครู่ ข้ากำลังทำสิ่งที่เหมาะกับสัตว์เลี้ยงของเจ้า";
+			next;
+			mes "[Monster Tamer Shogo]";
+			mes "นี่คือ Horror of Tribe! ขอให้มีความสุข และ เจอกันในครั้งต่อๆไป.";
+			getitem 635,1;
+			delitem 1004,1;
+			delitem 904,1;
+			close;
+
+			sL_NoItems:
+				mes "[Monster Tamer Shogo]";
+				mes "เจ้าไม่มีไอเทมครบตามกำหนด.";
+				close;
+	M_End:
+		mes "[Monster Tamer Shogo]";
+		mes "ในเรื่องเกี่ยวกับสัตว์เลี้ยงมันเป็นสิ่งที่สำคัญมาก เจ้าต้องตัดสินใจให้ดีนะ.";
+		close;
+
+}

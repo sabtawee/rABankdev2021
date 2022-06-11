@@ -1,0 +1,42 @@
+//—>===============================================================<—|
+// -- # Ragnarok Online EP 4.0 BY Kelberwitz Blade's
+// -- # Payon HiSo Kafra Corparation !!
+//—>===============================================================<—|
+
+// - - > บริเวณ กลางเมือง
+payon,97,116,4	script	Kafra Express::Payon#01	116,{
+	cutin "kafra_02",2;
+	callfunc "F_KafSetPay";
+	mes "^0066FF[ Kafra Express ]^000000";
+	mes "สวัสดีค่ะ ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+	mes "Kafra Corporation ยินดีให้บริการ";
+	mes "ต้องการให้ข้าช่วยเหลืออะไรไหมคะ ?";
+	callfunc "F_Kafra",5,0,1,60,930;
+
+	M_Save:
+		savepoint "payon",78,104;
+		callfunc "F_KafEnd",0,1,"Payon";
+}
+
+// - - > บริเวณ หมู่บ้านนายพราน
+pay_arche,55,123,4	script	Kafra Express::Payon#02	115,{
+	cutin "kafra_03",2;
+	callfunc "F_KafSetPay";
+	callfunc "F_Kafra",0,1,1,90,1200;
+
+	M_Save:
+		savepoint "pay_arche",49,144;
+		callfunc "F_KafEnd",0,1,"Payon Dungeon";
+}
+
+// -  - > ฟังชั่น Payon Kafra
+function	script	F_KafSetPay	{
+	cleararray @wrpC$[0],"",getarraysize(@wrpC$);
+	setarray @wrpD$[0], "Alberta", "Prontera", "Morroc";
+	setarray @wrpP[0], 1200, 1200, 1200;
+	set @wrpC$[0], @wrpD$[0]+" [ "+@wrpP[0]+" z ]";
+	set @wrpC$[1], @wrpD$[1]+" [ "+@wrpP[1]+" z ]";
+	set @wrpC$[2], @wrpD$[2]+" [ "+@wrpP[2]+" z ]";
+	set @wrpC$[3], "ยกเลิก";
+	return;
+}

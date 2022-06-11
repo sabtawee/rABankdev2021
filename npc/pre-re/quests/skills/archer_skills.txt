@@ -1,0 +1,242 @@
+//===== Hercules Script ======================================
+//= Archer Skill Quest
+//===== By: ==================================================
+//= Hercules Dev Team
+//===== Current Version: =====================================
+//= 1.7
+//===== Description: =========================================
+//= Quest for skills: Arrow Crafting, Arrow Repel
+//===== Additional Comments: =================================
+//= 1.5 Rescripted to Aegis 10.3 stadards. [L0ne_W0lf]
+//= 1.6 Updated to latest available official file.
+//=     also fixed Item issue [bugreport:5607]. [Masao]
+//= 1.7 Fixed JobLevel requirements. [Euphy]
+//============================================================
+
+morocc,121,109,5	script	Kyulnari	88,{
+	if (BaseClass == Job_Archer) {
+		if (getskilllv("AC_MAKINGARROW") == 1) {
+			mes "[Kyulnari]";
+			mes "อ้าว คนบ้านเดียวกันนี่!";
+			mes "ยินดีที่ได้พบคุณ!";
+			mes "เป็นอย่างไรบ้าง?";
+			mes "กับลูกธนูที่คุณสร้าง!";
+			mes "คุณสร้างมันเองกับมือเชียวนะ!";
+			next;
+			mes "[Kyulnari]";
+			mes "ฮ่าๆ...!";
+			mes "คุณคิดว่ามันมีอะไรที่ดีกว่าหรอ?";
+			mes "ฮ่าๆ... ยังไงผมก็ดีใจนะ.";
+			mes "ที่คุณกลับมาในขณะที่";
+			mes "มีข่าวจากที่บ้านมาถึงผม";
+			mes "บ๊าย บาย~";
+			close;
+		}
+		else if (JobLevel >= 30 || (BaseJob == Job_Hunter || BaseJob == Job_Bard || BaseJob == Job_Dancer)) {
+			mes "[Kyulnari]";
+			mes "เอ๋!";
+			mes " ";
+			mes "คุณคือ...";
+			next;
+			if ((countitem(907) > 19) && (countitem(921) > 6) && (countitem(906) > 40) && (countitem(1019) > 12) && (countitem(501) > 0)) {
+				mes "[Kyulnari]";
+				mes "คุณซื้อมันมาหรอ!";
+				mes "ขอบคุณมากๆ";
+				mes "ผมสัญญาว่าจะสอนสกิลให้กับคุณ";
+				next;
+				delitem 907,20; //Resin
+				delitem 921,7; //Mushroom_Spore
+				delitem 906,41; //Tough_Scalelike_Stem
+				delitem 1019,13; //Wooden_Block
+				delitem 501,1; //Red_Potion
+				skill "AC_MAKINGARROW",1,0;
+				mes "[Kyulnari]";
+				mes "ไม่ต้องกังวลเรื่องลูกธนูเลย";
+				mes "โอ้ แล้วคุณไม่ได้ดู";
+				mes "บางคนที่พบเห็น Jason ใน Payon เหรอ?";
+				mes "ระวังให้ดีล่ะ";
+				mes "เขาเป็นคนที่โหดร้ายมาก";
+				next;
+				mes "[Kyulnari]";
+				mes "คุณแค่ต้องระวัง Jason ใน Payon.";
+				mes "จงจำไว้..";
+				mes "ขอบคุณมาก สำหรับการพูดคุยครั้งนี้";
+				close;
+			}
+			mes "[Kyulnari]";
+			mes "นักธนูใน Morroc!?";
+			mes "ยินดีที่ได้พบกันอีกครั้ง";
+			mes "นักธนูในสถานที่แห่งนี้! *สูดอากาศ*!";
+			mes "ข้ามา Morroc..เพียงตัวคนเดียว";
+			mes "แต่ผมเป็นคนเดียวที่มา และรู้สึกกดดัน ว๊าา~";
+			mes "มันเหงามากๆ~";
+			next;
+			switch (select("มันจะต้องยากแน่ๆ:เก็บความทุกข์ทรมานไว้")) {
+			case 1:
+				mes "[Kyulnari]";
+				mes "ใช่ ขอบใจมาก...";
+				mes "ท่านมีโอกาสไม่มากนัก";
+				mes "สำหรับเวลาในสถานที่นี้";
+				mes "มันยากมากมั้ยสำหรับการหาลูกธนู?";
+				mes "ถ้าท่านทำมันได้ด้วยตนเองล่ะ";
+				next;
+				menu " จริงเหรอ?!",-;
+				mes "[Kyulnari]";
+				mes "ใช่ ข้าพูดเรื่องจริง";
+				mes "ท่านสามารถสร้างลูกธนูเหล่านั้น";
+				mes "ได้ด้วยตัวท่านเอง";
+				mes "เพียงแค่ท่านนำไอเทมรอบๆตัวท่าน";
+				mes "มาแปรรูปเป็นลูกธนู";
+				next;
+				menu "ช่างวิเศษจริงๆ",-;
+				mes "[Kyulnari]";
+				mes "แต่ข้าไม่ได้ทำมันฟรีๆนะ";
+				mes "ในโลกนี้ไม่มีอะไรได้มาฟรีๆ~";
+				mes "เอาอย่างนี้เป็นไง?";
+				mes "ถ้าข้าจะให้ท่านนำสิ่งของมาให้ข้าสักหน่อย";
+				mes "แล้วข้าจะสอนวิธีให้แก่ท่าน";
+				next;
+				mes "[Kyulnari]";
+				mes "ข้ารู้สึกเหงามากเมื่อตอนที่ข้าอยู่เมืองเก่า";
+				mes "ข้าต้องการเก้บความทรงจำดีๆเหล่านั้นไว้";
+				mes "หลังจากที่ข้าจากที่นั่นมาอยู่นี่";
+				mes "นำ 20 Resins จากพวกต้นไม้ในป่า Payon ";
+				mes "Payon และ 1 Red Potion";
+				mes "ที่มีขายตามร้านทั่วไป";
+				next;
+				mes "[Kyulnari]";
+				mes "และก็ 13 Trunks จากต้นไม้";
+				mes "ที่อาศัยอยู่แถบป่า Payon";
+				mes "41 Point Scale จากพวก Worm Tail และ ต้นไม้เขียว";
+				mes "7 Mushroom Spores.";
+				mes "ถ้าท่านนำสิ่งของเหล่านี้มาให้ข้า";
+				next;
+				mes "[Kyulnari]";
+				mes "ข้าก็จะสอนวิธีให้แก่ท่าน";
+				mes "เอาล่ะ..ข้าจะรอท่าน";
+				mes "สำหรับข่าวจากบ้านเกิดของข้า";
+				close;
+			case 2:
+				mes "[Kyulnari]";
+				mes "...เฮ้ ทำตัวให้สบาย";
+				close;
+			}
+		}
+		mes "[Kyulnari]";
+		mes "หืม คุณมี?";
+		mes "อะไรจะพูดงั้นรึ?";
+		close;
+	}
+	mes "[Kyulnari]";
+	mes "เอ... เหมือนข้าเคยเห็นเหล่านักธนูทำอะไรบางอย่าง?";
+	mes "เพียงไปที่ๆท่านกำลังจะไป";
+	mes "ข้าจะบอกเพียงแค่นักธนูเท่านั้น";
+	mes "อย่าหวังว่าข้าจะปริปากบอกท่านเลย!";
+	close;
+}
+
+payon,103,63,3	script	Gaeho	88,3,3,{
+	if (BaseClass == Job_Archer) {
+		if (getskilllv("AC_CHARGEARROW") == 1) {
+			mes "[Gaeho]";
+			mes "เอ๋ พบกันอีกแล้ว";
+			mes "เราเคยพบกันมาก่อนที่ไหนนะ";
+			mes "ขอข้านึกก่อน";
+			mes "เอ่อ ช่างมันเถอะยินดีที่ได้พบท่านอีกครั้ง";
+			close;
+		}
+		else if (JobLevel >= 35 || (BaseJob == Job_Hunter || BaseJob == Job_Bard || BaseJob == Job_Dancer)) {
+			mes "[Gaeho]";
+			mes "ข้าจะทำยังไงกับ Kyulnari ดีนะ";
+			mes "ฮืม เฮอะ!";
+			mes "เจ้ายืนอยู่นั่นนานแค่ไหนแล้ว?";
+			mes "เอ..ดูเหมือนเจ้ามีวิชาติดตัวเหมือนกันนี่";
+			mes "ข้าว่าคนเลเวลสูงอย่างเจ้าคงรู้จักวิธีการใช้";
+			mes "Charge Arrow";
+			next;
+			switch (select("มันคืออะไร?:ข้าพร้อมที่จะเรียนแล้ว")) {
+			case 1:
+				mes "[Gaeho]";
+				mes "...ท่านล้อเล่นใช่มั้ย?";
+				mes "โอ้พระเจ้า ท่านไม่รู้จัก";
+				mes "Charge Arrow?";
+				mes "ท่านเป็นคนที่มึนมากๆ";
+				next;
+				mes "[Gaeho]";
+				mes "(Gaeho was in the lala land.)";
+				next;
+				mes "[Gaeho]";
+				mes "โอเค ข้าจะสอนท่านว่า";
+				mes "Charge Arrow คืออะไร";
+				next;
+				mes "[Gaeho]";
+				mes "Charge Arrow คือการรั้งสายธนูจนสุด";
+				mes "เพื่อเพิ่มความรุนแรงให้แก่ลูกธนู";
+				mes "ซึ่งเป้าหมายจะถูกกระแทกถอยหลังไป 4 ช่อง";
+				mes "เมื่อถูกโจมตีด้วยความสามารถนี้ ";
+				next;
+				mes "[Gaeho]";
+				mes "ก่อนอื่นทีท่านจะสามารถเรียนรู้ทักษะนี้ได้";
+				mes "ท่านต้องนำไอเทมมาให้ข้าดังนี้";
+				mes "10 Tentacles, 10 Bill of Birds,";
+				mes "3 Yoyo Tails..";
+				mes "2 Emeralds.และสุดท้ายแต่ไม่ท้ายสุด..";
+				mes "36 bottles of Banana Juice ที่ข้าชอบ!";
+				next;
+				mes "[Gaeho]";
+				mes "......เอิ่ม!";
+				mes "ถ้าท่านนำมันมาให้ข้า";
+				mes "ข้าจะสอนการ Charge Arrow ให้ท่านl.";
+				mes "แล้วพบกันใหม่";
+				mes "(ข้าจะโมโหมากถ้าท่านไม่นำ Banana Juice มาด้วย)";
+				close;
+			case 2:
+				if ((countitem(721) > 1) && (countitem(942) > 2) && (countitem(962) > 9) && (countitem(925) > 9) && (countitem(532) > 35)) {
+					mes "[Gaeho]";
+					mes "โอเค จัดเต็ม!!";
+					mes "ข้าจะสอนทักษะนี้ให้แก่ท่านตามที่สัญญา";
+					next;
+					delitem 721,2; //Azure_Jewel
+					delitem 942,3; //Yoyo_Tail
+					delitem 962,10; //Tentacle
+					delitem 925,10; //Bill_Of_Birds
+					delitem 532,36; //Banana_Juice
+					skill "AC_CHARGEARROW",1,0;
+					mes "[Gaeho]";
+					mes "โอ้ สุดยอด!";
+					mes "ดูเหมือนว่าธนูของท่านจะได้รับการโมดิฟายอย่างเต็มที่!";
+					mes "ลองไปใช้ได้เลย~";
+					mes "ขอให้สนุกสนานกับสกิลใหม่นะ";
+					mes "อ้อ ใช้มันอย่างระมัดระวังด้วยล่ะ!";
+					mes "ฮี่~ฮี่~!";
+					close;
+				}
+				mes "[Gaeho]";
+				mes "ท่านลืมบางอย่างไป";
+				mes "อีกครั้ง..ท่านต้องมี 2 Emeralds,";
+				mes "3 Yoyo Tails, 10 Tentacles,";
+				mes "10 Bill of Birds, และสุดท้ายแต่ไม่ท้ายสุด";
+				mes "36 bottles of Banana juice!";
+				next;
+				mes "[Gaeho]";
+				mes "ตรวจสอบให้แน่ใจว่าท่านนำมันมาครบ!";
+				close;
+			}
+		}
+		mes "[Gaeho]";
+		mes "โอ้ ท่านคือ Archer.";
+		mes "ถ้าท่านพยายามอีกหน่อยล่ะก็";
+		mes "ท่านจะได้เป็น Archer ที่เยี่ยมมากเลย";
+		mes "จงฝึกฝนตนเองเถอะ!";
+		close;
+	}
+	mes "[Gaeho]";
+	mes "จะมีใครที่จะต้องการ";
+	mes "คนโสดอย่างฉัน?";
+	close;
+
+OnTouch:
+	mes "[Gaeho]";
+	mes "เอิ่มมมม...";
+	close;
+}

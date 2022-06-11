@@ -1,0 +1,1532 @@
+//<------------------------------------------------------------------------------------ Chivalry Captain Herman------------------------------------------------------------------------------------------>\\
+prt_in.gat,88,101,3	script	Chivalry Captain Herman	56,{
+	if(JobLevel == 50) {
+	if (Class!=1) goto Notache;
+	if(SkillPoint >0) goto L_notUseAll;
+
+	 mes "[ Jobchanger ]";
+	 mes "ท่านต้องการเปลื่ยนอาชีพเป็นknight ใช่หรือไม่";
+	 next;
+	 menu "ใช่",-,"ไม่ใช่",L_close;
+	 mes "[ Jobchanger ]";
+	 mes "ถ้าเป็นอย่างนั้น ข้าก็จะเปลื่ยนให้เจ้าทันที";
+	 next;
+	 JobChange 7;
+	set zeny,zeny+50000;
+	 mes "เจ้าได้เป็น knightเรียบร้อยแล้ว";
+	 close;
+
+	L_close:
+	 mes "[ Jobchanger ]";
+	 mes "เราคงมีโอกาศได้พบกันใหม่อีกแน่ บาย";
+	 close;
+
+	L_notUseAll:
+	 mes "[ Jobchanger ]";
+	 mes "ท่านยังใช้ Skill Point ไม่หมด";
+	 close;
+
+	Notache:
+	 mes "[ Jobchanger ]";
+	 mes "คุณไม่ได้ นักดาบนิ";
+	 close;
+
+
+	}
+
+
+
+
+
+
+	if (Class == Job_Swordman && KNIGHT_Q > 0) goto L_Check;
+
+	mes "[Chivalry Captain Herman]";
+	mes "นี่คงเป็นวันดีของ Prontera Chivarly เมืองนี้เป็นที่มีชื่อเสียงชอง Knights";
+M_Menu:
+	next;
+	menu "ข้าต้องการเป็น Knight",M_0,"ข้าอยากรู้รายละเอียด",M_1,"Quit.",M_End;
+
+	M_0:
+		mes "[Chivalry Captain Herman]";
+		if(Class != Job_Swordman) goto L_NotSwo;
+
+		mes "ดีล่ะ.. งั้นกรอกใบสมัครนี่ก่อน";
+		next;
+		mes "กรุณาเขียนด้วยตัวบรรจงล่ะ!!";
+		next;
+		mes "[Chivalry Captain Herman]";
+		if(JobLevel < 40) goto L_NotLvl;
+		
+		mes "ข้ารู้สึกภูมิใจมาก ที่ท่านจะมากลายเป็น Knight ";
+		mes "เพื่อที่ท่านจะกลายเป็น Knight อย่างสมบูรณ์ท่านต้องมีความแข็งแรง และความกล้าหาญ ความมุ่งมั่น เพื่อที่จะคอยช่วยเหลือผู้อื่น";
+		next;
+		mes "[Chivalry Captain Herman]";
+		mes "เจ้าจะต้องแสดงให้ข้าดูว่าท่านมีคุณสมบัติเหล่านี้ ก่อนที่เจ้าจะกลายมาเป็น Knight รึป่าว";
+		mes "เจ้าคงเห็น Knight ทั้ง 6 ตัวที่อยู่รอบๆ ตัวข้าเขาต้องผ่านการทดสอบที่ไม่ซ้ำกันเพื่อที่จะกลายมาเป็นอัศวิน";
+		next;
+		mes "[Chivalry Captain Herman]";
+		mes "เจ้าต้องทำการทดสอบอย่างใดอย่างหนึ่ง เพื่อจะพิสูจว่าเจ้าสมควรที่จะเป็น Knight อย่างแท้จริง!";
+		next;
+		mes "[Chivalry Captain Herman]";
+		mes "พูดคุยกับ ^0000ffSir Andrew Syloc^000000 เขาจะบอกเจ้าเกี่ยวกับการทดสอบแรก ข้าหวังว่าข้าคงจะได้เห็นเจ้าอีกนะ!";
+		set KNIGHT_Q, 1;
+		set JBLVL, 40;
+		close;
+
+		L_NotLvl:
+			mes "หืมม์ ระดับเลเวลจ๊อบของท่านไม่ถึง 40 ข้าว่าท่านควรรีบไปหาประสบการณ์เพิ่มดีกว่านะ";
+			close;
+		L_NotSwo:
+			if(Class == Job_Knight) goto sL_JobKni;
+			if(Class == Job_Novice) goto sL_JobNov;
+
+			sL_JobOther:
+				mes "ข้าเสียใจ แต่ Swordman เท่านั้น ที่จะสามารถกลายเป็น Knight";
+				close;
+
+			sL_JobKni:
+				mes "เจ้ามีหน้าที่ต้องปกป้อง Rune Midgard เจ้ายังจะมาที่นี่ให้เสียเวลาทำไม";
+				emotion 32;
+				close;
+
+			sL_JobNov:
+				mes "ฮ่า ฮ่า! ท่านยังไม่มีประสบการณ์ แต่ข้าดีใจนะที่เจ้าสนใจที่จเป็น Knight!";
+				emotion 18;
+				close;
+
+	M_1:
+		mes "[Chivalry Captain Herman]";
+		mes "คุณสมบัติแรกที่เจ้าควรจะมี คือเจ้าต้องเป็น Swordsman";
+		mes "และเจ้าต้องมีระดับเลเวลจ๊อบอย่างน้อย 40";
+		next;
+		mes "[Chivalry Captain Herman]";
+		mes "และด่านสุดท้ายเจ้าต้องผ่านการทดสอบทั้ง 6 ที่จะกำหนดว่าเจ้าจะกลายเป็น Knight ได้หรือไม่";
+		mes "สิ่งพวกนี้อาจดูเป็นการยาก แต่การเป็น Knight ชั้นยอดจะต้องมีเกียรติและเป็นผู้ที่มีคุณสมบัติครบเท่านั้นที่จะเข้าร่วมได้";
+		goto M_Menu;
+
+	M_End:
+		close;
+
+L_Check:
+	mes "[Chivalry Captain Herman]";
+	if (KNIGHT_Q == 1) mes "พูดคัยกับ ^0000ffSir Andrew Syloc^000000.  เขาจะบอกเกี่ยวกับบททดสอบแรก";
+	if (KNIGHT_Q == 2) mes "ยินดีด้วยเจ้าผ่านการทดสอบแรกแล้ว  ^0000ffSir James Syracuse^000000 จะเป็นผู้ดูแลเกี่ยวกับ ^ff0000การทดสอบที่สอง^000000.";
+	if (KNIGHT_Q == 3) mes "ยินดีด้วยเจ้าผ่านการทดสอบที่สองแล้ว  ^0000ffSir Windsor^000000 จะเป็นผู้ดูแลเกี่ยวกับ ^ff0000การทดสอบที่สาม^000000.";
+	if (KNIGHT_Q == 4) mes "ยินดีด้วยเจ้าผ่านการทดสอบที่สามแล้ว  ^0000ffLady Amy Beatris^000000 จะเป็นผู้ดูแลเกี่ยวกับ ^ff0000การทดสอบที่สี่^000000.";
+	if (KNIGHT_Q == 5) mes "ยินดีด้วยเจ้าผ่านการทดสอบที่สี่แล้ว  ^0000ffSir Edmund^000000 จะเป็นผู้ดูแลเกี่ยวกับ ^ff0000การทดสอบที่ห้า^000000.";
+	if (KNIGHT_Q == 6) mes "ยินดีด้วยเจ้าผ่านการทดสอบที่ห้าแล้ว.  ^0000ffSir Grey^000000 จะเป็นผู้ดูแลเกี่ยวกับ ^ff0000การทดสอบที่หก^000000.";
+	if (KNIGHT_Q == 7) goto L_MakeKnight;
+	next;
+	mes "[Chivalry Captain Herman]";
+	mes "โชคดี!";
+	close;
+
+	L_MakeKnight:
+		if(SkillPoint > 0) goto sL_SKpoint;
+
+		mes "โอ้ ^ff0000"+strcharinfo(0)+"^000000 เจ้าคงผ่านการทดสอบของ Sir Grey's แล้ว?";
+		mes "ข้าขอปรบมือดังๆ กับความพยายามของเจ้าที่อดทน ทำงานหนักมาตลอด";
+		next;
+		mes "[Chivalry Captain Herman]";
+		mes "นี่คงเป็นขั้นตอนสุดท้ายแรกที่เจ้าจะได้ก้าวเข้าสู่ Knight อย่างแท้จริง";
+		mes "เริ่มต้นที่ Sir Andrew Syloc และ  Sir Syloc ที่ได้เห็นเจ้า ^ff0000"+strcharinfo(0)+"^000000 ผู้ซึ่งมีความพยายามจะกลายเป็น Knight";
+		next;
+		mes "[Sir Andrew Syloc]";
+		mes "โดยใช้ความอดทนพยายาม ที่ต้องการจะผ่านการทดสอบของข้า เจ้า ^ff0000"+strcharinfo(0)+"^000000 มีความมุ่งมั่นที่ดี";
+		next;
+		mes "[Sir Andrew Syloc]";
+		mes "ในความเห็นของข้า เจ้า ^ff0000"+strcharinfo(0)+"^000000 มีความสมควรจริงที่จะกลายเป็น Knight!";
+		mes "ยอดเยี่ยม Sir Syloc และ  Sir James Syracuse นี่คือสิ่งที่อยากบอก?";
+		next;
+		mes "[Sir James Syracuse]";
+		mes "^ff0000"+strcharinfo(0)+"^000000 เจ้าคงจะตอบคำถามของข้าได้อย่างถูกต้อง";
+		mes "เพื่อจะแสดงให้ข้ารู้เกี่ยวกับแนวคิดของเจ้าในการเป็น Knight";
+		next;
+		mes "[Sir Winsor]";
+		mes "หืมม์ ข้าไม่มีความเห็น";
+		next;
+		mes "[Chivalry Captain Herman]";
+		mes "ชอบคุณมาก ขอบคุณท่านทั้งหลาย ที่ยอมสละเวลามาเพื่อให้การตัดสินใจที่เป็นเอกฉันท์";
+		next;
+		mes "[Chivalry Captain Herman]";
+		mes "กระบวนการเป็น Knight นั้นเป็นไปอย่างเข้มงวดมากและยากที่จะทำได้สำเร็จ แต่เจ้าก็ทำได้";
+		next;
+		mes "[Chivalry Captain Herman]";
+		mes "และเจ้ายังทำได้ดีอีกด้วย ดังนั้นเจ้าจึงสมควรได้รับเกียรตินี้ ข้าจะขอเรียกเจ้าว่า Knight";
+		next;
+		mes "[Chivalry Captain Herman]";
+		mes "^ff0000"+strcharinfo(0)+"^000000 ในนามของกษัตริย์ แห่ง Trisitin ที่ 3 ในอาณาจักรของ Rune Midgard ข้าพเจ้าจะแต่งเจ้าให่กลายเป็น Knight ในบัดนี้!";
+		next;
+		JobChange Job_Knight;
+		if(JBLVL == 40) getitem 656, 3;
+		if(JBLVL == 50) getitem 656, 7;
+		callfunc "F_ClearJobVar";		// clears all job variables for the current player
+		mes "[Chivalry Captain Herman]";
+		mes "ยินดีด้วยท่านผ่านการทดสอบ ตอนนี้ท่านได้กลายเป็น Knight เพื่อมาปกป้อง Rune - Midgard!";
+		emotion 21;
+		close;
+
+		sL_SKpoint:
+			mes "ท่านควรใช้สกิลพ้อยท์ให้หมดซะก่อน ก่อนจะที่ข้าจะทำให้เจ้ากลายเป็น knight";
+			emotion 5;
+			close;
+}
+
+
+//<--------------------------------------------------------------------------------- Sir Andrew Syloc (1st test) ------------------------------------------------------------------------------------------>\\
+prt_in.gat,75,107,4	script	Sir Andrew Syloc	65,{
+	mes "[Sir Andrew Syloc]";
+	if (Class == Job_Knight) goto L_Knight;
+	if (Class == Job_Novice) goto L_Novice;
+	if (Class == Job_Swordman && KNIGHT_Q == 1) goto L_Test;
+	if (Class == Job_Swordman && KNIGHT_Q == 2) goto L_Done;
+L_Other:
+	mes "พวกเราเหล่าอัศวินต้องคอยต่อสู้เพื่อปกป้อง Prontera เพื่อสันติภาพและเสรีภาพ! เพื่ออนาคตของ Rune - Midgard ข้าจำเป็นต้องทำ";
+	close;
+L_Novice:
+	mes "โอ้เจ้า novice ยินดีต้อนรับ Prontera Chivalry!";
+	next;
+	mes "[Sir Andrew Syloc]";
+	mes "ข้าว่าเจ้ายังอ่อนแอเกินไป.. ข้าว่าเจ้าต้องไปเริ่มจ๊อบแรกของเจ้าก่อนค่อยกลับมาหาข้า";
+	close;
+L_Knight:
+	mes "โอ้.. ท่านจะทำอะไร?";
+	next;
+	mes "[Sir Andrew Syloc]";
+	mes "นี่คงเป็นสิ่งสำคัญที่เจ้าจะสามารถเข้าไปช่วยข้าต่อสู้กับมอนสเตอร์จำนวนมากได้";
+	close;
+
+
+L_Test:
+	if (KNIGHT_Q2 > 0) goto L_Check;
+	mes "โอ้ ข้าเห็นว่าเจ้ามีความสนจะเข้าร่วมกับ Prontera Chivalry นี่คงเป็น ^ff0000" + strcharinfo(0) + "^000000 ใช่มั๊ย?";
+	next;
+	mes "[Sir Andrew Syloc]";
+	mes "ข้าคือ Andrew Syloc ข้าเป็นหนึ่งในอัศวินของสมาคมอัศวิน Prontera";
+	mes "ข้าจะมอบบททดสอบแรกให้เจ้าได้ทำ มันจะทำให้เจ้าได้กลายเป็นอัศวิน";
+	next;
+	mes "[Sir Andrew Syloc]";
+	mes "การทดสอบแรกเป็นการล่าขยะจากเหล่ามอนสเตอร์ เพื่อทดสอบความรู้เกี่ยวกับสถานที่ที่เหล่ามอนสเตอร์อยู่";
+	next;
+	mes "[Sir Andrew Syloc]";
+	mes "ตกลง เจ้าต้องการกรอกใบสมัครก่อน เจ้าต้องการทำเดี๋ยวนี้เลยไหม?";
+	next;
+	menu "ครับท่าน",M_1, "ข้าขอเวลาคิดดูสักนิดก่อน",M_End;
+
+	M_1:
+		mes "[Sir Andrew Syloc]";
+		if (joblevel == 50) goto sL_Skip;
+		mes "ถ้าต้องการผ่านการทดสอบแรก เจ้าต้องรวบรวมสิ่งนี้";
+		set KNIGHT_Q2, rand(1,2);
+		if(KNIGHT_Q2 == 1) callsub sF_R1;
+		if(KNIGHT_Q2 == 2) callsub sF_R2;
+		next;
+		mes "[Sir Andrew Syloc]";
+		mes "เมื่อท่านรวบรวมสิ่งของทั้งหมดแล้วค่อยกลับเอาให้ข้า";
+		mes "โชคดี แล้วเจอกันใหม่";
+		close;
+
+		sF_R1:
+			mes "^5533FF5 Elder Pixie's Mustache,";	//1040
+			mes "5 Wings of Red Bat";	//7006
+			mes "5 Orcish Vouchers";	//931
+			mes "5 Moth Dust";		//1057
+			mes "5 Reptile Tongues^000000";	//903
+			mes "และ ^5533FF5 Manes^000000.";		//1028
+			return;
+		sF_R2:
+			mes "^5533FF5 Bug Legs";
+			mes "5 Heart of Mermaid";
+			mes "5 Snail's Shells";
+			mes "5 Clam Flesh";
+			mes "5 Old Frying Pans^000000";
+			mes "และ ^5533FF5 Maneater Blossoms^000000.";
+			return;
+
+		sL_Skip:
+			mes "เดี๋ยว.. นี่อะไร?";
+			next;
+			mes "[Sir Andrew]";
+			mes "เจ้าคงจะเป็นนักดายที่แข็งแกร่ง และเจ้าดูมีความแข็งแรงด้านความสามารถที่น่าอัศจรรย์";
+			next;
+			mes "[Sir Andrew]";
+			mes "พูดคุยกับ ^5533FFSir James Syracuse^000000 เขาจะคอยบอกเจ้าเกี่ยวกับบททดสอบขั้นต่อไป ว่าต้องทำอย่างไร?";
+			set KNIGHT_Q, 2;
+			set KNIGHT_Q2, 0;
+			set JBLVL, 50;
+			close;
+	
+	M_End:
+		mes "[Sir Andrew Syloc]";
+		mes "กลับไปใช้เวลาของเจ้าตามที่ต้องการ แล้วรีบๆ กลับมาหาข้าซะ";
+		close;
+
+L_Check:
+	mes "เจ้า ^ff0000"+strcharinfo(0)+"^000000 เจ้ากลับมาแล้ว เจ้าคงจะมีรวบรวมของมาตามที่ข้าสั่งแล้วนะ?";
+	next;
+	if(KNIGHT_Q2 == 2) goto L_2;
+
+	L_1:
+		if(countitem(1040)<5 || countitem(7006)<5 || countitem(931)<5 || countitem(1057)<5 || countitem(903)<5 || countitem(1028)<5) goto L_NotDone;
+		delitem 1040,5;
+		delitem 7006,5;
+		delitem 931,5;
+		delitem 1057,5;
+		delitem 903,5;
+		delitem 1028,5;
+		goto L_Cont;
+
+	L_2:
+		if(countitem(1042)<5 || countitem(950)<5 || countitem(946)<5 || countitem(966)<5 || countitem(7031)<5 || countitem(1032)<5) goto L_NotDone;
+		delitem 1042,5;
+		delitem 950,5;
+		delitem 946,5;
+		delitem 966,5;
+		delitem 7031,5;
+		delitem 1032,5;
+
+	L_Cont:
+	mes "[Sir Andrew Syloc]";
+	mes "ให้ข้าดู นี่ 5 ชิ้น นั่น 5 ชิ้น เจ้ามีครบตามที่ข้าต้องการ";
+	next;
+	mes "[Sir Andrew Syloc]";
+	mes "เจ้าทำได้ดีมากสำหรับการทดสอบแรกที่เพิ่มได้ผ่านไป แต่เจ้าอย่าเพิ่งรีบดีใจและตื้นเต้นเกินไป";
+	mes "ยังคงเหลือความท้าทายอีกมาก ขึ้นอยู่ว่าเจ้าจะสามารถเอาชนะได้มั้ย เพื่อที่จะได้เป็นอัศวิน";
+	next;
+	mes "[Sir Andrew Syloc]";
+
+	L_Done:
+	mes "พูดคุยกับ Chivalry Captain Herman เขาจะแจ้งให้ทราบเกี่ยวกับการทดสอบต่อไปของเจ้า";
+	mes "ความมุ่งมั่นของเจ้า ^0000ff"+strcharinfo(0)+"^000000 ข้ารู้ว่าเจ้าต้องทำได้.. !!";
+	set KNIGHT_Q, 2;
+	set KNIGHT_Q2, 0;
+	close;
+
+	L_NotDone:
+		mes "[Sir Andrew Syloc]";
+		mes "อะไร? เจ้ามีเรื่องอะไรต้องการถามข้า?";
+		emotion 4;
+		next;
+		mes "[Sir Andrew Syloc]";
+		mes "นี่คือสิ่งที่เจ้าต้องเก็บรวบรวมมาให้ข้า";
+		if(KNIGHT_Q2 == 1) callsub sF_R1;
+		if(KNIGHT_Q2 == 2) callsub sF_R2;
+		next;
+		mes "[Sir Andrew Syloc]";
+		mes "เมื่อเจ้ามีของทั้งหมดโปรดกลับมาหาข้าอีกครั้ง";
+		close;
+}
+
+
+//<------------------------------------------------------------------------------ Sir James Syracuse (2nd Test) ----------------------------------------------------------------------------------------->\\
+prt_in.gat,71,91,6	script	Sir James Syracuse	65,{
+	mes "[Sir James Syracuse]";
+	if (class == Job_Knight) goto L_Knight;
+	if (class == Job_Novice) goto L_Novice;
+	if (class == Job_Swordman && KNIGHT_Q == 2) goto L_Test;
+	if (class == Job_Swordman && KNIGHT_Q == 3) goto L_Done;
+L_Other:
+	mes "โจมตีและป้องกัน..... คงจะมีวิธีทำทั้งสองอย่างในเดียวกันได้หรือไม่?";
+	mes "ด้วยดาบ 2 มือนี้ จะมีก็แต่เพียงพลังโจมตีเท่านั้น ซึ่งมันขาดไปด้วยพลังป้องกันทำให้ข้าอ่อนแอลง?";
+	next;
+	mes "[Sir James Syracuse]";
+	mes "ข้ากำลังตามหาอาวุธที่สามารถทำได้ทั้งการโจมตีและป้องกันในเวลาเดียวกัน มันเป็นสมบัติอันล้ำค่า ข้าต้องการสิ่งนั้น??!! ";
+	close;
+L_Novice:
+	mes "เจ้ามาทำอะไรที่ เจ้า novice น้อย?";
+	next;
+	mes "[Sir James Syracuse]";
+	mes "หากเจ้าอยากเป็น Knight? ข้าสามารถช่วยเจ้าได้ แต่เจ้าต้องมีประสบการณ์เกี่ยวกับ Swordsman มาซะก่อน";
+	close;
+L_Knight:
+	mes "เฮ้ ท่านมาทำอะไรในสมาคมนี่?";
+	next;
+	mes "[Sir James Syracuse]";
+	mes "เรายังคงสรรหาอัศวิน ที่คอยปกป้องเมือง Prontera Chivalry ข้าได้ยินว่ามี Knight บางตัวทำชื่อพวกข้าเสื่อมเสีย";
+	next;
+	mes "[Sir James Syracuse]";
+	mes "หากเจ้าเจอเขา เจ้าช่วยสอนให้เขารู้บมเรียน";
+	close;
+
+L_Test:
+	mes "โอ้ เจ้า^ff0000"+strcharinfo(0)+"^000000 ผ่านการทดสอบแรกมาแล้ว";
+	next;
+	mes "[Sir James Syracuse]";
+	mes "ข้าจะขอแนะนำตัวข้าก่อน ข้าคือ James Syracuse ข้ามีหน้าที่สอนพวก kngiht ให้กับ Prontera Chivalry.";
+	next;
+	mes "[Sir James Syracuse]";
+	mes "การทดสอบนี้จะเป็นความรู้เรื่อง Kngiht เจ้าคงจะมีความรู้เรื่องนี้อยู่พอสมควรนะ";
+	next;
+	mes "[Sir James Syracuse]";
+	mes "ข้าจะมีความถามง่ายๆ จะถามเจ้าเพียงไม่กี่คำถามเจ้าคงพร้อมนะ?";
+	next;
+	menu "ข้าพร้อมแล้ว",M_0,"ข้ายังไม่พร้อม",M_End;
+	
+	M_0:
+		mes "[Sir James Syracuse]";
+		mes "โอเค เอาล่ะ.. ข้าจะเริ่มการทดสอบเด๋วนี้ละ ถ้าเจ้าตอบผิดเจ้าจะต้องเริ่มตอบคำถามใหม่ทั้งหมด";
+		next;
+
+		mes "[Sir James Syracuse]";
+		//mes "Knights excel in both attack strength and defensive prowess.";
+		mes "ดาบชนิดใดที่ไม่ใช่ดาบประเภทสองมือ?";
+		next;
+		menu "Katzbalger",sM_0a,"Bastard Sword",sM_0b,"Claymore",sM_0c,"Flamberge",sM_0d;
+
+		sM_0a:
+			mes "[Sir James Syracuse]";
+			mes "^ff0000เจ้าตอบผิด^000000. Katzbalger นี่คือดาบสองมือ!";
+			close;
+
+		sM_0b:
+			mes "[Sir James Syracuse]";
+			mes "^ff0000เจ้าตอบผิด^000000. Bastard Sword  นี่คือดาบสองมือ!";
+			close;
+
+		sM_0c:
+			mes "[Sir James Syracuse]";
+			mes "^ff0000เจ้าตอบผิด^000000. Claymore นี่คือดาบสองมือ!";
+			close;
+
+		sM_0d:
+
+		mes "[Sir James Syracuse]";
+		mes "โอเค นี่จะเป็๋นคำถามเกี่ยวกับ Knight";
+		mes "สกิลใดต่อไปนี้ เมื่อถูกโจมตีจะไม่ทำให้หยุดชะงัก?";
+		next;
+		menu "Two-Hand Mastery Lv.5",sM_1a,"Berserk Lv.3",sM_1b,"Endure Lv.10",sM_1c,"Bash Lv.10",sM_1d;
+
+		sM_1a:
+			mes "[Sir James Syracuse]";
+			mes "^ff0000เจ้าตอบผิด^000000";
+			close;
+
+		sM_1b:
+			mes "[Sir James Syracuse]";
+			mes "^ff0000เจ้าตอบผิด^000000";
+			close;
+
+		sM_1c:
+			goto L_Cont1;
+
+		sM_1d:
+			mes "[Sir James Syracuse]";
+			mes "^ff0000เจ้าตอบผิด^000000";
+			close;
+
+		L_Cont1:
+		mes "[Sir James Syracuse]";
+		mes "สกิลใดต่อไปนี้ใช้ Sp มากที่สุด?";
+		next;
+		menu "Pierce",sM_2a,"Spear Boomarang",sM_2b,"Spear Stab",sM_2c,"Riding",sM_2d;
+
+		sM_2a:
+			mes "[Sir James Syracuse]";
+			mes "^ff0000เจ้าตอบผิด^000000";
+			close;
+
+		sM_2b:
+			mes "[Sir James Syracuse]";
+			mes "^ff0000เจ้าตอบผิด^000000";
+			close;
+
+		sM_2c:
+			goto L_Cont2;
+
+		sM_2d:
+			mes "[Sir James Syracuse]";
+			mes "^ff0000เจ้าตอบผิด^000000";
+			close;
+
+		L_Cont2:
+		mes "[Sir James Syracuse]";
+		mes "ธาตุชนิดใดที่สามารถต่อสู้กับธาตุ Dark/Undead?";
+		next;
+		menu "Holy",sM_3a, "Wind",sM_3b, "Poison",sM_3c, "Earth",sM_3d;
+
+		sM_3a:
+			goto L_Cont3;
+
+		sM_3b:
+			mes "[Sir James Syracuse]";
+			mes "^ff0000เจ้าตอบผิด^000000";
+			close;
+
+		sM_3c:
+			mes "[Sir James Syracuse]";
+			mes "^ff0000เจ้าตอบผิด^000000";
+			close;
+
+		sM_3d:
+			mes "[Sir James Syracuse]";
+			mes "^ff0000เจ้าตอบผิด^000000";
+			close;
+
+		L_Cont3:
+		mes "[Sir James Syracuse]";
+		mes "เมื่อมี cavalry mastery เลเวล 3 ความเร็วในการโจมตีจะเป็นกี่ %?";
+		next;
+		menu "70%",sM_4a, "80%",sM_4b, "90%",sM_4c, "100%",sM_4d;
+
+		sM_4a:
+			mes "[Sir James Syracuse]";
+			mes "^ff0000เจ้าตอบผิด^000000";
+			close;
+
+		sM_4b:
+			goto L_Cont4;
+
+		sM_4c:
+			mes "[Sir James Syracuse]";
+			mes "^ff0000เจ้าตอบผิด^000000";
+			close;
+
+		sM_4d:
+			mes "[Sir James Syracuse]";
+			mes "^ff0000เจ้าตอบผิด^000000";
+			close;
+
+		L_Cont4:
+		mes "[Sir James Syracuse]";
+		mes "ถ้ามี Novice ต้องการให้ช่วยเหลือ เจ้าจะทำเช่นไร";
+		next;
+		menu "บอกสถานที่ที่ควรไปฝึกฝน",sM_5a, "ให้เงินเขา",sM_5b, "ให้อาวุธเขา",sM_5c;
+
+		sM_5a:
+			mes "[Sir James Syracuse]";
+			mes "ใช่นี่คือคำตอบที่ ท่านตอบได้ถูกต้อง";
+			next;
+			goto L_Cont5;
+
+		sM_5b:
+			mes "[Sir James Syracuse]";
+			mes "ข้าว่านี่คือความคิดที่ไม่ถูกต้องนะ!";
+			close;
+
+		sM_5c:
+			mes "[Sir James Syracuse]";
+			mes "ข้าว่านี่คือความคิดที่ไม่ถูกต้องนะ!";
+			close;
+
+		L_Cont5:
+		mes "[Sir James Syracuse]";
+		mes "หากเพื่อนๆ ของเจ้าในปาร์ตี้ถูกโจมตี เจ้าจะทำอย่างไร?";
+		next;
+		menu "ไปอยู่ด้านหน้าแล้วปกป้องทุกคน",sM_6a, "รอจนกว่าคนอื่นๆ จะโจมตี",sM_6b,
+			"ไม่ต้องใสนใจใคร สนแต่ของดรอป",sM_6c;
+
+		sM_6a:
+			mes "[Sir James Syracuse]";
+			mes "ใช่! เจ้าคือตัวแท้งค์เกอของทีม เจ้าคิดถูกต้องแล้วที่ทำเช่นั้น";
+			next;
+			goto L_Cont6;
+
+		sM_6b:
+			mes "[Sir James Syracuse]";
+			mes "ข้าว่านี่คือความคิดที่ไม่ถูกต้องนะ!!!";
+			close;
+
+		sM_6c:
+			mes "[Sir James Syracuse]";
+			mes "ข้าว่านี่คือความคิดที่ไม่ถูกต้องนะ!??";
+			close;
+
+		L_Cont6:
+		mes "[Sir James Syracuse]";
+		mes "และนี่คือคำถามสุดท้าย อะไรที่ทำให้เจ้าคิดว่าเป็นสิ่งสำคัญที่สุดของ Knight?";
+		next;
+		menu "เกียรติ",sM_7a, "เงิน",sM_7b, "ชื่อเสียง",sM_7c;
+
+		sM_7a:
+			mes "[Sir James Syracuse]";
+			mes "ใช่นี่คือความภาคภูมิใจที่สุดของเรา เกียรติยศต้องมาก่อนสิ่งอื่น";
+			next;
+			mes "[Sir James Syracuse]";
+			goto L_Done;
+
+		sM_7b:
+			mes "[Sir James Syracuse]";
+			mes "ทำไมเจ้าถึงคิดเช่นนั้น!!";
+			close;
+
+		sM_7c:
+			mes "[Sir James Syracuse]";
+			mes "ทำไมเจ้าถึงคิดเช่นนั้น?";
+			close;
+
+		L_Done:
+		mes "เยี่ยมมาก ท่านทำดีแล้ว พูดคุยกับ Captian เขาจะบอกการทดสอบต่อไปให้กับเจ้า";
+		set KNIGHT_Q, 3;
+		close;
+
+	M_End:
+		mes "[Sir James Syracuse]";
+		mes "ไว้เจอกันคราวหน้า";
+		close;
+
+}
+
+
+//<--------------------------------------------------------------------------------- Sir Windsor (3rd Test) -------------------------------------------------------------------------------------------------->\\
+// Sir Windsor ---------------------------------------------------------
+prt_in.gat,79,94,3	script	Sir Windsor#1	733,{
+	mes "[Sir Windsor]";
+	if(Class == Job_Knight) goto L_Knight;
+	if(Class == Job_Novice) goto L_Novice;
+	if(Class == Job_Swordman && KNIGHT_Q == 3) goto L_Test;
+	if(Class == Job_Swordman && KNIGHT_Q == 4) goto L_Done;
+L_Other:
+	mes "..........";
+	next;
+	mes "[Sir Windsor]";
+	mes "เจ้ากำลังมองอะไรกัน?";
+	close;
+L_Novice:
+	mes "..........";
+	next;
+	mes "[Sir Windsor]";
+	mes "ข้าว่าเจ้าไปเล่นที่อื่นเหอะ......";
+	close;
+L_Knight:
+	mes "ไม่ต้องมาคุยกับข้า......";
+	emotion 9;
+	close;
+
+
+L_Test:
+	if(KNIGHT_Q2 == 2) goto L_Done;
+	if(KNIGHT_Q2 == 1) goto sL_ReTest;
+	mes ".............";
+	next;
+	mes "[Sir Windsor]";
+	mes "... เจ้าต้องการมาที่นี่เพื่อต้องการทดสอบใช่มั้ย?";
+	next;
+	mes "[Sir Windsor]";
+	mes "ตามข้ามา.....";
+	next;
+	set KNIGHT_Q2,1;
+	savepoint "prt_in.gat",77,96;
+	warp "job_knt",89,106;
+	end;
+
+	sL_ReTest:
+		mes ".............";
+		next;
+		mes "[Sir Windsor]";
+		mes "หืมม... ความพยายามของเจ้า ช่างน่าสงสารนัก....";
+		next;
+		mes "[Sir Windsor]";
+		mes "เริ่มได้......";
+		next;
+		savepoint "prt_in.gat",77,96;
+		warp "job_knt",89,106;
+		end;
+
+L_Done:
+	mes "หือ.......";
+	next;
+	mes "[Sir Windsor]";
+	mes ".... เจ้าผ่านการทดสอบแล้ว";
+	next;
+	mes "[Sir Windsor]";
+	mes ".... ไปคุยกับ Chivalry Captain Herman.";
+	set KNIGHT_Q2,0;
+	set KNIGHT_Q,4;
+	close;
+}
+
+
+// Waiting Room ---------------------------------------------------------------------------
+job_knt.gat,89,110,4,	script	Sir Windsor#2::SW2	733,{
+	mes "[Sir Windsor]";
+	mes ".........."; 
+	next;
+	mes "[Sir Windsor]";
+	mes ".....เจ้ามีปัญหาอะไร?";
+	next;
+	menu "การทดสอบนี้คืออะไร?",M_0, "ข้าจะจัดการกับมอนสเตอร์!.",M_1, "ออกจากที่นี่",M_2, "Nothing.",M_End;
+			
+	M_0:
+		mes "[Sir Windsor]";
+		mes "..........";
+		next;
+		mes "[Sir Windsor]";
+		mes ".....เจ้าต้องไปสู้กับมอนสเตอร์";
+		next;
+		mes "[Sir Windsor]";
+		mes ".....เจ้าต้องฆ่ามอนสเตอร์ครั้งละตัวในเวที";
+		next;
+		mes "[Sir Windsor]";
+		mes "..........";
+		next;
+		mes "[Sir Windsor]";
+		mes ".....เจ้าต้องใช้ชีวิตเพื่ออยู่รอด โดยจะมีมอนสเตอร์อยู่ 3 ระดับ";
+		next;
+		mes "[Sir Windsor]";
+		mes ".....โดยข้าจะให้เวลาเจ้า 3 นาทีแต่ละระดับเลเวล.";
+		next;
+		mes "[Sir Windsor]";
+		mes "..........";
+		close;
+
+	M_1:
+		mes "[Sir Windsor]";
+		mes "..........";
+		next;
+		mes "[Sir Windsor]";
+		mes "....เจ้าต้องไปรอที่ห้องสนทนาก่อน";
+		next;
+		mes "[Sir Windsor]";
+		mes ".....แล้วการทดสอบจะเริ่มขึ้น";
+		next;
+		mes "[Sir Windsor]";
+		mes "..........";
+		next;
+		mes "[Sir Windsor]";
+		mes ".....ถ้ามีใครกำลังใช้งานอยู่ เจ้าต้องรอให้สำเร็จหรือล้มเหลวเสียก่อน";
+		next;
+		mes "[Sir Windsor]";
+		mes ".....และเมื่อการทดสอบจะเริ่มขึ้นโดยอัติโนมัติ";
+		next;
+		mes "[Sir Windsor]";
+		mes "..........";
+		close;
+
+	M_2:
+		mes "[Sir Windsor]";
+		mes "..........";
+		next;
+		mes "[Sir Windsor]";
+		mes ".....ออกจากที่.";
+		next;
+		warp "prt_in.gat",80,100;
+		close;
+
+	M_End:
+		mes "[Sir Windsor]";
+		mes "..........";
+		close;
+
+OnInit:
+	waitingroom "Knight Test Waiting Room",8,"SW2::OnStart",1;
+	end;
+
+OnStart:
+	set $@KntUsers, getareausers("job_knt.gat", 24, 126, 63, 165);			// get user count for first lvl
+	set $@KntUsers, $@KntUsers + getareausers("job_knt.gat", 24, 32, 63, 71);		// get user count for second lvl + first lvl
+	set $@KntUsers, $@KntUsers + getareausers("job_knt.gat", 124, 132, 163, 171);		// get user count for third lvl + second lvl + first lvl
+	if($@KntUsers > 0) end;
+
+	if ((getwaitingroomstate(33)) == 0) end;			// stops the rest of the script from running if there is no one in the waiting room;
+	//kills off any left over monsters from other testers
+	killmonster "job_knt.gat", "KntLvl1::OnMyMobDead";
+	killmonster "job_knt.gat", "KntLvl2::OnMyMobDead";
+	killmonster "job_knt.gat", "KntLvl3::OnMyMobDead";
+	warpwaitingpc "job_knt.gat",43,146;
+	donpcevent "KntLvl1::OnStart";
+	end;
+}
+
+// First Level ---------------------------------------------------------
+job_knt.gat,1,1,1	script	KntLvl1	-1,{
+OnStart:
+	set $@KntRm, 1;
+	set $@KntMob,12;
+	monster "job_knt.gat",39,150,"Dustiness",1114,1,"KntLvl1::OnMyMobDead";
+	monster "job_knt.gat",47,150,"Dustiness",1114,1,"KntLvl1::OnMyMobDead";
+	monster "job_knt.gat",39,142,"Dustiness",1114,1,"KntLvl1::OnMyMobDead";
+	monster "job_knt.gat",47,142,"Dustiness",1114,1,"KntLvl1::OnMyMobDead";
+	monster "job_knt.gat",43,137,"Piere",1160,1,"KntLvl1::OnMyMobDead";
+	monster "job_knt.gat",43,155,"Piere",1160,1,"KntLvl1::OnMyMobDead";
+	monster "job_knt.gat",43,155,"Deniro",1105,1,"KntLvl1::OnMyMobDead";
+	monster "job_knt.gat",43,155,"Deniro",1105,1,"KntLvl1::OnMyMobDead";
+	monster "job_knt.gat",43,155,"Andre",1095,1,"KntLvl1::OnMyMobDead";
+	monster "job_knt.gat",43,137,"Andre",1095,1,"KntLvl1::OnMyMobDead";
+	monster "job_knt.gat",35,146,"Argos",1100,1,"KntLvl1::OnMyMobDead";
+	monster "job_knt.gat",52,146,"Argos",1100,1,"KntLvl1::OnMyMobDead";
+	initnpctimer "TimerKnt";
+	end;
+
+OnMyMobDead:
+	set $@KntMob, $@KntMob - 1;
+	if($@KntMob > 0) end;
+
+	stopnpctimer "TimerKnt";
+	areaannounce "job_knt.gat", 24, 126, 63, 165, "[Sir Windsor]: Get ready for the second level....",8;
+	set $@KntMob, 0;
+	addtimer 5000, "KntLvl2::OnTimer5000";
+	end;
+}
+
+
+// Second Level ---------------------------------------------------------
+job_knt.gat,1,1,1	script	KntLvl2	-1,{
+OnTimer5000:
+	set $@KntRm, 2;
+	set $@KntMob,12;
+	monster "job_knt.gat",53,52,"Frilldora",1119,1,"KntLvl2::OnMyMobDead";
+	monster "job_knt.gat",34,52,"Frilldora",1119,1,"KntLvl2::OnMyMobDead";
+	monster "job_knt.gat",43,42,"Desert Wolf",1106,1,"KntLvl2::OnMyMobDead";
+	monster "job_knt.gat",43,62,"Desert Wolf",1106,1,"KntLvl2::OnMyMobDead";
+	monster "job_knt.gat",58,52,"Drainliar",1111,1,"KntLvl2::OnMyMobDead";
+	monster "job_knt.gat",58,52,"Drainliar",1111,1,"KntLvl2::OnMyMobDead";
+	monster "job_knt.gat",29,52,"Drainliar",1111,1,"KntLvl2::OnMyMobDead";
+	monster "job_knt.gat",29,52,"Drainliar",1111,1,"KntLvl2::OnMyMobDead";
+	monster "job_knt.gat",60,68,"Anacondaq",1030,1,"KntLvl2::OnMyMobDead";
+	monster "job_knt.gat",27,68,"Anacondaq",1030,1,"KntLvl2::OnMyMobDead";
+	monster "job_knt.gat",60,35,"Anacondaq",1030,1,"KntLvl2::OnMyMobDead";
+	monster "job_knt.gat",27,35,"Anacondaq",1030,1,"KntLvl2::OnMyMobDead";
+	warp "job_knt.gat",43,52;
+	initnpctimer "TimerKnt";
+	end;
+
+OnMyMobDead:
+	set $@KntMob, $@KntMob - 1;
+	if($@KntMob > 0) end;
+
+	stopnpctimer "TimerKnt";
+	areaannounce "job_knt.gat", 24, 32, 63, 71, "[Sir Windsor]: Get ready for the third level....",8;
+	set $@KntMob, 0;
+	addtimer 5000, "KntLvl3::OnTimer5000";
+	end;
+
+}
+
+// Third Level ---------------------------------------------------------------
+job_knt.gat,1,1,1	script	KntLvl3	-1,{
+OnTimer5000:
+	set $@KntRm, 3;
+	set $@KntMob,7;
+	monster "job_knt.gat",136,152,"Knife Goblin Bro",1122,1,"KntLvl3::OnMyMobDead";
+	monster "job_knt.gat",150,152,"Mace Goblin Bro",1123,1,"KntLvl3::OnMyMobDead";
+	monster "job_knt.gat",143,145,"Axe Goblin Bro",1124,1,"KntLvl3::OnMyMobDead";
+	monster "job_knt.gat",143,167,"Hammer Goblin Bro",1125,1,"KntLvl3::OnMyMobDead";
+	monster "job_knt.gat",139,167,"Club Goblin Bro",1126,1,"KntLvl3::OnMyMobDead";
+	monster "job_knt.gat",147,167,"Goblin Archer",1258,1,"KntLvl3::OnMyMobDead";
+	monster "job_knt.gat",136,158,"Steam Goblin",1280,1,"KntLvl3::OnMyMobDead";
+	warp "job_knt.gat",143,152;
+	initnpctimer "TimerKnt";
+	end;
+
+OnMyMobDead:
+	set $@KntMob, $@KntMob - 1;
+	if($@KntMob > 0) end;
+
+	stopnpctimer "TimerKnt";
+	set KNIGHT_Q2, 2;
+	areaannounce "job_knt.gat", 124, 132, 163, 171, "[Sir Windsor]: ....... test completed.",8;
+	set $@KntMob, 0;
+	addtimer 7000, "TimerKnt::OnTimer184000";
+	end;
+
+}
+
+// Timer --------------------------------------------------------------------------------
+job_knt.gat,1,1,1	script	TimerKnt	-1,{
+
+OnTimer2000:
+	set $@KntTime$, "มีเวลา 3 นาที";
+	donpcevent "SW2::OnStart";		//checks to see if anyone is still in the room, in case of logout or KO
+	callsub AnnounceKnt;
+OnTimer32000:
+	donpcevent "SW2::OnStart";
+	end;
+OnTimer62000:
+	set $@KntTime$, "มีเวลา 2 นาที";
+	donpcevent "SW2::OnStart";
+	callsub AnnounceKnt;
+OnTimer92000:
+	donpcevent "SW2::OnStart";
+	end;
+OnTimer122000:
+	set $@KntTime$, "มีเวลา 1 นาที";
+	donpcevent "SW2::OnStart";
+	callsub AnnounceKnt;
+OnTimer152000:
+	set $@KntTime$, "มีเวลา 30 นาทีสุดท้าย";
+	donpcevent "SW2::OnStart";
+	callsub AnnounceKnt;
+OnTimer162000:
+	set $@KntTime$, "มีเวลา 10 นาทีสุดท้าย";
+	callsub AnnounceKnt;
+OnTimer182000:
+	set $@KntTime$, "หมดเวลา เจ้าแพ้การทดสอบ!!";
+	donpcevent "SW2::OnStart";
+	callsub AnnounceKnt;
+OnTimer184000:
+	stopnpctimer;
+	if($@KntRm==1) areawarp "job_knt.gat", 24, 126, 63, 165, "prt_in.gat",77,96;
+	if($@KntRm==2) areawarp "job_knt.gat", 24, 32, 63, 71, "prt_in.gat",77,96;
+	if($@KntRm==3) areawarp "job_knt.gat", 124, 132, 163, 171, "prt_in.gat",77,96;
+	areaannounce "job_knt.gat", 82, 98, 97, 113, "[Sir Windsor]: ห้องสำหรับการทดสอบได้ถูกเปิดขึ้น.....",8;
+	killmonster "job_knt.gat", "KntLvl1::OnMyMobDead";
+	killmonster "job_knt.gat", "KntLvl2::OnMyMobDead";
+	killmonster "job_knt.gat", "KntLvl3::OnMyMobDead";
+	donpcevent "SW2::OnStart";
+	end;
+
+AnnounceKnt:
+	if($@KntRm==1) areaannounce "job_knt.gat", 24, 126, 63, 165, "[Sir Windsor]: "+$@KntTime$+".",8;
+	if($@KntRm==2) areaannounce "job_knt.gat", 24, 32, 63, 71, "[Sir Windsor]: "+$@KntTime$+".",8;
+	if($@KntRm==3) areaannounce "job_knt.gat", 124, 132, 163, 171, "[Sir Windsor]: "+$@KntTime$+".",8;
+	end;
+}
+
+
+//<------------------------------------------------------------------------------------ Lady Amy Beatris (4th Test) ---------------------------------------------------------------------------------------------->\\
+prt_in.gat,69,107,5	script	Lady Amy Beatris	728,{
+	mes "[Lady Amy Beatris]";
+	if (class == Job_Knight) goto L_Knight;
+	if (class == Job_Novice) goto L_Novice;
+	if (class == Job_Swordman && KNIGHT_Q == 4) goto L_Test;
+	if (class == Job_Swordman && KNIGHT_Q == 5) mes "พูดคุยกับ Chivalry Captain Herman เขาจะบอกเกี่ยวกับทดสอบถัดไป";
+	if (class == Job_Swordman && KNIGHT_Q == 5) close;
+L_Other:
+	mes "ยินดีต้อนรับสู่ Prontera Chivalry.";
+	next;
+	mes "[Lady Amy Beatris]";
+	mes "นี่คือที่ที่ Knignt จะใช้เพื่อพักผ่อน";
+	close;
+L_Novice:
+	mes "ว้าว เจ้า Novice น้อย.";
+	emotion 14;
+	close;
+L_Knight:
+	if(sex==1) goto L_Male;
+	
+	L_Female:
+		mes "โอ้! เจ้าช่างเป็น Knight ที่น่ารักซะจริง ข้าเห็นเจ้าครั้งแรกก็เกือบจะหลงรัก";
+		emotion 14;
+		close;
+
+	L_Male:
+		mes "สวัสดีเจ้ารูปหล่อ  เจ้ามาที่เพื่อมาถามบางอย่างเกี่ยวกับเรื่องชุดเกราะล่ะสิ..";
+		emotion 3;
+		next;
+		menu "ใช่ ข้ามาเดิมพัน!!!",M_Yes, "อืม.. เอ่อ.. ไม่ดีกว่า.",M_No;
+
+		M_Yes:
+			mes "^FF0000(SLAPP!! SMACK!! BASH!!)^000000";
+			emotion 6;
+			percentheal (-10),0;
+			emotion 32;
+			close;
+ 
+		M_No:
+			mes "[Lady Amy Beatris]";
+			mes "ฮ่า ก็ตามใจเจ้าก็แล้วกัน";
+			emotion 21;
+			close;
+
+
+L_Test:
+	if(KNIGHT_Q2 == 1) mes "เจ้าคงพร้อมที่จะทำการทดสอบใหม่?";	//for when someone retakes the test
+	if(KNIGHT_Q2 == 1) goto M_Menu;
+	mes "สวัสดีเจ้าคือr ^ff0000"+strcharinfo(0)+"^000000 นะ?";
+	next;
+	mes "[Lady Amy Beatris]";
+	mes "ข้าคือ Amy Beatris เป็น Knight แห่ง Prontera Chivalry.";
+	mes "สำหรับการทดสอบของข้า ข้ามีเพียงคำถามแค่บางอย่าง..";
+	next;
+	mes "[Lady Amy Beatris]";
+	mes "เจ้าต้องตั้งใจฟังและเลือกคำตอบที่ถูกต้องที่สุด";
+M_Menu:
+	next;
+	menu "ข้าพร้อมแล้ว",M_0, "ข้าขอเวลาสักเดี๋ยว",M_End;
+
+	M_0:
+		set @score,0;
+
+		mes "[Lady Amy Beatris]";
+		mes "สมมุติว่าเจ้าอยู่ Morroc แล้วเจ้าต้องการหาเพื่อนร่วม party เจ้าจะทำอย่างไร?";
+		next;
+		menu "เดินตามหาคนรอบๆ",sM_0a, "สร้างห้องสนทนารอ",sM_0b, "ถามว่าใครต้องการจะเข้าตี้กับ Knight..",sM_0c;
+
+		sM_0a:
+			goto L_Cont1;
+
+		sM_0b:
+			set @score, @score + 10;
+			goto L_Cont1;
+
+		sM_0c:
+			set @score, @score + 10;
+
+		L_Cont1:
+		mes "[Lady Amy Beatris]";
+		mes "หากปาร์ตี้ของเจ้ากำลังจะเข้าไปในชั้นที่ 4 ของ ปิรามิด เจ้าจะทำอะไร?";
+		next;
+		menu "เดินตรวจสอบ เพื่อให้แน่ใจว่าปลอดภัย",sM_1a, "ต่อสู้ด้วยตัวเจ้าเอง",sM_1b, "เดินนำหน้าและค่อยๆ เดินอย่างช้าๆ",sM_1c;
+
+		sM_1a:
+			set @score, @score + 10;
+
+		sM_1b:
+			goto L_Cont2;
+
+		sM_1c:
+			set @score, @score + 10;
+
+		L_Cont2:
+		mes "[Lady Amy Beatris]";
+		mes "หากเจ้าพบที่อ่อนแอ กำลังถูกมอนสเตอร์ลุมอยู่ เจ้าจะทำอย่างไร?";
+		next;
+		menu "รีบเข้าไปเป็นกำลังสำรอง",sM_2a, "ช่วยเขาเมื่อเขาต้องการ",sM_2b, "ขี่ PecoPeco แล้วเดินผ่าน!",sM_2c;
+
+		sM_2a:
+			set @score, @score + 10;
+			goto L_Cont3;
+
+		sM_2b:
+			set @score, @score + 10;
+			goto L_Cont3;
+
+		sM_2c:
+
+		L_Cont3:
+		mes "[Lady Amy Beatris]";
+		mes "เมื่อมีผู้ชายยากจนคนนึงขอร้องเจ้า เจ้าจะทำเช่นไร?";
+		next;
+		menu "ถามเพื่อนในปาร์ตี้ให้ช่วยได้มั้ย",sM_3a, "ถามเขาว่าต้องการเงินเท่าไหร่",sM_3b, "ปล่อย ไม่สนใจ",sM_3c;
+
+		sM_3a:
+			set @score, @score + 10;
+
+		sM_3b:
+
+		sM_3c:
+
+		L_Cont4:
+		mes "[Lady Amy Beatris]";
+		mes "หากเจ้าต้องไปในสถานที่ที่แตกต่างกัน โดยแยกๆ กันเป็นกลุ่มเล็กๆ";
+		next;
+		mes "[Lady Amy Beatris]";
+		mes "ในระหว่างการต่อสู้ มอนสเตอร์ได้ดรอปขอบที่ดีมากชิ้นหนึ่งแล้วเจ้าหยิบขึ้นมา เจ้าจะทำอะไร?";
+		next;
+		menu "ให้แก่คนที่เจ้าคิดว่าเหมาะสมที่สุด",sM_4a, "แกล้งทำเป็นไม่รู้",sM_4b, "พูดคุยกับคนอื่นๆ",sM_4c;
+
+		sM_4a:
+			set @score, @score + 10;
+
+		sM_4b:
+			goto L_Cont5;
+
+		sM_4c:
+			set @score, @score + 10;
+
+		L_Cont5:
+		mes "[Lady Amy Beatris]";
+		mes "ในขณะที่เจ้ากำลังกลับไป Prontera เจ้าต้องการจะขายไอเท็มบางอย่าง";
+		mes "เจ้าคิดว่า วิธีใดจะเป็นวิธีที่ดีที่สุดในการขาย?";
+		next;
+		menu "ขายที่ NPC.",sM_5a, "ตั้งห้องสนทนาเพื่อโฆษณา",sM_5b, "เดินไปรอบๆ เพื่อหาคนที่ต้องการ",sM_5c;
+
+		sM_5a:
+			goto L_Cont6;
+
+		sM_5b:
+			set @score, @score + 10;
+			goto L_Cont6;
+
+		sM_5c:
+			set @score, @score + 10;
+
+		L_Cont6:
+		mes "[Lady Amy Beatris]";
+		mes "ถ้าเกิดมีคนเข้ามาหาเจ้า และขอเงินเจ้าเจ้าจะทำอย่างไร?";
+		next;
+		menu "ให้เงินเขาส่วนหนึ่ง ",sM_6a, "ไม่สนใจ",sM_6b, "บอกสถานที่ที่เหมาะสมที่เขาได้รับเงิน",sM_6c;
+
+		sM_6a:
+
+		sM_6b:
+			goto L_Cont7;
+		sM_6c:
+			set @score, @score + 10;
+
+		L_Cont7:
+		mes "[Lady Amy Beatris]";
+		mes "หากตอนนี้เจ้ากำลังฝึกฝนอยู่ในป่าอย่างมีความสุขกับการขี่ pecopeco.";
+		mes "แล้วเจ้าเดินไปเจอผู้ที่กำลังหลงทางเจ้าจะทำอย่างไร?";
+		next;
+		menu "บอกทางออกกับเขา",sM_7a, "พาเธอออกไปที่นี่",sM_7b, "ให้ Butterfly เขาไป",sM_7c;
+
+		sM_7a:
+			set @score, @score + 10;
+			goto L_Cont8;
+
+		sM_7b:
+			set @score, @score + 10;
+
+		sM_7c:
+
+		L_Cont8:
+		mes "[Lady Amy Beatris]";
+		mes "หากเจ้ากำลังต่อสู้กับมอนสเตอร์อยู่ในป่า";
+		mes "แล้วเจ้าเหลือยาฟื้พลังเพียงน้อยนิด เจ้าไม่รู้จะทำอย่างไร";
+		next;
+		mes "[Lady Amy Beatris]";
+		mes "ทันใดนั้นก็มี priest เดินมาแล้ว เจ้าจะทำอย่างไรต่อไป?";
+		next;
+		menu "'ให้ข้ารักษา'",sM_8a, "ขอให้เขาช่วย Heal ให้'",sM_8b, "'ข้าต้องการ Heal'",sM_8c;
+
+		sM_8a:
+			goto L_Cont9;
+
+		sM_8b:
+			set @score, @score + 10;
+
+		sM_8c:
+
+		L_Cont9:
+		mes "[Lady Amy Beatris]";
+		mes "หากเจ้าเบื่อและเจ้าตัดสินใตที่จะกลับไปที่เมือง";
+		mes "เมื่อเจ้าเดินไปบนท้องถนนเจ้ากลับเห็นไอท็มที่มีมูลค่ามาก เจ้าจะทำอย่างไร?";
+		next;
+		menu "เก็บมันมาเก็บไว้",sM_9a, "มองดูรอบๆ ว่าใครทิ้งมันไว้",sM_9b, "ปล่อยมันไว้อย่างนั้น",sM_9c;
+
+		sM_9a:
+			goto L_Cont10;
+
+		sM_9b:
+			set @score, @score + 10;
+			goto L_Cont10;
+
+		sM_9c:
+			set @score, @score + 10;
+
+		L_Cont10:
+		mes "[Lady Amy Beatris]";
+		mes "เรียบร้อย นี่เป็นคำถามทั้งหมดของข้า?";
+		next;
+		mes "[Lady Amy Beatris]";
+		mes "โอเค มาดูคะแนนของเจ้ากัน";
+		next;
+		mes "[Lady Amy Beatris]";
+		mes "คะแนนของเจ้าคือ ^ff0000"+@score+"^000000 เต็ม ^0000ff100^000000";
+		next;
+		mes "[Lady Amy Beatris]";
+		if(@score == 100) goto L_100;
+		if(@score >= 80) goto L_80;
+
+		L_Failed:
+			mes "ข้าเสียใจ แต่เจ้ามีคะแนนไม่ถึงที่กำหนด ข้าจะให้เจ้าเริ่มต้นใหม่อีกครั้ง";
+			set KNIGHT_Q2, 1;	//flag for re-taking the test
+			close;
+
+		L_100:
+			mes "ยอดเยี่ยม.. นี่เป็นคะแนนที่ยอดเยี่ยมมาก จะคงจะได้กลายเป็นหนึ่งใน Knight ที่ดีที่สุดที่เคยมีมา";
+			mes "คุยกับ Chivalry Captain Herman เขาจะบอกเกี่ยวกับการทดสอบถัดไป";
+			set KNIGHT_Q, 5;
+			set KNIGHT_Q2, 0;
+			close;
+		L_80:
+			mes "ไม่เลว แต่ก็ไม่ได้ดีตามที่ข้าหวังไว้ แต่เจ้าก็ยังมีคะแนนพอที่จะผ่านการทดสอบ";
+			mes "คุยกับ Chivalry Captain Herman เขาจะบอกเกี่ยวกับการทดสอบถัดไป";
+			set KNIGHT_Q, 5;
+			set KNIGHT_Q2, 0;
+			close;
+
+	M_End:
+		mes "[Lady Amy Beatris]";
+		mes "หากเจ้าแน่ใจว่าเจ้าพร้อม เจ้าก็กลับมาละกัน";
+		close;
+
+}
+
+
+//<------------------------------------------------------------------------------------------- Sir Edmund (5th Test) --------------------------------------------------------------------------------------------->\\
+prt_in.gat,70,99,5	script	Sir Edmund	734,{
+	mes "[Sir Edmund]";
+	if (class == Job_Knight) goto L_Knight;
+	if (class == Job_Swordman) goto L_Sword;
+	if (class == Job_Novice) goto L_Novice;
+L_Other:
+	mes "ทุกๆ สิ่งในโลกต้องมีความสามัคคี";
+	close;
+L_Novice:
+	mes "ข้าว่าเจ้าควรจะรีบฝึกฝนเมื่อเติมใหญ่เจ้าจะได้กลายเป็นคนที่ดี";
+	close;
+
+L_Knight:
+	mes "ถ้าหัวใจของเจ้าลงไปสู่แม่น้ำ";
+	mes "แม่น้ำจะล้างสิ่งต่างๆ ออกไปทั้งหมด";
+	next;
+	mes "[Sir Edmund]";
+	mes "และ Knight ก็ควรจะเป็นเช่นนั้น";
+	close;
+
+L_Sword:
+	if (KNIGHT_Q == 5) goto L_Test;
+	if (KNIGHT_Q == 6) goto L_Done;
+	mes "ผู้ที่มีความคิดไม่ดีเท่านั้น จะทำให้ฝันของเจ้ากลายเป็นฝันร้าย";
+	close;
+L_Test:
+	if(KNIGHT_Q2 == 1) goto L_ReTest;
+	if(KNIGHT_Q2 == 2) goto L_Done;
+	mes "โอ้.. ข้าจะเปิดการทดสอบให้กับเจ้า";
+	mes "ข้าหวังว่าเจ้าจะผ่านการทดสอบ";
+	next;
+	mes "[Sir Edmund]";
+	mes "ข้าคือ Edmund.";
+	mes "ข้าเป็น knight แห่ง สมาคม Knight ใน prontera";
+	next;
+	mes "[Sir Edmund]";
+	mes "โอเค เอาล่ะ เริ่มการทดสอบได้";
+	next;
+	warp "job_knt.gat",143,57;
+	doevent "ev_Test::OnStart1";
+	end;
+
+	L_ReTest:
+		mes "ข้าเห็นเจ้าพยายามอย่างหนักในผ่านการทดสอบที่ผ่านมา";
+		mes "knights จะต้องป้องกันไม่ให้คนพาลไปทำร้าย monsters ที่อ่อนแอ";
+		next;
+		mes "[Sir Edmund]";
+		mes "โอเค เริ่มใหม่อีกครั้ง";
+		next;
+		warp "job_knt.gat",143,57;
+		doevent "ev_Test::OnStart1";
+		end;
+
+	L_Done:
+		mes "เจ้าทำได้ดีมาก เจ้าผ่านการทดสอบ";
+		next;
+		mes "[Sir Edmund]";
+		mes "ข้าหวังว่าในชีวิตจริงของเจ้าจะสามารถเอาชนะอุปสรรคต่างๆ ในชีวิตได้เช่นนี้";
+		next;
+		mes "[Sir Edmund]";
+		mes "กลับไปที่ Chivalry Captain Herman เขาจะบอกเกี่ยวกับบททดสอบถัดไป";
+		set KNIGHT_Q2,0;
+		set KNIGHT_Q,6;
+		close; 
+}
+
+// Test -----------------------------
+job_knt.gat,1,1,1	script	ev_Test	-1,{
+OnStart1:
+	killmonster "job_knt.gat","ev_Test::OnMyMobDead";
+	monster "job_knt.gat",141,57,"Poring",1002,1,"ev_Test::OnMyMobDead";
+	monster "job_knt.gat",145,57,"Poring",1002,1,"ev_Test::OnMyMobDead";
+	monster "job_knt.gat",143,55,"Poring",1002,1,"ev_Test::OnMyMobDead";
+	monster "job_knt.gat",143,59,"Poring",1002,1,"ev_Test::OnMyMobDead";
+	monster "job_knt.gat",141,55,"Lunatic",1063,1,"ev_Test::OnMyMobDead";
+	monster "job_knt.gat",141,59,"Lunatic",1063,1,"ev_Test::OnMyMobDead";
+	monster "job_knt.gat",145,55,"Lunatic",1063,1,"ev_Test::OnMyMobDead";
+	monster "job_knt.gat",145,59,"Lunatic",1063,1,"ev_Test::OnMyMobDead";
+	monster "job_knt.gat",139,57,"Chonchon",1011,1,"ev_Test::OnMyMobDead";
+	monster "job_knt.gat",147,57,"Chonchon",1011,1,"ev_Test::OnMyMobDead";
+	monster "job_knt.gat",143,53,"Chonchon",1011,1,"ev_Test::OnMyMobDead";
+	monster "job_knt.gat",143,61,"Chonchon",1011,1,"ev_Test::OnMyMobDead";
+	monster "job_knt.gat",130,69,"Spore",1014,1,"ev_Test::OnMyMobDead";
+	monster "job_knt.gat",157,69,"Spore",1014,1,"ev_Test::OnMyMobDead";
+	monster "job_knt.gat",130,42,"Spore",1014,1,"ev_Test::OnMyMobDead";
+	monster "job_knt.gat",157,42,"Spore",1014,1,"ev_Test::OnMyMobDead";
+	monster "job_knt.gat",165,54,"Spore",1014,1,"ev_Test::OnMyMobDead";
+	monster "job_knt.gat",165,57,"Spore",1014,1,"ev_Test::OnMyMobDead";
+	monster "job_knt.gat",122,54,"Spore",1014,1,"ev_Test::OnMyMobDead";
+	monster "job_knt.gat",122,57,"Spore",1014,1,"ev_Test::OnMyMobDead";
+
+	addtimer 240000, "ev_Test::OnTimerPass";
+	end;
+
+OnTimerPass:
+	set KNIGHT_Q2, 2;
+	areaannounce "job_knt.gat", 124, 36, 163, 75, "[Sir Edmund]: ยอดเยี่ยม",0;
+	addtimer 4000, "ev_Test::OnTimerWarp";
+	end;
+
+OnMyMobDead:
+	set KNIGHT_Q2, 1;
+	areaannounce "job_knt.gat", 124, 36, 163, 75, "[Sir Edmund]: เจ้าไม่ได้ใช้สันติภาพ เจ้าล้มเหลวในการทดสอบ",0;
+	deltimer "ev_Test::OnTimerPass";
+	addtimer 4000, "ev_Test::OnTimerWarp";
+	end;
+
+OnTimerWarp:
+	if(KNIGHT_Q2 == 2) warp "prt_in.gat",80,100;
+	if(KNIGHT_Q2 == 1) warp "prt_fild05.gat",353,251;
+	end;
+}
+
+
+//<------------------------------------------------------------------------------------------ Sir Grey (Final Test) ------------------------------------------------------------------------------------------------------>\\
+prt_in.gat,87,90,3	script	Sir Grey	119,{
+	mes "[Sir Grey]";
+	if (class == Job_Knight) goto L_Knight;
+	if (class == Job_Novice) goto L_Novice;
+	if (class == Job_Swordman && KNIGHT_Q == 6) goto L_Test;
+	if (class == Job_Swordman && KNIGHT_Q == 7) mes "ไปหา Chivalry Captain Herman เขาจะให้เกียรติยศอันยิ่งใหญ่ของ Knight";
+	if (class == Job_Swordman && KNIGHT_Q == 7) close;
+L_Other:
+	mes "ข้าว่าท่านกลับไปใช้เวลาให้มีค่าซะดีกว่า.. ?";
+	close;
+L_Novice:
+	mes "ข้าเชื่อว่า สักวันเจ้าจะต้องเป็นแบบข้าได้แน่นอน";
+	emotion 18;
+	close;
+L_Knight:
+	mes "ข้าไม่สามารถพูดได้ว่า ^00aa00Claymore^000000 จะเป็นอาวุธที่ดีที่สุดที่เหล่า Knight เคยได้ใช้!!";
+	next;
+	mes "[Sir Grey]";
+	mes "ใช่ ^00aa00'Claymore'^000000!! เป็นสิ่งที่ Knight ทุกคนควรต้องมี!";
+	next;
+	menu "ข้าอยากรู้เกี่ยวกับ Claymore ",M_Info, "ซื้อ Claymore",M_Buy, "จบการพูดคุย",M_Cancel;
+
+	M_Info:
+		mes "[Sir Grey]";
+		mes "Claymore เป็นอาวุธที่ดีที่สุดสำหรับ Knight เป็นอาวุธ 2 มือ";
+		mes "สมาคมของเราทำงานอย่างหนักเพื่อให้ได้ดาบ Claymore นี้ที่สวยงาม ดังนั้นข้าเจ้าสมควรที่จะให้รางวัลแก่การทำงานของพวกเขา";
+		next;
+		mes "[Sir Grey]";
+		mes "สำหรับค่าทำเนียมเล็ก ๆ คือ ^0000ff'74000 zeny'^000000  และ ^0000ff'1 Steel '^000000 สำหรับผู้ที่ต้องการได้ใช้ Claymore.";
+		close;
+
+	M_Buy:
+		if(countitem(999) < 1 || Zeny < 74000) goto L_NotEnough;
+
+		mes "[Sir Grey]";
+		mes "ยอดเยี่ยมนี่คงจะพอสำหรับค่าใช้จ่ายสำหรับแรงงาน";
+		next;
+		mes "[Sir Grey]";
+		mes "นี่จะเป็นอาวุธที่ยอดเยี่ยมที่สุดในการต่อสู้กับคู่ต่อสู้ที่เจ้าต้องการจะสู้ เพราะด้านความแรงและคุณภาพของมัน";
+		delitem 999, 1;
+		set Zeny, Zeny - 74000;
+		getitem 1163, 1;
+		close;
+
+		L_NotEnough:
+			mes "[Sir Grey]";
+			mes "นี่คือสิ่งที่ข้าต้องการ ^0000ff'74000 zeny'^000000  and ^0000ff'1 Steel '^000000 หากเจ้าต้องการที่จะใช้ Claymore";
+			close;
+
+	M_Cancel:
+		mes "[Sir Grey]";
+		mes "หากเจ้ามี Claymore เจ้าจะไปอัศวินที่ยอดเยี่ยมได้เลยคนหนึ่ง";
+		close;
+
+L_ReTest:
+	mes "ข้าเห็นเจ้ากลับมาอีกครั้ง นี่คงจะเป็นเวลาที่เจ้ากลับไปฝึกฝนเพิ่มเติมมา?";
+	mes "ข้าจะให้เจ้าได้เริ่มต้นการทดสอบนี้ใหม่อีกครั้ง";
+	goto M_Menu;
+
+L_Test:
+	if (KNIGHT_Q2 == 1) goto L_ReTest;
+	mes "ฮ่า ฮ่า เพื่อให้เจ้าทำบททดสอบทั้งหมดได้สำเร็จ?";
+	next;
+	mes "[Sir Grey]";
+	mes "โอเค เริ่มการทดสอบ การทดสอบนี้มันก็ไม่ได้ต่างจากคนอื่นๆ เท่าไหร่นัก";
+M_Menu:
+	next;
+	menu "เริ่มเลย!",M_0, "ข้าจะมาใหม่ภายหลัง",M_End;
+	
+	M_0:
+		set @score,0;
+		mes "[Sir Grey]";
+		mes "ข้ามีคำถามที่ต้องถามเจ้า";
+		next;
+
+		mes "[Sir Grey]";
+		mes "ทำไมเจ้าถึงอยากจะเป็น Knight?";
+		next;
+		menu "ข้าต้องการความแข็งแรง",sM_0, "ข้าอยากช่วยปกป้องเมือง",sM_1, "Swordsman มันห่วย",sM_2;
+
+		sM_0:
+			mes "[Sir Grey]";
+			mes "เจ้าอยากได้ความแข็งแรง หึ... ก็จริงที่การเป็น Knight ทำให้เจ้าแข็งแรงขึ้น แต่...";
+			next;
+			mes "[Sir Grey]";
+			mes "เจ้าว่าความแข็งแรงที่ไม่จำเป็นคืออะไร นอกจาก? ใช้เพื่อปกป้องเมือง? ใช้เพื่ออวดผู้อื่น? หรือเจ้ายังมีเหตุผลอื่นอีก?";
+			next;
+			menu "ข้าจะสร้างความร่ำรวย$$.",sM_0a, "ใช้เพื่อปกป้องตัวเอง",sM_0b, "ใช้เพื่อปกป้องผู้อื่น",sM_0c;
+
+			sM_0a:
+				set @score, @score + 10;
+				mes "[Sir Grey]";
+				mes "ใช่เงินคือสิ่งสำคัญ แต่ Knight ไม่มีความจำเป็นต้องใช้สิ่งนั้น..!!";
+				goto L_Cont1;
+
+			sM_0b:
+				mes "[Sir Grey]";
+				mes "นี่เป็นความคิดที่ดี การปกป้องตัวเอง ฮ่า ฮ่า";
+				goto L_Cont1;
+
+			sM_0c:
+				mes "[Sir Grey]";
+				mes "นี่เป็นความคิดที่ดีมาก เจ้าเป็น Knight เจ้าต้องคอยช่วยเหลือผู้ที่ต้องการความเชื่อเหลือเสมอ";
+				goto L_Cont1;
+
+		sM_1:
+			mes "[Sir Grey]";
+			mes "ข้าเห็น เจ้ามีความรู้สึกที่ดีต่อหมู่บ้านของเรา";
+			next;
+			mes "[Sir Grey]";
+			mes "ด้วยพลังที่มาพร้อมกับอัศวิน เจ้าว่าสิ่งใดที่ไม่ควรจะทำเพื่อที่จะช่วยเมืองเอาไว้?";
+			next;
+			menu "สิ่งที่เมืองต้องการให้ข้าทำ",sM_1a, "ข้าจะช่วยเพียงเพราะเงิน",sM_1b, "ข้าจะปกป้องพลเมืองทั้งหมด",sM_1c;
+
+			sM_1a:
+				mes "[Sir Grey]";
+				mes "เยี่ยม... เป็นความคิดทีดีทีเดียว";
+				goto L_Cont1;
+
+			sM_1b:
+				set @score, @score + 10;
+				mes "[Sir Grey]";
+				mes "เมืองนี้มันไม่ได้รุ่งเรืองเพียงเพราะเงินหรอกนะ และมันก็ไม่ใช่สิ่งสำคัญที่สุดด้วย";
+				mes "Knight นั้นคือสิ่งสำคัญที่จะคอยปกป้องและคอยทำให้เมืองก้าวหน้าต่อไป"; 
+				goto L_Cont1;
+
+			sM_1c:
+				mes "[Sir Grey]";
+				mes "เยี่ยม... เป็นความคิดทีดีทีเดียว";
+				goto L_Cont1;
+
+		sM_2:
+			set @score, @score + 5;
+			mes "[Sir Grey]";
+			mes "หืมม์...น่าสนใจ ที่คนส่วนใหญ่นั้นจะกลายเป็น Swordsman.";
+			next;
+			mes "[Sir Grey]";
+			mes "แล้วสิ่งใด ที่ทำให้เจ้าน้นไม่ชอบการเป็น Swordsman ล่ะ?";
+			next;
+			menu "ทักษะ",sM_2a, "Swordsman ห่วย",sM_2b, "ทำงานหนักเกินไป",sM_2c;
+
+			sM_2a:
+				set @score, @score + 5;
+				mes "[Sir Grey]";
+				mes "ทักษะแต่ละอย่างต้องใช้ในช่วงเวลาที่แตกต่างกันและสถานที่ที่แตกต่างกัน";
+				goto L_Cont1;
+
+			sM_2b:
+				set @score, @score - 5;
+				mes "[Sir Grey]";
+				mes "อะไรกัน? Swordsman มันเป็นอาชีพที่แข็งแรงที่สุดสำหรับ Classs 1 แล้วนะ";
+				goto L_Cont1;
+
+			sM_2c:
+				set @score, @score + 5;
+				mes "[Sir Grey]";
+				mes "ฮ่า ฮ่า! ก็อย่างว่าล่ะ? งานของ Swordsman มันใช่เรื่องง่ายๆ หรอกนะ ต้องใช้ความแรงทั้งหมดในการทำงาน";
+				goto L_Cont1;
+
+		L_Cont1:
+		next;
+		mes "[Sir Grey]";
+		mes "สิ่งแรกที่เจ้าจะทำเมื่อเจ้ากลายเป็น Knight เจ้าจะทำอะไร?";
+		next;
+		menu "ข้าจะไปต่อสู้",sM_3, "กลับหาคนที่รอข้าอยู่",sM_4, "ข้าจะเรียนรู้เรื่อง Knights เพิ่มเติม",sM_5;
+
+		sM_3:
+			mes "[Sir Grey]";
+			mes "โอเค ท่านต้องการที่จะสู้แบบใด อย่างไร?";
+			next;
+			menu "สู้เพื่อที่ข้าจะแข็งแกร่ง",sM_3a, "หาวิธีที่ดีที่สุดสำหรับข้า",sM_3b, "ไปยังที่ที่ Swordsmen ไปไม่ได้",sM_3c;
+
+			sM_3a:
+				set @score, @score + 10;
+				mes "[Sir Grey]";
+				mes "ข้าว่านี่ล่ะ คือสิ่งที่ดี เจ้าดูมีความกระตือรือร้น..";
+				mes "ข้าว่าเจ้าคงไม่อยากจะเป็นนักรบที่อ่อนแอใช่มั้ย";
+				goto L_Cont2;
+
+			sM_3b:
+				mes "[Sir Grey]";
+				mes "ใช่ ข้ารู้ว่าเจ้ากำลังหาจุดแจ็งและจุดอ่อนเพราะมันเป็นสิ่งสำคัญสำหรับ Knight";
+				goto L_Cont2;
+
+			sM_3c:
+				mes "[Sir Grey]";
+				mes "Knight คงอยากจะไปฝึกฝนที่สถานหากไกลไม่ใช่แบบ Swordsman จิงมั้ย";
+				mes "แต่หากเจ้าไปยังที่ไกลๆ จนเกินไปเจ้าอาจจะเกิดปัญหาขึ้นมาได้";
+				goto L_Cont2;
+
+		sM_4:
+			mes "[Sir Grey]";
+			mes "ใครกันที่กำลังรอเจ้าอยู่?";
+			next;
+			menu "เพื่อนของข้า",sM_4a, "คนในหมู่บ้าน",sM_4b, "คนรู้ใจของข้า",sM_4c;
+
+			sM_4a:
+				mes "[Sir Grey]";
+				mes "ใช่ข้าจะเห็นเจ้าเมื่อความสุข หากเจ้าสามารถปกป้องเพื่อนของเจ้าได้เมื่อเขาอยู่ในอันตราย";
+				goto L_Cont2;
+
+			sM_4b:
+				mes "[Sir Grey]";
+				mes "A villager...... oh... ";
+				goto L_Cont2;
+
+			sM_4c:
+				mes "[Sir Grey]";
+				mes "โชคดีกับคนที่เจ้ารัก";
+				goto L_Cont2;
+
+		sM_5:
+			mes "[Sir Grey]";
+			mes "ยังมีสิ่งใด ที่เจ้ายังต้องการจะรู้?";
+			next;
+			menu "เขตที่ปลอดภัยที่สุดสำหรับ Knight",sM_5a, "สถานที่ที่ Knight สามารถฝึกฝนได้",sM_5b, "ที่ที่ Knight จะได้เงินจำนวนมาก",sM_5c;
+
+			sM_5a:
+				set @score, @score + 5;
+				mes "[Sir Grey]";
+				mes "สถานที่ในโลกนี้ มันไม่มีที่ที่ปลอดภัยจริงๆ หรอกนะ สำหรับ Knight.";
+				goto L_Cont2;
+
+			sM_5b:
+				mes "[Sir Grey]";
+				mes "ถาม Knights อื่นๆ ใน Rune-Midgard for ";
+				goto L_Cont2;
+
+			sM_5c:	
+				set @score, @score + 15;
+				mes "[Sir Grey]";
+				mes "Knight จะต้องเสียเงินจำนวนมาก เพื่อปกป้องพลเมืองของ Rune-Midgard";
+
+		L_Cont2:
+		next;
+		mes "[Sir Grey]";
+		mes "นี่จะเป็นบททดสอบสุดท้ายที่จะทำให้เจ้าได้กลายเป็น Knight";
+		mes "ข้าจะให้ตัดสินใจมัน";
+		next;
+
+		if (@score == 0) goto L_1;
+		if (@score == 5) goto L_2;
+		if (@score == 10) goto L_3;
+
+		L_0:
+			set KNIGHT_Q2, 1;
+			mes "[Sir Grey]";
+			mes "อัศวินไม่เพียงแต่จะมีความแข็งแรง แต่ต้องมีระเบียบวินัยและจริยธรรมเช่นกัน";
+			mes "ข้าคิดว่าหน้าที่ที่ดีที่สุดของ Knight คือการช่วยเหลือและปกป้องผุ้อื่น";
+			next;
+			mes "[Sir Grey]";
+			mes "หากเจ้าต้องการที่จะเป็น Knight ข้าแนะนำให้เจ้าสละเวลาสักนิดแล้วกลับไปคิดให้ดีแล้วค่อยกลับมาหาข้า";
+			close;
+		
+		L_1:
+			set KNIGHT_Q, 7;
+			set KNIGHT_Q2, 0;
+			mes "[Sir Grey]";
+			mes "เจ้าต้องไปที่ Chivalry Captain Herman เขาจะทำให้เจ้ากลายเป็น Knight และเขาจะมอบเกียรติยศให้แห่ง Knight แก่เจ้า";
+			close;
+
+		L_2:
+			set KNIGHT_Q, 7;
+			set KNIGHT_Q2, 0;
+			mes "[Sir Grey]";
+			mes "เจ้าต้องไปที่ Chivalry Captain Herman เขาจะทำให้เจ้ากลายเป็น Knight และเขาจะมอบเกียรติยศให้แห่ง Knight แก่เจ้า";
+			close;
+
+		L_3:
+			set KNIGHT_Q, 7;
+			set KNIGHT_Q2, 0;
+			mes "[Sir Grey]";
+			mes "เจ้าต้องไปที่ Chivalry Captain Herman เขาจะทำให้เจ้ากลายเป็น Knight และเขาจะมอบเกียรติยศให้แห่ง Knight แก่เจ้า";
+			close;
+
+	M_End:
+		close;
+}

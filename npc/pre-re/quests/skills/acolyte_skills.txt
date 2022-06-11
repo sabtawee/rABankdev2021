@@ -1,0 +1,99 @@
+//===== Hercules Script ======================================
+//= Acolyte Skill Quest
+//===== By: ==================================================
+//= kobra_k88
+//===== Current Version: =====================================
+//= 1.8
+//===== Description: =========================================
+//= Quest for skills: Holy Light
+//===== Additional Comments: =================================
+//= 1.5 Rescripted to Aegis 10.3 stadards. [L0ne_W0lf]
+//= 1.6 Fixed a typo in job check. (Bugreport:1531) [L0ne_W0lf]
+//= 1.7 Updated to latest available official file. [Masao]
+//= 1.8 Fixed JobLevel requirements. [Euphy]
+//============================================================
+
+prt_church,173,23,4	script	Cleric	79,{
+	mes "[Acolyte Klift]";
+	mes "อ้า...พี่น้องทั้งหลาย!";
+	mes "ท่านต้องการพลังเพิ่มเติมที่จะนำไป";
+	mes "ช่วยเหลือผู้ตกทุกข์ได้ยากหรือไม่ ?";
+	mes "ข้าจะช่วยพวกท่านเอง...";
+	next;
+	switch (select("เกี่ยวกับ^3355FF' ความสามารถเพิ่มเติมของ Acolyte '^000000 ..:รับพลัง^3355FF' Holy light '^000000:หยุดพูดเถิดท่าน")) {
+	case 1:
+		mes "[Acolyte Klift]";
+		mes "เราสามารถพัฒนาความสามารถ";
+		mes "ด้วยตัวเราเอง";
+		mes "และสามารถเรียนรู้ ";
+		mes "ทักษะพิเศษจากเหล่านักบวชอาวุโส";
+		next;
+		mes "[Acolyte Klift]";
+		mes "พลัง^3355FF' Holy Light '^000000 ";
+		mes "สามารถปลดปล่อยเหล้าผู้ทุกข์";
+		mes "ทรมารจากอำนาจชั่วร้าย";
+		mes "นี้คือความสามารถพิเศษ";
+		mes "ถ้าท่านต้องการเรียนรู้ความสามารถนี้";
+		mes "ท่านต้องเตรียมสิ่งของบางอย่างเพื่อใช้งาน";
+		next;
+		mes "[Acolyte Klift]";
+		mes "ท่านจะต้องมี";
+		mes "^FF33551 Opal^000000";
+		mes "^FF33551 Crystal Blue^000000";
+		mes "^FF33551 Rosary^000000 ";
+		next;
+		mes "[Acolyte Klift]";
+		mes "และท่านต้องมี^FF3355 Job Level 30^000000ขึ้นไป";
+		mes "เพื่อเรียนรู้ความสามารถนี้";
+		next;
+		mes "[Acolyte Klift]";
+		mes "แต่ถ้าท่านเป็น Priest";
+		mes "ก็จะไม่มีข้อจำกัดนี้";
+		mes "เนื่องจาก Job Lv";
+		mes "ของท่านน่าจะสูงพอที่จะเรียนรู้พลังนี้แล้ว";
+		mes "job level.";
+		close;
+	case 2:
+		if (getskilllv("AL_HOLYLIGHT") == 1) {
+			mes "[Acolyte Klift]";
+			mes "ท่านได้เรียนรู้ทักษะ ";
+			mes "' Holy Light 'อยู่แล้ว";
+			mes "ท่านไม่สามารถเรียนรู้ทักษะนี้ได้อีก";
+			close;
+		}
+		if ((countitem(727) > 0) && (countitem(991) > 0) && (countitem(2608) > 0) && (JobLevel > 29 || (BaseJob == Job_Priest || BaseJob == Job_Monk)) && (BaseClass == Job_Acolyte)) {
+			mes "[Acolyte Klift]";
+			mes "ความศรัทธาของท่านได้พิสูจน์";
+			mes "แล้วว่าคุณเหมาะสมที่จะได้รับทักษะ";
+			mes " ' Holy Light '";
+			next;
+			delitem 727,1; //White_Jewel
+			delitem 991,1; //Crystal_Blue
+			delitem 2608,1; //Rosary
+			skill "AL_HOLYLIGHT",1,0;
+			mes "[Acolyte Klift]";
+			mes "ท่านผู้เปี่ยมด้วยศรัทธา...";
+			mes "ท่านสามารถใช้พลัง 'Holy light' ได้แล้ว";
+			mes "พระเจ้าจะสถิตอยู่กับท่านเสมอ....";
+			close;
+		}
+		mes "[Acolyte Klift]";
+		mes "โอ้...พี่น้องทั้งหลาย";
+		mes "ท่านยังไม่พร้อมที่จะเรียนทักษะ";
+		mes " ' Holy Light ' . . .";
+		next;
+		mes "[Acolyte Klift]";
+		mes "ถ้าท่านฟังสิ่งที่ข้าบอกเกี่ยวกับ";
+		mes "ความสามารถเพิ่มเติมของ acolyte";
+		mes "ท่านจะทราบว่าท่านยังขาดสิ่งใดบ้าง";
+		close;
+	case 3:
+		mes "[Acolyte Klift]";
+		mes ". . . . .";
+		mes "ข้าเข้าใจความต้องการของท่าน";
+		mes "จงใช้เวลาตัดสินใจและกระทำ";
+		mes "เพื่อให้มันบรรลุผล";
+		mes "พระเจ้าสถิตอยู่กับท่านเสมอ....";
+		close;
+	}
+}

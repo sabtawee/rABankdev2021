@@ -1,0 +1,382 @@
+//===== Hercules Script ======================================
+//= Sage Skills Quests
+//===== By: ==================================================
+//= Lupus, Reddozen
+//===== Current Version: =====================================
+//= 1.5
+//===== Description: =========================================
+//= [Official Conversion]
+//= Quests for skills: Create Converter, Elemental Change
+//===== Additional Comments: =================================
+//= 1.4 Rescripted to Aegis 10.3 standards. [5511]
+//= 1.5 Optimized. [Euphy]
+//============================================================
+
+yuno_in03,176,24,3	script	Mischna	755,{
+	if(BaseJob != Job_Sage) {
+		mes "[Mishuna]";
+		mes " สวัสดี ข้าเป็น Sage จาก Suycherville Academy ข้าชื่อ Mishuna ข้าต้องทำอะไร มั่งเมื่อเจ้ามาหาเจ้าที่นี่?";
+		next;
+		mes "[Mishuna]";
+		mes " หากเจ้ามี Sage หรือ";
+		mes " Scholar เป็นเพื่อน ที่ยังไม่เคยเรียน";
+		mes " ทักษะจาก Sir Barmundt's scrolls";
+		mes " เจ้าช่วยบอกเขาและพามาข้าทีได้ไหม?";
+		next;
+		mes "[Mishuna]";
+		mes " ขอโทษที่รบกวนเวลา";
+		mes " นักผจญภัยอย่างเจ้า";
+		close;
+	}
+	if(SAG_SK == 100) {
+		set .@Element, getskilllv("SA_ELEMENTFIRE") + getskilllv("SA_ELEMENTGROUND") + getskilllv("SA_ELEMENTWIND") + getskilllv("SA_ELEMENTWATER");
+		set .@Convert, getskilllv("SA_CREATECON");
+		if(.@Element && .@Convert) {
+			mes "[Mishuna]";
+			mes " หากเจ้ามี Sage หรือ";
+			mes " Scholar เป็นเพื่อน ที่ยังไม่เคยเรียน";
+			mes " ทักษะจาก Sir Barmundt's scrolls";
+			mes " เจ้าช่วยบอกเขาและพามาข้าทีได้ไหม?";
+			next;
+			mes "[Mishuna]";
+			mes " ข้ามั่นใจว่าทักษะเหล่านี้";
+			mes " มันจะเป็นประโยชน์มากในสนามรบ";
+			close;
+		}
+		mes "[Mishuna]";
+		mes " โอ้, เจ้าคงลืมสิ่งที่ข้าได้สอนเจ้าไป";
+		mes " หลังจากที่เจ้าได้เลื่อนขั้น";
+		mes " ข้าจะเป็นคนรื้อฟื้นความจำให้เจ้าเอง";
+		next;
+		if(.@Element == 0) {
+			mes "[Mishuna]";
+			mes " มันขึ้นอยู่กับความสามารถของเจ้า เจ้าจะสามารถทำได้สำเร็จ ^ff0000Creation Elemental Converter^000000 มันมีข้อแตกต่างคื่อ เจ้าจะเรียนรู้มันได้อย่างเดียวเท่านั้น ^FF0000Elemental Change^000000";
+			next;
+			mes "[Mishuna]";
+			mes " สิ่งนี้คือ ^FF0000Elemental Change^000000 เจ้าจะเรียนรู้มันไหม? ข้าจะบอกอีกที เจ้านั้นจะต้องเลือกสิ่งใดสิ่งหนึ่ง ซึ่งมันจะเปลี่ยนแปลงอีกไม่ได้แล้ว";
+			next;
+			setarray .@ReqSkill[0],280,283,282,281;
+			setarray .@ReqSkill$[0],"Blaze","Quake","Tornado","Tsunami";
+			setarray .@skill[0],1018,1017,1019,1008;
+			setarray .@skill$[0],"Fire","Earth","Wind","Water";
+			while(1) {
+				set .@i, select("Fire Elemental Change:Earth Elemental Change:Wind Elemental Change:Water Elemental Change")-1;
+				if(getskilllv(.@ReqSkill[.@i]) == 0) {
+					mes "[Mishuna]";
+					mes " ต้องขออภัยกับเจ้าด้วย";
+					mes " แต่การเรียน ^FF0000Endow "+.@ReqSkill$[.@i]+"^000000,";
+					mes " เจ้าจำเป็นต้องมี ^FF0000"+.@skill$[.@i]+" Elemental";
+					mes "Change^000000. เสียก่อนและ";
+					mes "Endow "+.@ReqSkill$[.@i]+" คือทักษะต่อไปของเจ้า";
+					mes "Elemental Change skill.";
+					next;
+				}
+				else {
+					mes "[Mishuna]";
+					mes " ดีมาก, ข้าจะสอนให้เจ้าได้รู้";
+					mes " ถึงทักษะ ^FF0000"+.@skill$[.@i];
+					mes "Elemental Change^000000 skill";
+					mes " และทักษะ ^FF0000Elemental Converter";
+					mes "Creation skill^000000 เอาล่ะ...";
+					mes " โปรด, ท่องคาถาตามข้า";
+					next;
+					mes "[Mishuna]";
+					mes "%$#@!#$% Yap~~";
+					specialeffect2 EF_RUWACH;
+					next;
+					mes "[Mishuna]";
+					mes "Yap!";
+					specialeffect2 EF_BRANDISHSPEAR;
+					next;
+					mes "^3355FF สำเร็จแล้ว";
+					mes " ตอนนี้เจ้าได้รู้ถึงทักษะ "+.@skill$[.@i]+" Elemental";
+					mes "Change skill และ Elemental";
+					mes "Converter Creation skill แล้ว^000000";
+					skill .@skill[.@i],1,0;
+					if(.@Convert == 0)
+						skill "SA_CREATECON",1,0;
+					next;
+					break;
+				}
+			}
+		}
+		else if(.@Convert == 0) {
+			mes "[Mishuna]";
+			mes " โอ้, ความจำบางส่วนของเจ้าคงหายไป";
+			mes " หลังจากที่เจ้าได้เลื่อนขั้น";
+			mes " ข้าจะเป็นคนรื้อฟื้นความจำให้เจ้าเอง";
+			next;
+			mes "[Mishuna]";
+			mes " เอาล่ะ, ข้าจะร่ายมนต์";
+			mes " เพื่อเรียกความทรงจำของเจ้าทั้งหมดกลับคืนมา";
+			mes " และข้าจะพยายามให้มากที่สุดเท่าที่จะทำได้...";
+			next;
+			mes "[Mishuna]";
+			mes "%$#@!#$% Yap~~";
+			specialeffect2 EF_RUWACH;
+			next;
+			mes "[Mishuna]";
+			mes "Yap!";
+			specialeffect2 EF_BRANDISHSPEAR;
+			next;
+			mes "^3355FF สำเร็จ, เจ้าได้รับ";
+			mes " ทักษะ Elemental Coverter Creation";
+			mes " เจ้าจะสามารถใช้มันได้อีกครั้ง^000000";
+			skill "SA_CREATECON",1,0;
+			next;
+		}
+		mes "[Mishuna]";
+		mes " ทักษะทั้งหมดข้าได้สอนให้แก่เจ้าแล้ว "+strcharinfo(0)+" ข้าหวังว่าเจ้าจะใช้มันได้ดีนะ และตลอดไป~!";
+		close;
+	}
+	else if(SAG_SK == 0) {
+		mes "[Mishuna]";
+		mes " สวัสดั ข้าเป็น Sage จาก Suycherville Academy ข้าชื่อ Mishuna ข้าต้องทำอะไร มั่งเมื่อเจ้ามาหาเจ้าที่นี่?";
+		next;
+		select(" ข้ากำลังมองหาความรู้ใหม่ๆ");
+		mes "[Mishuna]";
+		mes " อา, เจ้าคือ "+strcharinfo(0)+"";
+		mes " ข้าขอแนะนำความรู้ใหม่ๆ";
+		mes " ที่ข้าได้ค้นพบจาก scrolls ของ Sir Barmundt";
+		mes " เมื่อไม่นานนี้ เจ้าพอรู้ได้ยินบ้างไหม?";
+		next;
+		mes "[Mishuna]";
+		mes " Sir Barmundt's scrolls คือ";
+		mes " ความที่เกี่ยวกับพลังธาตุทั้ง 4 elements,";
+		mes " ได้แก่ Fire, Water, Earth, and Wind";
+		mes " และจะแบ่งออกเป็น 2 ทักษะ";
+		next;
+		mes "[Mishuna]";
+		mes " ได้แก่ ^FF0000Elemental Change^000000,";
+		mes " จะช่วยให้เจ้าสามารถเปลี่ยน";
+		mes " คุณสมบัติ element ของมอนสเตอร์ที่เจ้าต้องการ";
+		mes " ด้วยทักษะ ^FFFFFF ^000000Elemental Change";
+		mes " โดยจำเป็นต้องใช้คู่กับทักษะถัดไป";
+		next;
+		mes "[Mishuna]";
+		mes " ต่อมา ทักษะที่ 2 ก็คือ";
+		mes " Creation Elemental Converter,";
+		mes " เจ้าจะสามารถสร้างไอเท็ม";
+		mes " ที่จำเป็นต้องใช้กับทักษะ ^FFFFFF ^000000Elemental Change ที่ข้าได้บอกไปก่อนหน้านี้";
+		next;
+		mes "[Mishuna]";
+		mes " มาๆๆ เจ้าเตรียมตัวที่จะเรียนรู้หรือยัง?";
+		next;
+		if(select(" ขอครั้งหน้าดีกว่า: ใช่สอนข้าเลย") == 1) {
+			mes "[Mishuna]";
+			mes " เจ้าคงจะไม่มีเวลาว่าง";
+			mes " แต่ไม่เป็นไร, ไว้ครั้งหน้า";
+			mes " เมื่อเจ้าต้องการ";
+			mes " เจ้าสามารถกลับมาหาข้าได้ทุกเมื่อ";
+			mes " ขอให้โชคดี ลาก่อน~";
+			close;
+		}
+		mes "[Mishuna]";
+		mes " ดีมาก, แต่ก่อนอื่นเจ้าต้องเรียนรู็";
+		mes " ทักษะ Elemental Coverter Creation";
+		mes " เป็นอันดับแรกก่อน";
+		mes " มันจำเป็นมากต่อการเรียนรู็";
+		mes " Elemental Change skill.";
+		next;
+		mes "[Mishuna]";
+		mes " พื้นฐานของการเรียน";
+		mes " ทักษะ elemental converter";
+		mes " จำเป็นต้องใช้วัตถุดิบบางอย่าง";
+		mes " เจ้าช่วยนำมันมาให้ข้าทีได้ไหม...?";
+		next;
+		mes "[Mishuna]";
+		mes "^ff0000Scorpion Tails x10^000000.^000000";
+		mes "^ff0000Horns x7^000000,";
+		mes "^ff0000Colorful Shells x12^000000,";
+		mes "^ff0000Snail's Shells x10^000000,";
+		mes "^ff0000Scrolls x4^000000";
+		next;
+		mes "[Mishuna]";
+		mes " รีบไปหาวัตถุดิบเหล่านี้กลับมาให้ข้า";
+		mes " ข้าจะใช้มันเพื่อสร้างตัวอย่างของทักษะที่จำเป็นสำหรับเจ้า...";
+		set SAG_SK,1;
+		close;
+	}
+	else if(SAG_SK == 1) {
+		if (countitem(904) < 10 || countitem(947) < 7 || countitem(1013) < 12 || countitem(946) < 10 || countitem(7433) < 4) {
+			mes "[Mishuna]";
+			mes " หืมม์, เจ้ายังรวบรวมวัตถุดิบยังไม่ครบ";
+			mes " นี่คือสิ่งที่เจ้าต้องนำกลับมาให้ข้าครั้งหน้า...";
+			next;
+			mes "[Mishuna]";
+			mes "^ff0000Scorpion Tails x10^000000.^000000";
+			mes "^ff0000Horns x7^000000,";
+			mes "^ff0000Colorful Shells x12^000000,";
+			mes "^ff0000Snail's Shells x10^000000,";
+			mes "^ff0000Scrolls x4^000000";
+			next;
+			mes "[Mishuna]";
+			mes " แล้วอย่าลืมสิ่งที่ข้าบอกเจ้าไปอีกหล่ะ...?";
+			mes " รีบไปหาวัตถุดิบเหล่านี้กลับมาให้ข้า";
+			mes " ข้าจะใช้มันเพื่อสร้างตัวอย่างของทักษะที่จำเป็นสำหรับเจ้า...";
+			close;
+		}
+		else {
+			mes "[Mishuna]";
+			mes " ยอดเยี่ยม, เจ้านำมันกลับมาครบทุกอย่าง";
+			mes " ข้าจะอธิบายรายละเอียดคร่าวๆ ของทักษะนี้ให้เจ้าได้ฟังก่อนแล้วกัน";
+			next;
+			mes "[Mishuna]";
+			mes " ด้วยทักษะ ^FF0000Endow Blaze^000000";
+			mes " เจ้าจะสามารถสร้าง Fire elemental ได้";
+			mes " และ ^FF0000Endow Quake^000000";
+			mes " เจ้าจะสามารถสร้าง Earth elemental ได้";
+			next;
+			mes "[Mishuna]";
+			mes " และ ^FF0000Endow Tornado^000000";
+			mes " เจ้าจะสามารถสร้าง Wind elemental ได้";
+			mes " สุดท้าย ^FF0000Endow Tsunami^000000";
+			mes " เจ้าจะสามารถสร้าง Water elemental ได้";
+			mes " เจ้าคงเข้าใจสิ่งที่ข้าบอกไปใช่ไหม?";
+			next;
+			mes "[Mishuna]";
+			mes " ด้วยอัตราการสำเร็จจะขึ้นอยู่กับ";
+			mes " เลเวลของทักษะ Endow Blaze, Endow Quake, Endow Tornado,";
+			mes " และ Endow Tsunami ต่อไปนี้";
+			next;
+			mes "[Mishuna]";
+			mes " ตอนนี้, คัดลอกคำภีร์ของ Barmundt's scroll และเก็บมันไว้เพื่อเป็นข้อมูลให้เจ้าใช้งานทักษะ Creation Elemental Converter ได้เมื่อเจ้าต้องการ";
+			next;
+			mes "[Mishuna]";
+			mes "^3355FF เจ้าได้รับทักษะ";
+			mes " Creation Elemental Converter";
+			mes " หาข้อมูลเพิ่มเติมได้จาก คัมภีร์ของ Barmundt's^000000";
+			specialeffect2 EF_ABSORBSPIRITS;
+			delitem 904,10; // Scorpion_Tail
+			delitem 947,7; // Horn
+			delitem 1013,12; // Rainbow_Shell
+			delitem 946,10; // Snail's_Shell
+			delitem 7433,4; // Blank_Scroll
+			set SAG_SK,2;
+			skill "SA_CREATECON",1,0;
+			next;
+			mes "[Mishuna]";
+			mes " ว้าว, เจ้าได้เรียนรู้ทักษะได้อย่างรวดเร็ว!";
+			mes " ไม่น่าแปลกใจเลย ที่มีคนบอกว่าเจ้าเป็น Sage ที่เก่งที่สุดในตอนนี้!";
+			next;
+			mes "[Mishuna]";
+			mes " ตอนนี้เจ้าคงพร้อมที่จะเรียนทักษะ Elemental Change";
+			mes " ข้าจะเตรียมความพร้อมรอเจ้าสำหรับบทเรียนขั้นต่อไป";
+			close;
+		}
+	}
+	else if(SAG_SK == 2) {
+		if(getskilllv("SA_CREATECON") == 0) {
+			skill "SA_CREATECON",1,0;
+			mes " - หลังจากที่อ่านคำภีร์ของ Sage เหล่านั้น เจ้าจะต้องเรียน  ^ff0000Creation Elemental Converter^000000";
+			next;
+		}
+		mes "[Mishuna]";
+		mes " มันขึ้นอยู่กับความสามารถของเจ้า เจ้าจะสามารถทำได้สำเร็จ ^ff0000Creation Elemental Converter^000000 มันมีข้อแตกต่างคื่อ เจ้าจะเรียนรู้มันได้อย่างเดียวเท่านั้น ^FF0000Elemental Change^000000";
+		next;
+		mes "[Mishuna]";
+		mes " สิ่งนี้คือ ^FF0000Elemental Change^000000 เจ้าจะเรียนรู้มันไหม? ข้าจะบอกอีกที เจ้านั้นจะต้องเลือกสิ่งใดสิ่งหนึ่ง ซึ่งมันจะเปลี่ยนแปลงอีกไม่ได้แล้ว";
+		next;
+		setarray .@ReqSkill[0],280,283,282,281;
+		setarray .@ReqSkill$[0],"Blaze","Quake","Tornado","Tsunami";
+		setarray .@ReqItem$[0],"Red Bloods","Green Lives","Wind of Verdure","Crystal Blues";
+		setarray .@skill$[0],"Fire","Earth","Wind","Water";
+		while(1) {
+			set .@i, select("Fire Elemental Change:Earth Elemental Change:Wind Elemental Change:Water Elemental Change")-1;
+			if(getskilllv(.@ReqSkill[.@i]) == 0) {
+				mes "[Mishuna]";
+				mes " ข้าต้องเสียใจกับเจ้าก้วย";
+				mes " แต่การเรียนทักษะ ^FF0000Endow "+.@ReqSkill$[.@i]+"^000000,";
+				mes " จำเป็นต้องใช้ "+.@skill$[.@i]+" Elemental Change skill เป็นทางผ่านในการเรียน Endow";
+				mes .@ReqSkill$[.@i]+" เจ้าคงเข้าใจดีนะ";
+				next;
+			}
+			else {
+				mes "[Mishuna]";
+				mes " ยอดเยี่ยมมาก, เอาล่ะ";
+				mes " โปรดเตรียมวัตถุดิบ เพื่อใช้ในการเรียน";
+				mes .@skill$[.@i]+" Elemental Change skill มาให้ข้า";
+				next;
+				mes "[Mishuna]";
+				mes "^FF000020 "+.@ReqItem$[.@i]+"^000000,";
+				mes "^FF00001 Payon Solution^000000 และ";
+				mes "^FF00001 Morroc Solution^000000";
+				mes " แล้วนำมันกลับมา ข้าจะรอเจ้าอยู่ที่นี่";
+				set SAG_SK, 10 * (.@i+1); //10,20,30,40
+				close;
+			}
+		}
+	}
+	else if(SAG_SK == 10 || SAG_SK == 20 || SAG_SK == 30 || SAG_SK == 40) {
+		if(getskilllv("SA_CREATECON") == 0) {
+			skill "SA_CREATECON",1,0;
+			mes " - หลังจากที่อ่านคำภีร์ของ Sage เหล่านั้น เจ้าจะต้องเรียน  ^ff0000Creation Elemental Converter^000000";
+			next;
+		}
+		set .@i, (SAG_SK/10) - 1;
+		setarray .@ReqItem[0],990,993,992,991;
+		setarray .@ReqItem$[0],"Red Bloods","Green Lives","Wind of Verdure","Crystal Blues";
+		setarray .@skill[0],1018,1017,1019,1008;
+		setarray .@skill$[0],"Fire","Earth","Wind","Water";
+		if (countitem(.@ReqItem[.@i]) < 20 || countitem(1089) < 1 || countitem(1088) < 1) {
+			mes "[Mishuna]";
+			mes " เจ้ายังรวบรวมไอเท็มทั้งหมดไม่ครบ";
+			mes " ข้าจะเตือนเจ้าอีกครั้ง, นี่คือทั้งหมดที่เจ้าต้องนำกลับมาให้ข้า!";
+			next;
+			mes "[Mishuna]";
+			mes "^ff000020 "+.@ReqItem$[.@i]+"^000000,";
+			mes "^ff00001 Payon Solution^000000 and";
+			mes "^ff00001 Morroc Solution^000000. Please";
+			mes " ถ้าเจ้ายังมีส่วนผสมทั้งหมดนี่ไม่ครบก็ไม่ต้องมา.. ให้ข้าเห็นหน้าอีก";
+			close;
+		}
+		mes "[Mishuna]";
+		mes " เจ้าหาส่วนผสมทั้งหมดมาแล้วรึ";
+		mes " ดีมากข้าจะสอนเจ้า";
+		mes .@skill$[.@i]+" Elemental Change skill.";
+		mes " ทักษะที่จะเปลี่ยนธาตุของมอนสเตอร์เป็นธาตุ "+.@skill$[.@i]+".";
+		next;
+		mes "[Mishuna]";
+		mes " จงจำไว้ว่าเมื่อเจ้าใช้ทักษะ elemental converter อัตราความสำเร็จของมันจะขึ้นอยู่กับ Creation Elemental Converter ที่เจ้ามี";
+		next;
+		mes "[Mishuna]";
+		mes " ตอนนี้, "+strcharinfo(0)+",";
+		mes " ข้าจะร่ายคาถาให้เจ้าสามารถจดจำการใช้ทักษะ "+.@skill$[.@i]+" Elemental Change";
+		mes " เริ่มเลยนะ..?";
+		next;
+		mes "^3355FF Mishuna เริ่มร่ายคาถาแปลกๆ";
+		mes " มีแสงสีฟ้าอ่อนๆ ";
+		mes " ร่างกายของเขาเริ่มใหญ่ขึ้นอย่างๆ ช้า";
+		mes " พร้อมกับแสงรอบๆ ร่างกายของเขา^000000";
+		specialeffect2 EF_RUWACH;
+		next;
+		mes "[Mishuna]";
+		mes "@#$%^~ Yap!";
+		specialeffect2 EF_BRANDISHSPEAR;
+		delitem .@ReqItem[.@i],20;
+		delitem 1089,1; // Payon Potion
+		delitem 1088,1; // Morocc Potion
+		set SAG_SK,100;
+		skill .@skill[.@i],1,0;
+		next;
+		mes "[Mishuna]";
+		mes strcharinfo(0)+"...";
+		mes " ตอนนี้ทักษะ อยู่กับเจ้าแล้ว";
+		mes .@skill$[.@i]+" Elemental Change skill.";
+		mes " ข้าหวังว่าเจ้าจะใช้มันได้ดีนะ และตลอดไป~!";
+		close;
+	}
+	else {
+		mes "[Mishuna]";
+		mes " หากเจ้ามี Sage หรือ";
+		mes " Scholar เป็นเพื่อน ที่ยังไม่เคยเรียน";
+		mes " ทักษะจาก Sir Barmundt's scrolls";
+		mes " เจ้าช่วยบอกเขาและพามาข้าทีได้ไหม?";
+		next;
+		mes "[Mishuna]";
+		mes " ข้ามั่นใจว่าทักษะเหล่านี้";
+		mes " มันจะเป็นประโยชน์มากในสนามรบ";
+		close;
+	}
+}
+

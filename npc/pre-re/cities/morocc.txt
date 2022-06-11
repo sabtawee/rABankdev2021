@@ -1,0 +1,394 @@
+//==================================================== Town of Morroc ====================================================\\
+
+// Old Scholar ===============================
+morocc_in,112,122,2	script	Old Scholar	61,{
+	mes "[Old Scholar]";
+	mes "ทั้งชีวิตข้าได้ค้นคว้า Pyramids.  ข้าอาจไม่พบอะไรเลยนอกจากหลุมฝั่งศพของ Osiris!";
+	next;
+	mes "[Old Scholar]";
+	mes "มันอยู่ใน Morroc Pyramids, และเขาจะนอนหลับชั่วนิรันดร์";
+	close;
+}
+
+// Drunk Man =================================
+morocc,44,180,8	script	Drunk Man	89,{
+	mes "[Drunk Man]";
+	mes "เจ้ามานี่ที่เพื่ออะไร?";
+	mes "ข้าว่าเจ้าคงจะได้ยินเรื่องข่าวลือสินะ";
+	next;
+	mes "[Drunk Man]";
+	mes "ข่าวลือคือ ที่นี่มี มีดพิเศษสำเร็จผู้เป็นเจ้าของ.";
+	mes "และไม่มีใครครอบครองมีดพิเศษนี้";
+	next;
+	mes "[Drunk Man]";
+	mes "มันเป็นความฝันของหลายๆคน";
+	next;
+	mes "[Drunk Man]";
+	mes "เพื่อที่จะได้ครอบครองมีดพิเศษนี้?";
+	mes "หากเจ้าค้นหามีดพิเศษนั้น อย่าลืมเลี้ยงเหล้าข้านะ";
+	emotion 20;
+	close;
+}
+
+// Towner =================================
+morocc,68,260,8	script	Towner	99,{
+	mes "[Towner]";
+	mes "สามเหลี่ยมยักษ์ ที่ทิศตะวันตกเฉียงเหนือของเมือง เรียกว่า Pyramids มันมีมาแล้วเป็นพันปี.";
+	next;
+	mes "[Towner]";
+	mes "และไม่มีใครรู้ว่าใครเป็นคนสร้างมัน แต่ภายในมีมอนสเตอร์ที่ดุร้าย.";
+	next;
+	mes "[Towner]";
+	mes "หากไม่จำเป็น เจ้าอย่าเข้าไปโดยเด็ดขาด";
+	close;
+}
+
+// Ant Man Akira =============================
+morocc,76,75,4	script	Ant Man Akira	47,{
+	mes "[Ant Man Akira]";
+	mes "เกี่ยวกับทิศตะวันออกของเมือง Morocc มีถ้ำที่เรียกว่า ^ff0000ANTHELL^000000 ...";
+M_Menu:
+	next;
+	menu "'ถ้ำ Anthell ?'",M_Anthell,"มด?",M_Ants,"จบการสทนา",M_End;
+	
+	M_Anthell:
+		mes "[Ant Man Akira]";
+		mes "Anthell เป็นชื่อเรียกที่ตั้งตาม กลุ่มของมดที่มีขนาดใหญ่ของ Rune-Midgard.";
+		mes "ที่นั้นมีมดจำนวนมากและมีราชินีวางไข่จำนวนมาก.";
+		next;
+		mes "[Ant Man Akira]";
+		mes "หลายคนไปที่นั้น เนื่องจากบริมาณของไข่มีมาก";
+		next;
+		mes "[Ant Man Akira]";
+		mes "แต่เจ้าต้องระวัง เนื่องจากมดพวกนี้มันจะชอบลุมผู้ที่ไปโจมตีมัน แต่หากไม่ไหวจริงๆ เจ้าต้องใช้ Fly wing.!";
+		emotion 0;
+		goto M_Menu;
+	M_Ants:
+		mes "[Ant Man Akira]";
+		mes "มดในสถานที่แห่งนี้ มี 3 ชนิด ที่แตกต่างกัน";
+		mes "Andresมีสีขาว, Pieres มีสีเขียว, and Deniros มีสีแดง.  และมีความอันตรายที่แตกต่างกัน.";
+		next;
+		mes "[Ant Man Akira]";
+		mes "แต่มดทั้งหมดเหล่านี้มีนิสัยที่เหมือนกันคือ.";
+		next;
+		mes "[Ant Man Akira]";
+		mes "จะลุมเมื่อมีคนไปจู่โจมพวกมัน.";
+		mes "และมีนิสัยชอบขโมยสิ่งของที่ตกอยู่บนพื้น.";
+		goto M_Menu;
+	M_End:
+		mes "[Ant Man Akira]";
+		mes "สิ่งที่ข้าจะบอกเจ้าตอนนี้มันเป็นเรื่องใหญ่มากนะ.";
+		mes "เจ้าควรฟังสิ่งที่ข้าเล่า.";
+		next;
+		mes "[Ant Man Akira]";
+		mes "ในเร็วๆนี้.";
+		close;
+}
+
+// Poring Lady Syvia ==================================
+morocc,79,111,2	script	Poring Lady Syvia	700,{
+	mes "[Poring Lady Syvia]";
+	mes "ทั้งหมดใน Rune-Midgard ยังมีมอนสเตอร์เช่น Spores, หรือ musroom และอีกหลายชนดิ....";
+	next;
+	mes "[Poring Lady Syvia]";
+	mes "หรือ Pickys, ลูกไก่ทะเลทรายที่ใส่หมวกไข่ ใน Morrc Desert..!";
+	mes "และเจ้าคงรู้ว่า ^FF8888Poring^000000 ก็เป็นมอนสเตอร์น่ารักที่นิยมมากใน Rune-Midgard.";
+	next;
+	mes "[Poring Lady Syvia]";
+	mes "และนอกจาก Poring สีชมพู, แต่จะมี Poring ที่แตกต่างออกไปใน Prontera ที่ได้รับความสนใจมากเช่นกัน.";
+	next;
+	mes "[Poring Lady Syvia]";
+	mes "คือ ^ffaa00Angeling^000000 และ ^5555ffGhostring^000000";
+M_Menu:
+	next;
+	menu "Angeling?",M_Angel,"Ghostring?",M_Ghost,"จบการสนทนา",M_Quit;
+	
+	M_Angel:
+		mes "[Poring Lady Syvia]";
+		mes "Angeling คือ poring ที่มีปีก.  มันอาจจะเห็นตัวยากสักนิดนึง.";
+		mes "มันคือมอนสเตอร์ระดับสูงและมีคุณสมบัติเป็นธาตุศักดิ์สิทธิ์.";
+		next;
+		mes "[Poring Lady Syvia]";
+		mes "เจ้าต้องโจมตีด้วยอาวุธที่เป็นธาตุปิศาจ.";
+		next;
+		mes "[Poring Lady Syvia]";
+		mes "แต่ไม่ว่ายังไง ข้าก็รักพวกเขาไม่ว่าจะเป็น Poring หรือ Ghosting";
+		goto M_Menu;
+
+	M_Ghost:
+		mes "[Poring Lady Syvia]";
+		mes "Ghostring คือผีที่มีตัวขนาดเล็กมาก.";
+		next;
+		mes "[Poring Lady Syvia]";
+		mes "แต่มอนสเตอร์ตัวนี้คือมอนสเตอร์ระดับสูง ที่มีคุณสมบัติเป็นวิญญาณ!";
+		mes "การโจมตีด้วยอาวุธธรรมดาจะไม่ได้ผล นอกจากจะมีอาวุธที่เป็นธาตุเท่านั้น.";
+		next;
+		mes "[Poring Lady Syvia]";
+		mes "แต่ไม่ว่ายังไง ข้าก็รักพวกเขาไม่ว่าจะเป็น Poring หรือ Ghosting";
+		goto M_Menu;
+
+	M_Quit:
+		mes "[Poring Lady Syvia]";
+		mes "OMG!";
+		emotion 23;
+		next;
+		mes "[Poring Lady Syvia]";
+		mes "ตอนนี้ข้ารู้เกี่ยวกับ poring มากพอแล้ว!!";
+		next;
+		mes "[Poring Lady Syvia]";
+		mes "Hmf!";
+		emotion 32;
+		close;
+}
+
+// Slayer Kid ====================================
+morocc,123,58,4	script	Slayer Kid	118,{
+	mes "[Slayer Kid]";
+	mes "มือสังหารที่กำจัดศัตรูได้อย่างรวดเร็วและเงียบ....";
+	next;
+	mes "[Slayer Kid]";
+	mes "เขาเรียกมันว่า ^ff00ffAssassin^000000!!";
+M_Menu:
+	next;
+	menu "อืมม??",M_0,"เกี่ยวกับ Assassin?",M_1,"จบการสทนา",M_End;
+	
+	M_0:
+		mes "[Slayer Kid]";
+		mes "Assassins เขาว่ากันว่า ได้รับการฝึกมาเพื่อกำจัด 'เป้าหมาย' และพวกเขาไม่ทิ้งร่องรอยแม้แต่น้อย.";
+		next;
+		mes "[Slayer Kid]";
+		mes "3 เดือนมาแล้ว ที่ข้าเฝ้าตามหา Assassin??!!!";
+		goto M_Menu;
+	M_1:
+		mes "[Slayer Kid]";
+		mes "มีข่าวลือว่าหากเจ้าต้องการหา Assassin เจ้าสามารถพบได้ที่  1.ทิศตะวันออกของ Morroc 2. และทิศใต้ของเมือง Morocc, ข้าว่าเจ้าสามารถพบ Assassin ได้ที่นั้น.";
+		next;
+		mes "[Slayer Kid]";
+		mes "Assassin Cross, คือ นักฆ่าระดับแนวหน้า, ที่ได้เพิ่มระดับมาจาก Assassin.";
+		mes "The Assassin Cross มีเกียติที่สุดในบรรดา Assassin ทั้งหมด!";
+		next;
+		mes "[Slayer Kid]";
+		mes "ข้าไม่แน่ใจว่า";
+		next;
+		mes "[Slayer Kid]";
+		mes "พวกเขาจะมีอยู่จริง เพราะข้าได้เฝ้ารอมาแล้ว 3 เดือน";
+		goto M_Menu;
+	M_End:
+		close;
+
+}
+
+// Lapidary =======================================
+/*
+morocc,150,50,8	script	Lapidary	99,{
+	mes "[Lapidary]";
+	mes "ราชินีแห่งอัญมณีเพชรที่มีลักษณ์สวยงามและมันมีราคามาก";
+	next;
+	mes "[Lapidary]";
+	mes "หากมีขนาดใหญ่ราคาจะสูงตามไปด้วย.";
+	next;
+	mes "[Lapidary]";
+	mes "เพชรที่มีคุณภาพจะมีความแข็งแรงมาก.";
+	close;
+}
+*/
+
+// Uncle Dimitrii ==========================================
+morocc,180,155,4	script	Uncle Dimitri	49,{
+	mes "[Uncle Dimitrii]";
+	mes "อุณหภูมิใน Morroc Desert สูงกว่าที่ใดใน Rune-Midgard.";
+	next;
+	mes "[Uncle Dimitrii]";
+	mes "ที่ไหนหล่ะ ที่เจ้าต้องการรู้!!";
+M_Menu:
+	next;
+	menu "เกี่ยวกับ ทรายในทะเลทราย",M_1,"เกี่ยวกับความเหนื่อยล้าในทะเลทราย",M_2,"จบการสนทนา",M_End;
+	
+	M_1:
+		mes "[Uncle Dimitri]";
+		mes ". . . . . ดี";
+		next;
+		mes "[Uncle Dimitri]";
+		mes "มันควรจะร้อน แต่มันอาจไม่ร้อน.....";
+		next;
+		mes "[Uncle Dimitri]";
+		mes "ทะเลทรายเช่น Morroc desert ในบางแผนที่อาจมีความร้อนมาก แต่ในบางพื้นที่ไม่ร้อนเลย.";
+		mes "หรือเพียงแค่รู้สึกอุ่นเท่านั้น";
+		next;
+		mes "[Uncle Dimitri]";
+		mes "และสามารถฟื่้นฟู HP และ SP ได้ด้วยการนั่ง.";
+		goto M_Menu;
+	M_2:
+		mes "[Uncle Dimitri]";
+		mes "เอ่ะๆๆ";
+		next;
+		mes "[Uncle Dimitri]";
+		mes "ไม่มีอะไรที่จะแก้กระหายได้ดีเท่ากับ  ^ff0000Red Potion^000000 มันแก้กระหายและมีราคาถูก.";
+		next;
+		mes "[Uncle Dimitri]";
+		mes "มันสามารถฟื้นฟู HP ได้ในระดับหนึ่ง มันคือ^ff0000Red Potion^000000 มันคือสิ่งที่หลายคนต้องการ.";
+		goto M_Menu;
+	M_End:
+		mes "[Uncle Dimitri]";
+		mes "เจ้ารู้ไหม เจ้าจะสามารถหา ^0000bb'Milk'^000000 ได้จาก 'PecoPeco's Egg'? ข้าว่ามันเป็นสิ่งที่ควรรู้?";
+		close;
+}
+
+// Trader Joe =====================================
+/*
+morocc,208,85,7	script	Trader Joe	83,{
+	mes "[Trader Joe]";
+	mes "ข้าเป็นพ่อค้า และข้าต้องเดินทางตลอดระหว่าง Morroc และ Prontera.";
+	mes "ว่าเดินผ่านทะเลทรายที่ร้อนมาก และ เดินผ่านป่าที่มีความอุดมณ์สมบูรณ์.";
+	next;
+	mes "[Trader Joe]";
+	mes "วันหนึ่ง ข้าได้เดินทางไปในทะเลทราย.";
+	mes "และข้าคิดว่า ข้าควรจะหาน้ำดื่มจาก กระบองเพชร";
+	next;
+	mes "[Trader Joe]";
+	mes "แต่กระบองเพชรมีหนามที่แหลมคม";
+	emotion 23;
+	next;
+	mes "[Trader Joe]";
+	mes "ข้าถูกเข็มกระบองเพชรทิ่มเข้าที่ร่างกาย.";
+	next;
+	mes "[Trader Joe]";
+	mes "มันเป็นประสบการณ์ที่เลวร้ายที่สุด มอนสเตอร์ตัวนั้นคือ ^00cc00Muka^000000, มอนสเตอร์กระบองเพชร.";
+	next;
+	mes "[Trader Joe]";
+	mes "ในเรืองที่ข้าเล่าให้เจ้าฟัง คงเป็นประโยชน์ เวลาที่เจ้าจะออกเดินทะเลทราย";
+	close;
+}
+*/
+
+// Fly Man Armani ===============================
+morocc,234,273,3	script	Fly Man Armani	54,{
+	mes "[Fly Man Armani]";
+	mes "ข้าเห็นมัน..ข้าเห็นมัน!";
+	emotion 5;
+	next;
+	mes "[Fly Man Armani]";
+	mes "ข้าเห็น ^ff0000Dragon Fly^000000 ทางทิศเหนือของที่นี่!!";
+	next;
+	menu "อะไรคือ Dragon Fly?!",M_0,"อะไรกัน?",M_1;
+	
+	M_0:
+		mes "[Fly Man Armani]";
+		mes "มันเป็นหัวหน้าของแมลงวันทะเลทรายที่มีความแข็งแกร่งมาก.";
+		mes "และมันแข็งแรงมาก ยากที่จะเอาชนะมัน";
+		next;
+		mes "[Fly Man Armani]";
+		mes "Dragon Fly มันมีไอเทมที่หายากเช่น ^0000ddClip^000000!";
+		mes "Clips มันคือ อุปกรณ์เสริมสำหรับสวมใส่.";
+		next;
+		mes "[Fly Man Armani]";
+		mes "Clips นั้นมี ^ffaa001 slot^000000 และสามารถใส่การ์ด.";
+		mes "เพื่อเพิ่มความสามารถ.";
+		next;
+		mes "[Fly Man Armani]";
+		mes "เจ้าทำไมไม่ลองตามล่า Dragon Fly ดูกันเล่า?";
+		emotion 20;
+		close;
+	M_1:
+		mes "[Fly Man Armani]";
+		mes "อะไรกัน!!??";
+		emotion 23;
+		next;
+		mes "[Fly Man Armani]";
+		mes "หากเจ้าจะแตกตื่นกับ Dragon Fly??  ทำไมเจ้าไม่ลองจัดการกับมันดู!";
+		emotion 32;
+		next;
+		mes "[Fly Man Armani]";
+		mes "ข้าคิดว่าเจ้าจะจัดการกับมันได้";
+		next;
+		mes "[Fly Man Armani]";
+		mes "^ff0000Dragon Fly^000000. จงจำไว้ว่าอย่าเกรงกลัวมัน";
+		close;
+}
+
+// Uncle Phlanette ================================
+morocc,277,213,4	script	Uncle Phlanette	48,{
+	mes "[Uncle Phlanette]";
+	mes "Morroc เป็นพื้นที่แห้งแล้งที่สุดใน Rune-Midgard.";
+M_Menu:
+	next;
+	menu "เกี่ยวกับทะเลทราย",M_0,"จบการสนทนา",M_End;
+	
+	M_0:
+		mes "[Uncle Phlanette]";
+		mes "ข้ามีอะไรจะบอกเจ้าเล็กๆน้อยๆเกี่ยวกับทะเลทราย";
+		next;
+		mes "[Uncle Phlanette]";
+		mes "ทะเลทรายเป็นดินแดนที่แห้งแล้ง.";
+		mes "และมีฝนเพียงเล็กน้อยเท่านั้น.";
+		next;
+		mes "[Uncle Phlanette]";
+		mes "แต่ข้ายังมีวิธีเอาชีวิตรอดในทะเลทราย."; 
+		next;
+		mes "[Uncle Phlanette]";
+		mes "โดยการดูดกินน้ำจาก.";
+		mes "มอนสเตอร์^00cc00'Mukas'^000000 เป็นมอนสเตอร์ประเภทพืช ที่ดูดน้ำไว้ในลำต้นเสมอ.";
+		goto M_Menu;
+	M_End:
+		mes "[Uncle Phlanette]";
+		mes "ทรายๆ ทรายที่นี่คือ ดินแดนของทราย";
+		emotion 0;
+		next;
+		mes "[Uncle Phlanette]";
+		mes "ข้าเบื่อที่นี่ ทรายๆ";
+		next;
+		mes "[Uncle Phlantette]";
+		mes "ข้าไม่ชอบ Morroc";
+		emotion 32;
+		close;
+}
+
+//<================================================== Assassin Guild ====================================================>\\
+
+// Hashisid ====================================
+moc_fild16,199,212,4	script	Hashisid	48,{
+	mes "[Hashisid]";
+	mes "เกี่ยวกับ Assassin มีข้อดีและข้อเสีย ที่เจ้ายังไม่รู้.";
+	next;
+	menu "เกี่ยวกับ Assassins",M_0,"ออกจากการสนทนา",M_End;
+	
+	M_0:
+		mes "[Hashisid]";
+		mes "ข้าจะบอกเจ้าเล็กๆน้อยๆเกี่ยวกับ Assassins";
+		next;
+		mes "[Hashisid]";
+		mes "Assassin's คือนักฆ่า และ จอมขโมย.";
+		mes "ที่ไม่มีบุคคลใดชื่นชอบ และ ไม่มีสามารถค้นพบหาตัวเขา.";
+		next;
+		mes "[Hashisid]";
+		mes "แต่ข้อดีของ Assassin คือ จะไม่ฆ่าคนที่บริสุทธิ์ เขาดูเหมือนจะโหดร้าย";
+		mes "แต่เขาจะฆ่าเฉพาะคนที่ทำชั่วเท่านั้น!";
+		close;
+	M_End:
+		close;
+}
+
+//==================================================
+// Assassin Guild Guards
+//===================================================
+
+moc_fild16,195,281,4	script	Assassin Guardian#1::SinGuard	707,{
+	mes "[Assassin Guardian]";
+	if(Class == Job_Assassin) mes "	ยินดีต้อนรับ.";
+	if(Class == Job_Assassin) close;
+
+	set @temp, rand(1,4);
+	if(@temp == 1) mes "........";
+	if(@temp == 2) mes "อืมม..........";
+	if(@temp == 3) mes "อืมม... เจ้าไม่ควรมาที่นี่.....";
+	if(@temp == 4) mes "ที่นี่คือสถานที่ต้องห้าม.......";
+	close;
+}
+
+moc_fild16,204,281,4	duplicate(SinGuard)	Assassin Guardian#2	707
+moc_fild16,207,281,4	duplicate(SinGuard)	Assassin Guardian#3	707
+moc_fild16,216,281,4	duplicate(SinGuard)	Assassin Guardian#4	707
+moc_fild16,200,231,4	duplicate(SinGuard)	Assassin Guardian#5	707
+moc_fild16,211,231,4	duplicate(SinGuard)	Assassin Guardian#6	707
+moc_fild16,200,257,4	duplicate(SinGuard)	Assassin Guardian#7	707
+moc_fild16,211,257,4	duplicate(SinGuard)	Assassin Guardian#8	707

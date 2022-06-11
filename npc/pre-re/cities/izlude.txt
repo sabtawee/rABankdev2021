@@ -1,24 +1,530 @@
-//===== rAthena Script ======================================= 
-//= Izlude Town Pre-Renewal
-//===== By: ================================================== 
-//= Daegaladh
-//===== Current Version: ===================================== 
-//= 1.0
-//===== Compatible With: ===================================== 
-//= rAthena Project
-//===== Description: ========================================= 
-//= [Official Conversion]
-//= Izlude town NPCs.
-//===== Additional Comments: ================================= 
-//= 1.0 First Version.
-//============================================================
+// Welcome Sign ----------------------------------------------------------
+izlude,125,116,1	script	Welcome Sign	111,{
+  mes "~กรุณาอ่าน...~";
+  mes "ยินดีต้อนรับสู่ Izlude! คือเมืองย่อยของ Prontera และบ้านของ Swordsmen หรือ Cool Event Corp.'s!";
+  close;
+}
 
-izlude,201,181,2	duplicate(Sailor_izlude)	Sailor#izlude	100
-izlude,55,74,2	duplicate(Bonne_izlude)	Bonne#izlude	90
-izlude,135,78,2	duplicate(Charfri_izlude)	Charfri#izlude	91
-izlude,119,121,2	duplicate(Cuskoal_izlude)	Cuskoal#izlude	124
-izlude,150,118,2	duplicate(Dega_izlude)	Dega#izlude	84
-izlude,150,143,2	duplicate(Kylick_izlude)	Kylick#izlude	97
-izlude,56,126,2	duplicate(Red_izlude)	Red#izlude	85
-izlude,58,126,2	duplicate(Cebalis_izlude)	Cebalis#izlude	98
-izlude,124,178,2	duplicate(Soldier_izlude)	Soldier#izlude	105
+// Sign: Marina -----------------------------------------------------------------
+izlude,179,183,1	script	Izlude Marina	111,{
+  mes "~กรุณาอ่าน...~";
+  mes "สามารถนั่งเรือไป Alberta หรือ Byalan island.";
+  close;
+}
+
+// Sign: Swordsman Assoc. ----------------------------------------------------
+izlude,54,139,1	script	Swordsman Association	111,{
+  mes "~กรุณาอ่าน...~";
+  mes "Izlude คือที่ตั้งสมาคม Swordsman ที่พร้อมที่จะปกป้อง Rune-Midgard.";
+  close;
+}
+
+//Bonne-----------------------------------------------------------------------------------
+izlude,55,74,2	script	Bonne	90,{
+	mes "[Bonne]";
+	mes "ยินดีต้อนรับสู่ Izlude.";
+	next;
+	mes "[Bonne]";
+	mes "Izlude เป็นเมืองย่อยของ Prontera, ที่ดีของ Rune-Midgard.";
+	next;
+	mes "[Bonne]";
+	mes "Izlude สมาคมของ Swordman ได้ตั้งอยู่ที่นี่ และยังคงปกป้องบ้านเมืองด้วยความปลอดภัย.";
+	next;
+	mes "[Bonne]";
+	mes "และถูกพัฒนาขึ้นมาด้วยเทคโนโลยีและศิลปะ.";
+	next;
+	mes "[Bonne]";
+	mes "สถานที่แห่งนี้เป็นสถานที่ของผู้ที่มีความเก่งกาจ.";
+	next;
+	mes "[Bonne]";
+	mes "ยินดีต้อนรับที่เจ้าได้เข้ามาเยี่ยมในเมือง Izlude.";
+	close;
+}
+
+
+//Cuskoal-------------------------------------------------------------------------------------
+izlude,119,121,1	script	Cuskoal	124,{
+	set @TEMP, rand(2);
+	mes "[Cuskoal]";
+	if(@TEMP != 0) goto L_R0;
+	mes "ที่นี่คือสถานที่ที่จะมาทดสอบทักษะของพวกเขา.";
+	mes "เจ้าสามารถต่อสู้กับมอนสเตอร์ในระดับที่แตกต่างกัน";
+	next;
+	mes "[Cuskoal]";
+	mes "สิ่งที่ข้าจะพูด?";
+	close;
+
+	L_R0:
+		mes "Prontera เป็นเมืองที่มีสถานที่อำนวยความสะดวกมากมาย.";
+		next;
+		mes "[Cuskoal]";
+		mes "สถานที่มากมายที่มีประวัติที่ดี.";
+		next;
+		mes "[Cuskoal]";
+		mes "หากเจ้าฟัง เจ้าคงจะรู้เกี่ยวกับข้อมูลสำหรับตัวเจ้าเอง.";
+		close;
+}
+
+//Charfri-------------------------------------------------------------------------------------
+izlude,135,78,2	script	Charfri	91,{
+	set @TEMP,rand(2);
+	mes "[Charfri]";
+	if(@TEMP != 0) goto L_R0;
+	mes "บางคนดูถูกว่าเราเป็นแค่เมืองบริวารของ Prontera.... แต่จริงๆแล้ว เมือง Izlude เป็นเมืองที่ยอดเยี่ยม.";
+	mes "แต่จริงๆแล้ว Izlude มันติดกับทะเลสวยงาม เช่น Byalan island.";
+	next;
+	mes "[Charfri]";
+	mes "และมีท่าเรือเพื่อไป Byalan Island. ที่สุดแสนจะอันตราย เจ้าต้องเก่งพอที่จะไปที่นั้น.";
+	close;
+
+	L_R0:
+		mes "แม้ Byalan Island เป็นที่สวยงามแต่ก็อันตรายพอตัว.";
+		next;
+		mes "[Charfri]";
+		mes "มันเป็นเกาะลึกลับที่อยู่ลึกใต้ทะเล.";
+		next;
+		mes "[Charfri]";
+		mes "สำหรับผู้พบเห็นวันบอกว่า มันเหมือนเป็นความฝันมาก.";
+		mes "แต่สำหรับคนที่ไม่มีประสบการณ์อาจไม่ได้กลับมาจากที่นั้น.";
+		next;
+		mes "[Charfri]";
+		mes "เพราะมันอันตรายเหลือเกิน.";
+		close;
+}
+
+//Dega-------------------------------------------------------------------------------------
+izlude,150,118,3	script	Dega	84,{
+	set @TEMP,rand(3);
+	mes "[Dega]";
+	if(@TEMP != 0) goto L_R0;
+	mes "Mt. Mjornir ตั้งอยู่ทางทิศเหนือของ Prontera มันเป็นลักษณะของภูเขา และ ยากที่จะเดินทางไป.";
+	next;
+	mes "[Dega]";
+	mes "และมีมอนสเตอร์ที่โจมตีคุณโดยไม่สนใจว่าเจ้าจะเป็นใคร.";
+	next;
+	mes "[Dega]";
+	mes "หากเจ้าต้องการที่จะไป Mt.  Mjornir, เจ้าต้องเตรียมตัวและวางแผนให้รอบครอบ.";
+	close;
+
+	L_R0:
+		if(@TEMP != 1) goto L_R1;
+		mes "มอนสเตอร์บางประเภทใน Rune-Midgard เมื่อทำการร่ายเวทมนตร์ใส่ตัวเป้าหมาย มันจะวิ่งมาทำร้ายเจ้าทันที.";
+		next;
+		mes "[Dega]";
+		mes "Golems ที่อาศัยอยู่ในทะเลทราย.  เจ้าห้ามประมาทมันโดยการร่ายเวทมนตร์ใส่ตัวมันก่อน เพราะมันจะโจมตีพวกเจ้า,";
+		next;
+		mes "[Dega]";
+		mes "ฟังคำเตือนของข้า เพื่อความปลอดภัยของพวกเจ้า.";
+		close;
+	L_R1:
+		mes "มีสถานที่หนึ่ง ที่เจ้า Poring ชอบอาศัยอยู่.";
+		mes "มันคือป่าของ Payon ที่เชื่อมต่อกับทะเลทราย ที่ใกล้กับ Payon ทางทิศตะวันออกเฉียงใต้.";
+		next;
+		mes "[Dega]";
+		mes "Poring ที่นั้นมีหลายชนิด เช่น Porings Dropsและ  PoPoring.";
+		next;
+		mes "[Dega]";
+		mes "แต่ระวังที่นั้นมี ghost ที่ลอยอยู่ในอากาศ เหมือนผี.";
+		mes "และ porings ค่อนน่าข้างน่ารักมาก, แต่ Ghostring นั้นดุร้ายและทำร้ายคนที่่พบเห็นมัน.";
+		next;
+		mes "[Dega]";
+		mes "หากเจ้าเก่งพอ เจ้าอาจเอาชนะ Angelring.  มันคือ Poring ที่สวมใส่ปีกนางฟ้าเท่านั้นเอง.";
+		next;
+		menu "Ghostring?",-,"Angelring?",M1,"จบการสนทนา.",MEnd;
+
+			mes "[Dega]";
+			mes "Ghostring สีเทา ที่ลอยในอากาศ แต่การโจมตีทางกายภาพไม่สามารถทำอะไรกับมันได้.";
+			next;
+			mes "[Dega]";
+			mes "เช่น Swordsmen แลก Archers, ต้องใช้อาวุธที่มีคุณสมบัติต่างๆเพื่อจัดการกับ Ghostring.";
+			next;
+			mes "[Dega]";
+			mes "แต่หากเจ้ามีอาวุธที่มีคุณสมบัติละก็เจ้าจะสามารถเอาชนะ Ghostring ได้เหมือนกัน.";
+			next;
+			close;
+		M1:
+			mes "[Dega]";
+			mes "มันแตกต่างจาก Ghostrings, แต่ Angelrings มันสามารถโจมตีทางกายภาพแต่มันจะสามารถต้านทานเวทมนตร์.";
+			mes "ดังนั้น Mages และ Acolytes ยากที่จะต่อสู้กับ Angelrings.";
+			next;
+			close;
+		MEnd:
+			mes "[Dega]";
+			mes "ขอให้โชคดี~";
+			close;
+}
+
+//Kylick-------------------------------------------------------------------------------------
+izlude,150,143,4	script	Kylick	97,{
+	mes "[Kylick]";
+	mes "เจ้าคงไม่รู้ว่า Binoculars คือกล้องส่องทางไกล สามารถมองเห็นวัตถุที่อยู่ไกลๆได้ชัดมาก";
+	emotion 5;
+	next;
+	mes "[Kylick]";
+	mes "เมื่อข้าอยู่ใน Izlude, ข้าสามารถมองเห็นจากระยะไกลด้วยกล้อง Binoculars ไม่ว่าจะอยู่ทะเลหรือบนบก.";
+	next;
+	mes "[Kylick]";
+	mes "ข้าจำเป็นต้องเฝ้าและปกป้องเมืองนี้ไว้ เพื่อไม่ให้เกิดปัญหาใดๆ.";
+	next;
+	mes "[Kylick]";
+	mes "พวกเราต้องเตรียมพร้อมเสมอ ก่อนที่จะเกิดเหตุร้าย.";
+	emotion 33;
+	close;
+}
+
+// Soldier ------------------------------------------------------------------------------
+izlude,124,178,4	script	Soldier	105,{
+	mes "[Soldier]";
+	mes "เจ้ามีอะไรให้ข้าช่วยรึเปล่า";
+	mes "เจ้ามีอะไรที่ต้องการ หือ?";
+	emotion 18;
+	next;
+	menu "มีแน่นอน?",-, "ข้าไม่มีอะไรทั้งนั้น.",M_1;
+	
+		mes "[Soldier]";
+		mes "เจ้ารู้ไหมว่า พ่อค้าอย่าง Merchants จะชอบรับซื้อไอเทมที่ตกจากมอนสเตอร์?";
+		next;
+		menu "แน่นอน",sM_0, "ข้าไม่มีอะไร?",sM_1;
+		
+		sM_0:
+			mes "[Soldier]";
+			mes "ที่จริงมันเป็นอาชีพของเรา.";
+			mes "และยังมีนักล่าอย่าง Hunter ที่หาเงินโดยการหาไอเทมมาขายให้พ่อค้าอย่างข้า.";
+			next;
+			mes "[Soldier]";
+			mes "และข้าต้องทำงานทุกวัน";
+			emotion 16;
+			next;
+			mes "[Soldier]";
+			mes "เมื่อข้าเป็น Mechant ข้าจดทะเบียนการซื้อขาย.";
+			mes "และรัฐบาลจะเพิ่มราคาขายไอเทมให้ข้าได้บางส่วน.";
+			next;
+			mes "[Soldier]";
+			mes "มันเป็นการร่วมธุรกิจของผู้ประกอบการ.";
+			mes "ทำให้ Mechant สามารถหาได้ในด้านนี้.";
+			next;
+			mes "[Soldier]";
+			mes "แทนที่จะขายให้ NPC ทั่วไป หลายคนเดินทางมาหาให้ Mechange อย่างพวกเรา~~";
+			next;
+			mes "[Soldier]";
+			mes "เพราะมันจะได้ผลกำไรที่มากขึ้น.";
+			next;
+			mes "[Soldier]";
+			mes "ฮ่า ฮ่า ฮ่า!";
+			emotion 18;
+			close;
+		sM_1:
+			mes "[Soldier]";
+			mes "เจ้าคงไม่เคยรู้สินะ?!";
+			emotion 1;
+			next;
+			mes "[Soldier]";
+			mes "เมื่อเจ้าจัดการมอนสเตอร์ จะมีไอเทมหล่นอยู่บนพื้น";
+			mes "เจ้าสามารถขายมันให้กับ Mechant ได้ในราคาที่สูงกว่า NPC.";
+			next;
+			goto sM_0;
+	M_1:
+		mes "[Soldier]";
+		mes "ขอให้โชคดี~~";
+		close;
+}
+
+//Red-------------------------------------------------------------------------------------
+izlude,58,126,1	script	Red	98,{
+	mes "[Red]";
+	mes "ข้าต้องการเรียนรู้ทักษะของ Swordman อย่าง 'Bash' เท่านั้น!";
+	mes "ยกเว้นจะมีอะไรที่น่าเรียนกว่านี้!";
+	emotion 29;
+	next;
+	mes "[Cebalis]";
+	mes "ข้าต้องการรู้ข้อมูลให้มากกว่านี้?";
+	emotion 1;
+	next;
+	mes "[Cebalis]";
+	mes "ที่จริง Swordsman มีความแข็งแรงรวดเร็ว พร้อมที่จะจัดการกับศูตรู!!";
+	next;
+	mes "[Cebalis]";
+	mes "ทักษะที่ทำได้เช่นนั้นคือ 'Magnum Break'!!";
+	next;
+	mes "[Cebalis]";
+	mes "แต่มันจะมีประโยชน์คือ เมื่อใช้เป็นกลุ่มเท่านั้น";
+	mes "และมันมีความเสี่ยงที่ Swordsman จะใช้มัน!!";
+	next;
+	mes "[Red]";
+	mes "แต่ถ้าหากเจ้าเจอมอนสเตอร์ลุมละก็ จงใช้ 'Magnum Break'....";
+	emotion 32;
+	next;
+	mes "[Red]";
+	mes "เจ้าไม่จำเป็นต้องวิ่งหนี Porings เพื่อมอนสเตอร์นี้มันอ่อนแอ!";
+	mes "เจ้าเพียงใช้ 'Bash' ใส่มันเท่านั้น.";
+	next;
+	mes "[Cebalis]";
+	mes "ทักษะนี้มันจะใช้ในยามที่จำเป็นเท่านั้น?";
+	mes "ข้าเรียกมันว่า 'Magnum Break' มันเป็นทักษะของ SWORDSMAN~!!";
+	next;
+	mes "[Cebalis]";
+	mes "'Bash' คือจุดเริ่มต้นของทักษะ 'Magnum Break'. และต้องการ 'Bash' ระดับ 5 เพื่อให้สามารถเรียนรู้ทักษะ อย่าง 'Magnum Break' ได้.";
+	next;
+	mes "[Red]";
+	mes "โอ้ เจ้าาา.....";
+	emotion 9;
+	next;
+	mes "[Red]";
+	mes "เจ้าคิดว่า 'Bash', ง่ายต่อการใช้งาน,.......";
+	mes "หรือ 'Magnum Break', เหมาะกับตัวเจ้ากันเล่า";
+	next;
+	menu "Bash",-,"Magnum Break",L1;
+	
+		mes "[Red]";
+		if (baseClass == Job_Swordman) goto L00;
+		mes "เจ้าไม่รู้เลยสินะ!";
+		mes "ว่าเพียง 'Bash' ก็สามารถจัดการศัตรูได้.";
+		emotion 21;
+		close;
+		
+		L00:
+			mes "เจ้าเลือก 'Bash'!! สงสัยว่า 'Bash' คือทักษะของ Swordsman.  มันเป็นทักษะเริ่มต้นของหลายๆทักษะ.";
+			emotion 21;
+			next;
+			mes "[Red]";
+			mes "หากเจ้าได้มีทักษะ 'Bash' ระดับ 5, การใช้ทักษะ จะสิ้นเปลือง SP ถึง 2 เท่า.";
+			close;
+	L1:
+		mes "[Cebalis]";
+		if (baseClass == Job_Swordman) goto L01;
+		mes "ตอนนี้! 'Magnum Break' คือสุดยอดทักษะของ Swordman.";
+		close;
+
+		L01:
+			mes "ตอนนี้!! 'Magnum Break' คือทักษะที่ใครๆก็อยากจะใช้.";
+			next;
+			mes "[Cebalis]";
+			mes "เพราะมันมีคุณสมบัติของไฟ 'Fire'.";
+			mes "แต่เจ้าจะใช้กับ คุณสมบัติของ 'Water' ไม่ได้นะ แต่มันจะใช้ได้ดีกับ 'Undead' และ 'Earth'.!";
+			next;
+			mes "[Cebalis]";
+			mes "เจ้าต้องรู้ว่าเป็นมอนสเตอร์ชนิดไหนก่อนที่จะใช้ทักษะ 'Magnum Break'.";
+			close;
+}
+
+//Cebalis-------------------------------------------------------------------------------------
+izlude,56,126,7	script	Cebalis	85,{
+	mes "[Cebalis]";
+	mes "ที่จริง Swordsman มีความแข็งแรงรวดเร็ว พร้อมที่จะจัดการกับศูตรู!!";
+	emotion 29;
+	next;
+	mes "[Cebalis]";
+	mes "ทักษะที่ทำได้เช่นนั้นคือ 'Magnum Break'!!";
+	next;
+	mes "[Cebalis]";
+	mes "มันคือการระเบิดรอบทิศทาง";
+	mes "แต่มันอาจจะมีความเสี่ยงเล็กๆน้อยๆของ Swordsman ที่จะใช้มัน!";
+	next;
+	mes "[Red]";
+	mes "อะไรที่เจ้าต้องการรู้?";
+	next;	
+	mes "[Red]";
+	mes "ทักษะของ Swordsman ที่นิยมใช้กันคือ 'Bash'.";
+	mes "ที่มีความรุนแรงมากพอ แต่จะทำการโจมตีได้แค่ ศัตรูตัวเดียวเท่านั้น!";
+	next;
+	mes "[Red]";
+	mes "แต่ถ้าหากเจ้าเจอมอนสเตอร์ลุมละก็ จงใช้ 'Magnum Break'....";
+	next;
+	mes "[Red]";
+	mes "เจ้าไม่จำเป็นต้องวิ่งหนี Porings เพื่อมอนสเตอร์นี้มันอ่อนแอ!";
+	mes "เจ้าเพียงใช้ 'Bash' ใส่มันเท่านั้น.";
+	next;
+	mes "[Cebalis]";
+	mes "ทักษะนี้มันจะใช้ในยามที่จำเป็นเท่านั้น?";
+	mes "ข้าเรียกมันว่า 'Magnum Break' มันเป็นทักษะของ SWORDSMAN~!!";
+	emotion 4;
+	next;
+	mes "[Cebalis]";
+	mes "'Bash' คือจุดเริ่มต้นของทักษะ 'Magnum Break'. และต้องการ 'Bash' ระดับ 5 เพื่อให้สามารถเรียนรู้ทักษะ อย่าง 'Magnum Break' ได้.";
+	next;
+	mes "[Red]";
+	mes "โอ้ เจ้าาา.....";
+	next;
+	mes "[Red]";
+	mes "เจ้าคิดว่า 'Bash', ง่ายต่อการใช้งาน,.......";
+	mes "หรือ 'Magnum Break', เหมาะกับตัวเจ้ากันเล่า";
+	next;
+	menu "Bash",-,"Magnum Break",L1;
+	
+		mes "[Red]";
+		//if( callfunc("Is_Sword_Class") != 0 ) goto L00;
+		if (baseClass == Job_Swordman) goto L00;
+		mes "เจ้าไม่รู้เลยสินะ!";
+		mes "ว่าเพียง 'Bash' ก็สามารถจัดการศัตรูได้.";
+		close;
+		
+		L00:
+			mes "เจ้าเลือก 'Bash'!! สงสัยว่า 'Bash' คือทักษะของ Swordsman.  มันเป็นทักษะเริ่มต้นของหลายๆทักษะ.";
+			next;
+			mes "[Red]";
+			mes "หากเจ้าได้มีทักษะ 'Bash' ระดับ 5, การใช้ทักษะ จะสิ้นเปลือง SP ถึง 2 เท่า.";
+			close;
+	L1:
+		mes "[Cebalis]";
+		if (baseClass == Job_Swordman) goto L01;
+		mes "ตอนนี้! 'Magnum Break' คือสุดยอดทักษะของ Swordman.";
+		emotion 21;
+		close;
+
+		L01:
+			mes "ตอนนี้!! 'Magnum Break' คือทักษะที่ใครๆก็อยากจะใช้.";
+			emotion 21;
+			next;
+			mes "[Cebalis]";
+			mes "เพราะมันมีคุณสมบัติของไฟ 'Fire'.";
+			mes "แต่เจ้าจะใช้กับ คุณสมบัติของ 'Water' ไม่ได้นะ แต่มันจะใช้ได้ดีกับ 'Undead' และ 'Earth'.!";
+			next;
+			mes "[Cebalis]";
+			mes "เจ้าต้องรู้ว่าเป็นมอนสเตอร์ชนิดไหนก่อนที่จะใช้ทักษะ 'Magnum Break'.";
+			close;
+}
+
+//Aaron-------------------------------------------------------------------------------------
+izlude_in,125,164,5	script	Aaron	65,{
+	mes "[Aaron]";
+	mes "อืมม เจ้า Swordman?..........";
+	emotion 1;
+	next;
+	mes "[Aaron]";
+	mes "จะแข็งแกร่งด้วย VIT ที่สูงมาก และสามารถฟื้นฟู HP recovery ได้ด้วยตัวเองเจ้า Swordman?";
+	next;
+	mes "[Aaron]";
+	mes "หากเจ้าได้ฝึกฝนมาพอสมควรเจ้าจะเห็น HP ฟื้นตัวเอง. ตามที่เจ้าได้เพิ่ม ระดับ VIT .";
+	next;
+	mes "[Aaron]";
+	mes "หากเจ้ามี VIT ที่เพิ่มขึ้นมาก เจ้าจะสามารถฟื้น HP ได้มากขึ้นเท่านั้น.";
+	next;
+	mes "[Aaron]";
+	mes "แต่การโจมตีที่สูงเจ้าจำเป็นต้องเพิ่มระดับ STR หรือซื้ออาวุธเพื่อเพิ่มการโจมตี.";
+	next;
+	mes "[Aaron]";
+	mes "เจ้าจะต้องมีแรงมากพอที่จะถูกอาวุธและสิ่งของหนักๆ.";
+	next;
+	mes "[Aaron]";
+	mes "อีกอย่างคือความแม่นยำโดยการเพิ่มระดับ. DEX มันคือสิ่งสำคัญที่ทำให้เจ้าโจมตีเป้าหมายไม่พลาด.";
+	next;
+	mes "[Aaron]";
+	mes "และตอนนี้เจ้ามีอะไที่จะบอกข้า?";
+	emotion 20;
+	next;
+	menu "ข้อมูลเพิ่มเติม.",-,"จบการสนทนา",LEnd;
+	
+		mes "[Aaron]";
+		mes "การที่จะหลบหลีกคู่ต่อสู้ได้ เจ้าต้องมี AGI.";
+		next;
+		mes "[Aaron]";
+		mes "การที่มี AGI ที่สูงเจ้าจะสามารถหลบหลีกได้มากพอสมควร.";
+		next;
+		mes "[Aaron]";
+		mes "แต่ในขณะเดียวกัน LUK. จะทำให้โจมตีเป้าหมายโดยไม่มีทางหลบ INT เพิ่ม max SP, มันเป็นสิ่งจำเป็นในการใช้ทักษะต่างๆ.";
+		next;
+		mes "[Aaron]";
+		mes "มันขึ้นอยู่กับเจ้าว่า เจ้าต้องการที่จะเดินไปทางไหน.";
+		next;
+	LEnd:
+		mes "[Aaron]";
+		mes "ขอให้เจ้าได้ฝึกฝนอย่างเข้มแข็ง~~";
+		emotion 21;
+		close;
+}
+
+//Edgar-------------------------------------------------------------------------------------
+izlude,182,186,6	script	Edgar	709,{
+	
+	mes "[Edgar]";
+	mes "Izlude เชื่อมต่อกับ Alberta โดยท่าเรือจะเดินทางในทิศตะวันตก";
+M_Menu:
+	next;
+	menu "ข้อมูลเพิ่มเติม",-,"เกี่ยวกับการไป Alberta?",M_1,"จบการสนทนา",M_End;
+	
+		mes "[Edgar]";
+		mes "เพื่อนของข้าชื่อ Phelix เขาอยู่ใน Alberta. เขาเป็นคนดีและชอบช่วยเหลือคน.";
+		mes "แต่เขาอาจมีข้อแลกเปลี่ยนเล็กๆน้อยๆนะ.";
+		next;
+		mes "[Edgar]";
+		mes "Latley ที่อยู่ใน Alberta เขาบอกว่าเขาจะช่วยในการแลกเปลี่ยน Jellopies หรือสิ่งที่เขาชอบ.";
+		mes "สิ่งที่เจ้ามี อาจแลกเป็น Zeny ได้.";
+		goto M_Menu;
+
+	M_1:
+		mes "[Edgar]";
+		mes "หากเจ้าต้องการไป Alberta เจ้าต้องเดินผ่านเมือง Payon แต่ต้องเดินเป็นเวลานานมาก.";
+		next;
+		menu "ข้าไม่สนใจ.",-,"ข้าไม่อยากเดินแต่ข้ามีเงินเล็กๆน้อยๆ.",sM_1;
+		
+			mes "[Edgar]";
+			mes "เอาล่ะ ดูแลตัวเองด้วย~";
+			goto M_Menu;
+
+		sM_1:
+			mes "[Edgar]";
+			mes "เจ้าไม่อยากที่จะเดินไป และมันลำบากมาก กว่าจะไปถึงที่นั้น";
+			emotion 4;
+			next;
+			mes "[Edgar]";
+			mes "ข้ามีเรือลำเล็กๆ ที่จะพาเจ้าไปยังที่หมาย แต่มีค่าใช้จ่าย 250 Zeny นะ.";
+			next;
+			menu "ข้าอยากไป~!",-,"ข้ารีบ",sm_1b;
+			
+				if(Zeny < 250) goto sl_NoZeny;
+				set iz_move_alberta,1;
+				set Zeny, Zeny - 250;
+				warp "alberta",195,164;
+				
+				sl_NoZeny:
+					mes "[Edgar]";
+					mes "เจ้าไปไม่ได้ เจ้ามีเงินไม่เพียงพอ.";
+					close;
+
+			sm_1b:
+				mes "[Edgar]";
+				mes "อะไรๆ ข้าไม่ได้รีบไปขนาดนั้น แล้วแต่เจ้าสิ";
+				emotion 23;
+				close;
+
+	M_End:
+		mes "[Edgar]";
+		mes "ให้เจ้าไปฟรีไม่ได้หรอกนะ มันคือธุรกิจ.";
+		close;
+
+}
+
+//Sailor-------------------------------------------------------------------------------------
+izlude,201,181,2	script	Sailor#01	100,{
+	mes "[Sailor]";
+	mes "ที่นี่คือ Fantastic Ship!!! เจ้าต้องการที่จะไปไหน!";
+	next;
+	menu "Byalan Island -> 150 Zeny.",-,"Alberta Marina -> 500 Zeny.",L1,"ยกเลิก",LEnd;
+	
+		if(Zeny < 150) goto sl_NoZeny;
+		set Zeny, Zeny - 150;
+		warp "izlu2dun",107,50;
+		close;
+	L1:
+		if(Zeny < 500) goto sl_NoZeny;
+		set Zeny, Zeny - 500;
+		warp "alberta",188,169;
+	LEnd:
+		close;
+	sl_NoZeny:
+		mes "[Sailor]";
+		mes "เจ้ามีเงินไม่เพียงพอ!";
+		close;
+}
+
+//Sailor-------------------------------------------------------------------------------------
+izlu2dun,108,27,4	script	Sailor#02	100,{
+	mes "[Sailor]";
+	mes "เจ้าต้องการที่จะกลับหรือไม่?";
+	next;
+	menu "ใช่ ข้าต้องการ.",-,"ไม่อ่ะ ข้าอยากอยู่ที่นี่.",L1;
+	
+		warp "izlude",176,182;
+	L1:
+		close;
+}

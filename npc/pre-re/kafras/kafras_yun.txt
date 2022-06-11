@@ -1,0 +1,62 @@
+//—>===============================================================<—|
+// -- # Ragnarok Online EP 4.0 BY Kelberwitz Blade's
+// -- # Yuno HiSo Kafra Corparation !!
+//—>===============================================================<—|
+
+// - - > บริเวณ กลาง
+yuno,152,187,4	script	Kafra Express::Yuno#01	860,{
+	cutin "kafra_08",2;
+	callfunc "F_KafSetYun";
+	mes "^0066FF[ Kafra Express ]^000000";
+	mes "สวัสดีค่ะ คุณ , ^FF0000"+strcharinfo(0)+" ^000000"; 
+	mes "Kafra จะอยู่เคียงข้างคุณตลอดไป  ~";
+	mes "ต้องการให้ข้าช่วยเหลืออะไรไหมคะ ?";
+	callfunc "F_Kafra",5,0,0,40,800;
+
+	M_Save:
+		savepoint "yuno",158,125;
+		callfunc "F_KafEnd",0,1,"in the city of Juno";
+}
+
+// - - > บริเวณ ตะวันออกเฉียงใต้
+yuno,327,108,4	script	Kafra Express::Yuno#02	860,{
+	cutin "kafra_08",2;
+	callfunc "F_KafSetYun";
+	mes "^0066FF[ Kafra Express ]^000000";
+	mes "สวัสดีค่ะ คุณ , ^FF0000"+strcharinfo(0)+" ^000000"; 
+	mes "Kafra จะอยู่เคียงข้างคุณตลอดไป  ~";
+	mes "ต้องการให้ข้าช่วยเหลืออะไรไหมคะ ?";
+	callfunc "F_Kafra",5,0,0,40,800;
+
+	M_Save:
+		savepoint "yuno",328,101;
+		callfunc "F_KafEnd",0,1,"in the city of Juno";
+}
+
+// - - > บริเวณ ตะวันออก
+yuno,277,221,4	script	Kafra Express::Yuno#03	861,{
+	cutin "kafra_09",2;
+	callfunc "F_KafSetYun";
+	mes "^0066FF[ Kafra Express ]^000000";
+	mes "สวัสดีค่ะ คุณ , ^FF0000"+strcharinfo(0)+" ^000000"; 
+	mes "Kafra จะอยู่เคียงข้างคุณตลอดไป  ~";
+	mes "ต้องการให้ข้าช่วยเหลืออะไรไหมคะ ?";
+	callfunc "F_Kafra",5,0,0,40,800;
+
+	M_Save:
+		savepoint "yuno",274,229;
+		callfunc "F_KafEnd",0,1,"in the city of Juno";
+}
+
+
+// - - > ฟังชั่น Yuno Kafra
+function	script	F_KafSetYun	{
+	cleararray @wrpC$[0],"",getarraysize(@wrpC$);
+	setarray @wrpD$[0], "Al De Baran";
+	setarray @wrpP[0], 1200;
+	set @wrpC$[0], @wrpD$[0]+" [ "+@wrpP[0]+" z ]";
+	set @wrpC$[1], "ยกเลิก";
+	setarray @viewpX[0], 328, 278, 153, 0;
+	setarray @viewpY[0], 108, 221, 187, 0;
+	return;
+}

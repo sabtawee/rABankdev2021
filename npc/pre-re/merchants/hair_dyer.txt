@@ -1,60 +1,41 @@
-//===== rAthena Script ======================================= 
-//= Hair Dyer
-//===== By: ================================================== 
-//= kobra_k88; L0ne_W0lf
-//===== Current Version: ===================================== 
-//= 1.5
-//===== Compatible With: ===================================== 
-//= rAthena Project
-//===== Description: ========================================= 
-//= Hair Dyer with standard palletes
-//===== Additional Comments: ================================= 
-//= Fully working
-//= 1.1 Bugfix: fixed missing menu label LEnd->M_End [Lupus]
-//= 1.2 Rescripted to Aegis 10.3 standards. [L0ne_W0lf]
-//= 1.3 Fixed problem what "freezes" the NPC. (bugreport:509) [Samuray22]
-//= 1.4 Fixed getlook checking the wrong color. (bugreport:2392) [L0ne_W0lf]
-//= 1.5 Added Lighthalzen Hair Dying NPC. [L0ne_W0lf]
-//= 1.6 Moving NPC Jovovich to Pre-Renewal [JohnnyPlayy]
-//============================================================ 
 
 prt_in,243,168,4	script	Jovovich	91,{
 	mes "[Hairdresser Jovovich]";
-	mes "Welcome~!";
-	mes "How may I help you?";
+	mes "สวัสดี~!";
+	mes "คุณมีอะไรให้ฉันช่วยไหม?";
 	next;
 	mes "[Hairdresser Jovovich]";
-	if (Sex == SEX_MALE) mes "Oh, no! Your hair is damaged. It seems as if you may need professional treatment. Come sit over here, please. Come.";
+	if (sex) mes "โอ้ไม่! ผมของคุณได้รับความเสียหาย ดูเหมือนราวกับว่าคุณอาจจำเป็นต้องรักษาระดับมืออาชีพ มานั่งที่นี่กรุณา มา";
 	else {
 		if (rand(20) > 11) {
-			mes "Eh!? Oh my! Oh no no no no! Your hair is sooo damaged! It's not good if you leave your hair like this.";
+			mes "เอ๊ะ! Oh My! โอ้ไม่ไม่ไม่ไม่! ผมของคุณได้รับความเสียหาย sooo! มันไม่ดีถ้าคุณออกจากผมของคุณเช่นนี้";
 			next;
 			mes "[Hairdresser Jovovich]";
-			mes "Would you let me treat your hair? Please?";
+			mes "คุณช่วยให้ผมรักษาผมของคุณหรือไม่ กรุณา?";
 		}
-		else mes "Wow! Your hair would be perfect once it's dyed~ How about dying your hair for a change?";
+		else mes "ว้าว! ผมของคุณจะสมบูรณ์เมื่อมีการย้อม ~ วิธีการเกี่ยวกับการตายผมของคุณสำหรับการเปลี่ยนแปลงหรือไม่";
 	}
 	next;
 	while(1) {
 		switch(select("Dye Hair:Tips and Information:Cancel")) {
 		case 1:
 			mes "[Hairdresser Jovovich]";
-			mes "Yes yes, good choice~";
-			mes "Well then, this is your chance for a make-over, your chance to blossom in beauty! Choose the color you would like.";
+			mes "ใช่ใช่ทางเลือกที่ดี~";
+			mes "ถ้างั้นนี้โอกาสของคุณสำหรับการให้ - over, โอกาสที่จะบานสะพรั่งในความเป็น! เลือกสีที่ต้องการ";
 			next;
 			while(1) {
 				if (.@choose_success == 1) {
 					mes "[Hairdresser Jovovich]";
-					mes "What do you think? Did you want a different color?";
+					mes "คุณคิดอย่างไร? หรือไม่คุณต้องการสีอื่นได้หรือไม่";
 					next;
 					if (select("Yes:No") == 1) {
 						mes "[Hairdresser Jovovich]";
-						mes "Okay! Choose the color that you would like.";
+						mes "เอาล่ะ! เลือกสีที่คุณต้องการ";
 						next;
 					}
 					else  {
 						mes "[Hairdresser Jovovich]";
-						mes "Hmm, I'm sort of disappointed. I wanted to do a better job. But I promise I'll do it better next time. Please come again~";
+						mes "อืมผมจัดเรียงของผิดหวัง ฉันอยากจะทำงานที่ดีกว่า แต่ฉันสัญญาฉันจะทำมันในครั้งต่อไปดีกว่า โปรดมาอีกครั้ง~";
 						close;
 					}
 				}
@@ -76,44 +57,44 @@ prt_in,243,168,4	script	Jovovich	91,{
 							close;
 						}
 						mes "[Hairdresser Jovovich]";
-						mes "Eehh~? You're not going to dye your hair? I'm a little sad...";
+						mes "Eehh ~? คุณไม่ได้ไปย้อมผมของคุณหรือไม่ ฉันน้อยเศร้า ...";
 						close;
 					}
 
-					if (.@headpalette == getlook(VAR_HEADPALETTE)) {
+					if (.@headpalette == getlook(6)) {
 						mes "[Hairdresser Jovovich]";
-						mes "Eh? But that's the hair color you already have. Please choose a different color.";
+						mes "เอ๊ะ? แต่สีผมที่คุณมีอยู่แล้ว กรุณาเลือกสีที่แตกต่างกัน";
 						next;
 					}
 					else {
 						switch(.@headpalette) {
 						case 1: callsub S_NoDye,976,"yellow"; break;
 						case 2: callsub S_NoDye,978,"violet"; break;
-						case 3: callsub S_NoDye,980,"orange"; break;
-						case 4: callsub S_NoDye,979,"green"; break;
+						case 3: callsub S_NoDye,979,"orange"; break;
+						case 4: callsub S_NoDye,980,"green"; break;
 						case 5: callsub S_NoDye,981,"blue"; break;
 						case 6: callsub S_NoDye,982,"white"; break;
 						case 7: callsub S_NoDye,983,"black"; break;
-						case 8: callsub S_NoDye,975,"red"; break;
+						Case 8: callsub S_NoDye,975,"red"; break;
 						}
-						if (Zeny < 1000) {
+						if (zeny < 1000) {
 							mes "[Hairdresser Jovovich]";
-							mes "The fee is 1000 zeny. Do you not have enough...?";
+							mes "ค่าธรรมเนียม zeny 1000 คุณมีเงินไม่พอนิ^^...?";
 							close;
 						}
 
 						switch(.@headpalette) {
 						case 1: delitem 976,1; break; //Lemon_Dyestuffs
 						case 2: delitem 978,1; break; //Violet_Dyestuffs
-						case 3: delitem 980,1; break; //Orange_Dyestuffs
-						case 4: delitem 979,1; break; //Darkgreen_Dyestuffs
+						case 3: delitem 979,1; break; //Orange_Dyestuffs
+						case 4: delitem 980,1; break; //Darkgreen_Dyestuffs
 						case 5: delitem 981,1; break; //Cobaltblue_Dyestuffs
 						case 6: delitem 982,1; break; //White_Dyestuffs
 						case 7: delitem 983,1; break; //Black_Dyestuffs
 						case 8: delitem 975,1; break; //Scarlet_Dyestuffs
 						}
-						set Zeny, Zeny-1000;
-						setlook VAR_HEADPALETTE,.@headpalette;
+						set Zeny,Zeny-1000;
+						setlook 6,.@headpalette;
 						set .@choose_success,1;
 						break;
 					}
@@ -124,24 +105,24 @@ prt_in,243,168,4	script	Jovovich	91,{
 
 		case 2:
 			mes "[Hairdresser Jovovich]";
-			mes "When you're feeling down , when you get dumped, when you want to impress someone, or even when you just want to stand out...";
+			mes "เมื่อเธอรู้สึกลงเมื่อคุณได้รับทิ้งเมื่อคุณต้องการที่จะประทับใจใครสักคนหรือแม้กระทั่งเมื่อคุณเพียงต้องการที่จะยืนออก ...";
 			next;
 			mes "[Hairdresser Jovovich]";
-			mes "For that special place and time, wouldn't you want a hairstyle of your very own? As long as you have the appropriate dyestuffs, I will make your hair look wonderful.";
+			mes "สำหรับสถานที่พิเศษที่และเวลาจะไม่ที่คุณต้องการทรงผมของมากของคุณเองหรือไม่ ตราบใดที่คุณมีสารย้อมสีที่ต้องการจากนั้นฉันจะทำให้ผมของคุณดูยอดเยี่ยม";
 			next;
 			mes "[Hairdresser Jovovich]";
-			mes "And try not to worry too much about the fee. Acquiring beauty is the same as acquiring everything. Hehe~";
+			mes "และพยายามที่จะไม่ต้องกังวลมากเกินไปเกี่ยวกับค่าธรรมเนียม ความงามการรับเป็นเช่นเดียวกับการซื้อทุกอย่าง อิอิ~";
 			next;
 			mes "[Hairdresser Jovovich]";
-			mes "* Fees and Information *";
-			mes "- 1 Dyestuffs item of the color of hair you want.";
-			mes "- 1000 zeny fee.";
+			mes "* ค่าธรรมเนียมและสารสนเทศ *";
+			mes "- 1 รายการของสีย้อมผมที่คุณต้องการ";
+			mes "- 1000 zeny";
 			break;
 
 		case 3:
 			mes "[Hairdresser Jovovich]";
-			mes "Men or Women...";
-			mes "Everyone has the right and obligation to be beautiful.";
+			mes "ชายหรือหญิง ...";
+			mes "ทุกคนมีสิทธิและภาระผูกพันที่จะสวยงาม";
 			close;
 		}
 
@@ -150,8 +131,9 @@ prt_in,243,168,4	script	Jovovich	91,{
 S_NoDye:
 	if (countitem(getarg(0)) == 0) {
 		mes "[Hairdresser Jovovich]";
-		mes "Eh?! But you need the item '"+getitemname(getarg(0))+"' to dye your hair "+getarg(1)+"...";
+		mes "เอ๊ะ! แต่คุณต้องมีรายการ '"+getitemname(getarg(0))+"' to dye your hair "+getarg(1)+"...";
 		close;
 	}
 	return;
 }
+

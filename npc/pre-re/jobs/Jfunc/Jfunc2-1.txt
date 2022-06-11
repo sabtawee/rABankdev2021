@@ -1,0 +1,91 @@
+
+//Blacksmith Check
+function	script	Bla_check	{
+
+	if (BaseJob == 0) goto L_Nov;
+	if (baseClass == Job_Swordman) goto L_Sword;
+	if (baseClass == Job_Acolyte) goto L_Aco;
+	if (baseClass == Job_Thief) goto L_Thief;
+	if (baseClass == Job_Mage) goto L_Wiz;
+	if (baseClass == Job_Archer) goto L_Arc;
+	if (BaseJob == 10) goto L_Black;
+	mes "อาชีพ Merchants เท่านั้นที่จะเปลี่ยนเป็น Blacksmiths.";
+	close;
+
+L_Nov:
+	if(sex==0) mes "...สวัสดี! ถ้าคุณหวังจะเป็น blacksmith, คุณต้องเป็นอาชีพ merchant ก่อน!";
+	if(sex==1) mes "อืมมมม, ดูเหมือนคุณหวังจะเป็น blacksmith! โทษที, แต่คุณต้องเป็น merchants ถึงจะสามารถเป็น blacksmiths!.";
+	close;
+L_Sword:	
+	mes "สวัสดี! มาทำไมล่ะนักดาบ? โทษที, ฉันมีงานต้องทำ, ลืมมันไปซะ.";
+	close;
+L_Arc:
+	mes "อืมมมม, ขอโทษ, เราจะไม่จ้างกับคนที่ไม่ใช่ merchent.";
+	close;	
+L_Wiz:
+	mes "สนใจในการทดสอบหรอ? ที่นี้ไม่ต้อนรับ นักเวทย์.";
+	close;
+L_Aco:
+	mes "โอ้! ใครอ่า...! อโคเจ้ามาทำไมที่นี้ กลับออกไป!";
+	close;
+L_Thief:	
+	mes "ขอโทษ, เจ้ามาทำไม จะมาขโมยของข้าหรือเปล่า ออกไปเลย.";
+	close;
+L_Black:
+	mes "เฮ้! ฉันรู้สึกเหมือนค้อนกำลังจะเป็นสนิมหลังจากที่ทุกงานในสำนักงานนี้ของฉัน.";
+	close;
+
+}
+
+//Hunter Check
+function	script	Hun_check	{
+
+	if(BaseJob==Job_Hunter) goto L_Hunt;
+	if(baseClass == Job_Archer) goto L_Other;
+	if(baseClass == Job_Swordman) goto L_Swo;
+	if(baseClass == Job_Mage) goto L_Mage;
+	if(baseClass == Job_Thief) goto L_Thf;
+	if(baseClass == Job_Acolyte) goto L_Aco;
+	if(baseClass == Job_Merchant) goto L_Merc;
+
+L_Nov:
+	mes "[Hunter Sharon]";
+	mes "โนวิทมาทำอะไรที่นี้? ออกไป, เราไม่มีอะไรกับคุณ.";
+	emotion 1;
+	close;
+L_Swo:
+	mes "[Hunter Sharon]";
+	mes "มาตามหาดาบของคุณหรอ! เราไม่มีธุระอะไรด้วย ออกไป.";
+	close;
+L_Mage:
+	mes "[Hunter Sharon]";
+	mes "สวัสดีนักเวทย์.  ถ้าคุณไม่มีธุระอะไร ,โปรด ออกไป,";
+	close;
+L_Aco:
+	mes "[Hunter Sharon]";
+	mes "วันนี้วันดี, ยินดีที่ได้รู้จัก, ถ้าไม่มีธุระอะไรออกไปนะ.";
+	close;
+L_Merc:
+	mes "[Hunter Sharon]";
+	mes "มีธุระอะไรหรือเปล่า? ถ้าต้องการขายของ, กลับไปที่เมืองไป.";
+	close;
+L_Thf:
+	mes "[Hunter Sharon]";
+	mes "เอ้ยย! ที่นี้ไม่มีอะไรให้เจ้าขโมยหลอก กลับออกไป......";
+	emotion 23;
+	close;
+L_Hunt:
+	mes "[Hunter Sharon]";
+	mes "ว่าไง! "+strcharinfo(0)+" กลับมาทำไม? Falcon หายหรือยังไง? เห่อออ.";
+	emotion 18;
+	next;
+	mes "[Hunter Sharon]";
+	mes "คุณไม่คิดว่าคุณสามารถได้รับสิ่งที่ได้ฟรีจากเราได้เพียงเพราะส่วนหนึ่งของสมาคมของเราตอนนี้......";
+	close;
+L_Other:
+	mes "[Hunter Sharon]";
+	mes "คุณมาทำอะไรที่นี้? ที่นี้ไม่มีเสียงเพลงให้คุณฟังนะ... คิ.. คิคิ....ฮ่าฮ่าฮ่าฮ่า!!!";
+	emotion 18;
+	close;
+
+}

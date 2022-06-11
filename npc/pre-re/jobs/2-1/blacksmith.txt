@@ -1,0 +1,1305 @@
+//<==================================================== Blacksmith Altiregen (Job changer)==================================================>\\
+geffen_in.gat,110,169,4	script	Guildsman	731,{
+	if(JobLevel == 50) {
+	if (Class!=5) goto Notache;
+	if(SkillPoint >0) goto L_notUseAll;
+
+	 mes "[ Jobchanger ]";
+	 mes "ท่านต้องการเปลื่ยนอาชีพเป็นblacksmith ใช่หรือไม่";
+	 next;
+	 menu "ใช่",-,"ไม่ใช่",L_close;
+	 mes "[ Jobchanger ]";
+	 mes "ถ้าเป็นอย่างนั้น ข้าก็จะเปลื่ยนให้เจ้าทันที";
+	 next;
+	 JobChange 10;
+	set zeny,zeny+50000;
+	 mes "เจ้าได้เป็นblacksmithเรียบร้อยแล้ว";
+	 close;
+
+	L_close:
+	 mes "[ Jobchanger ]";
+	 mes "เราคงมีโอกาศได้พบกันใหม่อีกแน่ บาย";
+	 close;
+
+	L_notUseAll:
+	 mes "[ Jobchanger ]";
+	 mes "ท่านยังใช้ Skill Point ไม่หมด";
+	 close;
+
+	Notache:
+	 mes "[ Jobchanger ]";
+	 mes "คุณไม่ได้ พ่อค้านิ";
+	 close;
+
+
+	}
+	if (class == 5) goto L_Merc;
+	mes "[Blacksmith Altiregen]";
+	mes "ยินดีต้อนรับ พวกเราคือ Master ของ blacksmiths!";
+	mes "ทักษะของเราคือการสร้างอาวุธ มันคือรูปแบบของศิลปะของเรา";
+	next;
+	mes "[Blacksmith Altiregen]";
+	mes "อาวุธพวกนั้น สามารถขายได้เงินมากมายเลยทีเดียว";
+	next;
+	mes "[Blacksmith Altiregen]";
+	if (class == 0) goto L_Nov;
+	if(baseClass == Job_Swordman) goto L_Sword;
+	if(baseClass == Job_Acolyte) goto L_Aco;
+	if(baseClass == Job_Thief) goto L_Theif;
+	if(baseClass == Job_Mage) goto L_Wiz;
+	if(baseClass == Job_Archer) goto L_Arc;
+	if (class == 10) goto L_Black;
+	mes "Merchants ที่สามารถจะเป็น Blacksmiths.";
+	close;
+
+L_Nov:
+	if(sex==0) mes "...สวัสดี หากท่านอยากเป็น blacksimth ท่านจะต้องเป็น Merchant ก่อนเท่านั้น!";
+	if(sex==1) mes "...สวัสดี หากท่านอยากเป็น blacksimth ท่านจะต้องเป็น Merchant ก่อนเท่านั้น";
+	close;
+L_Sword:	
+	mes "ยินดีต้อนรับท่านนักดาบ ท่านมาที่นี่เพื่อจะซื้อดาบของข้างั้นเหรอ";
+	close;
+L_Arc:
+	mes "หืมม์ ข้าเสียใจแต่ข้าจะรับเฉพาะ merchent เท่านั้น";
+	close;	
+L_Wiz:
+	mes "ท่านคงสนใจในการฝึกฝนของเรา แต่ท่านเป็นผู้ใช้เวทย์ ข้าคงช่วยท่านไม่ได้";
+	close;
+L_Aco:
+	mes "โอ้ ท่านนักบวช ช่วยข้าหน่อยได้มั้ย ข้าอยากให้ท่านทำอาวุธข้าเป็นสิ่งศักสิทธิ์!";
+	close;
+L_Theif:	
+	mes "ข้าเสียใจ แต่ข้าว่าคนอย่างท่านคงจะไม่มีเงินหรอกนะ";
+	close;
+L_Black:
+	mes "เฮ้ ยินดีต้อนรับ.. ข้าไม่ได้เห็นท่านมานาน ค้อนของท่านกำลังจะเป็นสนิมหลักจากที่ท่านจากข้าไปซะนานเลยทีเดียว";
+	close;
+
+L_Merc:
+	mes "[Blacksmith Altiregen]";
+	if (BSMITH_Q == 1) goto L_Test1;
+	if (BSMITH_Q == 2 || BSMITH_Q == 3) goto L_Test2and3;
+	if (BSMITH_Q == 4) goto L_Test4;
+	if (BSMITH_Q == 5) goto L_Change;
+	mes "สวัสดีท่าน merchant! ท่านมาถึงนี่เพื่อสมัครงานใช่มั้ย?";
+	mes "ลงชื่อและระัดับจ๊อบของท่ีานลงในกระดา๋ษนี้";
+	next;
+	menu "สมัคร",M_App,"ข้าอยากรู้รายละเอียดเพิ่ม",M_Req,"เอ่อ ไม่มีอะไร",M_NtNow;
+
+	M_App:
+		if(JobLevel < 40) goto sL_Lowlvl;
+		if(JobLevel == 50) goto sL_HighLvl;
+		mes "[Blacksmith Altiregen]";
+		mes "หืมม์...";
+		mes "เลเวลจ๊อบของท่านเป็นที่น่าพอใจ";
+		mes "ดี.. แต่ข้าไม่ได้รับสมัครคนง่ายๆ เท่านี้หรอกนะ";
+		mes "ข้าจะต้องทดสอบทักษะของ Merchant และความมุ่งมั่นของท่านเสียก่อน";
+		next;
+		mes "[Blacksmith Altiregen]";
+		mes "อืมม์ ท่างคงรู้จัก ^5533FFGeshupenschte ใน Alberta^000000 เขาเป็นลูกน้องขอข้า";
+		mes "ท่านต้องไปช่วยเขา เพื่อจะเริ่มการทดสอบแรก";
+		next;
+		mes "[Blacksmith Altiregen]";
+		mes "ขอให้เดินทางโดยสวัสดิภาพ!";
+		set BSMITH_Q,1;
+		set JBLVL, 40;
+		close;
+
+		sL_Lowlvl:
+			mes "[Blacksmith Altiregen]";
+			mes "ท่านต้องมีระดับเลเวลจ๊อบl 40 ขึ้นไป";
+			mes "เท่านั้น ข้าถึงจะยอมรับท่าน.. โปรดกลับมาใหม่อีกครั้ง";
+			close;
+		sL_HighLvl:
+			mes "[Blacksmith Altiregen]";
+			mes "ว้าวว.. ข้ารู้สึกประทับใจกับท่านซะจริงๆ ที่ท่านได้ทำงานมาอย่างหนัก ข้าหวังว่าทนคงจะได้ผลตอบแทนที่ดี";
+			emotion 1;
+			next;
+			mes "[Blacksmith Altiregen]";
+		mes "อืมม์ ท่างคงรู้จัก ^5533FFGeshupenschte ใน Alberta^000000 เขาเป็นลูกน้องขอข้า";
+		mes "ท่านต้องไปช่วยเขา เพื่อจะเริ่มการทดสอบแรก";
+			next;
+			mes "[Blacksmith Altiregen]";
+		mes "ขอให้เดินทางโดยสวัสดิภาพ!";
+			set BSMITH_Q,1;
+			set JBLVL, 50;
+			close;
+	M_Req:
+		mes "[Blacksmith Altiregen]";
+		mes "คุณสมบัติที่ท่านจะต้องมี?";
+		mes "ขั้นแรกท่านจะต้องมีระดับจ๊อบเลเวล 40";
+		mes "และผ่านการทดสอบที่ข้าเตรียมไว้";
+		close;
+	M_NtNow:
+		mes "[Blacksmith Altiregen]";
+		mes "เอาล่ะ.. ไว้เจอกันคราวหน้า";
+		close;
+
+
+L_Test1:
+	mes "ท่านยังไม่ได้ทำตามที่ข้าบอกเลย ข้าบอกให้ท่านไปหา Geshupenschte ใน Alberta ท่านจะเห็นเขาที่นั่น";
+	emotion 1;
+	close;
+
+L_Test2and3:
+	mes "Geshupenschte เขาคงทำงานได้ดี ถึงแม้เขาจะมีอาการเจ็บปวดหลังบ้างเป็นครั้งเป็นคราว";
+	close;
+L_Test4:
+	if (BSMITH_Q2 == 1) goto L_NotDone;
+	mes "ยินดีด้วยท่านผ่านการทดสอบของ Geshupenschte's แล้ว!";
+	next;
+	mes "[Blacksmith Altiregen]";
+	mes "หืมม์? เฮ้ นี่จะเป็นอีกการทดสอบหนึ่งซึ่งจะเป็นการทดสอบสุดท้าย";
+	mes "โดยการทดสอบนี้จะอยู่ที่ Morroc ไปที่นั่นเลยมั้ย";
+	next;
+	menu "งานคงจะหนัก แต่ข้าก็จะไป",-,"ข้าไม่อยากไปไหนแล้ว",M_dontgo;
+
+		set BSMITH_Q2, 1;
+		mes "[Blacksmith Altiregen]";
+		mes "ข้ารู้ว่ามันยังอยู่ห่างไกลนัก แต่มันก็ไม่ได้อยู่ภายใต้อำนาจของข้า ท่านคงจะรู้ดี?";
+		mes "ข้าหวังว่าท่านจะไม่ทำให้สมาคม blacksimth นี้ต้องอับอายหรอกนะ!";
+		next;
+		mes "[Blacksmith Altiregen]";
+		mes "หากเหตุการณ์นั้นเกิดขึ้น สมาคมนี้คงจะต้องถึงจุดจบ";
+		mes "ท่านควรกลับไปที่ Morroc และไปหาเธอซะ!";
+		close;
+	M_dontgo:
+		mes "[Blacksmith Altiregen]";
+		mes "อะไร!? ท่านจะยอมแพ้!?!.........";
+		emotion 1;
+		next;
+		mes "[Blacksmith Altiregen]";
+		mes "ท่านกล้าดูถูกสมาคมเราถึงเช่นนี้เลยงั้นเหรอ!";
+		mes "ท่านต้องการปล่อยความฝันของการเป็น Blacksimith ง่ายเพียงนี้เลย!";
+		emotion 23;
+		close;
+
+	L_NotDone:	
+		mes "อืม?ท่านไม่ได้บอกข้าว่าท่า่นจะไป Morroc ใช่มั่ย?";
+		close;
+
+L_Change:
+	if(countitem(1005) < 1) goto L_NoHam;
+	if(SkillPoint > 0) mes "ท่านจำเป็นต้องใช้สกิลพ้อยท์ของท่านให้หมด";
+	if(SkillPoint > 0) close;
+	mes "ข้ามองเห็นไฟ ในดวงตาของท่าน ข้าจะให้ท่านผ่าน!!";
+	mes "ท่านคงจะมีพรสวรรค์ในการตีเหล็กจริงๆ!";
+	next;
+	delitem 1005,1;
+	jobchange 10;
+	mes "[Blacksmith Altiregen]";
+	mes "อย่าลืมว่าเราเป็นผู้ที่มอบความงานให้แก่โลหะ... จงอย่าทำให้มันสูญสิ้นความบริสุทธิ์เพียงเพราะเงินทอง!";
+	next;
+	mes "[Blacksmith Altiregen]";
+	mes "ยินดีด้วยท่านผ่านการทดสอบ!";
+	if(JBLVL == 40) getitem 999,5;
+	if(JBLVL == 50) getitem 999,10;
+	callfunc "F_ClearJobVar";		// clears all job variables for the current player
+	emotion 21;
+	close;
+
+	L_NoHam:
+		mes "ท่านคงจะลืมสิ่งที่ ท่านต้องนำมาให้ข้าคือ^5533FFHammer of Blacksmiths^000000 เพื่อจะพิสูจน์ว่าท่านผ่านการทดสอบทั้งหมดนี้ได้หรือไม่";
+		next;
+		mes "[Blacksmith Altiregen]";
+		mes "ท่านคงมีมันหรอกนะ รึว่าท่านไม่มี???";
+		next;
+		menu "โอ้ ใช่ข้ามี มันอยู่ในคลังเก็บของของข้า",-, "โอ้ ข้าดันลืมขายมันไปซะแล้ว?",sM_What;
+
+			mes "[Blacksmith Altiregen]";
+			mes "....... อ่าาา.......";
+			emotion 7;
+			close;
+		sM_What:
+			mes "[Blacksmith Altiregen]";
+			mes ".........ข้าจะบอกในสิ่งที่ท่านต้องการจะีรู้.............";
+			next;
+			mes "[Blacksmith Altiregen]";
+			mes "เริ่มต้นใหม่ทั้งหมด!!!!";
+			set BSMITH_Q, 0;
+			set BSMITH_Q2, 0;
+			emotion 32;
+		close;
+}
+
+
+//<=============================================== Geshupenschte: 1st, 2nd, 3rd Test ===================================================>\\
+alberta_in.gat,174,22,4	script	Geshupenschte	63,{
+
+	if(Class==5) goto L_merchant;
+	mes "[Geshupenschte]";
+	mes "สวัสดี ข้าคือ blacksmith มีชื่อว่า  Geshupenschte! ยินดีที่ได้พบ!";
+	next;
+	mes "[Geshupenschte]";
+	mes "Blacksmith ข้าจะมอบงานที่ดีให้ท่าน ท่านคงคิดว่างั้นนะ ฮ่า ฮ่า ฮ่า!";
+	emotion 18;
+	close;
+
+L_merchant:
+	mes "[Geshupenschte]";
+	if (BSMITH_Q == 1) goto L_Test1;
+	if (BSMITH_Q == 2) goto L_Test2;
+	if (BSMITH_Q == 3) goto L_Test3;
+	if (BSMITH_Q == 4) goto L_Done;
+	if (BSMITH_Q == 5) goto L_GoChange;
+	mes "โฮ โฮ!! ก่อนจะทำการค้าขายที่ดี ข้าต้องการให้ท่านช่วยเหลือข้าบางอย่าง!!";
+	next;
+	mes "[Geshupenschte]";
+	mes "แน่นอน ข้ารู้่ว่า ข้ารู้ข้าจะไม่รบกวนผู้ที่ไม่มีเวลาว่างและเวลาส่วนตัวหรอกนะ";
+	next;
+	mes "[Geshupenschte]";
+	mes "นี่อะไร? ท่านยังอยู่ที่นี่อีกหรอ?";
+	emotion 1;
+	close;
+
+// Test 1-----------------------------------------------------------------
+L_Test1:
+	if (BSMITH_Q2 == 1) goto L_ReTest1;
+	mes "ท่านคงเป็นหนึ่งที่ถูกส่งมาจากสมาคมเราสินะ";
+	mes "ว๊าวว ข้ากำลังต้องการคนช่วยข้าอยู่พอดี ข้าต้องการคนส่งของ";
+	next;
+	mes "[Geshupenschte]";
+	mes "ดูสิ นี่เพิ่งผ่้านไปมีกี่วัน";
+	mes "ท่านคงสูญเสียเงินมากล่ะ";
+	mes "เพราะต้องข้าต้องส่งท่านไปทำธรุกิจที่ยุ่งยากและซับซ้อน";
+	mes "ตอนนี้ ข้ามีอะไรจะถามท่าน ซักสองสามคำถาม!";
+	next;
+	menu "ข้าตกลง",M_Rdy,"ข้าขอเวลาเตรียมตัวก่อนละกัน",-;
+
+		mes "[Geshupenschte]";
+		mes "โอเค หากท่านกลับมาเมื่อไหร่ ข้าจะรอท่านอยู่ที่นี่เสมอ";
+		close;
+	M_Rdy:
+		set @score, 0;
+		set @temp, rand(2);
+		if (@temp == 1) goto L_setq2;
+
+	L_setq1:
+		mes "[Geshupenschte]";
+		mes "1. ในตัวอย่างด้านล่าง หาตัวเลือกที่ไม่ถูกต้องของพื้นที่และสินค้าในพี้นที่นั้น?";
+		next;
+		menu "Morroc - Thief Clothes",q1,"Alberta - 2 Hand Axe",q1,"Comodo - Berserk Potion",q1,"Alberta - Swordmace",-;
+
+			set @score,@score+10;
+		q1:
+
+		mes "[Geshupenschte]";
+		mes "2. ผลของ Skill Hammerfall ของ Blacksmith คือ?";
+		next;
+		menu "Stun",-,"Blind",q2,"Poison",q2,"Sleep",q2;
+
+			set @score,@score+10;
+		q2:
+
+		mes "[Geshupenschte]";
+		mes "3. อะไรที่ Merchant ไม่ถนัด?";
+		next;
+		menu "ตั้งร้านค้า",q3,"ซื้อของได้ถูกลง",q3,"ขายของได้ราคาสูง",q3,"หนีอย่างรวดเร็ว",-;
+
+			set @score,@score+10;
+
+		q3:
+
+		mes "[Geshupenschte]";
+		mes "4. ร้านที่ขาย Blue Gemstone อยู่ ณ ที่ใด?";
+		next;
+		menu "Alberta",q4,"Morroc",q4,"Geffen",-,"Prontera",q4;
+
+			set @score,@score+10;
+
+		q4:
+
+		mes "[Geshupenschte]";
+		mes "5. ร้านขายไอเทมใน Geffen อยู่ที่ไหน?";
+		next;
+		menu "8 นาฬิกาจากหอคอย Geffen",-,"11 นาฬิกาจากหอคอย Geffen",q5,"6 นาฬิกาจากหอคอย Geffen",q5,"5 นาฬิกาจากหอคอย Geffen",q5;
+
+			set @score,@score+10;
+
+		q5:
+
+		mes "[Geshupenschte]";
+		mes "6. อะไรคืออาวุธที่ Merchant ไม่สามารถใช้ได้?";
+		next;
+		menu "Stiletto",q6,"Buster",q6,"Chain",q6,"Bible",-;
+
+			set @score,@score+10;
+
+		q6:
+
+		mes "[Geshupenschte]";
+		mes "7. เลือกเกราะที่มีพลังป้องกันสูงสุด?";
+		next;
+		menu "Panty",q7,"Mink Coat",-,"Wooden Mail",q7,"Silk Robe",q7;
+
+			set @score,@score+10;
+	
+		q7:
+
+		mes "[Geshupenschte]";
+		mes "8. ถ้าท่านจะตีอาวุธเลเวล 3 อะไรคือตัวเลขที่ปลอดภัยที่สุด?";
+		next;
+		menu "+3 ",q8,"+4 ",q8,"+5 ",-,"+6 ",q8;
+
+			set @score,@score+10;
+		q8:
+
+		mes "[Geshupenschte]";
+		mes "9. ท่านสามารถนำ Trunk มาใช้ทำอะไร?";
+		next;
+		menu "Sakkat",-,"Ghost Bandana",q9,"Majestic Goat",q9,"Antlers",q9;
+
+			set @score,@score+10;
+		q9:
+
+		mes "[Geshupenschte]";
+		mes "10. อะไรคือสิ่งสำคัญที่สุดสำหรับ merchant!?";
+		next;
+		menu "การช่วยเหลือผู้อื่น",-,"เกียรติยศ",-,"เงิน",-,"ความซื่อสัตย์",-;
+
+			set @score,@score+10;
+
+		if (BSMITH_Q2 == 1) goto L_result2;
+		goto L_result;
+
+	L_setq2:	
+		mes "[Geshupenschte]";
+		mes "1. ในตัวอย่างด้านล่าง หาตัวเลือกที่ไม่ถูกต้องของพื้นที่และสินค้าในพี้นที่นั้น?";
+		next;
+		menu "Aldebaran - Ygg Leaf",q10,"Alberta - Hammer",q10,"Comodo - Berserk Potion",q10,"Aldebaran - Hammer",-;
+
+			set @score,@score+10;
+		q10:
+
+		mes "[Geshupenschte]";
+		mes "2. ราคาของ Jellopy คือ?";
+		next;
+		menu "1z",q11,"2z",q11,"3z",-,"4z",q11;
+
+			set @score,@score+10;
+		q11:
+
+		mes "[Geshupenschte]";
+		mes "3. อะไรที่เราต้องใช้ในการขาย?";
+		next;
+		menu "ต้องมีรถเข็น",-,"ต้องมีไอเท็มในการขาย",q12,"ต้องใส่อาวุธ",q12,"ต้องสวมชุดเกราะ",q12;
+
+			set @score,@score+10;
+		q12:
+
+		mes "[Geshupenschte]";
+		mes "4. เมืองไหนที่สามารถเปลี่ยนอาชีพ merchant ได้?";
+		next;
+		menu "Alberta",-,"Morroc",q13,"Geffen",q13,"Prontera",q13;
+
+			set @score,@score+10;
+		q13:
+
+		mes "[Geshupenschte]";
+		mes "5. ที่ตั้งร้านขายอาวุธในเมืองมอรอคคือ?";
+		next;
+		menu "7 นาฬิกาจากศูนย์กลางเมืองมอรอค",q14,"11 นาฬิกาจากศูนย์กลางเมืองมอรอค",q14,"6 นาฬิกาจากศูนย์กลางเมืองมอรอค",q14,"5 นาฬิกาจากศูนย์กลางเมืองมอรอค",-;
+
+			set @score,@score+10;
+		q14:
+
+		mes "[Geshupenschte]";
+		mes "6. อะไรคืออาวุธที่ merchant ใช้ไม่ได้ ?";
+		next;
+		menu "Main Gauche",q15,"Claymore",-,"Chain",q15,"2 hand axe",q15;
+
+			set @score,@score+10;
+		q15:
+
+		mes "[Geshupenschte]";
+		mes "7. เลือกเกราะที่มีค่าพลังป้องกันสูงสุด?";
+		next;
+		menu "Panty",q16,"Mink Coat",-,"Wooden Mail",q16,"Silk Robe",q16;
+
+			set @score,@score+10;
+		q16:
+
+		mes "[Geshupenschte]";
+		mes "8. ถ้าท่านจะตีอาวุธเลเวล 4 อะไรคือตัวเลขที่ปลอดภัยที่สุด!?";
+		next;
+		menu "+3 ",q17,"+4",-,"+5",q17,"+6",q17;
+
+			set @score,@score+10;
+		q17:
+
+		mes "[Geshupenschte]";
+		mes "9. เลือกสัตว์ประหลาดที่ไม่ทิ้ง Iron Ore?";
+		next;
+		menu "Chonchon",q18,"Steel Chonchon",q18,"Zerom",q18,"Anolian",-;
+
+			set @score,@score+10;
+		q18:
+
+		mes "[Geshupenschte]";
+		mes "10. อะไรคือสิ่งสำคัญที่สุดสำหรับ Merchant?!";
+		next;
+		menu "ความซื่อสัตย์",-,"การช่วยเหลือผู้อื่น",-,"เงิน",-,"การวางตัว",-;
+
+			set @score,@score+10;
+
+		if (BSMITH_Q2 == 1) goto L_result2;	
+		goto L_result;
+
+L_result:
+	mes "[Geshupenschte]";
+	mes "ดี!";
+	next;
+	mes "[Geshupenschte]";
+	mes "เอาล่ะ...ท่านได้ ^5533FF"+@score+"^000000 คะแนน";
+	if (@score == 100) goto L_perfect;
+	mes ".............";
+	next;
+	mes "[Geshupenschte]";
+	mes "ข้าเสียใจ แต่ข้างคงให้ท่านผ่านไปไม่ได้";
+	mes "ท่านต้องไปศึกษาเพิ่มเติม เกี่ยวกับเรื่องของ Merchant เสียก่อน";
+	set BSMITH_Q2, 1;
+	close;
+
+	L_perfect:
+		set BSMITH_Q,2;
+		set BSMITH_Q2, 0;
+		mes "โอ้ คะแนนนี้เยี่ยมยอดมาก ดี ดี!";
+		close;
+L_result2:
+	mes "[Geshupenschte]";
+	mes "ดี!";
+	next;
+	mes "[Geshupenschte]";
+	mes "เอาล่ะ...ท่านได้ ^5533FF"+@score+"^000000 คะแนน";
+	if (@score > 80) goto L_pass;
+	mes ".............";
+	next;
+	mes "[Geshupenschte]";
+	mes "ท่านพลาดอีกแล้ว..!";
+	mes "ถ้าท่านพลาดอีกครั้ง ข้าคงจะให้ท่านยอมแพ้ ข้าว่าท่านควรไปศึกษาเพิ่มเติมกว่านี้นะ";
+	set BSMITH_Q2, 1;
+	close;
+
+	L_pass:
+		set BSMITH_Q,2;
+		set BSMITH_Q2, 0;
+		mes "ท่านผ่านการทดสอบแล้ว!";
+		next;
+		mes "[Geshupenschte]";
+		mes "ข้าจะให้งานใหม่ที่ท่านต้องทำ ท่านเตรียมตัวรึยัง?";
+		close;
+L_ReTest1:	
+	mes "อ่า.. ข้าเห็นท่านได้ไปหาข้อมูลใหม่มาแล้ว ข้าจะให้ลองอีกครั้ง เริ่มกันเลย!";
+	next;
+	goto M_Rdy;
+
+
+// Test 2-----------------------------------------------------------------
+L_Test2:
+	if(BSMITH_Q2 > 0) goto L_CheckTest2;
+	mes "ข้าขอดูงาน... งานที่รับสั่งมาก่อน....";
+	next;
+	mes "[Geshupenschte]";
+	mes "โอ้ นี่มัน..!";
+	mes "นี่คือสิ่งที่ท่านจะต้องไปหา... ช้าต้องการให้ท่านทำสิ่งนี้";
+	next;
+	set BSMITH_Q2,rand(1,5);
+	if (BSMITH_Q2 == 2) goto R_item2;
+	if (BSMITH_Q2 == 3) goto R_item3;
+	if (BSMITH_Q2 == 4) goto R_item4;
+	if (BSMITH_Q2 == 5) goto R_item5;
+
+	R_item1:
+		mes "[Geshupenschte]";
+		mes "^5533FF2 Steel";
+		mes "1 Rotten Bandage";
+		mes "2 Blue Gemstone^000000";
+		mes "และ ^5533FF1 Arc Wand^000000 ซื้อจากร้านค้า";
+		next;
+		mes "[Geshupenschte]";
+		mes "เฮ้.. นี่มันคือการทดสอบ พวกข้าไม่ได้ยากจนหรอก!";
+		next;
+		mes "[Geshupenschte]";
+		mes "^5533FF2 Steel";
+		mes "1 Rotten Bandage";
+		mes "2 Blue Gemstone^000000";
+		mes "และ ^5533FF1 Arc Wand^000000 ซื้อจากร้านค้า";
+		next;
+		goto L_finalword;
+	R_item2:	
+		mes "[Geshupenschte]";
+		mes "^5533FF2 Star Dust";
+		mes "2 Skel Bones";
+		mes "1 Zargons^000000";
+		mes "และ ^5533FF1 Gladius^000000 ซื้อจากร้านค้า";
+		next;
+		mes "[Geshupenschte]";
+		mes "เฮ้.. นี่มันคือการทดสอบ พวกข้าไม่ได้ยากจนหรอก!";
+		next;
+		mes "[Geshupenschte]";
+		mes "I'll list them again";
+		mes "^5533FF2 Star Dust";
+		mes "2 Skel Bones";
+		mes "1 Zargons^000000";
+		mes "และ ^5533FF1 Gladius^000000 ซื้อจากร้านค้า";
+		next;
+		goto L_finalword;
+	R_item3:
+		mes "[Geshupenschte]";
+		mes "^5533FF2 Coals";
+		mes "2 Shells";
+		mes "2 Red Bloods^000000";
+		mes "และ ^5533FF1 Tsurugi^000000 ซื้อจากร้านค้า";
+		next;
+		mes "[Geshupenschte]";
+		mes "เฮ้.. นี่มันคือการทดสอบ พวกข้าไม่ได้ยากจนหรอก!";
+		next;
+		mes "[Geshupenschte]";
+		mes "I'll list them again";
+		mes "^5533FF2 Coals";
+		mes "2 Shells^000000";
+		mes "2 Red Bloods";
+		mes "และ ^5533FF1 Tsurugi^000000 ซื้อจากร้านค้า";
+		next;
+		goto L_finalword;
+	R_item4:
+		mes "[Geshupenschte]";
+		mes "^5533FF8 Iron Ores";
+		mes "1 Trunk";
+		mes "2 Blue Gems^000000";
+		mes "และ ^5533FFArbalest^000000 ซื้อจากร้านค้า";
+		next;
+		mes "[Geshupenschte]";
+		mes "เฮ้.. นี่มันคือการทดสอบ พวกข้าไม่ได้ยากจนหรอก!";
+		next;
+		mes "[Geshupenschte]";
+		mes "I'll list them again.";
+		mes "^5533FF8 Iron Ores";
+		mes "1 Trunk";
+		mes "2 Blue Gems^000000";
+		mes "และ ^5533FFArbalest^000000 ซื้อจากร้านค้า";
+		next;
+		goto L_finalword;
+	R_item5:
+		mes "[Geshupenschte]";
+		mes "^5533FF8 Iron Ores";
+		mes "20 Green Herbs";
+		mes "2 Animal Skin^000000";
+		mes "และ ^5533FF1 Morning Star^000000 ซื้อจากร้านค้า";
+		next;
+		mes "[Geshupenschte]";
+		mes "เฮ้.. นี่มันคือการทดสอบ พวกข้าไม่ได้ยากจนหรอก!";
+		next;
+		mes "[Geshupenschte]";
+		mes "I'll list them again.";
+		mes "^5533FF8 Iron Ores";
+		mes "20 Green Herbs";
+		mes "2 Animal Skin^000000";
+		mes "และ ^5533FF1 Morning Star^000000 ซื้อจากร้านค้า";
+		next;
+	L_finalword:
+		mes "[Geshupenschte]";
+		mes "ขอให้โชคดี!";
+		close;
+
+L_CheckTest2:
+	mes "หืมม์? นี่คงจะเป็นรายการไอเท็มทั้งหมดหรอกนะ?";
+	next;
+	if (BSMITH_Q2 == 2) goto L_2b;
+	if (BSMITH_Q2 == 3) goto L_2c;
+	if (BSMITH_Q2 == 4) goto L_2d;
+	if (BSMITH_Q2 == 5) goto L_2e;
+
+	L_2a:
+		if(countitem(999) < 2 || countitem(930) < 1 || countitem(717) < 2 || countitem(1610) < 1) goto sL_NtEnuf1;
+		mes "[Geshupenschte]";
+		mes "นี่คงเป็น steels 3 ชิ้น?";
+		next;
+		mes "[Geshupenschte]";
+		mes "โอ้ แต่จริงๆ แล้วข้าต้องการแค่ 2 ชิ้นเท่านั้น";
+		delitem 999,2;
+		delitem 930,1;
+		delitem 717,2;
+		delitem 1610,1;
+		callsub sF_Make;
+		mes "นำสิ่งของนี้ไปส่งที่ Geffen หาคนที่ชื่อว่า Baisulitst แล้วนำใบเสร็จกลับมา";
+		getitem 1610,1;
+		next;
+		mes "[Geshupenschte]";
+		mes "รีบไปซะ ข้าไม่อยากให้เสียเวลา!";
+		next;
+		mes "[Geshupenschte]";
+		mes "ไปหาคนที่ชื่อว่า Baisulitst!";
+		close;
+
+		sL_NtEnuf1:
+			mes "[Geshupenschte]";
+			mes "ท่านมีไอเท็มไม่ครบ!";
+			next;
+			goto R_item1;
+	L_2b:
+		if(countitem(1001) < 2 || countitem(932) < 1 || countitem(912) < 1 || countitem(1219) < 1) goto sL_NtEnuf2;
+		mes "[Geshupenschte]";
+		mes "นี่คงเป็น Star Dusts 3 ชิ้น?";
+		next;
+		mes "[Geshupenschte]";
+		mes "โอ้ แต่จริงๆ แล้วข้าต้องการแค่ 2 ชิ้นเท่านั้น";
+		delitem 1001,2;
+		delitem 932,1;
+		delitem 912,1;
+		delitem 1219,1;
+		callsub sF_Make;
+		mes "ตอนนี้เจ้าต้องไปที่ Morroc เพื่อไปคุยกับ Wickebine";
+		getitem 1219,1;
+		next;
+		mes "รีบไปซะ ข้าไม่อยากให้เสียเวลา!";
+		next;
+		mes "[Geshupenschte]";
+		mes "นำสิ่งของนี้ไปส่งที่ Morroc หาคนที่ชื่อว่า Wickebine แล้วนำใบเสร็จกลับมา";
+		close;
+		next;
+
+		sL_NtEnuf2:
+			mes "[Geshupenschte]";
+			mes "ท่านมีไอเท็มไม่ครบ!";
+			next;
+			goto R_item2;
+	L_2c:
+		if(countitem(1003) < 2 || countitem(935) < 2 || countitem(990) < 1 || countitem(1119) < 1) goto sL_NtEnuf3;
+		mes "[Geshupenschte]";
+		mes "นี่คงเป็น coals ชิ้น??";
+		next;
+		mes "[Geshupenschte]";
+		mes "โอ้ แต่จริงๆ แล้วข้าต้องการแค่ 2 ชิ้นเท่านั้น";
+		delitem 1003,2;
+		delitem 935,2;
+		delitem 990,1;
+		delitem 1119,1;
+		callsub sF_Make;
+		mes "นำสิ่งนี้ไปที่ Izlude หาคนที่ชื่อว่า Gromgast แล้วนำใบเสร็จกลับมา";
+		getitem 1119,1;
+		next;
+		mes "[Geshupenschte]";
+		mes "รีบไปซะ ข้าไม่อยากให้เสียเวลา!";
+		next;
+		mes "[Geshupenschte]";
+		mes "อย่าลืมล่ะ? ว่า Izlude เขาชื่อว่า Gromgast";
+		close;
+
+		sL_NtEnuf3:
+			mes "[Geshupenschte]";
+			mes "ท่านมีไอเท็มไม่ครบ!";
+			next;
+			goto R_item3;
+
+	L_2d:
+		if(countitem(1002) < 8 || countitem(1019) < 1 || countitem(717) < 2 || countitem(1713) < 1) goto sL_NtEnuf4;
+		mes "[Geshupenschte]";
+		mes "นี่คงเป็น iron ores 30 ชิ้นสินะ?";
+		next;
+		mes "[Geshupenschte]";
+		mes "โอ้ แต่จริงๆ แล้วข้าต้องการแค่ 8 ชิ้นเท่านั้น";
+		delitem 1002,8;
+		delitem 1019,1;
+		delitem 717,2;
+		delitem 1713,1;
+		callsub sF_Make;
+		mes "นำสิ่งนี้ไป Payon ไปส่งให้กับ Tilpitz";
+		getitem 1713,1;
+		next;
+		mes "[Geshupenschte]";
+		mes "รีบไปซะ ข้าไม่อยากให้เสียเวลา!";
+		next;
+		mes "[Geshupenschte]";
+		mes "อย่าลืมล่ะ? ว่า Payon เขาชื่อว่า Tilpitz แล้วก็ใบเสร็จด้วยนะ";
+		close;
+
+		sL_NtEnuf4:
+			mes "[Geshupenschte]";
+			mes "ท่านมีไอเท็มไม่ครบ!";
+			next;
+			goto R_item4;
+
+	L_2e:
+		if(countitem(1002) < 8 || countitem(511) < 20 || countitem(919) < 2 || countitem(1513) < 1) goto sL_NtEnuf5;
+		mes "[Geshupenschte]";
+		mes "นี่คงเป็น iron ores 40 ชิ้นสินะ?";
+		next;
+		mes "[Geshupenschte]";
+		mes "โอ้ แต่จริงๆ แล้วข้าต้องการแค่ 8 ชิ้นเท่านั้น";
+		delitem 1002,8;
+		delitem 511,20;
+		delitem 919,2;
+		delitem 1513,1;
+		callsub sF_Make;
+		mes "กลับไปหา Bismarck ใน Comodo แล้วนำใบเสร็จกลับมาให้ข้า";
+		getitem 1513,1;
+		next;
+		mes "[Geshupenschte]";
+		mes "รีบไปซะ ข้าไม่อยากให้เสียเวลา!";
+		next;
+		mes "[Geshupenschte]";
+		mes "อย่าลืมล่ะ? ว่า Bismarck เขาชื่อว่า Comodo";
+		close;
+
+		sL_NtEnuf5:
+			mes "[Geshupenschte]";
+			mes "ท่านมีไอเท็มไม่ครบ!";
+			next;
+			goto R_item5;
+
+	sF_Make:
+		set BSMITH_Q, 3;
+		next;
+		mes "[Geshupenschte]";
+		mes "แกร๊ง.......";
+		next;
+		mes "~กร๊อง~กร๊อง~กร๊อง~";
+		next;
+		mes "[Geshupenschte]";
+		mes "วิ๊ววว  ท่านคงมีที่ที่จะไปแล้วนะ!";
+		return;
+
+
+// Test 3-----------------------------------------------------------------
+L_Test3:
+	if (BSMITH_Q3 == 1) goto L_CheckTest3;
+	mes "นำของไปส่ง..!";
+	mes "........ท่านคงยังไม่ลืมมันใช่มั้ย?";
+	next;
+	mes "[Geshupenschte]";
+	if (BSMITH_Q2 == 2) goto L_3b;
+	if (BSMITH_Q2 == 3) goto L_3c;
+	if (BSMITH_Q2 == 4) goto L_3d;
+	if (BSMITH_Q2 == 5) goto L_3e;
+
+	L_3a:
+		if (countitem(1610) < 1) goto L_LostItem;
+		mes "Baisulitst เขาอยู่ที่ 11 นาฬิกาจากหอคอย Geffen ";
+		close;
+	L_3b:
+		if (countitem(1210) < 1) goto L_LostItem;
+		mes "Wickebine เขาอยู่ข้างๆ ร้าน Sword Mace dealer ใน Morroc.";
+		close;
+	L_3c:
+		if (countitem(1119) < 1) goto L_LostItem;
+		mes "Gromgast เขาอยู่ที่ 11 นาฬิกา ใน Izlude.";
+		close;
+	L_3d:
+		if (countitem(1713) < 1) goto L_LostItem;
+		mes "Tilpitz เขาอยู่บริเวณ 5 นาฬิกา ใน Payon";
+		close;
+	L_3e:
+		if (countitem(1513) < 1) goto L_LostItem;
+		mes "Bismarck หาเขาได้บริเวณ 12 นาฬิกา ใน Comodo";
+		close;
+
+	L_LostItem:
+		mes "อะไรกัน!!! นี่ท่านทำไอเท็มที่ข้าให้ท่านไปส่งหายยังงั้นเหรอ!!!!";
+		emotion 23;
+		next;
+		mes "[Geshupenschte]";
+		mes "........... ดีล่ะ ข้าว่ามันคงทำให้ท่านลำบาก....";
+		mes "ข้าจะให้ท่านได้เริ่มต้นใหม่ทั้งหมด.. !!";
+		set BSMITH_Q, 0;
+		set BSMITH_Q2, 0;
+		emotion 7;
+		close;
+
+L_CheckTest3:
+	mes "ท่านคงไปส่งมันมาแล้วใช่ไหม?";
+	mes "ไหนล่ะ ใบเสร็จของท่าน!";
+	next;
+	menu "นี่ไงล่ะ..!!",-,"รอข้าสั่งเดี๋ยว",M_Wait;
+
+		if(countitem(1073) < 1) goto sL_noreceipt;
+		mes "[Geshupenschte]";
+		mes "ยอดเยี่ยม ท่านทำได้ดีมาก ท่านเป็น Merchant ที่ดี ท่านจงกลับไปหา Altiregen ในเมือง Geffen!";
+		mes "ข้ารู้ว่าเขาจะให้ท่านผ่านการทดสอบแน่!!!";
+		set BSMITH_Q, 4;
+		set BSMITH_Q2, 0;
+		set BSMITH_Q3, 0;
+		delitem 1073,1;
+		close;
+
+		sL_noreceipt:
+			mes "[Geshupenschte]";
+			mes "........ท่านคงไม่ได้ทำใบเสร็จหายไปหรอกนะ?.........";
+			next;
+			mes "[Geshupenschte]";
+			mes "อะไรกัน?! นี่ท่านทำไอเท็มหายหรือบางอย่างที่ข้าให้หายไปจริง ๆ!?";
+			emotion 23;
+			next;
+			mes "[Geshupenschte]";
+			mes "ใบเสร็จรับเงินเป็นสิ่งสำคัญของ merchants! มันคือชีวิตของ blacksmiths!";
+			mes "ท่านต้องกลับไปเริ่มต้นใหม่ทั้งหมดอีกครั้ง!!";
+			set BSMITH_Q, 0;
+			set BSMITH_Q2, 0;
+			set BSMITH_Q3, 0;
+			emotion 32;
+			close;
+	M_Wait:
+		mes "[Geshupenschte]";
+		mes "ดี หากท่านเจอใบเสร็ตแล้วก็กลับมาหาข้าละกัน";
+		close;
+
+L_Done:
+	mes "ขอบคุณสำหรับการทำงานที่เหน็ดเหนื่อย ตอนนี้ท่านกลับไปหา Altiregen!";
+	close;
+
+L_GoChange:
+	mes "ท่านคงยังมีอะไรบางอย่างที่ยังต้องทำ.........";
+	mes "ข้าคิดว่าถ้าไม่ใช่ที่ Morroc ก็ Geffen ล่ะนะ?";
+	close;
+}
+
+
+// Delivery Recipients ==================================================>\\
+// Baisulitst -----------------------------------------------------------
+geffen.gat,46,164,4	script	Baisulitst	69,{
+	if (BSMITH_Q==3) goto L_Start;
+
+	mes "[Baisulitst]";
+	mes "ตอนนี้ข้าคิดว่า สิ่งของที่ข้าสั่งจากเมือง Alberta ทำไมถึงมาได้ล่าช้านัก ข้ารู้สึกอารมณ์เสียซะจริงๆ";
+	next;
+	mes "[Baisulitst]";
+	mes "ข้าได้สั่งของอะไรบางอย่างที่ สมาคม Blacksmith ใน Geffen แต่เขากลับให้งาน blacksmith ใน Alberta ไปทำแทน";
+	next;
+	mes "[Baisulitst]";
+	mes "หืมม์....., ข้าสงสัยว่าเมื่อไหร่ข้าจะไดรับ ^5555FFArc Wand^000000 ที่ข้าสั่งทำพิเศษซะที";
+	emotion 20;
+	close;
+
+L_Start:
+	if(BSMITH_Q2 != 1) goto L_Wrong;
+	if(countitem(1073) == 1) goto L_Done;
+	if(countitem(1610) < 1) goto L_NoItem;
+	mes "[Baisulitst]";
+	mes "ว้าว! ในที่สุดท่านก็นำมันมา?!";
+	mes "ขอบคุณ ที่ยังรอข้าเสมอ!";
+	delitem 1610,1;
+	set BSMITH_Q3, 1;
+	next;
+	mes "[Baisulitst]";
+	mes "นี่คงเป็นของที่ข้าสั่งใช่มั้ย?!";
+	next;
+	mes "[Baisulitst]";
+	mes "ขอบคุณ ท่านต้องอดทนเดินทางมายาวไกล!";
+	mes "เอ้านี่.. ข้าดีใจมาก รับใบเสร็จรับเงินไป";
+	next;
+	getitem 1073,1;
+	mes "[Baisulitst]";
+	mes "บายย.. ขอบคุณ ที่ท่านนำมาส่งให้ข้า!";
+	close;
+
+	L_NoItem:
+		mes "[Baisulitst]";
+		mes "..... หืม? นี่อะไรกัน? ไหนล่ะไอเท็มที่ข้าได้สั่งไปข้าไม่เห็นท่านมีอะไรเลย";
+		emotion 32;
+	L_Wrong:
+		mes "[Baisulitst]";
+		mes "..... หืม?.... อะไรกัน?..... นี่ไม่ใช่ของที่ข้าสั่ง.....";
+		emotion 32;
+	L_Done:
+		mes "[Baisulitst]";
+		mes "ขอบคุณอีกครั้ง ที่ท่านนำมันมาส่ง ข้าซึ้งใจในตัวท่านจริงๆ!";
+		close;
+}
+
+// Wickebine --------------------------------------------------------------------
+morocc.gat,27,112,4	script	Wickebine	725,{
+	if (BSMITH_Q == 3) goto L_Start;
+
+	mes "[Wickebine]";
+	mes "..........";
+	mes ".....เมื่อไหร่ของที่ข้าสั่งจะมาถึงกันนะ?";
+	emotion 20;
+	next;
+	mes "[Wickebine]";
+	mes "ทำไมกัน สมาคม Blacksmith ใน Geffen ถึงได้มาได้ล่าช้านัก!";
+	emotion 32;
+	close;
+L_Start:
+	if(BSMITH_Q2 != 2) goto L_Wrong;
+	if(countitem(1073) == 1) goto L_Done;
+	if(countitem(1219) < 1) goto L_NoItem;
+	mes "[Wickebine]";
+	mes "นี่มันมาถึงแล้ว..!?!";
+	mes "มอบมันให้ข้า!!!!";
+	delitem 1219,1;
+	set BSMITH_Q3, 1;
+	next;
+	mes "[Wickebine]";
+	mes "นี่คงเป็นของที่ข้าสั่งใช่มั้ย?!";
+	next;
+	mes "[Wickebine]";
+	mes "ขอบคุณ ท่านต้องอดทนเดินทางมายาวไกล!";
+	mes "เอ้านี่.. ข้าดีใจมาก รับใบเสร็จรับเงินไป";
+	next;
+	getitem 1073,1;
+	mes "[Wickebine]";
+	mes "บายย.. ขอบคุณ ที่ท่านนำมาส่งให้ข้า!";
+
+	L_NoItem:
+		mes "[Wickebine]";
+		mes "..... หืม? นี่อะไรกัน? ไหนล่ะไอเท็มที่ข้าได้สั่งไปข้าไม่เห็นท่านมีอะไรเลย";
+		emotion 6;
+		close;
+	L_Wrong:
+		mes "[Wickebine]";
+		mes "..... หืม?.... อะไรกัน?..... นี่ไม่ใช่ของที่ข้าสั่ง.....";
+		emotion 4;
+		close;
+	L_Done:	
+		mes "[Wickebine]";
+		mes "ขอบคุณ";
+		close;
+}
+
+// Gromgast ---------------------------------------------------------------------
+izlude.gat,69,181,4	script	Gromgast	734,{
+	if (BSMITH_Q == 3) goto L_Start;
+
+	mes "[Gromgast]";
+	mes "..........";
+	mes ".....เมื่อไหร่ของที่ข้าสั่งจะมาถึงกันนะ?";
+	next;
+	mes "[Gromgast]";
+	mes "ทำไมกัน สมาคม Blacksmith ใน Geffen ถึงได้มาได้ล่าช้านัก!";
+	close;
+
+L_Start:
+	if(BSMITH_Q2 != 3) goto L_Wrong;
+	if(countitem(1073) == 1) goto L_Done;
+	if(countitem(1119) < 1) goto L_NoItem;
+	mes "[Gromgast]";
+	mes "อ้า ของของข้ามาถึงแล้ว";
+	mes "ไหนขอดูซิ";
+	delitem 1119,1;
+	set BSMITH_Q3, 1;
+	next;
+	mes "[Gromgast]";
+	mes "นี่คงเป็นของที่ข้าสั่งใช่มั้ย?!";
+	next;
+	mes "[Gromgast]";
+	mes "ขอบคุณ ท่านต้องอดทนเดินทางมายาวไกล!";
+	mes "เอ้านี่.. ข้าดีใจมาก รับใบเสร็จรับเงินไป";
+	next;
+	getitem 1073,1;
+	mes "[Gromgast]";
+	mes "บายย.. ขอบคุณ ที่ท่านนำมาส่งให้ข้า!";
+	close;
+
+	L_NoItem:
+		mes "[Gromgast]";
+		mes "..... หืม? นี่อะไรกัน? ไหนล่ะไอเท็มที่ข้าได้สั่งไปข้าไม่เห็นท่านมีอะไรเลย";
+		emotion 20;
+	L_Wrong:
+		mes "[Gromgast]";
+		mes "..... หืม?.... อะไรกัน?..... นี่ไม่ใช่ของที่ข้าสั่ง.....";
+		close;
+	L_Done:	
+		mes "[Gromgast]";
+		mes "ขอบคุณ";
+		close;
+}
+
+// Tilpitz --------------------------------------------------------------------
+// [D-reborn] Old Payon
+//payon.gat,214,79,4	script	Tilpitz	59,{
+payon,151,39,4	script	Tilpitz#oldpay	59,{
+	if (BSMITH_Q == 3) goto L_Start;
+
+	mes "[Tilpitz]";
+	mes "..........";
+	mes ".....เมื่อไหร่ของที่ข้าสั่งจะมาถึงกันนะ?";
+	next;
+	mes "[Tilpitz]";
+	mes "ทำไมกัน สมาคม Blacksmith ใน Geffen ถึงได้มาได้ล่าช้านัก!";
+	close;
+L_Start:
+	if(BSMITH_Q2 != 4) goto L_Wrong;
+	if(countitem(1073) == 1) goto L_Done;
+	if(countitem(1713) < 1) goto L_NoItem;
+	mes "[Tilpitz]";
+	mes "อ้า ของของข้ามาถึงแล้ว";
+	mes "ไหนขอดูซิ";
+	delitem 1713,1;
+	set BSMITH_Q3, 1;
+	next;
+	mes "[Tilpitz]";
+	mes "นี่คงเป็นของที่ข้าสั่งใช่มั้ย?!";
+	next;
+	mes "[Tilpitz]";
+	mes "ขอบคุณ ท่านต้องอดทนเดินทางมายาวไกล!";
+	mes "เอ้านี่.. ข้าดีใจมาก รับใบเสร็จรับเงินไป";
+	next;
+	getitem 1073,1;
+	mes "[Tilpitz]";
+	mes "บายย.. ขอบคุณ ที่ท่านนำมาส่งให้ข้า!";
+	close;
+
+	L_NoItem:
+		mes "[Tilpitz]";
+		mes "..... หืม? นี่อะไรกัน? ไหนล่ะไอเท็มที่ข้าได้สั่งไปข้าไม่เห็นท่านมีอะไรเลย";
+		close;
+	L_Wrong:
+		mes "[Tilpitz]";
+		mes "..... หืม?.... อะไรกัน?..... นี่ไม่ใช่ของที่ข้าสั่ง.....";
+		emotion 4;
+		close;
+	L_Done:
+		mes "[Tilpitz]";
+		mes "ขอบคุณ";
+		close;
+}
+
+// Bismarck ---------------------------------------------------------------------------
+comodo.gat,158,342,4	script	Bismarck	118,{
+	if (BSMITH_Q == 3) goto L_Start;
+
+	mes "[Bismarck]";
+	mes "..........";
+	mes ".....เมื่อไหร่ของที่ข้าสั่งจะมาถึงกันนะ?";
+	next;
+	mes "[Bismarck]";
+	mes "ทำไมกัน สมาคม Blacksmith ใน Geffen ถึงได้มาได้ล่าช้านัก!";
+	close;
+
+L_Start:
+	if(BSMITH_Q2 != 5) goto L_Wrong;
+	if(countitem(1073) == 1) goto L_Done;
+	if(countitem(1513) < 1) goto L_NoItem;
+	mes "[Bismarck]";
+	mes "อ้า ของของข้ามาถึงแล้ว";
+	mes "ไหนขอดูซิ";
+	delitem 1513,1;
+	set BSMITH_Q3, 1;
+	next;
+	mes "[Bismarck]";
+	mes "นี่คงเป็นของที่ข้าสั่งใช่มั้ย?!";
+	next;
+	mes "[Bismarck]";
+	mes "ขอบคุณ ท่านต้องอดทนเดินทางมายาวไกล!";
+	mes "เอ้านี่.. ข้าดีใจมาก รับใบเสร็จรับเงินไป";
+	next;
+	getitem 1073,1;
+	mes "[Bismarck]";
+	mes "บายย.. ขอบคุณ ที่ท่านนำมาส่งให้ข้า!";
+	close;
+
+	L_NoItem:
+		mes "[Bismarck]";
+		mes "..... หืม? นี่อะไรกัน? ไหนล่ะไอเท็มที่ข้าได้สั่งไปข้าไม่เห็นท่านมีอะไรเลย";
+		emotion 23;
+		close;
+	L_Wrong:
+		mes "[Bismarck]";
+		mes "..... หืม?.... อะไรกัน?..... นี่ไม่ใช่ของที่ข้าสั่ง.....";
+		emotion 23;
+		close;
+	L_Done:
+		mes "[Bismarck]";
+		mes "ว้าวว ขอบคุณท่านมาก";
+		close;
+}
+
+
+
+//<===================================================== Mitehmaeeuh: Last Test ===================================================>\\
+morocc.gat,95,133,4	script	BS Guildsman	726,{
+	if (BSMITH_Q == 4) goto L_Start;
+	if (BSMITH_Q == 5) goto L_Done;
+	mes "[Mitmayer]";
+	mes "โอ้วว... ดวงอาทิตย์ใน Morocc ช่างร้อนแรงเหลือเกิน.... ข้าคิดว่ามันคงจะทำให้ผิดของไหม้ได้......";
+	emotion 19;
+	next;
+	mes "[Mitmayer]";
+	mes "แต่ดูสิ ช่างตีเหล็กที่ต้องอยู่กับเปลวไฟทั้งวัน ไม่ทำให้เขารู้สึกร้อนบ้างรึไง ผิวของเขากลายเป็นสีน้ำตาลกันหมดแล้ว!";
+	close;
+L_Done:
+	mes "[Mitmayer]";
+	mes "ท่านผ่านการทดสอบไปแล้ว";
+	mes "ท่านควรรีบไปที่สมาคมที่สมาคมคงจะรอท่านอยู่";
+	mes "แล้วอย่าลืมใช้สกิลพ้อยท์ที่ท่านเหลืออยู่ให้ครบซะด้วยล่ะ!";
+	close;
+L_Start:
+	mes "[Mitmayer]";
+	mes "ยินดีต้อนรับ ท่านคงจะต้องการเป็นช่างตีเหล็ก?";
+	mes "โอเค แต่ข้ารู้ว่ามันคงไม่ผ่านไปง่ายๆ ทุกคนหรอกนะ";
+	next;
+	mes "[Mitmayer]";
+	mes "ท่านคงมีเข้าใจเรื่องแร่มากน้อยแค่ไหน และท่านเข้าใขเกี่ยวกับ blacksmith มากน้อยเพียงใด";
+	mes "ข้าต้องการถามท่านหลายๆอย่าง.. งั้นเริ่มเลยนะ.....";
+	next;
+	menu "ตกลง",M_Test,"ไม่เอา",-;
+
+		mes "[Mitmayer]";
+		mes "โอเค ไว้เจอกันคราวหน้า";
+		close;
+	M_Test:
+		mes "[Mitmayer]";
+		mes "โอเค ข้าจะมี 5 คำถามที่ต้องถามท่าน ท่านต้องทำคะแนนให้ได้มากกว่า 70 คะแนนถึงจะผ่านการทดสอบ";
+		next;
+		set @score, 0;
+		set @temp, rand(3);
+		if (@temp == 1) goto R_Set2; 
+		if (@temp == 2) goto R_Set3; 
+
+	R_Set1:
+		mes "[Mitmayer]";
+		mes "1. ความสามารถใดที่ต้องเรียนก่อนถึงจะมีสกิล Discount?";
+		next;
+		menu "Pushcart Lv 3",sM_1a,"Item Appraisal",sM_1a,"Mammonite Lv 10",sM_1a,"Enlarge Weight Lv 3",-;
+	
+			set @score,@score+20;
+		sM_1a:
+
+		mes "[Mittmayer]";
+		mes "2. สถานะที่ถูก สกิล Hammerfall คืออะไร?";
+		next;
+		menu "Stun",-,"Blind",sM_1b,"Confuse",sM_1b,"Poison",sM_1b;
+
+			set @score,@score+20;
+		sM_1b:
+
+		mes "[Mitmayer]";
+		mes "3. สกิล Mamonite Level 10 จะเสียเงินเท่าไรในการใช้สกิลแต่ละครั้ง?";
+		next;
+		menu "900z",sM_1c,"1,000z",-,"2,000z",sM_1c,"1,000,000z",sM_1c;
+
+			set @score,@score+20;
+		sM_1c:
+
+		mes "[Mitmayer]";
+		mes "4. ที่สกิล Discount Lv 10 เราจะสามารถซื้อของได้ถูกลงกี่เปอร์เซ็??";
+		next;
+		menu "21 % ",sM_1d,"22 % ",sM_1d,"23 % ",sM_1d,"24 % ",-;
+
+			set @score,@score+20;
+		sM_1d:
+
+		mes "[Mitmayer]";
+		mes "5. ที่สกิล Overcharge Lv 9 เราสามารถขายของแพงเพิ่มขึ้นกี่เปอร์เซ็น?";
+		next;
+		menu "21 % ",sM_1e,"22 % ",sM_1e,"23 % ",-,"24 % ",sM_1e;
+
+			set @score,@score+20;
+		sM_1e:
+		goto L_Result;
+
+	R_Set2:
+		mes "[Mittmayer]";
+		mes "1. ตัวไหนคือสัตว์ประหลาดที่ทิ้ง Steel?";
+		next;
+		menu "Zerom",sM_2a,"Steel Chonchon",sM_2a,"Skel Worker",-,"Requiem",sM_2a;
+
+			set @score,@score+20;
+		sM_2a:
+
+		mes "[Mitmayer]";
+		mes "2. ท่านสามารถนำ Bloody Red มาทำอะไร?";
+		next;
+		menu "Flame Heart",-,"Rough Wind",sM_2b,"Great Nature",sM_2b,"Mystic Frozen",sM_2b;
+
+			set @score,@score+20;
+		sM_2b:
+
+		mes "[Mitmayer]";
+		mes "3. ท่านมีแร่อะไรเก็บไว้มากที่สุด?";
+		next;
+		menu "WoV",sM_2c,"Red Blood",-,"Green Live",-,"Crystal Blue",-;
+
+			set @score,@score+20;
+		sM_2c:
+
+		mes "[Mitmayer]";
+		mes "4. ในสถานการณ์ปกติ อะไรคือธาตุของสัตว์ประหลาดที่ท่านจัดการได้มากที่สุดถ้าท่านมีอาวุธธาตุลม?";
+		next;
+		menu "ไฟ",sM_2d,"น้ำ",-,"ดิน",sM_2d,"ลม",sM_2d;
+
+			set @score,@score+20;
+		sM_2d:
+
+		mes "[Mitmayer]";
+		mes "5. ในการทำ Steel 1 ชิ้นต้องใช้ Iron กี่ชิ้น?";
+		next;
+		menu "5",-,"4",sM_2e,"3",sM_2e,"6",sM_2e;
+
+			set @score,@score+20;
+		sM_2e:
+		goto L_Result;
+
+	R_Set3:
+		mes "[Mitmayer]";
+		mes "1. อะไรคือสิ่งที่คุณจะทำเสมอเมือ่พบกับใครสักคนบนถนน?";
+		next;
+		menu "ถามเขาว่าต้องการอะไร",-,"พูดคุยกับเขาแบบสั้นๆ",-,"ไม่สนใจ",sM_3a,"ทิ้งไอเท็มไว้แล้วจากไป",sM_3a;
+
+			set @score,@score+20;
+		sM_3a:
+
+		mes "[Mitmayer]";
+		mes "2. เราสามารถเรียนสกิล Crazy Uproar และ สกิล Change Cart ได้ที่เมืองไหน?";
+		next;
+		menu "Aldebaran",sM_3b,"Alberta",-,"Morroc",sM_3b,"Izlude",sM_3b;
+
+			set @score,@score+20;
+		sM_3b:
+
+		mes "[Mitmayer]";
+		mes "3. จากศูนย์กลางเมือง Einbroch สมาคม Black Smith อยู่ทางทิศใด?";
+		next;
+		menu "11 นาฬิกา",sM_3c,"5 นาฬิกา",-,"7 นาฬิกา",sM_3c,"12 นาฬิกา",sM_3c;
+
+			set @score,@score+20;
+		sM_3c:
+
+		mes "[Mitmayer]";
+		mes "4. เมืองไหนที่เราจะสามารถพบ Blacksmith ได้มากที่สุด";
+		next;
+		menu "Prontera",sM_3d,"Morroc",sM_3d,"Alberta",sM_3d,"Geffen",-;
+
+			set @score,@score+20;
+		sM_3d:
+
+		mes "[Mitmayer]";
+		mes "5. ค่าสถานะใดที่มีผลต่อ Blacksmith มากที่สุด?";
+		next;
+		menu "STR",sM_3e, "DEX ",-, "AGI",sM_3e, "VIT",sM_3e;
+
+			set @score,@score+20;
+		sM_3e:
+
+L_Result:
+	mes "[Mitmayer]";
+	mes "ยอดเยี่ยม!";
+	next;
+	mes "[Mitmayer]";
+	mes "เอาล่ะ นี่คือคะแนนของท่าน ^5533FF"+@score+"^000000 คะแนน!";
+	next;
+	mes "[Mitmayer]";
+	if (@score > 70) goto L_Pass;
+
+		mes "ท่านไม่ผ่านการทดสอบ!!";
+		next;
+		mes "[Mitmayer]";
+		mes "ข้าว่าท่านควรกลับไปเตรียมตัวให้พร้อม";
+		mes "แล้วกลับมาใหม่ ข้าจะรอท่านอีกครั้ง";
+		close;
+
+	L_Pass:
+		mes "เยี่ยม! ท่านผ่านการทดสอบแล้ว";
+		emotion 21;
+		next;
+		mes "[Mitmayer]";
+		mes "แต่อย่าเพิ่งดีใจไป เส้นทางการเป็น blacksmith เพิ่มจะเริ่มต้นเท่านั้น ข้ารู้ว่าท่านต้องการเครื่องหมายรับรอง.... นี่ ข้าจะมอบ ^5533FFHammer of Blacksmiths^000000 ให้ท่าน";
+		mes "กลับไปที่สมาคม Blacksmith อีกครั้งและมอบมันให้หัวหน้าสมาคมซะ";
+		getitem 1005,1;
+		set BSMITH_Q, 5;
+		set BSMITH_Q2, 0;
+		next;
+		mes "[Mitmayer]";
+		mes "โชคดี!!!!";
+		close;
+}

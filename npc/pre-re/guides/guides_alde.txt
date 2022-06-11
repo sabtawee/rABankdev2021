@@ -1,0 +1,102 @@
+//===== eAthena Script ======================================= 
+//= Al De Baran Guides
+//===== By: ================================================== 
+//= kobra_k88; L0ne_W0lf
+//===== Current Version: ===================================== 
+//= 1.7
+//===== Compatible With: ===================================== 
+//= eAthena 7.15 +
+//===== Description: ========================================= 
+//= [Aegis conversion]
+//= Guides for the City of Al De Baran
+//===== Additional Comments: ================================= 
+//= Corrected building locations and descriptions
+//= 1.2 Optimized, updated common guide names [Lupus]
+//= 1.3 Updated the guide according to how it is on iRO, thanks [MasterOfMuppets]
+//=     to Muad_Dib
+//= 1.4 Fitted the many lines into 1 or 2, and corrected some typos [erKURITA]
+//= 1.5 Removed Duplicates [Silent]
+//= 1.6 Rescripted to Aegis 10.3 standards. [L0ne_W0lf]
+//= 1.6a Changed some "close"s to "close2"s. (bugreport:1597) [Samuray22]
+//= 1.7 Fixed viewpoint coordinates [Playtester]
+//============================================================
+
+aldebaran,139,63,4	script	Soldier#alde	105,{
+	cutin "prt_soldier",2;
+	mes "[Al De Baran Guard]";
+	mes "ข้าเป็นทหารยามของเมืองแห่งนี้";
+	mes "นั่นเจ้ากำลังหาสถานที่อะไร มีอะไรให้ข้าช่วยหรือเปล่า";
+	next;
+	mes "[Al De Baran Guard]";
+	mes "ข้าจะทำเครื่องหมายนำทางให้เจ้า";
+	mes "เจ้าอยากรู้ไหมล่ะ";
+	next;
+	if (select("แนะนำสถานที่.:สิ้นสุดการสนทนา") == 1) {
+		viewpoint 1,61,229,0,0xFF6633;
+		viewpoint 1,72,197,1,0x0000FF;
+		viewpoint 1,223,222,2,0x00FFFF;
+		viewpoint 1,233,105,3,0x515151;
+		viewpoint 1,197,70,4,0x3355FF;
+		viewpoint 1,60,60,5,0xFF5555;
+		mes "^FF6633+^000000 -> ที่ทำการหลัก Kafra ";
+		mes "^0000FF+^000000 -> ร้านขายอาวุธ ";
+		mes "^00FFFF+^000000 -> สมาคม Sorcerer (ปิด)";
+		mes "^515151+^000000 -> ผับ";
+		mes "^3355FF+^000000 -> ร้านขายอุปกรณ์ทั่วไป";
+		mes "^FF5555+^000000 -> สมาคม Alchemist";
+		close2;
+		cutin "prt_soldier",255;
+		end;
+	}
+	mes "[Al De Baran Guard]";
+	mes "พวกเราคอยปกป้องเมือง Aldebaran ขอให้เจ้าเดินทางโดยสวัสดิภาพ";
+	close2;
+	cutin "prt_soldier",255;
+	end;
+}
+
+aldebaran,133,108,4	script	Soldier#2alde	105,{
+	cutin "prt_soldier",2;
+	mes "[Al De Baran Guard]";
+	mes "ข้าเป็นทหารยามของเมืองแห่งนี้";
+	mes "นั่นเจ้ากำลังหาสถานที่อะไร มีอะไรให้ข้าช่วยหรือเปล่า";
+	next;
+	mes "[Al De Baran Guard]";
+	mes "ข้าไม่เคยหยุดที่จะ";
+	mes "ปกป้องเมือง Aldebaran";
+	mes "นักเดินทางเจ้าอยากรู้ที่ไหนล่ะข้าจะแนะนำให้";
+	next;
+	switch(select("ที่ทำการหลัก Kafra :ร้านขายอาวุธ :สมาคม Sorcerer :ผับ :ร้านขายอุปกรณ์ทั่วไป :สมาคม Alchemist :สิ้นสุดการสนทนา ")) {
+	case 1:
+		viewpoint 1,61,229,0,0xFF6633;
+		mes "^FF6633+^000000 -> ที่ทำการหลัก Kafra ";
+		break;
+	case 2:
+		viewpoint 1,72,197,1,0x0000FF;
+		mes "^0000FF+^000000 -> ร้านขายอาวุธ ";
+		break;
+	case 3:
+		viewpoint 1,223,222,2,0x00FFFF;
+		mes "^00FFFF+^000000 -> สมาคม Sorcerer (ปิด)";
+		break;
+	case 4:
+		viewpoint 1,233,105,3,0x515151;
+		mes "^515151+^000000 -> ผับ ";
+		break;
+	case 5:
+		viewpoint 1,197,70,4,0x3355FF;
+		mes "^3355FF+^000000 -> ร้านขายอุปกรณ์ทั่วไป ";
+		break;
+	case 6:
+		viewpoint 1,60,60,5,0xFF5555;
+		mes "^FF5555+^000000 -> สมาคม Alchemist";
+		break;
+	case 7:
+		mes "[Al De Baran Guard]";
+		mes "พวกเราคอยปกป้องเมือง Aldebaran ขอให้เจ้าเดินทางโดยสวัสดิภาพ";
+		break;
+	}
+	close2;
+	cutin "prt_soldier",255;
+	end;
+}

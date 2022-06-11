@@ -1,0 +1,35 @@
+//—>===============================================================<—|
+// -- # Ragnarok Online EP 4.0 BY Kelberwitz Blade's
+// -- # Izlude HiSo Kafra Corparation !!
+//—>===============================================================<—|
+// - - > Izlude
+
+izlude,136,88,4	script	Kafra Express::Izlude	115,{
+	cutin "kafra_03",2;
+	callfunc "F_KafSetIz";
+	mes "^0066FF[ Kafra Express ]^000000";
+	mes "ยินดีต้อนรับสู่บริษัท Kafra";
+	mes "เราจะอยู่กับท่านทุกที่ที่ท่านไปถึง";
+	mes "มีอะไรที่ข้าช่วยท่านได้บ้าง?";
+	callfunc "F_Kafra",5,0,0,30,750;
+
+	M_Save:
+		savepoint "izlude",96,107;
+		callfunc "F_KafEnd",0,1,"in the city of Izlude";
+}
+
+
+// ฟังชั่น Izlude Kafra
+function	script	F_KafSetIz	{
+	cleararray @wrpC$[0],"",getarraysize(@wrpC$);
+	setarray @wrpD$[0], "Prontera", "Payon", "Geffen";
+	setarray @wrpP[0], 900, 1700, 1800;
+	set @wrpC$[0], @wrpD$[0]+" [ "+@wrpP[0]+" z ]";
+	set @wrpC$[1], @wrpD$[1]+" [ "+@wrpP[1]+" z ]";
+	set @wrpC$[2], @wrpD$[2]+" [ "+@wrpP[2]+" z ]";
+	set @wrpC$[3], "ยกเลิก";
+	setarray @viewpX[0], 120, 203;
+	setarray @viewpY[0], 62, 123;
+	return;
+
+}

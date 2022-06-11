@@ -1,0 +1,950 @@
+
+//=======================================================================================================//
+//					Markie: Test 1 and Jobchange						//
+//***********************************************************************************************************************************************************//
+in_rogue.gat,363,123,3	script	Rogue Guildsman	747,{
+
+	if(JobLevel == 50) {
+	if (Class!=6) goto Notache;
+	if(SkillPoint >0) goto L_notUseAll;
+
+	 mes "[ Jobchanger ]";
+	 mes "ท่านต้องการเปลื่ยนอาชีพเป็นrogue ใช่หรือไม่";
+	 next;
+	 menu "ใช่",-,"ไม่ใช่",L_close;
+	 mes "[ Jobchanger ]";
+	 mes "ถ้าเป็นอย่างนั้น ข้าก็จะเปลื่ยนให้เจ้าทันที";
+	 next;
+	 JobChange 17;
+	set zeny,zeny+50000;
+	 mes "เจ้าได้เป็น rogueเรียบร้อยแล้ว";
+	 close;
+
+	L_close:
+	 mes "[ Jobchanger ]";
+	 mes "เราคงมีโอกาศได้พบกันใหม่อีกแน่ บาย";
+	 close;
+
+	L_notUseAll:
+	 mes "[ Jobchanger ]";
+	 mes "ท่านยังใช้ Skill Point ไม่หมด";
+	 close;
+
+	Notache:
+	 mes "[ Jobchanger ]";
+	 mes "คุณไม่ได้ โจรนิ";
+	 close;
+
+
+	}
+
+	mes "[Markie]";
+	if(Class == Job_Thief) goto L_Thief;
+	if(Class == Job_Rogue) goto L_Rogue;
+
+L_JobOther:
+	mes " ข้าไม่รู้ว่าท่านสามารถพบที่นี่ได้อย่างไร?";
+	close;
+
+L_Rogue:
+	mes " ดีมาก ที่ข้าได้เห็นท่านอีกครั้ง ท่านคงจะมีความสุขกับการเป็น Rogue ล่ะสิ?";
+	close;
+
+L_Thief:
+	if(JobLevel >= 40) goto L_Start;
+	mes " โอ้ หากท่านต้องการที่จะเป็น Rogue ท่านต้องกลับมาหลังจากที่ท่านได้รับการฝึกฝนมาพอสมควรแล้ว";
+	mes " ท่านต้องเป็น Thief เท่านั้นและ ^5533FFจ๊อบเลเวล 40^000000 จึงจะสามารถเป็น Rogues.";
+	close;
+
+L_Start:
+	if(ROGUE_Q == 1) goto L_ReTest;
+	if(ROGUE_Q == 2) goto L_Test2;
+	if(ROGUE_Q == 3) goto L_Test3;
+	if(ROGUE_Q == 4) goto L_Test4;
+	if(ROGUE_Q == 5) goto L_Change;
+	mes " หืมม์? อะไรพาท่านมาถึงที่นี่?";
+	mes " ข้าเห็นท่าน ต้องการที่จะเป็น Rogue";
+	next;
+	mes "[Markie]";
+	mes " ดี ยินดีที่ได้รู้จักข้าคือ Markie แล้วชื่อของเจ้าล่ะ?";
+	next;
+	mes "[Markie]";
+	mes strcharinfo(0) + "..... ชื่อของท่านฟังดูหวานมาก";
+	mes " นี่จะเป็นวิธีที่เจ้าได้ตัดสินใจเพื่อที่จะเป็น Rogue แล้วสินะ";
+	next;
+	mes "[Markie]";
+	mes " ท่านมีความซื่้อสัตย์และให้ชื่อจริงกับข้า";
+	mes " แต่สำหรับในอนาคต Rogue ไม่ควรที่จะเปิดเผยตัวตน ว่าตัวตนของ เขา/เธอ คือใคร";
+	next;
+	mes "[Markie]";
+	mes " มันเป็นกฏข้อแรกที่ Rogue ควรระวัง";
+	mes " กรอกแบบฟอร์มใบสมัครทั้งหมด กรุณาข้อมูลที่่จำเป็น";
+	next;
+	set JBLVL, 40;			// used to determine what item to get at the end
+	if(JobLevel == 50) set JBLVL, 50;	// used to determine what item to get at the end
+	next;
+	mes "[Markie]";
+	mes " โอเค ข้ายอมรับการสมัครของเจ้า";
+	mes " ตอนนี้ข้าจะมีการสัมภาษณ์สั้น ๆ ได้หรือไม่?";
+	next;
+	mes "[Markie]";
+	mes " โอ้ ท่านไม่ต้องกังวล ข้าเพียงแต่อยากรู้ว่าท่านความรู้เรื่อง Rogue เพียงใด";
+	mes " ข้าต้องทำเช่นนี้กับทุกๆ คนที่เข้ามาสมัคร ท่านคงพร้อมแล้วนะ?";
+	next;
+	menu " โอเค",L_Test1, " ข้าขอ..เวลาซักเดี๋ยว",-;
+
+		mes "[Markie]";
+		mes " โอเค หากพร้อมเมื่อไหร่ก็อย่าลืมข้าล่ะ?";
+		close;
+
+
+//=================================================================
+L_Test1:
+//=======
+	mes "[Markie]";
+	mes " ข้าจะถามเจ้าเพียงไม่กี่คำถาม ท่านต้องตังใจฟังและเลือกในสิ่งที่เจ้าคิดว่าเป็นคำตอบที่ถูกต้องที่สุด?";
+	next;
+	savepoint "in_rogue.gat",366,114;
+	set @score, 0;
+	set ROGUE_Q, 1;
+	set @temp, rand(2);
+	if(@temp == 1) goto L_QSet2;
+
+	L_QSet1:
+		mes "[Markie]";
+		mes "1) เมื่อ Thief ชำนาญในทักษะ Increase Dodge ค่า Flee จะเพิ่มขึ้นมาเท่าใด";
+		next;
+		menu "30",-, "40",sM1_1, "160",sM1_1, "20",sM1_1;
+
+			set @score, @score + 10;
+
+		sM1_1:
+
+		mes "[Markie]";
+		mes "2) มอนสเตอร์ใดจะมองเห็น Thief เมื่อใช้ทักษะ Hiding หรือ Cloaking?";
+		next;
+		menu "Worm Tail",-, "Argos",sM1_2, "Mummy",sM1_2, "Soldier Skeleton",sM1_2;
+
+			set @score, @score + 10;
+
+		sM1_2:
+
+		mes "[Markie]";
+		mes "3) สมาคม Rogue อยู่ที่ใด?";
+		next;
+		menu "Comodo",sM1_3, "Kokomo Beach",sM1_3, "Pharos Lightouse",-, "Morroc",sM1_3;
+
+			set @score, @score + 10;
+
+		sM1_3:
+
+		mes "[Markie]";
+		mes "4) สมาคม Thief ตั้งอยู่ที่ใด?";
+		next;
+		menu "Comodo",sM1_4, "Lutie",sM1_4, "Alberta",sM1_4, "Morroc",-;
+
+			set @score, @score + 10;
+
+		sM1_4:
+
+		mes "[Markie]";
+		mes "5) Card มอนสเตอร์ชนิดใด ที่ไม่เกี่ยวข้องกับค่า DEX?";
+		next;
+		menu "Rocker Card",sM1_5, "Mummy Card",-, "Zerom Card",sM1_5, "Drops",sM1_5;
+
+			set @score, @score + 10;
+
+		sM1_5:
+
+		mes "[Markie]";
+		mes "6) เลือกเหตุผลที่ท่านต้องการเป็น Rogue?";
+		next;
+		menu "เป็นคนที่ไม่ค่อยดี",sM1_6, "เป็นคนปากว่าตาขยิบ",sM1_6, "เป็นคนไร้ยางอาย",sM1_6, "เล่ห์เหลี่ยมมากเป็นพิเศษ",-;
+
+			set @score, @score + 10;
+
+		sM1_6:
+
+		mes "[Markie]";
+		mes "7) การเปลี่ยนอาชีพเป็น Rogue กำหนดให้ Thief มี Job Level อย่างต่ำเท่าใด จึงจะเปลี่ยนอาชีพได้?";
+		next;
+		menu "At job lvl 30",sM1_7, "At job lvl 35",sM1_7, "At job lvl 40",-, "At job lvl 50",-;
+
+			set @score, @score + 10;
+
+		sM1_7:
+
+		mes "[Markie]";
+		mes "8) ถ้าต้องการย้อมผมเป็นสีฟ้า ท่านต้องนำสีย้อมผ้าแล้วไปที่ใด?";
+		next;
+		menu 	"อาคารที่อยู่ทางด้านตะวันตกในเมือง Morroc",sM1_8, "อาคารที่อยู่ทางด้านตะวันตกเฉียงใต้ในเมือง Prontera",-,
+			"อาคารที่อยู่ทางด้านตะวันออกในเมือง Morroc",sM1_8, "อาคารที่อยู่ทางด้านตะวันตกเฉียงเหนือในเมือง Prontera",sM1_8;
+
+			set @score, @score + 10;
+
+		sM1_8:
+
+		mes "[Markie]";
+		mes "9) ถ้า Novice ต้องการเปลี่ยนเป็น Thief จะต้องใช้เห็ดชนิดใด?";
+		next;
+		menu "Orange Gooey Mushrooms",-, "Red Hairy Mushrooms",sM1_9, "Orange Net Mushrooms",-, "Orange Sticky Mushrooms",sM1_9;
+
+			set @score, @score + 10;
+
+		sM1_9:
+
+		mes "[Markie]";
+		mes "10) Card ใดที่ไม่มีประโยชน์กับ Rogue เท่าที่ควร?";
+		next;
+		menu "Whisper Card",sM1_10, "Elder Willow Card",-, "Zerom Card",sM1_10, "Matyr Card",sM1_10;
+
+			set @score, @score + 10;
+
+		sM1_10:
+		goto L_Score;
+
+
+	L_QSet2:
+		mes "[Markie]";
+		mes "1) ทักษะใดที่จำเป็นต้องมีเพื่อเรียนรู้ ทักษะ Tunnel Drive ของ Rogue?";
+		next;
+		menu "Hiding",-, "Steal",sM2_1, "Improve Dodge",sM2_1, "Bash",sM2_1;
+
+			set @score, @score + 10;
+
+		sM2_1:
+
+		mes "[Markie]";
+		mes "2) ทักษะ Compulsion Discount ของ Rogue ลดราคาได้มากกว่าทักษะ Discount Lv.10 ของ Merchant  กี่ %?";
+		next;
+		menu "3%",sM2_2, "2%",sM2_2, "1%",-, "0%",sM2_2;
+
+			set @score, @score + 10;
+
+		sM2_2:
+
+		mes "[Markie]";
+		mes "3) ทักษะ Steal Coin มีความสามารถอย่างไร?";
+		next;
+		menu "ขโมยไอเท็มจากผู้เล่น",sM2_3, "ขโมยไอเท็มจากมอนสเตอร์",sM2_3, "ขโมยเงิน Zeny จากมอนสเตอร์",-, "ขโมยเงิน Zeny จากผู้เล่น",sM2_3;
+
+			set @score, @score + 10;
+
+		sM2_3:
+
+		mes "[Markie]";
+		mes "4) การใช้ทักษะ GangSter Paradise ต้องใช้ผู้เล่นกี่คน?";
+		next;
+		menu "1 Rogue + 2 Assassins",sM2_4, "2 Rogues + 1 Thief",sM2_4, "4 Thieves",sM2_4, "2 Rogues",-;
+
+			set @score, @score + 10;
+
+		sM2_4:
+
+		mes "[Markie]";
+		mes "5) ทักษะใดที่สามารถเรียนรู้จาก Strip Helm Lv.5?";
+		next;
+		menu "Envenom",sM2_5, "Strip Tease",sM2_5, "Venom Splasher",sM2_5, "Divest Shield",-;
+
+			set @score, @score + 10;
+
+		sM2_5:
+
+		mes "[Markie]";
+		mes "6) ทักษะใดช่วยให้ท่านเดินได้ในขณะล่องหน?";
+		next;
+		menu "Hiding",sM2_6, "Back Slide",sM2_6, "Stalk",-, "Sand Attack",sM2_6;
+
+			set @score, @score + 10;
+
+		sM2_6:
+
+		mes "[Markie]";
+		mes "7) Card ใดที่ช่วยเพิ่มความแม่นยำ (HIT)?";
+		next;
+		menu "Andre",sM2_7, "Familiar",sM2_7, "Mummy",-, "Marina",sM2_7;
+
+			set @score, @score + 10;
+
+		sM2_7:
+
+		mes "[Markie]";
+		mes "8) ถ้าใช้อาวุธใส่ Vadon Card (โจมตี Property Fire แรงขึ้น 20%) จะสังหารมอนสเตอร์ตัวใดได้ง่ายที่สุด?";
+		next;
+		menu 	"Vadon",sM2_8, "Deviruchi",sM2_8, "Elder Willow",-, "Baphomet",sM2_8;
+
+			set @score, @score + 10;
+
+		sM2_8:
+
+		mes "[Markie]";
+		mes "9) เมื่อใช้ทักษะ Double Attack ด้วย Knife จะใช้ SP เท่าใด?";
+		next;
+		menu "15 SP",sM2_9, "0 เพราะเป็นทักษะติดตัว",-, "10 SP",sM2_9, "54 SP",sM2_9;
+
+			set @score, @score + 10;
+
+		sM2_9:
+
+		mes "[Markie]";
+		mes "10) ดาบธาตุใดที่ใช้งานได้อย่างมีประสิทธิภาพมากที่สุด เมื่อเข้าไปใน Izlude dungeon?";
+		next;
+		menu "Wind Main-Gauche",-, "Ice Main-Gauche",sM2_10, "Earth Main-Gauche",sM2_10, "Fire Main-Gauche",sM2_10;
+
+			set @score, @score + 10;
+
+		sM2_10:
+
+
+	L_Score:
+		mes "[Markie]";
+		mes " โอเค นี่คือคำถามทั้งหมด ที่ข้าได้ถามเจ้าไปในตอนนี้?";
+		mes " ข้าว่าเจ้าคงจะอยากรู้คะแนนทั้งหมดแล้วล่ะ";
+		next;
+		mes "[Markie]";
+		mes " ข้าชอบที่จะให้คะแนนสำหรับคนที่เข้ามาสัมภาษณ์กับข้า มันจะทำให้รู้ว่าเขามีความรู้เพียงใด";
+		mes " คะแนนของเจ้าคือ ^FF3355" + @score +"^000000/100............";
+		next;
+		mes "[Markie]";
+		if(@score< 90) goto sL_Failed;
+		if(@score<100) goto sL_Passed;
+
+		sL_Perfect:
+			mes " เป็นคะแนนที่ยอดเยี่ยม!  คนอย่าเจ้านี่้ล่ะ สมควรจะเป็น Rogue.....";
+			mes " แต่เจ้ามีงานที่ยังไม่ได้ทำอีก ซึ่งมันจะยากขึ้นกว่านี้.....";
+			next;
+			mes "[Markie]";
+			set ROGUE_Q, 2;
+			goto L_Test2;
+		sL_Passed:
+			mes " ดี ดี ถึงข้าจะไม่ได้ตื่นเต้นมากนัก แต่เจ้าก็ผ่านการทดสอบ";
+			next;
+			mes "[Markie]";
+			set ROGUE_Q, 2;
+			goto L_Test2;
+		sL_Failed:
+			mes " สิ่งที่ข้าสามารถพูดได้ตอนนี้ คือคนที่มีคะแนนไม่ผ่านเช่นเจ้า ข้าสมควรที่จะตัดออกจากการเป็น Rogue";
+			emotion 4;
+			next;
+			mes "[Markie]";
+			mes " ทำไมเจ้าถึง ไม่คิดที่จะฝึกฝนให้มากขึ้นบ้างล่ะ";
+			close;
+
+L_ReTest:
+	mes " เจ้าคงอยากจะเริ่มใหม่? ตอนนี้เลยใช่มั้ย?......โอเค เริ่ม....";
+	next;
+	goto L_Test1;
+
+L_Test2:
+	mes " การทดสอบที่สองเจ้าต้องไปพบ ^5533FFMr. Smith^000000.";
+	mes " ข้าจะเตือนเจ้าว่า Mr. Smith เป็นงานที่ทำได้ยากท่านควรจะระมัดระวัง สิ่งที่เขาจะทำกับเจ้า";
+	close;
+L_Test3:
+	mes " ข้ารู้ว่าคนเหล่านี้ล้วนหายาก แต่ข้าจะเก็บมันไว้ให้แน่ใจว่าเจ้ามีรหัสที่ถูกต้องเช่นกัน";
+	close;
+L_Test4:
+	mes " เจ้ายังมาทำอะไรที่? ข้าหวังว่าเจ้าควรจะไปพยายามกับการทดสอบสุดท้าย?.........";
+	emotion 1;
+	next;
+	mes "[Markie]";
+	mes " อีดนิดเดียวเจ้าก็จะทำมันสำเร็จ ข้าเชื่อในความพยายามของเจ้า";
+	close;
+
+
+//=======================================================================
+L_Change:
+//===========
+	mes " โอ้วว เจ้ากลับมาแล้ว ดูเหมือนว่าเจ้าก็ผ่านการทดสอบทั้งหมดแล้วด้วย";
+	mes " ท่านได้พิสูจน์แล้วว่าท่านเพมาะสมที่จะกลายเป็น Rogue!";
+	emotion 5;
+	next;
+	mes "[Markie]";
+	mes " แต่นแต๊น ยินดีด้วย! เจ้าได้เป็น Rogue แล้ว";
+	mes " จากความพยายามของเจ้า";
+	mes " โปรดกลับมาเยี่ยมเราบ้าง และขอให้มีความสุขกับชีวิตอิสระ";
+	setlook 7,0;
+	jobchange Job_Rogue;
+	emotion 46;
+	next;
+	mes "[Markie]";
+	mes " ตอนนี้เจ้าจะทำสิ่งใดก็ได้ตามที่ใจเจ้าต้องการ";
+	if(JBLVL == 40) getitem 1219,1;		// 2 slott gladius
+	if(JBLVL == 50) getitem 1220,1;		// 3 slott gladius
+	callfunc "F_ClearJobVar";
+	next;
+	mes "[Markie]";
+	mes " เจ้าจงเก็บมันไว้ และจงเชื่อมั่นในเสรีภาพว่าท่านสามารถจะเป็นแบบอย่างที่ดีได้";
+	next;
+	mes "[Markie]";
+	mes " ขอให้สนุก!";
+	close;
+}
+
+
+
+//=======================================================================================================//
+//					Mr. Smith: Tests 2 and 3						//
+//***********************************************************************************************************************************************************//
+in_rogue.gat,376,23,3	script	Smithrato	57,{
+
+	mes "[Mr. Smith]";
+	if(Class == Job_Thief) goto L_Thief;
+	if(Class == Job_Rogue) goto L_Rogue;
+
+L_OtherJob:
+	mes " ไปให้พ้น ข้าไม่ว่าง";
+	close;
+L_Rogue:
+	mes " Rogue อย่างเจ้าช่างดูดียิ่งนัก";
+	close;
+L_Thief:
+	if(ROGUE_Q == 2) goto L_Test2;
+	if(ROGUE_Q == 3) goto L_Test3;
+	if(ROGUE_Q > 3) goto L_Done;
+	mes " โอเค โอเค....หนึ่ง... สอง.... สาม....ที่ไหน ที่เหมาะแก่การทำธุรกิจ... มันคงจะเป็น.... Morroc... Geffen.... Comodo??.......";
+	next;
+	mes "[Mr. Smith]";
+	mes " อ่า..... ยิ่งคิดก็ยิงปวดหัว.......";
+	next;
+	mes "[Mr. Smith]";
+	mes " หือ? เจ้าเป็นใคร? หากเจ้าต้องการเป็น Rogue ให้ไปคุยกับ ^5533FFMarkie^000000....";
+	emotion 16;
+	close;
+
+//----------------------------------------------------------------------------------------------------
+L_Test2:
+//--------------
+	if(ROGUE_Q2 > 0) goto L_Check2;
+	mes " ที่เจ้ามาอยู่ที่นี่ก็เพื่อจะเริ่มการทดสอบที่ 2 ล่ะสิ.... ดี.......";
+	next;
+	mes "[Mr. Smith]";
+	mes " ก่อนที่ข้าจะเรื่มต้น เจ้าจะต้องมีค่าธรรมเนียมในการสมัคร";
+	mes " สมาคมของเรามีส่วนร่วมในการทำธุรกิจ";
+	mes " เพราะฉะนั้นเราจึงจำเป็นต้องใช้เงินบางส่วน";
+	next;
+	mes "[Mr. Smith]";
+	mes " นี่คือค่าธรรมเนียม ^5533FF10,000 zeny^000000 ที่จะต้องจ่ายเพื่อทดสอบ Rogue";
+	mes " ค่าธรรมเนียมจะถูกเก็บรวบรวมไว้เมื่อเจ้าผ่านการทดสอบที่ 2 จึงไม่ต้องกังวลหากเจ้ายังไม่มีตอนนี้";
+	next;
+	mes "[Mr. Smith]";
+	mes " นี้คือการทดสอบของเจ้า.....  สิ่งที่เจ้าจะต้องนำมาให้ข้า :";
+	next;
+	mes "[Mr. Smith]";
+	set ROGUE_Q2, rand(1,3);
+	if(ROGUE_Q2 == 1) callsub sF2_R1;
+	if(ROGUE_Q2 == 2) callsub sF2_R2;
+	if(ROGUE_Q2 == 3) callsub sF2_R3;
+	next;
+	mes "[Mr. Smith]";
+	mes " เมื่อเจ้ามีของทั้งหมดและเงิน 10,000 เซนี เจ้าต้องกลับมาหาข้า";
+	close;
+
+	sF2_R1:
+		mes "^5533FF6 Blue Herbs,";
+		mes "10 Skel Bones,";
+		mes "10 Decayed Nails,";
+		mes "10 Horrendous Mouths^000000.";
+		return;
+	sF2_R2:
+		mes "^5533FF10 Green Herbs,";
+		mes "10 Garlets,";
+		mes "10 Snake Scales";
+		mes "10 Crab Shells.^000000";
+		return;
+	sF2_R3:
+		mes "^5533FF10 Yellow Herbs,";
+		mes "10 Bear's Footskin,";
+		mes "10 Shells";
+		mes "10 Grasshopper's Legs^000000.";
+		return;
+
+L_Check2:
+	set @count, 0;
+	if(ROGUE_Q2 == 2) goto L_2;
+	if(ROGUE_Q2 == 3) goto L_3;
+
+	L_1:
+		set @R, 1;
+		if(countitem(510)<6 || countitem(932)<10 || countitem(957)<10 || countitem(958)<10 || Zeny < 10000) goto L_NotEnuf;
+		delitem 510,6;
+		delitem 932,10;
+		delitem 957,10;
+		delitem 958,10;
+		goto L_Done2;
+
+	L_2:
+		set @R, 2;
+		if(countitem(511)<10 || countitem(910)<10 || countitem(926)<10 || countitem(964)<10 || Zeny < 10000) goto L_NotEnuf;
+		delitem 511,10;
+		delitem 910,10;
+		delitem 926,10;
+		delitem 964,10;
+		goto L_Done2;
+
+	L_3:
+		set @R, 3;
+		if(countitem(508)<10 || countitem(948)<10 || countitem(935)<10 || countitem(940)<10 || Zeny < 10000) goto L_NotEnuf;
+		delitem 508,10;
+		delitem 948,10;
+		delitem 935,10;
+		delitem 940,10;
+
+	L_Done2:
+		mes " ลองดูนี่.... ต่าธรรมเนียม....ผ่าน..... ไอเท็ม.......ผ่าน...... เอาล่ะ เจ้ามีครบทั้งหมด เจ้าผ่านการทดสอบที่สองแล้ว";
+		next;
+		mes "[Mr. Smith]";
+		mes " หากเจ้าพร้อมที่จะเริ่มการทดสอบถัดไปโปรดแจ้งให้เราทราบ";
+		set Zeny, Zeny - 10000;
+		set ROGUE_Q, 3;
+		set ROGUE_Q2, 0;
+		close;
+
+	L_NotEnuf:
+		mes ".... นี่มันอะไร เจ้ายังไม่มีของที่ข้าต้องการทั้งหมด แล้วเจ้ายังจะกลับมาที่นี่ทำไม";
+		emotion 1;
+		next;
+		mes "[Mr. Smith]";
+		mes " เขียนลงไป ว่าเจ้าต้องมีเงิน ^5533FF10,000^000000 เซนี และ :";
+		if(ROGUE_Q2 == 1) callsub sF2_R1;
+		if(ROGUE_Q2 == 2) callsub sF2_R2;
+		if(ROGUE_Q2 == 3) callsub sF2_R3;
+		next;
+		mes "[Mr. Smith]";
+		mes " ไม่ต้องกลับมา จนกว่าเจ้ามีของทุกอย่างครบ.........";
+		emotion 32;
+		close;
+
+
+//----------------------------------------------------------------------------------------------
+L_Test3:
+//--------------------------------------------------------
+	if(ROGUE_Q2 > 0) goto L_Check3;
+	mes " การทดสอบต่อไป.... อืม....เจ้าจะได้พบกับ.... Rougue คนใด.........";
+	emotion 20;
+	next;
+	mes "[Mr. Smith]";
+	mes " โอ้ ข้ารู้แล้ว! ในการทดสอบที่ผ่านมาเจ้าได้ให้บางอย่างแก่ข้า เจ้าของจะนำของเหล่านี้ไปมอบให้ใครบางคน";
+	emotion 5;
+	next;
+	mes "[Mr. Smith]";
+	set ROGUE_Q2, rand(1,3);
+	if(ROGUE_Q2 == 1) callsub sF3_R1;
+	if(ROGUE_Q2 == 2) callsub sF3_R2;
+	if(ROGUE_Q2 == 3) callsub sF3_R3;
+	next;
+	mes "[Mr. Smith]";
+	mes " โชคดี  ขอให้เจ้าผ่านการทดสอบนี้โดยเร็ว";
+	close;
+
+	sF3_R1:
+		mes " เจ้าต้องไปหา ^5533FFAragham Junior^000000.";
+		next;
+		mes "[Mr. Smith]";
+		mes " เขาอาศัยอยู่ในหมู่บ้านเล็กๆ ทาง ^5533FFตะวันตกเฉียงใต้^000000 ของป้อมปราการ Sandarman.";
+		mes " ที่ที่เขาอยู่เป็นหนึ่งใน ^5533FFแผนที่ทางตะวันออก^000000 จากที่นี่อยู่ใน ^000000ตะวันตกเฉียงใต้^000000 ของฝั่งแผ่นดิน";
+		next;
+		mes "[Mr. Smith]";
+		mes " เขาเป็นคนดีมากๆ คนทีทำงานได้ดีเขาจะคอยเก็บหนี้ที่ยังไม่ได้ค้างชำระ";
+		mes " ข้าไม่รู็ว่าพ่อของเขาทำอะไรไว้ แต่จิตใจของเขาแปรปรวนไป เพราะทุกคนที่พบเขาพยาจะฆ่าเขา";
+		next;
+		mes "[Mr. Smith]";
+		mes " หลังจากที่เขาได้เข้าร่วมสมาคม Rogue เขาก็ได้ตัดสินใจที่หลบซ่อนตัวไปยังสถานที่ไกลๆ ในปัจจุบัน";
+		mes " ไมีใครรู็ว่าเขาอยู่ไหน นอกจากสมาคม Rogue ของเราเท่านั้น";
+		next;
+		mes "[Mr. Smith]";
+		mes " อา.. ข้าจะให้รหัสลับแก่เจ้าเพื่อที่จะสามารถเข้าใกล้เขาได้";
+		mes " รหัสผ่านคือ : '^5533FFAragham ไม่มีวันขโมยเหล็กสกัด^000000'";
+		return;
+	sF3_R2:
+		mes " ชื่อของเขาคือ ^5533FFHollgrehen Junior^000000.";
+		next;
+		mes "[Mr. Smith]";
+		mes " เขาอาศัยอยู่ในหมู่บ้านเล็กๆ ทาง ^5533FFตะวันตกเฉียงใต้^000000 ของป้อมปราการ Sandarman.";
+		mes " ที่ที่เขาอยู่เป็นหนึ่งใน ^5533FFแผนที่ทางตะวันออก^000000 จากที่นี่อยู่ใน ^000000ตะวันตก^000000 ของฝั่งแผ่นดิน";
+		next;
+		mes "[Mr. Smith]";
+		mes " ไม่มีใครรู้เรื่องของเราเลย นอกจากสมาคม Rogue ของเรา";
+		next;
+		mes "[Mr. Smith]";
+		mes " อา.. ข้าจะให้รหัสลับแก่เจ้าเพื่อที่จะสามารถเข้าใกล้เขาได้";
+		mes " รหัสผ่านคือ : '^5533FFพ่อของข้าไม่ได้ขโมยเหล็กสกัด^000000'";
+		return;
+	sF3_R3:
+		mes " ชื่อของเขาคือ ^5533FFAntonio Junior^000000";
+		next;
+		mes "[Mr. Smith]";
+		mes " เขาอยู่ในกระท่อมเล็กๆ ทาง^5533FFตะวันตกของเกาะ comodo^000000";
+		mes " ซึ่งตั้งอยู่ ^5533FFขึ้นเหนือ 1 แผนที่และไปทางตะวันตก 1 แผนที่^000000 เขาจะอยู่ที่นั้น";
+		next;
+		mes "[Mr. Smith]";
+		mes " ไม่มีใครรู้เรื่องของเราเลย นอกจากสมาคม Rogue ของเรา";
+		next;
+		mes "[Mr. Smith]";
+		mes " อา.. ข้าจะให้รหัสลับแก่เจ้าเพื่อที่จะสามารถเข้าใกล้เขาได้";
+		mes " รหัสผ่านคือ : '^5533FFAntonioไม่ต้องการทำลายแร่ตีเหล็ก^000000'";
+		return;
+
+
+L_Check3:
+	mes " อะไร!?! นี่เจ้าคงไม่ได้เริ่มว่าที่เจ้าที่เจ้าต้องไปนะ?........";
+	emotion 1;
+	next;
+	mes "[Mr. Smith]";
+	mes " นั่นเป็นเหตุผลที่ข้าต้องให้เจ้า จดไว้ในสิ่งที่เจ้าคิดว่าสำคัญ......";
+	emotion 6;
+	next;
+	mes "[Mr. Smith]";
+	if(ROGUE_Q2 == 1) callsub sF3_R1;
+	if(ROGUE_Q2 == 2) callsub sF3_R2;
+	if(ROGUE_Q2 == 3) callsub sF3_R3;
+	close;
+
+//-------------------------------------------------------------------------------------------------
+L_Done:
+//--------------------------------------------------------------------
+	mes " ข้าไม่มีธุระอะไรกับเจ้า.........";
+	close;
+}
+
+
+//===========================================================
+// Guildsman that need to be found
+//===========================================================
+
+//------------------------------------------------------------------------------
+in_rogue.gat,272,136,3	script	Hermanthorn Jr.	85,{
+	mes "[Hermanthorn Jr.]";
+	mes " หือ? เจ้าเป็น?! เจ้าไม่ได้มาจากสมาคม Rogue รับไปจากที่นี่ซะ";
+	emotion 1;
+	next;
+	mes "[Hermanthorn Jr.]";
+	mes " เจ้ากำลัง... มองข้า! เจ้าคงมาที่นี่เพื่อฆ่าข้า ไม่นะข้าไม่พร้อมที่จะตาย";
+	emotion 0;
+	next;
+	mes "[Hermanthorn Jr.]";
+	mes "อา!! ไปให้พ้น! ไปซะ! ก่อนที่ข้าจะฆ๋าเจ้า!!!";
+	emotion 16;
+	close;
+}
+
+// --------------------------------------------------------------------------
+cmd_fild09.gat,106,195,0	script	Aragham Junior	45,1,1,{
+	callfunc "F_RogueTest3", 1, "Aragham", "ไม่มีวัน", "ขโมย", "เหล็กสกัด", 244, 24;
+}
+
+// -----------------------------------------------------------------------------
+cmd_fild09.gat,335,143,0	script	Hollgrehen Junior	45,1,1,{
+	if(Class == Job_Rogue) {
+	set ROGUE_Q2,2;
+	}
+	callfunc "F_RogueTest3", 2, "พ่อของข้า", "ไม่ได้", "ขโมย", "เหล็กสกัด", 168, 34;
+}
+
+// ------------------------------------------------------------------------------
+cmd_fild04.gat,304,179,0	script	Antonio Junior	45,1,1,{
+	if(Class == Job_Rogue) {
+	set ROGUE_Q2,3;
+	}
+	callfunc "F_RogueTest3", 3, "Antonio", "ไม่ต้องการ", "ทำลาย", "แร่ตีเหล็ก", 165, 104;
+}
+
+// Function for Guildsman ===================================
+function	script	F_RogueTest3	{
+
+	mes "[???]";
+	mes " นั่นใคร?!!!";
+	mes " กล้าดียังไง จะเข้ามาที่นี่?";
+	if(Class == Job_Rogue) {
+	
+	goto L_Start;
+	}
+	if(Class!=Job_Thief|| ROGUE_Q<3 || ROGUE_Q2==0) close;
+L_Start:
+	deletearray @choice$[1], 4;
+	next;
+	menu "พ่อของข้า",M_1a, "Aragham",M_1b, "Antonio",M_1c, "Legolas",M_1d;
+
+	M_1a:
+		set @choice$[1], "พ่อของข้า";
+		goto M_Menu2;
+	M_1b:
+		set @choice$[1], "Aragham";
+		goto M_Menu2;
+	M_1c:
+		set @choice$[1], "Antonio";
+		goto M_Menu2;
+	M_1d:
+		set @choice$[1], "Legolas";
+
+	M_Menu2:
+	callsub sF_Password;
+	menu "ไม่ได้",M_2a, "ไม่ต้องการ",M_2b, "ไม่มีวัน",M_2c, "เคย",M_2d;
+
+	M_2a:
+		set @choice$[2], "ไม่ได้";
+		goto M_Menu3;
+	M_2b:
+		set @choice$[2], "ไม่ต้องการ";
+		goto M_Menu3;
+	M_2c:
+		set @choice$[2], "ไม่มีวัน";
+		goto M_Menu3;
+	M_2d:
+		set @choice$[2], "เคย";
+
+	M_Menu3:
+	callsub sF_Password;
+	menu "สะสม",M_3a, "ขโมย",M_3b, "ซ่อน",M_3c, "เอา",M_3d, "ทำลาย",M_3e;
+
+	M_3a:
+		set @choice$[3], "สะสม";
+		goto M_Menu4;
+	M_3b:
+		set @choice$[3], "ขโมย";
+		goto M_Menu4;
+	M_3c:
+		set @choice$[3], "ซ่อน";
+		goto M_Menu4;
+	M_3d:
+		set @choice$[3], "เอา";
+		goto M_Menu4;
+	M_3e:
+		set @choice$[3], "ทำลาย";
+
+	M_Menu4:
+	callsub sF_Password;
+	menu "เหล็กสกัด",M_4a, "ของปลอม",M_4b, "แร่ตีเหล็ก",M_4c, "อุปกรณ์สกัด",M_4d;
+
+	M_4a:
+		set @choice$[4], "เหล็กสกัด";
+		goto L_Check;
+	M_4b:
+		set @choice$[4], "ของปลอม";
+		goto L_Check;
+	M_4c:
+		set @choice$[4], "แร่ตีเหล็ก";
+		goto L_Check;
+	M_4d:
+		set @choice$[4], "อุปกรณ์สกัด";
+
+L_Check:
+	callsub sF_Password;
+	if(ROGUE_Q2 != getarg(0)) goto L_Wrong;
+	if((@choice$[1] != getarg(1)) || (@choice$[2] != getarg(2)) || (@choice$[3] != getarg(3)) || (@choice$[4] != getarg(4))) goto L_Wrong;
+	mes "~ creeek ~";
+	mes " ได้ยินเสียงประตูที่เปิดขึ้น........";
+	next;
+	deletearray @choice$[1], 4;
+	warp "in_rogue.gat", getarg(5), getarg(6);
+	end;
+
+	L_Wrong:
+		mes "[???]";
+		mes " ไปให้พ้น!!";
+		close;
+sF_Password:
+	mes "[^5533FF" + strcharinfo(0) + "^000000]";
+	mes @choice$[1];
+	mes @choice$[2];
+	mes @choice$[3];
+	mes @choice$[4];
+	next;
+	return;
+}
+
+
+//=======================================================================================================//
+//						Test 4: Last Test						//
+//***********************************************************************************************************************************************************//
+// Other path
+// warp "in_rogue.gat", 11, 388;
+// 390,389 end warp
+// 9,9 -> 9,21
+//===============================================
+// Guildsman
+//===============================================
+//----------------------------------------------------------------------------
+in_rogue.gat,244,39,4	script	Aragham Junior#2	99,{
+	callfunc "F_RogueTest4", "Aragham Junior", 245, 27;
+}
+//---------------------------------------------------------------------------
+in_rogue.gat,152,27,6	script	Hollgrehen Junior#3	85,{
+	callfunc "F_RogueTest4", "Hollgrehen Junior", 160, 32;
+}
+//---------------------------------------------------------------------------
+in_rogue.gat,183,105,4	script	Antonio Junior#4	88,{
+	callfunc "F_RogueTest4", "Antonio Junior", 175, 107;
+}
+
+// Function for Guildsman =============================
+function	script	F_RogueTest4	{
+
+	if(ROGUE_Q == 4) goto L_Restart;
+	mes "[" + getarg(0) + "]";
+	mes " สวัสดีเจ้าคงมาจากสมาคม Rogue ข้ามีชื่อว่า " + getarg(0) + "...... ข้าเป็น Rogue แห่งทะเลทราย..............";
+	next;
+	mes "[" + getarg(0) + "]";
+	mes " ข้าว่าเจ้าคงพร้อมที่จะเป็น rogue แล้วใช่มั้ย?";
+	emotion 4;
+	next;
+	mes "[" + getarg(0) + "]";
+	mes " เจ้าคงจะเห็นคำขวัญของ Rogue... ^5533FF'หลบหลีกคือความแข็งแกร่ง! และทำอันตรายไปที่จุดอ่อนแอ!'^000000";
+	mes " นี่คือกฏง่ายๆ ที่สามารถใช้ต่อสู้กับมอนสเตอร์ได้เช่นกัน";
+	next;
+	mes "[" + getarg(0) + "]";
+	mes " สิ่งสุดท้ายที่ข้าจะบอกเจ้าก่อนที่เจ้าจะเป็น Rogue เจ้าต้องเดินผ่านอุโมงรถไฟใต้ดินไปยังสมาคม Rogue";
+	next;
+	mes "[" + getarg(0) + "]";
+	mes " มีเสียงว่าง่ายแฮะ? ดีแล้ว ที่เจ้าจะได้ไม่ต้องกังวล....";
+	mes " หากเจ้ามีปัญหาเจ้าจงใช้คำขวัญ Rogue เพื่อหลีกเลี่ยงและผ่านมันไป";
+
+	M_Menu:
+	next;
+	mes "[" + getarg(0) + "]";
+	mes " เริ่มกันเลยไหม?";
+	next;
+	menu " เริ่มเลย",-, " ยกเลิก",M_End;
+
+		mes "[" + getarg(0) + "]";
+		mes " ขอให้โชคดี";
+		next;
+		set ROGUE_Q, 4;
+		killmonsterall "in_rogue.gat";
+		savepoint "in_rogue.gat", getarg(1), getarg(2);
+		warp "in_rogue.gat", 15, 105;
+		end;
+
+	M_End:
+		mes "[" + getarg(0) + "]";
+		mes ".....................";
+		next;
+		mes "[" + getarg(0) + "]";
+		mes " ดีหากพร้อมก็ค่อยกลับมา...";
+		close;
+
+L_Restart:
+	mes "[" + getarg(0) + "]";
+	mes "....... ดูเหมือนว่าเจ้าคงอยากเริ่มใหม่.......";
+	emotion 4;
+	next;
+	mes "[" + getarg(0) + "]";
+	mes " หากเจ้าล้มเหลวที่คอยสอนเจ้าก็คือประสบการณ์ ความยากลำบากคือความสำเร็จที่สมควรได้รับเจ้าจงจำไว้";
+	percentheal 100,100;
+	goto M_Menu;
+}
+
+//================================================
+// Monster Spawns
+//================================================
+in_rogue.gat,15,185,0	script	rogue_mob1	139,8,0,{
+	monster "in_rogue.gat",14,188,"Zombie",1015,1;
+	monster "in_rogue.gat",15,188,"Zombie",1015,1;
+	monster "in_rogue.gat",16,188,"Zombie",1015,1;
+	monster "in_rogue.gat",14,189,"Zombie",1015,1;
+	monster "in_rogue.gat",15,189,"Zombie",1015,1;
+	monster "in_rogue.gat",16,189,"Zombie",1015,1;
+	end;
+}
+in_rogue.gat,15,245,0	script	rogue_mob2	139,8,0,{
+	monster "in_rogue.gat",14,247,"Mummy",1041,1;
+	monster "in_rogue.gat",15,247,"Mummy",1041,1;
+	monster "in_rogue.gat",16,247,"Mummy",1041,1;
+	monster "in_rogue.gat",14,248,"Mummy",1041,1;
+	monster "in_rogue.gat",15,248,"Mummy",1041,1;
+	monster "in_rogue.gat",16,248,"Mummy",1041,1;
+	end;
+}
+in_rogue.gat,15,328,0	script	rogue_mob3	139,8,0,{
+	monster "in_rogue.gat",14,331,"Zombie",1015,1;
+	monster "in_rogue.gat",15,331,"Zombie",1015,1;
+	monster "in_rogue.gat",16,331,"Zombie",1015,1;
+	monster "in_rogue.gat",14,332,"Zombie",1015,1;
+	monster "in_rogue.gat",15,332,"Zombie",1015,1;
+	monster "in_rogue.gat",16,332,"Zombie",1015,1;
+	end;
+}
+in_rogue.gat,35,342,0	script	rogue_mob4	139,0,8,{
+	monster "in_rogue.gat",38,340,"Mummy",1041,1;
+	monster "in_rogue.gat",37,342,"Abyss Knight",1219,1;
+	monster "in_rogue.gat",39,342,"Ghoul",1036,1;
+	monster "in_rogue.gat",38,344,"Mummy",1041,1;
+	end;
+}
+in_rogue.gat,57,306,0	script	rogue_mob5	139,4,0,{
+	monster "in_rogue.gat",59,301,"Khalitzburg",1132,1;
+	end;
+}
+in_rogue.gat,96,333,0	script	rogue_mob6	139,0,4,{
+	monster "in_rogue.gat",92,325,"Khalitzburg",1132,1;
+	end;
+}
+in_rogue.gat,139,313,0	script	rogue_mob7	139,4,0,{
+	monster "in_rogue.gat",139,309,"Abyss Knight",1219,1;
+	end;
+}
+in_rogue.gat,135,246,0	script	rogue_mob8	139,0,4,{
+	monster "in_rogue.gat",139,245,"Zombie",1015,2;
+	monster "in_rogue.gat",139,246,"Zombie",1015,2;
+	monster "in_rogue.gat",139,247,"Zombie",1015,2;
+	end;
+}
+in_rogue.gat,62,302,0	script	rogue_mob9	139,0,4,{
+	monster "in_rogue.gat",57,305,"Khalitzburg",1132,1;
+	end;
+}
+in_rogue.gat,199,218,0	script	rogue_mob10	139,0,8,{
+	monster "in_rogue.gat",157,218,"Zombie",1015,10;
+	monster "in_rogue.gat",157,218,"Abyss Knight",1219,1;
+	monster "in_rogue.gat",157,218,"Ghoul",1036,1;
+	monster "in_rogue.gat",157,218,"Archer Skeleton",1016,1;
+	end;
+}
+in_rogue.gat,86,187,0	script	rogue_mob11	139,0,8,{
+	monster "in_rogue.gat",88,186,"Mummy",1041,1;
+	monster "in_rogue.gat",88,187,"Mummy",1041,1;
+	monster "in_rogue.gat",88,188,"Mummy",1041,1;
+	end;
+}
+in_rogue.gat,225,187,0	script	rogue_mob12	139,0,8,{
+	monster "in_rogue.gat",232,191,"Abyss Knight",1219,1;
+	monster "in_rogue.gat",233,190,"Abyss Knight",1219,1;
+	monster "in_rogue.gat",234,189,"Abyss Knight",1219,1;
+	end;
+}
+in_rogue.gat,252,320,0	script	rogue_mob13	139,0,8,{
+	monster "in_rogue.gat",252,319,"Mummy",1041,1;
+	monster "in_rogue.gat",252,321,"Mummy",1041,1;
+	monster "in_rogue.gat",252,319,"Ghoul",1036,1;
+	monster "in_rogue.gat",252,321,"Ghoul",1036,1;
+	monster "in_rogue.gat",257,320,"Archer Skeleton",1016,1;
+	monster "in_rogue.gat",248,320,"Archer Skeleton",1016,1;
+	end;
+}
+
+//================================================
+// End Warp
+//================================================
+in_rogue.gat,370,320,0	script	rogue04	45,1,1,{
+	set ROGUE_Q, 5;
+	killmonsterall "in_rogue.gat";
+	warp "in_rogue.gat",378,113;
+	end;
+}
+
+//================================================
+// Timer: Keeps monsters from overspawning
+//================================================
+-	script	RogueTest3	-1,{
+	end;
+
+OnMinute10:
+OnMinute20:
+OnMinute30:
+OnMinute40:
+OnMinute50:
+OnMinute60:
+	killmonsterall "in_rogue.gat";
+	end;
+}
+
+

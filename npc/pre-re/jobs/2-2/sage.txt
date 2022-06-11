@@ -1,0 +1,2173 @@
+//==================================
+//Sage Castle
+//==================================
+yuno_in02.gat,38,61,4	script	ผู้อำนวยการโรงเรียน 	743,{
+	if(JobLevel == 50) {
+	if (Class!=2) goto Notache;
+	if(SkillPoint >0) goto L_notUseAll;
+
+	 mes "[ Jobchanger ]";
+	 mes "ท่านต้องการเปลื่ยนอาชีพเป็นsage ใช่หรือไม่";
+	 next;
+	 menu "ใช่",-,"ไม่ใช่",L_close;
+	 mes "[ Jobchanger ]";
+	 mes "ถ้าเป็นอย่างนั้น ข้าก็จะเปลื่ยนให้เจ้าทันที";
+	 next;
+	 JobChange 16;
+	set zeny,zeny+50000;
+	 mes "เจ้าได้เป็น sageเรียบร้อยแล้ว";
+	 close;
+
+	L_close:
+	 mes "[ Jobchanger ]";
+	 mes "เราคงมีโอกาศได้พบกันใหม่อีกแน่ บาย";
+	 close;
+
+	L_notUseAll:
+	 mes "[ Jobchanger ]";
+	 mes "ท่านยังใช้ Skill Point ไม่หมด";
+	 close;
+
+	Notache:
+	 mes "[ Jobchanger ]";
+	 mes "คุณไม่ได้ นักเวทย์นิ";
+	 close;
+
+
+	}
+	if (Class == 16) goto L_Menu3_3;
+	if (Class != 2) goto L_Menu2_1;
+	if (job2nd_sage == 11) goto L_Menu3_1;
+	if (job2nd_sage >= 3) goto L_Menu2_2;
+	mes "[Keiron]";
+	mes " ทุกๆ คนคงจะเคยเห็นศิลปะ";
+	mes " ทางด้านเวทมนตร์ และข้าขอยินดีต้อนรับทุกท่าน";
+	mes " ท่านมีอะไรให้ช่วยมั้ย?";
+        next;
+	menu " ข้าอยากเปลี่ยนเป็น Sage",L_Menu1_1," ข้าอยากรู้ข้อมูลเกี่ยวกับ Sage",-," ข้าแค่เดินไปรอบๆ",L_Menu1_2;
+		mes "[Keiron]";
+		mes " ท่านสนใจเกี่ยวกับ Sage ใช่มั้ย?";
+		mes " ข้าจะทำให้ท่านเดินตามทางนี้ได้";
+		next;
+		mes "[Keiron]";
+		mes " เพื่อที่จะเป็น Sage ท่านจะต้องกรอกใบสมัคร เข้าโรงเรียนเวทมนต์ Shubaichul Magic Academy และจะต้องทำการทำสอบ";
+		next;
+		mes "[Keiron]";
+		mes " หากท่านผ่านการทดสอบทั้งหมด ท่านก็จะได้รับใบอนุญาติสำหรับ Sage";
+		next;
+		mes "[Keiron]";
+		mes " หากท่านต้องการสมัคร ท่านต้องไปหา Mathias เขาอยู่ที่ Shubaichul Magic Academy.";
+		mes " ไปบอกเขาว่าข้าส่งท่านมา";
+		close;
+L_Menu1_1:
+	mes "[Keiron]";
+	mes " Sage ใช่มั้ย?";
+	mes " ดีมาก...";
+	mes " นี่จะเป็นการเปลี่ยนแปลงในชีวิตของท่าน ท่านต้องใช้ความคิดเพื่อหาทางเดินของท่านเอง";
+	next;
+	mes "[Keiron]";
+	mes " Sages จะต้องมีความกระตือรือร้นในการวิจัยเพื่อเป็นความรู้ให้กับอาณาจักร";
+	mes " พวกเขายังต้องคอยช่วยเหลือสังคมเพื่อผ่านปัญหาไปให้ได้";
+	mes " เพียงเพราะท่านแต่งตัวเป็น Sage แต่ก็ไม่ได้หมายความว่าท่านจะเป็น Sage";
+	next;
+	mes "[Keiron]";
+	mes " เพื่อที่จะเป็น Sage ท่านจะต้องกรอกใบสมัคร เข้าโรงเรียนเวทมนต์ Shubaichul Magic Academy";
+	mes " เจ้าหน้าที่จะคอยรับสมัครพร้อมกับอธิบายสิ่งที่ต้องการ";
+	close;
+L_Menu1_2:
+	mes "[Keiron]";
+	mes " เยี่ยม  หากท่านมีเวลาว่างทำไมท่านไม่หาหนังสือที่ห้องสมุดของเราไปอ่านบ้างล่ะ?";
+	mes " ที่จริงแล้วห้องสมุดของเราเปรียบได้เหมือนป้อมปราการของความรู้";
+	next;
+	mes "[Keiron]";
+	mes " แน่นอนว่ายังมีอีกหลายสิ่ง ที่ไม่สามารถเรียนรู้จากหนังสือ แต่มันก็เป็นการเริ่มต้นที่ดี";
+	close;
+L_Menu2_1:
+	mes "[Keiron]";
+	mes " Sages อย่างเรามีหน้าที่ค้นคว้าเกี่ยวกับโลกมามากแล้ว";
+	mes " แต่เพื่อจะเพิ่มความรู้";
+	mes " เราจำเป็นต้องทีมที่จะช่วยเราเพิ่มขึ้น";
+	next;
+	mes "[Keiron]";
+	mes " ท่านควรไปพูดกับ Sages การค้นคว้าร่วมกลุ่มกันอาจทำให้ท่านประสบความสำเร็จ";
+	close;
+L_Menu2_2:
+	mes "[Keiron]";
+	mes " เส้นทางของการเป็น Sage ไม่ใช่เรื่องง่าย";
+	mes " ท่านจะต้องมีความมุ่งมั่นมากพอเพื่อที่จะเรียนรู้เวทมนตร์";
+	close;
+L_Menu3_1:
+	if (countitem(1550) >= 1) goto L_Menu3_2;
+	mes "[Keiron]";
+	mes " ไหนคืองานวิจัยของท่าน?";
+	mes " ข้าอยากที่จะทดลองมัน";
+	next;
+	mes "[Keiron]";
+	mes " ท่านคงลืมไปแล้ว?";
+	mes " ว่าท่านต้องรีบแล้ว.. !!";
+	close;
+L_Menu3_2:
+	mes "[Keiron]";
+	mes " ดูเหมือนว่าท่านมีงานวิจัยที่จะนำเสนอ ข้าขอดูก่อน...";
+	next;
+	mes "[Keiron]";
+	mes " อืมม...";
+	next;
+	mes "[Keiron]";
+	mes " ใช่....";
+	next;
+	mes "[Keiron]";
+	mes " น่าสนใจ...";
+	next;
+	mes "[Keiron]";
+	mes " ไม่ยังดูยังไม่ค่อยจะสมบูรณ์";
+	mes " แต่ข้าเห็นความขยันขันแข็งของท่าน ท่านได้พิสูจแล้วว่าท่านมีคุณสมบัติเพียงพอ ช้าจะอนุมัติ";
+	next;
+	if(SkillPoint == 0) goto LCHANGE;
+	mes "[Keiron]";
+	mes " ท่านยังเหลือสกิลพ้อยท์ที่ยังไม่อัพ ท่านควรใช้มันทั้งหมด!";
+	close;
+		
+	LCHANGE:
+	jobchange 16;
+	mes "[Keiron]";
+	mes " ยินดีด้วย! จากนี้ไปเจ้าต้องมีชีวิตอยู่อย่าง Sage";
+	mes " และจงอย่าสูญเสียความมุ่งมั่นในการเป็น Sage ไม่ว่าเมื่อใดก็ตาม...";
+	next;
+	mes "[Keiron]";
+	mes " เก็บงานวิจัยของท่านไว้ มันอาจจะมีประโยชน์ต่อสิ่งแวดล้อมและสิ่งมีชีวิตทั้งหมด";
+	next;
+	mes "[Keiron]";
+	mes " บางทีท่านอาจเป็นป้อมปราการแห่งความรูัทั้งหมดด้วยตัวเอง!";
+	close;
+L_Menu3_3:
+	mes "[Keiron]";
+	mes " อืม?  เกิดอะไรขึ้น?";
+	mes " เพียงเพราะท่านเป็น Sage มันไม่ได้หมายความว่าท่านจะออกจากการศึกษา";
+	next;
+	mes "[Keiron]";
+	mes " เพื่อที่จะรักษาบทบาทของเรา เราต้องรวบรวมความรู้ทั้งหมด เพื่อมอบให้กับอาณาจักร";
+	close;
+}
+
+//===============================
+//Biotech Lab
+//===============================
+yuno_in03.gat,244,31,3	script	ครูสอนฟิสิกส์	120,{
+	if(JobLevel == 50) {
+	if (Class!=2) goto Notache;
+	if(SkillPoint >0) goto L_notUseAll;
+
+	 mes "[ Jobchanger ]";
+	 mes "ท่านต้องการเปลื่ยนอาชีพเป็นsage ใช่หรือไม่";
+	 next;
+	 menu "ใช่",-,"ไม่ใช่",L_close;
+	 mes "[ Jobchanger ]";
+	 mes "ถ้าเป็นอย่างนั้น ข้าก็จะเปลื่ยนให้เจ้าทันที";
+	 next;
+	 JobChange 16;
+	set zeny,zeny+50000;
+	 mes "เจ้าได้เป็น sageเรียบร้อยแล้ว";
+	 close;
+
+	L_close:
+	 mes "[ Jobchanger ]";
+	 mes "เราคงมีโอกาศได้พบกันใหม่อีกแน่ บาย";
+	 close;
+
+	L_notUseAll:
+	 mes "[ Jobchanger ]";
+	 mes "ท่านยังใช้ Skill Point ไม่หมด";
+	 close;
+
+	Notache:
+	 mes "[ Jobchanger ]";
+	 mes "คุณไม่ได้ นักเวทย์นิ";
+	 close;
+
+
+	}
+
+	if (Class == 16) goto L_Menu3_2;
+	if (Class != 2) goto L_Menu1_1;
+	if (job2nd_sage == 11) goto L_Menu3_1;
+	if (job2nd_sage2 == 8) goto L_Menu2_1;
+	if (job2nd_sage2 == 9) goto L_Menu2_3;
+	if (job2nd_sage2 == 10) goto L_Menu2_5;
+	if (job2nd_sage2 == 11) goto L_ThesisStart1;
+	if (job2nd_sage == 9) goto L_Menu1_2;
+	mes "[Ebeshi]";
+	mes " อะไร?";
+	next;
+	mes "[Ebeshi]";
+	mes " ท่านคงต้องการเข้ามาศึกษาด้วยคำแนะนำของข้าหรือไม่?";
+	next;
+	mes "[Ebeshi]";
+	mes " ดีมาก แต่ท่านต้องลงทะเบียนก่อน";
+	mes " ฮี่ ฮี่ ฮี่...";
+	close;
+L_Menu1_1:
+	mes "[Ebeshi]";
+	mes " เอ๊ะ???????????????????????????????";
+	next;
+	mes "[Ebeshi]";
+	mes " ข้าไม่คิดว่าท่านจะไม่ชอบบางอย่างที่ข้าได้สอนข้า";
+	next;
+	mes "[Ebeshi]";
+	mes " ท่านคงรู้สึกผิดหวัง?";
+	mes " ฮี่ฮี่ฮี่....";
+	close;
+L_Menu1_2:
+	set job2nd_sage2,8;
+	mes "[Ebeshi]";
+	mes " ดีมาก ข้าดีใจที่ข้าได้พบนักเรียนที่ดีเช่นข้าอีก";
+	next;
+	mes "[Ebeshi]";
+	mes " ท่านรู้สึกตื่นเต้นบ้างมั้ย ที่กำลังศึกษาอยู่ภายใต้คำสั่งของข้า?!";
+	next;
+	mes "[Ebeshi]";
+	mes " ท่านช่วยหาสิ่งของบางอย่างมาให้ข้าก่อนที่จะเริ่มเข้าชั้นเรียน ไม่งั้นข้าคงไม่อยากจะสอนท่าน?";
+	next;
+	mes "[Ebeshi]";
+	mes " ข้าต้องการ ^3051FD30x Stone^000000 มันเป็นส่วนหนึ่งในการเรียน";
+	mes " ไม่คงไม่เกินความสามารถหรอก?";
+	next;
+	mes "[Ebeshi]";
+	mes " หากท่านต้องการหา Stones ได้อย่างเร็ว";
+	mes " ท่านควรจะไปขอความช่วยเหลือจากเพื่อนของท่านที่เป็น thief แล้วขอบคุณเขาด้วย ถ้าเขาช่วยท่าน";
+	close;
+L_Menu2_1:
+	if (countitem(7049) >= 30) goto L_Menu2_2;
+		mes "[Ebeshi]";
+		mes " เฮ้ นี่มันเกิดอะไรขึ้น?";
+		mes " ข้าต้องการ ^3051FD30x Stone^000000 เพื่อดำเนินการต่อ";
+		mes " ด้วยหินทั้งหมด ข้าว่ามันได้ไม่ยากหรอกนะ";
+		close;
+	L_Menu2_2:
+		mes "[Ebeshi]";
+		mes " ว้าว เจ๋งไปเลย!  ขอบใจมาก";
+		mes " รอสักครู่ได้ไหม? ข้ามีงานต้องทำนิดนึง โฮ่ โอ่!";
+		next;
+		mes "[Ebeshi]";
+		mes "Abracadabra!!";
+		next;
+		mes "[Ebeshi]";
+		mes "Abracadabra!!";
+		next;
+		mes "[Ebeshi]";
+		mes "Abracadabra!!";
+		next;
+		delitem 7049,30;
+		set job2nd_sage2,9;
+		mes "[Ebeshi]";
+		mes " ท่านเห็นนี่มั้ย?";
+		mes " ข้าสร้าง elemental stones ทั้ง 3 ชนิดขึ้นมา!";
+		next;
+		mes "[Ebeshi]";
+		mes " สวยงามมาก ท่านคงจะคิดแบบข้า?";
+		next;
+		getitem 991,1;
+		getitem 993,1;
+		getitem 992,1;
+		mes "[Ebeshi]";
+		mes " นี่จะเป็นการทดสอบต่อไป ท่านต้องนำหินทั้งสามชนิดไปสกัดเป็นลูกธนูที่แตกต่างกัน";
+		next;
+		mes "[Ebeshi]";
+		mes " จงทำลูกธนูจากแร่เหล่านี้";
+		mes "^3051FD50x Crystal Arrow^000000";
+		mes "^3051FD50x Stone Arrow^000000";
+		mes "^3051FD50x Wind Arrow^000000";
+		next;
+		mes "[Ebeshi]";
+		mes " เพื่อนที่เป็น archer สามารถช่วยท่านสร้างลูกธนูได้";
+		mes " มอบมันให้เขา!";
+		close;
+	L_Menu2_3:
+		if ((countitem(1754) >= 50) && (countitem(1756) >= 50) && (countitem(1755) >= 50)) goto L_Menu2_4;
+		mes "[Ebeshi]";
+		mes " อืม?";
+		mes " แล้วหินที่ข้าให้ท่านไปสกัดเป็นลูกธนูล่ะ?";
+		mes " ท่านคงไม่ได้นำมันไปขายหรอกนะ...";
+		next;
+		mes "[Ebeshi]";
+                mes " จงทำลูกธนูจากแร่เหล่านี้";
+		mes "^3051FD50x Crystal Arrow^000000";
+		mes "^3051FD50x Stone Arrow^000000";
+		mes "^3051FD50x Wind Arrow^000000";
+		mes " เพื่อนที่เป็น archer สามารถช่วยท่านสร้างลูกธนูได้";
+		close;
+	L_Menu2_4:
+		mes "[Ebeshi]";
+		mes " นี่คงเป็นลูกธนู!  ว้าวว";
+		mes " มาเริ่มต่อกับบทเรียนต่อไป...";
+		next;
+		mes "[Ebeshi]";
+		mes " บทเรียนนี้จะครอบคลุมถึงความสัมพันธ์ของแต่ละธาตุจากตำราเรียนของท่าน";
+		next;
+		mes "[Ebeshi]";
+		mes " เริ่มแรก ความสัมพันธ์ของธาตุมันเป็นเรื่องง่าย";
+		mes " เวทมนตร์ของ Water จะมีผลต่อ Fire เป็นอย่างมาก";
+		mes " ท่านจำมันได้ง่ายมาก";
+		mes " สิ่งที่เจ้าควรจำคือเมื่อน้ำสาดไปบนไฟ ไฟก็จะดับ";
+		next;
+		mes "[Ebeshi]";
+		mes " เวทมนตร์ของ Wind จะมีผลมากต่อ มอนสเตอร์ water";
+		mes " สังเกตุง่ายๆ เมื่อฟ้าผ่าลงไปในทะสาบ";
+		next;
+		mes "[Ebeshi]";
+		mes " เวทมนตร์ของ Earth จะมีผลมากต่อ มอนสเตอร์ wind";
+		mes " ท่านคงไม่สามารถสร้างบ้านี่ป้องกันเพื่อไม่ให้ลมพัดปลืวไปได้มั้ย?";
+		next;
+		mes "[Ebeshi]";
+		mes " เวทมนตร์ของ Fire จะมีผลมากต่อ มอนสเตอร์ earth.";
+		mes " เมื่อไฟได้เผาไหม้ต้นไม้ และลามไปทั่ว?";
+		mes " มันก็จะเป็นเช่นเดียวกับมอนสเตอร์ earth";
+		next;
+		mes "[Ebeshi]";
+		mes " ท่านคงจะเข้าใจ?";
+		mes " นี่จะเป็นการบ้านสำหรับครั้งต่อไป";
+		next;
+		delitem 1754,50;
+		delitem 1756,50;
+		delitem 1755,50;
+		set job2nd_sage2,10;
+		mes "[Ebeshi]";
+		mes " ท่านต้องนำ ^3051FD1x Holy Water^000000.";
+		mes " ข้าจำเป็นจะต้องใช้สำหรับบทเรียนนี้";
+		mes " มันจะช่วยได้มากหากท่านมีเพื่อนที่อาศัยอยู่ในโบถท์";
+		close;
+	L_Menu2_5:
+		if (countitem(523) >= 1) goto L_Menu2_6;
+		mes "[Ebeshi]";
+		mes " อุ๊ฟ!";
+		mes " ไหนล่ะ สิ่งที่ข้าให้ท่านหามา?";
+		next;
+		mes "[Ebeshi]";
+		mes " ท่านต้องนำ ^3051FD1x Holy Water^000000.";
+		mes " มันจะช่วยได้มากหากท่านมีเพื่อนที่อาศัยอยู่ในโบถท์";
+		close;
+	L_Menu2_6:
+		mes "[Ebeshi]";
+		mes " นี่คงจะเป็น Holy Water!";
+		mes " เริ่มสู่บทเรียนถัดไปกัน!";
+		next;
+		mes "[Ebeshi]";
+		mes " กรุณาจดบันทึกเกี่ยวกับสิ่งที่ข้าพูด";
+		mes " มันจะเป็นการทดสอบ";
+		next;
+		mes "[Ebeshi]";
+		mes " เวทมนตร์ของ Water จะด้อยเมื่อต้องเจอกับ wind!";
+		mes " เวทมนตร์ของ Wind จะไร้ประโยชน์เมื่อใช้กับ earth.";
+		mes " เวทมนตร์ของ Earthจะไม่ได้ผลกับ fire.";
+		mes " เวทมนตร์ของ Fire จะอยู่ตรงข้ากันกับ water.";
+		next;
+		mes "[Ebeshi]";
+		mes " นั่นคือการบรรยายด้วยข้อมูลที่!";
+		mes " ท่านคิดว่ามันเยอะเกินไปมั้ย?";
+		next;
+		delitem 523,1;
+		set job2nd_sage2,11;
+		mes "[Ebeshi]";
+		mes " ตอนนี้ท่านน่าจะมีความรู้มากพอแล้ว ที่จะช่วยป้องกันงานวิจัย";
+		mes "Hehehehehe!";
+		next;
+		mes "[Ebeshi]";
+		mes " สิ่งของที่ข้าต้องการ :";
+		mes "^3051FD1x Feather of Birds^000000 สำหรับปากกา";
+		mes "^3051FD1x Animal Skin^000000 สำหรับแผ่นหลังให้เขียน";
+		mes "^3051FD1x Trunk^000000 to bind the pages.";
+		mes "^3051FD1x Squid Ink^000000 สำหรับหมึก";
+		mes "^3051FD1x Empty Bottle^000000 สำหรับใส่หมึง";
+		next;
+		mes "[Ebeshi]";
+		mes " กลับมาใหม่เมื่อท่านหาของได้ครบแล้ว";
+		close;
+	L_ThesisStart1:
+		if ((countitem(916) >= 1) && (countitem(919) >= 1) && (countitem(1019) >= 1) && (countitem(1024) >= 1) && (countitem(713) >= 1)) goto L_ThesisStart2;
+		mes "[Ebeshi]";
+		mes " อืม?";
+		mes " ท่านคงจะไม่ได้ลืมสิ่งของสำคัญพวกนี้หรอกนะ!";
+		next;
+		mes "[Ebeshi]";
+                mes " สิ่งของที่ข้าต้องการ :";
+		mes "^3051FD1x Feather of Birds^000000 for your writing instrument.";
+		mes "^3051FD1x Animal Skin^000000 for the pages.";
+		mes "^3051FD1x Trunk^000000 to bind the pages.";
+		mes "^3051FD1x Squid Ink^000000 for your ink.";
+		mes "^3051FD1x Empty Bottle^000000 to store your ink.";
+		next;
+		mes "[Ebeshi]";
+		mes " บางทีเพื่อนบางคนของท่านอาจช่วยท่านได้?";
+		mes " มันจะทำให้งานนี้ง่ายขึ้น!";
+		close;
+	L_ThesisStart2:
+		delitem 916,1;
+		delitem 919,1;
+		delitem 1019,1;
+		delitem 1024,1;
+		delitem 713,1;
+		mes "[Ebeshi]";
+		mes " เอาล่ะ...";
+		mes " ท่านต้องจดรายละเอียดพวกนี้ด้วยตัวท่านเอง";
+		mes " ข้าจะมีหน้าที่คอยให้คำปรึกษาท่านเท่านั้น!";
+		mes " ฮี่ ฮ๊่...";
+		next;
+		mes "......";
+		next;
+		mes "......";
+		next;
+		mes "......";
+		next;
+		mes " เวทมนตร์ได้แบ่งจำนวนธาตุออกเป็นสี่ประเภท";
+			menu "...ที่เรียกว่า Fire, Wind, Water, และ Earth",L_ThesisMenu1_1,"...ที่ชื่อว่า Fire, Wind, Water, และ Earth",L_ThesisMenu1_2,"...นั่นคือ : Fire, Wind, Water, และ Earth",L_ThesisMenu1_3;
+		L_ThesisMenu1_1:
+			mes "...ที่เรียกว่า Fire, Wind, Water, และ Earth";
+			goto L_Thesis2;
+		L_ThesisMenu1_2:
+			mes "...ที่ชื่อว่า Fire, Wind, Water, และ Earth";
+			goto L_Thesis2;
+		L_ThesisMenu1_3:
+			mes "...นั่นคือ : Fire, Wind, Water, และ Earth";
+			goto L_Thesis2;
+		L_Thesis2:
+			mes " แต่ละธาตุจะมีคุณสมบัติที่ต่างกันไป";
+			menu "Wind ชนะ water...",L_ThesisMenu2_1,"Water ดับ fire...",L_ThesisMenu2_2,"Fire เผา Earth...",L_ThesisMenu2_3;
+		L_ThesisMenu2_1:
+			mes "Wind ชนะ Water และ Earth ชนะ Wind";
+			goto L_Thesis3;
+		L_ThesisMenu2_2:
+			mes "Water ดับ fire ในขณะที่ Wind พัด Water";
+			goto L_Thesis3;
+		L_ThesisMenu2_3:
+			mes "Fire เผา Earth และ Water ดับ Fire.";
+			goto L_Thesis3;
+		L_Thesis3:
+			menu " แต่จุดอ่อนก็ยังมีมากเกินไป",L_ThesisMenu3_1," ท่านสามารถใส่ธาตุต่างๆ ลงในอาวุธได้",L_ThesisMenu3_2," ธาตุจะถูกแบ่งออกตามประเภทของมอนสเตอร์",L_ThesisMenu3_3;
+		L_ThesisMenu3_1:
+			mes " แต่จุดอ่อนก็ยังมีมากเกินไป";
+			goto L_Thesis4;
+		L_ThesisMenu3_2:
+			mes " ท่านสามารถใส่ธาตุต่างๆ ลงในอาวุธได้";
+			goto L_Thesis4;
+		L_ThesisMenu3_3:
+			mes " ธาตุจะถูกแบ่งออกตามประเภทของมอนสเตอร์";
+			goto L_Thesis4;
+		L_Thesis4:
+			menu " ท่านจะต้องระวังเมื่อเผชิญกับมอนสเตอร์",L_ThesisMenu4_1," ท่านควรเลือกอาวุธให้ตรงกับสถานการณ์",L_ThesisMenu4_2," Red Potions  มีรสชาติของสตอเบอร์รี่",L_ThesisMenu4_3;
+		L_ThesisMenu4_1:
+			mes " ท่านจำเป็นต้องระวังเมื่อเจอมอนสเตอร์ที่ไม่คุ้นเคย";
+			goto L_Thesis5;
+		L_ThesisMenu4_2:
+			mes "  ท่านควรเลือกอาวุธให้ตรงกับสถานการณ์";
+			goto L_Thesis5;
+		L_ThesisMenu4_3:
+			mes " Red Potions  มีรสชาติของสตอเบอร์รี่";
+			goto L_Thesis5;
+		L_Thesis5:
+			next;
+			menu " Eimi ใน Prontera ฮ๊อตมาก",L_ThesisMenu5_1," ข้าสงสัยว่า Red Potions ทำจากอะไร",L_ThesisMenu5_2," เวทมนตร์มันยากเกินไปที่มนุษย์จะเรียนรู้",L_ThesisMenu5_3;
+		L_ThesisMenu5_1:
+			mes " Eimi ใน Prontera ฮ๊อตมาก";
+			goto L_Thesis6;
+		L_ThesisMenu5_2:
+			mes " ข้าสงสัยว่า Red Potions ทำจากอะไร";
+			goto L_Thesis6;
+		L_ThesisMenu5_3:
+			mes " เวทมนตร์มันยากเกินไปที่มนุษย์จะเรียนรู้";
+			goto L_Thesis6;
+		L_Thesis6:
+			menu " women ใน Morok ดูงดงามมาก",L_ThesisMenu6_1," มันอาจจะเป็นสูตรลับ",L_ThesisMenu6_2," ความอันตรายขึ้นอยู่กับเวทย์มนต์ที่มากเกิน",L_ThesisMenu6_3;
+		L_ThesisMenu6_1:
+			mes " women ใน Morok ดูงดงามมาก";
+			goto L_Thesis7;
+		L_ThesisMenu6_2:
+			mes "  มันอาจจะเป็นสูตรลับ";
+			goto L_Thesis7;
+		L_ThesisMenu6_3:
+			mes "  ความอันตรายขึ้นอยู่กับเวทย์มนต์ที่มากเกิน";
+			goto L_Thesis7;
+		L_Thesis7:
+			menu " ข้าต้องการ Rabbit Headband",L_ThesisMenu7_1," White potion มีรสอะไร",L_ThesisMenu7_2," ถ้าท่านอยากอยู่อยากปลอดภัยท่านต้องไม่ใช้พลัง",L_ThesisMenu7_3;
+		L_ThesisMenu7_1:
+			mes "  ข้าต้องการ Rabbit Headband";
+			goto L_Thesis8;
+		L_ThesisMenu7_2:
+			mes "  White potion มีรสอะไร";
+			goto L_Thesis8;
+		L_ThesisMenu7_3:
+			mes "  ถ้าท่านอยากอยู่อยากปลอดภัยท่านต้องไม่ใช้พลัง";
+			goto L_Thesis8;
+		L_Thesis8:
+			menu " อะไรที่ทำให้มีความสุข",L_ThesisMenu8_1," เป็นเรื่องยากที่จะจินตนาการ",L_ThesisMenu8_2," ข้าสนใจจะหาที่ต่อสู่อย่างปลอดภัย",L_ThesisMenu8_3;
+		L_ThesisMenu8_1:
+			mes "  อะไรที่ทำให้มีความสุข";
+			goto L_Thesis9;
+		L_ThesisMenu8_2:
+			mes "  เป็นเรื่องยากที่จะจินตนาการ";
+			goto L_Thesis9;
+		L_ThesisMenu8_3:
+			mes "  ข้าสนใจจะหาที่ต่อสู่อย่างปลอดภัย";
+			goto L_Thesis9;
+		L_Thesis9:
+			menu " Rabbit Headbands เป็นเครื่องประดับที่ดีของ Acolyte",L_ThesisMenu9_1," ข้ากำสงสัยว่า...",L_ThesisMenu9_2," ท่านควรจะพาเพื่อนมา",L_ThesisMenu9_3;
+		L_ThesisMenu9_1:
+			mes " Rabbit Headbands เป็นเครื่องประดับที่ดีของ Acolyte";
+			goto L_Thesis10;
+		L_ThesisMenu9_2:
+			mes "  ข้ากำสงสัยว่า...";
+			goto L_Thesis10;
+		L_ThesisMenu9_3:
+			mes "  ท่านควรจะพาเพื่อนมา";
+			goto L_Thesis10;
+		L_Thesis10:
+			menu " ข้าสงสัยว่า Knight สวมใส่ลุมล่ามเกินไป",L_ThesisMenu10_1," ทุกคนจะดื่มอะไรเมื่อรู้สึกเจ็บ",L_ThesisMenu10_2," มันเป็นที่ควรจะรับผิดชอบ",L_ThesisMenu10_3;
+		L_ThesisMenu10_1:
+			mes "  ข้าสงสัยว่า Knight สวมใส่ลุมล่ามเกินไป";
+			next;
+			goto L_ThesisEnd;
+		L_ThesisMenu10_2:
+			mes "  ทุกคนจะดื่มอะไรเมื่อรู้สึกเจ็บ";
+			next;
+			goto L_ThesisEnd;
+		L_ThesisMenu10_3:
+			mes "  มันเป็นที่ควรจะรับผิดชอบ";
+			next;
+			goto L_ThesisEnd;
+	L_ThesisEnd:
+		mes "......";
+		next;
+		mes "......";
+		next;
+		mes "......";
+		next;
+		set job2nd_sage,11;
+		getitem 1550,1;
+		mes "[Ebeshi]";
+		mes " เอาล่ะ!";
+		mes " ท่านทำสำเร็จ มันสวยงามมาก!";
+		next;
+		mes "[Ebeshi]";
+		mes " ท่านควรไปที่อาจารย์ใหญ่!";
+		mes " เขาจะติดสินว่าท่านจะจบการศึกษาหรือไม่";
+		close;
+L_Menu3_1:
+	mes "[Ebeshi]";
+	mes " อะไร?  นี่ท่านกำลังลืมอะไร?!";
+	next;
+	mes "[Ebeshi]";
+	mes " ท่านควรจะนำเสนองานนี้ให้อาจารย์ใหญ่ เพื่อเขาอาจจะเปลี่ยนอาชีพท่านได้!";
+	close;
+L_Menu3_2:
+	mes "[Ebeshi]";
+	mes " สวัสดี ยามบ่าย!";
+	mes " ข้าว่ามันคงจะดีมากถ้าข้าได้แลกเปลี่ยนข้อมูลกับ Sages";
+	mes " ฮี่ฮี่!!";
+	next;
+	mes "[Ebeshi]";
+	mes " แม้ว่าบางครั้ง บริษัท ของข้าจะใช้ข้าเพื่อค้นคว้างานวิจัย!";
+	next;
+	mes "[Ebeshi]";
+	mes " ท่านคงจะต้องการศึกษาต่อไป?";
+	mes " อย่าลังเลที่จะพูดคุยกับอาจารย์ท่านอื่นๆ และอ่านหนังสือที่นี่";
+	mes " ฮี่ ฮี่!";
+	close;
+}
+
+//==================================
+//Monster Museum
+//==================================
+
+yuno_in03.gat,32,102,0	script	ครูสอนชีววิทยา	755,{
+	if(JobLevel == 50) {
+	if (Class!=2) goto Notache;
+	if(SkillPoint >0) goto L_notUseAll;
+
+	 mes "[ Jobchanger ]";
+	 mes "ท่านต้องการเปลื่ยนอาชีพเป็นsage ใช่หรือไม่";
+	 next;
+	 menu "ใช่",-,"ไม่ใช่",L_close;
+	 mes "[ Jobchanger ]";
+	 mes "ถ้าเป็นอย่างนั้น ข้าก็จะเปลื่ยนให้เจ้าทันที";
+	 next;
+	 JobChange 16;
+	set zeny,zeny+50000;
+	 mes "เจ้าได้เป็น sageเรียบร้อยแล้ว";
+	 close;
+
+	L_close:
+	 mes "[ Jobchanger ]";
+	 mes "เราคงมีโอกาศได้พบกันใหม่อีกแน่ บาย";
+	 close;
+
+	L_notUseAll:
+	 mes "[ Jobchanger ]";
+	 mes "ท่านยังใช้ Skill Point ไม่หมด";
+	 close;
+
+	Notache:
+	 mes "[ Jobchanger ]";
+	 mes "คุณไม่ได้ นักเวทย์นิ";
+	 close;
+
+
+	}
+
+	if (Class == 16) goto L_Menu5_4;
+	if (Class != 2) goto L_Menu1_1;
+	if (job2nd_sage == 11) goto L_Menu5_3;
+	if ((job2nd_sage2 >= 1) && (job2nd_sage2 <= 3)) goto L_Menu3_1;
+	if ((job2nd_sage2 >= 4) && (job2nd_sage2 <= 6)) goto L_Menu4_1;
+	if (job2nd_sage2 == 7) goto L_Menu5_1;
+	if (job2nd_sage == 8) goto L_Menu2_1;
+	mes "[Lucias]";
+	mes " ข้ารู้สึกปวดหัว...";
+	mes " ข้าคงจะใช้เวลากับงานนี้มากเกินไป!";
+	next;
+	mes "[Lucias]";
+	mes " แต่ข้าก็จะสอนทุกๆ คนเกียวกับ Biology ถึงแม้ข้าจะปวดหัวก็เถอะ!";
+	close;
+L_Menu1_1:
+	mes "[Lucias]";
+	mes " อืม?  ท่านเพียงแค่เดินมารอบๆ";
+	next;
+	mes "[Lucias]";
+	mes " ทางที่ดี ท่านควรอย่าแตะอะไร";
+	mes " เราเก็บของอันตรายต่างๆ ไว้ที่นี่!";
+	next;
+	mes "[Lucias]";
+	mes " ถ้าท่านมีข้อมูลเกี่ยวกับมอนสเตอร์หายาก ข้าจะให้รางวัลท่านอย่างงาม";
+	close;
+L_Menu2_1:
+	mes "[Lucias]";
+	mes " โอ้ เจ้าคงจะพร้อมกับการทดสอบใหม่นี้แล้ว?";
+	mes " ข้าคือ Lucias นักวิจัยที่โดดเด่นในวิทยาศาสตร์ด้านชีววิทยา";
+	next;
+	mes "[Lucias]";
+	mes " เจ้ามีชื่อว่าอะไร เจ้าเด็กน้อย?";
+	next;
+	menu " ข้า " + strcharinfo(0) + "!",-;
+	mes "[Lucias]";
+	mes " นั่นเป็นชื่อที่ดี";
+	mes " ข้าจะอธิบายเกี่ยวกับจุดประสงค์ของการวิจัยของเรา";
+	next;
+	mes "[Lucias]";
+	mes " พื้นที่ของข้ามีมอนสเตอร์ที่เชี่ยวชาญ";
+	mes " ข้าเชื่อว่าเจ้าจะต้องแพ้กับมอนสเตอร์พวกนั้นแน่นอน";
+	mes " ข้าเชื่ออย่างนั้น?";
+	next;
+		menu " ข้าพร้อมแล้ว",-,"  ข้าว่าไม่นะ",L_Menu2_2;
+		mes "[Lucias]";
+		mes " จริงเหรอ?";
+		mes " ข้าหวังว่าเบื้องหลังของความรู้จะมีความหลากหลาย";
+		next;
+		goto L_Menu2_3;
+	L_Menu2_2:
+//==================================
+//If you respond negatively
+		mes "[Lucias]";
+		mes " เจ้าอาจจะต้องการเป็นเบี้ยล่าง";
+		mes " การเรียนของข้าจะเป้นเบื้องหลังของความรู็";
+		next;
+//==================================
+L_Menu2_3:
+	mes "[Lucias]";
+	mes " ข้าจะพร้อมจะเริ่มทดสอบ?";
+	mes " เจ้าจะเรียนรู้ได้มากหากเจ้าระมัดระวัง";
+	next;
+		set @sagerand,0;
+		set @sagerand,rand(3);
+		mes "[Lucias]";
+		mes " ขั้นแรก ข้าต้องการไอเท็มเหล่านี้";
+		if (@sagerand == 1) goto L_Menu2_4;
+		if (@sagerand == 2) goto L_Menu2_5;
+		set job2nd_sage2,1;
+		mes "^3051FD5x Tendons^000000";
+		mes "^3051FD5x Nippers^000000";
+		mes "^3051FD5x Sharp Scales^000000";
+		next;
+		goto L_Menu2_6;
+	L_Menu2_4:
+		set job2nd_sage2,2;
+//==================================
+//mes–ข๑๛
+		mes "^3051FD5x Clam Flesh^000000";
+		mes "^3051FD5x Nippers^000000";
+		mes "^3051FD5x Heart of Mermaid^000000";
+		next;
+		goto L_Menu2_6;
+	L_Menu2_5:
+		set job2nd_sage2,3;
+		mes "^3051FD5x Single Cells^000000";
+		mes "^3051FD5x Tentacles^000000";
+		mes "^3051FD5x Fish Tails^000000";
+//==================================
+		next;
+	L_Menu2_6:
+		mes "[Lucias]";
+		mes " ข้าจะเริ่มงานต่อ เมื่อเจ้ารวบรวมไอเท็มเหล่านั้นได้ครบ";
+		close;
+L_Menu3_1:
+	if ((countitem(1050) >= 5) && (countitem(960) >= 5) && (countitem(963) >= 5) && (job2nd_sage2 == 1)) goto L_Menu3_4;
+	if ((countitem(966) >= 5) && (countitem(960) >= 5) && (countitem(950) >= 5) && (job2nd_sage2 == 2)) goto L_Menu3_4;
+	if ((countitem(1052) >= 5) && (countitem(962) >= 5) && (countitem(1023) >= 5) && (job2nd_sage2 == 3)) goto L_Menu3_4;
+	mes "[Lucias]";
+	mes " ข้าไม่เห็นไอเท็มที่ข้าต้องการ";
+	mes " ข้าต้องการไอเท็มเหล่านี้ :";
+	next;
+		mes "[Lucias]";
+		if (job2nd_sage2 == 2) goto L_Menu3_2;
+		if (job2nd_sage2 == 3) goto L_Menu3_3;
+		mes "^3051FD5x Tendon^000000";
+		mes "^3051FD5x Nipper^000000";
+		mes "^3051FD5x Sharp Scale^000000";
+		close;
+	L_Menu3_2:
+		mes "^3051FD5x Clam Flesh^000000";
+		mes "^3051FD5x Nipper^000000";
+		mes "^3051FD5x Heart of Mermaid^000000";
+		close;
+	L_Menu3_3:
+		mes "^3051FD5x Single Cell^000000";
+		mes "^3051FD5x Tentacle^000000";
+		mes "^3051FD5x Fish Tail^000000";
+		close;
+L_Menu3_4:
+	mes "[Lucias]";
+	mes " ดีมาก เจ้ามีไอเท็มทั้งหมดที่ข้าต้องการ แต่ไม่รู้ว่าเจ้าจะซื้่อมาหรือเก็บรวบรวมด้วยตัวเจ้าเอง เพราะฉะนั้นข้าอยากถามเจ้า";
+	next;
+	mes "[Lucias]";
+	mes " ยังไงก็ตาม มอนสเตอร์ที่ดรอปไอเท็มเหล่านี้ มีลักษณะทั่วไปอย่างไร";
+	mes " ลักษณะทั่วไปคืออะไร?";
+	next;
+		menu " มี Property Water",L_Menu3_5," มี Type เป็น Fish",L_Menu3_5," โจมตีก่อน",-," เป็นมอนสเตอร์",-;
+//==================================
+		mes "[Lucias]";
+		mes "..ข้าผิดหวังในตัวเจ้า.";
+		mes " คำตอบที่ถูกต้อง คือมอนสเตอร์ธาตุน้ำทั้งหมด";
+		mes " และมอนสเตอร์ที่อาศัยอยู่ในน้ำส่วนใหญ่จะมีการพัฒนาร่างกายให้เข้ากับสภาพแวดล้อมจนมีลักษณะคล้ายปลาอีกด้วย";
+//==================================
+		next;
+		goto L_Menu3_6;
+	L_Menu3_5:
+		mes "[Lucias]";
+		mes " ถูกต้อง!";
+		mes " มอนสเตอร์ที่อาศัยอยู่ในน้ำส่วนใหญ่จะมีการพัฒนาร่างกายให้เข้ากับสภาพแวดล้อมจนมีลักษณะคล้ายปลาอีกด้วย";
+		next;
+	L_Menu3_6:
+		mes "[Lucias]";
+		mes " และเวทมนตร์ประเภทใดที่มีผลต่อพวกมอนสเตอร์เหล่านั้นทั้งหมด?";
+		next;
+		menu "Lightning Bolt",L_Menu3_7,"Firebolt",-,"Thunderstorm",L_Menu3_8,"Frost Deva",-;
+//==================================
+//mes–ข๑๛
+		mes "[Lucias]";
+		mes " นั่นไม่ใช่คำตอบที่ถูกต้อง";
+		mes " เจ้าต้องใช้ Lightning Bolt หรือ Thunderstorm.";
+		next;
+//==================================
+		goto L_Menu3_9;
+	L_Menu3_7:
+		mes "[Lucias]";
+		mes " เยี่ยม!  นั่นมันถูกต้อง!";
+		mes " ใช้ Lightning Bolt เป็นวิธีง่ายๆ จะนำไปสู่ชัยชนะ";
+		next;
+		mes "[Lucias]";
+		mes " แต่เจ้าต้องระวัง Penomeni และ starfish เพราะพวกมันมีธาตุที่ต่างออกไป";
+		next;
+		goto L_Menu3_9;
+	L_Menu3_8:
+		mes "[Lucias]";
+		mes " เยี่ยม!  นั่นมันถูกต้อง!";
+		mes " ใช้ Thunderstorm iเป็นวิธีง่ายๆ จะนำไปสู่ชัยชนะ";
+		next;
+		mes "[Lucias]";
+		mes " แต่เจ้าต้องระวัง Penomeni และ starfish เพราะพวกมันมีธาตุที่ต่างออกไป";
+		next;
+	L_Menu3_9:
+		mes "[Lucias]";
+		mes " ต่อไปข้าจะเปลี่ยนความสนใจไปที่มอนสเตอร์แมลง";
+		next;
+		set @sagerand,rand(3);
+		mes "[Lucias]";
+		mes " ข้าต้องการไอเท็มเหล่านี้ ";
+		if (@sagerand == 1) goto L_Menu3_10;
+		if (@sagerand == 2) goto L_Menu3_11;
+		set job2nd_sage2,4;
+		mes "^3051FD5x Cobweb^000000";
+		mes "^3051FD5x Shell^000000";
+		mes "^3051FD5x Insect Feeler^000000";
+		next;
+		goto L_Menu2_6;
+	L_Menu3_10:
+		set job2nd_sage2,5;
+//==================================
+//mes–ข๑๛
+		mes "^3051FD5x Moth Dust^000000";
+		mes "^3051FD5x Snail's Shell^000000";
+		mes "^3051FD5x Horn^000000";
+		next;
+		goto L_Menu2_6;
+	L_Menu3_11:
+		set job2nd_sage2,6;
+		mes "^3051FD5x Mantis Leg^000000";
+		mes "^3051FD5x Worm Peeling^000000";
+		mes "^3051FD5x Rainbow Shell^000000";
+//==================================
+		next;
+		goto L_Menu2_6;
+L_Menu4_1:
+	if ((countitem(1025) >= 5) && (countitem(935) >= 5) && (countitem(928) >= 5) && (job2nd_sage2 == 4)) goto L_Menu4_4;
+	if ((countitem(1057) >= 5) && (countitem(946) >= 5) && (countitem(947) >= 5) && (job2nd_sage2 == 5)) goto L_Menu4_4;
+	if ((countitem(1031) >= 5) && (countitem(955) >= 5) && (countitem(1013) >= 5) && (job2nd_sage2 == 6)) goto L_Menu4_4;
+	mes "[Lucias]";
+	mes " ข้าไม่เห็นไอเท็มที่ข้าต้องการ";
+	mes " ข้าต้องการไอเท็มเหล่านี้ :";
+	next;
+		mes "[Lucias]";
+		if (job2nd_sage2 == 5) goto L_Menu4_2;
+		if (job2nd_sage2 == 6) goto L_Menu4_3;
+		mes "^3051FD5x Cobweb^000000";
+		mes "^3051FD5x Shell^000000";
+		mes "^3051FD5x Insect Feeler^000000";
+		close;
+	L_Menu4_2:
+		mes "^3051FD5x Moth Dust^000000";
+		mes "^3051FD5x Snail's Shell^000000";
+		mes "^3051FD5x Horn^000000";
+		close;
+	L_Menu4_3:
+		mes "^3051FD5x Mantis Leg^000000";
+		mes "^3051FD5x Worm Peeling^000000";
+		mes "^3051FD5x Rainbow Shell^000000";
+		close;
+L_Menu4_4:
+	set job2nd_sage2,7;
+	mes "[Lucias]";
+	mes " ยอดเยี่ยมจริงๆ... !!";
+	mes " ข้าหวังว่าท่านคงจะสังเกตุ สิ่งรอบๆ ตัวของเจ้าในขณะที่เจ้ากำลังรวบรวมไอเท็มที่ข้าสั่ง";
+	next;
+	mes "[Lucias]";
+	mes " ด้วยแมลงเหล่านี้ เจ้าจะต้องคิดอย่างรอบคอบว่าจะใช้เวทมนตร์ใด ที่มีผลที่สุดสำหรับพวกมัน";
+	next;
+	mes "[Lucias]";
+	mes " และเจ้าควรทราบว่า Thief ไม่สามารถ hiding และ Assassin ไม่สามารถ cloaking ได้ มันจะผลกับแค่แมลงบางชนิด";
+	next;
+	mes "[Lucias]";
+	mes " แมลงยังสามารถรวมกลุ่มกัน";
+	mes " บางครั้งราชินีของมันจะคอยสั่งลูกๆ ของมันด้วยจำนวนมากมาย.. เช่น";
+	next;
+	mes "[Lucias]";
+	mes " ราชินีแห่งมด Maya...";
+	mes " ราชินีแห่งผึ้ง Mistress...";
+	mes " Goblin Chief Goldfinger...";
+	next;
+	mes "[Lucias]";
+	mes " หากเจ้าต้องการจะสู้บอสด้วยตัวคนเดียว ข้าว่าเจ้าควรเตรียมพร้อมที่จะตายได้เลย..!!";
+	mes " เจ้าควรจะหา Party เพื่อที่จะเผชิญหน้ากับพวกมัน";
+	next;
+	mes "[Lucias]";
+	mes " ดีแล้ว ตอนนี้เจ้าคงจะได้เรียนรู้ไปพอสมควร";
+	mes " เจ้าจำเป็นต้องเขียนงานวิจัย";
+	mes " และเจ้ายังต้องมีสิ่งต่างๆ ที่จะใช้ในการเขียน ก่อนที่เจ้าจะเริ่มเขียน";
+	mes " ข้าอยากให้เจ้าหาของพวกนี้มา :";
+	next;
+	mes "[Lucias]";
+	mes "^3051FD1x Feather of Birds^000000 ใช้เพื่อเขียน";
+	mes "^3051FD1x Animal Skin^000000 เพื่อหน้ากระดาษ";
+	mes "^3051FD1x Trunk^000000 ใช้ผูกหน้ากระดาศ";
+	mes "^3051FD1x Squid Ink^000000 เพื่อเป็นหมึงของเจ้า";
+	mes "^3051FD1x Empty Bottle^000000 ใช้เก็บหมึก";
+	next;
+	mes "[Lucias]";
+	mes " หามันมาให้ครบ แล้วเจ้าค่อยกลับมา";
+	close;
+L_Menu5_1:
+	if ((countitem(916) >= 1) && (countitem(919) >= 1) && (countitem(1019) >= 1) && (countitem(1024) >= 1) && (countitem(713) >= 1) && (job2nd_sage2 == 7)) goto L_Menu5_2;
+	mes "[Lucias]";
+	mes " เจ้าต้องรวบรวมไอเท็มเหล่านี้ก่อน";
+	next;
+	mes "[Lucias]";
+	mes "^3051FD1x Feather of Birds^000000 ใช้เพื่อเขียน";
+	mes "^3051FD1x Animal Skin^000000 เพื่อหน้ากระดาษ";
+	mes "^3051FD1x Trunk^000000 ใช้ผูกหน้ากระดาศ";
+	mes "^3051FD1x Squid Ink^000000 เพื่อเป็นหมึงของเจ้า";
+	mes "^3051FD1x Empty Bottle^000000 ใช้เก็บหมึก";
+	close;
+L_Menu5_2:
+	delitem 916,1;
+	delitem 919,1;
+	delitem 1019,1;
+	delitem 1024,1;
+	delitem 713,1;
+	mes "[Lucias]";
+	mes " ดูเหมือนว่าเจ้าจะครบทุกอย่าง";
+	next;
+	mes "[Lucias]";
+	mes " ตอนนี้เจ้าต้องเขียนมันด้วยตัวเจ้าเอง";
+	mes " ข้ามีหน้าที่ให้คำปรึกษาเจ้าเท่านั้น";
+	next;
+	mes "[Lucias]";
+	mes " เจ้าพร้อมที่จะเริ่มรึยัง?";
+	mes " ข้าจะลองดูว่าเจ้ามีความรู้เพียงใดเกี่ยวกับการวิจัยเรื่องธาตุ";
+	next;
+	mes "......";
+	next;
+	mes "......";
+	next;
+	mes "......";
+	next;
+	menu " Monsters มารูปร่างที่แตกต่างกัน",-;
+	mes " Monsters มารูปร่างที่แตกต่างกัน";
+	menu " พวกมันมีธาตุที่แตกต่างกัน",-;
+	mes " พวกมันมีธาตุที่แตกต่างกัน";
+	menu " ถ้าเจ้ารู้ธาตุของพวกมันก่อน",-;
+	mes " ถ้าเจ้ารู้ธาตุของพวกมันก่อน";
+	menu " เจ้าจะมีประสิทธิ์ภาพในการต่อสู้",-;
+	mes " เจ้าจะมีประสิทธิ์ภาพในการต่อสู้";
+	menu " สิ่งที่เจ้าควรระวังอย่างมาก",-;
+	mes " สิ่งที่เจ้าควรระวังอย่างมาก";
+	menu " คือมอนสเตอร์ Holy และ Darkness",-;
+	mes "คือมอนสเตอร์Holy และ Darkness";
+	next;
+	mes "......";
+	next;
+	mes "......";
+	next;
+	mes "......";
+	next;
+	set job2nd_sage,11;
+	getitem 1550,1;
+	mes "[Lucias]";
+	mes " สวยงามมาก!";
+	mes " ข้าภูมิใจในตัวเจ้า!";
+	next;
+	mes "[Lucias]";
+	mes " ไปหาครูใหญ่และนำนี่ให้เขาดู เพื่อให้แน่ใจว่าเจ้าจบการศึกษา";
+	mes " โชคดี";
+	close;
+L_Menu5_3:
+	mes "[Lucias]";
+	mes " อืม?  เจ้ามีเรื่องอะไร?";
+	mes " ไปหาครูใหญ่และนำนี่ให้เขาดู เพื่อให้แน่ใจว่าเจ้าจบการศึกษา";
+	close;
+L_Menu5_4:
+	mes "[Lucias]";
+	mes " เจ้ากำลังสับสนเรื่องอะไร?";
+	mes " ข้ากำลังยุ่งอยู่ ข้าว่าเจ้าต้องนัดข้าก่อนล่วงหน้า";
+	next;
+	mes "[Lucias]";
+	mes " ฮ่าฮ่า.. เมื่อเจ้าเป็น Sage เจ้าคงจะพูดแบบเดียวกับข้า";
+	close;
+}
+
+//=================================
+//Academy Interior
+//=================================
+
+yuno_in03.gat,154,35,4	script	Academy Staff	742,{
+	if(JobLevel == 50) {
+	if (Class!=2) goto Notache;
+	if(SkillPoint >0) goto L_notUseAll;
+
+	 mes "[ Jobchanger ]";
+	 mes "ท่านต้องการเปลื่ยนอาชีพเป็นsage ใช่หรือไม่";
+	 next;
+	 menu "ใช่",-,"ไม่ใช่",L_close;
+	 mes "[ Jobchanger ]";
+	 mes "ถ้าเป็นอย่างนั้น ข้าก็จะเปลื่ยนให้เจ้าทันที";
+	 next;
+	 JobChange 16;
+	set zeny,zeny+50000;
+	 mes "เจ้าได้เป็น sageเรียบร้อยแล้ว";
+	 close;
+
+	L_close:
+	 mes "[ Jobchanger ]";
+	 mes "เราคงมีโอกาศได้พบกันใหม่อีกแน่ บาย";
+	 close;
+
+	L_notUseAll:
+	 mes "[ Jobchanger ]";
+	 mes "ท่านยังใช้ Skill Point ไม่หมด";
+	 close;
+
+	Notache:
+	 mes "[ Jobchanger ]";
+	 mes "คุณไม่ได้ นักเวทย์นิ";
+	 close;
+
+
+	}
+	if (Class == 16) goto L_Menu6_4;
+	if (Class != 2) goto L_Menu1_1;
+	if (job2nd_sage == 11) goto L_Menu6_3;
+	if (job2nd_sage >= 4) goto L_Menu6_2;
+	if (job2nd_sage == 3) goto L_Menu6_1;
+	if (job2nd_sage == 2) goto L_Menu5_1;
+	mes "[Mathias]";
+	mes " สวัสดี.. นี่คือโรงเรียนเวทมนตร์ Shubaichul Magic Academy ท่านดูเหมือนจะเป็น Magician ข้าสามารถช่วยอะไรท่านได้บ้าง?";
+	next;
+	menu " ข้าอยากรู้รายละเอียดของ Sage",-," ข้าจะสมัครเข้าโรงเรียนของท่าน",L_Menu3_1," ข้าจะกลับมาใหม่",L_Menu2;
+		mes "[Mathias]";
+		mes " ท่านต้องการจะเป็น Sage?";
+		mes " ข้าไม่สามารถเปลี่ยนให้ท่านได้ที่นี่";
+		next;
+		mes "[Mathias]";
+		mes " ท่านต้องเรียนอย่างตั้งใจและทำการวิจัยที่เข้มงวด";
+		next;
+		mes "[Mathias]";
+		mes " เมื่อท่านจบการศึกษาจากที่นี่แล้ว";
+		mes " ท่านจะสามารถเปลี่ยนอาชีพได้";
+		mes " เพื่อจะเริ่มการดำเนินต่อไป เจ้าต้องจ่ายค่าเล่าเรียนและทดสอบตัวเจ้า";
+		next;
+		mes "[Mathias]";
+		mes " เฉพาะผู้ที่มี ^3051FDOld Magic Book^000000 และ ^3051FDNecklace Of Wisdom^000000 ท่านจะไม่ต้องจ่ายค่าเล่าเรียน";
+		next;
+		mes "[Mathias]";
+		mes " เมื่อท่านได้จ่ายค่าเล่าเรียนแล้ว ขั้นแรกข้าจะทดสอบระดับของท่าน";
+		mes " ถ้าท่านได้คะแนนที่สูงมากพอ ข้าจะพาท่านไปวิจัยตามตำแหน่งที่เป็นตัวท่านเอง";
+		mes " และสุดท้ายท่านต้องปกป้องการวิจัยของท่าน";
+		next;
+		mes "[Mathias]";
+		mes " ครูใหญ่จะตัดสินตามมาตฐานว่าท่านจะผ่านการศึกษานี่หรือไม่";
+		mes " ถ้าท่านได้รับอนุมัติ เจ้าจะได้เริ่มต้นเป็น Sage อย่างเป็นทางการ";
+		next;
+		mes "[Mathias]";
+		mes " หากท่านสนใจ ท่านควรกรอกใบสมัครนี่ แล้วข้าจะเริ่มต้นทดสอบท่าน";
+		close;
+L_Menu2:
+	mes "[Mathias]";
+	mes " โอ้?";
+	mes " ท่านคงจะลังเล?";
+	mes " ไว้เจอกันคราวหน้า";
+	close;
+L_Menu1_1:
+	mes "[Mathias]";
+	mes " ยินดีต้อนรับสู่";
+	mes " โรงเรียนเวทมนตร์ Shubaichul Magic Academy";
+	next;
+	mes "[Mathias]";
+	mes " พวกข้าทำวิจัยเกี่ยวกับเวทมนตร์และมอนสเตอร์ที่นี่";
+	mes " พวกข้าเพิ่งฝึกฝน Sages เสร็จไป";
+	next;
+	mes "[Mathias]";
+	mes " Magician ที่มีระดับมากกว่า 40 ขึ้นไปจะสามารถเข้าสมัครได้ในวิทยาลัยแห่งนี้";
+	mes " เมื่อเสร็จสิ้นขั้นตอนทั้งหมด ท่านจะไม่ต้องเสียค่าใช้จ่ายอะไรเลย และท่านจะสามารถเป็น Sage.";
+	next;
+	mes "[Mathias]";
+	mes " ลาก่อน";
+	close;
+L_Menu3_1:
+	mes "[Mathias]";
+	mes " ท่านต้องการลงสมัคร?  ยอดเยี่ยม!";
+	next;
+	mes "[Mathias]";
+	mes " การเข้าสู่โรงเรียนของเรา";
+	mes " ท่านจะต้องเป็น Magician ที่มี Job level 40 หรือมากกว่า";
+	mes " และท่านยังจะต้องจ่ายค่าเล่าเรียน เพื่อที่จะใช้ในการเรียนการสอนทั้งหมด";
+	next;
+	mes "[Mathias]";
+	mes " นี่คือค่าเทอมทั้งหมด 70,000Zeny.";
+	mes " แต่หากท่านมี ^3051FDOld Magic Book^000000 และ ^3051FDNecklace Of Wisdom^000000 ค่าเทอมทั้งหมดจะถูกยกเว้น";
+	next;
+	mes "[Mathias]";
+	mes " เอาล่ะ? ท่านพร้อมจะสมัครเข้า โรงเรียนเวทมนตร์ Shubaichul Magic Academy เลยไหม?";
+	next;
+	menu " ข้าจะสมัครเข้าโรงเรียนของท่าน",L_Menu5_5," ค่าลงทะเบียนแพงมากเลย",-," ข้าจะกลับมาใหม่คราวหน้า",L_Menu3_2;
+		mes "[Mathias]";
+		mes " ดีมาก ข้าต้องการค่าเทอมเพื่อที่จะใช่ในการเรียนการสอนทั้งหมด";
+		next;
+		menu " ไม่มีวิธีอื่นเลยหรอ?",-," ข้าจะกลับมาใหม่คราวหน้า",L_Menu3_2;
+		set job2nd_sage,2;
+		mes "[Mathias]";
+		mes " ข้าอาจจะลดค่าเทอมให้ท่านเหลือ 30000 หากท่านมีสิ่งของบางอย่างที่เราต้องการมาวิจัยในแผนกของเรา :";
+		next;
+		mes "[Mathias]";
+		mes " สิ่งของที่จะเป็น :";
+		mes "^3051FD50x Feather of Birds^000000";
+		mes "^3051FD50x Fluff^000000";
+		mes "^3051FD50x Clover^000000";
+		mes "^3051FD50x Feathers^000000";
+		next;
+		mes "[Mathias]";
+		mes " มันคงจะเป็นส่วนลดที่เยอะมากแล้วสำหรับเงิน 30000 เซนี";
+		mes " ทำให้ดีที่สุดในการรวบรวมไอเท็มทั้งหมด";
+		next;
+		mes "[Mathias]";
+		mes " แน่นอนหากท่านไม่มีละก็ ท่านต้องจ่าย 70000 เซนี แทนการหาไอเท็มทั้งหมดแทน";
+		next;
+		mes "[Mathias]";
+		mes " ทำให้ดีที่สุดในการรวบรวมไอเท็มทั้งหมด";
+		mes " ไว้เจอกัน";
+		close;
+	L_Menu3_2:
+		mes "[Mathias]";
+		mes " โอ..";
+		mes " ข้าคงทำให้ท่านเสียเวลา";
+		mes " ขอบคุณที่หยุดฟังข้า";
+		close;
+L_Menu5_1:
+	mes "[Mathias]";
+	mes " ท่านคงต้องการที่จะสมัครเข้าเรียนแล้ว?";
+	next;
+	if (JobLevel < 40) goto L_Menu5_9;
+	if ((countitem(1006) >= 1) && (countitem(1007) >= 1)) goto L_Menu5_4;
+	if (Zeny < 70000) goto L_Menu5_2;
+		set Zeny,Zeny-70000;
+		set job2nd_sage,3;
+		mes "[Mathias]";
+		mes " ข้าเห็นท่านมี 70000 เซนี";
+		mes " ข้าจะใช้ค่าเทอมทั้งหมดนี้ให้คุ้มค่ากับการสอน";
+		next;
+	L_Menu5_5:
+		if (JobLevel < 40) goto L_Menu5_9;
+		mes "[Mathias]";
+		mes " เราจำเป็นต้องมีลายเซ็นของท่านในใบสมัครนี้";
+		mes " กรุณาลงชื่อตรงนี้";
+		next;
+		menu "" + strcharinfo(0) + "",-;
+		mes "[Mathias]";
+		mes " เอาล่ะ..  ";
+		mes "" + strcharinfo(0) + ".";
+		mes " เป็นชี่อที่เพราะมาก";
+		next;
+			if (JobLevel == 50) goto L_JobMax;
+			if (job2nd_sage == 3) goto L_Menu5_6;
+			if ((countitem(1006) >= 1) || (countitem(1007) >= 1)) goto L_Menu5_7;
+			if (Zeny < 70000) goto L_Menu5_2;
+			set Zeny,Zeny-70000;
+			set job2nd_sage,3;
+
+			mes "[Mathias]";
+			mes " ข้าเห็นท่านมี 70000 เซนี";
+			mes " ข้าจะใช้ค่าเทอมทั้งหมดนี้ให้คุ้มค่ากับการสอน";
+			next;
+
+		L_Menu5_6:
+			mes "[Mathias]";
+			mes " ขั้นแรกเจ้าต้องไปหา ผู้คุมสอบข้อเขียน";
+			mes " เขาจะอยู่ในห้องสมุดของสถาบันเรา";
+			mes " เขาจะอยู่ทางบนซ้ายของอาคาร";
+			next;
+			mes "[Mathias]";
+			mes " โชคดีในการทดสอบ";
+			close;
+		L_JobMax:
+			set job2nd_sage,3;
+			mes "[Mathias]";
+			mes " ท่านได้ผ่านการฝึกฝนทั้งหมดมาด้วยตัวท่านเองจนถึงระดับจ๊อบที่เต็มที่สุดของ Magicians!";
+			mes " กรณี ข้าจะมอบทุนการศึกษาให้ท่าน!";
+			next;
+			mes "[Mathias]";
+			mes " ที่ท่านต้องทำที่เหลือคือการทดสอบข้อเขียน";
+			next;
+			mes "[Mathias]";
+			mes " ท่านต้องไปพบ ศาสตราจารย์ Claytoss Berdo ผู้คุมสอบข้อเขียน เขาจะอยู่ทางบนซ้ายของอาคาร";
+			close;
+	L_Menu5_2:
+		if (job2nd_sage != 2) goto L_Menu5_8;
+		if ((countitem(916) >= 50) && (countitem(914) >= 50) && (countitem(949) >= 50) && (countitem(705) >= 50)) goto L_Menu5_3;
+		mes "[Mathias]";
+		mes " ท่านยังไม่มีไอเท็มที่ข้าต้องการเลย";
+		next;
+		mes "[Mathias]";
+		mes " นี่คือสิ่งที่้ข้าต้องการ:";
+		mes "^3051FD50x Feather of Birds^000000";
+		mes "^3051FD50x Fluff^000000";
+		mes "^3051FD50x Clover^000000";
+		mes "^3051FD50x Feathers^000000";
+		next;
+		mes "[Mathias]";
+		mes " หากท่านมีครบท่านจะต้องชำระค่าเทอมเพียง 30000 เซนี";
+		mes " ขอให้ท่านทำให้ดีที่สุด";
+		close;
+	L_Menu5_3:
+//==================================
+//mes–ข๑๛
+		if (Zeny < 30000) goto L_Menu5_8;
+		delitem 916,50;
+		delitem 914,50;
+		delitem 705,50;
+		delitem 949,50;
+		set Zeny,Zeny-30000;
+		set job2nd_sage,3;
+		mes "[Mathias]";
+		mes " ดูเหมือนว่าท่านไอเท็มมาครบพร้อมกับเงิน 30000 เซนี";
+		mes " ยินดีด้วย";
+		mes " ท่านได้เข้าร่วมสู่สถาบันเรา";
+		set job2nd_sage,3;
+		next;
+		goto L_Menu5_5;
+	L_Menu5_4:
+		delitem 1006,1;
+		delitem 1007,1;
+		set job2nd_sage,3;
+		mes "[Mathias]";
+		mes " โอ้ ท่านมีไอเท็มพิเศษ";
+		mes " ข้าจะยอมให้ท่ายจ่ายนี่แทนค่าเทอม";
+		next;
+		goto L_Menu5_5;
+	L_Menu5_7:
+		delitem 1006,1;
+		delitem 1007,1;
+		set job2nd_sage,3;
+		mes "[Mathias]";
+		mes " โอ้ ท่านมีไอเท็มพิเศษ";
+		mes " ข้าจะยอมให้ท่ายจ่ายนี่แทนค่าเทอม";
+		next;
+		goto L_Menu5_6;
+	L_Menu5_8:
+		mes "[Mathias]";
+		mes " ท่านมีเงินไม่เพียงพอ";
+		mes " ท่านควรหาเงินมาให้ครบแล้วค่อยกลับมาหาข้า";
+		close;
+	L_Menu5_9:
+		mes "[Mathias]";
+		mes " ท่านมี class level ที่ต่ำเกินไป";
+		close;
+//==================================
+L_Menu6_1:
+	mes "[Mathias]";
+	mes " อืม?  ท่านคงจะลืมสิ่งที่ท่านต้องทำต่อไปแล้วสิ?";
+	mes " ท่านต้องไปพบ ศาสตราจารย์ Claytoss Berdo ผู้คุมสอบข้อเขียน เขาจะอยู่ทางบนซ้ายของอาคาร";
+	close;
+L_Menu6_2:
+	mes "[Mathias]";
+	mes " โอ้.. ข้าต้องขอโทษด้วย ที่ข้าไม่สามารถช่วยอะไรท่านได้";
+	close;
+L_Menu6_3:
+	mes "[Mathias]";
+	mes " โอ้!  ท่านทำวิจัยสำเร็จแล้วใช่มั้ย?";
+	mes " ท่านจำเป็นต้องไปพบอาจารย์ใหญ่เพื่อให้เขาประเมินผลให้ท่าน";
+	next;
+	mes "[Mathias]";
+	mes " ถ้่าเขายอมรับในตัวท่าน ท่านก็จะเปลี่ยนอาชีพได้!";
+	mes " โชคดี";
+	close;
+L_Menu6_4:
+	mes "[Mathias]";
+	mes " ยินดีต้อนรับสู่สถาบัน";
+	mes " การวิจัยของท่านเป็นอย่างไร?";
+	close;
+}
+
+yuno_in03.gat,169,180,4	script	ผู้คุมสอบปฏิบัติ	755,{
+	if (Class == 16) goto L_Menu4_5;
+	if (Class != 2) goto L_Menu1_1;
+	if (job2nd_sage == 5) goto L_Menu2_1;
+	if (job2nd_sage == 6) goto L_Menu2_3;
+	if (job2nd_sage == 7) goto L_Menu3_1;
+	if (job2nd_sage == 8) goto L_Menu4_1;
+	if (job2nd_sage == 9) goto L_Menu4_2;
+	if (job2nd_sage == 11) goto L_Menu4_4;
+	mes "[Hermes]";
+	mes " สวัสดี ข้าชื่อ Hermes ข้าเป็นส่วนหนึ่งของผู้ที่จะทดสอบเจ้า";
+	mes " เจ้าต้องการจะเป็น Sage ใช่มั้ย?";
+	next;
+	if (job2nd_sage == 3) goto L_Menu1_2;
+	if (job2nd_sage >= 3) goto L_Menu1_2;
+	mes "[Hermes]";
+	mes " โอ้... ไม่เป็นไร";
+	mes " ขั้นแรกเจ้าต้องไปลงทะเบียนและผ่านการทดสอบข้อเขียน";
+	close;
+L_Menu1_1:
+	mes "[Hermes]";
+	mes " นี่คือโรงเรียน Shubaichul Magic Academy.";
+	next;
+	mes "[Hermes]";
+	mes " มี Sages และ magicians มากมายที่ทำการวิจัยที่นี่";
+	mes " มีใครบางคนที่คอยสนับสนุนงานอยู่";
+	close;
+L_Menu1_2:
+	mes "[Hermes]";
+	mes " ท่านต้องผ่านการทดสอบข้อเขียนทั้งหมดก่อน ที่จะเริ่มการทดสอบของข้า";
+	close;
+L_Menu2_1:
+	set job2nd_sage,6;
+	mes "[Hermes]";
+	mes " สวัสดี เจ้าผ่านทดสอบก่อนๆ มาแล้วใช่ไหม?";
+	mes " ถ้าอย่างนั้น มาทดสอบปฏิบัติกันเถอะ";
+	next;
+	mes "[Hermes]";
+	mes " กฏของการทดสอบนี้เงียบง่าย";
+	mes " เจ้าจะต้องฆ่ามอนสเตอร์ทั้งหมดภายในระยะเวลาที่ข้ากำหนด";
+	next;
+	mes "[Hermes]";
+	mes " เจ้าคงจะพร้อมแล้วนะ ที่จะเริ่มการทดสอบ?";
+	next;
+	menu " ข้าพร้อมแล้ว",-," ข้ายังไม่พร้อม",L_Menu2_2;
+		mes "[Hermes]";
+		mes " ดี ข้าจะเริ่มการทดสอบ...!!!";
+		mes " ขอให้เจ้าทำให้ดีที่สุด!";
+		next;
+		warp "job_sage",50,154;
+		end;
+	L_Menu2_2:
+		mes "[Hermes]";
+		mes " โอเค";
+		mes " พร้อมเมื่อไหร่ก็รีบกลับมา";
+		close;
+L_Menu2_3:
+	mes "[Hermes]";
+	mes " เจ้าพร้อมที่จะทดสอบทักษะของเจ้าหรือไม่?";
+	mes " มันไม่ได้ยากเกินไป";
+	next;
+	mes "[Hermes]";
+	mes " เจ้าคงจะพร้อมแล้วนะ ที่จะเริ่มการทดสอบ?";
+	next;
+	menu " ข้าพร้อมแล้ว",-," ข้ายังไม่พร้อม",L_Menu2_2;
+		mes "[Hermes]";
+		mes " ดี ข้าจะเริ่มการทดสอบ...!!!";
+		mes " ขอให้เจ้าทำให้ดีที่สุด!";
+		next;
+		warp "job_sage",50,154;
+		next;
+		warp "job_sage",50,154;
+		end;
+L_Menu3_1:
+	mes "[Hermes]";
+	mes " ทำได้เยี่ยม!  ท่านผ่านการทดสอบแล้ว";
+	mes " ตอนนี้ท่านสามารถดำเนินการวิจัยต่อไป!";
+	next;
+	mes "[Hermes]";
+	mes " ก่อนที่ข้าจะตัดสินงานวิจัยของท่าน ให้ท่านดูคะแนนของท่านในการทดสอบอื่นๆ ก่อนว่าท่านสามารถทำได้ดีหรือไม่";
+	next;
+	mes "[Hermes]";
+	mes " อืม...";
+	mes " ยอดเยี่ยม.";
+	next;
+
+//It's not clear how the script decides
+
+	if (sagecheck >= 12) goto L_Menu3_2;
+	set job2nd_sage,8;
+	mes "[Hermes]";
+	mes " ดูเหมือนว่าการวิจัยมอนสเตอร์จะเป็นทางออกที่ดีที่สุดของท่าน";
+	next;
+	mes "[Hermes]";
+	mes " เพื่อที่ท่านจะได้รวบรวมข้อมูลวิจัยที่จะใช้ในการหาธาตุของมอนสเตอร์";
+	mes " ท่านจะได้หลักสูตรชีววิทยาจาก ศาสตราจารย์ Lucias.";
+	next;
+	goto L_Menu3_4;
+L_Menu3_2:
+	set job2nd_sage,9;
+	mes "[Hermes]";
+	mes " ข้าเห็นที่นี่ มีการวิจัยเวทมนตร์เรื่องธาตุ";
+	mes " สถานที่แห่งนี้ จะทำให้เจ้ามีความรู้มากขึ้น";
+	next;
+	mes "[Hermes]";
+	mes " เจ้าต้องไปหาศาสตราจารย์ Ebeshi ในห้องฟิสิกส์ เขาจะสอนเจ้าเกี่ยวกับธาตุของเวทมนตร์";
+	next;
+L_Menu3_4:
+	mes "[Hermes]";
+	mes " ข้าว่าเจ้าจะเข้าใจการเรียนนี้";
+	close;
+L_Menu4_1:
+	mes "[Hermes]";
+	mes " เจ้าไม่ไดฟังข้า?";
+	mes " เจ้าต้องไปหาศาสตราจาร Lucias เขาจะสอนเกี่ยวกับชีววิทยา";
+	close;
+L_Menu4_2:
+	mes "[Hermes]";
+	mes " เจ้าไม่ไดฟังข้า?";
+	mes " เจ้าต้องไปหาศาสตราจารย์ Ebeshi ในห้องฟิสิกส์ เขาจะสอนเจ้าเกี่ยวกับธาตุของเวทมนตร์";
+	close;
+L_Menu4_4:
+	mes "[Hermes]";
+	mes " ดีมาก เมื่อเจ้าทำการวิจัย เสร็จแล้วเจ้าต้องนำผลงานไปให้อาจารย์ใหญ่";
+	mes " เขาจะตัดสินเจ้าว่า เจ้าจะผ่านการทดสอบนี้หรือไม่";
+	close;
+L_Menu4_5:
+	mes "[Hermes]";
+	mes " เป็นอย่างไรบ้าง?";
+	mes " ข้าเห็นใบหน้าที่ดูเครียดของเจ้า เมื่อไม่นานนี้";
+	next;
+	mes "[Hermes]";
+	mes " เจ้าคงจะเครียดกับการวิจัย";
+	mes " คงเพราะเจ้าได้ไปในดันเจี้ยนที่ยากๆ มาใช่มั้ย";
+	mes " ทำไมเจ้าไม่ลองหาเพื่อนสักคนเพื่อช่วยเหลือเจ้าล่ะ";
+	close;
+}
+
+yuno_in03.gat,62,176,3	script	ครูสอนประวัติศาสตร์	109,{
+	if (Class == 16) goto L_Menu2_2;
+	if (Class != 2) goto L_Menu1_1;
+	if (job2nd_sage == 11) goto L_Menu2_1;
+	mes "[Sapien]";
+	mes " เจ้าคงจะยังไม่รู้ว่าเจ้าจะเรียนไปในทิศทางใดดี";
+	mes " บางทีเจ้าน่าจะหาเวลาคิด";
+	close;
+L_Menu1_1:
+	mes "[Sapien]";
+	mes " ใช่ ข้าสอนเกี่ยวกับประวัติศาสตร์";
+	next;
+	mes "[Sapien]";
+	mes " ในขณะที่อดีตได้จากหายไปจากปัจจุบัน";
+	mes " ข้ารู้ว่าที่ผ่านมา อดีตและปัจจุบันจะมีสะพานเคยเชื่อมโยงเราอยู่";
+	next;
+	mes "[Sapien]";
+	mes " เจ้าควรจะใช้เวลาศึกษากับสิ่งที่ผ่านมา";
+	mes " โดยทำความเข้าใจกับหลายๆ สิ่งที่เเกิดขึ้นกับเจ้า";
+	mes " เจ้าสามารถไปสู่อนาคตได้เสมอ หากเจ้ามองจากปัญหาที่เกิดโดยไม่ได้ตั้งใจ";
+	close;
+L_Menu2_1:
+	mes "[Sapien]";
+	mes " เจ้ายังจะทำอะไรอยู่อีก?";
+	mes " รีบเอางานวิจัยของเจ้า ไปให้อาจารย์ใหญ่ดู ก่อนที่เจ้าจะไม่มีโอกาสนะ!";
+	close;
+L_Menu2_2:
+	mes "[Sapien]";
+	mes " ใช่...?";
+	mes " ข้ายินดีด้วย เจ้าจบการศึกษาแล้ว";
+	next;
+	mes "[Sapien]";
+	mes " ปัจจุบันเท่านั้น ที่สามารถเข้าใจเรื่องที่ผ่านมาได้เป็นอย่างดี";
+	mes " และความเข้าใจนั้น จะทำให้เราสามารถมองเห็นอนาคตได้";
+	next;
+	mes "[Sapien]";
+	mes " เจ้าคงจะเรียนมากหนักมาก";
+	mes " เจ้าควรจะใช้เวลาศึกษากับสิ่งที่ผ่านมา";
+	mes " โดยทำความเข้าใจกับหลายๆ สิ่งที่เเกิดขึ้นกับเจ้า";
+	mes " เจ้าสามารถไปสู่อนาคตได้เสมอ หากเจ้ามองจากปัญหาที่เกิดโดยไม่ได้ตั้งใจ";
+	close;
+}
+
+yuno_in03.gat,105,177,4	script	ผู้คุมสอบข้อเขียน	754,{
+	if (Class == 16) goto L_Menu3_4;
+	if (Class != 2) goto L_Menu1_1;
+	if (job2nd_sage == 11) goto L_Menu3_3;
+	if (job2nd_sage >= 6) goto L_Menu3_2;
+	if (job2nd_sage == 3) goto L_Menu1_2;
+	if (job2nd_sage == 4) goto L_Menu2_1;
+	if (job2nd_sage == 5) goto L_Menu3_1;
+	mes "[Kreitos]";
+	mes " เจ้าดูดีมากในสายตาข้า";
+	mes " เจ้าคงจะต้องการเป็น Sage";
+	next;
+	mes "[Kreitos]";
+	mes " เจ้าต้องไปลงทะเบียนเรียนในสถาบันก่อน และข้าจะช่วยเจ้าในเรื่องต่อไป";
+	close;
+L_Menu1_1:
+	mes "[Kreitos]";
+	mes " โอ้ เจ้าคงจะไม่ได้สนใจอะไรเกี่ยวกับเวทมนตร์?";
+	mes " ถูกมั้ย...";
+	close;
+L_Menu1_2:
+	set job2nd_sage,4;
+	set sagecheck,10;
+	mes "[Kreitos]";
+	mes " เจ้าได้เข้าเรียนใน Shubaichul Magic Academy.";
+	mes " ใช่มั้ย?";
+	next;
+	mes "[Kreitos]";
+	mes " ข้าเคยเห็นเอกสารของเจ้า";
+	mes " เจ้าคือ " + strcharinfo(0) + "";
+	mes " ใช่รึเปล่า?";
+	mes " ข้าจะเริ่มทดสอบข้อเขียนก่อนแล้วกัน";
+	next;
+		mes "[Kreitos]";
+		mes " การทดสอบนี้จะมีทั้งหมด 20 คำถามซึ่งเป็นคำถามที่เกียวกับโลกทั้งหมด";
+		mes " ถ้าเจ้าสอบได้ 80 คะแนนขึ้นไป เจ้าจึงจะผ่านการทดสอบ";
+		mes " เจ้าจะได้ 5 คะแนนต่อการตอบถูก 1 คำถาม";
+		next;
+		mes "[Kreitos]";
+		mes " ถ้าเจ้าเผลอกดยกเลิกเจ้าจะต้องเริ่มใหม่ทันที เพราะฉะนั้นเจ้าต้องระวัง";
+		next;
+		goto L_Menu2_2;
+	L_Menu2_1:
+		mes "[Kreitos]";
+		mes " เจ้าอยากจะลองใหม่?";
+		mes " เจ้าคงจะศึกษามาอย่างหนัก?";
+		next;
+		mes "[Kreitos]";
+		mes " การทดสอบนี้จะมีทั้งหมด 20 คำถามซึ่งเป็นคำถามที่เกียวกับโลกทั้งหมด";
+		mes " ถ้าเจ้าสอบได้ 80 คะแนนขึ้นไป เจ้าจึงจะผ่านการทดสอบ";
+		mes " เจ้าจะได้ 5 คะแนนต่อการตอบถูก 1 คำถาม";
+		next;
+		mes "[Kreitos]";
+		mes " ข้าจะขอเริ่มเลยละกัน";
+		mes " ขอให้เจ้าพยายามให้มากที่สุด";
+		mes " ถ้าเจ้าเผลอกดยกเลิกเจ้าจะต้องเริ่มใหม่ทันที เพราะฉะนั้นเจ้าต้องระวัง";
+		next;
+	L_Menu2_2:
+		set @sage_test2,0;
+		set @sage_test1,rand(3);
+		if (@sage_test1 == 1) goto L_Test2_1;
+		if (@sage_test1 == 2) goto L_Test3_1;
+
+//==================================
+//Written Test: Route 1.
+//==================================
+			mes "1. อัญมณีชนิดใดที่ คนขายอัญมณี ในเมือง Morroc ไม่มีขาย?";
+			next;
+			menu "Topaz",L_Test1_1,"Garnet",-,"Diamond",L_Test1_1,"Sapphire",L_Test1_1;
+			set @sage_test2,@sage_test2+5;
+			goto L_Test1_1;
+		L_Test1_1:
+			mes "2. เมืองใดไม่มีขาย Monster's feed?";
+			next;
+			menu "Prontera",L_Test1_2,"Morocc",L_Test1_2,"Aldebaran",-,"Alberta",L_Test1_2;
+			set @sage_test2,@sage_test2+5;
+		L_Test1_2:
+			mes "3. เมืองใดที่อยู่ใกล้กับ Hidden Temple ที่สุด?";
+			next;
+			menu "Prontera",-,"Morocc",L_Test1_3,"Geffen",L_Test1_3,"Payon",L_Test1_3;
+			set @sage_test2,@sage_test2+5;
+		L_Test1_3:
+			mes "4. มอนสเตอร์ชนิดใดที่มี Race ต่างไปจากพวก?";
+			next;
+			menu "Muka",L_Test1_4,"Drops",L_Test1_4,"Plankton",L_Test1_4,"Penomena",-;
+			set @sage_test2,@sage_test2+5;
+		L_Test1_4:
+			mes "5.  มอนสเตอร์ชนิดใดที่มี Property ต่างไปจากพวก";
+			mes "Which one has the different affinity?";
+			next;
+			menu "Dokebi",L_Test1_5,"Isis",L_Test1_5,"Giearth",-,"Deviruchi",L_Test1_5;
+			set @sage_test2,@sage_test2+5;
+		L_Test1_5:
+			mes "6. มอนสเตอร์ชนิดใดที่มีขนาดต่างไปจากพวก?";
+			next;
+			menu "Male Thief Bug",L_Test1_6,"Horn",L_Test1_6,"Metaller",L_Test1_6,"Argos",-;
+			set @sage_test2,@sage_test2+5;
+		L_Test1_6:
+			mes "7.  มอนสเตอร์ตัวใดไม่ดรอป 'Yggdrasil Leaf?";
+			next;
+			menu "Marduk",-,"Baphomet Jr.",L_Test1_7,"Angeling",L_Test1_7,"Wander Man",L_Test1_7;
+			set @sage_test2,@sage_test2+5;
+		L_Test1_7:
+			mes "8.  ใครไม่เกี่ยวข้องกับการเปลี่ยนอาชีพเป็น Priest?";
+			next;
+			menu "Peter S. Alberto",-,"Thomas Bishop",L_Test1_8,"Windser Banedict",L_Test1_8,"Sesil Magrita",L_Test1_8;
+			set @sage_test2,@sage_test2+5;
+		L_Test1_8:
+			mes "9. ผู้ใดไม่ได้อยู่ใน Morroc?";
+			next;
+			menu "Muda Armani",L_Test1_9,"Aragham",L_Test1_9,"Antonio",-,"Abldul",L_Test1_9;
+			set @sage_test2,@sage_test2+5;
+		L_Test1_9:
+			mes "10.  เจ้าหน้าที่ Kafra ผมสีฟ้าที่เสน่ห์แรง ชื่ออะไร?";
+			next;
+			menu "Pavianne",-,"Debril",L_Test1_10,"Claris",L_Test1_10,"Tayelin",L_Test1_10;
+			set @sage_test2,@sage_test2+5;
+		L_Test1_10:
+			mes "11.  ทักษะไม่จำเป็นต้องเรียนรู้เพื่อที่จะศึกษา Firewall?";
+			next;
+			menu "Firebolt Lv4",L_Test1_11,"Napalm Beat Lv4",-,"Fireball Lv5",L_Test1_11,"Sight Lv1",L_Test1_11;
+			set @sage_test2,@sage_test2+5;
+		L_Test1_11:
+			mes "12.  ถ้าท่านศึกษา Increase SP Recovery Lv. 6 โดยไม่เพิ่มค่าสถานะ INT เลย จะสามารถฟื้นค่า SP เท่าใดใน 10 วินาที?";
+			next;
+			menu "14 sp",L_Test1_12,"16 sp",L_Test1_12,"18 sp",-,"21 sp",L_Test1_12;
+			set @sage_test2,@sage_test2+5;
+		L_Test1_12:
+			mes "13. ถ้าท่านเป็น Mage Lv. 33 ค่าสถานะของ INT จะบวกเพิ่มอีกเท่าไหร่?";
+			next;
+			menu "7",L_Test1_13,"6",L_Test1_13,"5",L_Test1_13,"4",-;
+			set @sage_test2,@sage_test2+5;
+		L_Test1_13:
+			mes "14.  ถ้าท่านใช้ Improve Concentrate Lv 5 จะต้องใช้ค่า SP เท่าใดและระยะเวลาเกิดผลนานเท่าใด?";
+			next;
+			menu "45 / 140sec",-,"50 / 140sec",L_Test1_14,"45 / 150sec",L_Test1_14,"50 / 150sec",L_Test1_14;
+			set @sage_test2,@sage_test2+5;
+		L_Test1_14:
+			mes "15.  Blacksmith ต้องการศึกษาทักษะ Power Maximize ท่านไม่จำเป็นต้องเรียนรู้ทักษะใด";
+			next;
+			menu "Hilt Bending",L_Test1_15,"Skin Tempering",-,"Hammer Fall",L_Test1_15,"Weapon Perfection",L_Test1_15;
+			set @sage_test2,@sage_test2+5;
+		L_Test1_15:
+			mes "16. ค่าการป้องกัน และความสามารถพิเศษของ Cute Ribbon คืออะไร?";
+			next;
+			menu "0 / SP +20",L_Test1_16,"0 / SP +30",L_Test1_16,"1 / SP +20",-,"1 / SP +30",L_Test1_16;
+			set @sage_test2,@sage_test2+5;
+		L_Test1_16:
+			mes "17. อาชีพใดใส่ Saint's Robe ไม่ได้?";
+			next;
+		//Swordsmen can't equip it either as of this writing.
+			menu "Swordsman",-,"Merchant",L_Test1_17,"Thief",-,"Acolyte",L_Test1_17;
+			set @sage_test2,@sage_test2+5;
+		L_Test1_17:
+			mes "18. อาการผิดปกติใดไม่สามารถรักษาได้ด้วย Green Potion?";
+			next;
+			menu "Mute",L_Test1_18,"Poison",L_Test1_18,"Blind",L_Test1_18,"Cursed",-;
+			set @sage_test2,@sage_test2+5;
+		L_Test1_18:
+			mes "19. อาณาจักรโบราณที่ถูกลืมเลือนซึ่งสามารถเข้าไปได้ ที่อยู่ในเมือง Geffen มีชื่อว่าอะไร?";
+			next;
+			menu "Gefin",L_Test1_19,"Geffenia",-,"Gefdoria",L_Test1_19,"Gefria",L_Test1_19;
+			set @sage_test2,@sage_test2+5;
+		L_Test1_19:
+			mes "20. ต้นไม้ที่หยั่งรากลึกลงไปในโลกนี้ ชื่อว่าอะไร?";
+			next;
+			menu "Igg Drasil",-,"Idrasil",L_Menu2_3,"Master",L_Menu2_3,"Old Tree",L_Menu2_3;
+			set @sage_test2,@sage_test2+5;
+			goto L_Menu2_3;
+	//==================================
+	//Written Test: Route 2.
+	//==================================
+		L_Test2_1:
+			mes "1. อุปกรณ์ใดที่คนขายอุปกรณ์เวทมนตร์ ใน Geffen ไม่ได้ขาย?";
+			next;
+			menu "Mantle",-,"Wand",L_Test2_2,"Circlet",L_Test2_2,"Silver Robe",L_Test2_2;
+			set @sage_test2,@sage_test2+5;
+		L_Test2_2:
+			mes "2. เมืองใดไม่มี Blade ขาย?";
+			next;
+			menu "Prontera",L_Test2_3,"Izlude",L_Test2_3,"Aldebaran",-,"payon",L_Test2_3;
+			set @sage_test2,@sage_test2+5;
+		L_Test2_3:
+			mes "3. เมืองใดอยู่ใกล้กับ GlastHeim มากที่สุด?";
+			next;
+			menu "Prontera",L_Test2_4,"Geffen",-,"Morocc",L_Test2_4,"Payon",L_Test2_4;
+			set @sage_test2,@sage_test2+5;
+		L_Test2_4:
+			mes "4.  มอนสเตอร์ใดที่ Race ต่างไปจากพวก?";
+			next;
+			menu "Aster",L_Test2_5,"Marc",L_Test2_5,"Marse",L_Test2_5,"Marin",-;
+			set @sage_test2,@sage_test2+5;
+		L_Test2_5:
+			mes "5. มอนสเตอร์ชนิดใดที่มี Property ต่างไปจากพวก?";
+			next;
+			menu "Desert Wolf Babe",L_Test2_6,"Smokie",-,"Picky",L_Test2_6,"Choco",L_Test2_6;
+			set @sage_test2,@sage_test2+5;
+		L_Test2_6:
+			mes "6. มอนสเตอร์ใดที่มีขนาดต่างไปจากพวก?";
+			next;
+			menu "Drake",-,"Wraith",L_Test2_7,"Evil Druid",L_Test2_7,"Khalitzburg",L_Test2_7;
+			set @sage_test2,@sage_test2+5;
+		L_Test2_7:
+			mes "7. มอนสเตอร์ใดไม่ดรอป 'Phracon?";
+			next;
+			menu "Pupa",L_Test2_8,"Condor",-,"Savage Baby",L_Test2_8,"Desert Wolf Babe",L_Test2_8;
+			set @sage_test2,@sage_test2+5;
+		L_Test2_8:
+			mes "8. ผู้ใดที่ไม่เกี่ยวข้องกับการเปลี่ยนอาชีพของ Blacksmith?";
+			next;
+// =========================
+// Acording To mRO Site And eAthena Blacksmith Script the following ppl looking like ppl listed here are:
+// - Baisulitst - looks like some1 listed by mRO
+// - Wickebine - mRO has him as option listed
+// - Gromgast - mRO has him as option listed
+// - Mitmayer - translator has him listed as option
+// == Conclusion == I took the following:
+// =========================
+			menu "Baisulitst",L_Test2_9,"Wickebine",L_Test2_9,"Barkdale",-,"Mitmayer",L_Test2_9;
+			set @sage_test2,@sage_test2+5;
+		L_Test2_9:
+			mes "9.  ผู้ใดไม่ได้อยู่ในเมือง Al De Baran?";
+			next;
+			menu "RS125",L_Test2_10,"Maasaru",-,"Munster",L_Test2_10,"Isenberg",L_Test2_10;
+			set @sage_test2,@sage_test2+5;
+		L_Test2_10:
+			mes "10. เจ้าหน้าที่ Kafra ที่เด็กที่สุด ชื่ออะไร?";
+			next;
+			menu "Deflute",L_Test2_11,"Claris",L_Test2_11,"Tayelin",L_Test2_11,"Curly Sue",-;
+			set @sage_test2,@sage_test2+5;
+		L_Test2_11:
+			mes "11. ถ้าใช้ Safety Wall Lv.6 จะใช้ค่า SP เท่าใด และจะหลบหลีกการโจมตีได้กี่ครั้ง?";
+			next;
+			menu "SP 40, 6bl",L_Test2_12,"SP 35, 6bl",L_Test2_12,"SP 35, 7bl",L_Test2_12,"SP 40, 7bl",-;
+			set @sage_test2,@sage_test2+5;
+		L_Test2_12:
+			mes "12. พลังโจมตีของ Napalm beat Lv.6 เป็นกี่เท่าของ MATK?";
+			next;
+			menu "1.2x MATK",L_Test2_13,"1.3x MATK",-,"1.4x MATK",L_Test2_13,"1.5x MATK",L_Test2_13;
+			set @sage_test2,@sage_test2+5;
+		L_Test2_13:
+			mes "13. ในการเปลี่ยนอาชีพเป็น Mage น้ำยาหมายเลข 4 ต้องใช้สิ่งใดเป็นตัวช่วยกระตุ้น?";
+			next;
+			menu "Blue Gemstone",L_Test2_14,"Red Gemstone",L_Test2_14,"Orange Gemstone",L_Test2_14,"Carat Diamond",-;
+			set @sage_test2,@sage_test2+5;
+		L_Test2_14:
+			mes "14. ถ้าท่านเป็น Swordman เมื่อใช้ Bash Lv6 ค่า ATK เป็นเท่าใด และใช้ SP ไปเท่าใ?";
+			next;
+			menu "250% / 8",L_Test2_15,"280% / 8",L_Test2_15,"280% / 15",-,"310% / 15",L_Test2_15;
+			set @sage_test2,@sage_test2+5;
+		L_Test2_15:
+			mes "15.  ทักษะใดไม่จำเป็นต้องเรียนรู้เพื่อศึกษา Claymore Trap?";
+			next;
+			menu "Remove Trap",-,"Land Mine",L_Test2_16,"Ankle Snare",L_Test2_16,"Flash",L_Test2_16;
+			set @sage_test2,@sage_test2+5;
+		L_Test2_16:
+			mes "16. ค่าการป้องกัน และความสามารถพิเศษของ Wedding Veil คืออะไร?";
+			next;
+			menu "0 / MDEF +3",L_Test2_17,"0 / MDEF +5",-,"1 / MDEF +3",L_Test2_17,"1 / MDEF +5",L_Test2_17;
+			set @sage_test2,@sage_test2+5;
+		L_Test2_17:
+			mes "17.  อาชีพใดสวมใส่ Coat ไม่ได้?";
+			next;
+			menu "Swordsman",L_Test2_18,"Magician",L_Test2_18,"Thief",L_Test2_18,"Novice",-;
+			set @sage_test2,@sage_test2+5;
+		L_Test2_18:
+			mes "18. ไอเท็มใดไม่จำเป็นต้องใช้ในการทำสีฟ้า (Cobaltblue Dyestuffs)?";
+			next;
+			menu "Alcohol",L_Test2_19,"Detrimindexta",-,"Karvodailnirol",L_Test2_19,"Blue Herb",L_Test2_19;
+			set @sage_test2,@sage_test2+5;
+		L_Test2_19:
+			mes "19. เทพเจ้า Odin ใช้ไอเท็มใดในการสร้างโลก?";
+			next;
+//			//menu "Yomir's Heart",L_Test2_20,"Yomir's Nail",-,"Yomir's Tooth",L_Test2_20,"Yomir's Stuff",L_Test2_20;
+// All answers correct untill i know the real answer, only Stuff is wrong cause that NOT it
+			menu "Yomir's Heart",-,"Yomir's Nail",-,"Yomir's Tooth",-,"Yomir's Stuff",L_Test2_20;
+			set @sage_test2,@sage_test2+5;
+		L_Test2_20:
+			mes "20. แร่ที่มีค่ามหาศาลและสุกปลั่งซึ่งเป็นตัวแทนของผู้ยิ่งใหญ่ที่สามารถเปลี่ยนแปลงโลกได้ คือแร่ใด?";
+			next;
+			menu "Envertacon",L_Menu2_3,"Emperium",-,"Enbera",L_Menu2_3,"Phracon",L_Menu2_3;
+			set @sage_test2,@sage_test2+5;
+			goto L_Menu2_3;
+//==================================
+//Written Test: Route 3.
+//==================================
+		L_Test3_1:
+			mes "1.ไอเท็มใดที่ คนขายของขวัญ ในเมือง Prontera ไม่มีขาย?";
+			next;
+			menu "White Plate",L_Test3_2,"Red Frame",L_Test3_2,"Flower",-,"Glass Ball",L_Test3_2;
+			set @sage_test2,@sage_test2+5;
+		L_Test3_2:
+			mes "2. เมืองใดไม่มี Stiletto ขาย?";
+			next;
+			menu "Prontera",-,"Morocc",L_Test3_3,"Gefen",L_Test3_3,"Lutie",L_Test3_3;
+			set @sage_test2,@sage_test2+5;
+		L_Test3_3:
+			mes "3. เมืองใดอยู่ใกล้ Turtle island?";
+			next;
+			menu "Aldebaran",L_Test3_4,"Alberta",-,"Comodo",L_Test3_4,"Izlude",L_Test3_4;
+			set @sage_test2,@sage_test2+5;
+		L_Test3_4:
+			mes "4. มอนสเตอร์ชนิดใดที่มี Race ต่างไปจากพวก?";
+			next;
+			menu "Raggler",L_Test3_5,"Pest",L_Test3_5,"Frilldora",L_Test3_5,"Aster",-;
+			set @sage_test2,@sage_test2+5;
+		L_Test3_5:
+			mes "5. มอนสเตอร์ชนิดใดที่มี Property ต่างไปจากพวก?";
+			next;
+			menu "Mantis",L_Test3_6,"Metaller",-,"Rokker",L_Test3_6,"Horn",L_Test3_6;
+			set @sage_test2,@sage_test2+5;
+		L_Test3_6:
+			mes "6. มอนสเตอร์ชนิดใดที่มีขนาดต่างไปจากพวก?";
+			next;
+			menu "Raydric",-,"Raydric Archer",L_Test3_7,"Wander Man",L_Test3_7,"Dark Flame",L_Test3_7;
+			set @sage_test2,@sage_test2+5;
+		L_Test3_7:
+			mes "7. มอนสเตอร์ชนิดใดที่ไม่ดรอป 'Alchol'?";
+			next;
+			menu "Horn",L_Test3_8,"Plankton",L_Test3_8,"Poison Spore",-,"Toad",L_Test3_8;
+			set @sage_test2,@sage_test2+5;
+		L_Test3_8:
+			mes "8. ใครไม่มีความเกี่ยวข้องกับการเปลี่ยนอาชีพเป็น Knight?";
+			next;
+// =========================
+// Acording To mRO Site And eAthena Knight Script the following ppl looking like ppl listed here
+// =========================
+			menu "James Syracuse",L_Test3_9,"Thomas Bishop",-,"Amy Veattris",L_Test3_9,"Edmond Groster",L_Test3_9;
+			set @sage_test2,@sage_test2+5;
+		L_Test3_9:
+			mes "9. ใครไม่ได้อยู่ใน Prontera?";
+			next;
+			menu "Nami",L_Test3_10,"Aldefun",-,"Thomas",L_Test3_10,"Hollengrhen",L_Test3_10;
+			set @sage_test2,@sage_test2+5;
+		L_Test3_10:
+			mes "10. เจ้าหน้าที่ Kafra ที่สวมแว่นตาชื่ออะไร?";
+			next;
+			menu "Deflute",L_Test3_11,"Tayelin",L_Test3_11,"Leilah",-,"Debril",L_Test3_11;
+			set @sage_test2,@sage_test2+5;
+		L_Test3_11:
+			mes "11. ร่ายเวทย์ Thunder Storm Lv.7 ใช้ค่า SP เท่าใด?";
+			next;
+			menu "49",L_Test3_12,"59",-,"69",L_Test3_12,"74",L_Test3_12;
+			set @sage_test2,@sage_test2+5;
+		L_Test3_12:
+			mes "12. ถ้าเหลือค่า SP ครึ่งเดียว แล้วร่าย Energy Coat จะสามารถลดค่าความเสียหายได้เท่าใด และเสียค่า SP เท่าใด?";
+			next;
+			menu "24% blocked SP1.5% consumed",L_Test3_13,"24% blocked SP2% consumed",L_Test3_13,"18% blocked SP1.5% consumed",L_Test3_13,"18% blocked SP2% consumed",-;
+			set @sage_test2,@sage_test2+5;
+		L_Test3_13:
+			mes "13. ธาตุใดไม่มีประเภท Skill ประเภท 'Bolt?";
+			next;
+			menu "Water",L_Test3_14,"Earth",-,"Fire",L_Test3_14,"Wind",L_Test3_14;
+			set @sage_test2,@sage_test2+5;
+		L_Test3_14:
+			mes "14. โอกาสโจมตี 2 ครั้งและค่า ATK ที่เพิ่มขึ้นของ Double Attack Lv. 7 เป็นเท่าใด?";
+			next;
+			menu "35% / 120%",L_Test3_15,"35% / 140%",-,"40% / 120%",L_Test3_15,"40% / 140%",L_Test3_15;
+			set @sage_test2,@sage_test2+5;
+		L_Test3_15:
+			mes "15. การเรียนรู้ Magnus Exorcismus ของ Priest ไม่จำเป็นต้องมีทักษะใด?";
+			next;
+			menu "Divine Protection",-,"Heal",L_Test3_16,"Revive",L_Test3_16,"Aqua Benedicta",L_Test3_16;
+			set @sage_test2,@sage_test2+5;
+		L_Test3_16:
+			mes "16. ค่าการป้องกัน และความสามารถพิเศษของ Bunny Band คืออะไร?";
+			next;
+			menu "1 / LUK +2",L_Test3_17,"1 / LUK +5",L_Test3_17,"2 / LUK +2",-,"2 / LUK +5",L_Test3_17;
+			set @sage_test2,@sage_test2+5;
+		L_Test3_17:
+			mes "17. อาชีพใดสวมใส่ Padded Armor ไม่ได้?";
+			next;
+			menu "Swordsman",L_Test3_18,"Merchant",L_Test3_18,"Thief",L_Test3_18,"Archer",-;
+			set @sage_test2,@sage_test2+5;
+		L_Test3_18:
+			mes "18. ไอเท็มใดที่รักษาได้ทั้งอาการผิดปกติ และฟื้นค่า HP และ SP?";
+			next;
+			menu "Royal Jelly",L_Test3_19,"Ig Drasil Seed",L_Test3_19,"Ig Drasil Fruit",-,"Master Fruit",L_Test3_19;
+			set @sage_test2,@sage_test2+5;
+		L_Test3_19:
+			mes "19. พระราชาแห่ง Rune Midgard มีนามว่าอะไร?";
+			next;
+			menu "Trisdan III",L_Test3_20,"Tristan III",-,"Traisda III",L_Test3_20,"Trist III",L_Test3_20;
+			set @sage_test2,@sage_test2+5;
+		L_Test3_20:
+			mes "20. Crusader บูชาเทพเจ้าองค์ใด?";
+			next;
+			menu "Odin",-,"Loki",L_Menu2_3,"Tooru",L_Menu2_3,"Aragamsaree",L_Menu2_3;
+			set @sage_test2,@sage_test2+5;
+	L_Menu2_3:
+		mes "[Kreitos]";
+		mes " เรียบร้อย?";
+		mes " เอาล่ะ มาดูคะแนนของเจ้ากัน";
+		next;
+		mes "[Kreitos]";
+		mes " อืม...";
+		mes " เอ่อ....";
+		next;
+			if (@sage_test2 >= 100) goto L_Menu2_5;
+			if (@sage_test2 < 80) goto L_Menu2_4;
+			mes "[Kreitos]";
+			mes " ทั้งหมดก็...";
+			mes " เจ้าได้ " + @sage_test2 + " คะแนน";
+			mes " ทำได้ดี";
+			mes " เจ้ามีคะแนนมากพอที่จะผ่านการทดสอบ";
+			next;
+			goto L_Menu2_6;
+		L_Menu2_4:
+			set sagecheck,sagecheck-1;
+			mes "[Kreitos]";
+			mes " ทั้งหมดก็...";
+			mes " เจ้าได้ " + @sage_test2 + " คะแนน";
+			mes "......";
+			mes " เสียด้วย เจ้ายังทำได้ไม่ดีพอ";
+                        mes " เจ้าจะลองใหม่อีกครั้งก็ได้.. !!";
+			close;
+ 		L_Menu2_5:
+			mes "[Kreitos]";
+			mes " เจ้าทำได้ " + @sage_test2 + " คะแนน";
+			mes " น่าเหลือเชื่อจริงๆ ที่เจ้าทำได้";
+			mes " เจ้าได้เป็น Sage อย่างแน่นอน";
+			next;
+		L_Menu2_6:
+			set job2nd_sage,5;
+			mes "[Kreitos]";
+			mes " การทดสอบข้อเขียนได้จบลงแล้ว";
+			mes " ตอนนี้เจ้าต้องไปศึกษาต่อกับศาสตราจารย์ Hermes.";
+			close;
+L_Menu3_1:
+	mes "[Kreitos]";
+	mes " หือ?";
+	mes " เจ้าคงชอบการทดสอบนี้มาก หรือจากอยากจะลองทดสอบอีกครั้ง?";
+	next;
+	mes "[Kreitos]";
+	mes " ตอนนี้เจ้าต้องไปศึกษาต่อกับศาสตราจารย์ Hermes.";
+	close;
+L_Menu3_2:
+	mes "[Kreitos]";
+	mes " ข้ากำลังยุ่งกับนักเรียนคนอื่นๆ อยู่";
+	mes " ถ้าเจ้าต้องการอะไร ค่อยมาหาข้าใหม่";
+	close;
+L_Menu3_3:
+	mes "[Kreitos]";
+	mes " ดีมากที่เจ้าทำวิจัยสำเร็จแล้ว แต่ข้าไม่ใช้คนตัดเกรด";
+	next;
+	mes "[Kreitos]";
+	mes " เจ้าตัองนำนั่นไปให้อาจารย์ใหญ่ Keiron ดู";
+	mes " เขาจะตัดสินใจว่าเจ้าจะจบการศึกษาที่นี่หรือไม่?";
+	close;
+L_Menu3_4:
+	mes "[Kreitos]";
+	mes " เจ้าจบการศึกษาแล้ว?";
+	mes " เจ้าอยากจะเรียนเพิ่มอีกงั้นเหรอ?";
+	next;
+	mes "[Kreitos]";
+	mes " ข้ารู้สึกดีใจที่คนอย่างเจ้าจบการศึกษาได้ แต่หากเจ้าต้องการจะรู้เพิ่ม";
+	mes " ข้าว่าเจ้าควรจะหาอะไรในห้องสมุดอ่านให้เต็มที่ไปเลย";
+	close;
+}
+
+//==================================
+//Skill Test Room
+//==================================
+job_sage.gat	mapflag	nobranch	dummy
+job_sage.gat	mapflag	noteleport	dummy
+job_sage.gat	mapflag	nopenalty	dummy
+job_sage.gat	mapflag	nosave	SavePoint
+
+job_sage.gat,50,165,4	script	Skill Test Coordinator::jobsage_wroom	700,{
+	mes "[Skill Test Coordinator]";
+	mes " ยินดีต้อนรับสู่การทดสอบปฏิบัติ";
+	mes " กรุณาไปยังพื้นที่สำหรับรอ... หากเจ้าต้องการจะทดสอบ";
+	next;
+	mes "[Skill Test Coordinator]";
+	mes " เมื่อถึงเวลาที่เจ้าจะต้องทดสอบ เราจะเรียกชื่อของท่าน";
+	next;
+	mes "[Skill Test Coordinator]";
+	mes " จะใช้เวลาประมาณ 5 - 10 นาทีในการทดสอบหนึ่งคน";
+	close;
+OnInit:
+	waitingroom "Test Waiting Area",10,"jobsage_wroom::OnStart",1;
+	end;
+OnStart:
+	disablewaitingroomevent;
+	warpwaitingpc "job_sage.gat",118,99;
+	set $@jobsage_pid,$@warpwaitingpc[0];
+	if( attachrid($@jobsage_pid)==0 ) goto L_Error;
+		set $@jobsage_pname$,strcharinfo(0);
+		donpcevent "jobsage_1st::OnStart";
+		end;
+L_Error:
+	enablewaitingroomevent;
+	end;
+OnEnable:
+	enablewaitingroomevent;
+	end;
+}
+
+//======== Test Step 1
+job_sage.gat,1,1,1	script	jobsage_1st	-1,{
+	end;
+OnStart:
+	set $@jobsage_m,16;
+	monster "job_sage.gat",115,106,"Unit",1183,1,"jobsage_1st::OnKilled";
+	monster "job_sage.gat",120,102,"Unit",1183,1,"jobsage_1st::OnKilled";
+	monster "job_sage.gat",124,98,"Unit",1183,1,"jobsage_1st::OnKilled";
+	monster "job_sage.gat",120,93,"Unit",1183,1,"jobsage_1st::OnKilled";
+	monster "job_sage.gat",115,90,"Unit",1183,1,"jobsage_1st::OnKilled";
+	monster "job_sage.gat",111,93,"Unit",1183,1,"jobsage_1st::OnKilled";
+	monster "job_sage.gat",107,98,"Unit",1183,1,"jobsage_1st::OnKilled";
+	monster "job_sage.gat",111,102,"Unit",1183,1,"jobsage_1st::OnKilled";
+	monster "job_sage.gat",128,110,"Unit",1184,1,"jobsage_1st::OnKilled";
+	monster "job_sage.gat",124,106,"Unit",1184,1,"jobsage_1st::OnKilled";
+	monster "job_sage.gat",124,89,"Unit",1184,1,"jobsage_1st::OnKilled";
+	monster "job_sage.gat",128,85,"Unit",1184,1,"jobsage_1st::OnKilled";
+	monster "job_sage.gat",107,89,"Unit",1184,1,"jobsage_1st::OnKilled";
+	monster "job_sage.gat",103,85,"Unit",1184,1,"jobsage_1st::OnKilled";
+	monster "job_sage.gat",107,106,"Unit",1184,1,"jobsage_1st::OnKilled";
+	monster "job_sage.gat",103,110,"Unit",1184,1,"jobsage_1st::OnKilled";
+	initnpctimer;
+	end;
+OnReset:
+	killmonster "job_sage.gat","All";
+	end;
+OnKilled:
+	set $@jobsage_m,$@jobsage_m-1;
+	if( $@jobsage_m > 0 )goto L_NotWin;
+	if (getnpctimer(1,"jobsage_1st") < 60000 ) set sagecheck,sagecheck+1;
+	if ((getnpctimer(1,"jobsage_1st") >= 120000 ) && (getnpctimer(1,"jobsage_1st") <= 170000 )) set sagecheck,sagecheck-1;
+	if (getnpctimer(1,"jobsage_1st") > 170000 ) set sagecheck,sagecheck-2;
+		stopnpctimer;
+		mapannounce "job_sage.gat","ผู้ตรวจสอบ : " + $@jobsage_pname$ + " จัดการมอนสเตอร์ทั้งหมดแล้ว!",8;
+		donpcevent "jobsage_2nd::OnStart";
+	L_NotWin:
+	end;
+OnTimer1000:
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : การทดสอบภาคปฏิบัติได้เริ่มขึ้นแล้ว",8;
+	end;
+OnTimer2500:
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : มีเวลาเพียง 3 นาทีเท่านั้น สำหรับการทดสอบ",8;
+	end;
+OnTimer4000:
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : เจ้าต้องกำจัดมอนสเตอร์ทั้งหมดให้ทันเวลา",8;
+	end;
+OnTimer30000:
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : เหลือเวลา 2 นาที 30 วินาที",8;
+	end;
+OnTimer60000:
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : เหลือเวลา 2 นาที ",8;
+	end;
+OnTimer90000:
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : เหลือเวลา 1 นาที 30 วินาที",8;
+	end;
+OnTimer120000:
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : เหลือเวลา 1 นาที",8;
+	end;
+OnTimer150000:
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : เหลือเวลา 30 วินาที",8;
+	end;
+OnTimer170000:
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : เหลือเวลา 10 วินาที",8;
+	end;
+OnTimer180000:
+	donpcevent "jobsage_1st::OnReset";
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : หมดเวลาแล้ว",8;
+	end;
+OnTimer181500:
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ :" + $@jobsage_pname$ + " ไม่ผ่านการทดสอบ",8;
+	areawarp "job_sage.gat",100,82,131,113,"yuno.gat",324,258;
+	end;
+OnTimer183000:
+	mapannounce "job_sage.gat"," ผู้สมัครถัดไปโปรดก้าวไปข้างหน้า",8;
+	end;
+OnTimer184000:
+	donpcevent "jobsage_wroom::OnEnable";
+	stopnpctimer;
+	end;
+}
+
+//======== Test Step 2
+job_sage.gat,1,1,1	script	jobsage_2nd	-1,{
+	end;
+OnStart:
+	donpcevent "jobsage_2nd::OnReset";
+	set $@jobsage_m,24;
+	monster "job_sage.gat",120,102,"GeographyInfo",1063,1,"jobsage_2nd::OnKilled";
+	monster "job_sage.gat",120,102,"StatisticsInfo",1063,1,"jobsage_2nd::OnKilled";
+	monster "job_sage.gat",120,102,"MeteorologyInfo",1063,1,"jobsage_2nd::OnKilled";
+	monster "job_sage.gat",120,102,"AstronomyInfo",1063,1,"jobsage_2nd::OnKilled";
+	monster "job_sage.gat",120,102,"LinguisticsInfo",1063,1,"jobsage_2nd::OnKilled";
+	monster "job_sage.gat",120,102,"CityLifeInfo",1063,1,"jobsage_2nd::OnKilled";
+	monster "job_sage.gat",124,98,"ForestryInfo",1063,1,"jobsage_2nd::OnKilled";
+	monster "job_sage.gat",124,98,"HealthInfo",1063,1,"jobsage_2nd::OnKilled";
+	monster "job_sage.gat",124,98,"PsychologyInfo",1063,1,"jobsage_2nd::OnKilled";
+	monster "job_sage.gat",120,93,"AnthropologyInfo",1063,1,"jobsage_2nd::OnKilled";
+	monster "job_sage.gat",120,93,"BiologyInfo",1063,1,"jobsage_2nd::OnKilled";
+	monster "job_sage.gat",120,93,"EthicsInfo",1063,1,"jobsage_2nd::OnKilled";
+	monster "job_sage.gat",111,93,"ArchitectureInfo",1063,1,"jobsage_2nd::OnKilled";
+	monster "job_sage.gat",111,93,"PlasticsInfo",1063,1,"jobsage_2nd::OnKilled";
+	monster "job_sage.gat",111,93,"NutritionInfo",1063,1,"jobsage_2nd::OnKilled";
+	monster "job_sage.gat",111,93,"FoodInfo",1063,1,"jobsage_2nd::OnKilled";
+	monster "job_sage.gat",111,93,"ManagementInfo",1063,1,"jobsage_2nd::OnKilled";
+	monster "job_sage.gat",111,93,"SociologyInfo",1063,1,"jobsage_2nd::OnKilled";
+	monster "job_sage.gat",107,98,"EconomicsInfo",1063,1,"jobsage_2nd::OnKilled";
+	monster "job_sage.gat",107,98,"MagicInfo",1063,1,"jobsage_2nd::OnKilled";
+	monster "job_sage.gat",107,98,"PoliSciInfo",1063,1,"jobsage_2nd::OnKilled";
+	monster "job_sage.gat",111,102,"MathInfo",1063,1,"jobsage_2nd::OnKilled";
+	monster "job_sage.gat",111,102,"HistoryInfo",1063,1,"jobsage_2nd::OnKilled";
+	monster "job_sage.gat",111,102,"PhysicsInfo",1063,1,"jobsage_2nd::OnKilled";
+	initnpctimer;
+	end;
+OnReset:
+	killmonster "job_sage.gat","All";
+	end;
+OnKilled:
+	set $@jobsage_m,$@jobsage_m-1;
+	if( $@jobsage_m > 0 )goto L_NotWin;
+		stopnpctimer;
+		if (getnpctimer(1,"jobsage_2nd") < 60000 ) set sagecheck,sagecheck+1;
+		if ((getnpctimer(1,"jobsage_2nd") >= 120000 ) && (getnpctimer(1,"jobsage_2nd") <= 170000 )) set sagecheck,sagecheck-1;
+		if (getnpctimer(1,"jobsage_2nd") > 170000 ) set sagecheck,sagecheck-2;
+		mapannounce "job_sage.gat","ผู้ตรวจสอบ : " + $@jobsage_pname$ + " จัดการมอนสเตอร์ทั้งหมดแล้ว!",8;
+		donpcevent "jobsage_3rd::OnStart";
+	L_NotWin:
+	end;
+OnTimer1500:
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : มีเวลาเพียง 3 นาทีเท่านั้น สำหรับการทดสอบ",8;
+	end;
+OnTimer3000:
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : เจ้าต้องกำจัดมอนสเตอร์ทั้งหมดให้ทันเวลา",8;
+	end;
+OnTimer30000:
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : เหลือเวลา 2 นาที 30 วินาที",8;
+	end;
+OnTimer60000:
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : เหลือเวลา 2 นาที ",8;
+	end;
+OnTimer90000:
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : เหลือเวลา 1 นาที 30 วินาที",8;
+	end;
+OnTimer120000:
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : เหลือเวลา 1 นาที",8;
+	end;
+OnTimer150000:
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : เหลือเวลา 30 วินาที",8;
+	end;
+OnTimer170000:
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : เหลือเวลา 10 วินาที",8;
+	end;
+OnTimer180000:
+	donpcevent "jobsage_2nd::OnReset";
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : หมดเวลาแล้ว",8;
+	end;
+OnTimer181500:
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : " + $@jobsage_pname$ + " ไม่ผ่านการทดสอบ",8;
+	areawarp "job_sage.gat",100,82,131,113,"yuno.gat",324,258;
+	end;
+OnTimer183000:
+	mapannounce "job_sage.gat"," ผู้สมัครถัดไปโปรดก้าวไปข้างหน้า",8;
+	end;
+OnTimer184000:
+	donpcevent "jobsage_wroom::OnEnable";
+	stopnpctimer;
+	end;
+}
+
+
+//======== Test Step 3
+job_sage.gat,1,1,1	script	jobsage_3rd	-1,{
+	end;
+OnStart:
+	donpcevent "jobsage_3rd::OnReset";
+	set $@jobsage_m,1;
+	monster "job_sage.gat",116,98,"Bachelor",1179,1,"jobsage_3rd::OnKilled";
+	monster "job_sage.gat",124,106,"Tardy",1185,1;
+	monster "job_sage.gat",124,89,"Loaner",1185,1;
+	monster "job_sage.gat",107,89,"Cheater",1185,1;
+	monster "job_sage.gat",107,106,"Absentee",1185,1;
+	initnpctimer;
+	end;
+OnReset:
+	end;
+OnKilled:
+	set $@jobsage_m,$@jobsage_m-1;
+	if( $@jobsage_m > 0 )goto L_NotWin;
+		stopnpctimer;
+		killmonster "job_sage.gat","All";
+		set job2nd_sage,7;
+		if (getnpctimer(1,"jobsage_3rd") < 20000 ) set sagecheck,sagecheck+1;
+		if ((getnpctimer(1,"jobsage_3rd") >= 30000 ) && (getnpctimer(1,"jobsage_2nd") <= 50000 )) set sagecheck,sagecheck-1;
+		if (getnpctimer(1,"jobsage_3rd") > 50000 ) set sagecheck,sagecheck-2;
+		mapannounce "job_sage.gat","ผู้ตรวจสอบ : ยินดีด้วย " + $@jobsage_pname$ + " ผ่านการทดสอบแล้ว!",8;
+		donpcevent "jobsage_success::OnSuccess";
+	L_NotWin:
+	end;
+OnTimer1500:
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : 1  นาที",8;
+	end;
+OnTimer30000:
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : 30 วินาที",8;
+	end;
+OnTimer50000:
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : 10 วินาที",8;
+	end;
+OnTimer60000:
+	donpcevent "jobsage_3rd::OnReset";
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : หมดเวลาแล้ว",8;
+	end;
+OnTimer61500:
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : " + $@jobsage_pname$ + " ไม่ผ่านการทดสอบ",8;
+	areawarp "job_sage.gat",100,82,131,113,"yuno.gat",324,258;
+	end;
+OnTimer63000:
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : ผู้สมัครถัดไปโปรดก้าวไปข้างหน้า",8;
+	end;
+OnTimer64000:
+	donpcevent "jobsage_wroom::OnEnable";
+	stopnpctimer;
+	end;
+}
+
+//======== Successful
+job_sage.gat,1,7,1	script	jobsage_success	66,{
+OnSuccess:
+	killmonster "job_sage.gat","All";
+	initnpctimer;
+	end;
+OnTimer3000:
+	mapannounce "job_sage.gat","ผู้ตรวจสอบ : โปรดให้ข้าพาเจ้าออกจากที่นี่",8;
+	end;
+OnTimer6000:
+	mapannounce "job_sage.gat"," ผู้สมัครถัดไปโปรดก้าวไปข้างหน้า",8;
+	areawarp "job_sage.gat",100,82,131,113,"yuno_in03.gat",163,180;
+	end;
+OnTimer7000:
+	donpcevent "jobsage_wroom::OnEnable";
+	stopnpctimer;
+	end;
+}

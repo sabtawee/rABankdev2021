@@ -1,0 +1,432 @@
+// Headgear Quests 1
+// Cross Hat, Bulb Hairband, Striped Hairband, Blue Hairband
+//============================================================ 
+comodo,228,159,3	script	Hair Ornament Girl	700,{
+	mes "[Hair Ornament Girl]";
+	if (Sex == 1) {
+		mes "โอ้ว.. สวัสดี..!";
+		mes "คุณต้องการหมวกแบบไหน ? ฉันได้สะสมหมวกเฉ๋ง ๆ ไว้ากมาย..";
+	}
+	else {
+		mes "สวัสดี... ~!";
+		mes "ฉันว่าเธอต้องชอบหมวกน่ารัก ๆ แน่ ๆ เลย ฉันมีให้เธอเลือกได้น่ะ..?";
+	}
+	next;
+	mes "[Hair Ornament Girl]";
+	mes "ถ้าหากเลือกแล้วถูกใจชิ้นไหน ฉันจะบอกวิธีที่จะได้หมวกใบที่ต้องการ เชิญดูได้เลย...";
+	next;
+	switch(select("Cross Hat:Bulb Band:Stripe Hairband:Blue Hairband")) {
+	case 1:
+		if ((countitem(2608) > 0) && (countitem(7069) > 499)) {
+			mes "[Hair Ornament Girl]";
+			mes "คุณได้เลือก Cross Hat ? ";
+			mes "ถ้าคุณหาของที่ฉันต้องการได้.. ฉันก็จะสร้างหมวกนี้ให้คุณเอง ~";
+			next;
+			mes "[Hair Ornament Girl]";
+			mes "แต่ก่อนที่จะสร้างหมวกนี้ได้.. ฉันขอเช็คความพร้อมก่อนว่าอยากได้หมวกใบนี้จริงไหม..?";
+			mes "คุณอาจจะต้องลำบากซะหน่อย.. แต่หากทำได้สำเร็จแล้วคุณจะได้สิ่งที่ต้องการ";
+			next;
+			mes "[Hair Ornament Girl]";
+			mes "สิ่งที่ฉันต้องการมี..";
+			mes "1 Rosary ea";
+			mes "500 Broken Armor Price";
+			mes "คุณยังต้องการจะทำอยู่หรือไม่..";
+			next;
+			switch(select("ไม่ละ:ต้องการทำ")) {
+			case 1:
+				mes "[Hair Ornament Girl]";
+				mes "อ๊า ๆ  ไม่เป็นไร ฉันเดาว่าคุณอาจจะยังเสียดายของที่ไปหามาก็เป็นได้";
+				mes "งั้นค่อยพบกันใหม่ ๆ ~";
+				close;
+			case 2:
+				mes "^3355FF...............^000000";
+				next;
+				delitem 2608,1;  //Rosary
+				delitem 7069,500;  //Broken_Armor_Piece
+				mes "[Hair Ornament Girl]";
+				mes "จงดูให้ดี ๆ น่ะข้าจะสร้างแล้วน่ะ..~";
+				mes "เรียบร้อยแล้ว..อ่ะนี่เป็นคุณแล้ว!";
+				getitem 5036,1; // Cross_Band
+				close;
+			}
+		}
+		else {
+			mes "[Hair Ornament Girl]";
+			mes "โอ้ว คุณได้เลือก Cross Hat?";
+			mes "แต่คุณยังมีของที่จะทำนั้นยังไม่เพียงพอ...";
+			next;
+			mes "[Hair Ornament Girl]";
+			mes "เพราะฉันต้องการ...";
+			mes "^3355FF1 Rosary^000000";
+			mes "^3355FF500 Destroyed Armor^000000";
+			next;
+			mes "[Hair Ornament Girl]";
+			mes "ถ้าคุณหาได้ครบแล้วค่อยกลับนำมามอบให้กับข้าภายหลัง";
+			mes "แล้วพบกัน..~";
+			close;
+		}
+	case 2:
+		if ((countitem(2233) > 0) && (countitem(746) > 19)) {
+			mes "[Hair Ornament Girl]";
+			mes "คุณได้เลือก Bulb band?";
+			mes "ถ้าคุณหาของที่ฉันต้องการได้.. ฉันก็จะสร้างหมวกนี้ให้คุณเอง ~";
+			next;
+			mes "[Hair Ornament Girl]";
+			mes "แต่ก่อนที่จะสร้างหมวกนี้ได้.. ฉันขอเช็คความพร้อมก่อนว่าอยากได้หมวกใบนี้จริงไหม..?";
+			mes "คุณอาจจะต้องลำบากซะหน่อย.. แต่หากทำได้สำเร็จแล้วคุณจะได้สิ่งที่ต้องการ";
+			next;
+			mes "[Hair Ornament Girl]";
+			mes "สิ่งที่ฉันต้องการมี..?";
+			mes "1 Circlet ";
+			mes "20 Glass Bead";
+			mes "คุณยังต้องการจะทำอยู่หรือไม่..";
+			next;
+			switch(select("ไม่ละ:ต้องการทำ")) {
+			case 1:
+				mes "[Hair Ornament Girl]";
+				mes "อ๊า ๆ  ไม่เป็นไร ฉันเดาว่าคุณอาจจะยังเสียดายของที่ไปหามาก็เป็นได้ งั้นค่อยพบกันใหม่ ๆ ~";
+				close;
+			case 2:
+				mes "^3355FF...............^000000";
+				next;
+				delitem 2233,1;  //Circlet_
+				delitem 746,20;  //Glass_Bead
+				mes "[Hair Ornament Girl]";
+				mes "จงดูให้ดี ๆ น่ะข้าจะสร้างแล้วน่ะ..~";
+				mes "เรียบร้อยแล้ว..อ่ะนี่เป็นคุณแล้ว!";
+				getitem 5034,1; // Light_Bulb_Band
+				close;
+			}
+		}
+		else {
+			mes "[Hair Ornament Girl]";
+			mes "โอ้ว คุณได้เลือก Bulb Band?";
+			mes "แต่คุณยังมีของที่จะทำนั้นยังไม่เพียงพอ...";
+			next;
+			mes "[Hair Ornament Girl]";
+			mes "เพราะฉันต้องการ...";
+			mes "^3355FF1 Slotted Circlet^000000";
+			mes "^3355FF20 Glass Bead^000000";
+			next;
+			mes "[Hair Ornament Girl]";
+			mes "ถ้าคุณหาได้ครบแล้วค่อยกลับนำมามอบให้กับข้าภายหลัง";
+			mes "แล้วพบกัน..~";
+			close;
+		}
+	case 3:
+		if (countitem(1099) > 1499) {
+			mes "[Hair Ornament Girl]";
+			mes "คุณได้เลือก Stripe band?";
+			mes "ถ้าคุณหาของที่ฉันต้องการได้.. ฉันก็จะสร้างหมวกนี้ให้คุณเอง ~";
+			next;
+			mes "[Hair Ornament Girl]";
+			mes "สิ่งที่ต้องใช้ในการทำสิ่งของ..?";
+			mes "1500 Worn Out Prison Uniform";
+			next;
+			switch(select("ไม่ละ:ต้องการทำ")) {
+			case 1:
+				mes "[Hair Ornament Girl]";
+				mes "ไว้พบกันวันหลัง...~";
+				close;
+			case 2:
+				mes "^3355FF.................^000000";
+				next;
+				delitem 1099,1500;  //Worn_Out_Prison_Uniform
+				mes "[Hair Ornament Girl]";
+				mes "จงดูให้ดี ๆ น่ะข้าจะสร้างแล้วน่ะ..~";
+				mes "เรียบร้อยแล้ว..อ่ะนี่เป็นคุณแล้ว!";
+				getitem 5049,1; // Stripe_Band
+				close;
+			}
+		}
+		else {
+			mes "[Hair Ornament Girl]";
+			mes "โอ้ว คุณได้เลือก Stripe band? แต่คุณยังมีของที่จะทำนั้นยังไม่เพียงพอ...";
+			next;
+			mes "[Hair Ornament Girl]";
+			mes "ฉันนั้นต้องการ...";
+			mes "^3355FF1500 Worn-out Prison Uniform^000000";
+			next;
+			mes "[Hair Ornament Girl]";
+			mes "ถ้าคุณหาได้ครบแล้วค่อยกลับนำมามอบให้กับข้าภายหลัง";
+			mes "แล้วพบกัน..~";
+			close;
+		}
+	case 4:
+		if ((countitem(2211) > 0) && (countitem(978) > 0) && (countitem(7003) > 299)) {
+			mes "[Hair Ornament Girl]";
+			mes "คุณได้เลือก Blue Hairband?";
+			mes "ถ้าคุณหาของที่ฉันต้องการได้.. ฉันก็จะสร้างหมวกนี้ให้คุณเอง ~";
+			next;
+			mes "[Hair Ornament Girl]";
+			mes "แต่ก่อนที่จะสร้างหมวกนี้ได้.. ฉันขอเช็คความพร้อมก่อนว่าอยากได้หมวกใบนี้จริงไหม..?";
+			mes "คุณอาจจะต้องลำบากซะหน่อย.. แต่หากทำได้สำเร็จแล้วคุณจะได้สิ่งที่ต้องการ";
+			next;
+			mes "[Hair Ornament Girl]";
+			mes "สิ่งที่ฉันต้องการมี..?";
+			mes "1 Bandana";
+			mes "1 Cobaltblue Dyestuffs";
+			mes "300 Anolian Skin";
+			next;
+			switch(select("ไม่ละ:ต้องการทำ")) {
+			case 1:
+				mes "[Hair Ornament Girl]";
+				mes "อ๊า ๆ  ไม่เป็นไร ฉันเดาว่าคุณอาจจะยังเสียดายของที่ไปหามาก็เป็นได้ งั้นค่อยพบกันใหม่ ๆ ~";
+				close;
+			case 2:
+				mes "^3355FF...................^000000";
+				next;
+				delitem 2211,1;  //Bandana
+				delitem 978,1;  //Cobaltblue_Dyestuffs
+				delitem 7003,300;  //Anolian_Skin
+				mes "[Hair Ornament Girl]";
+				mes "จงดูให้ดี ๆ น่ะข้าจะสร้างแล้วน่ะ..~";
+				mes "เรียบร้อยแล้ว..อ่ะนี่เป็นคุณแล้ว!";
+				getitem 5052,1; // Blue_Hair_Band
+				close;
+			}
+		}
+		else {
+			mes "[Hair Ornament Girl]";
+			mes "โอ้ว คุณได้เลือก Blue Hairband?";
+			mes "แต่คุณยังมีของที่จะทำนั้นยังไม่เพียงพอ...";
+			next;
+			mes "[Hair Ornament Girl]";
+			mes "ฉันนั้นต้องการ...";
+			mes "^3355FF1 Bandana^000000";
+			mes "^3355FF1 Cobaltblue Dyestuffs^000000";
+			mes "^3355FF300 Anolian Skin^000000";
+			next;
+			mes "[Hair Ornament Girl]";
+			mes "ถ้าคุณหาได้ครบแล้วค่อยกลับนำมามอบให้กับข้าภายหลัง";
+			mes "แล้วพบกัน..~";
+			close;
+		}
+	}
+}
+
+// Headgear Quests 2
+// 'Mine Helmet', 'Parcel Hat', 'Money Loser's Grief', 'Phantom of the Opera Mask'
+//============================================================ 
+comodo,273,137,4	script	Traveler#head	702,{
+	mes "[Isac Mari]";
+	mes "ฉันนั้นเดินทางรอบโลก และได้ สะสมของมีค่าต่าง ๆ ฉันมีของพิเศษที่หายากมากมายเจ้าสนใจไหม ? ";
+	next;
+	mes "[Isac Mari]";
+	mes "คุณรู้ไหมฉันนั้นสามารถสร้างขึ้นมาได้.. แต่ก็ต้องมีวัสดุไว้สร้าง ถ้าไม่มีก็ไม่สามารถสร้างมันขึ้นมาได้..";
+	next;
+	switch(select("Mine Helmet:Parcel Hat:Grief for Greed:Opera Phantom Mask")) {
+	case 1:
+		if ((countitem(5009) > 0) && (countitem(5028) > 0) && (countitem(999) > 24) && (countitem(747) > 0)) {
+			mes "[Isac Mari]";
+			mes "คุณได้ทำการเลือก Mine Helmet ? ~";
+			next;
+			mes "[Isac Mari]";
+			mes "ถ้าคุณหาของที่ฉันต้องการได้.. ฉันก็จะสร้างหมวกนี้ให้คุณเอง ~";
+			next;
+			mes "[Isac Mari]";
+			mes "แต่ก่อนที่จะสร้างหมวกนี้ได้.. ฉันขอตรวจสอบก่อนว่าคุณมีความต้องการหมวกใบนี้มากแค่ไหน..?";
+			next;
+			mes "[Isac Mari]";
+			mes "คุณอาจจะต้องลำบากซะหน่อย.. แต่หากทำได้สำเร็จแล้วคุณจะได้สิ่งที่ต้องการ";
+			next;
+			switch(select("ไว้วันหลังดีกว่า~!:ฉันจะทำ Mine Hat.")) {
+			case 1:
+				mes "[Isac Mari]";
+				mes "อ๊า ๆ  ไม่เป็นไร ฉันเดาว่าคุณอาจจะยังเสียดายของที่ไปหามาก็เป็นได้ งั้นค่อยพบกันใหม่ ๆ ~";
+				close;			break;
+			case 2:
+				mes "^3355FF*ตุ๊ก ๆ ตุ๊ก ๆ*";
+				mes "*ป๊อก!*^000000";
+				next;
+				mes "[Isac Mari]";
+				mes "ฉันได้ทำสิ่งของที่ต้องการให้แล้ว..!";
+				next;
+				delitem 5009,1;  //Safety_Helmet
+				delitem 5028,1;  //Candle
+				delitem 747,1;  //Crystal_Mirror
+				delitem 999,25;  //Steel
+				mes "[Isac Mari]";
+				mes "ถ้าหากต้องการอะไรก็กลับมาหาฉันได้น่ะ..~";
+				getitem 5031,1; // Mine_Helm
+				close;
+			}
+		}
+		else {
+			mes "[Isac Mari]";
+			mes "โอ้ว คุณได้เลือก Mine Helmet.";
+			next;
+			mes "[Isac Mari]";
+			mes "แต่คุณยังมีของที่จะทำนั้นยังไม่เพียงพอ...";
+			next;
+			mes "[Isac Mari]";
+			mes "ฉันนั้นต้องการ...";
+			mes "^3355FF1 Safety Helmet^000000";
+			mes "^3355FF1 Candle^000000 ";
+			mes "^3355FF1 Crystal Mirror^000000";
+			mes "^3355FF25 Steel^000000";
+			mes "เพื่อในการสร้าง...";
+			next;
+			mes "[Isac Mari]";
+			mes "ถ้าคุณหาได้ครบแล้วค่อยกลับนำมามอบให้กับข้าภายหลัง แล้วพบกันใหม่";
+			close;
+		}
+	case 2:
+		if ((countitem(1059) > 149) && (countitem(907) > 99) && (countitem(978) > 0)) {
+			mes "[Isac Mari]";
+			mes "คุณได้ทำการเลือก Parcel Hat ?";
+			mes "ถ้าคุณหาของที่ฉันต้องการได้.. ฉันก็จะสร้างหมวกนี้ให้คุณเอง ~";
+			next;
+			mes "[Isac Mari]";
+			mes "แต่ก่อนที่จะสร้างหมวกนี้ได้.. ฉันขอตรวจสอบก่อนว่าคุณมีความต้องการหมวกใบนี้มากแค่ไหน..?";
+			next;
+			mes "[Isac Mari]";
+			mes "คุณอาจจะต้องลำบากซะหน่อย.. แต่หากทำได้สำเร็จแล้วคุณจะได้สิ่งที่ต้องการ";
+			next;
+			switch(select("ไว้วันหลังดีกว่า~!:ฉันจะทำ Parcel Hat")) {
+			case 1:
+				mes "[Isac Mari]";
+				mes "อ๊า ๆ  ไม่เป็นไร ฉันเดาว่าคุณอาจจะยังเสียดายของที่ไปหามาก็เป็นได้ งั้นค่อยพบกันใหม่ ๆ ~";
+				close;
+			case 2:
+				mes "^3355FF*ตุ๊ก ๆ ตุ๊ก ๆ*";
+				mes "*ป๊อก!*^000000";
+				next;
+				mes "[Isac Mari]";
+				mes "โอ้ว...";
+				mes "ฉันคิดว่า!";
+				mes "คุณควรรอสักครู่ฉันจะเริ่มสร้างแล้ว...";
+				next;
+				delitem 1059,150;  //Transparent_Cloth
+				delitem 907,100;  //Resin
+				delitem 978,1;  //Cobaltblue_Dyestuffs
+				mes "[Isac Mari]";
+				mes "นี้งัย เสร็จละสวยไหมละ...";
+				mes "ถ้าหากต้องการอะไรก็กลับมาหาฉันได้น่ะ..~";
+				getitem 5023,1; // Hat_Of_Bundle
+				close;
+			}
+		}
+		else {
+			mes "[Isac Mari]";
+			mes "โอ้ว คุณได้เลือก Parcel Hat";
+			next;
+			mes "[Isac Mari]";
+			mes "แต่คุณยังมีของที่จะทำนั้นยังไม่เพียงพอ...";
+			next;
+			mes "[Isac Mari]";
+			mes "ฉันนั้นต้องการ...";
+			mes "^3355FF150 Fabric^000000";
+			mes "^3355FF100 Resin^000000 and";
+			mes "^3355FF1 Cobaltblue Dyestuffs^000000";
+			mes "ถึงจะสามารถทำ Parcel Hat.";
+			next;
+			mes "[Isac Mari]";
+			mes "ถ้าคุณหาได้ครบแล้วค่อยกลับนำมามอบให้กับข้าภายหลัง แล้วพบกันใหม่";
+			close;
+		}
+	case 3:
+		if ((countitem(2233) > 0) && (countitem(969) > 0) && (countitem(949) > 79) && (countitem(999) > 19) && (countitem(938) > 799)) {
+			mes "[Isac Mari]";
+			mes "คุณได้ทำการเลือก  Grief for Greed...";
+			mes "หาคุณหาของที่ฉันต้องการได้.. ฉันก็จะสร้างหมวกนี้ให้คุณเอง ~";
+			next;
+			mes "[Isac Mari]";
+			mes "แต่คุณต้องตรวจสอบตัวละครของคุณก่อนว่ามีสิ่งของในตัวมากเกินกว่าที่กำหนดหรือไม่ เพราะอาจะทำให้ไม่ได้หมวกใบนี้.";
+			next;
+			mes "[Isac Mari]";
+			mes "ทางที่ดีถ้าหามีสิ่งของในตัวละครเริ่มมาก ควรนำของไปเก็บที่ Kafra เสียก่อน งั้นมาเริ่มกันเลย";
+			next;
+			switch(select("ไว้วันหลังดีกว่า~!:ฉันจะทำ Grief for Greed.")) {
+			case 1:
+				mes "[Isac Mari]";
+				mes "อ๊า ๆ  ไม่เป็นไร ฉันเดาว่าคุณอาจจะยังเสียดายของที่ไปหามาก็เป็นได้ งั้นค่อยพบกันใหม่ ๆ ~";
+				close;
+			case 2:
+				mes "^3355FF*ตุ๊ก ๆ ตุ๊ก ๆ*";
+				mes "*ป๊อก!*^000000";
+				next;
+				mes "[Isac Mari]";
+				mes "ว๊าว..! ทำออกมาได้สวยจริง ๆ ใกล้จะสำเร็จละ..!";
+				next;
+				delitem 2233,1;  //Circlet_
+				delitem 969,1;  //Gold
+				delitem 949,80;  //Feather
+				delitem 999,20;  //Steel
+				delitem 938,800;  //Sticky_Mucus
+				mes "[Isac Mari]";
+				mes "นี้งัย เสร็จละสวยไหมละ... มันช่างสวยงามจริง ๆ กด Like ให้เลย..!";
+				getitem 5021,1; // Bankruptcy_Of_Heart
+				close;
+			}
+		}
+		else {
+			mes "[Isac Mari]";
+			mes "โอ้ว คุณได้เลือก Grief for Greed...";
+			next;
+			mes "[Isac Mari]";
+			mes "แต่คุณยังมีของที่จะทำนั้นยังไม่เพียงพอ...";
+			next;
+			mes "[Isac Mari]";
+			mes "นี่คือสิ่งของที่ฉันต้องการในการทำ Grief for Greed...";
+			mes "^3355FF1 Slotted Circlet^000000";
+			mes "^3355FF1 Gold^000000";
+			mes "^3355FF20 Steel^000000";
+			mes "^3355FF80 Feather^000000";
+			mes "^3355FF800 Sticky Mucus^000000";
+			next;
+			mes "[Isac Mari]";
+			mes "ถ้าคุณหาได้ครบแล้วค่อยกลับนำมามอบให้กับข้าภายหลัง แล้วพบกันใหม่~";
+			close;
+		}
+	case 4:
+		if ((countitem(2281) > 0) && (countitem(1048) > 49)) {
+			mes "[Isac Mari]";
+			mes "คุณได้ทำการเลือก Opera Phantom Mask...";
+			mes "หาคุณหาของที่ฉันต้องการได้.. ฉันก็จะสร้างหมวกนี้ให้คุณเอง ~";
+			next;
+			mes "[Isac Mari]";
+			mes "แต่คุณต้องตรวจสอบตัวละครของคุณก่อนว่ามีสิ่งของในตัวมากเกินกว่าที่กำหนดหรือไม่ เพราะอาจะทำให้ไม่ได้หมวกใบนี้.";
+			next;
+			mes "[Isac Mari]";
+			mes "ทางที่ดีถ้าหามีสิ่งของในตัวละครเริ่มมาก ควรนำของไปเก็บที่ Kafra เสียก่อน งั้นมาเริ่มกันเลย";
+			next;
+			switch(select("ไว้วันหลังดีกว่า~!:ฉันจะทำ Opera Masque.")) {
+			case 1:
+				mes "[Isac Mari]";
+				mes "อ๊า ๆ  ไม่เป็นไร ฉันเดาว่าคุณอาจจะยังเสียดายของที่ไปหามาก็เป็นได้ งั้นค่อยพบกันใหม่ ๆ ~";
+				close;
+			case 2:
+				mes "^3355FF*ตุ๊ก ๆ ตุ๊ก ๆ*";
+				mes "*ป๊อก!*^000000";
+				next;
+				mes "[Isac Mari]";
+				mes "ว๊าว..! ทำออกมาได้สวยจริง ๆ ใกล้จะสำเร็จละ..!";
+				next;
+				delitem 2281,1;  //Phantom_Of_Opera
+				delitem 1048,50;  //Slender_Snake
+				mes "[Isac Mari]";
+				mes "นี้งัย เสร็จละสวยไหมละ... มันช่างสวยงามจริง ๆ กด Like ให้เลย..!";
+				mes "ฮ่า ฮา ฮา ...";
+				getitem 5043,1; // Opera_Ghost_Mask
+				close;
+			}
+		}
+		else {
+			mes "[Isac Mari]";
+			mes "โอ้ว คุณได้เลือก Opera Phantom Mask...";
+			next;
+			mes "[Isac Mari]";
+			mes "แต่คุณยังมีของที่จะทำนั้นยังไม่เพียงพอ...";
+			next;
+			mes "[Isac Mari]";
+			mes "นี่คือสิ่งของที่ฉันต้องการในการทำ Phantom of Opera ให้สำหรับคุณ:";
+			mes "^3355FF1 Opera Masque^000000";
+			mes "^3355FF50 Horrendous Hair^000000";
+			next;
+			mes "[Isac Mari]";
+			mes "ถ้าคุณหาได้ครบแล้วค่อยกลับนำมามอบให้กับข้าภายหลัง แล้วพบกันใหม่ ~";
+			close;
+		}
+	}
+}

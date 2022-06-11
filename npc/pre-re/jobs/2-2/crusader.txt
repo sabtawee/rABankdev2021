@@ -1,49 +1,1438 @@
-//===== rAthena Script ======================================= 
-//= Crusader Job Quest
+//===== eAthena Script ======================================= 
+//= Crusader Quest
+//===== By: ================================================== 
+//= Made by: Black Dragon
+//= Converted by: Shin
+//===== Current Version: ===================================== 
+//= 3.3
+//===== Compatible With: ===================================== 
+//= eAthena  SVN
 //===== Description: ========================================= 
-//= [Official Conversion]
+//= [Aegis Conversion]
 //= Job quest for Crusader classes
-//===== Changelogs: ==========================================
-//= 1.0 Location changed in ep16.1 [Capuche]
+//===== Additional Comments: ================================= 
+//= 2.2 Updated All NPCs to the officials one [Samuray22]
+//=	-Based on the ASB 4.0 Package.
+//=	-Maybe need be checked the monsters in the test 2 and 4.
+//= 2.3 Fixed some bugs that prevented from going further. [SinSloth]
+//= 2.4 Updated NPC dialogs using Aegis 10.3 files. [L0ne_W0lf]
+//=	- Fixed logic error with job change reward for job 50 swordies.
+//=	- Completely redid the 1st and third tests.
+//=	- Optimized first four NPC scripts slightly.
+//=	- Temporary character variables "@" are now ".@"
+//=	- Fixed some indentation.
+//= 2.5 Fixed some spelling and grammar in crusader quest. [L0ne_W0lf]
+//= 2.6 Fixed bug (about totally blocked baby class), optimized,
+//=	made some NPC more unique names: Monster Summon#cr1 [Lupus]
+//= 2.7 Fixed Some variables like ".@item", and changed to "@item". [Samuray22]
+//= 2.8 Fixed a little minor bug. [Samuray22]
+//= 2.9 Minor fixes, typos, an incorrect answer. Thanks to yyCC. [L0ne_W0lf]
+//= 2.9a Deleted unused variables. [Samuray22]
+//= 3.0 Updated waiting room. (Removes global var) [L0ne_W0lf]
+//= 3.1 Adding Hermemton's changes. [L0ne_W0lf]
+//= 3.2 Added Quest Log commands. [Kisuka]
+//= 3.3 Removed the need for use of 'goto.' [L0ne_W0lf]
 //============================================================
 
-// Senior Crusader: 1st Collect Items Test
-//============================================================
-prt_castle,45,169,5	duplicate(Senior Crusader_)	Senior Crusader	4_M_CRU_OLD
 
-// Suffering Man: 2nd Endurance Test
-//============================================================
-prt_castle,164,32,1	duplicate(Man in Anguish_)	Man in Anguish	4_M_JOB_KNIGHT1
+//=============== Senior Crusader: 1st Collect Items Test============================
+prt_castle,45,169,5	script	Senior Crusader	752,{
 
-// Crusader: 4th Purification Test
-//============================================================
-prt_castle,35,151,5	duplicate(Patron Knight_)	Patron Knight	4_M_CRU
 
-// Actual tests
-//============================================================
+	if(JobLevel == 50) {
+	if (Class!=1) goto Notache;
+	if(SkillPoint >0) goto L_notUseAll;
 
-//----------------------------------------------------------------------------
-// Endurance Test
-//----------------------------------------------------------------------------
-job_cru,98,105,4	script	 Summoner#cr5	WARPNPC,3,3,{
+	 mes "[ Jobchanger ]";
+	 mes "ท่านต้องการเปลื่ยนอาชีพเป็นcrusader ใช่หรือไม่";
+	 next;
+	 menu "ใช่",-,"ไม่ใช่",L_close;
+	 mes "[ Jobchanger ]";
+	 mes "ถ้าเป็นอย่างนั้น ข้าก็จะเปลื่ยนให้เจ้าทันที";
+	 next;
+	 JobChange 14;
+	set zeny,zeny+50000;
+	 mes "เจ้าได้เป็น crusaderเรียบร้อยแล้ว";
+	 close;
+
+	L_close:
+	 mes "[ Jobchanger ]";
+	 mes "เราคงมีโอกาศได้พบกันใหม่อีกแน่ บาย";
+	 close;
+
+	L_notUseAll:
+	 mes "[ Jobchanger ]";
+	 mes "ท่านยังใช้ Skill Point ไม่หมด";
+	 close;
+
+	Notache:
+	 mes "[ Jobchanger ]";
+	 mes "คุณไม่ได้ นักดาบนิ";
+	 close;
+
+
+	}
+	//callfunc "func_playsound",13;
+	//soundeffect "job_crusader.wav", 0;
+	mes "[Michael Halig]";
+	if (Upper == 1) { //the baby classes were totally blocked... due to missing == 1
+		mes "เจ้าจงบำเพ็ญตนเพื่อการเข้าร่วมสงครามศักสิทธิ์ที่กำลังจะมาถึง ชัยชนะจะอยู่กับผู้ที่พร้อมที่จะรับมือมัน!";
+		next;
+		mes "[Michael Halig]";
+		mes "นี่ไม่ใช่ที่ของท่าน.. เพื่อนรัก";
+		mes "ข้าขอให้ท่านหมั่นฝึกฝนตนเอง";
+		close;
+	} 
+	else if(BaseJob != Job_Swordman) {
+		if(BaseJob == Job_Crusader) {
+			mes "ท่านจงบำเพ็ญตนเพื่อการเข้าร่วมสงครามศักสิทธิ์ที่กำลังจะมาถึง ชัยชนะจะอยู่กับผู้ที่พร้อมที่จะรับมือมัน!";
+			next;
+			mes "[Michael Halig]";
+			mes "วันแห่งความวุ่นวายกำลังจะมาถึงเพื่อทำลายความสงบ ความยุติธรรมและซื่อสัตย์. จนกว่าเราจะกำจัดความชั่วร้ายด้วยอุดมคติของพวกท่าน";
+			close;
+		}
+		else if(BaseJob == Job_Novice) {
+			mes "พวกเรา Crusaders";
+			mes "เตรียมพร้อมสู้รบ";
+			mes "สำหรับสงครามอันศักสิทธิ์";
+			next;
+			mes "[Michael Halig]";
+			mes "ถ้าท่านต้องการเข้าร่วมกับเรา ท่านจะต้องเรียนรู้วินัยของ Swordsman และทดสอบตนเองในทุกๆด้าน...";
+			close;
+		}
+		mes "พวกเรา Crusaders,";
+		mes "เตรียมพร้อมสู้รบ";
+		mes "สำหรับสงครามอันศักสิทธิ์";
+		next;
+		mes "[Michael Halig]";
+		mes "สิ่งที่เกิดขึ้นในหมื่นปีที่ผ่านมา พลังชั่วร้ายได้เข้าทำลายโลกอีกครั้ง";
+		close;
+	} 
+	else if(CRUS_Q <= 3 && countitem(1004) && countitem(1009)) {
+		mes "อ่า...";
+		mes "ข้าเห็นสมควรว่าท่านจะได้เป็น Crusader. เรามั่นใจในตัวท่าน แต่ตอนนี้ข้าจะขอทดสอบท่านสักหน่อย";
+		next;
+		mes "[Michael Halig]";
+		mes "จงไปพบ Moorenak Miyol ผู้ซึ่งดูแลการทดสอบแห่ง Prontera Castle. จงไปพูดคุยกับเขาก่อน";
+		next;
+		delitem 1004, 1;
+		delitem 1009, 1;
+		set CRUS_Q,4;
+		mes "[Michael Halig]";
+		mes "Moorenak และคนอื่นๆจะทดสอบท่านจนสุดขีดความสามารถและจะช่วยหาทางให้ท่านผ่านการทดสอบได้ กลับมาพบข้าหากท่านผ่านการทดสอบนั้นแล้ว...";
+		close;
+	}
+	else if(CRUS_Q == 0) {
+		mes "พวกเรา Crusaders, นักรบแห่งสงครามอันศักสิทธิ์";
+		mes "ท่านมีธุระอะไร";
+		mes "จึงมาที่แห่งนี้?";
+		next;
+		if (select("ข้าต้องการเข้าร่วมสงครามศักสิทธิ์!:ข้าไม่มีอะไร") == 1) {
+			mes "[Michael Halig]";
+			mes "ท่านต้องการที่จะเป็น";
+			mes "Crusader...?";
+			mes "การที่จะเข้ามาได้นั้น";
+			mes "มันไม่ใช่เรื่องง่ายเลยนะ";
+			next;
+			mes "[Michael Halig]";
+			mes "ข้าคือ Michael Halig. ข้าคือหนึ่งใน Crusaders ผู้ซึ่งร่วมรบในสงคราม. พวกข้าร่วมรบเพื่อปกป้องสถาบันและเมืองของข้า";
+			next;
+			mes "[Michael Halig]";
+			mes "เรารับสมัคร Swordsmen ผู้ที่มีความสามารถพิเศษ หรือเกิดมาเพื่อเป็นนักรบ";
+			next;
+			mes "[Michael Halig]";
+			mes "แต่ถ้าท่านมี ^3355FFChivalry Emblem^000000 และ ^3355FFHand of God^000000 ข้าก็จะให้ท่านลงทะเบีนเพื่อเป็น Crusader.";
+			next;
+			mes "[Michael Halig]";
+			mes "หลังจากท่านผ่านแบบทดสอบแล้วท่านก็จะได้เป็น Crusader.";
+			next;
+			mes "[Michael Halig]";
+			mes "ข้าไม่เข้าใจว่าคนอย่างท่านทำไมถึงมาอยู่ที่นี่";
+			mes "ข้าจะทดสอบท่าน หากท่านยังต้องการที่จะเข้าร่วมเป็นส่วนหนึ่งกับพวกเรา ท่านพร้อมมั้ย?";
+			next;
+			if (select("ใช่ ข้าพร้อม:ข้าไม่คิดเช่นนั้น") == 1) {
+				if(JobLevel < 40) {
+					mes "[Michael Halig]";
+					mes "รอสักครู่...";
+					mes "ท่านยังไม่พร้อม";
+					mes "ท่านจะต้องมี";
+					mes "Job Level 40 เพื่อที่จะมาเป็น";
+					mes "Crusader.";
+					next;
+					mes "[Michael Halig]";
+					mes "โปรดไปฝึกฝนตัวของท่านให้แข็งแกร่ง และเมื่อใดที่ท่านพร้อมจงกลับมาหาข้า";
+					close;
+				} 
+				if (Skillpoint) {
+					mes "[Michael Halig]";
+					mes "ท่านยังเรียนรู้ทักษะไม่หมด โปรดตรวจสอบให้ดีก่อน";
+					close;
+				}
+				mes "[Michael Halig]";
+				mes "เอาล่ะ...";
+				mes "ข้าจะเริ่มการทดสอบท่านหากท่านต้องการจะเป็น Crusader.";
+				next;
+				mes "[Michael Halig]";
+				mes "ชื่อของท่านคือ";
+				mes "" + strcharinfo(0) + "...?";
+				mes "โอเค...";
+				next;
+				if (countitem(1004) && countitem(1009)) {
+					mes "[Michael Halig]";
+					mes "อ่า...";
+					mes "ข้าเห็นว่าท่านเหมาะที่จะเป็น Crusader. ตอนนี้ข้าจะขอทดสอบความสามารถท่านก่อน";
+					next;
+					mes "[Michael Halig]";
+					mes "ไปพบกับ Moorenak Miyol ผู้ซึ่งดูแลสนามฝึกซ้อมแห่ง Prontera Castle. โปรดไปพูดคุยกับเขา";
+					next;
+					delitem 1004, 1;
+					delitem 1009, 1;
+					set CRUS_Q,4;
+					setquest 3009;
+					mes "[Michael Halig]";
+					mes "Moorenak และคนอื่นๆจะทดสอบท่านจนสุดขีดความสามารถและจะช่วยหาทางให้ท่านผ่านการทดสอบได้ กลับมาพบข้าหากท่านผ่านการทดสอบนั้นแล้ว...";
+					close;
+				}
+				mes "[Michael Halig]";
+				mes "อืม..ข้าไม่เห็นว่าท่านอยากจะเป็น Crusader. แต่ถ้าหากท่านมีความพยายามอีกหน่อยล่ะก็..";
+				next;
+				mes "[Michael Halig]";
+				mes "ตอนนี้...";
+				mes "นี่คือแบบทดสอบของข้า จงนำไอเทมที่ท่านหามาให้ข้า";
+				next;
+				mes "[Michael Halig]";
+				set .@cru_m1,rand(1,3);
+				if(.@cru_m1 == 1) {
+					set CRUS_Q, 1;
+					setquest 3006;
+					mes "10 ^3355FF"+getitemname(957)+"^000000";
+					mes "10 ^3355FF"+getitemname(959)+"^000000";
+					mes "10 ^3355FF"+getitemname(1099)+"^000000";
+					mes "10 ^3355FF"+getitemname(901)+"^000000";
+					next;
+				}
+				else if(.@cru_m1 == 2) {
+					set CRUS_Q, 2;
+					setquest 3007;
+					mes "10 ^3355FF"+getitemname(932)+"^000000";
+					mes "10 ^3355FF"+getitemname(1043)+"^000000";
+					mes "10 ^3355FF"+getitemname(1098)+"^000000";
+					mes "10 ^3355FF"+getitemname(1094)+"^000000";
+					next;
+				}
+				else {
+					set CRUS_Q, 3;
+					setquest 3008;
+					mes "10 ^3355FF"+getitemname(958)+"^000000";
+					mes "10 ^3355FF"+getitemname(930)+"^000000";
+					mes "10 ^3355FF"+getitemname(1041)+"^000000";
+					mes "10 ^3355FF"+getitemname(1062)+"^000000";
+					next;
+				}
+				mes "[Michael Halig]";
+				mes "แสดงความแข็งแกร่งของท่านโดยการนำไอเทมเหล่านี้มา ถ้าท่านทำสำเร็จ ท่านก็จำได้เข้าร่วมกับพวกเรา";
+				close;
+			}
+			mes "[Michael Halig]";
+			mes "ไม่มีใครรู้ว่าสงครามจะเกิดขึ้นเมื่อใด แต่พวกเราต้องเตรียมตัวให้พร้อมอยู่ตลอดเวลา";
+			mes "จงฝึกฝนต่อไป";
+			next;
+			mes "[Michael Halig]";
+			mes "ถ้าท่านเห็นว่าการร่วมสงครามครั้งนี้ไม่เหมาะกับท่าน โปรดกลับมาและเข้าร่วมการทดสอบใหม่อีกครั้ง";
+			close;
+		}
+		mes "[Michael Halig]";
+		if (sex) mes "ถ้าท่านคือนักรบผู้กล้าหาญ จงหมั่นฝึกฝนตนอยู่ตลอดเวลา ไม่มีใครรู้ว่าสงครามจะเกิดขึ้นเมื่อใด";
+		else mes "เอาล่ะท่านนักรบหญิง จงหมั่นฝึกฝนตนเองอยู่ตลอดเวลา ไม่มีใครรู้ว่าสงครามจะเกิดขึ้นเมื่อใด";
+		close;
+	}
+	else if(CRUS_Q >= 1 && CRUS_Q <= 3) {
+		mes "ท่านได้พิสูจน์ให้เห็นว่าท่านมีความมุ่งมั่นที่จะเป็น Crusader เอาล่ะส่งไอเทมเหล่านั้นมาให้ข้าดูหน่อยสิ";
+		next;
+		switch(CRUS_Q) {
+		case 1:
+			set @item1, 957;
+			set @item2, 959;
+			set @item3, 1099;
+			set @item4, 901;
+			break;
+		Case 2:
+			set @item1, 932;
+			set @item2, 1043;
+			set @item3, 1098;
+			set @item4, 1094;
+			break;
+		Case 3:
+			set @item1, 958;
+			set @item2, 930;
+			set @item3, 1041;
+			set @item4, 1062;
+			break;
+		}
+		if (countitem(@item1) > 9 && countitem(@item2) > 9 && countitem(@item3) > 9 && countitem(@item4) > 9) {
+			mes "[Michael Halig]";
+			mes "อ่า เยีย่มเลย";
+			mes "ข้ายอมรับในความพยายามของท่าน เอาล่ะข้าจะให้ท่านไปยังแบบทดสอบต่อไป";
+			next;
+			mes "[Michael Halig]";
+			mes "จงไปพบ Moorenak Miyol ผู้ซึ่งดูแลการทดสอบแห่ง Prontera Castle. จงไปพูดคุยกับเขาก่อน";
+			next;
+			delitem @item1, 10;
+			delitem @item2, 10;
+			delitem @item3, 10;
+			delitem @item4, 10;
+			set CRUS_Q, 4;
+			if(checkquest(3006) != -1) {
+				changequest 3006,3009;
+			}
+			else if(checkquest(3007) != -1) {
+				changequest 3007,3009;
+			}
+			else {
+				changequest 3008,3009;
+			}
+			mes "[Michael Halig]";
+			mes "Moorenak และคนอื่นๆจะทดสอบท่านจนสุดขีดความสามารถและจะช่วยหาทางให้ท่านผ่านการทดสอบได้ กลับมาพบข้าหากท่านผ่านการทดสอบนั้นแล้ว...";
+			close;
+		}
+		mes "[Michael Halig]";
+		mes "อ่า ท่านยังไม่พิสูจน์ให้ข้าเห็นว่าท่านพยายามมากพอ โปรดนำไอเทมเหล่านี้มาให้ข้า";
+		next;
+		mes "[Michael Halig]";
+		mes "10 ^3355FF"+getitemname(@item1)+"^000000";
+		mes "10 ^3355FF"+getitemname(@item2)+"^000000";
+		mes "10 ^3355FF"+getitemname(@item3)+"^000000";
+		mes "10 ^3355FF"+getitemname(@item4)+"^000000";
+		next;
+		mes "[Michael Halig]";
+		mes "ถ้าท่านพยายามต่อไปล่ะก็ ท่านก็จะได้เป็น Crusader แน่นอน";
+		close;
+	}
+	else if(CRUS_Q == 10) {
+		if(SkillPoint) {
+			mes "ท่านยังเรียนรู้ทักษะของ Swordsman. ไม่หมด โปรดเรียนรู้ความสามารถนั้นให้หมดและกลับมาหาข้า";
+			close;
+		}
+		mes "ยินดีด้วยท่านผ่านการทดสอบแล้ว ต่อไปนี้ท่านคือ Crusader.";
+		next;
+		mes "[Michael Halig]";
+		mes "พวกเราจะร่วมกันต่อสู้เพื่อชัยชนะเหนือความชั่วร้ายทั้งปวง!";
+		next;
+		set .@Joblevel,JobLevel;
+		completequest 3015;
+		callfunc "Job_Change",Job_Crusader;
+		callfunc "F_ClearJobVar";		//clears all job variables for the current player
+		mes "[Michael Halig]";
+		mes "ดูซิ...!";
+		mes "ตอนนี้ท่านคือ Crusader!";
+		mes "เมื่อใดที่สงครามเกิดขึ้น พวกเราจะร่วมกันต่อสู้กับความชั่วร้าย";
+		next;
+		mes "[Michael Halig]";
+		mes "ตอนนี้ท่านคือ";
+		mes "ส่วนหนึ่งของเรา!";
+		if (sex) mes "...สหาย";
+		else mes "...สหาย";
+		next;
+		if(.@JobLevel != 50) getitem 504, 6;
+		else getitem 504, 12;
+		mes "[Michael Halig]";
+		mes "ใช้เวลานี้ ในการฝึกฝนตนเองให้แข็งแกร่งขึ้น มันจะทำให้การต่อสู้ของท่านรุนแรงมากที่สุด";
+		next;
+		mes "[Michael Halig]";
+		mes "อย่าลืมว่า สงครามได้ใกล้เข้ามาแล้ว พวกเราจะช่วยกันต่อสู้กับความชั่วร้าย เพื่อปกป้องโลกนี้ให้คงอยู่!";
+		close;
+	}
+	mes "ดูเหมือนว่าท่านยังไม่เสร็จสิ้นการทดสอบ โปรดตรวจสอบอีกครั้ง";
+	next;
+	mes "[Michael Halig]";
+	mes "กลับมาหาข้าหากท่านผ่านการทดสอบแล้ว เมื่อนั้นท่านก็จะได้เป็น Crusaders.";
+	close;
+}
+
+//===================== Suffering Man: 2nd Endurance Test ===============================================
+prt_castle,164,32,1	script	Man in Anguish	733,{
+	mes "[Murnak Mijoul]";
+	if(BaseJob != Job_Swordman) {
+		if (BaseJob == Job_Crusader) {
+			mes "โปรดใช้สนามรถแห่งนี้ค้นพบตัวตนที่แท้จริงของคุณเอง เราจะจับมือร่วมกันในการต่อสู้ที่จะมาถึงในไม่ช้านี้";
+			close;
+		}
+		else if(BaseJob == Job_Novice) {
+			mes "Novice...?";
+			mes "เจ้ามาทำอะไร";
+			mes "ไปวิ่งเล่นที่อื่น";
+			next;
+			mes "[Murnak Mijoul]";
+			mes "เจ้ารู้มั้ยว่าที่นี่เป็นที่ที่เจ้าไม่ควรเข้ามา เพราะมันอันตรายมาก";
+			close;
+		}
+		mes "หากท่านไม่มีธุระที่นี่ โปรดออกไป";
+		close;
+	}
+	else if(CRUS_Q >= 0 && CRUS_Q <= 3) {
+		mes "ท่านต้องการอะไร...?";
+		mes "หากท่านไม่มีธุระอะไร";
+		mes "ก็จงออกไปจากที่นี่...";
+		next;
+		mes "[Murnak Mijoul]";
+		mes "ข้าต้องการความสงบเพื่อเตรียมพร้อมในสงครามที่กำลังจะมาถึง";
+		close;
+	}
+	else if(CRUS_Q == 4) {
+		mes "มีอะไร...?";
+		mes "ท่านต้องการอะไร";
+		if (sex) mes "กับข้าหรือท่านนักรบ?";
+		else mes "กับข้าหรือท่านนักรบหญิง?";
+		next;
+		if (select("ข้าต้องการทดสอบ Crusader:ไม่มีอะไร") == 1) {
+			mes "[Murnak Mijoul]";
+			mes "ท่านต้องการทดสอบ Crusader...? ฮืม..ต่อสู้ในสงคราม และร่วมกันเพื่อชัยชนะ";
+			next;
+			mes "[Murnak Mijoul]";
+			mes "ท่านคือ";
+			mes "" + strcharinfo(0) + "...?";
+			mes "เอาล่ะ";
+			mes "ขอข้าดู Rosary หน่อย";
+			next;
+			if(getequipid(7) != 2608 && getequipid(8) != 2608) {
+				mes "[Murnak Mijoul]";
+				mes "อืม...ท่านต้องการเป็น Crusader, แต่ท่านไม่มี Rosary? ข้าให้ท่านทดสอบไม่ได้หากท่านไม่ทำตามประเพณีของเรา";
+				close;
+			}
+			mes "[Murnak Mijoul]";
+			mes "อืม...";
+			mes "ท่านดูเหมือนว่าจะมีความพยายาม และทะเยอทะยานอยู่นะ";
+			next;
+			mes "[Murnak Mijoul]";
+			mes "อย่าให้ข้าสงสัยในความทะเยอะทะยานของท่านเลย";
+			next;
+			mes "[Murnak Mijoul]";
+			mes "การทดสอบของข้าอาจใช้เวลาเพียงเล็กน้อย เพียงแค่ท่านเดินไปยังจุดสิ้นสุดของทางเดิน";
+			next;
+			mes "[Murnak Mijoul]";
+			mes "แต่...";
+			mes "ท่านห้ามฆ่ามอนสเตอร์พวกนั้นเด็ดขาด";
+			next;
+			set CRUS_Q,5;
+			changequest 3009,3010;
+			mes "[Murnak Mijoul]";
+			mes "เอาล่ะ...";
+			mes "ขอให้โชคดี";
+			close2;
+			warp "job_cru",98,40;
+			end;
+		}
+		mes "[Murnak Mijoul]";
+		mes "ดูเหมือนว่าท่านยังมีเวลาเหลืออยู่ ทำไมท่านจึงไม่ไปทำอะไรที่มีประโยชน์มากกว่านี้ล่ะ?";
+		close;
+	}
+	else if(CRUS_Q == 5) {
+		mes "มีอะไรเหรอ...?";
+		mes "ท่านเป็น Swordman มาก่อน.เกิดอะไรขึ้นกับท่าน?";
+		next;
+		if (select("ให้ข้าทดสอบใหม่อีกครั้ง:ทดสอบเกี่ยวกับอะไร?!") == 1) {
+			mes "[Murnak Mijoul]";
+			mes "ข้าจะให้ท่านทดสอบใหม่อีกครั้ง โปรดระวังตัวให้ดีล่ะ แค่ท่านเดินไปยังอีกฝั่งเท่านั้น";
+			mes "คิดเพียงเท่านี้...";
+			next;
+			if(getequipid(7) != 2608 && getequipid(8) != 2608) {
+				mes "[Murnak Mijoul]";
+				mes "ช้าก่อน...";
+				mes "ท่านไม่มี Rosary? ท่านเข้าไปข้างในไม่ได้หากท่านไม่มีมัน";
+				next;
+				mes "[Murnak Mijoul]";
+				mes "ขอให้ท่านปฏิบัติตามประเพณีของเราด้วยโดยการสวมใส่ Rosary";
+				close;
+			}
+			mes "[Murnak Mijoul]";
+			mes "ปัญหาของท่านคืออะไร เพียงแค่ให้ท่านเดินข้ามไปยังอีกฟากเพียงแค่นี้";
+			next;
+			mes "[Murnak Mijoul]";
+			mes "เพียงแค่ตั้งใจ...";
+			mes "เดินไปยังสุดทางเดิน โดยไม่ต้องสนใจอะไรเลย";
+			mes "ก็เท่านั้น";
+			next;
+			mes "[Murnak Mijoul]";
+			mes "และท่านก็ไม่ต้องฆ่ามอนสเตอร์เหล่านั้นเลย ท่านต้องฝึกความอดทนให้ได้สิ";
+			next;
+			set CRUS_Q,5;
+			mes "[Murnak Mijoul]";
+			mes "เอาล่ะ...";
+			mes "ขอให้โชคดี";
+			close2;
+			warp "job_cru",98,40;
+		}
+		mes "[Murnak Mijoul]";
+		mes "ท่านเป็นใครถึงพูดเช่นนี้ ท่านไม่มีทางที่จะได้เป็น Crusader.";
+		next;
+		mes "[Murnak Mijoul]";
+		mes "ข้าเข้าใจหากท่านมองว่าการทดสอบข้าเป็นเรื่องง่ายเกินไปสำหรับคนอย่างท่าน";
+		close;
+	}
+	else if(CRUS_Q == 6) {
+		mes "อืม.. ดูเหมือนว่าจะไม่ยากเกินความสามารถของท่าน";
+		next;
+		mes "[Murnak Mijoul]";
+		mes "สำหรับแบบทดสอบต่อไป โปรดไปพบกับ Gabriel Valentine ใน Prontera Sanctuary.";
+		close;
+	}
+	mes "อืม...";
+	mes "ท่านต้องทำแบบทดสอบให้เรียบร้อยก่อนหากท่านต้องการเป็น Crusader";
+	close;
+}
+
+//===================== Gabriel Valentine: 3rd Knowledge Test =================================
+prt_church,95,127,3	script	Crusader	745,{
+	mes "[Gabriel Valentine]";
+	if(BaseJob != Job_Swordman) {
+		if (BaseJob == Job_Crusader) {
+			mes "ยินดีต้อนรับเพื่อน Crusader.";
+			mes "การทดสอบเป็นอย่างไรบ้าง";
+			mes "ไปได้สวยมั้ย?";
+			next;
+			mes "[Gabriel Valentine]";
+			mes "ท่านจงอย่าลืมสิ่งที่ได้ทดสอบไปวันนี้ เพราะท่านอาจได้ใช้มันในสงคราม";
+			close;
+		}
+		else if(BaseJob == Job_Novice) {
+			mes "ยินดีต้อนรับ ข้าคือ Crusader.";
+			mes "ข้าเป็นผู้ที่เข้าร่วมสงตราม";
+			mes "กับเหล่าผู้กล้าทั้งหลาย";
+			next;
+			mes "[Gabriel Valentine]";
+			mes "ถ้าท่านสนใจจะเป็น Crusader,ท่านก็จะต้องเป็น Swordman มาก่อน...";
+			next;
+			mes "[Gabriel Valentine]";
+			mes "ที่ของเราคือ Prontera Central Palace, หากท่านมีเวลาก็เดินไปชมได้";
+			close;
+		}
+		mes "ยินดีต้อนรับ ข้าคือ Crusader.";
+		mes "ข้าเป็นผู้ที่เข้าร่วมสงตราม";
+		mes "กับเหล่าผู้กล้าทั้งหลาย";
+		next;
+		mes "[Gabriel Valentine]";
+		mes "หวังว่าท่านจะฝึกฝนตนเองอย่างดีในการรับมือสงครามที่กำลังจะเกิดขึ้น";
+		close;
+	}
+	else if(CRUS_Q == 0) {
+		mes "ยินดีต้อนรับ ข้าคือ Crusader.";
+		mes "ข้าเป็นผู้ที่เข้าร่วมสงตราม";
+		mes "กับเหล่าผู้กล้าทั้งหลาย";
+		next;
+		mes "[Gabriel Valentine]";
+		mes "หากท่านต้องการเป็น Crusader, โปรดไปคุยกับหัวหน้าที่ Prontera Central Palace.";
+		close;
+	}
+	else if((CRUS_Q == 6) || (CRUS_Q == 7)) {
+		if(CRUS_Q == 6) {
+			mes "ยินดีต้อนรับ";
+			mes "ท่านจะทำอย่างไร";
+			mes "ในการทดสอบที่เจ็บปวด?";
+			mes "ข้าจะสอนท่านในแบบทดสอบต่อไป";
+			next;
+			mes "[Gabriel Valentine]";
+			mes "ข้าคือ Gabriel Valentine. ข้าเป็นผู้ปกป้องโบสถ์แห่งเมือง Prontera";
+			next;
+			mes "[Gabriel Valentine]";
+			mes "ข้าจะสอนความรู้เกี่ยวกับการเป็น Crusader.";
+			mes "พวกเรามีความสามารถในการกวัดแกว่งดาบ";
+			next;
+			mes "[Gabriel Valentine]";
+			mes "ข้ามีคำถาม";
+			mes "จะถามท่าน 10 ข้อ";
+			mes "และเลือกคำตอบที่ถูกต้อง";
+			next;
+		}
+		else if(CRUS_Q == 7) {
+			mes "ยินดีต้อนรับ~";
+			mes "ท่านต้องการที่จะ";
+			mes "ทำแบบทดสอบอีกครั้ง?";
+			next;
+			mes "[Gabriel Valentine]";
+			mes "อีกครั้งหนึ่ง";
+			mes "ข้าจะถามท่าน 10 ข้อ";
+			mes "ตั้งใจฟังให้ดี";
+			mes "และเลือกคำตอบที่ถูก";
+			next;
+		}
+		set .@cru_m,rand(1,3);
+		if (.@cru_m == 1) {
+			mes "[Gabriel Valentine]";
+			mes "1. คุณสมบัติใดให้ประสิทธิผลสูงสุดเมื่อใช้สู้กับ Undead?";
+			next;
+			if (select("Neutral:Earth:Undead:Saint") == 4)
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "2. ถ้า Property ของมอนสเตอร์เป็น Undead Lv.2 และโจมตีด้วยอาวุธที่มีพลังของ Fire และ Saint แล้วค่าความแตกต่างในการโจมตีของอาวุธทั้งสองจะเป็นเท่าใด?";
+			next;
+			if (select("25 %:50 %:75 %:100 %") == 2)
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "3. ท่านไม่มีโอกาสได้รับสิ่งใดจากการสังหาร Evil Druid?";
+			next;
+			if (select("Monk Hat:Yggdrasil leaf:White Herb:Amulet ") == 1)
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "4. มอนสเตอร์ใดต่อไปนี้มีค่า Hp มากที่สุด?";
+			next;
+			if (select("Ghoul:Skeleton Prisoner:Wraith:Zombie Prisoner") == 4) 
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "5. มอนสเตอร์ตัวใดที่มีขนาดต่างจากพวก?";
+			next;
+			if (select("Wraith:Khalitzburg:Drake:Evil Druid") == 3)
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "6. การ์ดใดป้องกันการโจมตีของมอนสเตอร์ที่มีการโจมตี Propery Undead?";
+			next;
+			if (select("Orc Skeleton Card:Orc Zombie Card:Ghoul Card:Skel Worker Card") == 2)
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "7.ก่อนที่ Munak และ Bongun จะตาย ความสำพันธ์ของทั้งสองเป็นอย่างไร?";
+			next;
+			if (select("พี่ชายและน้องสาว:พี่ชายและเด็กสาวข้างบ้าน:ลูกพี่ลูกน้องและน้องสาว:คนแปลกหน้า") == 2)
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "8. เลือกมอนสเตอร์ที่ต่างจากพวก?";
+			next;
+			if (select("Soldier Skeleton:Orc Skeleton:Skeleton:Skel Worker") == 3)
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "9. โล่ที่ใส่การ์ด Munak จะมีชื่อว่าอะไร?";
+			next;
+			if (select("Atomic Shield:Amulet Shield:Hypnotic Shield:Homeroth Shield") == 2)
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "10. มอนสเตอร์ชนิดใดไม่ดรอป Memento?";
+			next;
+			if (select("Munak:Ghoul:Mummy:Soldier Skeleton") == 1)
+				set .@cru_t,.@cru_t+10;
+		}
+		else if (.@cru_m == 2) {
+			mes "[Gabriel Valentine]";
+			mes "1. ปีศาจชนิดใดที่มี Property ต่างไปจากพวก?";
+			next;
+			if (select("Carat:Wind Ghost:Isis:Wanderer") == 3)
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "2. ดาบใดที่ให้ประสิทธิผลมากที่สุดเมื่อใช้สู้กับมอนสเตอร์ Demon?";
+			next;
+			if (select("Decussate Tsurugi:Hollowed Tsurugi:Damned Tsurugi:Drowsy Tsurugi") == 1)
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "3. ไอเทมที่ไม่ได้มาจาก Dokebi?";
+			next;
+			if (select("Rough Elunium:Golden Hammer:Sword Mace:Mighty Staff") == 2)
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "4. มอนสเตอร์ Demon ตัวใดมีค่า Hp มากที่สุด?";
+			next;
+			if (select("Giearth:Magnolia:Dokebi:Marionette") == 4)
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "5. มอนสเตอร์ Demon ตัวใดที่มีขนาดต่างไปจากกลุ่ม?";
+			next;
+			if (select("Ghostring:Whisper:Deviruchi:Baphomet Junior") == 1)
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "6. โล่ใดลดการโจมตีจากมอนสเตอร์ Demon?";
+			next;
+			if (select("Satanic Shield:Shield from Hell:Amulet Shield:Excellent Shield") == 2)
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "7. โจมตีมอนสเตอร์ Wind Ghost ด้วย Property ใดจึงจะให้ประสิทธิผลมากที่สุด?";
+			next;
+			if (select("Water:Earth:Fire:Wind") == 2)
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "8. มอนสเตอร์ Demon ใดที่ต่างไปจากกลุ่ม?";
+			next;
+			if (select("Sohee:Isis:Dokebi:Whisper") == 4)
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "9. Marionette Card ให้ผลอย่างไร?";
+			next;
+			if (select("ลดพลังโจมตี 30 % จาก Shadow:ลดพลังโจมตี 30 % จาก poison:ลดพลังโจมตี 30 % จาก Property Spiritual:ลดพลังโจมตี 30% จาก Property Neutral") == 3)
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "10. การทำสิ่งใดเป็นดีที่สุดเมื่อเผชิญหน้ากับมอนสเตอร์ Demon?";
+			next;
+			if (select("Scream, 'ไปให้พ้นเจ้า Demon!':แกล้งตาย:รด Holy Water ลงบนอาวุธและโจมตีพวกมัน:ใส่หมวก Deviruchi hat.") == 3)
+				set .@cru_t,.@cru_t+10;
+		}
+		else {
+			mes "[Gabriel Valentine]";
+			mes "1. ต้องมีทักษะ 'Divine Protection' เลเวลเท่าใดจึงจะสามารถศึกษา 'Demon Bane' ได้";
+			next;
+			if (select("Level 1:Level 2:Level 3:Level 4") == 3)
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "2. ถ้าท่านมี Base Lv. 55 และ Int 30 รวมถึงค่าที่บวกเข้ามาด้วย และร่ายเวท Heal เลเวล 5 จะสามารถฟื้นค่า Hp ได้เท่าไร?";
+			next;
+			if (select("396:440:484:528") == 2)
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "3. ถ้ามี Devine Protection เลเวล 7 ค่าการป้องกันจะเพิ่มขึ้นเท่าใดเมื่อสู้กับ Monster Undead?";
+			next;
+			if (select("21:22:23:24") == 1)
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "4. หอกใดที่สามารถสังหาร Nightmare (Property Spiritual)?";
+			next;
+			if (select("Lance:Bill Guisarme:Cresent scythe:Zephyrus") == 4)
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "5. Priest ต้องมีทักษา Heal เลเวลใดจึงจะสามารถศึกษา Cure ได้?'";
+			next;
+			if (select("Level 1:Level 2:Level 3:Level 4") == 2)
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "6. ความเร็วในการโจมตีของ Knight จะเป็นเท่าใดหากเขาศึกษา Cavalier Mastery Level 3 ?";
+			next;
+			if (select("70 % ของความเร็วปกติ:80 % ของความเร็วปกติ:90 % ของความเร็วปกติ:100 % ของความเร็วปกติ") == 2)
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "7. ข้อใดอธิบายความหมายของ Demon Bane ผิด ?";
+			next;
+			if (select("เพิ่มพลังโจมตี Undead:ทักษะของ Acolytes เท่านั้น:เพิ่มพลังโจมตี + 30 เมื่อเรียนรู้:Passive Skill") == 2)
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "8. Heal เลเวล 7 ใช้ SP เท่าใด ?";
+			next;
+			if (select("30:31:33:35") == 2)
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "9. Cure ไม่สามารถเยียวยาสถานะใดได้ ?";
+			next;
+			if (select("Curse:Silence:Chaos:Blind") == 1)
+				set .@cru_t,.@cru_t+10;
+
+			mes "[Gabriel Valentine]";
+			mes "10. Crusader คืออะไร ?";
+			next;
+			if (select("ผู้เตรียมพร้อมสำหรับการแต่งงาน:ผู้เตรียมการทำสงครามศักสิทธิ์:ผู้เตรียมการทำบัตรประชาชน:ผู้เตรียมการปรุงยา") == 2)
+				set .@cru_t,.@cru_t+10;
+
+		}
+		mes "[Gabriel Valentine]";
+		mes "เยี่ยมมาก ~";
+		mes "ต่อไป..";
+		mes "ขอข้าดูผลการทดสอบหน่อย";
+		next;
+		mes "[Gabriel Valentine]";
+		mes " " + strcharinfo(0) + "คะแนนของท่าน";
+		mes "คือ " + .@cru_t + " คะแนน...";
+		if(.@cru_t == 100) {
+			set CRUS_Q, 8;
+			changequest 3011,3013;
+			mes "สุดยอดไปเลย!!!";
+			mes "ท่านผ่านแบบทดสอบแล้ว";
+			next;
+			mes "[Gabriel Valentine]";
+			mes "ไปที่ Prontera Castle";
+			mes "และพบ Bliant Piyord.";
+			mes "เขาจะให้ท่าน";
+			mes "ได้ทำแบบทดสอบต่อไป";
+			close;
+		}
+		else if(.@cru_t == 90) {
+			set CRUS_Q, 8;
+			changequest 3011,3013;
+			mes "ไม่เลว..";
+			mes "ท่านผ่านแบบทดสอบแล้ว";
+			next;
+			mes "[Gabriel Valentine]";
+			mes "ไปที่ Prontera Castle";
+			mes "และพบ Bliant Piyord.";
+			mes "เขาจะให้ท่าน";
+			mes "ได้ทำแบบทดสอบต่อไป";
+			close;
+		}
+		else if (.@cru_t == 80 && CRUS_Q == 7) {
+			set CRUS_Q,8;
+			changequest 3011,3013;
+			mes "ดูเหมือนว่าท่านเตรียมตัวมาดี";
+			mes "ดังนั้นข้าจะให้ท่านผ่าน";
+			next;
+			mes "[Gabriel Valentine]";
+			mes "รีบไปที่ Prontera Castle และพบกับ Bliant Piyord.";
+			mes "เพื่อทำแบบทดสอบต่อไป";
+			close;
+		}
+		set CRUS_Q,7;
+		if(checkquest(3011) != -1) {
+			changequest 3011,3012;
+		}
+		mes "ฮืม..น่าเสียดาย";
+		mes "ไปเรียนเพิ่ม";
+		mes "และทดสอบใหม่อีกครั้ง OK?";
+		next;
+		mes "[Gabriel Valentine]";
+		mes "ไม่ต้องเครียด ข้าเข้าใจว่ามันยาก จงไปอ่านมาใหม่ ข้าจะรอท่านอยู่ที่นี่";
+		close;
+	} 
+	else if(CRUS_Q == 8 || CRUS_Q == 9) {
+		mes "เหมือนว่าข้าบอกท่านให้ไปที่ Prontera Castle และพบกับ Bliant Piyord เพื่อทำแบบทดสอบต่อไป ขอให้โชคดี ";
+		close;
+	}
+	else if(CRUS_Q == 10) {
+		mes "ท่านรออะไรอยู่ล่ะ ไปพบกับหัวหน้าสิ แล้วขอให้เขาเปลี่ยนท่าน";
+		next;
+		mes "[Gabriel Valentine]";
+		mes "ตอนนี้ท่านมีคุณสมบัติพร้อมแล้วที่จะเป็น Crusader";
+		close;
+	}
+	mes "อืมมม...?";
+	mes "ดูเหมือนว่าท่านกำลัง";
+	mes "ต้องการที่จะเป็น Crusader...";
+	mes "แต่ตอนนี้เป็นเวลา";
+	mes "สำหรับการทดสอบของข้า";
+	next;
+	mes "[Gabriel Valentine]";
+	mes "โปรดทำแบบทดสอบก่อน";
+	mes "และกลับมาหาข้า";
+	mes "แล้วพบกัน~";
+	close;
+}
+
+//===================== Crusader: 4th Purification Test =====================================================
+prt_castle,35,151,5	script	Patron Knight	751,{
+	mes "[Bliant Piyord]";
+	mes "ยินดีต้อนรับ";
+	if(BaseJob != Job_Swordman) {
+		if(BaseJob == Job_Crusader) {
+			mes "เป็นยังไงบ้าง";
+			mes "การทดสอบของท่าน?";
+			next;
+			mes "[Bliant Piyord]";
+			mes "พัฒนาตนเองเพื่อที่จะเป็น Crusader";
+			close;
+		}
+		else if(BaseJob == Job_Novice) {
+			mes "พวกข้า Crusaders,";
+			mes "นักรบกล้าแห่ง Prontera";
+			next;
+			mes "[Bliant Piyord]";
+			mes "ท่านสนใจ";
+			mes "ที่จะเป็น Crusader?";
+			mes "พวกเรากำลังรอท่านอยู่";
+			mes "ไม่ว่าท่านจะเป็นบุรุษกล้า";
+			mes "หรือสตรีที่กล้าหาญ";
+			next;
+			mes "[Bliant Piyord]";
+			mes "เรียนรู้ทักษะของ Swordman ในการต่อสู้ และกลับมาหาข้าอีกครั้ง";
+			close;
+		}
+		mes "พวกเรา Crusaders,";
+		mes "นักรบกล้าที่เตรียมรับมือกับสงครามศักสิทธิ์ที่กำลังจะเกิดขึ้น";
+		next;
+		mes "[Bliant Piyord]";
+		mes "แม้ในยามสงบนี้ เราก็จะต้องเตรียมรับมือกับสงครามให้พร้อมทุกเมื่อ...";
+		close;
+	}
+	else if(CRUS_Q == 0) {
+		mes "พวกเรา Crusaders,";
+		mes "พวกเราเตรียมรับมือกับสงครามที่กำลังจะเกิดขึ้น";
+		next;
+		mes "[Bliant Piyord]";
+		mes "ท่านสนใจ";
+		mes "ที่จะเป็น Crusader?";
+		mes "พวกเรากำลังรอท่านอยู่";
+		mes "ไม่ว่าท่านจะเป็นบุรุษกล้า";
+		mes "หรือสตรีที่กล้าหาญ";
+		next;
+		mes "[Bliant Piyord]";
+		mes "หากท่านต้องการจะเป็น Crusader จงเรียนรู้ทักษะของ Swordman อย่างน้อย Lv40 และจงไปพบกับหัวหน้าของข้า";
+		next;
+		mes "[Bliant Piyord]";
+		mes "หวังว่า";
+		mes "หัวหน้าจะช่วยท่าน...";
+		close;
+	}
+	else if(CRUS_Q == 8 || CRUS_Q == 9) {
+		if (CRUS_Q == 8) {
+			mes "เยี่ยมเลย";
+			mes "ยินดีที่พบท่าน";
+			mes "นี่คือ";
+			mes "แบบทดสอบสุดท้าย";
+			next;
+			mes "[Bliant Piyord]";
+			mes "My name is Bliant Piyord and I too, am preparing for the Holy War. It must've been quite a hassle to come all this way.";
+			next;
+			mes "[Bliant Piyord]";
+			mes "This test will gauge your skills in battle. Only those with great fighting ability can become Crusaders.";
+			next;
+			mes "[Bliant Piyord]";
+			mes "To take the battle test, bring";
+			mes "1 ^3355FFHoly Water^000000. This will be used to purify you prior to taking the test.";
+			if(checkquest(3013) != -1) {
+				changequest 3013,3014;
+			}
+			next;
+			mes "[Bliant Piyord]";
+			mes "Well then...";
+			mes "Shall we";
+			mes "begin right away?";
+			mes "Or do you need time";
+			mes "to prepare yourself?";
+		}
+		else {
+			mes "Are you prepared";
+			mes "for the test now?";
+			next;
+			mes "[Bliant Piyord]";
+			mes "Would you like to begin now, or do you still need time to make preparations?";
+		}
+		next;
+		if (select("I would like to begin.:Give me some time to prepare.") == 1) {
+			if(getequipid(7) != 2608 && getequipid(8) != 2608) {
+				mes "[Bliant Piyord]";
+				mes "Just a second, you do not have a Rosary equipped. As a Crusader, you must always have a Rosary on your person.";
+				next;
+				mes "[Bliant Piyord]";
+				mes "Come back and take";
+				mes "the test after you";
+				mes "have a Rosary.";
+				close;
+			}
+			else if(countitem(523) < 1) {
+				mes "[Bliant Piyord]";
+				mes "For the battle test, please prepare one ^3355FFHoly water^000000.";
+				mes "I told you just to purify the candidates.";
+				next;
+				mes "[Bliant Piyord]";
+				mes "Get prepares and come back to here.";
+				mes "I will wait for you.";
+				close;
+			}
+			delitem 523, 1; //Holy Water
+			mes "[Bliant Piyord]";
+			mes "Then, I'll start";
+			mes "the test. You will";
+			mes "be purified with the";
+			mes "Holy Water you prepared.";
+			next;
+			mes "[Bliant Piyord]";
+			mes "...............";
+			next;
+			mes "[Bliant Piyord]";
+			mes "Let's begin.";
+			mes "Go and enter";
+			mes "the waiting room.";
+			mes "Defeat the monsters";
+			mes "that appear in";
+			mes "the 4 stages.";
+			close2;
+			warp "job_cru",24,169;
+			end;
+		}
+		mes "[Bliant Piyord]";
+		mes "Prepare 1 ^3355FFHoly Water^000000 to take the battle test. As I've said, it will be used to purify you prior to taking the test.";
+		next;
+		mes "[Bliant Piyord]";
+		mes "Come back and take";
+		mes "the test after you";
+		mes "have prepared";
+		mes "1 Holy Water.";
+		mes "I shall be";
+		mes "waiting.";
+		close;
+	} 
+	else if(CRUS_Q == 10) {
+		mes "Congratulations.";
+		mes "You have completed";
+		mes "all the tests to";
+		mes "become a Crusader.";
+		next;
+		mes "[Bliant Piyord]";
+		mes "Go talk to our";
+		mes "leader inside.";
+		mes "We welcome you into";
+		mes "the ranks of those";
+		mes "preparing for the";
+		mes "coming Holy War.";
+		close;
+	}
+	mes "Are you not one of the ones in the process of becoming a Crusader?";
+	next;
+	mes "[Bliant Piyord]";
+	mes "It's not your turn";
+	mes "to take my test yet.";
+	mes "Come back after taking";
+	mes "all the other tests.";
+	next;
+	mes "[Bliant Piyord]";
+	mes "I'll see you soon.";
+	mes "May Odin's blessings";
+	mes "be with you.";
+	close;
+}
+
+
+
+//=== Actual tests ========================================
+//=== Endurance Test ======================================
+job_cru,1,1,1	script	Summoner#cr1	-1,{
+OnTimer300000:
+	donpcevent "Summoner#cr1::OnReset";
 	end;
-OnTouch_:
+
+OnTimer300500:
+	donpcevent "Summoner#cr1::OnEnd";
+	end;
+
+OnTimer301000:
+	donpcevent "Summoner#cr1::OnStart";
+	stopnpctimer;
+	end;
+
+OnInit:
+	enablenpc "Summoner#cr1";
+	monster "job_cru",94,45,"Mandragora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",94,55,"Mandragora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",94,65,"Mandragora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",94,75,"Mandragora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",94,85,"Mandragora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",94,95,"Mandragora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",101,45,"Mandragora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",101,55,"Mandragora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",101,65,"Mandragora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",101,75,"Mandragora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",101,85,"Mandragora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",101,95,"Mandragora",1020,1,"Summoner#cr1::OnDead";
+	initnpctimer;
+	end;
+
+OnStart:
+	enablenpc "Summoner#cr1";
+	monster "job_cru",94,45,"Mandragora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",94,55,"Mandragora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",94,65,"Mandragora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",94,75,"Mandragora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",94,85,"Mandragora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",94,95,"Mandragora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",101,45,"Mandragora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",101,55,"Mandragora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",101,65,"Mandragora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",101,75,"Mandragora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",101,85,"Mandragora",1020,1,"Summoner#cr1::OnDead";
+	monster "job_cru",101,95,"Mandragora",1020,1,"Summoner#cr1::OnDead";
+	initnpctimer;
+	end;
+
+OnReset:
+	killmonster "job_cru","Summoner#cr1::OnDead";
+	end;
+
+OnEnd:
+	disablenpc "Summoner#cr1";
+	end;
+
+OnDead:
+	warp "prt_fild05",353,251;
+	end;
+}
+
+job_cru,1,2,1	script	Summoner#cr2	-1,{
+OnTimer345000:
+	donpcevent "Summoner#cr2::OnReset";
+	end;
+
+OnTimer345500:
+	donpcevent "Summoner#cr2::OnEnd";
+	end;
+
+OnTimer346000:
+	donpcevent "Summoner#cr2::OnStart";
+	stopnpctimer;
+	end;
+
+OnInit:
+	enablenpc "Summoner#cr2";
+	monster "job_cru",98,50,"Flora",1118,1,"Summoner#cr2::OnDead";
+	monster "job_cru",92,60,"Flora",1118,1,"Summoner#cr2::OnDead";
+	monster "job_cru",104,60,"Flora",1118,1,"Summoner#cr2::OnDead";
+	monster "job_cru",98,70,"Flora",1118,1,"Summoner#cr2::OnDead";
+	monster "job_cru",92,80,"Flora",1118,1,"Summoner#cr2::OnDead";
+	monster "job_cru",104,90,"Flora",1118,1,"Summoner#cr2::OnDead";
+	monster "job_cru",98,90,"Flora",1118,1,"Summoner#cr2::OnDead";
+	initnpctimer;
+	end;
+
+OnStart:
+	enablenpc "Summoner#cr2";
+	monster "job_cru",98,50,"Flora",1118,1,"Summoner#cr2::OnDead";
+	monster "job_cru",92,60,"Flora",1118,1,"Summoner#cr2::OnDead";
+	monster "job_cru",104,60,"Flora",1118,1,"Summoner#cr2::OnDead";
+	monster "job_cru",98,70,"Flora",1118,1,"Summoner#cr2::OnDead";
+	monster "job_cru",92,80,"Flora",1118,1,"Summoner#cr2::OnDead";
+	monster "job_cru",104,90,"Flora",1118,1,"Summoner#cr2::OnDead";
+	monster "job_cru",98,90,"Flora",1118,1,"Summoner#cr2::OnDead";
+	initnpctimer;
+	end;
+
+OnReset:
+	killmonster "job_cru","Summoner#cr2::OnDead";
+	end;
+
+OnEnd:
+	disablenpc "Summoner#cr2";
+	end;
+
+OnDead:
+	warp "prt_fild05",353,251;
+	end;
+}
+
+job_cru,1,3,1	script	Summoner#cr3	-1,{
+OnTimer345000:
+	donpcevent "Summoner#cr3::OnReset";
+	end;
+
+OnTimer345500:
+	donpcevent "Summoner#cr3::OnEnd";
+	end;
+
+OnTimer346000:
+	donpcevent "Summoner#cr3::OnStart";
+	stopnpctimer;
+	end;
+
+OnInit:
+	enablenpc "Summoner#cr3";
+	monster "job_cru",92,50,"Greatest General",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",104,50,"Greatest General",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",98,50,"Greatest General",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",92,70,"Greatest General",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",104,70,"Greatest General",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",98,80,"Greatest General",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",92,90,"Greatest General",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",104,90,"Greatest General",1277,1,"Summoner#cr3::OnDead";
+	Initnpctimer;
+	end;
+
+OnStart:
+	enablenpc "Summoner#cr3";
+	monster "job_cru",92,50,"Greatest General",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",104,50,"Greatest General",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",98,50,"Greatest General",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",92,70,"Greatest General",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",104,70,"Greatest General",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",98,80,"Greatest General",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",92,90,"Greatest General",1277,1,"Summoner#cr3::OnDead";
+	monster "job_cru",104,90,"Greatest General",1277,1,"Summoner#cr3::OnDead";
+	Initnpctimer;
+	end;
+
+OnReset:
+	killmonster "job_cru","Summoner#cr3::OnDead";
+	end;
+
+OnEnd:
+	disablenpc "Summoner#cr3";
+	end;
+
+OnDead:
+	warp "prt_fild05",353,251;
+	end;
+}
+
+job_cru,1,4,1	script	Summoner#cr4	-1,{
+OnTimer345000:
+	donpcevent "Summoner#cr4::OnReset";
+	end;
+
+OnTimer345500:
+	donpcevent "Summoner#cr4::OnEnd";
+	end;
+
+OnTimer346000:
+	donpcevent "Summoner#cr4::OnStart";
+	stopnpctimer;
+	end;
+
+OnInit:
+	enablenpc "Summoner#cr4";
+	monster "job_cru",98,50,"Familiar",1005,1,"Summoner#cr3::OnDead";
+	monster "job_cru",98,55,"Familiar",1005,1,"Summoner#cr3::OnDead";
+	monster "job_cru",98,60,"Familiar",1005,1,"Summoner#cr3::OnDead";
+	monster "job_cru",98,65,"Familiar",1005,1,"Summoner#cr3::OnDead";
+	monster "job_cru",98,70,"Familiar",1005,1,"Summoner#cr3::OnDead";
+	monster "job_cru",98,75,"Familiar",1005,1,"Summoner#cr3::OnDead";
+	monster "job_cru",98,80,"Familiar",1005,1,"Summoner#cr3::OnDead";
+	monster "job_cru",98,85,"Familiar",1005,1,"Summoner#cr3::OnDead";
+	monster "job_cru",98,90,"Familiar",1005,1,"Summoner#cr3::OnDead";
+	monster "job_cru",90,34,"Mushroom",1182,1,"Summoner#cr3::OnDead";
+	monster "job_cru",105,34,"Mushroom",1182,1,"Summoner#cr3::OnDead";
+	initnpctimer;
+	end;
+
+OnStart:
+	enablenpc "Summoner#cr4";
+	monster "job_cru",98,50,"Familiar",1005,1,"Summoner#cr3::OnDead";
+	monster "job_cru",98,55,"Familiar",1005,1,"Summoner#cr3::OnDead";
+	monster "job_cru",98,60,"Familiar",1005,1,"Summoner#cr3::OnDead";
+	monster "job_cru",98,65,"Familiar",1005,1,"Summoner#cr3::OnDead";
+	monster "job_cru",98,70,"Familiar",1005,1,"Summoner#cr3::OnDead";
+	monster "job_cru",98,75,"Familiar",1005,1,"Summoner#cr3::OnDead";
+	monster "job_cru",98,80,"Familiar",1005,1,"Summoner#cr3::OnDead";
+	monster "job_cru",98,85,"Familiar",1005,1,"Summoner#cr3::OnDead";
+	monster "job_cru",98,90,"Familiar",1005,1,"Summoner#cr3::OnDead";
+	monster "job_cru",90,34,"Mushroom",1182,1,"Summoner#cr3::OnDead";
+	monster "job_cru",105,34,"Mushroom",1182,1,"Summoner#cr3::OnDead";
+	initnpctimer;
+	end;
+
+OnReset:
+	killmonster "job_cru","Summoner#cr4::OnDead";
+	end;
+
+OnEnd:
+	disablenpc "Summoner#cr4";
+	end;
+
+OnDead:
+	warp "prt_fild05",353,251;
+	end;
+}
+
+
+job_cru,98,105,4	script	 Summoner#cr5	45,3,3,{
+OnTouch:
 	set CRUS_Q,6;
 	changequest 3010,3011;
 	warp "prt_castle",164,28;
 	end;
 }
 
-//----------------------------------------------------------------------------
-// Purification Test
-//----------------------------------------------------------------------------
-job_cru,168,180,4	script	Monster Summon#cr5	WARPNPC,3,3,{
+//=== Purification Test ===================================
+job_cru,24,187,4	script	Patron Knight#2	751,{
+	mes "[Bliant Piyord]";
+	mes "Welcome.";
+	mes "You will take";
+	mes "the last test here.";
+	mes "If you are ready for";
+	mes "the test, enter the";
+	mes "waiting room.";
+	next;
+	mes "[Bliant Piyord]";
+	mes "Only one person can take the test at a time. If someone else is already testing, please wait until the testing area is made available once again.";
+	next;
+	mes "[Bliant Piyord]";
+	mes "Each person will get 4 minutes to complete the test. If you wish to leave in the middle of the test, please disconnect from the game.";
+	close;
+}
+
+job_cru,24,187,2	script	Waiting Room#cr1	700,{
 	end;
+
+OnInit:
+	disablenpc "Waiting Room#cr1";
+	waitingroom "Waiting Room",50,"Waiting Room#cr1::OnStartArena",1;
+	enablewaitingroomevent;
+	end;
+
+OnStartArena:
+	warpwaitingpc "job_cru",168,17;
+	donpcevent "Monster Summon#cr0::OnStart";
+	disablewaitingroomevent;
+	close;
+
+OnStart:
+	enablewaitingroomevent;
+	close;
+}
+
+job_cru,168,17,0	script	Zombie Guide	-1,2,2,{
+OnTouch:
+	mes "[Bliant Piyord]";
+	mes "ในขณะที่ท่านเดินหน้าไป";
+	mes "ท่านต้องสังหารมอนเตอร์ทั้งหมด";
+	mes "ถ้าท่านปล่อยมอนเตอร์ให้รอดไปแม่แต่ตัวเดียว";
+	mes "ท่านจะไม่ผ่าน";
+	next;
+	mes "[Bliant Piyord]";
+	mes "มึงมีเวลา";
+	mes "4นาที";
+	mes "ขอให้คุณตั้งใจและทำมันให้ดีที่สุด...";
+	close;
+}
+
+job_cru,2,1,1	script	Monster Summon#cr0	-1,{
+OnInit:
+	disablenpc "Monster Summon#cr0";
+	end;
+
+OnStart:
+	set .MyMonsterCount,0;
+	enablenpc "Monster Summon#cr0";
+	donpcevent "Monster Summon#cr1::OnStart";
+	donpcevent "Monster Summon#cr2::OnStart";
+	donpcevent "Monster Summon#cr3::OnStart";
+	donpcevent "Monster Summon#cr4::OnStart";
+	donpcevent "Monster Summon#cr6::OnStart";
+	end;
+
+OnMonster1:
+	monster "job_cru",168,45,"Zombie",1015,1,"Monster Summon#cr0::OnDead";
+	monster "job_cru",168,45,"Zombie",1015,1,"Monster Summon#cr0::OnDead";
+	monster "job_cru",168,45,"Zombie",1015,1,"Monster Summon#cr0::OnDead";
+	monster "job_cru",168,45,"Zombie",1015,1,"Monster Summon#cr0::OnDead";
+	monster "job_cru",168,45,"Zombie",1015,1,"Monster Summon#cr0::OnDead";
+	monster "job_cru",168,45,"Zombie",1015,1,"Monster Summon#cr0::OnDead";
+	end;
+
+OnMonster2:
+	monster "job_cru",168,80,"Soldier Skeleton",1028,1,"Monster Summon#cr0::OnDead";
+	monster "job_cru",168,80,"Soldier Skeleton",1028,1,"Monster Summon#cr0::OnDead";
+	monster "job_cru",168,80,"Soldier Skeleton",1028,1,"Monster Summon#cr0::OnDead";
+	end;
+
+OnMonster3:
+	monster "job_cru",168,110,"Archer Skeleton",1016,1,"Monster Summon#cr0::OnDead";
+	monster "job_cru",168,115,"Mummy",1041,1,"Monster Summon#cr0::OnDead";
+	end;
+
+OnDead:
+	set .MyMonsterCount,.MyMonsterCount+1;
+	if (.MyMonsterCount >= 10) {
+		set CRUS_Q,10;
+		changequest 3014,3015;
+	}
+	end;
+
+OnEnd:
+	disablenpc "Monster Summon#cr0";
+	end;
+
+OnReset:
+	killmonster "job_cru","Monster Summon#cr0::OnDead";
+	end;
+}
+
+job_cru,168,45,0	script	Monster Summon#cr1	-1,15,1,{
+OnInit:
+	disablenpc "Monster Summon#cr1";
+	end;
+
+OnTouch:
+	donpcevent "Monster Summon#cr0::OnMonster1";
+	donpcevent "Monster Summon#cr1::OnEnd";
+	end;
+
+OnStart:
+	enablenpc "Monster Summon#cr1";
+	end;
+
+OnEnd:
+	disablenpc "Monster Summon#cr1";
+	end;
+}
+
+job_cru,168,80,0	script	Monster Summon#cr2	-1,15,1,{
+OnInit:
+	disablenpc "Monster Summon#cr2";
+	end;
+
+OnTouch:
+	donpcevent "Monster Summon#cr0::OnMonster2";
+	donpcevent "Monster Summon#cr2::OnEnd";
+	end;
+
+OnStart:
+	enablenpc "Monster Summon#cr2";
+	end;
+
+OnEnd:
+	disablenpc "Monster Summon#cr2";
+	end;
+}
+
+job_cru,165,115,0	script	Monster Summon#cr3	-1,15,1,{
+OnInit:
+	disablenpc "Monster Summon#cr3";
+	end;
+
+OnTouch:
+	donpcevent "Monster Summon#cr0::OnMonster3";
+	donpcevent "Monster Summon#cr3::OnEnd";
+	end;
+
+OnStart:
+	enablenpc "Monster Summon#cr3";
+	end;
+
+OnEnd:
+	disablenpc "Monster Summon#cr3";
+	end;
+}
+
+job_cru,168,150,0	script	Monster Summon#cr4	-1,15,1,{
+OnInit:
+	disablenpc "Monster Summon#cr4";
+	end;
+
+OnTouch:
+	monster "job_cru",168,150,strcharinfo(0),1036,1,"Monster Summon#cr4-a::OnDead";
+	donpcevent "Monster Summon#cr4::OnEnd";
+	end;
+
+OnDead:
+	donpcevent "Monster Summon#cr5::OnStart";
+	end;
+
+OnStart:
+	enablenpc "Monster Summon#cr4";
+	end;
+
+OnReset:
+	killmonster "job_cru","Monster Summon#cr4-a::OnDead";
+	end;
+
+OnEnd:
+	disablenpc "Monster Summon#cr4";
+	end;
+
+}
+
+job_cru,168,150,0	script	Monster Summon#cr4-a	-1,{
+OnDead:
+	donpcevent "Monster Summon#cr5::OnStart";
+	end;
+}
+
+job_cru,168,180,4	script	Monster Summon#cr5	45,3,3,{
 OnInit:
 	disablenpc "Monster Summon#cr5";
 	end;
 
-OnTouch_:
+OnTouch:
 	warp "prt_castle",35,147;
 	donpcevent "Monster Summon#cr0::OnReset";
 	donpcevent "Monster Summon#cr4::OnReset";
@@ -61,5 +1450,36 @@ OnStart:
 
 OnEnd:
 	disablenpc "Monster Summon#cr5";
+	end;
+}
+
+job_cru,2,2,1	script	Monster Summon#cr6	-1,{
+OnTimer241000:
+	areawarp "job_cru",160,14,175,178,"job_cru",24,169;
+	donpcevent "Monster Summon#cr0::OnReset";
+	donpcevent "Monster Summon#cr4::OnReset";
+	donpcevent "Monster Summon#cr0::OnEnd";
+	donpcevent "Monster Summon#cr4::OnEnd";
+	donpcevent "Monster Summon#cr5::OnEnd";
+	donpcevent "Monster Summon#cr6::OnStop";
+	donpcevent "Monster Summon#cr6::OnEnd";
+	donpcevent "Waiting Room#cr1::OnStart";
+	end;
+
+OnInit:
+	disablenpc "Monster Summon#cr6";
+	end;
+
+OnStart:
+	enablenpc "Monster Summon#cr6";
+	initnpctimer;
+	end;
+
+OnEnd:
+	disablenpc "Monster Summon#cr6";
+	end;
+
+OnStop:
+	stopnpctimer;
 	end;
 }

@@ -1,43 +1,341 @@
-//===== rAthena Script ======================================= 
-//= Alberta Town Pre-Renewal
-//===== By: ================================================== 
-//= Euphy
-//===== Current Version: ===================================== 
-//= 1.0
-//===== Compatible With: ===================================== 
-//= rAthena Project
-//===== Description: ========================================= 
-//= [Official Conversion]
-//= Alberta town NPCs.
-//===== Additional Comments: ================================= 
-//= 1.0 First Version.
-//============================================================
+// Young Man -----------------------------------------------------------
+alberta_in,20,183,6	script	Young Man	49,{
+	mes "[Merchant]";
+	mes "มีข่าวลือว่า ^0000ffGungnir^000000, คือตำนาน และ เป็นสิ่งที่มหัศจรรย์.";
+	close;
+}
 
-// cities/amatsu.txt
-//============================================================
-alberta,245,93,3	duplicate(Sea_Captain_amatsu)	Sea Captain#ama1	709
+// Merchant -------------------------------------------------
+alberta,97,51,7	script	Merchant#01	84,{
+	mes "[Merchant]";
+	mes "เมื่อเดินทางและผจนภัยไปหลายสถานที่ จะพบเจอกับข่าวลือต่างๆนาๆ.";
+	next;
+	mes "[Merchant]";
+	mes "ว่ามอนสเตอร์เกือบทุกชนิด มีการ์ด ที่จะเพิ่มความสามารถให้ไอเทม.";
+	mes "เพราะการ์ดเหล่านั้น มีสิ่งเร้นลับซ่อนอยู่ภายใน...";
+	next;
+	mes "[Merchant]";
+	mes "เจ้าคงไม่เชื่อสนะ."; 
+	close;
+}
 
-// cities/ayothaya.txt
-//============================================================
-alberta,247,42,3	duplicate(Aibakthing_ayothaya)	Aibakthing#ayo	843
+// Merchant ---------------------------------------------------------
+alberta,53,39,8	script	Merchant#02	74,{
+	mes "[Merchant]";
+	mes "ยินดีต้อนรับสู่ Alberta.";
+	emotion 0;
+	next;
+	mes "[Merchant]";
+	mes "ข้ามีความคิดดีๆเกี่ยวกับธุรกิจของข้า.";
+	next;
+	mes "[Merchant]";
+	mes "ข้าเคยได้ยินว่า Geffen มีร้านขายชุดเกราะที่สามารถป้องกันเวทมนตร์.";
+	mes "และมีราคาต้นทุนที่ต่ำ";
+	next;
+	mes "[Merchant]";
+	mes "มันช่างน่าสนใจจริงๆ";
+	emotion 8;
+	close;
+}
 
-// cities/gonryun.txt
-//============================================================
-alberta,245,69,3	duplicate(Kunlun_Envoy_gonryun)	Kunlun Envoy#gon	776
+// Merchant -------------------------------------------------
+alberta,58,80,8	script	Merchant#03	99,{
+	set @TEMP,0;
+	mes "[Merchant]";
+	set @TEMP,rand(2);
+	if(@TEMP == 1) goto R_1;
 
-// cities/louyang.txt
-//============================================================
-alberta,245,45,3	duplicate(Girl_louyang)	Girl#0lou	815
+	R_0:
+		mes "ร้านค้าที่เปิดร้านขายตามทางทั่วไป พวกเขาใช้ทักษะ ^0000ffDiscount skill^000000 เพื่อซื้อไอเทมที่ราคาถูกลงมามาก.";
+		next;
+		mes "[Merchant]";
+		mes "และพวกเขาใช้รถเข็นเพื่อบรรทุกไอเทม.";
+		mes "เพื่อออกขายได้อย่างสะดวกสบาย.";
+		close;
+	R_1:
+		mes "พ่อค้าสามารถขายไอเทมได้ในราคาแพงขึ้น โดยใช้ทักษะ ^ff0000Overcharge^000000.";
+		next;
+		mes "[Merchant]";
+		mes "สามารถขายไอเทมได้มากขึ้นสูงสุด 24%, หากเจ้ามีทักษะที่ข้าบอก เจ้าจะรวยได้ไม่ยาก!!";
+		close;
+}
 
-// cities/moscovia.txt
-//============================================================
-alberta,245,66,4	duplicate(PR_Officer_moscovia)	Moscovia P.R. Officer#1	960
+// Phina -------------------------------------------------------
+alberta,62,156,2	script	Phina	102,{
+	
+	set @TEMP,3;
+	set @TEMP,rand(3);
 
-// quests/quests_alberta.txt
-//============================================================
-alberta,247,122,4	duplicate(Sailor_alberta)	Sailor#tur	709
-alberta,248,89,4	duplicate(Turtle_Scholar_alberta)	Turtle Island Scholar	121
+	mes "[Phina]";
 
-// quests/skills/merchant_skills.txt
-//============================================================
-alberta,232,106,6	duplicate(Gershaun_alberta)	Gershaun	57
+	if(@TEMP == 2) goto R_2;
+	if(@TEMP == 1) goto R_1;
+	if(@TEMP == 0) goto R_0;
+
+	R_2:
+		mes "วันหนึ่ง ข้าได้เดินไปที่ทุ่งหญ้าสีเขียว ที่สวยงาม.";
+		next;
+		mes "[Phina]";
+		mes "มันช่างน่าหลงไหล และ น่าสัมผัส.";
+		next;
+		mes "[Phina]";
+		mes "แต่ทันใดนั้น ข้ารู้สึกว่ามีอะไรมาโดนที่ตัวข้า.";
+		emotion 0;
+		next;
+		mes "[Phina]";
+		mes "มันคือมอนสเตอร์ที่อันตรายและมักรอบทำร้ายคน.";
+		close;
+
+	R_1:
+		mes "ป่าที่เชื่อมต่อระหว่าง Alberta และ Payon?";
+		mes "ที่นั้นมีแผนที่ ที่มีแมลงส่งเสียงดัง.";
+		next;
+		mes "[Phina]";
+		mes "และทันใดนั้น ข้าโยนกิ่งไม้ใส่แมลงเหล่านั้น!";
+		next;
+		mes "[Phina]";
+		mes "และข้าต้องหลบหนีพวกมัน เมื่อพวกมันได้มาโจมตีข้า.";
+		emotion 16;
+		next;
+		mes "[Phina]";
+		mes "ข้าทำให้มันโกรธและข้าโดนแมลงเหล่านั้นจู่โจมจนข้าบาดเจ็บ.";
+		close;
+
+	R_0:
+    		mes "เจ้าอย่าไปกระทำใครก่อน ไม่งั้นเจ้าจะต้องโดนดีเป็นแน่.";
+		next;
+		mes "[Phina]";
+    		mes "เจ้าต้องระวังตัวให้ดีนะ.";
+		close;
+}
+
+// Grandma -----------------------------------------------------
+alberta,93,174,2	script	Grandma	103,{
+	mes "[Grandma]";
+	mes "มีเรือร่ม แถมๆเมือง Alberta และขณะนี้มีผู้คนที่จะเข้าไปในเรือเพื่อหาผู้รอดชีวิต.";
+	next;
+	mes "[Grandma]";
+	mes "แต่พวกเขาพบว่า มีศพเดินอยู่ในเรือ.";
+	next;
+	mes "[Grandma]";
+	mes "พวกเขาไม่เคยเห็นมาก่อน ว่าคนจะกลายเปนมอนสเตอร์ได้อย่างไร.";
+	next;
+	mes "[Grandma]";
+	mes "พวกเราไม่สามารถทำอะไรได้เลย นอกจากจะรอให้เรือจมหายไป.";
+	next;
+	mes "[Grandma]";
+	mes "และตอนนี้หลายคนก็รวบรวมเงินเพื่อสร้างสิ่งประหลาดๆ";
+	next;
+	mes "[Grandma]";
+	mes "และพวกเขาสร้างสิ่งที่เรียกว่า ^0000ddSunken Ship^000000.";
+	next;
+	mes "[Grandma]";
+	mes "สถานที่แห่งนี้เป็นสถานที่ฝึกฝนความแข็งแกร่ง.";
+	next;
+	mes "[Grandma]";
+	mes "จากเรือที่น่ากลัว กลายเป็นสถานที่ที่ได้รับความสนใจ.";
+	next;
+	mes "[Grandma]";
+	mes "แต่สถานที่ที่นั้น มันไม่คุ้มกับการไปเสี่ยงชีวิต";
+	close;
+}
+
+// Drunken old man ----------------------------------------------------------------
+alberta,131,139,4	script	Drunken old man	709,{
+	mes "[Drunken old man]";
+	mes "เจ้ามาทำอะไรที่นี่";
+	next;
+	menu "พัก",M_0,"ข้าต้องการอยู่คนเดียว",M_1;
+	
+	M_0:
+		mes "[Drunken old man]";
+		mes "ฮ่าฮ่าฮ่า ดูเจ้าจะปวดหัวนะ";
+		next;
+		mes "[Drunken old man]";
+		mes "ข้าดูไร้ค่า แต่ข้าคือกะลาสีบนเรือ `Going Mary'.";
+		next;
+		menu "เกี่ยวกับเรือ?",sM_0,"ไม่มีอะไร!",sM_1;
+		
+		sM_0:
+			mes "[Drunken old man]";
+			mes "จะว่าไป ข้าก็ไม่มีอะไรหรอก ข้าก็แค่กะลาสีบนเรือ `Going Mary'.";
+			emotion 1;
+			next;
+		sM_1:
+			mes "[Drunken old man]";
+			mes "ข้าเพียงไปเจอพายุอยู่กลางทะเล";
+			next;
+			mes "[Drunken old man]";
+			mes "ข้าคิดว่าผู้ที่เป็น captain เรือ ไม่สามารถเอาชีวิตอยู่รอดได้.";
+			mes "แต่มันก็มีข่าวลือว่า";
+			next;
+			mes "[Drunken old man]";
+			mes "มี captain ที่ไม่มีวันตาย เขาใช้ดาบที่มีอำนาจลึกลับ.";
+			next;
+			mes "[Drunken old man]";
+			mes "ที่เต็มไปด้วยเปลวไฟ ข้าอยากเป็น captain ที่ไม่มีวันตาย";
+			emotion 28;
+			close;
+
+	M_1:
+		mes "[Drunken old man]";
+		mes "ข้าต้องการอยู่เงียบๆ";
+		emotion 32;
+		close;
+}
+
+// Soda Man ----------------------------------------------------
+alberta,90,71,3	script	Soda Man	89,{
+	mes "[Soda Man]";
+	mes "เจ้ามีอะไรรึ";
+	emotion 33;
+	next;
+	mes "[Soda Man]";
+	mes "ตอนนี้ข้าเหงา?";
+	mes "และไม่มีใครที่จะพูดคุยกับข้า.";
+	next;
+	mes "[Soda Man]";
+	mes "เอาอย่างนี้แล้วกัน.";
+	mes "ข้าจะเล่าเรื่องเล่าที่ข้าเคยได้ยินมา.";
+	next;
+	mes "[Soda Man]";
+	mes "เรื่องมันมีอยู่ว่า";
+	mes "มีชายชราคนหนึ่ง เกือบจะเสียท่าให้กับเกาะ ^5555FFTurtle Island^000000?";
+	next;
+	mes "[Soda Man]";
+	mes "แต่หากเจ้าอยากจะฟังต่อ ให้เจ้าไปถามกับ ชายชราที่อยู่ในโรงแรม.";
+	mes "แต่เจ้าต้องอดทนฟังเขานิดนึง เขาอาจจะนอกเรื่องค่อนข้างบ่อย แต่เลือกสิ่งที่มีประโยชน์สำหรับตัวเจ้าเท่านั้นนะ.";
+	next;
+	mes "[Soda Man]";
+	mes "มันเป็นเรื่องที่น่ากลัวมากบน Turtle Island.";
+	close;
+}
+
+
+//<=================================================== Marina (Docks/Port) ===================================================>\\
+// Sailor Fisk ----------------------------------------------------------------
+alberta,189,151,5	script	Sailor Fisk	100,{
+	mes "[Sailor Fisk]";
+	mes "เจ้าต้องการไปไหนไหน กันเล่า?";
+	next;
+	menu "Izlude Marina -> 500 Zeny.",M0,"ออก",M_End;
+	
+	M0:
+		if(Zeny < 500) goto NoZenyM1;
+		set Zeny, Zeny - 500;
+		warp "izlude",176,182;
+		close;
+
+		NoZenyM1:
+			mes "[Sailor Fisk]";
+			mes "เจ้าต้องมีเงินจำนวน 500 Zeny, ข้าถึงจะอนุญาตให้เจ้าไปได้.";
+			close;
+
+	M_End:
+		close;
+
+}
+
+// Phelix ------------------------------------------------------------------
+alberta,190,173,4	script	Phelix	85,{
+
+	mes "[Phelix]";
+	mes "เจ้ามาทำอะไรที่นี่?";
+	next;
+	mes "[Phelix]";
+	mes "บนเรือนี้ มีงานให้ทำ แต่จะมีเพียงแค่รางวัลเล็กๆน้อยๆ";
+	next;
+	mes "[Phelix]";
+	mes "แต่หากเจ้ามี jellopies.";
+	mes " - เจ้า ^0000ff10 Jellopies^000000 สามารถแลกเป็น ^ff00001 potion^000000.";
+	mes " - เจ้า ^0000ff3 Jellopies^000000 สามารถแลกเป็น ^ff00001 sweet potato^000000.";
+	next;
+	mes "[Phelix]";
+	mes "เจ้าอยากจะฟังต่อมั้ย?";
+	next;
+	menu "ฟังสิ",M_Yes,"ไม่อ่ะ",M_End;
+	
+	M_Yes:
+		mes "[Phelix]";
+		mes "เจ้าต้องการที่จะแลกเปลี่ยน jellopies กับข้าไหม?";
+		next;
+		menu "แลก Red Potion.",M_0,"แลก Sweet Potato.",M_1,"ยกเลิก",M_End;
+
+		M_0:
+			set @item, 501;
+			goto L_Get;
+
+		M_1:
+			set @item, 516;
+
+			L_Get:
+				mes "[Phelix]";
+				mes "ใส่จำนวนที่เจ้าต้องการแลก หากต้องการยกเลิกให้ใส่ 0.";
+				next;
+				set @input,0;
+				input @input;
+				if(@input < 1) goto M_Yes; //fixed by Lupus
+
+				if(@item == 501) set @amount, @input*10;
+				if(@item == 516) set @amount, @input*3;
+				if(countitem(909) < @amount) goto L_NotEnough;
+
+				getitem @item,@input;
+				delitem 909, @amount;
+				close;
+			
+			L_NotEnough:
+				mes "[Phelix]";
+				mes "ขออภัย เจ้ามี jellopy ไม่เพียงพอกับการแลกเปลี่ยน.";
+				next;
+				goto M_Yes;
+
+	M_End:
+		close;
+}
+
+
+//<=================================================== Sunken Ship ======================================================>\\
+// Paul ----------------------------------------------------------------
+alberta,195,151,3	script	Paul	86,{
+	mes "[Paul]";
+	mes "สวัสดี ตอนนี้ข้ามีสิ่งดีๆมานำเสนอคือ กิจกรรม Sunken Ship ที่จัดขึ้นโดย Cool Event Corp.?";
+	next;
+	mes "[Paul]";
+	mes "มันเป็นสถานที่อันตราย เหมาะสำหรับนักผจนภัยที่แข็งแกร่ง.";
+	emotion 0;
+	next;
+	mes "[Paul]";
+	mes "ค่าเรือเพียง 200 zeny มันจะเป็นประสบการณ์ที่คุ้มค่ามาก.";
+	next;
+	menu "เข้าไป",M_0,"ออก",M_End;
+	
+	M_0:
+		if(Zeny < 200) goto L_NoZeny;
+		set Zeny, Zeny - 200;
+		warp "alb2trea",62,69;
+		close;
+	M_End:
+		mes "[Paul]";
+		mes "ไว้เจอกันในคราวหลัง.";
+		close;
+
+		L_NoZeny:
+			mes "[Paul]";
+			mes "ข้าต้องการเงิน 200 Zeny, ในการดูแลเรื่องกิจกรรม.";
+			close;
+}
+
+// Sailor --------------------------------------------------
+alb2trea,39,50,5	script	Sailor	100,{
+	mes "[Sailor]";
+	mes "เจ้าต้องการที่จะกลับ?";
+	next;
+	menu "กลับไปที่ Alberta",M0,"ออก",MEnd;
+
+	M0:
+		warp "alberta",192,169;
+		close;
+	MEnd:
+		close;
+}

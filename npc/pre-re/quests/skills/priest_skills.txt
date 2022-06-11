@@ -1,0 +1,270 @@
+//===== Hercules Script ======================================
+//= Priest Skills Quests
+//===== By: ==================================================
+//= Lupus, Reddozen
+//===== Current Version: =====================================
+//= 1.5
+//===== Description: =========================================
+//= [Official Conversion]
+//= Quests for skills: Redempito
+//===== Additional Comments: =================================
+//= 1.4 Rescripted to Aegis 10.3 stadards. [L0ne_W0lf]
+//= 1.5 Replaced effect numerics with constants. [L0ne_W0lf]
+//============================================================
+
+prt_church,111,112,1	script	Sister Linus	79,{
+	if (BaseJob == Job_Priest) {
+		if (PRIEST_SK == 100) {
+			if (getskilllv("PR_REDEMPTIO") == 0) {
+				mes "[Sister Linus]";
+				mes " หืมม์? เราเคยพบกันมาก่อนหน้านี้แล้ว";
+				mes " ก่อนที่ท่านได้ศึกษาเกี่ยวกับ";
+				mes " skill Redemptio ที่ข้าเป็นคนสอนให้";
+				next;
+				mes "[Sister Linus]";
+				mes " อ้า ท่านลืมมันไปแล้วรึ?";
+				mes " แต่ก็นะ ไม่เปนไร ครั้งนี้ข้าจะ";
+				mes " สอนให้ท่านใหม่อีกรอบแล้วกัน";
+				next;
+				mes "[Sister Linus]";
+				mes "^3131FF โอ้ พลังศักสิทธิ์ที่เคารพ";
+				mes " โปรดมอบพลังอธิฐานของเรา";
+				mes " ช่วยนำทางให้เราได้เจอพลังที่แข็งแกร่ง";
+				mes " มอบความรักและการเสียสละแห่ง";
+				mes " skill Redemptio!^000000 ด้วยเถิด";
+				skill "PR_REDEMPTIO",1,0;
+				next;
+				mes "[Sister Linus]";
+				mes " เรียบร้อย..";
+				mes " ตอนนี้ท่านสามารถใช้Redemptio ";
+				mes " ข้าหวังว่าท่านจะใช้มันไปในทางทีดี~";
+				close;
+			}
+			else {
+				mes "[Sister Linus]";
+				mes " ข้ามักจะสวดภาวนาอยู่เสมอ";
+				mes " เพื่อให้ท่านปลอดภัย";
+				mes " ข้าหวังว่าท่านจะมอบความรัก";
+				mes " และความเมตตาแก่ผู้ที่ท่านพบในการเดินทาง";
+				close;
+			}
+		}
+		else if (PRIEST_SK == 0) {
+			set redemp,1014;
+			if (getskilllv("PR_REDEMPTIO")) {
+				mes "[Sister Linus]";
+				mes " ข้ามักจะสวดภาวนาอยู่เสมอ";
+				mes " เพื่อให้ท่านปลอดภัย";
+				mes " ข้าหวังว่าท่านจะมอบความรัก";
+				mes " และความเมตตาแก่ผู้ที่ท่านพบในการเดินทาง";
+				set PRIEST_SK,100;
+				close;
+			}
+			mes "[Sister Linus]";
+			mes " เจ้าจงคิดถึงคนอื่นก่อนที่่คิดถึงตัวเอง และทำให้พวกเขาเหล่านั้นได้พบความเบิกบานและสงบสุขชั่วนิรันด์";
+			next;
+			select("ข้าอยากรู้ว่าใครเป็นผู้สวดภาวนา?");
+			mes "[Sister Linus]";
+			mes " โอ้! เจ้ากำลังรบกวนข้า!";
+			mes " ข้ากำรังสวดภาวนาให้ใครบางคนอยู่?";
+			mes " เมื่อตอนข้ายังเล็ก";
+			mes " ข้าเคยเห็นแม่ชีทีร่าร่างเริง ข้ายังจำความสนุกสนานเหล่านั้นได้";
+			next;
+			mes "[Sister Linus]";
+			mes " และวันหนึ่ง มีนักผจญภัยกลุ่มหนึ่ง";
+			mes " เข้ามาที่ โบสถ์แห่ง Prontera นี้พร้อมกับความหวัง^FFFFFF ^000000 ที่จะพานักบวช";
+			mes " ร่วมทีมไปยัง ^3131DDGlast Heim^000000 เพื่อไปร่วมชะตากรรมอันยากลำบากนี้ด้วย";
+			next;
+			mes "[Sister Linus]";
+			mes " ข้ายังจำได้แม่นเลยว่า";
+			mes " เธอตั้งใจที่จะร่วมกับกลุ่มนักผจญภัยกลุ่มนั้น";
+			mes " เพราะพวกเขาไม่มีทางเลือก";
+			mes " ถึงแม้ว่ามันจะเป็นทางเลือกที่อันตรายมากเกินไป";
+			next;
+			mes "[Sister Linus]";
+			mes " ตอนแรกข้าก็ได้ยินมาว่า กลุ่มที่พวกเขาเดินทางไปด้วยนั่นประสบความสำเร็จ สามารถกำจัดเหล่ามอนสเตอร์ได้จำนวนมาก แต่ก็เป็นเพราะการช่วยเหลือของเหล่า Priest";
+			next;
+			mes "[Sister Linus]";
+			mes " ภายในปราสาท Glast Heim";
+			mes " พวกเขาพบกับศัตรู";
+			mes " สถานที่ห้อมล้อมด้วย Wander man, และกลุามสมาชิกยืนเรียงกันทีละคน ทุกคนรู้สึกหมดหวัง";
+			mes " ในไม่ช้าก็ต้องพบกับชะตากรรมที่น่าสลดใจ ในดินแดนอันไกลโพ้น";
+			next;
+			select(" เกิดอะไรขึ้นกับพวกเขาและมันจบยังไงล่ะ...?");
+			mes "[Sister Linus]";
+			mes " ท้ายที่สุดเพื่อนๆ ในกลุ่มก็ทรุดตัวลงกับพื้น";
+			mes " เด็กน้อยเริ่มสวดอ้อนวอน";
+			next;
+			select(" สวดอ้อนวอน?");
+			mes "[Sister Linus]";
+			mes " ^FF0000Redemptio^000000!";
+			next;
+			mes "[Sister Linus]";
+			mes " เป็นเพียงวิธีเดียวที่สามารถทำได้ในตัวนั้น";
+			mes " เธอยอมสละชีวิตของเธอ เพื่อแลกกับชีวิตทุกๆ คนในปาร์ตี้";
+			mes " เป็นสิ่งที่วิเศษมากๆ";
+			next;
+			mes "[Sister Linus]";
+			mes " เมื่อมาเป็น High Priest,";
+			mes " จะมีพลังมากกว่าเดิม";
+			mes " มันช่างน่าชื่นชม";
+			mes " แม้ว่าเธอจะดูกังวลก็ตาม โฮะ โฮะ";
+			next;
+			select(" ทำไมเจ้าถึงเล่าเรื่องนี้ให้ข้าฟังล่ะ");
+			mes "[Sister Linus]";
+			mes " เพราะความสำเร็จในตอนนั้น";
+			mes " เธอได้เปลี่ยนเป็น High Priest";
+			mes " แม้มันจะดูพิดผลาดบ้างกันสิ่งที่เธอทำในอดีตที่ผ่านมา";
+			mes " และตอนนี้เธอได้เดินท่านไปทั่วโลกเพื่อคอยช่วยเหลือเหล่านักผจญทั้งหลายเท่าที่เธอจะทำได้";
+			next;
+			mes "[Sister Linus]";
+			mes " แต่ก็เพราะเธอเป็นคนที่กล้าหาญ ร่าเริงสนุกสนาน";
+			next;
+			mes "["+ strcharinfo(0) +"]";
+			mes " เดี๋ยว แล้วสิ่งที่ท่านทำตอนนี้คืออะไร";
+			mes " ทำไมท่านยังต้องสวดภาวนาให้เธอ";
+			mes " เธอเป็นอะไรงั้นรึ หรืออยู่ในอันตราย";
+			next;
+			mes "[Sister Linus]";
+			mes " ใช่แล้ว เมื่อไม่กี่เดินที่ผ่านมา";
+			mes " เธอได้รับภารกิจให้มุ่งหน้าไปสู่";
+			mes "^3131FFLighthalzen^000000, เมืองแห่งแคว้น";
+			mes " Schwaltzvalt Republic ข้ารู้สึกกังวลมาก";
+			mes " ข้าไม่ได้ยินเสียงเธอมานานมากแล้ว";
+			next;
+			mes "[Sister Linus]";
+			mes " ข้าจึงเดินทางมาที่นี่เพื่ดสวดภาวนาให้เธอ";
+			mes " จนกลายเป็นชีวิตประจำวันของข้าไปแล้วซะหล่ะ";
+			mes " ข้าหวังว่าคราวนี้เธอคงจะกลับมาอย่างปลอดภัยและเล่าเรื่องราวการผจญภัยใหม่ให้ข้าฟัง";
+			next;
+			mes "["+ strcharinfo(0) +"]";
+			mes " ข้าจะช่วยท่านสวดภาวนาด้วยได้มั้ย ข้าอยากให้เธอได้ปลอดภัย";
+			next;
+			mes "[Sister Linus]";
+			mes " จริงเหรอ?";
+			mes " เจ้าช่างเป็นคนดีจริงๆ";
+			next;
+			mes "[Sister Linus]";
+			mes " สวดตามข้านะ ข้าจะท่องไปอย่างช้าๆ ";
+			mes " เรียบร้อย ข้าคงไม่มีอะไรแล้วล่ะ?";
+			next;
+			mes "["+ strcharinfo(0) +"]";
+			mes " ก่อนที่ข้าจะไป ท่านช่วยบอกชื่อของ High Priest ท่านนั้นสักหน่อยได้ไหม?";
+			mes " หากข้าเจอเธอ ข้าจะรีบมากบอกท่าน";
+			next;
+			mes "[Sister Linus]";
+			mes " ชื่อของเด็กคนนั้นก็คือ";
+			mes "  Priest Sorin อุ๊บส์ เธอเป็น High Priest แล้ว";
+			mes " High Priest Sorun ชื่อเต็มของเธอคือ^3131FFMargaretha Sorin^000000";
+			set PRIEST_SK,1;
+			close;
+		}
+		else if (PRIEST_SK == 1) {
+			mes "[Sister Linus]";
+			mes " ข้าขอให้เจ้าปลอดถัยในการเดินทาง~";
+			next;
+			if (select(" ข้าต้องการเรียนรู้ ^3131FFRedemptio^000000: จบการสนทนา") == 1) {
+				mes "[Sister Linus]";
+				mes " โอ้ Redemptio มันจะเป็นสกิลที่ดีที่สุด ที่เจ้าสมควรจะเรียนรู้ มันจะมีประโยชน์มากเมื่อผู้เล่นในสมาชิกของท่านล้มลง";
+				next;
+				mes "[Sister Linus]";
+				mes " และแน่นอนข้อเสียเปรียบก็คือ";
+				mes " เจ้าต้อง ^3131FFเสียสละพลังชีวิตของตัวเจ้าเอง^000000";
+				mes " เพื่อใช้สกิล Redemptio แต่เจ้าก็ต้องมีสกิล ^3131FFLevel 1 Resurrection^000000 ก่อน";
+				next;
+				mes "[Sister Linus]";
+				mes " ตอนนี้ ข้าจะบอกสิ่งของที่เจ้าต้องนำมาเพื่อเรียนรู้ Redemptio";
+				mes "^3131FF30 Holy Waters";
+				mes "Resurrection skill";
+				mes "20 Blue Gemstones^000000";
+				mes "เอามาทั้งหมดนี่ล่ะ";
+				set PRIEST_SK,2;
+				close;
+			}
+			mes "[Sister Linus]";
+			mes " สวดภาวนามันทำให้รู้สึกสงบและบางทีนี่อาจเป็นเหตุผลหนึ่งที่ทำให้ข้าเลือกงานนี้";
+			close;
+		}
+		else if (PRIEST_SK == 2) {
+			if (getskilllv("ALL_RESURRECTION") > 0) {
+				if (countitem(523) > 29 && countitem(717) > 19) {
+					mes "[Sister Linus]";
+					mes " ดูเหมือนว่าเจ้าจะได้มาครบแล้วนะ";
+					mes " งั้น ให้ข้าสอนวิธี Redemptio เลยละกัน";
+					mes " กรุณาท่องคาถามตาข้านะ";
+					mes " แต่เจ้าควรรู้ไว้ว่า";
+					mes " เจ้าจะต้องเสีย lue Gemstone และ Holy Water อย่างละ 1 อัน แต่ละครั้ง";
+					next;
+					mes "[Sister Linus]";
+					mes "^3131FF";
+					mes "เมื่อมีท่านคอยชี้ทาง เราก็จะเป็นผู้ติดตามท่านตลอดไป";
+					mes "Redemptio!^000000";
+					next;
+					set .@redem_s,JobLevel+getskilllv("ALL_RESURRECTION");
+					set .@red_suc,rand(1,100);
+					if( .@redem_s < 31 ) {
+						if( .@red_suc > 20 && .@red_suc < 41 )
+							set .@success,1;
+					} else if( .@redem_s < 41 ) {
+						if( .@red_suc > 10 && .@red_suc < 41 )
+							set .@success,1;
+					} else {
+						if( .@red_suc > 10 && .@red_suc < 51 )
+							set .@success,1;
+					}
+
+					if (.@success) {
+						specialeffect2 EF_HEALSP;
+						mes "[Sister Linus]";
+						mes " ขอแสดงความยินดีด้วย!";
+						mes " เจ้าได้เรียนรู้ skill Redemption แล้ว";
+						mes " นี่เป็นขั้นตอนสุดท้าย แต่จงจำไว้ว่า";
+						mes "เจ้าควรใช้มันอย่างระมัดระวังเมื่อเจ้าตกอยู่ในอันตราย";
+						delitem 717,20; //Blue_Gemstone
+						delitem 523,30; //Holy_Water
+						set PRIEST_SK,100;
+						skill "PR_REDEMPTIO",1,0;
+						close;
+					}
+					else {
+						specialeffect2 EF_POISONHIT;
+						mes "[Sister Linus]";
+						mes " โอ้ ไม่! ข้าเสียใจจริงๆ มันผิดพลาด";
+						mes " เจ้าไม่สามารถเรียนสกิล Redemptio เจ้าคงอยากจะลองใหม่อีกครั้งนะ ว่ายังไงล่ะ?";
+						delitem 717,1; //Blue_Gemstone
+						delitem 523,1; //Holy_Water
+						close;
+					}
+
+				}
+				else {
+					mes "[Sister Linus]";
+					mes "If you want to try to learn";
+					mes "Redemptio, please bring";
+					mes "^3131FF20 Blue Gemstones^000000 and";
+					mes "^3131FF30 Holy Waters^000000. Ah, and";
+					mes "you need to learn ^3131FFLevel 1";
+					mes "Resurrection^000000 beforehand.";
+					close;
+				}
+			}
+			else {
+				mes "[Sister Linus]";
+				mes " ตอนนี้ ข้าจะบอกสิ่งของที่เจ้าต้องนำมาเพื่อเรียนรู้ Redemptio";
+				mes "^3131FF30 Holy Waters";
+				mes "Resurrection skill";
+				mes "20 Blue Gemstones^000000";
+				mes "เอามาทั้งหมดนี่ล่ะ";
+				close;
+			}
+		}
+	}
+	else {
+		mes "[Sister Linus]";
+		mes " ข้ามักจะสวดภาวนาอยู่เสมอ";
+		mes " เพื่อให้ท่านปลอดภัย";
+		mes " ข้าหวังว่าท่านจะมอบความรัก";
+		mes " และความเมตตาแก่ผู้ที่ท่านพบในการเดินทาง";
+		close;
+	}
+}

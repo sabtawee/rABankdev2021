@@ -1,0 +1,55 @@
+prontera,73,140,0	script	Milk Vendor	86,{
+	if (checkweight(1201,1) == 0) {
+		mes "^3355FFสักครู่น่ะ!";
+		mes "น้ำหนักมากเกินไป";
+		close;
+	}
+	mes "[Milk Vendor]";
+	mes "เฮ้, เฮ้...";
+	mes "ถ้าคุณนำมาให้ฉัน";
+	mes "1 Empty Bottle และ";
+	mes "15 Zeny, ฉันจะเปลี่ยน";
+	mes "เป็น 1 Milk. คุณ";
+	mes "คุณยินฉันพูดไหม?";
+	next;
+	if (select("แลกเปลี่ยนขวดเปล่าทั้งหมด.:ยกเลิก") == 1) {
+		if (countitem(713) <= 0) {
+			mes "[Milk Vendor]";
+			mes "เฮ้...";
+			mes "คุณไม่มี";
+			mes "ขวดสักใบเลย.";
+			mes "ฉันไม่สามารถ";
+			mes "เอานมให้คุณได้";
+			mes "คุณรู้นะ...";
+			close;
+		}
+		set .@bottles,countitem(713);
+		set .@total_weight,.@bottles * 50;
+		set .@total_cost,.@bottles * 15;
+		if (zeny < .@Total_cost) {
+			mes "[Milk Vendor]";
+			mes "โอ้, ว้าว~!";
+			mes "คุณมีเงินไม่พอ";
+			mes "สำหรับการแลกเปลี่ยน";
+			mes "ขวดทั้งหมดกับ";
+			mes "นม. คุณต้องมี";
+			mes "อย่างน้อยที่สุด " + .@total_cost + " zeny.";
+			close;
+		}
+		if ((maxweight-weight) < .@total_weight) {
+			mes "[Milk Vendor]";
+			mes "อืมมม...";
+			mes "คุณมีช่อง";
+			mes "เก็บของน้อยมาก";
+			mes "ในคลังของคุณ";
+			mes "ก่อนที่ฉันจะให้";
+			mes "milk ทั้งหมดแก่ท่าน?";
+			close;
+		}
+		set zeny,zeny-.@total_cost;
+		delitem 713,.@bottles; //Empty Bottles
+		getitem 519,.@bottles; //Milk
+		close;
+	}
+	close;
+}

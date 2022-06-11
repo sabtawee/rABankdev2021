@@ -1,0 +1,328 @@
+xmas,117,295,4	script	Vending Machine Man	704,{
+	mes "[Titicupe]";
+	mes "อืม.....?";
+	mes "ผม Titicupe ผู้จัดการที่นับถือของโรงงานของเล่นและนักประดิษฐ์อัจฉริยะ ! ผมสร้างเครื่องจำหน่ายอัตโนมัติที่มีความซับซ้อนมากที่สุด";
+	next;
+	switch(select("ถามเกี่ยวกับ Vending Machine:รายการที่อยู่ใน Vending Machine:จบการสนทนา")) {
+	case 1:
+		mes "[Titicupe]";
+		mes "คุณสามารถมองเห็นมนุษย์หิมะได้ที่ด้านซ้ายของฉัน..? คุณเห็นปากของมันไหมมันถูกสร้างขึ้นเพื่อรับสิ่งของที่จะทำรายการ...";
+		next;
+		mes "[Titicupe]";
+		mes "แล้วเห็นนี่ไหม ตรงท้องของมนุษย์หิมะเป็นสิ่งมหัศจรรย์มาก เพราะว่าเวลาใส่ของที่ทำตามรายการครบแล้ว มันจะนำสิ่งของในรายการที่ท่านเลือกไว้ออกมาได้";
+		next;
+		mes "[Titicupe]";
+		mes "แต่ถ้านำสิ่งของที่จะมาทำรายการไม่ครบ มันจะฟ้องว่าเกิดการผิดพลาดหรือเรียกว่า Error แล้วมันจะคืนของตรงก้นของเจ้ามนุษย์หิมะ...";
+		next;
+		mes "[Titicupe]";
+		mes "แล้วมันจะบอกว่าถ้าต้องทำยังไง..แล้วมาใส่ให้ครบ! บ๊าก ฮ่า ๆ ฮา เป็นงัย สุดยวดไหม..~!";
+		next;
+		mes "[Titicupe]";
+		mes "โอ้ว.. ถ้าท่านชอบใจก็สามารถทดสอบดูได้รายการต่าง ๆ ที่เจ้ามนุษย์หิมะข้าจะบอกรายละเอียดเอง!";
+		Emotion ET_CHUPCHUP;
+		next;
+		mes "[Titicupe]";
+		mes "รับลองว่าเจ้าจะสะดวกสบายในการทำรายการได้อย่างง่ายดาย..!";
+		next;
+		mes "^3355นี่ละคือสิ่งฉันนั้นสร้างความเป็นเทคโนโลยีได้ก้าวไกล..^000000";
+		Emotion ET_SURPRISE;
+		close;
+	case 2:
+		mes "[Titicupe]";
+		mes "นั่นงัยท่านต้องติดใจแน่ ๆ คุณอยากรู้ว่ามีอะไรใน Vending Machine บ้าง ใช่หรือไม่? เอาละฉันจะบอกว่ามีอะไรบ้าง และต้องทำยังไงบ้าง~";
+		Emotion ET_AHA;
+		next;
+		switch(select("Raccoon Hat:Spore Hat:Wonder Nutshell:Ranbow Eggshell:Blush:Chef Hat:Candle:Cake Hat:จบการสนทนา")) {
+		case 1:
+			mes "[Titicupe]";
+			mes "Raccoon Hat?";
+			mes "1 Kitty Band";
+			mes "20 Dragon Scale";
+			mes "200 Tough Scalelike Stem";
+			mes "300 Sea-otter Fur";
+			break;
+		case 2:
+			mes "[Titicupe]";
+			mes "Spore Hat?";
+			mes "850 Poison Spore";
+			mes "300 Burnt Tree";
+			mes "1 Tongue";
+			break;
+		case 3:
+			mes "[Titicupe]";
+			mes "Wonder Nutshell?";
+			mes "1 Nut Shell";
+			mes "500 Wing of Dragonfly";
+			break;
+		case 4:
+			mes "[Titicupe]";
+			mes "Rainbow Eggshell?";
+			mes "1 Egg Shell";
+			mes "1 Cobaltblue Dyestuffs";
+			mes "50 Claw of Desert Wolf";
+			break;
+		case 5:
+			mes "[Titicupe]";
+			mes "Blush?!";
+			mes "คุณ...!";
+			mes "คุณก็แค่ไปหา...";
+			mes "เจ้าสิ่งนี้มาก็เพียงพอละ..";
+			mes "100 Alice's Apron";
+			break;
+		case 6:
+			mes "[Titicupe]";
+			mes "Chef Hat?";
+			mes "120 Piece of Cake";
+			mes "1 White Dyestuffs";
+			mes "330 Feather";
+			mes "450 Dragon Scale";
+			break;
+		case 7:
+			mes "[Titicupe]";
+			mes "Candle?";
+			mes "1 Bomb Wick";
+			mes "50 Matchstick";
+			mes "100 Royal Jelly";
+			break;
+		case 8:
+			mes "[Titicupe]";
+			mes "Cake Hat?";
+			mes "10 Candy";
+			mes "5 Candy Cane";
+			mes "15 Well-baked Cookie";
+			mes "20 Piece Of Cake";
+			mes "10 Steel";
+			break;
+		case 9:
+			mes "[Titicupe]";
+			mes "งั้นค่อยมาวันหน้าละกาน ฉันอยู่ที่นี่ตลอดเวลา..!";
+		}
+		next;
+		mes "[Titicupe]";
+		mes "ฉันนั้นมีความสุขจังเลย..!!";
+		mes "เพราะฉันเป็นอัจฉริยะ~!";
+		mes "ฮิ๊ ฮิ ฮิ";
+		mes "ฮ่า ๆ ฮ่า ฮา แอะ..ติดคอ!";
+		close;
+	case 3:
+		mes "[Titicupe]";
+		mes "บางที ฉันไม่อาจสามารถทำให้คุณสนใจในด้านเทคโนโลยี...!";
+		next;
+		mes "[Titicupe]";
+		mes "ฉัน...";
+		mes "คงไม่ยื้อคุณไว้..";
+		mes "เพราะคุณอาจยังไม่เข้าใจเกี่ยวกับ";
+		mes "Vending Machine.";
+		Emotion ET_CHUPCHUP;
+		next;
+		mes "^3355FFนี่ละคือสิ่งฉันนั้นสร้างความเป็นเทคโนโลยีได้ก้าวไกล..เพราะว่าฉันคืออัจฉริยะแต่คุณมันคือหัวโบราณ";
+		close;
+	}
+}
+
+xmas,115,297,4	script	Vending Machine	111,{
+	mes "[Audi]";
+	mes "^3355FFรายการที่น่าสนใจใน vending machine นั้นที่คิดค้นโดย Titicupe เลือกรายการที่ต้องการและ และนำสิ่งของที่รายการกำหนดมาให้ครบเอาใส่ปากของมนุษย์หิมะ";
+	next;
+	switch(select("^FF3355ข้อควรระวังการใช้งาน^000000:Raccoon Hat:Spore Hat:Wonder Nutshell:Rainbow Eggshell:Blush:Chef Hat:Candle:Cake Hat:ยกเลิก")) {
+	case 1:
+		mes "[Audi]";
+		mes "ฮิฮิ~ !";
+		mes "ฉันต้องการจะบอกคุณว่าสิ่งหนึ่งที่สำคัญนั้น เจ้า vending machine ไม่รับทำรายการตามคำสั่งเท่านั้นมันไม่มีความคิด.";
+		next;
+		mes "[Audi]";
+		mes "หากคุณทำอะไรนอกเหนือจากรายการเช่นนำของที่มันไม่ต้องการมาใส่ ๆ มันจะไม่คืนของให้คุณน่ะ..";
+		next;
+		mes "[Audi]";
+		mes "และอีกเรื่องหนึ่งหากช่องใส่ของคุณมีไม่เพียงละก็เจ้าตัวมนุษย์หิมะมันจะไม่ให้ของจากคุณเพราะมันมีระบบตรวจสอบ.";
+		next;
+		mes "[Audi]";
+		mes "หากมีของมากกว่าที่กำหนดหรือช่องใส่ของไม่เพียงพอมันจะไม่ทำรายการทันที ทางที่ดีกลับไปฝากของกับ Kafra เสียก่อนจะได้ไม่มีปัญหา";
+		next;
+		mes "[Audi]";
+		mes "ได้เวลาแล้วที่เริ่มทำแล้วละ!";
+		mes "ขอบคุณที่อ่านคำเตือน...!";
+		close;
+	case 2:
+		if ((countitem(2213) > 0) && (countitem(1036) > 19) && (countitem(7012) > 199) && (countitem(7065) > 299)) {
+			mes "^3355FFนำสิ่งของที่จะทำรายการใส่ไว้ในปากน่ะครับ...^000000";
+			next;
+			delitem 2213,1;  //Cat_Hairband
+			delitem 1036,20;  //Dragon_Scale
+			delitem 7012,200;  //Tough_Scalelike_Stem
+			delitem 7065,300;  //Sea_Otter_Leather
+			Emotion ET_O;
+			mes "^3355FF*วู๊ฟ....~~*";
+			mes "*บรีซ....*";
+			mes "*ช็อค..ก๊า..*";
+			mes "*กะแป๊ง!*^000000";
+			getitem 5033,1; // Smokie_Hat
+			next;
+			mes "[Audi]";
+			mes "ขอบคุณมากครับ...";
+			mes "โอกาสหน้าเชิญใช้บริการใหม่น่ะครับ!";
+			mes "โอ้ว แล้วบอกเพื่อน ๆ ท่านให้มาลองระบบดูน่ะครับ!";
+			close;
+		}
+		break;
+	case 3:
+		if ((countitem(7033) > 849) && (countitem(7068) > 299) && (countitem(1015) > 0)) {
+			mes "^3355FFนำสิ่งของที่จะทำรายการใส่ไว้ในปากน่ะครับ...^000000";
+			next;
+			delitem 7033,850;  //Poison_Spore
+			delitem 7068,300;  //Burn_Tree
+			delitem 1015,1;  //Thin_N'_Long_Tongue
+			Emotion ET_O;
+			mes "^3355FF*วู๊ฟ....~~*";
+			mes "*บรีซ....*";
+			mes "*ช็อค..ก๊า..*";
+			mes "*กะแป๊ง!*^000000";
+			getitem 5029,1; // Spore_Hat
+			next;
+			mes "ขอบคุณมากครับ...";
+			mes "โอกาสหน้าเชิญใช้บริการใหม่น่ะครับ!";
+			mes "โอ้ว แล้วบอกเพื่อน ๆ ท่านให้มาลองระบบดูน่ะครับ!";
+			close;
+		}
+		break;
+	case 4:
+		if ((countitem(5037) > 0) && (countitem(7064) > 499)) {
+			mes "^3355FFนำสิ่งของที่จะทำรายการใส่ไว้ในปากน่ะครับ...^000000";
+			next;
+			delitem 5037,1;  //Fruit_Shell
+			delitem 7064,500;  //Dragon_Fly_Wing
+			mes "^3355FF*วู๊ฟ....~~*";
+			mes "*บรีซ....*";
+			mes "*ช็อค..ก๊า..*";
+			mes "*กะแป๊ง!*^000000";
+			Emotion ET_O;
+			getitem 5050,1; // Mystery_Fruit_Shell
+			next;
+			mes "[Audi]";
+			mes "ขอบคุณมากครับ...";
+			mes "โอกาสหน้าเชิญใช้บริการใหม่น่ะครับ!";
+			mes "โอ้ว แล้วบอกเพื่อน ๆ ท่านให้มาลองระบบดูน่ะครับ!";
+			close;
+		}
+		break;
+	case 5:
+		if ((countitem(5015) > 0) && (countitem(978) > 0) && (countitem(7030) > 49)){ 
+			mes "^3355FFนำสิ่งของที่จะทำรายการใส่ไว้ในปากน่ะครับ...^000000";
+			next;
+			delitem 5015,1;  //Egg_Shell
+			delitem 978,1;  //Cobaltblue_Dyestuffs
+			delitem 7030,50;  //Claw_Of_Desert_Wolf
+			Emotion ET_O;
+			mes "^3355FF*วู๊ฟ....~~*";
+			mes "*บรีซ....*";
+			mes "*ช็อค..ก๊า..*";
+			mes "*กะแป๊ง!*^000000";
+			getitem 5039,1; // Mottled_Egg_Shell
+			next;
+			mes "[Audi]";
+			mes "ขอบคุณมากครับ...";
+			mes "โอกาสหน้าเชิญใช้บริการใหม่น่ะครับ!";
+			mes "โอ้ว แล้วบอกเพื่อน ๆ ท่านให้มาลองระบบดูน่ะครับ!";
+			close;
+		}
+		break;
+	case 6:
+		if (countitem(7047) > 99) {
+			mes "^3355FFนำสิ่งของที่จะทำรายการใส่ไว้ในปากน่ะครับ...^000000";
+			next;
+			delitem 7047,100;  //Alice's_Apron
+			Emotion ET_O;
+			mes "^3355FF*วู๊ฟ....~~*";
+			mes "*บรีซ....*";
+			mes "*ช็อค..ก๊า..*";
+			mes "*กะแป๊ง!*^000000";
+			getitem 5040,1; // Blush
+			mes "[Audi]";
+			mes "ขอบคุณมากครับ...";
+			mes "โอกาสหน้าเชิญใช้บริการใหม่น่ะครับ!";
+			mes "โอ้ว แล้วบอกเพื่อน ๆ ท่านให้มาลองระบบดูน่ะครับ!";
+			close;
+		}
+		break;
+	case 7:
+		if ((countitem(539) > 119) && (countitem(982) > 0) && (countitem(949) > 329) && (countitem(1036) > 449)) {
+			mes "^3355FFนำสิ่งของที่จะทำรายการใส่ไว้ในปากน่ะครับ...^000000";
+			next;
+			delitem 539,120;  //Piece_Of_Cake
+			delitem 982,1;  //White_Dyestuffs
+			delitem 949,330;  //Feather
+			delitem 1036,450;  //Dragon_Scale
+			Emotion ET_O;
+			mes "^3355FF*วู๊ฟ....~~*";
+			mes "*บรีซ....*";
+			mes "*ช็อค..ก๊า..*";
+			mes "*กะแป๊ง!*^000000";
+			getitem 5026,1; // Hat_Of_Cook
+			next;
+			mes "[Audi]";
+			mes "ขอบคุณมากครับ...";
+			mes "โอกาสหน้าเชิญใช้บริการใหม่น่ะครับ!";
+			mes "โอ้ว แล้วบอกเพื่อน ๆ ท่านให้มาลองระบบดูน่ะครับ!";
+			close;
+		}
+		break;
+	case 8:
+		if ((countitem(2279) > 0) && (countitem(7035) > 49) && (countitem(526) > 99)) {
+			mes "^3355FFนำสิ่งของที่จะทำรายการใส่ไว้ในปากน่ะครับ...^000000";
+			next;
+			delitem 2279,1;  //Bomb_Wick
+			delitem 7035,50;  //Matchstick
+			delitem 526,100;  //Royal_Jelly
+			Emotion ET_O;
+			mes "^3355FF*วู๊ฟ....~~*";
+			mes "*บรีซ....*";
+			mes "*ช็อค..ก๊า..*";
+			mes "*กะแป๊ง!*^000000";
+			getitem 5028,1; // Candle
+			next;
+			mes "[Audi]";
+			mes "ขอบคุณมากครับ...";
+			mes "โอกาสหน้าเชิญใช้บริการใหม่น่ะครับ!";
+			mes "โอ้ว แล้วบอกเพื่อน ๆ ท่านให้มาลองระบบดูน่ะครับ!";
+			close;
+		}
+		break;
+	case 9:
+		if ((countitem(529) > 9) && (countitem(530) > 4) && (countitem(538) > 14) && (countitem(539) > 19) && (countitem(999) > 9)) { 
+			mes "^3355FFนำสิ่งของที่จะทำรายการใส่ไว้ในปากน่ะครับ...^000000";
+			next;
+			delitem 529,10;  //Candy
+			delitem 530,5;  //Candy_Striper
+			delitem 538,15;  //Well_Baked_Cookie
+			delitem 539,20;  //Piece_Of_Cake
+			delitem 999,10;  //Steel
+			Emotion ET_O;
+			mes "^3355FF*วู๊ฟ....~~*";
+			mes "*บรีซ....*";
+			mes "*ช็อค..ก๊า..*";
+			mes "*กะแป๊ง!*^000000";
+			getitem 5024,1; // Hat_Of_Cake
+			next;
+			mes "[Audi]";
+			mes "ขอบคุณมากครับ...";
+			mes "โอกาสหน้าเชิญใช้บริการใหม่น่ะครับ!";
+			mes "โอ้ว แล้วบอกเพื่อน ๆ ท่านให้มาลองระบบดูน่ะครับ!";
+			close;
+		}
+		break;
+	case 10:
+		mes "[Audi]";
+		mes "^555555คุณได้ทำการยกเลิกรายการ...";
+		mes "ขอบคุณที่ใช้บริการ..";
+		close;
+	}
+	Emotion ET_X;
+	mes "[Audi]";
+	mes "^555555Error Error!";
+	mes "มีส่งของในที่จะทำรายการไม่ครบ!^000000";
+	next;
+	mes "[Titicupe]";
+	mes "ฉันว่า...";
+	mes "คุณควรจะกลับไปหามาเพิ่มเติมรับของคืนได้ที่ก้นของฉัน...";
+	close;
+}

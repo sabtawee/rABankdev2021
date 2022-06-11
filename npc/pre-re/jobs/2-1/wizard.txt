@@ -1,0 +1,186 @@
+//==============================================
+// - Script By : M-Ro Online
+// - Script City : Thailand 
+// - Script Support Server : Hercules & rAthena
+//==============================================
+-	script	job_episode5_wz	-1,{
+
+	set .@heading$, "[^0000FF Job Master ^000000]";
+	set .@giftzeny1, 1000;	// ได้รับเงินตอนเปลี่ยน Novice High
+	set .@giftzeny2, 1000;	// ได้รับเงินตอน เปลี่ยนเป็น 2-1
+	set .@giftzeny3, 1000;	// ได้รับเงินเมื่อเป็น Hi Class แล้ว
+
+if (Class==0) goto L_is_novice;
+if (Class==1) goto L_is_sword;
+if (Class==2) goto L_is_mage;
+if (Class==3) goto L_is_archer;
+if (Class==4) goto L_is_acolyte;
+if (Class==5) goto L_is_merchant;
+if (Class==6) goto L_is_thief;
+if (Class==7) goto L_is_knight;
+if (Class==8) goto L_is_priest;
+if (Class==9) goto L_is_wizard;
+if (Class==10) goto L_is_blacksmith;
+if (Class==11) goto L_is_hunter;
+if (Class==12) goto L_is_assassin;
+if (Class==14) goto L_is_crusader;
+if (Class==15) goto L_is_monk;
+if (Class==16) goto L_is_sage;
+if (Class==17) goto L_is_rogue;
+if (Class==18) goto L_is_alchemist;
+if (Class==19) goto L_is_bard;
+if (Class==20) goto L_is_dancer;
+if (Class==24) goto High;
+if (Class==25) goto High;
+
+L_is_novice:
+	mes .@heading$;
+	mes "....เฮ้ เจ้า Novice!!! เจ้าไม่ควรมาที่นี่เจ้าต้องรีบไปซะ";
+	emotion 1;
+	close;
+L_is_sword:
+	mes .@heading$;
+	mes "หืมม์ ข้าเสียใจแต่ข้าจะรับเฉพาะ Mage เท่านั้น";
+	emotion 23;
+	close;
+L_is_acolyte:
+	mes .@heading$;
+	mes "หืมม์ ข้าเสียใจแต่ข้าจะรับเฉพาะ Mage เท่านั้น";
+	emotion 23;
+	close;
+L_is_merchant:
+	mes .@heading$;
+	mes "หืมม์ ข้าเสียใจแต่ข้าจะรับเฉพาะ Mage เท่านั้น";
+	emotion 23;
+	close;
+L_is_thief:
+	mes .@heading$;
+	mes "หืมม์ ข้าเสียใจแต่ข้าจะรับเฉพาะ Mage เท่านั้น";
+	emotion 23;
+	close;
+L_is_archer:
+	mes .@heading$;
+	mes "หืมม์ ข้าเสียใจแต่ข้าจะรับเฉพาะ Mage เท่านั้น";
+	emotion 23;
+	close;	
+
+
+High:
+	mes .@heading$;
+	mes "ฮืมๆๆๆ เจ้ากลับมาทำไม";
+	mes "เจ้าได้มาถึงจุดสูงสุดของอาชีพแล้วนะ";
+	mes "หวังว่าจะไม่เจอเจ้าอีกนะ !";
+	close;
+
+L_is_mage:
+	if(JobLevel < 50) goto L_notJ50;
+	if(SkillPoint >0) goto L_notUseAll;
+	mes .@heading$;
+	mes "ข้าอำนวยความสะดวกสำหรับผู้เล่น";
+	mes "ที่ตั้งใจกับการเก็บเลเวลในครั้งนี้";
+	mes "สามารถเปลี่ยนอาชีพให้เจ้าได้ทันที";
+	mes "โดยไม่ต้องทำเควสหาของใดๆ";
+	mes "ต้องการเปลี่ยนอาชีพหรือไม่ !";
+	next;
+	menu "^009933•^000000 ยืนยัน เปลี่ยนอาชีพ",-,"^FF0000•^000000 ไม่สนใจ",L_close;
+	mes .@heading$;
+	mes "กรุณาตรวจสอบอาชีพที่ต้องการเปลี่ยน";
+	next;
+	menu "^009933•^000000 Wizard",wizard,"^FF0000•^000000 ยกเลิก",L_close;
+wizard:
+	mes .@heading$;
+	mes "ยืนยันการเปลี่ยนอาชีพ Wizard";
+	mes "แน่ใจนะ กว่าเจ้าจะไม่เปลี่ยนใจ";
+	next;
+	menu "^009933•^000000 ใช่",-,"^FF0000•^000000 ไม่ใช่",L_close;
+	mes .@heading$;
+	mes "โอเค รอข้าดำเนินการสักครู่..";
+	next;
+	jobchange 9;
+	getitem 505,20;
+	mes .@heading$;
+	mes "ดำเนินการเสร็จสิ้น !!";
+	mes "ข้าได้เปลี่ยนอาชีพให้กับเจ้าแล้ว";
+	mes "ขอให้สนุกกับการเก็บเลเวล ^_^";
+	close;
+
+
+L_is_knight:
+	set jobsw,1;
+	goto High;
+L_is_priest:
+	set jobal,1;
+	goto High;
+L_is_wizard:
+	set jobmg,1;
+	goto High;
+L_is_blacksmith:
+	set jobmc,1;
+	goto High;
+L_is_hunter:
+	set jobac,1;
+	goto High;
+L_is_assassin:
+	set jobtf,1;
+	goto High;
+	close;
+L_is_crusader:
+	set jobsw,2;
+	goto High;
+L_is_monk:
+	set jobal,2;
+	goto High;
+L_is_sage:
+	set jobmg,2;
+	goto High;
+L_is_rogue:
+	set jobtf,2;
+	goto High;
+L_is_alchemist:
+	set jobmc,2;
+	goto High;
+L_is_bard:
+	set jobac,2;
+	goto High;
+L_is_dancer:
+	set jobac,3;
+	goto High;
+
+
+L_notJ45:
+	mes .@heading$;
+	mes "Lv ของท่านยังไม่ถึง 45 ค่ะ";
+	close;
+L_notJ99:
+	mes .@heading$;
+	mes "Lv ของท่านยังไม่ถึง 99 ค่ะ";
+	close;
+L_notJ10:
+	mes .@heading$;
+	mes "Job Lv ของท่านยังไม่ถึง 10 ค่ะ";
+	close;
+L_notJ40:
+	mes .@heading$;
+	mes "Job Lv ของท่านยังไม่ถึง 40 ค่ะ";
+	close;
+L_notJ50:
+	mes .@heading$;
+	mes "Job Lv ของท่านยังไม่ถึง 50 ค่ะ";
+	close;
+L_notUseAll:
+	mes .@heading$;
+	mes "Skill Point ยังใช้ไม่หมดค่ะ";
+	close;
+L_close:
+	mes .@heading$;
+	mes "ยินดีให้บริการค่ะ";
+	close;
+	end;
+}
+//==============================================
+//ที่ตั้งNPC
+//==============================================
+
+gef_tower,111,37,5	duplicate(job_episode5_wz)	Job50 Wizard#1	68
+
+//==============================================

@@ -1,0 +1,1754 @@
+prt_monk.gat,55,249,4	script	Tohobu the Guarding Monk	139,0,5,{
+	mes "[Tohobu]";
+	mes " เจ้าเป็นใคร?!";
+	mes " ที่นี่เป็นสถานที่ศักสิทธิ์เจ้าไม่ควรมาที่นี่หากไม่ได้รับอนุญาติ!!";
+	next;
+	mes "[Tohobu]";
+	mes " ออกไป!!";
+	close;
+}
+prt_monk.gat,59,247,4	script	Master	120,{
+	if(MONK_Q == 1 ) goto Part1;
+	if(MONK_Q == 2 ) goto Part2;
+	if(Class == 15 || Class == 4016) goto IsMonk;
+	goto L_START;
+
+IsMonk:
+	mes "[Tohobu]";
+	mes " ข้ายินต้อนรับการกลับมาอีกครั้งสู่ ^00FF00St. Capitolina Abbey^000000.";
+	mes " ท่านคงจะมาเยี่ยมชมพวก Monk มือใหม่ แต่ท่านอย่างได้รบกวนเขาล่ะ";
+	mes " ถึงแม้ว่าท่านจะเป็น Monk เหมือนกัน!";
+	close;
+
+L_START:
+	if(JobLevel == 50) {
+	if (Class!=4) goto Notache;
+	if(SkillPoint >0) goto L_notUseAll;
+
+	 mes "[ Jobchanger ]";
+	 mes "ท่านต้องการเปลื่ยนอาชีพเป็นmonk ใช่หรือไม่";
+	 next;
+	 menu "ใช่",-,"ไม่ใช่",L_close;
+	 mes "[ Jobchanger ]";
+	 mes "ถ้าเป็นอย่างนั้น ข้าก็จะเปลื่ยนให้เจ้าทันที";
+	 next;
+	 JobChange 15;
+	set zeny,zeny+50000;
+	 mes "เจ้าได้เป็น monkเรียบร้อยแล้ว";
+	 close;
+
+	L_close:
+	 mes "[ Jobchanger ]";
+	 mes "เราคงมีโอกาศได้พบกันใหม่อีกแน่ บาย";
+	 close;
+
+	L_notUseAll:
+	 mes "[ Jobchanger ]";
+	 mes "ท่านยังใช้ Skill Point ไม่หมด";
+	 close;
+
+	Notache:
+	 mes "[ Jobchanger ]";
+	 mes "คุณไม่ได้ นักบุญนิ";
+	 close;
+
+
+	}
+	mes "[Tohobu]";
+	mes " อืม...? เจ้าต้องการอะไรจากข้า?";
+	mes " ก่อนที่เจ้าจะเข้าสู่สถานที่ที่ใช้อบรม";
+	mes " ข้าจะขอถามชื่อของเจ้า Level และ Job Level ของเจ้าก่อน";
+	next;
+	mes "[Tohobu]";
+	mes " บอกชื่อของเจ้า Job Level และ Level มา?";
+	next;
+	menu " ไม่สนใจ",-," บอกข้อมูลแก่เขา",L_MENU_1;
+
+		mes "[Tohobu]";
+		mes " เจ้าช่างหยาบคายนัก! ออกไป!";
+		warp "prt_fild03.gat",357,256;
+		end;
+L_MENU_1:
+	mes "[Tohobu]";
+	mes " นี่ " + strcharinfo(0) + " คือชื่อเจ้า ใช่มั้ย?";
+	mes "...ข้าเชื่อว่านี่คือวิธีที่ดี";
+	mes " นี่คงเป็น Job Level ของเจ้า " + joblevel;
+	next;
+	mes "[Tohobu]";
+	mes " เอาล่ะ เจ้าต้องการให้ข้าช่วยสิ่งใด? อะจ๊ากกกก";
+	next;
+	menu " ข้าอยากพบพระฝึกหัด...",L_MENU_1_0," ข้าต้องการเป็น Monk...",L_MENU_1_1," ข้าต้องการพักผ่อนที่ Training Camp...",L_MENU_1_2;
+
+	L_MENU_1_0:	
+		mes "[Tohobu]";
+		mes " โอ้! ข้ารู้";
+		mes " ข้าหวังว่าท่านจะได้รู้อะไรมาบ้างจากการฝึกของพวกเขา";
+		mes " บางทีมันอาจจะช่วยให้เจ้ากลายเป็น Monk";
+		set MONK_Q, 1;
+		close;
+
+	L_MENU_1_1:
+		if(Class != 4 && Class != 4005) goto IsNot4;
+		if(joblevel >= 40 ) goto SkillPointChk;
+			mes "[Tohobu]";
+			mes " Job Level ไม่สูงพอที่จะเป็น Monk";
+			mes " เจ้าต้องมี Job Level 40 ขึ้นไป แล้วข้าจะรอเจ้าที่นี่";
+			close;
+
+		SkillPointChk:
+
+			if(skillpoint == 0) goto L_GO;
+			mes "[Tohobu]";
+			mes " ดี...ดูเหมือนว่าท่านมีคุณสมบัติพอที่จะเป็น Monk,";
+			mes " แต่เจ้ายังไม่ได้เรียนทักษะที่ยังเหลืออยู่";
+			mes " เจ้าควรใช้สกิลพ้อยท์ที่เหลือให้หมด";
+			close;
+
+		IsNot4:
+			mes "[Tohobu]";
+			mes " โอ้ เด็กน้อย?";
+			close;
+
+		HighMonk:
+			mes "[Tohobu]";
+			mes " ว้าว! ท่านคงเป็น Acolyte ที่ผ่านประสบการณ์มาเยอะ?";
+			mes " แต่ข้าต้องเสียใจ ที่ข้าทำให้ท่านเป็น Monk ไม่ได้!";
+			mes " ท่านต้องไปหา Champion เขาจะบอกสื่งที่ท่านควรจะรู้!";
+			set MONK_Q, 0;
+			close;
+
+		L_GO:
+			if (Class == 4005) goto HighMonk;
+			mes "[Tohobu]";
+			mes " อืม.. เจ้าบอกว่า Job Level ของเจ้า ดีกว่าที่กำหนดไว้นิดหน่อยใช่ไหม...?";
+			mes " เอาล่ะ.. เข้าไปพบหลวงพ่อ Muhae ข้างใน";
+			mes " ท่านจะเป็นผู้แนะนำเจ้า";
+			set JBLVL, 40;				// used to determine what item to get at the end
+			if(JobLevel == 50) set JBLVL, 50;	// used to determine what item to get at the end
+			set MONK_Q, 2;
+			close;
+
+	L_MENU_1_2:
+		mes "[Tohobu]";
+		mes " ก็ได้ เจ้าคงจะเหนื่อยกับการเดินทาง";
+		mes " บางทีเจ้าอาจจะควรหยุดพักบ้าง";
+		mes " เจ้าควรจะพักที่นี่ ให้สบายใจแล้วเจ้าก็ค่อยไป!";
+		close;
+Part1:
+	mes "[Tohobu]";
+	mes " เจ้าคงจะคิดอะไรได้บ้าง หลังจากที่เจ้าได้เดินมองดูรอบๆ นะ?";
+	next;
+	menu " ไม่เลย",L_MENU_1_0," ข้าต้องการเป็น Monk",L_MENU_1_1," ข้าอยากพักก่อน",L_MENU_1_2;
+
+Part2:
+	mes "[Tohobu]";
+	mes " เอาล่ะ.. เข้าไปพบหลวงพ่อ Muhae ข้างใน";
+	mes " ท่านจะเป็นผู้แนะนำเจ้า";
+	close;
+}
+
+monk_in.gat,99,58,4	script	A Pastor	60,{
+	if(MONK_Q == 2 ) goto L_START;
+	if(MONK_Q == 3 ) goto Part1;
+	if(MONK_Q == 4 ) goto Part2;
+	if(MONK_Q >= 5 && JOB_MONK < 10) goto Part3;
+	if(MONK_Q >= 10 && countitem(506) > 0) goto Part4;//Items: Green_Potion,
+	if(MONK_Q == 11 && countitem(506) == 0) goto Part5;//Items: Green_Potion,
+	if(Class == 15 || Class == 4016) goto Part6;
+	if(Class == 4 || Class == 4005) goto Part7;
+		goto IsOther;
+IsOther:
+	mes "[หลวงพ่อ Muhae]";
+	mes " เจ้าอาจจะเคยพบเห็นพระเจ้ามาบ้าง!!";
+	mes " ยินดีต้อนรับ...เจ้านักเดินน้อย?";
+	close;
+
+L_START:
+	mes "[หลวงพ่อ Muhae]";
+	mes " อืม... เป็นยังไงบ้าง เจ้าอยากเป็น Monk...? ใข่ไหม?";
+	next;
+	menu " ถูกต้อง",L_MENU_1," ไม่ใช่",-;
+		mes "[หลวงพ่อ Muhae]";
+		mes " อืม...? เจ้าตอบว่าไม่?";
+		mes " เจ้าคงจะเห็นว่าข้าแก่และน่าเบื่อเกินไปที่จะสอนเจ้าล่ะสิ";
+		close;
+L_MENU_1:
+	mes "[หลวงพ่อ Muhae]";
+	mes " โอ้! ข้ายังจำตอนข้าเป็นหนุ่มๆ ในวันแรกที่ข้าเป็น Monks...";
+	mes " ยินดีต้อนรับ เด็กน้อย!";
+	next;
+	mes "[หลวงพ่อ Muhae]";
+	mes " ข้าได้ยินว่าเจ้าอยากจะเป็น Monk! ข้ารู้สึกดีใจมาก!";
+	mes " แต่ก่อนอื่นที่เจ้าจะมาเป็นหนึ่งกับเรา ข้ามีบางอย่างที่ข้าต้องให้เจ้าได้รู้";
+	next;
+	mes "[หลวงพ่อ Muhae]";
+	mes " ในฐานะที่ข้าเป็น Monk ข้าได้รับการฝึกที่เข้มงวด เพื่อที่จะนำไปสู่สันติภาพแก่โลก";
+	next;
+	mes "[หลวงพ่อ Muhae]";	
+	mes " เจ้าต้องใช้ความแข็งแรงของเจ้าที่มีอยู่ ช่วยเหลือคนที่อ่อนแอและปกป้องเขาจากอันตราย";
+	next;
+	mes "[หลวงพ่อ Muhae]";
+	mes " สุดท้ายเจ้าต้องคอยระงับอารมณ์ของเจ้า";
+	mes " ไม่ให้ความเห็นแก่ตัวของเจ้าเข้าครอบงำ";
+	mes " และจงอย่ามัวเมากับการประสบความสำเร็จ";
+	next;
+	mes "[หลวงพ่อ Muhae]";
+	mes " ข้าขอเริ่มการทดสอบเพื่อดูว่าเจ้ามีค่าพอที่จะเป็น Monk ได้มั้ย!!";
+	next;
+	mes "[หลวงพ่อ Muhae]";
+	mes " นี่เป็นการทดสอบเล็กๆ เพื่อที่เจ้าจะได้เข้ามาร่วมเป็นหนึ่งกับเรา";
+	next;
+	if(JBLVL == 50) goto IsJOB50;
+
+	set MONK_Q, 3;
+	set JOB_MONK_C,rand(1,6);
+L_Collect:
+	if(JOB_MONK_C == 1 ) goto L_Collect1;
+	if(JOB_MONK_C == 2 ) goto L_Collect2;
+	if(JOB_MONK_C == 3 ) goto L_Collect3;
+	if(JOB_MONK_C == 4 ) goto L_Collect4;
+	if(JOB_MONK_C == 5 ) goto L_Collect5;
+	if(JOB_MONK_C == 6 ) goto L_Collect6;
+
+	L_Collect1:
+		mes "[หลวงพ่อ Muhae]";
+		mes " จงนำไอเท็มเหล่านี้มา";
+		mes "Tooth of Bat - 10";
+		mes "Bears Footskin - 5";
+		mes "Poison Spore - 20";
+		if(@collect_tmp != 1) goto L_CollectS;
+		close;
+
+	L_Collect2:
+		mes "[หลวงพ่อ Muhae]";
+		mes " จงนำไอเท็มเหล่านี้มา";
+		mes "Porcupine Quill - 5";
+		mes "Cobweb - 20";
+		mes "Grasshopper's Leg - 10";
+		if(@collect_tmp != 1) goto L_CollectS;
+		close;
+
+	L_Collect3:
+		mes "[หลวงพ่อ Muhae]";
+		mes " จงนำไอเท็มเหล่านี้มา";
+		mes "Stem - 30";
+		mes "Jellopy - 5";
+		mes "Worm Peeling -10";
+		if(@collect_tmp != 1) goto L_CollectS;
+		close;
+
+	L_Collect4:
+		mes "[หลวงพ่อ Muhae]";
+		mes " จงนำไอเท็มเหล่านี้มา";
+		mes "Sticky Mucus - 5";
+		mes "Earthworm Peeling - 10";
+		mes "Green Herb - 20";
+		if(@collect_tmp != 1) goto L_CollectS;
+		close;
+
+	L_Collect5:
+		mes "[หลวงพ่อ Muhae]";
+		mes " จงนำไอเท็มเหล่านี้มา";
+		mes "Yoyo Tail - 20";
+		mes "Iron Ore - 5";
+		mes "Blue Herb - 3";
+		if(@collect_tmp != 1) goto L_CollectS;
+		close;
+
+	L_Collect6:
+		mes "[หลวงพ่อ Muhae]";
+		mes " จงนำไอเท็มเหล่านี้มา";
+		mes "Solid Shell - 5";
+		mes "Shell - 20";
+		mes "Zargon - 5";
+		if(@collect_tmp != 1) goto L_CollectS;
+		close;
+L_CollectS:
+	next;
+	mes "[หลวงพ่อ Muhae]";
+	mes " การนี้เจ้าจะต้องรวบรวมของเหล่านี้ด้วยตัวเจ้าเอง";
+	next;
+	mes "[หลวงพ่อ Muhae]";
+	mes " เมื่อเจ้ามีครบทั้งหมด เจ้าก็กลับมาหาขา";
+	mes " หวังว่าพระเจ้าจะอยู่ข้างท่าน";
+	close;
+
+IsJOB50:
+	mes "[หลวงพ่อ Muhae]";
+	mes " ข้าเห็น Job Level ของท่าน " +joblevel +" .";
+	mes " นี่อาจพิสูจน์ถึงความสามารถของท่านได้";
+	next;
+	mes "[หลวงพ่อ Muhae]";
+	mes " ดีมาก!";
+	mes " ข้าคิดว่าพระเจ้าคงจะคิดเช่นเดียวกับข้า";
+	next;
+	mes "[หลวงพ่อ Muhae]";
+	mes " ท่านต้องตามหา Douha เขาต้องการจะพบท่าน";
+	mes " ซึ่งเขาอยู่บริเวณสุสานขวาบนของแผนที่";
+	set MONK_Q, 4;
+	close;
+
+Part1:
+//~	if(joblevel == 50) goto IsJOB50;
+	if(JOB_MONK_C == 1 && countitem(913) >= 10 && countitem(948) >= 5 && countitem(7033) >= 20) goto L_CollectS2_1;//Items: Tooth_of_Bat, Bear's_Footskin, Poison_Spore,
+	if(JOB_MONK_C == 2 && countitem(1027) >= 5 && countitem(1025) >= 20 && countitem(940) >= 10) goto L_CollectS2_2;//Items: Porcupine_Quill, Cobweb, Grasshopper's_Leg,
+	if(JOB_MONK_C == 3 && countitem(905) >= 30 && countitem(909) >= 5 && countitem(955) >= 10) goto L_CollectS2_3;//Items: Stem, Jellopy, Worm_Peeling,
+	if(JOB_MONK_C == 4 && countitem(938) >= 5 && countitem(1055) >= 10 && countitem(511) >= 20) goto L_CollectS2_4;//Items: Sticky_Mucus, Earthworm_Peeling, Green_Herb,
+	if(JOB_MONK_C == 5 && countitem(942) >= 20 && countitem(1002) >= 5 && countitem(510) >= 3) goto L_CollectS2_5;//Items: Yoyo_Tail, Iron_Ore, Blue_Herb,
+	if(JOB_MONK_C == 6 && countitem(943) >= 5 && countitem(935) >= 20 && countitem(912) >= 5) goto L_CollectS2_6;//Items: Solid_Shell, Shell, Zargon,
+	
+		mes "[หลวงพ่อ Muhae]";
+		mes " หืม เจ้ายังมีไอเท็มไม่ครบ?";
+		mes " ข้าจะบอกเจ้าชัดๆ อีกครั้ง";
+		mes " ตั้งใจด้วยล่ะ!";
+		next;
+		set @collect_tmp, 1;
+		goto L_Collect;
+
+		L_CollectS2_1:
+			delitem 913, 10;//Items: Tooth_of_Bat,
+			delitem 948, 5;//Items: Bear's_Footskin,
+			delitem 7033, 20;//Items: Poison_Spore,
+			goto L_CollectS2_E;
+		L_CollectS2_2:
+			delitem 1027, 5;//Items: Porcupine_Quill,
+			delitem 1025, 20;//Items: Cobweb,
+			delitem 940, 10;//Items: Grasshopper's_Leg,
+			goto L_CollectS2_E;
+		L_CollectS2_3:
+			delitem 7012, 30;//Items: Tough_Scalelike_Stem,
+			delitem 909, 5;//Items: Jellopy,
+			delitem 955, 10;//Items: Worm_Peeling,
+			goto L_CollectS2_E;
+		L_CollectS2_4:
+			delitem 938, 5;//Items: Sticky_Mucus,
+			delitem 1055, 10;//Items: Earthworm_Peeling,
+			delitem 511, 20;//Items: Green_Herb,
+			goto L_CollectS2_E;
+		L_CollectS2_5:
+			delitem 942, 20;//Items: Yoyo_Tail,
+			delitem 1002, 5;//Items: Iron_Ore,
+			delitem 510, 3;//Items: Blue_Herb,
+			goto L_CollectS2_E;
+		L_CollectS2_6:
+			delitem 943, 5;//Items: Solid_Shell,
+			delitem 935, 20;//Items: Shell,
+			delitem 912, 5;//Items: Zargon,
+			goto L_CollectS2_E;
+	
+	L_CollectS2_E:
+		mes "[หลวงพ่อ Muhae]";
+		mes " โอ้! เจ้าหามันมาได้ทั้งหมด!";
+		mes " ดีมาก!";
+		mes " ไหนมาดูกัน เอ่อ...";
+		mes " เจ้าต้องตามหา Douha เขาต้องการจะพบท่าน";
+		mes " ซึ่งเขาอยู่บริเวณสุสานขวาบนของแผนที่";
+		set MONK_Q, 4;
+		set JOB_MONK_C, 0;
+		close;
+
+Part2:
+	mes "[หลวงพ่อ Muhae]";
+	mes " เจ้าต้องตามหา Douha เขาต้องการจะพบท่าน";
+	mes " ซึ่งเขาอยู่บริเวณสุสานขวาบนของแผนที่";
+	close;
+Part3:
+	mes "[หลวงพ่อ Muhae]";
+	mes " หืม? นี่เจ้ายังผ่านการทดสอบ...?";
+	mes " จงพยายามอย่างเต็มที่ ข้าว่าเจ้าจะทำได้!";
+	close;
+Part4:
+	mes "[หลวงพ่อ Muhae]";
+	mes " อะไร? นี่เจ้ายังไม่ได้กินยาวิเศษนั่นอีกเหรอ?";
+	mes " เร็วเจ้า จะต้องทำให้สำเร็จเพื่อให้ได้ Green potion!";
+	mes " ไม่เช่นนั้นท่านคงจะไม่ได้รับพลังแห่งจิตวิญญาณของ Monks";
+	set MONK_Q, 11;
+	close;
+Part5:
+	mes "[หลวงพ่อ Muhae]";
+	mes " เราได้ผ่านมาทุกขั้นตอน...เลือดและจิตวิญญาณของเจ้า";
+	mes " คงเรียกร้องการที่เป็น Monk";
+	mes " หลังจากที่เจ้าได้ดื่มน้ำยาวิเศษเพื่อเพิ่มพลังของเจ้าให้มากขั้น";
+	next;
+	mes "[หลวงพ่อ Muhae]";
+	mes " ดี.. หากเจ้าพร้อมที่จะสาบาน";
+	mes " หลังจากนั้นข้าก็จะเปลี่ยนให้เจ้าเป็นอย่างที่ต้องการ";
+	next;
+	mes "[หลวงพ่อ Muhae]";
+	mes " เจ้าจะอุทิศชีวิตเพื่อพระเจ้าหรือไม่?";
+	next;
+	menu " แน่นอน",L_MONK_Q_2," ไม่",-;
+
+		mes "[หลวงพ่อ Muhae]";
+		mes "......อะไร?......";
+		mes " เจ้าพูดแบบนี้มาเจ้าคงไม่พร้อมจะเป็น Monk ใช่มั้ย?";
+		mes " บางทีเจ้าควรจะใช้เวลาเล็กๆ น้อยๆ เดินดูรอบๆ";
+		mes " เพื่อที่เจ้าจะได้มีกำลังใจขึ้นมามากขึ้น";
+		close;
+L_MONK_Q_2:
+	mes "[หลวงพ่อ Muhae]";
+	mes " เจ้าจะนำพรสวรรค์ของเจ้ามาใช้เพื่อตนเองหรือเปล่า?";
+	next;
+	menu " ใช่",-," ไม่",L_MONK_Q_3;
+
+		mes "[หลวงพ่อ Muhae]";
+		mes "...ไม่ ไม่  ไม่ !! ข้าไม่เคยสอนเจ้าเช่นนี้!";
+		mes " เจ้าต้องคอยปกป้องความสงบสุขของโลก";
+		mes " ไม่ใช่ใช้พลังด้วยความเห็นแก่ตัว?!";
+		close;
+
+L_MONK_Q_3:
+	mes "[หลวงพ่อ Muhae]";
+	mes " ท่านจะลังเลในการตัดสินลงโทษผู้ที่ขัดคำสั่งพระเจ้าหรือไม่";
+	next;
+	menu " ไม่",L_MONK_Q_4," ใช่",-;
+
+		mes "[หลวงพ่อ Muhae]";
+		mes " เจ้าคิดว่า Monks คืออะไร?";
+		mes " ไม่ว่าเขาจะเป็นใคร";
+		mes " หากมีใครทำผิดก็ควรที่จะได้รับโทษ!";
+		mes " หากเจ้าคิดว่าสิ่งที่เจ้าทำนั้นถูกแล้ว!";
+		close;
+
+L_MONK_Q_4:
+	mes "[หลวงพ่อ Muhae]";
+	mes " ท่านพร้อมที่จะร่วมมือกับผู้อื่นเพื่อจู่โจมพวกที่ขัดคำสั่งพระเจ้าและพลีกายเพื่อภารกิจนี้หรือไม่";
+	next;
+	menu " ใช่",L_MONK_Q_5," ไม่",-;
+
+		mes "[หลวงพ่อ Muhae]";
+		mes " โอ้...ไม่มมมม....";
+		mes " หากการเสียสละนั้นเป็นประโยชน์แก่คนส่วนมาก";
+		mes " เจ้าก็ควรที่จะเลือกทำสิ่งนั้น..!!";;
+		close;
+
+L_MONK_Q_5:
+	mes "[หลวงพ่อ Muhae]";
+	mes " เจ้าจะช่วยเหลือผู้อื่นในการเป็นผู้นำเหล่ามอนสเตอร์หรือไม่?";
+	next;
+	menu " ใช่",-," ไม่",L_MONK_Q_6;
+
+		mes "[หลวงพ่อ Muhae]";
+		mes " มันไม่ใช่ความคิดที่ถูกต้อง";
+		mes " ที่จะนำมอนสเตอร์มาช่วยในการต่อสู้";
+		mes "...";
+		// he's not making any sense =P
+		mes " ทุกๆ สิ่งย่อมมีชีวิตเป็นของมันเจ้าต้องเข้าใจ";
+		close;
+
+L_MONK_Q_6:
+	mes "[หลวงพ่อ Muhae]";
+	// mes "Will you spam?";
+	// "will you spam" is just so... un-monkly. ^^;
+	mes " เจ้าจะพูดกับผู้คนปกติเช่นเดียวกับผู้คนในสนามรบหรือเปล่า?";
+	next;
+	menu " ใช่",-," ไม่",L_MONK_Q_7;
+
+		mes "[หลวงพ่อ Muhae]";
+		mes " ไม่! ไม่ใช่แค่เพียงเจ้าเท่านั้นแต่เป็นทุกๆ คนก็ไม่ควรจะทำ";
+		close;
+L_MONK_Q_7:
+	mes "[หลวงพ่อ Muhae]";
+	mes " เจ้าคิดว่าเจ้าเป็นผู้ลงทัณฑ์แทนพระเจ้าและสละชีพเพื่อพระเจ้าหรือไม่?";
+	next;
+	menu " ใช่",L_MONK_Q_8," ไม่",-;
+
+		mes "[หลวงพ่อ Muhae]";
+		mes " ความตายเป็นสิ่งที่ใครๆ ก็ต้องเจอ";
+		mes " เพื่อปกป้องโลก ข้าว่าการที่พระเจ้าได้ทำมันต้องมีความหมาย!";
+		close;
+
+L_MONK_Q_8:
+	mes "[หลวงพ่อ Muhae]";
+	mes " ท้ายสุดนี้  เจ้าจะสาบานต่อสิ่งที่เจ้ารับรู้มาทั้งหมดหรือไม่";
+	next;
+	menu " ข้าสาบาน",L_MONK_Q_9," ข้าปฏิเสธ",-;
+
+		mes "[หลวงพ่อ Muhae]";
+		mes "......";
+		next;
+		mes "[หลวงพ่อ Muhae]";
+		mes " ดูเหมือนว่าเจ้า จะได้รับการอบรมน้อยเกินไป..";
+		mes " เจ้าคงยังไม่สมควรที่จะเป็น Monk.";
+		close;
+
+L_MONK_Q_9:
+	mes "[หลวงพ่อ Muhae]";
+	mes " ดี ตอนนี้ เราก็เสร็จสิ้นคำสาบาน";
+	mes " ตอนนี้เจ้าได้กลายเป็นพี่น้องของข้า!";
+//---- Progress bar ----//
+	next;
+	mes "[หลวงพ่อ Muhae]";
+	mes " คำสัญญาของเจ้าจะอยู่ในหัวใจของ Monks ทีนี่ทั้งหมด";
+	next;
+	mes "[หลวงพ่อ Muhae]";
+	mes " ตอนนี้ข้าจะขอเริ่มพิธี!";
+	next;
+	mes "[หลวงพ่อ Muhae]";
+	mes " ข้าจะฝังเข็ม 365 และข้าจะเปิดเส้นทางของหลอดเลือดทั้งหมด 1129 เส้นทาง";
+	next;
+	mes "[หลวงพ่อ Muhae]";
+	mes " อ้าาา......";
+	next;
+	mes "[หลวงพ่อ Muhae]";
+	mes " วู้... ฮู้";
+	next;
+	mes " [" + strcharinfo(0) + "]";
+	mes " - หายใจเข้าลึกๆ -";
+	next;
+	mes " [" + strcharinfo(0) + "]";
+	mes " - เริ่มต้นการฝังเข็ม -";
+	next;
+	mes "[หลวงพ่อ Muhae]";
+	mes " อ้าาาาาา!!!";
+	next;
+	mes "[หลวงพ่อ Muhae]";
+	mes " โอ้ววววว!!!";
+	next;
+	mes "[หลวงพ่อ Muhae]";
+	mes " อู้วววว!!!";
+	next;
+	mes "[หลวงพ่อ Muhae]";
+	mes " ว๊าาาวว ว๊าากกก!!!";
+	next;
+	mes "[หลวงพ่อ Muhae]";
+	mes " วู้ววว...ฮือออ";
+	next;
+	mes "[หลวงพ่อ Muhae]";
+	mes " .... เจ้าได้เปลี่ยนอาชีพแล้ว!";
+	setoption 0;
+	jobchange 15;// Job: Job_Monk
+	next;
+	mes "[หลวงพ่อ Muhae]";
+	mes " เยี่ยม... และจากนี้ไป เจ้าจะต้องใช้วิถีชีวิตแบบ Monk";
+	mes " ข้าจะมอบของขวัญเล็กน้อยให้ท่าน";
+	if(JBLVL < 50) getitem 1801, 1;//Items: Waghnakh,
+	if(JBLVL == 50) getitem 1804, 1;//Items: Knuckle_Duster_,
+	callfunc "F_ClearJobVar";
+	close;
+Part6:
+	mes "[หลวงพ่อ Muhae]";
+	mes " ยินดีต้อนรับ เจ้ามีอะไรให้ข้าช่วย?";
+	next;
+	mes "[หลวงพ่อ Muhae]";
+	mes " เอ่อมันก็ทุกๆ อย่างล่ะ?";
+	mes " ข้าอยากรู้วิธีการฝึกฝน?";
+	next;
+	mes "[หลวงพ่อ Muhae]";
+	mes " หากเจ้าไม่มีร่างกายที่แข็งแรง เจ้าก็ไม่สามารถช่วยเหลือผู้อื่นได้เมื่อพวกเขาต้องการเจ้า";
+	mes " และหากเจ้าอ่อนแอเกินไป ความชั่วร้ายจะพาเจ้าไปสู่ด้านมืด";
+	close;
+
+Part7:
+	mes "[หลวงพ่อ Muhae]";
+	mes " ยินดีต้อนรับ เจ้ามีอะไรให้ข้าช่วย?";
+	next;
+	mes "[หลวงพ่อ Muhae]";
+	mes " โอ้! เจ้า Acolyte....น้อย";
+	mes " หากเจ้าต้องการคำอธิฐานให้ไปที่ Prontera Sanctuary!";
+	mes " นี่เป็นสถานที่ของ Monk ไม่ใช่ที่ที่ควรจะมาอธิฐาน";
+	close;
+}
+
+prt_monk.gat,251,255,4	script	Douha	79,{
+	if(MONK_Q == 4 ) goto L_START;
+	if(MONK_Q == 5 ) goto Part1;
+	if(MONK_Q == 6 ) goto Part2;
+	if(MONK_Q > 6 ) goto Part3;
+	goto IsOther;
+
+IsOther:
+	mes "[Wutao]";
+	mes " พวกเราคือ Monks!";
+	mes " พวกเรามีพลังที่ไม่จำกัเ!";
+	mes " พวกเรามีความฉลาดที่มากกว่าผู้อื่น!";
+	mes " พวกเราใช้พลังและความฉลาดปกป้องสันติภาพของโลก!";
+	close;
+
+L_START:
+	mes "[Wutao]";
+	mes " เจ้าต้องการให้ข้าทำอะไร?";
+	mes " เจ้าต้องการจะพูดคุยกับพระเจ้าหรือไม่?";
+	next;
+	mes "[Wutao]";
+	mes " ข้าจะบอกสิ่งจำเป็นสำหรับความมุ่งหมายทางจิตใจของการเป็น Monk!";
+	mes " และการสนทนาธรรม";
+	mes " หลังจากนั้น ข้าจะวางนิ้วของข้าบนศูนย์รวมจิตของเจ้า เพื่อทดสอบเจ้าในบททดสอบต่อไป";
+	next;
+	mes "[Wutao]";
+	mes " เจ้าต้องจดจำสิ่งที่ข้ากำลังจะบอกเจ้าให้ดี";
+	mes " จงใจเย็น และ... พร้อมหรือยัง?";
+	next;
+	menu " แน่นอน",L_MENU_1," ยัง",-;
+		mes "[Wutao]";
+		mes " ไว้กลับมาใหม่เมื่อท่านพร้อม!";
+		close;
+L_MENU_1:
+	mes "[Wutao]";
+	mes " เอาล่ะ เริ่มกันเลย";
+	next;
+	set @JOB_MONK_C2, rand(1,3);
+L_Again:
+	if(@JOB_MONK_C2==0) set @JOB_MONK_C2, rand(1,3);
+	if(@JOB_MONK_C2 == 2) goto L_ROOT_2;
+	if(@JOB_MONK_C2 == 3) goto L_ROOT_3;
+
+	L_ROOT_1:
+		set @monk_str0$," ผมคิดว่าเมื่อคุณได้";
+		set @monk_str1$," ได้ลงมือทำอะไรแล้ว";
+		set @monk_str2$," ผลลัพธ์มันออกมาน่าพอใจ";
+		set @monk_str3$," จงลงมือทำในสิ่งอื่น";
+		set @monk_str4$," ที่น่ามหัศจรรย์ต่อไป";
+		set @monk_str5$," อย่าได้หยุดนั่งอยู่กับความสำเร็จ";
+		set @monk_str6$," นั้นนานนัก..ลองมองหา";
+		set @monk_str7$," ว่าควรจะทำอะไรต่อไปก็เท่านั้นเอง";
+		goto L_MES;
+	L_ROOT_2:
+		set @monk_str0$," ผู้ที่ชอบปฎิเสธความฝัน";
+		set @monk_str1$," ไม่มีทางสร้างธุรกิจ";
+		set @monk_str2$," ที่ยิ่งใหญ่ขึ้นมาได้";
+		set @monk_str3$," เราตัดสินตัวเรา";
+		set @monk_str4$," จากความรู้สึกที่ว่า";
+		set @monk_str5$," เราสามารถทำสิ่งใดสิ่งหนึ่งได้";
+		set @monk_str6$," แต่คนอื่นตัดสินเราจากสิ่ง";
+		set @monk_str7$," ที่ได้กระทำลงไปแล้ว";
+		goto L_MES;
+	L_ROOT_3:
+		set @monk_str0$," ตึกร้อยชั้นยังต้องมี";
+		set @monk_str1$," รากฐานที่แข็งแกร่ง";
+		set @monk_str2$," อะไรก็ตามที่คุณทำได้";
+		set @monk_str3$," หรือใฝ่ฝันว่าทำได้..";
+		set @monk_str4$," ก็จงเริ่มทันที";
+		set @monk_str5$," เพราะความกล้าหาญ";
+		set @monk_str6$," ก็มีความเป็นอัจฉริยภาพ";
+		set @monk_str7$," พลัง และ อำนาจ";
+		set @monk_str8$," อยู่ในตัวของมันเอง";
+
+L_MES:
+	mes "[Wutao]";
+	mes " ตั้งใจฟังให้ดี!";
+	next;
+	mes "[Wutao]";
+	mes @monk_str0$;
+	next;
+	mes "[Wutao]";
+	mes @monk_str1$;
+	next;
+	mes "[Wutao]";
+	mes @monk_str2$;
+	next;
+	mes "[Wutao]";
+	mes @monk_str3$;
+	next;
+	mes "[Wutao]";
+	mes @monk_str4$;
+	next;
+	mes "[Wutao]";
+	mes @monk_str5$;
+	next;
+	mes "[Wutao]";
+	mes @monk_str6$;
+	next;
+	mes "[Wutao]";
+	mes @monk_str7$;
+	if(@JOB_MONK_C2 < 3) goto L_MES_1;
+	next;
+	mes "[Wutao]";
+	mes @monk_str8$;
+
+L_MES_1:
+	next;
+	mes "[Wutao]";
+	mes "Now, " + strcharinfo(0) + ", it's your turn.";
+	next;
+	set @monk_q, 0;
+	if(@JOB_MONK_C2 == 2) goto L_MONK_Q2_1;
+	if(@JOB_MONK_C2 == 3) goto L_MONK_Q3_1;
+
+L_MONK_Q1_1:
+
+	menu " จงลงมือทำในสิ่งอื่น",L_MONK_Q1_2,
+		" ผลลัพธ์มันออกมาน่าพอใจ",L_MONK_Q1_2,
+		" อย่าได้หยุดนั่งอยู่กับความสำเร็จ",L_MONK_Q1_2,
+		" นั้นนานนัก..ลองมองหา",L_MONK_Q1_2,
+		" ที่น่ามหัศจรรย์ต่อไป",L_MONK_Q1_2,
+		" ว่าควรจะทำอะไรต่อไปก็เท่านั้นเอง",L_MONK_Q1_2,
+		" ผมคิดว่าเมื่อคุณได้",-,
+		" ได้ลงมือทำอะไรแล้ว",L_MONK_Q1_2;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q1_2:
+
+	menu " ผลลัพธ์มันออกมาน่าพอใจ",L_MONK_Q1_3,
+		" นั้นนานนัก..ลองมองหา",L_MONK_Q1_3,
+		" ผมคิดว่าเมื่อคุณได้",L_MONK_Q1_3,
+		" ที่น่ามหัศจรรย์ต่อไป",L_MONK_Q1_3,
+		" ได้ลงมือทำอะไรแล้ว",-,
+		" จงลงมือทำในสิ่งอื่น",L_MONK_Q1_3,
+		" ว่าควรจะทำอะไรต่อไปก็เท่านั้นเอง",L_MONK_Q1_3,
+		" อย่าได้หยุดนั่งอยู่กับความสำเร็จ",L_MONK_Q1_3;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q1_3:
+
+	menu " ที่น่ามหัศจรรย์ต่อไป",L_MONK_Q1_4,
+		" ผลลัพธ์มันออกมาน่าพอใจ",-,
+		" จงลงมือทำในสิ่งอื่น",L_MONK_Q1_4,
+		" ได้ลงมือทำอะไรแล้ว",L_MONK_Q1_4,
+		" อย่าได้หยุดนั่งอยู่กับความสำเร็จ",L_MONK_Q1_4,
+		" ว่าควรจะทำอะไรต่อไปก็เท่านั้นเอง",L_MONK_Q1_4,
+		" นั้นนานนัก..ลองมองหา",L_MONK_Q1_4,
+		" ผมคิดว่าเมื่อคุณได้",L_MONK_Q1_4;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q1_4:
+
+	menu " จงลงมือทำในสิ่งอื่น",-,
+		" ผมคิดว่าเมื่อคุณได้",L_MONK_Q1_5,
+		" ผลลัพธ์มันออกมาน่าพอใจ",L_MONK_Q1_5,
+		" ได้ลงมือทำอะไรแล้ว",L_MONK_Q1_5,
+		" อย่าได้หยุดนั่งอยู่กับความสำเร็จ",L_MONK_Q1_5,
+		" ที่น่ามหัศจรรย์ต่อไป",L_MONK_Q1_5,
+		" ว่าควรจะทำอะไรต่อไปก็เท่านั้นเอง",L_MONK_Q1_5,
+		" นั้นนานนัก..ลองมองหา",L_MONK_Q1_5;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q1_5:
+
+	menu " อย่าได้หยุดนั่งอยู่กับความสำเร็จ",L_MONK_Q1_6,
+		" จงลงมือทำในสิ่งอื่น",L_MONK_Q1_6,
+		" ได้ลงมือทำอะไรแล้ว",L_MONK_Q1_6,
+		" ผมคิดว่าเมื่อคุณได้",L_MONK_Q1_6,
+		" ผลลัพธ์มันออกมาน่าพอใจ",L_MONK_Q1_6,
+		" นั้นนานนัก..ลองมองหา",L_MONK_Q1_6,
+		" ว่าควรจะทำอะไรต่อไปก็เท่านั้นเอง",L_MONK_Q1_6,
+		" ที่น่ามหัศจรรย์ต่อไป",-;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q1_6:
+
+	menu " ผมคิดว่าเมื่อคุณได้",L_MONK_Q1_7,
+		" ได้ลงมือทำอะไรแล้ว",L_MONK_Q1_7,
+		" อย่าได้หยุดนั่งอยู่กับความสำเร็จ",-,
+		" ผลลัพธ์มันออกมาน่าพอใจ",L_MONK_Q1_7,
+		" ที่น่ามหัศจรรย์ต่อไป",L_MONK_Q1_7,
+		" จงลงมือทำในสิ่งอื่น",L_MONK_Q1_7,
+		" ว่าควรจะทำอะไรต่อไปก็เท่านั้นเอง",L_MONK_Q1_7,
+		" นั้นนานนัก..ลองมองหา",L_MONK_Q1_7;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q1_7:
+
+	menu " ได้ลงมือทำอะไรแล้ว",L_MONK_Q1_8,
+		" ผมคิดว่าเมื่อคุณได้",L_MONK_Q1_8,
+		" ว่าควรจะทำอะไรต่อไปก็เท่านั้นเอง",L_MONK_Q1_8,
+		" ที่น่ามหัศจรรย์ต่อไป",L_MONK_Q1_8,
+		" อย่าได้หยุดนั่งอยู่กับความสำเร็จ",L_MONK_Q1_8,
+		" ผลลัพธ์มันออกมาน่าพอใจ",L_MONK_Q1_8,
+		" จงลงมือทำในสิ่งอื่น",L_MONK_Q1_8,
+		" นั้นนานนัก..ลองมองหา",-;
+
+		set @monk_q, @monk_q + 2;
+L_MONK_Q1_8:
+
+	menu " ผมคิดว่าเมื่อคุณได้",L_MONK_QUEST_END,
+		" นั้นนานนัก..ลองมองหา",L_MONK_QUEST_END,
+		" ผลลัพธ์มันออกมาน่าพอใจ",L_MONK_QUEST_END,
+		" ว่าควรจะทำอะไรต่อไปก็เท่านั้นเอง",L_MONK_QUEST_1_2,
+		" จงลงมือทำในสิ่งอื่น",L_MONK_QUEST_END,
+		" ได้ลงมือทำอะไรแล้ว",L_MONK_QUEST_END,
+		" ที่น่ามหัศจรรย์ต่อไป",L_MONK_QUEST_END,
+		" อย่าได้หยุดนั่งอยู่กับความสำเร็จ",L_MONK_QUEST_END;
+
+L_MONK_Q2_1:
+
+	menu " ไม่มีทางสร้างธุรกิจ",L_MONK_Q2_2,
+		" เราตัดสินตัวเรา",L_MONK_Q2_2,
+		" ที่ยิ่งใหญ่ขึ้นมาได้",L_MONK_Q2_2,
+		" ผู้ที่ชอบปฎิเสธความฝัน",-,
+		" จากความรู้สึกที่ว่า",L_MONK_Q2_2,
+		" ที่ได้กระทำลงไปแล้ว",L_MONK_Q2_2,
+		" เราสามารถทำสิ่งใดสิ่งหนึ่งได้",L_MONK_Q2_2,
+		" แต่คนอื่นตัดสินเราจากสิ่ง",L_MONK_Q2_2;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q2_2:
+
+	menu " เราสามารถทำสิ่งใดสิ่งหนึ่งได้",L_MONK_Q2_3,
+		" ผู้ที่ชอบปฎิเสธความฝัน",L_MONK_Q2_3,
+		" ที่ยิ่งใหญ่ขึ้นมาได้",L_MONK_Q2_3,
+		" เราตัดสินตัวเรา",L_MONK_Q2_3,
+		" แต่คนอื่นตัดสินเราจากสิ่ง",L_MONK_Q2_3,
+		" ที่ได้กระทำลงไปแล้ว",L_MONK_Q2_3,
+		" จากความรู้สึกที่ว่า",L_MONK_Q2_3,
+		" ไม่มีทางสร้างธุรกิจ",-;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q2_3:
+
+	menu " ที่ยิ่งใหญ่ขึ้นมาได้",-,
+		" เราสามารถทำสิ่งใดสิ่งหนึ่งได้",L_MONK_Q2_4,
+		" เราตัดสินตัวเรา",L_MONK_Q2_4,
+		" จากความรู้สึกที่ว่า",L_MONK_Q2_4,
+		" ไม่มีทางสร้างธุรกิจ",L_MONK_Q2_4,
+		" แต่คนอื่นตัดสินเราจากสิ่ง",L_MONK_Q2_4,
+		" ผู้ที่ชอบปฎิเสธความฝัน",L_MONK_Q2_4,
+		" ที่ได้กระทำลงไปแล้ว",L_MONK_Q2_4;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q2_4:
+
+	menu " ไม่มีทางสร้างธุรกิจ",L_MONK_Q2_5,
+		" ที่ได้กระทำลงไปแล้ว",L_MONK_Q2_5,
+		" จากความรู้สึกที่ว่า",L_MONK_Q2_5,
+		" แต่คนอื่นตัดสินเราจากสิ่ง",L_MONK_Q2_5,
+		" ผู้ที่ชอบปฎิเสธความฝัน",L_MONK_Q2_5,
+		" เราตัดสินตัวเรา",-,
+		" เราสามารถทำสิ่งใดสิ่งหนึ่งได้",L_MONK_Q2_5,
+		" ที่ยิ่งใหญ่ขึ้นมาได้",L_MONK_Q2_5;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q2_5:
+
+	menu " ที่ได้กระทำลงไปแล้ว",L_MONK_Q2_6,
+		" แต่คนอื่นตัดสินเราจากสิ่ง",L_MONK_Q2_6,
+		" เราตัดสินตัวเรา",L_MONK_Q2_6,
+		" ที่ยิ่งใหญ่ขึ้นมาได้",L_MONK_Q2_6,
+		" ไม่มีทางสร้างธุรกิจ",L_MONK_Q2_6,
+		" ผู้ที่ชอบปฎิเสธความฝัน",L_MONK_Q2_6,
+		" เราสามารถทำสิ่งใดสิ่งหนึ่งได้",L_MONK_Q2_6,
+		" จากความรู้สึกที่ว่า",-;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q2_6:
+
+	menu " แต่คนอื่นตัดสินเราจากสิ่ง",L_MONK_Q2_7,
+		" เราตัดสินตัวเรา",L_MONK_Q2_7,
+		" จากความรู้สึกที่ว่า",L_MONK_Q2_7,
+		" ที่ยิ่งใหญ่ขึ้นมาได้",L_MONK_Q2_7,
+		" เราสามารถทำสิ่งใดสิ่งหนึ่งได้",-,
+		" ผู้ที่ชอบปฎิเสธความฝัน",L_MONK_Q2_7,
+		" ไม่มีทางสร้างธุรกิจ",L_MONK_Q2_7,
+		" ที่ได้กระทำลงไปแล้ว",L_MONK_Q2_7;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q2_7:
+
+	menu " ไม่มีทางสร้างธุรกิจ",L_MONK_Q2_8,
+		" แต่คนอื่นตัดสินเราจากสิ่ง",-,
+		" ที่ยิ่งใหญ่ขึ้นมาได้",L_MONK_Q2_8,
+		" ที่ได้กระทำลงไปแล้ว",L_MONK_Q2_8,
+		" ผู้ที่ชอบปฎิเสธความฝัน",L_MONK_Q2_8,
+		" เราตัดสินตัวเรา",L_MONK_Q2_8,
+		" จากความรู้สึกที่ว่า",L_MONK_Q2_8,
+		" เราสามารถทำสิ่งใดสิ่งหนึ่งได้",L_MONK_Q2_8;
+
+		set @monk_q, @monk_q + 2;
+L_MONK_Q2_8:
+
+	menu " ผู้ที่ชอบปฎิเสธความฝัน",L_MONK_QUEST_END,
+		" ไม่มีทางสร้างธุรกิจ",L_MONK_QUEST_END,
+		" จากความรู้สึกที่ว่า",L_MONK_QUEST_END,
+		" แต่คนอื่นตัดสินเราจากสิ่ง",L_MONK_QUEST_END,
+		" เราสามารถทำสิ่งใดสิ่งหนึ่งได้",L_MONK_QUEST_END,
+		" เราตัดสินตัวเรา",L_MONK_QUEST_END,
+		" ที่ยิ่งใหญ่ขึ้นมาได้",L_MONK_QUEST_END,
+		" ที่ได้กระทำลงไปแล้ว",L_MONK_QUEST_1_2;
+
+L_MONK_Q3_1:
+
+	menu " รากฐานที่แข็งแกร่ง",L_MONK_Q3_2,
+		" ตึกร้อยชั้นยังต้องมี",-,
+		" พลัง และ อำนาจ",L_MONK_Q3_2,
+		" อะไรก็ตามที่คุณทำได้",L_MONK_Q3_2,
+		" อยู่ในตัวของมันเอง",L_MONK_Q3_2,
+		" เพราะความกล้าหาญ",L_MONK_Q3_2,
+		" ก็มีความเป็นอัจฉริยภาพ",L_MONK_Q3_2,
+		" ก็จงเริ่มทันที",L_MONK_Q3_2,
+		" หรือใฝ่ฝันว่าทำได้..",L_MONK_Q3_2;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q3_2:
+
+	menu " อะไรก็ตามที่คุณทำได้",L_MONK_Q3_3,
+		" พลัง และ อำนาจ",L_MONK_Q3_3,
+		" ตึกร้อยชั้นยังต้องมี",L_MONK_Q3_3,
+		" เพราะความกล้าหาญ",L_MONK_Q3_3,
+		" อยู่ในตัวของมันเอง",L_MONK_Q3_3,
+		" ก็จงเริ่มทันที",L_MONK_Q3_3,
+		" รากฐานที่แข็งแกร่ง",-,
+		" หรือใฝ่ฝันว่าทำได้..",L_MONK_Q3_3,
+		" ก็มีความเป็นอัจฉริยภาพ",L_MONK_Q3_3;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q3_3:
+
+	menu " ก็มีความเป็นอัจฉริยภาพ",L_MONK_Q3_4,
+		" ตึกร้อยชั้นยังต้องมี",L_MONK_Q3_4,
+		" อะไรก็ตามที่คุณทำได้",-,
+		"  รากฐานที่แข็งแกร่ง",L_MONK_Q3_4,
+		" ก็จงเริ่มทันที",L_MONK_Q3_4,
+		" หรือใฝ่ฝันว่าทำได้..",L_MONK_Q3_4,
+		" เพราะความกล้าหาญ",L_MONK_Q3_4,
+		" พลัง และ อำนาจ",L_MONK_Q3_4,
+		" อยู่ในตัวของมันเอง",L_MONK_Q3_4;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q3_4:
+
+	menu " ตึกร้อยชั้นยังต้องมี",L_MONK_Q3_5,
+		" อะไรก็ตามที่คุณทำได้",L_MONK_Q3_5,
+		" เพราะความกล้าหาญ",L_MONK_Q3_5,
+		" พลัง และ อำนาจ",L_MONK_Q3_5,
+		" หรือใฝ่ฝันว่าทำได้..",-,
+		" อยู่ในตัวของมันเอง",L_MONK_Q3_5,
+		" ก็มีความเป็นอัจฉริยภาพ",L_MONK_Q3_5,
+		" ก็จงเริ่มทันที",L_MONK_Q3_5,
+		" รากฐานที่แข็งแกร่ง",L_MONK_Q3_5;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q3_5:
+
+	menu " ก็มีความเป็นอัจฉริยภาพ",L_MONK_Q3_6,
+		" พลัง และ อำนาจ",L_MONK_Q3_6,
+		" อยู่ในตัวของมันเอง",L_MONK_Q3_6,
+		" ก็จงเริ่มทันที",-,
+		" รากฐานที่แข็งแกร่ง",L_MONK_Q3_6,
+		" ตึกร้อยชั้นยังต้องมี",L_MONK_Q3_6,
+		" เพราะความกล้าหาญ",L_MONK_Q3_6,
+		" หรือใฝ่ฝันว่าทำได้..",L_MONK_Q3_6,
+		" อะไรก็ตามที่คุณทำได้",L_MONK_Q3_6;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q3_6:
+
+	menu " หรือใฝ่ฝันว่าทำได้..",L_MONK_Q3_7,
+		" อยู่ในตัวของมันเอง",L_MONK_Q3_7,
+		" รากฐานที่แข็งแกร่ง",L_MONK_Q3_7,
+		" พลัง และ อำนาจ",L_MONK_Q3_7,
+		" ตึกร้อยชั้นยังต้องมี",L_MONK_Q3_7,
+		" เพราะความกล้าหาญ",-,
+		" อะไรก็ตามที่คุณทำได้",L_MONK_Q3_7,
+		" ก็มีความเป็นอัจฉริยภาพ",L_MONK_Q3_7,
+		" ก็จงเริ่มทันที",L_MONK_Q3_7;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q3_7:
+
+	menu " ตึกร้อยชั้นยังต้องมี",L_MONK_Q3_8,
+		" อยู่ในตัวของมันเอง",L_MONK_Q3_8,
+		" ก็มีความเป็นอัจฉริยภาพ",-,
+		" รากฐานที่แข็งแกร่ง",L_MONK_Q3_8,
+		" อะไรก็ตามที่คุณทำได้",L_MONK_Q3_8,
+		" หรือใฝ่ฝันว่าทำได้..",L_MONK_Q3_8,
+		" ก็จงเริ่มทันที",L_MONK_Q3_8,
+		" เพราะความกล้าหาญ",L_MONK_Q3_8,
+		" พลัง และ อำนาจ",L_MONK_Q3_8;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q3_8:
+
+	menu " พลัง และ อำนาจ",-,
+		" เพราะความกล้าหาญ",L_MONK_Q3_9,
+		" อยู่ในตัวของมันเอง",L_MONK_Q3_9,
+		" ก็มีความเป็นอัจฉริยภาพ",L_MONK_Q3_9,
+		" ก็จงเริ่มทันที",L_MONK_Q3_9,
+		" หรือใฝ่ฝันว่าทำได้..",L_MONK_Q3_9,
+		" รากฐานที่แข็งแกร่ง",L_MONK_Q3_9,
+		" อะไรก็ตามที่คุณทำได้",L_MONK_Q3_9,
+		" ตึกร้อยชั้นยังต้องมี",L_MONK_Q3_9;
+
+		set @monk_q, @monk_q + 1;
+L_MONK_Q3_9:
+
+	menu " หรือใฝ่ฝันว่าทำได้..",L_MONK_QUEST_END,
+		" อะไรก็ตามที่คุณทำได้",L_MONK_QUEST_END,
+		" รากฐานที่แข็งแกร่ง",L_MONK_QUEST_END,
+		" ก็จงเริ่มทันที",L_MONK_QUEST_END,
+		" เพราะความกล้าหาญ",L_MONK_QUEST_END,
+		" ตึกร้อยชั้นยังต้องมี",L_MONK_QUEST_END,
+		" ก็มีความเป็นอัจฉริยภาพ",L_MONK_QUEST_END,
+		" พลัง และ อำนาจ",L_MONK_QUEST_END,
+		" อยู่ในตัวของมันเอง",-;
+
+L_MONK_QUEST_1_2:
+		set @monk_q, @monk_q + 1;
+L_MONK_QUEST_END:
+
+	if(@monk_q < 9) goto L_C2_FAIL;
+
+L_C2_DONE:
+	set @monk_q, 0;
+	next;
+	mes "[Wutao]";
+	mes "อืม...";
+	next;
+	mes "[Wutao]";
+	mes "...เยียม! สมบูรณ์แบบมาก";
+	next;
+	mes "[Wutao]";
+	mes " แต่เจ้าอย่าเพิ่งรีบดีใจไปหนทางการเป็น Monk นั้นยังอีกไกล";
+	next;
+	mes "[Wutao]";
+	mes " อืม...ต่อไป.. จงไปหา Sir [Puhae]";
+	set MONK_Q, 6;
+	close;
+
+L_C2_FAIL:
+	mes "[" + strcharinfo(0) + "]";
+	mes " เอ่อ...? คือว่า...? ";
+	next;
+	mes "[Wutao]";
+	mes " อืม... ";
+	next;
+	mes "[Wutao]";
+	mes " หือ..";	
+	next;
+	mes "[Wutao]";
+	mes " นี่มัน? มันผิดพลาด! เจ้าไม่ได้จดจำมันทั้งหมด!";
+	next;
+	mes "[Wutao]";
+	mes " เจ้าควรจะความสามารถจริงๆ ของเจ้าเพื่อจะเป็น Monk?";
+	next;
+	mes "[Wutao]";
+	mes " เอ่อ.. ข้าจะให้เจ้าลองใหม่?";	
+	mes " แน่นอนว่าเจ้ายังไม่ผ่านการทดสอบ เจ้าไม่มีสิทธิจะไปทำการทดสอบถัดไป";
+	set MONK_Q, 5;
+	close;
+
+Part1:
+	mes "[Wutao]";
+	mes " ดีมาก มาลองกันอีกรอบ";
+	next;
+	goto L_Again;
+
+Part2:
+	mes "[Wutao]";
+	mes " อืม...ต่อไป.. จงไปหา Sir [Puhae]";
+	close;
+Part3:
+	mes "[Wutao]";
+	mes " ขอให้พระเจ้าจงอยู่กับท่าน";
+	close;
+}
+
+prt_monk.gat,57,179,4	script	Puhae	110,{
+
+	if(@Choice_mission == 1 ) goto Part1;
+	if(@Choice_mission == 2 ) goto Part2;
+	if(MONK_Q == 6 ) goto L_START;
+	goto IsOther;
+IsOther:
+	mes "[Fuhai]";
+	mes " ฮ่าาา....!!!";
+	next;
+	mes "- ดูเหมือนเขากำลังคิดอะไรบางอย่าง -";
+	close;
+
+L_START:
+	mes "[Fuhai]";
+	mes "...";
+	next;
+	mes "[Fuhai]";
+	mes "......";
+	next;
+	mes "[Fuhai]";
+	mes ".........";
+	next;
+	mes "[Fuhai]";
+	mes "............";
+	next;
+	menu " สวัสดี..",-;
+
+		mes "[Fuhai]";
+		mes "...อะไร...ห๊าา?";
+		mes " เจ้ากลัาขัดขวางการอบรบของข้าเหรอ!";
+		mes " หากมันไม่ได้สำคัญอะไรมากนัก...";
+		next;
+		mes "[Fuhai]";
+		mes " เอาล่ะ เจ้ามาที่นี่ทำไม?";
+		mes " ว่ามาสิ!";
+		next;
+		menu " ข้ามาที่นี่ตามคำแนะนำของ Monk 'Douha'",L_MENU_1," ไม่มีอะไร",-;
+			
+			mes "[Fuhai]";
+			mes "......";
+			mes "...เจ้าคงอยากรู็วิธีขุดหลุมฝังศพของตัวเอง?";
+			close;
+	L_MENU_1:
+		mes "[Fuhai]";
+		mes " อืม.. นี่มันก็?";
+		mes " นั่น...";
+		next;
+		mes "[Fuhai]";
+		mes " โอ้.. สถานะทางจิตของเจ้า...";
+		mes " ฮา! ยอดเยี่ยมมาก...";
+		next;
+		mes "[Fuhai]";
+		mes " เจ้าได้เรียนรู้อะไรจาก 'Douha' มาบ้าง?";
+		next;
+		menu " อืม...เอ่อ...มันก็...",-,
+			" ข้าจดจำคำสั่งสอน",L_MENU_1_1,
+			" ข้าได้ทดสอบสภาพจิตใจ",-;
+
+			mes "[Fuhai]";
+			mes " เจ้าโง่!";
+			mes " ไปซะ ข้ารำคาญเจ้า!";
+			close;
+	L_MENU_1_1:
+		mes "[Fuhai]";
+		mes " ดี...แล้ว?";
+		mes " เขาบอกอะไรเจ้าอีกล่ะ?";
+		next;
+		menu " อ่า...มันก็...ข้าพูดถูก...",-,
+			" ตรวจสอบร่านกายข้า",L_MENU_1_1_1,
+			" เขาบอกกฏบางอย่าง",L_MENU_1_1_1,
+			" เขาเปลี่ยนแปลงการไหลเวียนเลือดของข้าไปสู่ขั้นแรก",L_MENU_1_1_2;
+
+			mes "[Fuhai]";
+			mes " เจ้าโง่!";
+			mes " ไปซะ ข้ารำคาญเจ้า!";
+			close;
+	L_MENU_1_1_1:
+		mes "[Fuhai]";
+		mes " มันก็มีส่วนถูกบ้าง แต่ก็ยังไม่ตรงจุด";
+		mes " ลองใช้สมองของเจ้าคิดดูใหม่!";
+		close;
+
+	L_MENU_1_1_2:
+		set MONK_Q, 7;
+		mes "[Fuhai]";
+		mes " ดีมาก อย่างน้อยเจ้าก็รู้ว่าอะไรในร่างกายเจ้าได้เปลี่ยนแปลงไป";
+		mes " ตอนนี้ข้าจะเริ่มการทดสอบต่อไป";
+		next;
+		mes "[Fuhai]";
+		mes " อืม.. ข้าไม่เหมือน Monk คนอื่นๆ ข้ามีตัวเลือกให้เจ้า";
+		mes " เลือกสิ่งที่เจ้าจะต้องฝึกฝน";
+		next;
+		menu " เก็บเห็ด",L_ROOT_1," วิ่งมาราธอน",L_ROOT_2;
+
+	L_ROOT_1:
+		mes "[Fuhai]";
+		mes " เก็บเห็ด? เป็นตัวเลือกที่ดี!";
+		mes " นั่นจะสอนเจ้าให้รู้จักกับความหมายของความอดทน พระเจ้าจะมอบพลังที่ยิ่งใหญ่ให้เจ้า";
+		mes " เจ้าไปเตรียมตัวได้แล้ว.. แล้วกลับมาหาข้าเมื่องานเสร็จ";
+		set @Choice_mission, 1;
+		close;
+	L_ROOT_2:
+		mes "[Fuhai]";
+		mes " วิ่งมาราธอน? เป็นตัวเลือกที่ดี!";
+		mes " นั่นจะสอนเจ้าให้เจ้าสามารถใช้พลังได้เกินขีดจำกัดของ Monk ได้";
+		mes " เจ้าไปเตรียมตัวได้แล้ว.. แล้วกลับมาหาข้าเมื่องานเสร็จ";
+		set @Choice_mission, 2;
+		close;
+Part1:
+	mes "[Fuhai]";
+	mes " เจ้าพร้อมรึยัง?";
+	mes " เจ้าไม่ต้องเตรียมอะไรเลย เพียงแค่เจ้าพกความอดทนไปเท่านั้น";
+	next;
+	mes "[Fuhai]";
+	mes " เก็บเห็ดเป็นตัวเลือก";
+	mes " ที่จะใช้ทดสอบตัวเจ้าเอง";
+	next;
+	mes "[Fuhai]";
+	mes " เจ้าต้องไปใจกลางของแผนที่ ที่ฝึกฝนนี้";
+	next;
+	mes "[Fuhai]";
+	mes " เจ้าจะผ่านการทดสอบ จนกว่าข้าจะบอกว่าพอแล้ว";
+	mes " ตอนนี้ยังจะรออะไรอีกล่ะ? รีบไปสิ!";
+	close;
+Part2:
+	mes "[Fuhai]";
+	mes " เจ้าพร้อมรึยัง?";
+	mes " เจ้าไม่ต้องเตรียมอะไรเลย เพียงแค่เจ้าพกความเชื่อไปเท่านั้น";
+	next;
+	mes "[Fuhai]";
+	mes " วิ่งมาราธอนเป็นตัวเลือก";
+	mes " ที่จะใช้ทดสอบตัวเจ้าเอง";
+	next;
+	mes "[Fuhai]";
+	mes " เจ้าต้องไปใจกลางของแผนที่ ที่ฝึกฝนนี้";
+	next;
+	mes "[Fuhai]";
+	mes " เจ้าจะผ่านการทดสอบ ได้จนกว่าข้าจะบอกว่าเจ้าวิ่งพอแล้ว";
+	mes " ตอนนี้ยังจะรออะไรอีกล่ะ? รีบไปสิ!";
+	close;
+
+}
+
+prt_monk.gat,199,169,4	script	Guard	746,{
+	if(MONK_Q == 7) goto L_START;
+	if(MONK_Q > 6) goto Part1;
+	goto IsOther;
+IsOther:
+	mes "[Guard ChaoLi]";
+	mes " นี่คือ...";
+	mes " สถานที่ทดสอบการเปลี่ยนอาชีพของ Monk";
+	next;
+	mes "[Guard ChaoLi]";
+	mes " กรุณาอย่างส่งเสียงดัง";
+	close;
+
+L_START:
+	mes "[Guard ChaoLi]";
+	mes " นี่คือ...";
+	mes " สถานที่ทดสอบการเปลี่ยนอาชีพของ Monk";
+	next;
+	mes "[Guard ChaoLi]";
+	mes strcharinfo(0) + " ... ชื่อของเจ้าถูกต้องมั้ย?!";
+	next;
+	mes "[Guard ChaoLi]";
+	mes " รีบลุยต่อ!";
+	mes " ยังมีการทดสอบรอเจ้าอยู่อีก!";
+	close;
+
+Part1:
+	mes "[Guard ChaoLi]";
+	mes " กรุณาอย่างส่งเสียงดัง";
+	close;
+}
+
+monk_test.gat,329,61,4	script	Bashu	753,{
+	if(MONK_Q == 7) goto L_START;
+	if(MONK_Q == 8) goto IsOther;
+	goto IsOther;
+IsOther:
+	mes "[Bashu]";
+	mes " ยินดีต้อนรับสู่ ^00FF00St. Capitolina Abbey^000000 สถานที่ฝึกฝนของ Monk";
+	mes " นี่อาจจะเป็นเส้นทางแห่งแสงสว่าง";
+	close;
+L_START:
+	mes "[Bashu]";
+	mes " กรุณาเลือกการทดสอบ";
+	next;
+	if(@Choice_mission == 0) goto L_MISSC;
+	if(@Choice_mission == 2) goto L_MISS2;
+	mes "[Bashu]";
+	mes " ข้าทราบมาว่า ท่านเลือกการเก็บเห็ดทดสอบความอดทน...";
+	mes " อืม นั่นเป็นตัวเลือกของท่าน";
+	goto L_MISSC;
+L_MISS2:
+	mes "[Bashu]";
+	mes " ข้าทราบมาว่า ท่านเลือกวิ่งมาราธอนทดสอบวิ่ง...";
+	mes " อืม นั่นเป็นตัวเลือกของท่าน";
+L_MISSC:
+	mes " แต่ถ้าท่านรู้สึกว่าท่านจะไม่ผ่านการทดสอบที่ท่าานได้เลือก ท่านก็สามารถเลือกมันใหม่ได้";
+	next;
+	menu " เก็บเห็ด ซึ่งแสดงถึงความอดทนของ Monk",-,
+		" การวิ่งมาราธอน เป็นการทดสอบเกินขีดจำกัดของ Monk",L_MENU_1;
+
+	mes "[Bashu]";
+	mes " ท่านเลือกการทดสอบเก็บเห็ด ซึ่งแสดงถึงความอดทนของ Monk";
+	next;
+	warp "job_monk.gat",225,179;
+	end;
+
+L_MENU_1:
+	mes "[Bashu]";
+	mes " ท่านเลือกการทดสอบวิ่งมาราธอน เป็นการทดสอบเกินขีดจำกัดของ Monk";	
+	next;
+	warp "monk_test.gat",387,345;
+	end;
+}
+
+monk_test.gat,387,347,4	script	Musha	110,{
+	mes "[Musha]";
+	mes " สะ...สวัสดี!";
+	mes " ระ...เรา จะ ทะ... ทดสอบ? ...ทดสอบขีดจำกัดของท่านที่นี่";
+	next;
+	mes "[Musha]";
+	mes " แค่... วิ่ง..วิ่ง!";
+	mes " จนกว่าจะได้ยินเสียงบอกให้หยุก";
+	mes " วะ... วะ... วะ... วะ... วะ... วิ่ง!";
+	next;
+	mes "[Musha]";
+	mes " ใช้เพียงแค่ความเร็วในการวิ่ง!!";
+	next;
+	mes "[Musha]";
+	mes " วันหนึ่งเจ้าจะได้เป็น Monk!";
+	next;
+	mes "[Musha]";
+	mes " จะ..เจ้า...ต้องที่จะ......ยอมแพ้? หรือ...วะ...ว่าจะทำมันต่อ?";
+	next;
+	menu " ข้าขอยอมแพ้!",-," ข้าจะวิ่งไปต่อ!!",L_MENU_1;
+
+		mapannounce "monk_test.gat","Musha: " + strcharinfo(0) + " ขะ...ขอยอมแพ้...! ในการทดสอบวิ่งมาราธอน... มะ...ไม่มีความทดทน....ฮ่า ฮ่า!!!...",8;
+		mes "[Musha]";
+		mes strcharinfo(0) + "...ยะ..ยอมแพ้...";
+		mes "ในการทดสอบวิ่งมาราธอน...";
+		mes "มะ...ไม่มีความทดทน....ฮ่า ฮ่า!!!...";
+		next;
+		warp "prt_monk.gat",196,168;
+		end;
+L_MENU_1:
+	next;
+	mes "[Musha]";
+	mes " วิ่งต่อไป ก่อนที่ข้าจะสั่งให้ท่านหยุด....";
+	mes " วิ่ง...วิ่ง! " + strcharinfo(0) + "! วิ่ง!";
+	if(@runtimes == 0)
+	{
+		set @runtimes, rand(8,10);
+		set @run, 0;
+	}
+	close;
+}
+
+monk_test.gat,390,387,0	script	monk_warp	45,1,1,{
+	set @run, @run + 1;
+	if(@run == (@runtimes-1)) mapannounce "monk_test.gat","Musha: วิ่งไป นี่จะเป็นรอบสุดท้ายแล้ว!",8;
+	if(@run == @runtimes) goto L_DONE;
+	warp "monk_test.gat",388,348;
+	end;
+L_DONE:
+	mapannounce "monk_test.gat","Musha: ยะ....ยินดีด้วย!!" + strcharinfo(0)+ " ท่านทำสำเร็จ ไปพบกับ Monk 'Taomoon' อยู่ในพื้นที่ลึกสุดของทีนี่ จะอยู่ตรงกลางของวัด",8;
+	set MONK_Q, 8;
+	warp "prt_monk.gat",196,168;
+	end;
+}
+
+function	script	MnkTraps	{
+	mapannounce "monk_test.gat","trap: " + strcharinfo(0)+ " ท่านติดกับดัก! ข้าจะพาท่านไปยังจุดเริ่มต้น",8;
+	warp "monk_test.gat",388,348;
+}
+//---------------------
+monk_test.gat,386,164,0	script	monk1-1	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,386,165,0	script	monk1-2	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,387,164,0	script	monk1-3	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,387,165,0	script	monk1-4	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,388,164,0	script	monk1-5	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,388,165,0	script	monk1-6	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,389,164,0	script	monk1-7	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,389,165,0	script	monk1-8	139,0,0,{callfunc "MnkTraps";}
+//---------------------
+monk_test.gat,386,42,0	script	monk2-1	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,386,43,0	script	monk2-2	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,387,42,0	script	monk2-3	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,387,43,0	script	monk2-4	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,388,42,0	script	monk2-5	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,388,43,0	script	monk2-6	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,389,42,0	script	monk2-7	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,389,43,0	script	monk2-8	139,0,0,{callfunc "MnkTraps";}
+//---------------------
+monk_test.gat,184,11,0	script	monk3-1	139,0,3,{callfunc "MnkTraps";}
+monk_test.gat,185,11,0	script	monk3-2	139,0,3,{callfunc "MnkTraps";}
+monk_test.gat,186,11,0	script	monk3-3	139,0,3,{callfunc "MnkTraps";}
+monk_test.gat,187,11,0	script	monk3-4	139,0,3,{callfunc "MnkTraps";}
+//---------------------
+monk_test.gat,70,10,0	script	monk4-1	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,70,11,0	script	monk4-2	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,70,12,0	script	monk4-3	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,70,13,0	script	monk4-4	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,71,10,0	script	monk4-5	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,71,11,0	script	monk4-6	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,71,12,0	script	monk4-7	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,71,13,0	script	monk4-8	139,0,0,{callfunc "MnkTraps";}
+//---------------------
+monk_test.gat,8,30,0	script	monk5-1	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,8,31,0	script	monk5-2	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,9,30,0	script	monk5-3	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,9,31,0	script	monk5-4	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,10,30,0	script	monk5-5	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,10,31,0	script	monk5-6	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,11,30,0	script	monk5-7	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,11,31,0	script	monk5-8	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,12,30,0	script	monk5-9	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,12,31,0	script	monk5-10	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,13,30,0	script	monk5-11	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,13,31,0	script	monk5-12	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,14,30,0	script	monk5-13	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,14,31,0	script	monk5-14	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,15,30,0	script	monk5-15	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,15,31,0	script	monk5-16	139,0,0,{callfunc "MnkTraps";}
+//---------------------
+monk_test.gat,10,158,0	script	monk6-1	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,10,159,0	script	monk6-2	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,11,158,0	script	monk6-3	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,11,159,0	script	monk6-4	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,12,158,0	script	monk6-5	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,12,159,0	script	monk6-6	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,13,158,0	script	monk6-7	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,13,159,0	script	monk6-8	139,0,0,{callfunc "MnkTraps";}
+//---------------------
+monk_test.gat,38,386,0	script	monk7-1	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,38,387,0	script	monk7-2	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,38,388,0	script	monk7-3	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,38,389,0	script	monk7-4	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,39,386,0	script	monk7-5	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,39,387,0	script	monk7-6	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,39,388,0	script	monk7-7	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,39,389,0	script	monk7-8	139,0,0,{callfunc "MnkTraps";}
+//---------------------
+monk_test.gat,82,390,0	script	monk8-1	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,82,391,0	script	monk8-2	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,83,390,0	script	monk8-3	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,83,391,0	script	monk8-4	139,0,0,{callfunc "MnkTraps";}
+//---------------------
+monk_test.gat,82,384,0	script	monk9-1	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,82,385,0	script	monk9-2	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,83,384,0	script	monk9-3	139,0,0,{callfunc "MnkTraps";}
+monk_test.gat,83,385,0	script	monk9-4	139,0,0,{callfunc "MnkTraps";}
+//---------------------
+
+prt_monk.gat,225,179,4	script	XuanWu 	89,{
+	mes "[XuanWu]";
+	mes " ข้ามองดูการเจริญเติบโตเหล่าพืช ข้าต้องขอบคุณพระผู้เจ้า";
+	next;
+	mes "[XuanWu]";
+	mes " ที่ให้ข้าได้บ่มเพาะพวกนั้นให้แข็งแกร่งและโตขึ้น";
+	mes " ข้าคิดว่านี่คงจะเป็นภาพที่สวยที่สุด!";
+	close;
+}
+job_monk.gat,225,179,4	script	Assistance	89,{
+
+	if(MONK_Q == 8 ) goto Part2;
+	if(@mission_start == 1 ) goto Part1;
+
+	mes "[XuanWu]";
+	mes " ยินดีต้อนรับ ข้ามีหน้าที่ดูแลการเก็บเห็ด";
+	mes " ข้าชื่อว่า XuanWu";
+	next;
+	mes "[XuanWu]";
+	mes " จากนี้ไปจะต้องใช้ความอดทนในการฝึกฝน";
+	mes " ท่านข้าใจนะ?";
+	next;
+	mes "[XuanWu]";
+	mes " ชีวิตของ Monk ต้องเต็มไปด้วยความอดทน พยายาม";
+	mes " มันจึงจะเป็นที่จะทำการฝึกฝนนี้";
+	next;
+	mes "[XuanWu]";
+	mes " พวกเราคิดว่า นี่คงจะเป็นวิธีที่ดีที่สุดที่ทำให้นึกถึงน้ำพระทัยของพระเจ้า";
+	mes " ดังนั้นข้าจึงเริ่มต้นเพาะปลูก เห็ดบางชนิด ที่มีกลิ่นเน่าเหม็น";
+	next;
+	mes "[XuanWu]";
+	mes " สิ่งที่ท่านต้องทำคือการทำลายเห็ดเหล่านนั้น";
+	mes " ข้าหมายถึงว่าท่านต้องหา ^ff0000Orange GooeyMushroom และ Orange Net Mushroom^000000";
+	next;
+	mes "[XuanWu]";
+	mes " หากท่านต้องการเพิ่มกำลังภายในและเปลี่ยนเป็น Monk ท่านต้องไปทำลายมัน";
+	mes " นำมันมามากที่สุดเท่าที่จะทำได้ จนกว่าข้าจะบอกว่าพอ";
+	mes "Now go!";
+	next;
+	mes "[XuanWu]";
+	mes " หรือว่าท่านต้องการจะยอมแพ้?";
+	next;
+	menu " เริ่มเก็บเห็ด",L_MENU_1," ข้าขอยอมแพ้",L_MENU_2;
+
+L_MENU_2:
+		mapannounce "monk_test.gat","XuanWu: ......ท่านคงต้องการจะได้กำลังใจจากใครสักคน...",8;
+		mes "[XuanWu]";
+		mes "ท่านคงต้องการจะได้กำลังใจจากใครสักคน...";
+		set @mission_start, 0;
+		getitem 1069, 1;//Items: Orange_Net_Mushroom,
+		delitem 1069, 1;//Items: Orange_Net_Mushroom,
+		next;
+		warp "prt_monk.gat",196,168;
+		end;		
+L_MENU_1:
+	mes "[XuanWu]";
+	mes " แล้วท่านจะยังรออะไร? ไป ไป ไป !!";
+	set @mission_start, 1;
+	close;
+
+Part1:
+	if(countitem(1069) >= 30 && countitem(1070) >0 ) goto L_DONE;//Items: Orange_Net_Mushroom, Orange_Gooey_Mushroom_,
+	if(countitem(1070) >= 30 && countitem(1069) >0 ) goto L_DONE;//Items: Orange_Gooey_Mushroom_, Orange_Net_Mushroom,
+	mes "[XuanWu]";
+	mes " อืม... นี่ท่านทำได้แค่นี้่เองงั้นเหรอ ข้าว่ามันยังไม่พอ?";
+	next;
+	mes "[XuanWu]";
+	mes " หรือ.. ว่าท่านต้องการยอมแพ้?";
+	next;
+	menu " เก็บเห็ดต่อ",-," ข้าขอยอมแพ้",L_MENU_2;
+	close;
+L_DONE:
+	set MONK_Q, 8;
+	mes "[XuanWu]";
+	mes " ดี...ข้าคิดไว้อยู่แล้วว่าท่านต้องทำได้...";
+	mes " และข้าควรจะพูดว่า ท่านผ่านการทดสอบ";
+	set @mission_start, 0;
+	delitem 1069, countitem(1069);//Items: Orange_Net_Mushroom,
+	delitem 1070, countitem(1070);//Items: Orange_Gooey_Mushroom_,
+	next;
+	mes "[XuanWu]";
+	mes " ไปพบกับ Monk 'Taomoon' อยู่ในพื้นที่ลึกสุดของทีนี่ จะอยู่ตรงกลางของวัด";
+	close;
+Part2:
+	mes "[XuanWu]";
+	mes "Are you testing my patient??";
+	mes " ไปพบกับ Monk 'Taomoon' อยู่ในพื้นที่ลึกสุดของทีนี่ จะอยู่ตรงกลางของวัด";
+	close;
+}
+job_monk.gat,191,172,4	script	job_monk_warp	45,1,1,{
+	warp "monk_test.gat",329,57;
+	end;
+}
+
+job_monk.gat,199,169,4	script	Guard ChaoLi 	746,{
+	mes "[Guard ChaoLi]";
+	mes " กรุณาอย่าส่งเสียดัง!";
+	close;
+}
+
+monk_test.gat,319,139,4	script	Taomoon	52,{
+	if(MONK_Q == 8) goto L_START;
+	if(MONK_Q == 9) goto Part1;
+	if(MONK_Q == 10) goto Part2;
+	goto IsOther;
+IsOther:
+	mes "[Daowen]";
+	mes " ข้าบอกให้เจ้าเงียบๆ...";
+	mes " ชู่ววว......";
+	close;
+L_START:
+	mes "[Daowen]";
+	mes " เจ้าเยี่ยมจริงๆ ที่มาอยู่ตรงจุดนี้ได้";
+	mes " ข้าคือ 'Taomoon' ผู้ที่มีหน้าที่รับผิดชอบการทดสสอบสุดท้าย";
+	next;
+	mes "[Daowen]";
+	mes " Priest นั้นจะอ่อนแอเมื่อเปรียบเทียบกับ!";
+	mes " Monks ที่มีความแข็งแกร่ง";
+	next;
+	mes "[Daowen]";
+	mes " พวกเราแตกต่างจาก priest ที่อ่อนแอที่มัวแต่จะวิ่งหนี!";
+	next;
+	mes "[Daowen]";
+	mes " แต่ตอนนี้! จับกำปั้นของท่าน! แล้วพร้อมที่สู้!";
+	next;
+	mes "[Daowen]";
+	mes " ทำให้ดีที่สุด!";
+	mes " ฮ่า ฮ่า ฮ่า.....!!";
+	next;
+	warp "monk_test",88,73;
+	end;
+
+Part1:
+	mes "[Daowen]";
+	mes " เยี่ยมมาก!! ฮ่าฮ่าฮ่าฮ่าฮ่าฮ่า....!!";
+	mes " ท่านน่าสนใจมากทีเดียว!";
+	mes " เอาล่ะ... ข้าจะมอบน้ำยาพิเศษที่จะสามารถเพิ่งพลังชี๋ ของท่านให้มากขึ้น";
+	next;
+	getitem 506, 1;//Items: Green_Potion,
+	mes "[Daowen]";
+	mes " ถ้าท่านดืมน้ำยานี้ ท่านจะมีพลังมากพอที่จะเปลี่ยนอาชีพเป็น Monk!!!";
+	mes " เอาล่ะ... จงกลับไปหาหลวงพ่อ 'Muhae'";
+	set MONK_Q, 11;
+	close;
+Part2:
+	mes "[Daowen]";
+	mes " ไปที่ หลวงพ่อ Muhae ก่อนที่ท่านจะมาหาข้า";
+	close;
+}
+
+monk_test.gat,88,91,4	script	Test Assistant	52,{
+	mes "[Test Assistant]";
+	mes " ท่านพร้อมที่จะฝึกฝนเพื่อการต่อสู้กับความชัวร้ายที่แตกต่างกันไป?";
+	next;
+	mes "[Test Assistant]";
+	mes " พื้นที่การทดสอบจะเป็นเขาวงกตที่ท่านจะมองไม่เห็นผนังเลย";
+	mes " ท่านต้องเดินหาทางออกด้วยตัวของท่านเอง";
+	next;
+	mes "[Test Assistant]";
+	mes " และแน่นอนจะมีมอนสเตอร์บางตัวที่อยู่ในนั้น ท่านต้องต่อสู้กับพวกมัน";
+	mes " โชคดี! ขอให้พระเจ้าอยู่กับท่าน!";
+	next;
+	if(getareausers("monk_test.gat",126,161,165,199) > 0) goto L_WAIT;
+	killmonster "monk_test.gat","monk_mob1::OnMobDied";
+	enablenpc "monk_mob1_1";
+	enablenpc "monk_mob1_2";
+	enablenpc "monk_mob1_3";
+	enablenpc "monk_mob1_3";
+	warp "monk_test.gat",127,179;
+	end;
+L_WAIT:
+	mes "[Test Assistant]";
+	mes " มีบางคนกำลังทดสอบอยู่ กรุณารอสักครู่";
+	close;
+}
+monk_test.gat,129,180,4	script	monk_mob1_1	139,0,19,{
+	monster "monk_test.gat",130,183,"--ja--",1015,1,"monk_mob1::OnMobDied";
+	monster "monk_test.gat",130,177,"--ja--",1015,1,"monk_mob1::OnMobDied";
+//~	disablenpc "monk_mob1_1";
+	end;
+}
+monk_test.gat,133,180,4	script	monk_mob1_2	139,0,19,{
+	monster "monk_test.gat",134,183,"--ja--",1015,1,"monk_mob1::OnMobDied";
+	monster "monk_test.gat",134,177,"--ja--",1015,1,"monk_mob1::OnMobDied";
+//~	disablenpc "monk_mob1_2";
+	end;
+}
+monk_test.gat,145,180,4	script	monk_mob1_3	139,0,19,{
+	monster "monk_test.gat",145,180,"--ja--",1041,1,"monk_mob1::OnMobDied";
+//~	disablenpc "monk_mob1_3";
+	end;
+}
+monk_test.gat,155,180,4	script	monk_mob1_4	139,0,19,{
+	monster "monk_test.gat",157,183,"--ja--",1015,1,"monk_mob1::OnMobDied";
+	monster "monk_test.gat",157,177,"--ja--",1015,1,"monk_mob1::OnMobDied";
+//~	disablenpc "monk_mob1_4";
+	end;
+}
+monk_test.gat,165,179,4	script	monk_mob3_warp	45,1,1,{
+	set MONK_Q, 9;
+	mapannounce "monk_test.gat"," ยินดีด้วย!!" + strcharinfo(0)+ " ผ่านการทดสอบ ไปพบกับ Monk 'Taomoon' อยู่ในพื้นที่ลึกสุดของทีนี่ จะอยู่ตรงกลางของวัด",8;
+	killmonster "monk_test.gat","monk_mob1::OnMobDied";
+	warp "monk_test.gat",317,142;
+	end;
+}
+
+monk_test.gat,1,1,1	script	monk_mob1	-1,{
+OnMobDied:
+	end;
+}
+
+monk_test.gat,95,85,4	script	Test Assistant#1	79,{
+	mes "[Test Assistant]";
+	mes " ท่านพร้อมที่จะฝึกฝนเพื่อการต่อสู้กับความชัวร้ายที่แตกต่างกันไป?";
+	next;
+	mes "[Test Assistant]";
+	mes " พื้นที่การทดสอบจะเป็นเขาวงกตที่ท่านจะมองไม่เห็นผนังเลย";
+	mes " ท่านต้องเดินหาทางออกด้วยตัวของท่านเอง";
+	next;
+	mes "[Test Assistant]";
+	mes " และแน่นอนจะมีมอนสเตอร์บางตัวที่อยู่ในนั้น ท่านต้องต่อสู้กับพวกมัน";
+	mes " โชคดี! ขอให้พระเจ้าอยู่กับท่าน!";
+	next;
+	if(getareausers("monk_test.gat",126,262,165,300) > 0) goto L_WAIT;
+	killmonster "monk_test.gat","monk_mob2::OnMobDied";
+	enablenpc "monk_mob2_1";
+	enablenpc "monk_mob2_2";
+	enablenpc "monk_mob2_3";
+	enablenpc "monk_mob2_4";
+	warp "monk_test.gat",127,278;
+	end;
+
+L_WAIT:
+	mes "[Test Assistant]";
+	mes " มีบางคนกำลังทดสอบอยู่ กรุณารอสักครู่";
+	close;
+
+}
+monk_test.gat,129,281,4	script	monk_mob2_1	139,0,19,{
+	monster "monk_test.gat",130,278,"--ja--",1015,1,"monk_mob2::OnMobDied";
+	monster "monk_test.gat",130,284,"--ja--",1015,1,"monk_mob2::OnMobDied";
+//~	disablenpc "monk_mob2_1";
+	end;
+}
+monk_test.gat,136,281,4	script	monk_mob2_2	139,0,19,{
+	monster "monk_test.gat",139,278,"--ja--",1015,1,"monk_mob2::OnMobDied";
+	monster "monk_test.gat",139,284,"--ja--",1015,1,"monk_mob2::OnMobDied";
+//~	disablenpc "monk_mob2_2";
+	end;
+}
+monk_test.gat,144,281,4	script	monk_mob2_3	139,0,19,{
+	monster "monk_test.gat",145,281,"--ja--",1041,1,"monk_mob2::OnMobDied";
+//~	disablenpc "monk_mob2_3";
+	end;
+}
+monk_test.gat,153,281,4	script	monk_mob2_4	139,0,19,{
+	monster "monk_test.gat",155,278,"--ja--",1015,1,"monk_mob2::OnMobDied";
+	monster "monk_test.gat",155,284,"--ja--",1015,1,"monk_mob2::OnMobDied";
+//~	disablenpc "monk_mob2_4";
+	end;
+}
+monk_test.gat,165,278,4	script	monk_mob2_warp	45,1,1,{
+	set MONK_Q, 9;
+	mapannounce "monk_test.gat"," ยินดีด้วย!!" + strcharinfo(0)+ " ผ่านการทดสอบ ไปพบกับ Monk 'Taomoon' อยู่ในพื้นที่ลึกสุดของทีนี่ จะอยู่ตรงกลางของวัด",8;
+	killmonster "monk_test.gat","monk_mob2::OnMobDied";
+	warp "monk_test.gat",317,142;
+	end;
+}
+
+monk_test.gat,1,1,1	script	monk_mob2	-1,{
+OnMobDied:
+	end;
+}
+
+monk_test.gat,82,85,4	script	Test Assistant#2	95,{
+	mes "[Test Assistant]";
+	mes " ท่านพร้อมที่จะฝึกฝนเพื่อการต่อสู้กับความชัวร้ายที่แตกต่างกันไป?";
+	next;
+	mes "[Test Assistant]";
+	mes " พื้นที่การทดสอบจะเป็นเขาวงกตที่ท่านจะมองไม่เห็นผนังเลย";
+	mes " ท่านต้องเดินหาทางออกด้วยตัวของท่านเอง";
+	next;
+	mes "[Test Assistant]";
+	mes " และแน่นอนจะมีมอนสเตอร์บางตัวที่อยู่ในนั้น ท่านต้องต่อสู้กับพวกมัน";
+	mes " โชคดี! ขอให้พระเจ้าอยู่กับท่าน!";
+	next;
+	if(getareausers("monk_test.gat",233,262,269,300) > 0) goto L_WAIT;
+	killmonster "monk_test.gat","monk_mob3::OnMobDied";
+	enablenpc "monk_mob3_1";
+	enablenpc "monk_mob3_2";
+	enablenpc "monk_mob3_3";
+	enablenpc "monk_mob3_4";
+	warp "monk_test.gat",231,279;
+	end;
+
+L_WAIT:
+	mes "[Test Assistant]";
+	mes " มีบางคนกำลังทดสอบอยู่ กรุณารอสักครู่";
+	close;
+}
+
+monk_test.gat,234,281,4	script	monk_mob3_1	139,0,19,{
+	monster "monk_test.gat",235,277,"--ja--",1015,1,"monk_mob3::OnMobDied";
+	monster "monk_test.gat",235,284,"--ja--",1015,1,"monk_mob3::OnMobDied";
+//~	disablenpc "monk_mob3_1";
+	end;
+}
+monk_test.gat,239,281,4	script	monk_mob3_2	139,0,19,{
+	monster "monk_test.gat",240,277,"--ja--",1015,1,"monk_mob3::OnMobDied";
+	monster "monk_test.gat",240,284,"--ja--",1015,1,"monk_mob3::OnMobDied";
+//~	disablenpc "monk_mob3_2";
+	end;
+}
+monk_test.gat,248,281,4	script	monk_mob3_3	139,0,19,{
+	monster "monk_test.gat",249,281,"--ja--",1041,1,"monk_mob3::OnMobDied";
+//~	disablenpc "monk_mob3_3";
+	end;
+}
+monk_test.gat,260,281,4	script	monk_mob3_4	139,0,19,{
+	monster "monk_test.gat",261,277,"--ja--",1015,1,"monk_mob3::OnMobDied";
+	monster "monk_test.gat",261,284,"--ja--",1015,1,"monk_mob3::OnMobDied";
+//~	disablenpc "monk_mob3_4";
+	end;
+}
+monk_test.gat,269,279,4	script	monk_mob3_warp#3	45,1,1,{
+	set MONK_Q, 9;
+	mapannounce "monk_test.gat"," ยินดีด้วย!!" + strcharinfo(0)+ " ผ่านการทดสอบ ไปพบกับ Monk 'Taomoon' อยู่ในพื้นที่ลึกสุดของทีนี่ จะอยู่ตรงกลางของวัด",8;
+	killmonster "monk_test.gat","monk_mob3::OnMobDied";
+	warp "monk_test.gat",317,142;
+	end;
+}
+
+monk_test.gat,1,1,1	script	monk_mob3	-1,{
+OnMobDied:
+	end;
+}
+
+
+
+//==============================================================================
+// Monsters of Mushroom Collecting
+//==============================================================================
+job_monk.gat,0,0,0,0	monster	Thief Mushroom	1182,170,0,0,0
+job_monk.gat,0,0,0,0	monster	Thief Bug Larva	1051,120,0,0,0
+
+//==============================================================================
+// warps
+//==============================================================================
+prt_monk.gat,192,172,0	warp	monk15#1	1,1,monk_test.gat,329,50
+monk_test.gat,329,47,0	warp	monk16#2	1,1,prt_monk.gat,193,166
+monk_test.gat,329,76,0	warp	monk17#3	1,1,monk_test.gat,259,118
+monk_test.gat,259,115,0	warp	monk18#4	1,1,monk_test.gat,329,71
+monk_test.gat,272,125,0	warp	monk19#5	1,1,monk_test.gat,301,127
+monk_test.gat,298,127,0	warp	monk20#6	1,1,monk_test.gat,268,125
+
+//==============================================================================
+// mapflag
+//==============================================================================
+monk_test.gat	mapflag	nomemo	dummy
+monk_test.gat	mapflag	noteleport	dummy
+monk_test.gat	mapflag	nosave	SavePoint
+monk_test.gat	mapflag	nopenalty	dummy
+monk_test.gat	mapflag	nobranch	dummy

@@ -1,0 +1,74 @@
+// Ph.D Hat Quest-------------------------------------------------------
+prt_in,38,108,4	script	Teacher	53,{
+	if((countitem(710) >= 1) && (countitem(703) >= 1) && (countitem(704) >= 1) && (countitem(708) >= 1)) goto L_Start;//Items: Illusion Flower, Hinalle, Aloe, Ment,
+	mes "Don't you think.... ^4444FF'flowers'^000000 are pretty?";
+	next;
+	menu "พูดคุย.",M_Talk, "จบการสนทนา.",M_End;
+	
+	M_Talk:
+		mes "[Teacher]";
+		mes "ข้าไม่ค่อยได้พูดคุยกับใคร เพราะข้าชอบใช้เวลาอยู่กับตัวเองเสมอ.";
+		next;
+		mes "[Teacher]";
+		mes "ข้าต้องการที่จะเรียนจบให้เร็วที่สุด.";
+		next;
+		mes "[Teacher]";
+		mes "ข้าเหงา แต่เมื่อข้าได้ลองพูดคุยกับเจ้า.";
+		next;
+		mes "[Teacher]";
+		mes "ข้าพบว่าเจ้าเหมือนเพื่อนที่ดีของข้า.";
+		next;
+		mes "[Teacher]";
+		mes "และเมื่อข้าเห็นดอกไม้ เปรียบเสมือนว่า ข้าเห็นเพื่อนที่ดีของข้าอีกครั้ง.";
+		next;
+		mes "[Teacher]";
+		mes "ข้าต้องการที่จะนำดอกไม้บางชนิดมาเพื่อศึกษา.";
+		next;
+		mes "[Teacher]";
+		mes "แต่ข้าไม่สามารถหาดอกไม้ที่ข้าต้องการเพื่อที่จะนำมาศึกษา!";
+		next;
+		mes "[Teacher]";
+		mes "แต่เพื่อการศึกษาในเรื่องของดอกไม้";
+		mes "ข้าลงทุนลงแรง เพื่อจะแลกกับดอกไม้ที่ข้าต้องการ";
+		next;
+		mes "[Teacher]";
+		mes "ข้าต้องการ 1 ^3355FFIllusion Flower^000000 ,1 ^3355FFHinalle^000000,1 ^3355FFAloe^000000 และ 1 ^3355FFMent^000000...";
+		mes "และข้าจะมอบสิ่งที่ดีที่สุดให้เจ้า...";
+		close;
+	
+	M_End:
+		mes "[Teacher]";
+		mes "ขอบคุณที่แวะมา!.....";
+		close;
+
+L_Start:
+	mes "[Teacher]";
+	mes "ว้าว ดอกไม้ในมือของคุณ";
+	M_Menu:
+	next;
+	menu "แสดงดอกไม้",M_Show,"ให้ดอกไม้",M_Give,"ยกเลิก",M_End;
+
+	M_Show:
+		mes "[Teacher]";
+		mes "ข้าต้องการดอกไม้ 4 ชนิด";
+		mes "เช่นดอกไม้ ^3355FFIllusion Flower, Hinalle, Aloe, และ Ment^000000.  เจ้าสามารถหามาให้ข้าได้ไหม...";
+		next;
+		mes "[Teacher]";
+		mes "ถ้าหากหามาได้ ข้ามีสิ่งพิเศษจะให้เจ้า.....";
+		goto M_Menu;
+
+	M_Give:
+		mes "[Teacher]";
+		mes "ข้าจะชื่นชมผู้ที่ทำงานให้ข้าสำเร็จ และข้าจะมีสิ่งตอบแทนให้เจ้า.";
+		emotion 15;
+		next;
+		mes "[Teacher]";
+		mes "นี่คือหมวกที่ข้าใส่เมื่อตอนจบการศึกษา";
+		mes "ข้ายกให้เจ้า...";
+		delitem 710,1;//Items: Illusion Flower,
+		delitem 703,1;//Items: Hinalle,
+		delitem 704,1;//Items: Aloe,
+		delitem 708,1;//Items: Ment,
+		getitem 5012,1;//Items: Ph.D Hat,
+		close;
+}

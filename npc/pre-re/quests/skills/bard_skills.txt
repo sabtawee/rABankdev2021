@@ -1,0 +1,1052 @@
+//===== Hercules Script ======================================
+//= Bard Skill Quest
+//===== By: ==================================================
+//= Lupus, Reddozen; L0ne_W0lf
+//===== Current Version: =====================================
+//= 1.6
+//===== Description: =========================================
+//= [Official Conversion]
+//= Official quest for the Bard skill "Pang Voice"
+//= Prerequisite: Geffen Bard Quest
+//===== Additional Comments: =================================
+//= 1.0 for fully working skills only [Lupus]
+//= 1.1 Added more new skill quests for more classes [Lupus]
+//=     Somehow eA engine doesn't let you keep learn't skill
+//= 1.2 Added to correct locations, correct NPC's, fixed [Reddozen]
+//=     some of the items required and made them into real
+//=     quests.
+//= 1.3 Fixed bugs and minor typos. Optimized [Lupus]
+//= 1.3a Tixed an item ID typo. Thanks, 2Spiritual Kid
+//= 1.3b Split into different files [DracoRPG]
+//= 1.4 Rescripted to Aegis 10.3 standards. [L0ne_W0lf]
+//= 1.4a Checks the proper variable now. (BARD_Q -> gef_bard_q) [L0ne_W0lf]
+//= 1.5 Corrected NPC names to fall within proper restrictions. [L0ne_W0lf]
+//= 1.6 Added missing checkweights. [L0ne_W0lf]
+//= 1.6 Replaced effect numerics with constants. [L0ne_W0lf]
+//============================================================
+
+prontera,174,328,3	script	Young Man#bard_q1	89,3,3,{
+	if (BaseJob == Job_Bard) {
+		emotion e_omg;
+		mes "[Timid Young Man]";
+		mes " เอ๊ะ? ว้าววว--!";
+		mes " นี่เจ้าคือ.....--";
+		if (Upper != 1)
+		mes "Hehehehe--!";
+		if (Upper != 1)
+			mes " Bard!!!";
+		else
+			mes " Minstrel!";
+		mes " อย่าเข้ามาใกล้!";
+		mes " ข้าไม่ชอบคนพวกนี้";
+		next;
+		if (select(" ทำไมท่านถึงไม่ชอบพวกเราล่ะ??:  กล่อมเขา") == 1) {
+			mes "[Timid Young Man]";
+			mes " เจ้าจะทำอะไรข้า?!";
+			mes " ใช่ เจ้าเคยทำแบบนั้นกับข้า";
+			mes " หลังจากที่เจ้าเข้าใกล้พอ!!!!";
+			next;
+			mes "[" + strcharinfo(0) + "]";
+			mes " หืมม์...";
+			mes " ข้าไม่ได้ทำอะไรท่านเลย";
+			mes " ข้าจะทำมันไปทำไม";
+			mes " พักผ่อนให้สบาย ข้าไม่กวนแล้ว--";
+			next;
+			mes "[Timid Young Man]";
+			mes " พักผ่อน?! ไม่มีใครเชื่อข้า";
+			mes " กับสิ่งที่ข้าบอก ว่าพวกเจ้า";
+			mes " อันตราย พวกเจ้าคงสนุกกับ";
+			mes " บทเพลงที่ไพเราะ";
+			mes " แต่มีแค่ข้าเท่านั้น...";
+			mes " ที่รู้ถึงพลังอำนาจของมัน!";
+			close;
+		}
+		else {
+			mes "[Timid Young Man]";
+			mes "Hehehehe!";
+			mes " เจ้าจะทำอะไรข้า?!";
+			mes " ใช่ เจ้าเคยทำแบบนั้นกับข้า";
+			mes " หลังจากที่เจ้าเข้าใกล้พอ!!!!";
+			next;
+			if (select(" ส่งเครื่องดื่มให้เขา: ตบไหล่เขา") == 1) {
+				mes "[" + strcharinfo(0) + "]";
+				mes " ข้าไม่รู้ว่าอะไรทำให้ท่านรู้สึกไม่ดีกับข้า";
+				mes " ข้าว่าสิ่งที่ท่านต้องการจริงคือการผ่อนคลาย และนี่เครื่องดืมขอมอบให้ท่าน";
+				next;
+				if (countitem(12112) > 0) {
+					mes "[Timid Young Man]";
+					mes "Oh~! ของชอบข้าเลย Tropical Sograt!";
+					mes "Wahahaha......";
+					if (qskill_bard == 9) {
+						mes " ขอบใจเจ้ามาก.. แต่เดี๋ยวก่อน";
+						next;
+						mes "[Timid Young Man]";
+						mes " ข้าคิดว่าเจ้าทำบางอย่างไม่ถูกต้อง";
+						mes " โปรดไปพบกับคนอื่นๆ";
+						mes " และปล่อยข้าไว้ที่นี่!";
+						close;
+					}
+					else if (qskill_bard > 0) {
+						next;
+						mes "[Timid Young Man]";
+						mes " เดี๋ยวนะ.. ข้าเคยเห็นเจ้า";
+						mes " เจ้าเคยเอาเครื่องดื่มมาให้ข้า";
+						mes " แลกกับความรู้เรื่องทักษะแปลกๆ?...";
+						next;
+						mes "[" + strcharinfo(0) + "]";
+						mes " โอ้, ได้โปรด~";
+						mes " ท่านคงรู้ว่าข้า";
+						mes " รู้สึกวิตกมากเกินไป";
+						close;
+					}
+					else {
+						next;
+						mes "[Timid Young Man]";
+						mes "^333333*Gulp Gulp*^000000";
+						mes "..... แล้วให้เครื่องดื่มข้าทำไม? เจ้าต้องการอะไรจากข้า?";
+						next;
+						switch(select(" เกิดอะไรขึ้นกับท่าน: ท่านดูไม่ค่อยปลอดภัยเลยนะ...")) {
+						case 1:
+							mes "[Timid Young Man]";
+							mes " อืมม์.. บางที";
+							mes " Bards และ Minstrels ทั้งหมด";
+							mes " ก็อาจจะไม่ใช่คนไม่ดีเสมอไป";
+							mes " แต่ข้าไม่อาจลืม Bard ";
+							mes " คนนึงที่เคยทำ... กับข้า";
+							next;
+							mes "[Timid Young Man]";
+							mes " ทั้งหมดมันเริ่มจาก";
+							mes " ที่ข้าได้เดินทางผ่าน Umbala";
+							mes " และได้พบกับ Bard ลักษณะแปลกๆ";
+							mes " เข้าศึกษาอยู่ภายกับ";
+							mes "Puchuchartan,ที่หมู่บ้าน Utan Shaman";
+							next;
+							mes "[Timid Young Man]";
+							mes " Bard เขาดีกับข้ามาก หากไม่ได้พาข้าไปที่บันจี้จัมในเมือง Umbala's";
+							mes " เขาบอกให้ข้าลองสักครั้งหนึ่ง เพื่อเป็นประสบณ์การพิเศษ";
+							mes " ที่เมือง Umbala แต่ข้าต้องขอร้องว่าไม่";
+							next;
+							mes "[Timid Young Man]";
+							mes " เขาแสดงความรู้สึกเหมือนโกรธเคืองข้า";
+							mes " มันเป็นที่ที่ยอดเยี่ยมและปลอดภัย";
+							mes " มีเพียงไม่กี่คนเท่านั้นที่ตายจากที่นี่";
+							next;
+							mes "[Timid Young Man]";
+							mes " ที่ดวงตาของเขา";
+							mes " เต็มไปด้วยความโกรธ";
+							mes " และพูดอะไรบางอย่าง";
+							mes " จนข้าไม่สามารถควบคุมตัวเองได้";
+							mes " ร่างกายของข้าขยับ";
+							mes " ไปตามที่พวกเขาต้องการ!";
+							next;
+							mes "[Timid Young Man]";
+							mes " ข้าดิ้นรนเอาชีวิตรอด";
+							mes " เพื่อให้ตัวเองหลุดจาก";
+							mes " การกระโดดบันจี้จัมได้ไม่นาน..";
+							mes " ยิ่งข้าต่อต้าน มันยิ่งหนักขึ้น";
+							mes " มันน่ากลัวมาก ข้าไปยืน";
+							mes " อยู่บริเวณขอบของมัน!";
+							next;
+							mes "[Timid Young Man]";
+							mes " นั่นคือสิ่งที่ข้ารู้สึกกลัวที่สุด";
+							mes " ในชีวิตของข้า มันไม่คุ้ม";
+							mes " ที่จะต้องเสี่ยงชีวิต";
+							mes " แต่ข้ารู้สึกได้ว่า มีพลังบางอย่าง";
+							mes " ควบคุมร่างกายของข้า!";
+							next;
+							mes "[" + strcharinfo(0) + "]";
+							mes " เดี๋ยวก่อน...";
+							mes " Bard จะทำอย่างนั้นได้อย่างไร?";
+							mes " ข้าไม่เคยได้ยินเพลงนั้น";
+							mes " หรือทักษะที่มีผลใกล้เคียงกับที่ท่านบอก...";
+							next;
+							mes "[Timid Young Man]";
+							mes " ข้าก็เช่นกัน,";
+							mes " จนกระทั่งข้าได้ไปเจอด้วยตัวเอง";
+							mes " ข้ายังมองเห็นรอยยิ้มอันชั่วร้าย";
+							mes " ของเขาในฝันร้ายของข้าอยู่เลย...";
+							next;
+							mes "[Timid Young Man]";
+							mes " อย่างไรก็ตาม, ข้าขอบใจสำหรับเครื่องดื่ม";
+							mes " มันช่วยได้มากจริงๆ";
+							mes " แต่ข้าต้องบอกเจ้าก่อน";
+							mes " Bard ที่มีลักษณะแปลกประหลาด";
+							mes " ข้ามั่นใจว่าเขามีพลังอำนาจอะไรบางอย่าง...";
+							next;
+							if (JobLevel > 39) {
+								mes "[Timid Young Man]";
+								mes " แต่... หากเจ้าต้องการพลังเช่นนั้น";
+								mes " ข้าก็คงไม่สามารถหยุดเจ้าได้";
+								mes " เพราะไม่มีใครที่คิดจะเป็นแบบเขาคนนั้นจริงๆ~";
+								delitem 12112,1; //Tropical_Sograt
+								set qskill_bard,1;
+							}
+							else {
+								mes "[Timid Young Man]";
+								mes " อย่างน้อยเจ้าต้องมี ^660000Job Level 40^000000 เป็นอย่างน้อย";
+								mes " เพื่อสามารถจัดการกับพลังใหม่นี้ได้...";
+								delitem 12112,1; //Tropical_Sograt
+							}
+							close;
+						case 2:
+							mes "[Timid Young Man]";
+							mes " อืมม์.. บางที";
+							mes " Bards และ Minstrels ทั้งหมด";
+							mes " ก็อาจจะไม่ใช่คนไม่ดีเสมอไป";
+							mes " แต่ข้าไม่อาจลืม Bard ";
+							mes " คนนึงที่เคยทำ... กับข้า";
+							next;
+							mes "[Timid Young Man]";
+							mes " ทั้งหมดมันเริ่มจาก";
+							mes " ที่ข้าได้เดินทางผ่าน Umbala";
+							mes " และได้พบกับ Bard ลักษณะแปลกๆ";
+							mes " เข้าศึกษาอยู่ภายกับ";
+							mes "Puchuchartan,ที่หมู่บ้าน Utan Shaman";
+							next;
+							mes "[Timid Young Man]";
+							mes " Bard เขาดีกับข้ามาก หากไม่ได้พาข้าไปที่บันจี้จัมในเมือง Umbala's";
+							mes " เขาบอกให้ข้าลองสักครั้งหนึ่ง เพื่อเป็นประสบณ์การพิเศษ";
+							mes " ที่เมือง Umbala แต่ข้าต้องขอร้องว่าไม่";
+							next;
+							mes "[Timid Young Man]";
+							mes " เขาแสดงความรู้สึกเหมือนโกรธเคืองข้า";
+							mes " มันเป็นที่ที่ยอดเยี่ยมและปลอดภัย";
+							mes " มีเพียงไม่กี่คนเท่านั้นที่ตายจากที่นี่";
+							next;
+							mes "[Timid Young Man]";
+							mes " ที่ดวงตาของเขา";
+							mes " เต็มไปด้วยความโกรธ";
+							mes " และพูดอะไรบางอย่าง";
+							mes " จนข้าไม่สามารถควบคุมตัวเองได้";
+							mes " ร่างกายของข้าขยับ";
+							mes " ไปตามที่พวกเขาต้องการ!";
+							next;
+							mes "[Timid Young Man]";
+							mes " ข้าดิ้นรนเอาชีวิตรอด";
+							mes " เพื่อให้ตัวเองหลุดจาก";
+							mes " การกระโดดบันจี้จัมได้ไม่นาน..";
+							mes " ยิ่งข้าต่อต้าน มันยิ่งหนักขึ้น";
+							mes " มันน่ากลัวมาก ข้าไปยืน";
+							mes " อยู่บริเวณขอบของมัน!";
+							next;
+							mes "[Timid Young Man]";
+							mes " นั่นคือสิ่งที่ข้ารู้สึกกลัวที่สุด";
+							mes " ในชีวิตของข้า มันไม่คุ้ม";
+							mes " ที่จะต้องเสี่ยงชีวิต";
+							mes " แต่ข้ารู้สึกได้ว่า มีพลังบางอย่าง";
+							mes " ควบคุมร่างกายของข้า!";
+							next;
+							mes "[" + strcharinfo(0) + "]";
+							mes " เดี๋ยวก่อน...";
+							mes " Bard จะทำอย่างนั้นได้อย่างไร?";
+							mes " ข้าไม่เคยได้ยินเพลงนั้น";
+							mes " หรือทักษะที่มีผลใกล้เคียงกับที่ท่านบอก...";
+							next;
+							mes "[Timid Young Man]";
+							mes " ข้าก็เช่นกัน,";
+							mes " จนกระทั่งข้าได้ไปเจอด้วยตัวเอง";
+							mes " ข้ายังมองเห็นรอยยิ้มอันชั่วร้าย";
+							mes " ของเขาในฝันร้ายของข้าอยู่เลย...";
+							next;
+							mes "[Timid Young Man]";
+							mes " อย่างไรก็ตาม, ข้าขอบใจสำหรับเครื่องดื่ม";
+							mes " มันช่วยได้มากจริงๆ";
+							mes " แต่ข้าต้องบอกเจ้าก่อน";
+							mes " Bard ที่มีลักษณะแปลกประหลาด";
+							mes " ข้ามั่นใจว่าเขามีพลังอำนาจอะไรบางอย่าง...";
+							next;
+							if (JobLevel > 39) {
+								mes "[Timid Young Man]";
+								mes " แต่... หากเจ้าต้องการพลังเช่นนั้น";
+								mes " ข้าก็คงไม่สามารถหยุดเจ้าได้";
+								mes " เพราะไม่มีใครที่คิดจะเป็นแบบเขาคนนั้นจริงๆ~";
+								delitem 12112,1; //Tropical_Sograt
+								set qskill_bard,1;
+							}
+							else {
+								mes "[Timid Young Man]";
+								mes " อย่างน้อยเจ้าต้องมี ^660000Job Level 40^000000 เป็นอย่างน้อย";
+								mes " เพื่อสามารถจัดการกับพลังใหม่นี้ได้...";
+								delitem 12112,1; //Tropical_Sograt
+							}
+							close;
+						}
+					}
+				}
+				else {
+					mes "[Timid Young Man]";
+					mes " เอ๊ะ...?! อืม, ข้ารู้สึก";
+					mes " ว่าข้าขาดอะไรไปบางอย่าง,";
+					mes " ข้าไม่รู้ว่าจะเชื่อถือคนอย่างเจ้าได้หรือปล่าว?";
+					next;
+					mes "[Timid Young Man]";
+					mes " ข้าไม่คิดเลยว่า..";
+					mes " ข้าจะสามารถเปลี่ยนใจข้าได้ไหม?";
+					mes " บางที.. หากเจ้านำ";
+					mes " เครื่องดื่ม Tropical Sograt แก้วโปรดของข้า";
+					mes " ข้าอาจจะเปลี่ยนใจมาบ้างก็ได้...";
+					close;
+				}
+			}
+			mes "[" + strcharinfo(0) + "]";
+			mes " ไม่ต้องกังวล";
+			mes " ข้าไม่ทำร้ายท่านหรอก";
+			next;
+			mes "[Timid Young Man]";
+			mes " นั่นคือ... สิ่งที่พวกเขาบอกกับข้า";
+			mes " ก่อนที่ข้าจะไว้ใจ";
+			mes " แล้วเขาก็ทำกับข้า..!!";
+			if (qskill_bard == 9) {
+				mes " อยู่ห่างๆ ข้า!";
+				mes "...อย่ามาจับตัวข้า ไปให้พ้น!";
+			}
+			else {
+				mes " แม้ว่าเจ้ายังไม่มีพลังใหม่";
+				mes " ปล่อยข้าให้อยู่คนเดียวเถอะ!";
+			}
+			close;
+		}
+	}
+	else {
+		mes "[Timid Young Man]";
+		mes " โอ... โอ้พระเจ้า";
+		mes " บางคนไม่ได้ใช้บทเพลง";
+		mes " เพื่อความรักและความบันเทิง";
+		mes " แต่หากว่าเจ้าเข้าใจ";
+		mes " บางคนสามารถใช้อำนาจบางอย่าง";
+		mes " ที่เจ้าไม่อาจจะเชื่อ!";
+		mes " ข้าเคยเห็นมาแล้ว!";
+		close;
+	}
+
+OnTouch:
+	if (BaseJob == Job_Bard) {
+		emotion e_omg;
+	}
+	end;
+}
+
+morocc_in,169,72,7	script	Spiteful-Looking Bard#bs	741,3,3,{
+	if (BaseJob == Job_Bard) {
+		if (Class == Job_Clown && qskill_bard == 9) {
+			if (getskilllv("BA_PANGVOICE") != 0) {
+				mes "[Riott]";
+				mes "Geh heh heh~";
+				mes " เจ้าจงใช้ประโยชน์จากสิ่ง";
+				mes " ที่ได้รับจากข้าไปอย่างระมัดระวัง";
+				mes " ไม่เช่นนั้นคนอื่นๆ อาจเกลียดเจ้าอย่างที่";
+				mes " ทุกๆ คนเคยเกลียดข้าได้";
+				close;
+			}
+			else {
+				mes "[Riott]";
+				mes " เป็นไปไม่ได้...!! เจ้าลืมทุกสิ่งที่ข้าเคยสอนเจ้าไปรึ?";
+				mes " แต่ไม่เป็นไร, ข้าจะรื้อฟื้นความจำให้เจ้าอีกครั้ง";
+				mes " หากว่าเจ้ายังต้องการ ว่ายังไงล่ะ?";
+				next;
+				if (select(" ไม่เป็นไร.. ไม่ดีกว่า: ขอบคุณมาก ข้าต้องการมัน") == 1) {
+					mes "[Riott]";
+					mes " อะไรนะ...?";
+					mes " เจ้าไม่อยากรู้";
+					mes " มันงั้นรึ?";
+					mes " หากเจ้าเปลี่ยนใจ";
+					mes " เมื่อไหร่";
+					mes " โปรดกลับมาหาข้าอีกครั้ง...";
+					close;
+				}
+				mes "[Riott]";
+				mes " ขั้นแรก, เจ้าต้องใช้สายตา";
+				mes " จ้องไปที่เป้าหมาย";
+				mes " แล้วท่องตามคาถาของข้า...";
+				next;
+				mes "[Riott]";
+				mes "Uuuummm Baaalaaaa";
+				mes "Uuuummmm Baaalaaa~";
+				mes "Kkkkuuurrirrreeee";
+				mes "Kkkkuuurrirrreeee";
+				mes "Oooumm guandlejdl";
+				mes "Woooo Ei ei ei ei......";
+				specialeffect EF_TALK_FROSTJOKE;
+				next;
+				mes "[Riott]";
+				mes " ได้รับทักษะ Pang's Voice";
+				mes " ใช้สำหรับควบคุม";
+				mes " ร่างกายของผู้อื่น^FFFFFF ^000000 ทักษะอาจร้ายแรงที่มีประสิทธภาพ";
+				skill "BA_PANGVOICE",1,0;
+				close;
+			}
+		}
+		else if (qskill_bard > 8) {
+			mes "[Riott]";
+			mes "Geh heh heh~";
+			mes " เจ้าจงใช้ประโยชน์จากสิ่ง";
+			mes " ที่ได้รับจากข้าไปอย่างระมัดระวัง";
+			mes " ไม่เช่นนั้นคนอื่นๆ อาจเกลียดเจ้าอย่างที่";
+			mes " ทุกๆ คนเคยเกลียดข้าได้";
+			close;
+		}
+		else if (qskill_bard == 8) {
+			if (countitem(7277) > 0) {
+				mes "[Riott]";
+				mes " โอ้! เจ้าหามันเจอ!";
+				mes " ตุ๊กตาที่ถูกเย็บอย่างดี!";
+				mes " มันถูกยัดด้วยขนแกะ";
+				mes " มันเป็นงานของคนผู้นั้น!";
+				next;
+				mes "[Riott]";
+				mes " เพื่อตอบแทนสิ่งที่เจ้าได้ทำ";
+				mes " ข้าจะมอบทักษะพิเศษ";
+				mes " ที่ข้าได้พัฒนามาจาก";
+				mes " Utan Shaman ใน Umbala";
+				next;
+				mes "[Riott]";
+				mes " ขั้นแรก, เจ้าต้องใช้สายตา";
+				mes " จ้องไปที่เป้าหมาย";
+				mes " แล้วท่องตามคาถาของข้า...";
+				next;
+				mes "[Riott]";
+				mes "Uuuummm Baaalaaaa";
+				mes "Uuuummmm Baaalaaa~";
+				mes "Kkkkuuurrirrreeee";
+				mes "Kkkkuuurrirrreeee";
+				mes "Oooumm guandlejdl";
+				mes "Woooo Ei ei ei ei......";
+				specialeffect2 EF_TALK_FROSTJOKE;
+				delitem 7277,1; //Munak_Doll
+				skill "BA_PANGVOICE",1,0;
+				set qskill_bard,9;
+				next;
+				mes "[Riott]";
+				mes " จงจำไว้ว่า สิ่งที่สำคัญไม่ได้อยู่ที่การพูด";
+				mes " แต่เป้าหมายที่สำคัญที่สุด";
+				mes " คือจังหวะและการใช้เสน่ห์ของเจ้า";
+				mes " ทำเป้าหมายหลบจากเจ้าไปไม่ได้";
+				next;
+				mes "[Riott]";
+				mes "''Pang Voice'' จะส่งเสียง";
+				mes " ให้เป้าหมายเกิดอาการช๊อก";
+				mes " และทำให้เสียการควมคุบ";
+				mes " ของร่างกาย";
+				next;
+				mes "[Riott]";
+				mes " เจ้าต้องใช้ทักษะนี้อย่างฉลาด";
+				mes " เลือกใช้กับคนที่ถูกต้อง";
+				mes " มิเช่นนั้น คนที่ถูกเจ้าใช้ทักษะนี้";
+				mes " อาจจะเกลียดเจ้าขึ้นมาได้";
+				close;
+			}
+			mes "[Riott]";
+			mes " หืมม์ ข้าไม่เห็น";
+			mes " Munak Doll ที่เจ้าบอกสักตัว";
+			mes " ข้าขอโทษด้วย แต่ไว้เจ้ากลับมาใหม่";
+			mes " เมื่อเจ้ามีมัน..";
+			close;
+		}
+		else if (qskill_bard == 7) {
+			if (countitem(574) > 4) {
+				mes "[Riott]";
+				mes " โอ้, เจ้าได้นำ fresh eggs กลับมาให้ข้า";
+				mes " ถึงแม้เจ้าจะรู้ว่ามันอันตราย";
+				mes " ที่เจ้าได้ไปถึง Nifflheim แต่มันก็คุ้มค่าที่แลกกับรสชาติของมัน";
+				next;
+				next;
+				mes "[Riott]";
+				mes " เพื่อตอบแทนสิ่งที่เจ้าได้ทำ";
+				mes " ข้าจะมอบทักษะพิเศษ";
+				mes " ที่ข้าได้พัฒนามาจาก";
+				mes " Utan Shaman ใน Umbala";
+				next;
+				mes "[Riott]";
+				mes " ขั้นแรก, เจ้าต้องใช้สายตา";
+				mes " จ้องไปที่เป้าหมาย";
+				mes " แล้วท่องตามคาถาของข้า...";
+				next;
+				mes "[Riott]";
+				mes "Uuuummm Baaalaaaa";
+				mes "Uuuummmm Baaalaaa~";
+				mes "Kkkkuuurrirrreeee";
+				mes "Kkkkuuurrirrreeee";
+				mes "Oooumm guandlejdl";
+				mes "Woooo Ei ei ei ei......";
+				specialeffect2 EF_TALK_FROSTJOKE;
+				delitem 574,5; //Egg
+				skill 1010,1,0;
+				set qskill_bard,9;
+				next;
+				mes "[Riott]";
+				mes " จงจำไว้ว่า สิ่งที่สำคัญไม่ได้อยู่ที่การพูด";
+				mes " แต่เป้าหมายที่สำคัญที่สุด";
+				mes " คือจังหวะและการใช้เสน่ห์ของเจ้า";
+				mes " ทำเป้าหมายหลบจากเจ้าไปไม่ได้";
+				next;
+				mes "[Riott]";
+				mes "''Pang Voice'' จะส่งเสียง";
+				mes " ให้เป้าหมายเกิดอาการช๊อก";
+				mes " และทำให้เสียการควมคุบ";
+				mes " ของร่างกาย";
+				next;
+				mes "[Riott]";
+				mes " เจ้าต้องใช้ทักษะนี้อย่างฉลาด";
+				mes " เลือกใช้กับคนที่ถูกต้อง";
+				mes " มิเช่นนั้น คนที่ถูกเจ้าใช้ทักษะนี้";
+				mes " อาจจะเกลียดเจ้าขึ้นมาได้";
+				close;
+			}
+			else {
+				mes "[Riott]";
+				mes " หืมม์... เจ้าไม่มี Eggs ที่ข้าให้นำมารึ";
+				mes " ข้าคงช่วยอะไรเจ้าไม่ได้หากเจ้าไม่มีมัน";
+				next;
+				mes "[Riott]";
+				mes " เจ้าสามารถใช้";
+				mes " ^4D4DFF1 Munak Doll^000000";
+				mes " มันถูกสร้างจากช่างที่มีฝีมือ";
+				mes " แทนไข่ที่หายไปได้";
+				next;
+				mes "[Riott]";
+				if (countitem(574) > 0) {
+					mes " ข้าขอ,";
+					mes " ไข่ไม่กี่ใบ";
+					mes " ในตัวเจ้าก่อนแล้วกัน!";
+					mes "Bweh heh heh heh heh!";
+					delitem 574,countitem(574); //Egg
+				}
+				set qskill_bard,8;
+				close;
+			}
+		}
+		else if (qskill_bard > 1 && qskill_bard < 7) {
+			mes "[Riott]";
+			mes " เจ้าต้องไปรวบรวม";
+			mes " eggs จาก Yhelle";
+			close;
+		}
+		else {
+			mes "[Riott]";
+			mes "Hmmrmpf!";
+			mes "Eh heh heh heh!";
+			emotion e_gg;
+			next;
+			mes "[" + strcharinfo(0) + "]";
+			mes " อืม...";
+			mes " หัวเราะอะไรรึ?";
+			next;
+			if (gef_bard_q == 30 || gef_bard_q == 31) {
+				mes "[Riott]";
+				mes " หืมม์? โอ้! นั่นคือหนึ่งใน";
+				if (gef_bard_q == 30) {
+					mes "Black Seals เท่านั้น";
+					mes " เจ้าจะได้รับจาก Kino Kitty";
+					mes " และเจ้าต้องทำให้เขาชื่นชอบในตัวเจ้า";
+				}
+				else {
+					mes "Silver Seals เท่านั้น";
+					mes " เจ้าจะได้รับจาก Errende";
+					mes " เขาจะเสนอตัวเจ้าเป็นเพื่อน";
+					mes " และบอกข้าได้รู้";
+					mes " กับอะไรบางอย่าง?";
+				}
+				next;
+				mes "[Riott]";
+				mes "Geh heh heh~";
+				mes " เฮ้ เจ้าลองดู";
+				mes " สองนักดื่มสองคน";
+				mes " ทางนั้นสิ";
+				next;
+				mes "[" + strcharinfo(0) + "]";
+				mes " ใช่, ข้าเห็นพวกเขา";
+				mes " แต่อะไรหรือคือสิ่งที่พิเศษงั้นรึ?";
+				next;
+				mes "[Riott]";
+				mes " มอง...";
+				mes " ตั้งใจดูต่อไป";
+				next;
+				mes "^3355FFRiott จ้องอย่างตั้งใจ";
+				mes " ไปที่คนเมาคนหนึ่ง";
+				mes " และบ่นงึมงัมบางอย่าง";
+				mes " บางคำฟังไม่ชัด";
+				mes " และเสียงเบามาก";
+				mes " ผู้ชายคนนั้นเริ่มมีอารการ^000000";
+				next;
+				mes "[Little Bit Drunken Guy]";
+				mes " เฮ้...! ^333333*สะอึก!*^000000";
+				mes " เจ้ากำลังทำอะไร?!";
+				mes " มือของเจ้าเหมือนกับ";
+				mes " มือของผู้หญิง";
+				mes " แต่เคยอยู๋กับเจ้า?";
+				next;
+				mes "[More Drunken Guy]";
+				mes " เจ้ากำลังพูดอะไร";
+				mes " ข้ายื่นแขนออกมาทำไม";
+				mes " ข้าโทษข้าพยายามจะหยุด";
+				mes " ข้าไม่ได้ต้องการจะเข้าไปกอดเจ้า";
+				next;
+				mes "[Little Bit Drunken Guy]";
+				mes " ดูข้าสิ มือข้ากำลังกอดเจ้า";
+				mes " มือข้ามัน ขยับไปเอง";
+				mes " ข้าไม่รู้ว่าเป็นไปได้อย่างไร!";
+				next;
+				mes "[More Drunken Guy]";
+				mes " เอ๊ะ! อะไร";
+				mes " เจ้าจะทำอะไร หยุดนะ";
+				mes " มือเจ้าจะจับก้นข้า!";
+				next;
+				mes "^3355FFจากนั้นชายทั้งสอง";
+				mes " โบกไม้โบกมือไปมา";
+				mes " อย่าคึกคะนอง";
+				next;
+				mes "[" + strcharinfo(0) + "]";
+				mes " ทั้งสอง..";
+				mes " ทั้งสองอาจจะดิ่มหนัก";
+				mes " มากเกินไป";
+				next;
+				mes "[Riott]";
+				mes " และพวกเขาก็หลุดจากการควบคุมร่างกาย";
+				mes " และนี่คือโชว์เล็กน้อย";
+				mes " เกี่ยวกับทักษะใหม่ของข้า";
+				mes " คือการครอบงำจิตใจ";
+				next;
+				if (qskill_bard == 1) {
+					mes "[" + strcharinfo(0) + "]";
+					mes " ครอบงำจิตใจ?";
+					mes " เดี๋ยว.. ถ้างั้นใครบางคน";
+					mes " ที่ทำให้เขากระโดดจากบันจี้จัม";
+					mes " ด้วยความประสงค์ของเขา";
+					mes " คือท่านงั้นรึ?";
+					next;
+					mes "[Riott]";
+					mes " เจ้ารู้เรื่องนี้ได้อย่างไร?";
+					mes " เจ้ามาหาข้าเพราะได้ยินเรื่องนี้เหรอ?";
+					next;
+					if (select(" ใช่! ข้าอยากเรียนมันจากท่าน!: ไม่ใช่") == 1) {
+						mes "[Riott]";
+						mes " หืมม์? เจ้าอยากเรียนมันเหรอ?";
+						mes " วิธีครอบงำจิตใจแบบเดียวกับข้า";
+						mes " ข้าคิดค้นทักษะนี้ขึ้นมาจาก";
+						mes " Utan Shaman เอาล่ะ, ลองดู";
+						next;
+						mes "[Riott]";
+						mes " ถ้าเจ้าต้องการให้ข้าสอนให้เจ้า";
+						mes " เจ้าช่วยรวบรวม Eggs ไก่ที่ชื่อว่า Thelle";
+						mes " อย่างไรก็ตามไก่ตัวนี้";
+						mes " มันอยู่ในสถานที่แปลกประหลาด";
+						mes " เจ้าต้องไปสำรวจในต้นไม้ลึกลับที่ Umbala";
+						next;
+						mes "[Riott]";
+						mes " มันออกไข่ที่ดีที่สุดเลย...";
+						mes " ดังนั้น หา Ichere Egg x5 มาให้ข้า";
+						mes " มันเป็นสิ่งที่ดีในการล้างคอ!";
+						set qskill_bard,2;
+						close;
+					}
+					mes "[Riott]";
+					mes " เจ้าหนุ่ม, เจ้าอยากรู้อะไร?";
+					mes " แน่นอนเจ้าอาจต้องเดินทางไปทั่ว";
+					mes " ข้าเคารพนักผจญภัยเช่นเจ้า";
+					close;
+				}
+				mes "[" + strcharinfo(0) + "]";
+				mes " หวาาา...?";
+				mes " ข้าไม่เชื่อท่านหรอกนะ";
+				mes " การครอบงำจิตใจ";
+				mes " ไม่ได้ทำอะไรพวกเขา!";
+				mes " พวกเขาก็แค่เมาเท่านั้น..";
+				next;
+				mes "[Riott]";
+				mes " เจ้ากล้าพูดกับข้าเช่นนี้รึ?";
+				mes " ข้าไม่อยากจะโกรธเจ้ามากหรอกนะ";
+				mes " คนส่วนใหญ่มักคิดว่าข้า";
+				mes " เป็นแกนนำแห่งความชั่วร้าย";
+				close;
+			}
+			mes "[Riott]";
+			mes " เอ๊ะ, ยังไม่มี Bard คนใด";
+			mes " มาพูดกับข้า เจ้ายังไม่ได้รับ";
+			mes " Bard Seals เพื่อเริ่มต้น";
+			mes " สู่ขั้นตอนต่อไป...";
+			next;
+			mes "[Riott]";
+			mes "*Sigh* เอาล่ะ, ข้ารู้";
+			mes " เจ้าต้องไปพบกับ Bards คนหนึ่ง";
+			mes " ชื่อ Errende ทำไมเจ้าไม่ลองไปเป็นเพื่อนกับเขาดูล่ะ?";
+			mes " มองหา Bard ในชุดสีเขียวที่ Geffen";
+			mes " และเจ้าควรรีบไปหาเขา";
+			close;
+		}
+	}
+	else {
+		mes "[Riott]";
+		mes "Hmmrmpf!";
+		mes "Eh heh heh heh!";
+		emotion e_gg;
+		next;
+		mes "[" + strcharinfo(0) + "]";
+		mes " อืม...";
+		mes " หัวเราะอะไรรึ?";
+		next;
+		if (gef_bard_q == 30 || gef_bard_q == 31) {
+			mes "[Riott]";
+			mes "Hm? Ah! That's one of the";
+			if (gef_bard_q == 30) {
+				mes "Black Seals เท่านั้น";
+				mes " เจ้าจะได้รับจาก Kino Kitty";
+				mes " และเจ้าต้องทำให้เขาชื่นชอบในตัวเจ้า";
+			}
+			else {
+				mes "Silver Seals เท่านั้น";
+				mes " เจ้าจะได้รับจาก Errende";
+				mes " เขาจะเสนอตัวเจ้าเป็นเพื่อน";
+				mes " และบอกข้าได้รู้";
+				mes " กับอะไรบางอย่าง?";
+			}
+			next;
+			mes "[Riott]";
+			mes "Geh heh heh~";
+			mes " เฮ้ เจ้าลองดู";
+			mes " สองนักดื่มสองคน";
+			mes " ทางนั้นสิ";
+			next;
+			mes "[" + strcharinfo(0) + "]";
+			mes " ใช่, ข้าเห็นพวกเขา";
+			mes " แต่อะไรหรือคือสิ่งที่พิเศษงั้นรึ?";
+			next;
+			mes "[Riott]";
+			mes " มอง...";
+			mes " ตั้งใจดูต่อไป";
+			close;
+		}
+		mes "[Riott]";
+		mes " เอ๊ะ, ยังไม่มี Bard คนใด";
+		mes " มาพูดกับข้า เจ้ายังไม่ได้รับ";
+		mes " Bard Seals เพื่อเริ่มต้น";
+		mes " สู่ขั้นตอนต่อไป...";
+		next;
+		mes "[Riott]";
+		mes "*Sigh* เอาล่ะ, ข้ารู้";
+		mes " เจ้าต้องไปพบกับ Bards คนหนึ่ง";
+		mes " ชื่อ Errende ทำไมเจ้าไม่ลองไปเป็นเพื่อนกับเขาดูล่ะ?";
+		mes " มองหา Bard ในชุดสีเขียวที่ Geffen";
+		mes " และเจ้าควรรีบไปหาเขา";
+		close;
+	}
+
+OnTouch:
+	emotion e_gg;
+	end;
+}
+
+// Yhelle the Chicken
+//============================================================
+niflheim,239,70,1	script	Yhelle#bard_chick1	800,3,3,{
+	emotion e_omg,1;
+	emotion e_omg;
+	mes "[Hen Yhelle]";
+	mes "Cluck-Cluuuck?";
+	mes "Cluck cluck cluck!";
+	next;
+	disablenpc "Yhelle#bard_chick1";
+	donpcevent "Yhelle#bard_chick2::OnEnable";
+	mes "^3355FFไก่ตกใจและวิ่งหนีไป^000000";
+	close;
+
+OnInit:
+	disablenpc "Yhelle#bard_chick5";
+	disablenpc "Yhelle#bard_chick4";
+	disablenpc "Yhelle#bard_chick3";
+	disablenpc "Yhelle#bard_chick2";
+	end;
+
+OnEnable:
+	enablenpc "Yhelle#bard_chick1";
+	end;
+
+OnDisable:
+	disablenpc "Yhelle#bard_chick1";
+	end;
+
+OnTouch:
+	callfunc "F_BardSkillYhelle",1,2; close;
+}
+
+niflheim,185,205,3	script	Yhelle#bard_chick2	800,3,3,{
+	emotion e_omg,1;
+	emotion e_omg;
+	mes "[Hen Yhelle]";
+	mes "Cluck-Cluuuck?";
+	mes "Cluck cluck cluck!";
+	next;
+	disablenpc "Yhelle#bard_chick2";
+	donpcevent "Yhelle#bard_chick3::OnEnable";
+	mes "^3355FFไก่ตกใจและวิ่งหนีไป^000000";
+	close;
+
+OnEnable:
+	enablenpc "Yhelle#bard_chick2";
+	end;
+
+OnDisable:
+	disablenpc "Yhelle#bard_chick2";
+	end;
+
+OnTouch:
+	callfunc "F_BardSkillYhelle",2,3; close;
+}
+
+niflheim,85,203,5	script	Yhelle#bard_chick3	800,3,3,{
+	emotion e_omg,1;
+	emotion e_omg;
+	mes "[Hen Yhelle]";
+	mes "Cluck-Cluuuck?";
+	mes "Cluck cluck cluck!";
+	next;
+	disablenpc "Yhelle#bard_chick3";
+	donpcevent "Yhelle#bard_chick4::OnEnable";
+	mes "^3355FFไก่ตกใจและวิ่งหนีไป^000000";
+	close;
+
+OnEnable:
+	enablenpc "Yhelle#bard_chick3";
+	end;
+
+OnDisable:
+	disablenpc "Yhelle#bard_chick3";
+	end;
+
+OnTouch:
+	callfunc "F_BardSkillYhelle",3,4; close;
+}
+
+niflheim,149,81,7	script	Yhelle#bard_chick4	800,3,3,{
+	emotion e_omg,1;
+	emotion e_omg;
+	mes "[Hen Yhelle]";
+	mes "Cluck-Cluuuck?";
+	mes "Cluck cluck cluck!";
+	next;
+	disablenpc "Yhelle#bard_chick4";
+	donpcevent "Yhelle#bard_chick5::OnEnable";
+	mes "^3355FFไก่ตกใจและวิ่งหนีไป^000000";
+	close;
+
+OnEnable:
+	enablenpc "Yhelle#bard_chick4";
+	end;
+
+OnDisable:
+	disablenpc "Yhelle#bard_chick4";
+	end;
+
+OnTouch:
+	callfunc "F_BardSkillYhelle",4,5; close;
+}
+
+niflheim,209,144,3	script	Yhelle#bard_chick5	800,3,3,{
+	emotion e_omg,1;
+	emotion e_omg;
+	mes "[Hen Yhelle]";
+	mes "Cluck-Cluuuck?";
+	mes "Cluck cluck cluck!";
+	next;
+	disablenpc "Yhelle#bard_chick5";
+	donpcevent "Yhelle#bard_chick1::OnEnable";
+	mes "^3355FFไก่ตกใจและวิ่งหนีไป^000000";
+	close;
+
+OnEnable:
+	enablenpc "Yhelle#bard_chick5";
+	end;
+
+OnDisable:
+	disablenpc "Yhelle#bard_chick5";
+	end;
+
+OnTouch:
+	callfunc "F_BardSkillYhelle",5,1; close;
+}
+
+// Drunken Men
+//============================================================
+morocc_in,178,73,3	script	Customer#bard_skill01	54,{
+	mes "[Little Bit Drunken Guy]";
+	mes " เจ้าคิดว่าอะไรคือ";
+	mes " เครื่องดื่มที่ดีที่สุดในโลก";
+	mes " ข้าคิดว่ามันคือ Tri-- Tristan?";
+	next;
+	mes "[More Drunken Guy]";
+	mes " โอ้! อายุกว่า 13 ปีของ Tristan?";
+	mes " มันคือเครื่องดื่มที่ดีที่สุดแน่นอน";
+	mes " แต่มันก็มีราคาที่แพงเกินไป";
+	mes " สำหรับสิ่งพิเศษเช่นนั้น";
+	mes " ^333333*Hiccup*^000000 ";
+	next;
+	mes "[Little Bit Drunken Guy]";
+	mes " Vermilion ที่ชายหาด?";
+	mes " ใช่, นี่มันก็ดีมากๆ";
+	mes " มีคนบอกว่ามันดีพอๆ";
+	mes " กับ Tro... Tropical!";
+	next;
+	mes "[Little Bit Drunken Guy]";
+	mes "...! ^333333*Hiccup!*^000000";
+	mes " เฮ้ เจ้าจะทำอะไร?!";
+	mes " มือของเจ้าจะทำอะไร?";
+	next;
+	mes "[More Drunken Guy]";
+	mes " ข้ายื่นแขนออกมาทำไม";
+	mes " ข้าโทษข้าพยายามจะหยุด";
+	mes " ข้าไม่ได้ต้องการจะเข้าไปกอดเจ้า";
+	next;
+	mes "[More Drunken Guy]";
+	mes " ดูข้าสิ มือข้ากำลังกอดเจ้า";
+	mes " มือข้ามัน ขยับไปเอง";
+	mes " ข้าไม่รู้ว่าเป็นไปได้อย่างไร!";
+	next;
+	mes "[More Drunken Guy]";
+	mes "เอ๊ะ!";
+	mes " เจ้าจะจับก้นข้ารึ?!";
+	next;
+	mes "^3355FFBard ในห้องนั้น";
+	mes " กำลังมองสองนักดื่ม";
+	mes " อย่างตั้งใจและไม่กระพิบตา";
+	mes " จงอย่าลืมว่า...";
+	mes " หากดื่มมากไปคงจะไม่ดี!^000000";
+	close;
+}
+
+morocc_in,175,70,7	script	Customer#bard_skill02	50,{
+	mes "[Little Bit Drunken Guy]";
+	mes " เจ้าคิดว่าอะไรคือ";
+	mes " เครื่องดื่มที่ดีที่สุดในโลก";
+	mes " ข้าคิดว่ามันคือ Tri-- Tristan?";
+	next;
+	mes "[More Drunken Guy]";
+	mes " โอ้! อายุกว่า 13 ปีของ Tristan?";
+	mes " มันคือเครื่องดื่มที่ดีที่สุดแน่นอน";
+	mes " แต่มันก็มีราคาที่แพงเกินไป";
+	mes " สำหรับสิ่งพิเศษเช่นนั้น";
+	mes " ^333333*Hiccup*^000000 ";
+	next;
+	mes "[Little Bit Drunken Guy]";
+	mes " Vermilion the Beach?";
+	mes " ใช่, นี่มันก็ดีมากๆ";
+	mes " มีคนบอกว่ามันดีพอๆ";
+	mes " กับ Tro... Tropical!";
+	next;
+	mes "[Little Bit Drunken Guy]";
+	mes "...! ^333333*Hiccup!*^000000";
+	mes " เฮ้ เจ้าจะทำอะไร?!";
+	mes " มือของเจ้าจะทำอะไร?";
+	next;
+	mes "[More Drunken Guy]";
+	mes " ข้ายื่นแขนออกมาทำไม";
+	mes " ข้าโทษข้าพยายามจะหยุด";
+	mes " ข้าไม่ได้ต้องการจะเข้าไปกอดเจ้า";
+	next;
+	mes "[More Drunken Guy]";
+	mes " ดูข้าสิ มือข้ากำลังกอดเจ้า";
+	mes " มือข้ามัน ขยับไปเอง";
+	mes " ข้าไม่รู้ว่าเป็นไปได้อย่างไร!";
+	next;
+	mes "[More Drunken Guy]";
+	mes "เอ๊ะ!";
+	mes " เจ้าจะจับก้นข้ารึ?!";
+	next;
+	mes "^3355FFBard ในห้องนั้น";
+	mes " กำลังมองสองนักดื่ม";
+	mes " อย่างตั้งใจและไม่กระพิบตา";
+	mes " จงอย่าลืมว่า...";
+	mes " หากดื่มมากไปคงจะไม่ดี!^000000";
+	close;
+}
+
+// Bartender
+//============================================================
+morocc_in,166,76,7	script	Bartender#bard_qskill	46,{
+	if (checkweight(1201,1) == 0) {
+		mes "^3355FFHold it right there!";
+		mes " น้ำหนักในตัวเจ้ามีมากเกินไป กรุณาตรวจสอบสัมภาระภายในตัวของเจ้าแล้วกลับมาหาข้าใหม่อีกครั้ง";
+		close;
+	}
+	mes "[Bartender]";
+	mes " เจ้าต้องการสั่งซื้ออะไร?";
+	next;
+	switch(select(" Tropical Sograt: Vermilion the Beach: ไม่มีอะไรขอบคุณ")) {
+	case 1:
+		if (MaxWeight - Weight < 2000) {
+			mes "[Bartender]";
+			mes " น้ำหนักในตัวเจ้ามีมากเกินไป กรุณาตรวจสอบสัมภาระภายในตัวของเจ้าแล้วกลับมาหาข้าใหม่อีกครั้ง";
+			close;
+		}
+		if (Zeny < 1000) {
+			mes "[Bartender]";
+			mes " ท่านต้องมีเงินจำนวน 1,000 zeny";
+			mes " เพื่อที่จะจ่ายค่าบริการสำหรับเครื่องดื่มนี้";
+			mes " โปรดกลับมาอีกครั้งเมื่อเจ้ามีเงิน";
+			close;
+		}
+		mes "[Bartender]";
+		mes " ท่านได้รับ,";
+		mes " 1 Tropical Sograt.";
+		mes " มันรสชาติหวานและอ่อนนุ่ม";
+		set Zeny,Zeny - 1000;
+		getitem 12112,1; //Tropical_Sograt
+		close;
+
+	case 2:
+		if (MaxWeight - Weight < 2000) {
+			mes "[Bartender]";
+			mes " น้ำหนักในตัวเจ้ามีมากเกินไป กรุณาตรวจสอบสัมภาระภายในตัวของเจ้าแล้วกลับมาหาข้าใหม่อีกครั้ง";
+			close;
+		}
+		if (Zeny < 1000) {
+			mes "[Bartender]";
+			mes " ท่านต้องมีเงินจำนวน 1,000 zeny";
+			mes " เพื่อที่จะจ่ายค่าบริการสำหรับเครื่องดื่มนี้";
+			mes " โปรดกลับมาอีกครั้งเมื่อเจ้ามีเงิน";
+			close;
+		}
+		mes "[Bartender]";
+		mes " ขอให้ท่านสนุกกับการดื่ม";
+		mes " และอย่าไปมีเรื่องกับใครที่ไหนหล่ะ?";
+		set Zeny,Zeny - 1000;
+		getitem 12113,1; //Vermilion_The_Beach
+		close;
+
+	case 3:
+		mes "[Bartender]";
+		mes " เอาหล่ะ,";
+		mes " ข้าจะคอยดูเจ้าอยู่รอบๆ";
+		close;
+	}
+}
+
+// Function
+//============================================================
+function	script	F_BardSkillYhelle	{
+	if (checkweight(1201,1) == 0 || MaxWeight - Weight < 2000) {
+		mes " น้ำหนักในตัวเจ้ามีมากเกินไป กรุณาตรวจสอบสัมภาระภายในตัวของเจ้าแล้วกลับมาหาข้าใหม่อีกครั้ง";
+		close;
+	}
+	emotion e_omg,1;
+	emotion e_omg;
+	mes "[Hen Yhelle]";
+	mes "Cluck-Cluuuck?";
+	mes "Cluck cluck cluck!";
+	next;
+	if (rand(1,3) == 2) {
+		disablenpc "Yhelle#bard_chick"+getarg(0);
+		donpcevent "Yhelle#bard_chick"+getarg(1)+"::OnEnable";
+		mes " ไก่ตกใจและวิ่งหนีไป";
+		if (qskill_bard > 1 && qskill_bard < 7) {
+			mes "^3355FFคุณพบไข่ที่พื้นตรง Ichre เคยยืนอยู่";
+			mes " คุณได้รับไอเท็ม 'Egg'^000000";
+			set qskill_bard,qskill_bard+1;
+			getitem 574,1; //Egg
+		}
+	}
+	else {
+		disablenpc "Yhelle#bard_chick"+getarg(0);
+		donpcevent "Yhelle#bard_chick"+getarg(1)+"::OnEnable";
+	mes "^3355FFไก่ตกใจและวิ่งหนีไป^000000";
+	}
+	return;
+}

@@ -1,0 +1,114 @@
+//—>===============================================================<—|
+// -- # Ragnarok Online EP 4.0 BY Kelberwitz Blade's
+// -- # Dungeons HiSo Kafra Corparation !!
+//—>===============================================================<—|
+
+// - - > Byalan Island
+
+izlu2dun,108,61,4	script	Kafra Express::Izlu2dun	117,{
+	cutin "kafra_01",2;
+	//callfunc "F_KafSetPront";
+	mes "^0066FF[ Kafra Express ]^000000";
+	mes "สวัสดีค่ะ ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+	mes "Kafra Corporation ยินดีให้บริการ";
+	mes "ต้องการให้ข้าช่วยเหลืออะไรไหมคะ ?";
+	//callfunc "F_Kafra",5,0,0,40,800;
+	callfunc "F_Kafra",5,1,1,90,1200;
+
+M_Save:
+	savepoint "izlu2dun",108,54;
+	callfunc "F_KafEnd",0,1,"in the city of Izlu2dun";
+}
+
+
+// - - > Culvert Sewers
+prt_fild05,290,224,3	script	Kafra Express::Culvert	114,{
+	cutin "kafra_04",2;
+	mes "^0066FF[ Kafra Express ]^000000";
+	mes "สวัสดีค่ะ ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+	mes "Kafra Corporation ยินดีให้บริการ";
+	mes "ต้องการให้ข้าช่วยเหลืออะไรไหมคะ ?";
+	callfunc "F_Kafra",5,1,1,40,0;
+
+	M_Save:
+		savepoint "prt_fild05",274,243;
+		callfunc "F_KafEnd",0,1, "at the Prontera Culverts";
+}
+
+// - - > Culvert Sewers
+prt_fild01,202,50,3	script	Kafra Express::Fild	115,{
+	cutin "kafra_04",2;
+	mes "^0066FF[ Kafra Express ]^000000";
+	mes "สวัสดีค่ะ ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+	mes "Kafra Corporation ยินดีให้บริการ";
+	mes "ต้องการให้ข้าช่วยเหลืออะไรไหมคะ ?";
+	callfunc "F_Kafra",5,1,1,40,0;
+
+	M_Save:
+		savepoint "prt_fild01",190,46;
+		callfunc "F_KafEnd",0,1, "at the Prontera Fild";
+}
+
+// - - > Coal Mine 
+mjolnir_02,83,362,4	script	Kafra Express::Coal Mine	117,{
+	cutin "kafra_01",2;
+	//callfunc "F_KafSetPront";
+	mes "^0066FF[ Kafra Express ]^000000";
+	mes "สวัสดีค่ะ ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+	mes "Kafra Corporation ยินดีให้บริการ";
+	mes "ต้องการให้ข้าช่วยเหลืออะไรไหมคะ ?";
+	//callfunc "F_Kafra",5,0,0,40,800;
+	callfunc "F_Kafra",5,1,1,90,1200;
+
+M_Save:
+	savepoint "mjolnir_02",98,352;
+	callfunc "F_KafEnd",0,1,"at Mjolnir Dead Pit";
+}
+
+
+// - - > Morroc Ruins
+moc_ruins,59,157,5	script	Kafra Express::Pyramids	114,{
+	cutin "kafra_01",2;
+	//callfunc "F_KafSetPront";
+	mes "^0066FF[ Kafra Express ]^000000";
+	mes "สวัสดีค่ะ ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+	mes "Kafra Corporation ยินดีให้บริการ";
+	mes "ต้องการให้ข้าช่วยเหลืออะไรไหมคะ ?";
+	//callfunc "F_Kafra",5,0,0,40,800;
+	callfunc "F_Kafra",5,1,1,90,1200;
+
+M_Save:
+	savepoint "moc_ruins",41,141;
+	callfunc "F_KafEnd",0,1,"at the Pyramids";
+}
+
+// - - > Orc Dungeon
+gef_fild10,73,340,5	script	Kafra Express::Orc Dungeon	116,{
+	cutin "kafra_02",2;
+	mes "^0066FF[ Kafra Express ]^000000";
+	mes "สวัสดีค่ะ ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+	mes "Kafra Corporation ยินดีให้บริการ";
+	mes "ต้องการให้ข้าช่วยเหลืออะไรไหมคะ ?";
+	callfunc "F_Kafra",5,6,1,130,0;
+
+	M_Save:
+		savepoint "gef_fild10",54,326;
+		callfunc "F_KafEnd",0,1,"at the Orc Dungeon";
+}
+
+// - - > Treasure Island
+alb2trea,59,69,5	script	Kafra Express::Treasure Island	117,{
+	cutin "kafra_01",2;
+	//callfunc "F_KafSetPront";
+	mes "^0066FF[ Kafra Express ]^000000";
+	mes "สวัสดีค่ะ ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+	mes "Kafra Corporation ยินดีให้บริการ";
+	mes "ต้องการให้ข้าช่วยเหลืออะไรไหมคะ ?";
+	//callfunc "F_Kafra",5,0,0,40,800;
+	callfunc "F_Kafra",5,1,1,90,1200;
+
+M_Save:
+	savepoint "alb2trea",92,64;
+	callfunc "F_KafEnd",0,1,"at Sunken Ship";
+}
+

@@ -1,348 +1,317 @@
-//===== rAthena Script =======================================
-//= Thief Job Quest
-//===== By: ==================================================
-//= rAthena Dev Team
-//===== Current Version: =====================================
-//= 1.8
-//===== Compatible With: =====================================
-//= rAthena Project
-//===== Description: =========================================
-//= [Official Conversion]
-//= Job quest for Thief classes
-//===== Additional Comments: =================================
-//= 1.0 Fully working.
-//= 1.1 Added instant job change for High Novice [Lupus]
-//= 1.3 Added Baby Class support [Lupus]
-//= 1.4 Optimised and moved first checker to Jfunc1-1 [massdriller]
-//=     Fixed possible EXP abuse [Lupus]
-//= 1.5 Now saves/restores all quest skills [Lupus]
-//= 1.6 Merged back JFunc [Lupus] 1.6a typos
-//= 1.7 Rescripted to Aegis 10.3 stadards. [L0ne_W0lf]
-//=     No longer uses function "F_ToHigh"
-//= 1.8 Added Quest Log commands. [L0ne_W0lf]
-//============================================================
+// -- # Ragnarok Online EP 4.0 BY Kelberwitz Blade's
+// -- # Thief Job Change
+// -- # =============================================
 
 moc_prydb1,39,129,2	script	Thief Guide	69,{
+
 	if (Upper == 1) {
 		if (ADVJOB == Job_Assassin_Cross || ADVJOB == Job_Stalker) {
 			if (Class == Job_Novice_High) {
-				mes "[Thief Guide]";
+				mes "^0066FF[ Thief Guide ]^000000";
 				mes "Huh? Do I know you? It's creepy that you seem so familiar. You don't have a twin, do you?";
 				next;
-				if (!callfunc("F_CanChangeJob")) {
-					mes "[Thief Guide]";
+				if (getskilllv("NV_BASIC") < 9) {
+					mes "^0066FF[ Thief Guide ]^000000";
 					mes "What, do you want to be a Thief? I'm sorry, but you look like you need more training.";
 					next;
-					mes "[Thief Guide]";
+					mes "^0066FF[ Thief Guide ]^000000";
 					mes "Take your time and learn all the Basic Skills, will you? Well then, see you later~!";
 					close;
 				}
-				mes "[Thief Guide]";
+				mes "^0066FF[ Thief Guide ]^000000";
 				mes "Well, I got this feeling like you've been through a lifetime of fighting, so I'm promoting you to a Thief right this minute. I better give you tough guys what you want...";
 				next;
-				skill "NV_TRICKDEAD",0,SKILL_PERM;
+				skill 143,0,0;
 				jobchange Job_Thief_High;
-				skill "TF_SPRINKLESAND",1,SKILL_PERM;
-				skill "TF_BACKSLIDING",1,SKILL_PERM;
-				skill "TF_PICKSTONE",1,SKILL_PERM;
-				skill "TF_THROWSTONE",1,SKILL_PERM;
-				mes "[Thief Guide]";
+				skill 149,1,0;
+				skill 150,1,0;
+				skill 151,1,0;
+				skill 152,1,0;
+				mes "^0066FF[ Thief Guide ]^000000";
 				mes "Since you've become a Thief, live as a Thief. Now, go for it! Next~";
 				close;
 			}
 			else {
-				mes "[Thief Guide]";
-				if (Sex == SEX_MALE)
-					mes "Hey, dude.";
-				else
-					mes "Hey, baby~";
+				mes "^0066FF[ Thief Guide ]^000000";
+				if (sex)
+				mes "สวัสดีครับท่านน.";
+			else
+				mes "สวัสดีจ๊ะ น้องสาวว...";
 				close;
 			}
 		}
 		else {
-			mes "[Thief Guide]";
-			if (Sex == SEX_MALE)
-				mes "Hey, dude.";
+			mes "^0066FF[ Thief Guide ]^000000";
+			if (sex)
+				mes "สวัสดีครับท่านน.";
 			else
-				mes "Hey, baby.";
-			mes "...Hey! You look too goody-goody to want to be a Thief!! Now scram, I'm busy. Next!";
+				mes "สวัสดีจ๊ะ น้องสาวว...";
+			mes "...คุณต้องการเปลี่ยนอาชีพเป็น Thief ใช่ไหม ?";
 			close;
 		}
 	}
 	if (BaseJob == Job_Thief) {
-		mes "[Thief Guide]";
-		mes "If you have a problem, feel free to speak to me anytime, alright?";
+		mes "^0066FF[ Thief Guide ]^000000";
+		mes "หากคุณมีปัญหา สามารถพูดกับข้าได้ทุกเรื่องเข้าใจใช่ไหม ?";
 		close;
 	}
 	else if (BaseJob != Job_Novice && BaseJob != Job_Thief) {
-		mes "[Thief Guide]";
-		mes "What the heck...?";
+		mes "^0066FF[ Thief Guide ]^000000";
+		mes "นั้นมันคืออะไร ?...?";
 		switch(Class) {
 		case 1:
-			mes "Huh.";
-			mes "Now, that's";
-			mes "a big sword.";
+			mes "ห๊าา....";
+			mes "นั้นมันน..";
+			mes "ดาบอันไหญ่โตนินาา....";
 			next;
-			mes "[Thief Guide]";
-			mes "So...";
-			mes "Trying to make";
-			mes "up for something";
-			mes "...Buddy?";
-			break;
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "คุณต้องการจะหลอกอะไรฉันหรอไง ?..";
 		case 2:
-			mes "What's a Mage doin' here? Shouldn't you be doing card tricks elsewhere? Oh well, it's a free country...";
+			mes "คุณเป็น Mage นี้น่าคุณมาทำอะไร ณ ที่แห่งนี้ ? ที่นี้ไม่เหมาะกับเจ้า..";
 			next;
-			mes "[Thief Guide]";
-			mes "Oh wait,";
-			mes "it's not...";
-			mes "Get outta here!";
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "ออกไปซะ";
 			break;
 		case 3:
-			mes "Man, shouldn't you";
-			mes "Archers be playing";
-			mes "in the forest";
-			mes "or something?";
+			mes "เฮ้ ? ทำไมคุณไม่ได้เดินเล่นในป่าละ";
+			mes "เจ้า Archers น้อยที่นี้ไม่เหมาะกับเจ้า หรือ เจ้ามีปัญหาอะไรกับข้า";
 			break;
 		case 4:
-			mes "You know we all steal for a living, right? What are you doing in this kinda place, Acolyte?";
+			mes "คุณรู้อยู่แล้วว่าอาชีพของเราคือการขโมยของคนอื่น ? แล้วคุณยังจะมาที่นี้ทำไมท่าน Acolyte..";
 			break;
 		case 5:
-			mes "You're a Merchant,";
-			mes "right? Why are you";
-			mes "walking into a den";
-			mes "of Thieves?!";
+			mes "คุณคือพ่อค้าใช่ไหม ?,";
+			mes "ทำไมคุณมาเดินในแห่งที่มีโจรชุกชมขนาดนี้ ?";
+			mes "ไม่กลัวจะโดนปล้นหรือไง ?";
 			next;
-			mes "[Thief Guide]";
-			mes "It's like you're begging";
-			mes "us to steal from you!";
-			mes "Come on, hurry and";
-			mes "get outta here~";
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "ออกไปซะก่อนที่ข้าจะขโมยของของท่าน !~";
 			break;
 		case 8:
-			mes "Oh my God...";
-			mes "Am I dying?";
+			mes "โอ้วว มายก๊อดดดด...";
+			mes "ฉันกำลังจะตายย?";
 			next;
-			mes "[Thief Guide]";
-			mes "Why else would a Priest come here? I guess I better start confessing all of my misdeeds.";
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "ทำไมคนอื่นนถึงอยากให้ Priest มา ณ ที่แห่งนี้ !";
 			close;
 		case 12:
-			mes "Didn't you use to be one of us?! Man, you changed. You seem real dangerous now...";
+			mes "คุณเคยเป็นหนึ่งในสมัครชิกเราหรือเปล่า ท่านน่าจะรู้ความอันตรายของอาชีพเรา..";
 			close;
 		case 17:
-			mes "Man, you got real cool all of a sudden! You must have some skills I can only dream of!";
+			mes "คุณเป็นคนที่เจ๋งมาก และมีทักษะที่ฉันใฝ่ฝันว่าซักวันฉันต้องมีให้ได้ !";
 			close;
 		}
 		next;
-		mes "[Thief Guide]";
-		mes "*Sigh* Look, there's really no need for you to be in this kind of place. You oughta go where you ought to go.";
+		mes "^0066FF[ Thief Guide ]^000000";
+		mes "ดูเหมือนว่าคุณไม่ต้องการมา ณ ที่แห่งนี้ รีบออกไปซะ ก่อนที่ข้าจะทำร้ายคุณ !!.";
 		close;
 	}
 	if (job_thief_q == 3 && countitem(1069) > 0 || countitem(1070) > 0) {
-		mes "[Thief Guide]";
-		mes "Hmmm?";
-		mes "You gathered Mushrooms for";
-		mes "the Thief test, right?";
+		mes "^0066FF[ Thief Guide ]^000000";
+		mes "หืมมม?";
+		mes "ท่านนำเห็ดที่ข้าสั่งมาเรียบร้อยแล้วใช่มั้ย";
+		mes "หวังว่าคงนำมาครบนะ";
 		next;
-		mes "[Thief Guide]";
-		mes "Here, talk to the other guy right next to me. He's the one in charge of checking your Mushrooms.";
+		mes "^0066FF[ Thief Guide ]^000000";
+		mes "ต่อไปก็คุยกับ Thief ข้างๆข้า เขาจะตรวจสอบเห็ดของท่าน";
 		close;
 	}
 	else if (job_thief_q == 3) {
-		mes "[Thief Guide]";
-		mes "So how was the";
-		mes "Mushroom Farm?";
-		mes "Have any fun?";
+		mes "^0066FF[ Thief Guide ]^000000";
+		mes "เป็นยังไงบ้าง";
+		mes "ฟาร์มเห็ด?";
+		mes "สนุกหรือเปล่า?";
 		next;
-		if (select("Yeah, kinda Cool.:It was horrible.") == 1) {
-			mes "[Thief Guide]";
-			mes "Heh heh! That's a good attitude. In our line of work, you gotta enjoy getting your hands dirty, one way or another.";
+		if (select("^ff0000•^000000 ใช่แล้ว สุดยอดเลย.:^ff0000•^000000 น่ากลัวที่สุด") == 1) {
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "ฮ่าๆ นั่นเป็นงานของพวกเราเลยนะ ท่านต้องฝึกไว้เยอะๆ";
 			close;
 		}
-		mes "[Thief Guide]";
-		mes "Yeah? I've been there too, so I can see why that place isn't everyone's cup of tea. Still, being a Thief isn't all glamour and trendy night life.";
+		mes "^0066FF[ Thief Guide ]^000000";
+		mes "ใช่ ข้าก็เคยอยู่ที่นั่นมาก่อน แต่ตอนนี้ข้าก็ไม่รู้สึกอะไรแล้ว";
 		close;
 	}
 	if (job_thief_q == 2) {
-		mes "[Thief Guide]";
-		mes "Hey, whaddya doin' here? Aren't you supposed to be gathering Mushrooms? Or did you need it explained to you again?";
+		mes "^0066FF[ Thief Guide ]^000000";
+		mes "อ้าว ทำไมถึงยังอยู่ที่นี่ล่ะ  หรือว่าท่านต้องการให้ข้าอธิบายอีกครั้ง?";
 		next;
-		if  (select("Yes.:No, that's okay.") == 1) {
-			mes "[Thief Guide]";
-			mes "*Sigh* Well, there's always one in the bunch. Alright, listen carefully.";
+		if  (select("^ff0000•^000000 ใช่แล้ว:^ff0000•^000000 ไม่ต้อง ข้ารู้แล้ว") == 1) {
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "โอเค ตั้งใจฟังให้ดีๆล่ะ";
 			next;
-			mes "[Thief Guide]";
-			mes "Alright, for your test, you gotta steal Mushrooms from a farm. Don't worry, the guy who owns the farm deserves to be robbed.";
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "ท่านจะต้องไปที่ฟาร์ม   แล้วก็ต้องไปเก็บเห็ดมา";
 			next;
-			mes "[Thief Guide]";
-			mes "Anyway, you gotta gather two kinds of Mushrooms: ^0000FFOrange Net Mushrooms^000000 and ^0000FFOrange Gooey Mushrooms^000000.";
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "ซึ่งเห็ดที่ท่านจะต้องนำมานั้นมี สองแบบ คือ : ^0000FFOrange Net Mushrooms^000000 และ ^0000FFOrange Gooey Mushrooms^000000.";
 			next;
-			mes "[Thief Guide]";
-			mes "Be careful, since there are monsters are the farm that are there to protect the Mushrooms. So this will be no walk in the park.";
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "โปรดระวังสัตวืที่อยู่ในนั้นด้วย";
 			next;
-			mes "[Thief Guide]";
-			mes "When you come back here after gathering Mushrooms, you'll be graded on the Mushrooms you've collected.";
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "หลังจากที่ท่านนำเห็ดมาให้ข้าแล้ว ข้าก็จะรวบรวมคะแนน.";
 			next;
-			mes "[Thief Guide]";
-			mes "Each Orange Net Mushroom gets you 3 points, and you get 1 point for each Orange Gooey Mushroom. You need a total of 25 points to pass the test.";
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "ซึ่งเห็ด Orange Net Mushroom มี 3 คะแนน และเห็ด Orange Gooey Mushroom มี 1 คะแนน  ท่านต้องหามาให้ครบ 25 คะแนน จึงจะผ่าน";
 			next;
-			mes "[Thief Guide]";
-			mes "Go outside and keep going ahead toward the Eastern Field of the Pyramids. Then you will see one of our comrades between two columns.";
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "ออกไปข้างนอก ทางทิศตะวันออกของ Pyramids แล้วท่านจะพบกับพวกของข้าที่นั่น";
 			next;
-			mes "[Thief Guide]";
-			mes "Speak to that guy, and he'll take you to the farm through the backdoor.";
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "พูดคุยเกี่ยวกับฟาร์มเห็ดแล้วลักลอบเข้าไป";
 			next;
-			mes "[Thief Guide]";
-			mes "On that field, I think his coordinates are '^FF0000141, 125^000000.' Just type ^3355FF/where^000000 in the right side of your chat box to check your present coordinates.";
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "ฟาร์มนั้นข้าคิดว่าน่าจะอยู่ที่พิกัด '^FF0000141, 125^000000.' หรือไม่ท่านก็ใช้คำสั่ง ^3355FF/where^000000 เพื่อดูตำแหน่งก็ได้นะ";
 			close;
 		}
-		mes "[Thief Guide]";
-		mes "Huh. For a second there, I thought you had something really important to tell me.";
+		mes "^0066FF[ Thief Guide ]^000000";
+		mes "ฮู้ว  ข้าคิดว่าคงจะได้ฟังข่าวดีจากท่านนะ";
 		close;
 	}
-	mes "[Thief Guide]";
+	mes "^0066FF[ Thief Guide ]^000000";
 	if (job_thief_q == 0) {
-		mes "What brings you down";
-		mes "here to this rathole?";
+		mes "ลมอะไรพัดท่านมาท่านถึงมาหาข้าที่นี่..";
+		mes "นี่เป็นที่สำหรับโจร?..เจ้ารู้ใช่ไหม...";
 	}
 	else {
-		mes "Ah...";
-		mes "You came back.";
-		mes "Are you sure you're";
-		mes "ready to try again?";
+		mes "อ่า...";
+		mes "ท่านกลับมาแล้ว";
+		mes "คุณพร้อมแล้วหรือยัง?";
+		mes "พร้อมที่จะลองอีกครั้ง?";
 	}
 	next;
-	if (select("Hey, I came here to be a Thief!:Nah, I'm just looking around.") == 1) {
+	if (select("^ff0000•^000000 ข้ามาเพื่อเป็น Thief!:^ff0000•^000000 ข้าแค่มาดูรอบๆ") == 1) {
 		if (job_thief_q == 0) {
-			mes "[Thief Guide]";
-			mes "Heh, I like your confidence. Still, you know being a Thief isn't all what it's cracked up to be.";
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "โอเค ถ้าท่านอยากจะเป็นเหมือนพวกข้า";
 			next;
-			mes "[Thief Guide]";
-			mes "Still...";
-			mes "Do you really";
-			mes "want to be";
-			mes "a Thief?";
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "วู้ว...";
+			mes "ท่านอยากจะเป็นจริงๆงั้นรึ?";
+			mes "อยากจะเป็น";
+			mes "Thief?";
 			next;
-			switch(select("Yeah.:No, just wasting your time.:Why did you become a Thief?")) {
+			switch(select("^ff0000•^000000 ถูกต้อง:^ff0000•^000000 ขอเวลาข้าคิดก่อน:^ff0000•^000000 ทำไมท่านถึงมาเป็น Thief?")) {
 			case 1:
-				mes "[Thief Guide]";
-				mes "Really...";
+				mes "^0066FF[ Thief Guide ]^000000";
+				mes "จริงหรือ...";
 				break;
 			case 2:
-				mes "[Thief Guide]";
-				mes "Yeah...";
-				mes "I can see that.";
+				mes "^0066FF[ Thief Guide ]^000000";
+				mes "อืม...";
+				mes "ฉันเห็นด้วย";
 				break;
 			case 3:
-				mes "[Thief Guide]";
-				mes "Me...?";
-				mes "I had no choice at the time. It was either steal or starve. But it's not like I need to give you my life story.";
+				mes "^0066FF[ Thief Guide ]^000000";
+				mes "ฉันหรือ...?";
+				mes "ฉันไม่มีตัวเลือก มันจำเป็นจริงๆ แต่มันไม่ใช่สิ่งที่ฉันต้องการหรอกนะ";
 				break;
 			}
 			next;
-			mes "[Thief Guide]";
-			mes "So do you want to";
-			mes "apply to become";
-			mes "a Thief or not?";
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "ท่านต้องการที่จะเป็น";
+			mes "ส่วนหนึ่งกับเรา";
+			mes "Thief หรือไม่?";
 			next;
-			switch(select("Yes, I will.:I'm too scared to be a Thief!")) {
+			switch(select("^ff0000•^000000 ใช่แล้ว:^ff0000•^000000 ฉันเกลียดการเป็นโจรที่สุด")) {
 			case 1:
-				mes "[Thief Guide]";
-				mes "Alright, tell";
-				mes "me your name.";
+				mes "^0066FF[ Thief Guide ]^000000";
+				mes "โอเค ";
+				mes "ท่านชื่ออะไรล่ะ?";
 				next;
-				mes "[Thief Guide]";
+				mes "^0066FF[ Thief Guide ]^000000";
 				mes "" + strcharinfo(0) + "?";
-				mes "What kind of name is " + strcharinfo(0) + "? Anyway, give me a second.";
+				mes "หมายถึงอะไรล่ะ " + strcharinfo(0) + "? โอเค ขอเวลาข้าสักครู่";
 				set job_thief_q,1;
 				next;
-				mes "[Thief Guide]";
-				mes "Alright, your registration has been processed. Okay, you can begin your test if you're ready.";
+				mes "^0066FF[ Thief Guide ]^000000";
+				mes "เอาล่ะ ท่านต้องลงทะเบียนแล้วทำการทดสอบก่อน พร้อมหรือยัง";
 				next;
-				switch(select("Yeah, I'm ready.:No, I'm not ready yet.")) {
+				switch(select("^ff0000•^000000 พร้อมแล้ว:^ff0000•^000000 ไม่ ฉันยังไม่พร้อม")) {
 				case 1:
 					break;
 				case 2:
-					mes "[Thief Guide]";
-					mes "Not ready?";
-					mes "How can you";
-					mes "not be ready?!";
+					mes "^0066FF[ Thief Guide ]^000000";
+					mes "ยังไม่พร้อม?";
+					mes "เป็นยังไง?";
+					mes "ถึงยังไม่พร้อม?!";
 					close;
 				}
 				break;
 			case 2:
-				mes "[Thief Guide]";
-				mes "Too scared?!?";
-				mes "Hahahahahahah!";
-				mes "Oh, please...!";
-				mes "That's hilarious!";
+				mes "^0066FF[ Thief Guide ]^000000";
+				mes "เกลียดงั้นรึ?!?";
+				mes "ฮ่าๆๆๆๆ!";
+				mes "โอ้ พระเจ้า...!";
+				mes "เป็นเรื่องน่าขำที่สุด!";
 				close;
 			}
 		}
 		else {
-			mes "[Thief Guide]";
-			mes "Okay...";
-			mes "Give me";
-			mes "one second.";
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "โอเค...";
+			mes "ขอเวลา";
+			mes "ข้าสักครู่";
 			next;
 		}
-		mes "[Thief Guide]";
-		mes "Your name is...";
-		mes strcharinfo(0) + "? Um, where is it? Ah, here it is. Let's see...";
+		mes "^0066FF[ Thief Guide ]^000000";
+		mes "ชื่อของท่านคือ...";
+		mes ""+strcharinfo(0) + "? ถูกต้องใช่ไหม งั้นไปกันต่อเลย";
 		next;
-		mes "[Thief Guide]";
-		if (!callfunc("F_CanChangeJob")) {
-			mes "Isn't that cute? I can see you're ambitious, but you gotta learn all of the Basic Skills before you can become a Thief.";
+		mes "^0066FF[ Thief Guide ]^000000";
+		if (getskilllv("NV_BASIC") < 9) {
+			mes "ทักษะคุณยังไม่พร้อมที่จะเป็นโจร";
 			close;
 		}
-		mes "Alright. I looked at your Felony Record, and you seem to have a very interesting history. You might have what it takes to be a Thief.";
+		mes "มีเรื่องที่น่าสนใจอีกเยอะ สำหรับการที่จะเป็นโจร";
 		next;
-		mes "[Thief Guide]";
-		mes "Because I feel like it, I now decree that you have passed this interview. Good work!";
+		mes "^0066FF[ Thief Guide ]^000000";
+		mes "เพราะฉันรู้สึกว่า มันเป็นอาชีพที่ดีมากเลยล่ะ";
 		set job_thief_q,2;
 		setquest 1013;
 		next;
-		mes "[Thief Guide]";
-		mes "Now, your actual abilities will need to be tested. Do you know anything about the test?";
+		mes "^0066FF[ Thief Guide ]^000000";
+		mes "ท่านต้องการทราบอะไรเกี่ยวกับการทดสอบอีกไหม?";
 		next;
-		switch(select("Yes, I do.:Sorry, I don't.")) {
+		switch(select("^ff0000•^000000 บอกข้าอีกครั้ง:^ff0000•^000000 ทราบแล้ว")) {
 		case 1:
-			mes "[Thief Guide]";
-			mes "Oh yeah? Well, this makes things a lot easier.";
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "โอเค เรามาเริ่มกันเลย";
 			break;
 		case 2:
-			mes "[Thief Guide]";
-			mes "Alright, let me inform you then. Listen carefully. This test decides if you are worthy of becoming a Thief.";
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "เอาล่ะ ตั้งใจฟังให้ดี ก่อนที่จะมาเป็น Thief ได้นั้น";
 			next;
-			mes "[Thief Guide]";
-			mes "You will be sneaking to Shibu's Farm. He is the worst Merchant, in terms of character, in Morocc.";
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "คุณจะต้องไปที่ฟาร์มของ Shibu's เขาเป็นพ่อค้าที่เลวมาก ในเมือง morroc นี้";
 			next;
-			mes "[Thief Guide]";
-			mes "Alright, for your test, you gotta steal Mushrooms from his farm. Don't worry, that guy deserves to be robbed.";
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "เอาล่ะ การทดสอบของท่านคือ ต้องไปขโมยเห็ดจากในฟาร์มของมันมา ไม่ต้องกังวลไป สำหรับคนชั่วๆต้องโดนแบบนี้";
 			next;
-			mes "[Thief Guide]";
-			mes "Anyway, you gotta gather two kinds of Mushrooms: ^0000FFOrange Net Mushrooms^000000 and ^0000FFOrange Gooey Mushrooms^000000.";
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "จะมีเห็ดให้ท่านอยู่สองชนิดคือ: ^0000FFOrange Net Mushrooms^000000 และ ^0000FFOrange Gooey Mushrooms^000000.";
 			next;
-			mes "[Thief Guide]";
-			mes "Be careful, since there are monsters are the farm that are there to protect the Mushrooms. So this will be no walk in the park.";
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "และท่านต้องระวังพวกสัตว์ที่อยู่ในฟาร์มด้วย";
 			next;
-			mes "[Thief Guide]";
-			mes "When you come back here after gathering Mushrooms, you'll be graded on the Mushrooms you've collected.";
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "หลังจากที่ท่านเก็บเห็ดมาให้ข้าเรียบร้อย ข้าก็จะรวบรวมคะแนน";
 			next;
-			mes "[Thief Guide]";
-			mes "Each Orange Net Mushroom gets you 3 points, and you get 1 point for each Orange Gooey Mushroom. You need a total of 25 points to pass the test.";
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "คะแนนมีดังนี้ Orange Net Mushroom มี 3 คะแนน และ Orange Gooey Mushroom มี 1 คะแนนl และคุณต้องเก็บให้ได้ 25 คะแนนจึงจะผ่านการทดสอบนี้";
 			next;
-			mes "[Thief Guide]";
-			mes "Go outside and keep going ahead toward the Eastern Field of the Pyramids. Then you will see one of our comrades between two columns.";
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "ไปที่ทางเข้า Pyramids ด้านตะวันออก Eastern Field of the Pyramids แล้วท่านจะพบสหายของข้าที่นั่น";
 			next;
-			mes "[Thief Guide]";
-			mes "Speak to that guy, and he'll take you to the farm through the backdoor.";
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "คุยกับเขา แล้วพูดคุยเกี่ยวกับเรื่องฟาร์ม";
 			next;
-			mes "[Thief Guide]";
-			mes "On that field, I think his coordinates are '^FF0000141, 125^000000.' Just type ^3355FF/where^000000 in the right side of your chat box to check your present coordinates.";
+			mes "^0066FF[ Thief Guide ]^000000";
+			mes "ฟาร์มนั้น  ข้าคิดว่าน่าจะอยู่ที่พิกัด '^FF0000141, 125^000000.' หรือไม่ท่านก็อาจจะใช้คำสั่ง ^3355FF/where^000000 เพื่อหาตำแหน่งก็ได้นะ";
 		}
 		next;
-		mes "[Thief Guide]";
-		mes "Don't forget to make plans and prepare yourself before you go inside the Mushroom Farm. Move as quickly as you can and try not to get killed, alright?";
+		mes "^0066FF[ Thief Guide ]^000000";
+		mes "อย่าลืมวางแผน และปลอมตัวก่อนที่จะเข้าไปในฟาร์มด้วยล่ะ";
 		close;
 	}
 	close;
@@ -350,40 +319,40 @@ moc_prydb1,39,129,2	script	Thief Guide	69,{
 
 moc_prydb1,42,133,2	script	Comrade	118,{
 	if (BaseJob == Job_Thief) {
-		mes "[Brad]";
-		mes "We don't have any special events yet. Come some other time when there's news, alright?";
+		mes "^0066FF[ Brad ]^000000";
+		mes "พวกเรามีกิจกรรมอะไรที่พิเศษให้ท่าน มากกว่าที่ท่านกำลังจะทำอยู่";
 		close;
 	}
 	else if (BaseJob != Job_Novice && BaseJob != Job_Thief) {
-		mes "[Comrade]";
-		mes "Um...";
-		mes "You don't look";
-		mes "like a Thief.";
+		mes "^0066FF[ Comrade ]^000000";
+		mes "อื่ม...";
+		mes "คุณดูไม่เหมือน";
+		mes "Thief.";
 		next;
-		mes "[Comrade]";
-		mes "What the heck are";
-		mes "you doing here anyway?";
+		mes "^0066FF[ Comrade ]^000000";
+		mes "คุณมีอะไร";
+		mes "อย่างอื่นไหม?";
 		close;
 	}
 	if (job_thief_q == 0 || job_thief_q == 1) {
-		mes "[Comrade]";
-		mes "What's the matter? If you want to be a Thief, speak to the girl beside me.";
+		mes "^0066FF[ Comrade ]^000000";
+		mes "มีอะไร? ถ้าคุณต้องการจะเป็นโจร ก็คุยกับหญิงสาวข้างๆข้า";
 		close;
 	}
 	else if (job_thief_q == 2) {
-		mes "[Comrade]";
-		mes "Did you pass the interview?";
-		mes "Then what are you waiting for?";
+		mes "^0066FF[ Comrade ]^000000";
+		mes "คุณรู้ข้อมูลแล้วนี่?";
+		mes "แล้วรออะไรล่ะ?";
 		close;
 	}
 	else if (job_thief_q == 3) {
-		mes "[Comrade]";
-		mes "Ah, the guide told me about you. So, let me check your mushrooms...";
+		mes "^0066FF[ Comrade ]^000000";
+		mes "อ่า หัวหน้าได้บอกข้าเกี่ยวกับท่านแล้ว  ขอข้าตรวจสอบเห็ดหน่อย...";
 		if (countitem(1069) == 0 && countitem(1070) == 0) {
 			next;
-			mes "[Comrade]";
-			mes "What the hell...";
-			mes "You don't have any Mushrooms at all! Go back and get them. Otherwise, you won't pass the test and become a Thief!";
+			mes "^0066FF[ Comrade ]^000000";
+			mes "อะไรกันเนี่ย...";
+			mes "ท่านยังไม่มีเห็ดสักดอก  ไปหามาซะ ถ้าท่านอยากมาอยู่กลุ่มเรา!";
 			close;
 		}
 		next;
@@ -391,103 +360,104 @@ moc_prydb1,42,133,2	script	Comrade	118,{
 		set .@thief_item2,countitem(1070);
 		set .@total_thief,.@thief_item1 + .@thief_item2;
 		set .@money_thief,((.@thief_item1 * 5) + (.@thief_item2 * 2)) + 200;
-		mes "[Comrade]";
+		mes "^0066FF[ Comrade ]^000000";
 		if (countitem(1069) != 0) {
-			mes "First, let me check the Orange Net Mushrooms you got.";
-			mes "Huh, " + countitem(1069) + " of them.";
+			mes "ขอข้าตรวจสอบเห็ดชนิดแรกก่อนนะ.";
+			mes "อู้ว " + countitem(1069) + " ชิ้น";
 		}
 		if (countitem(1070) != 0)
-			mes "Now I'll just check your Orange Gooey Mushrooms. That's " + countitem(1070) + " you gathered.";
+			mes "เอาล่ะ ชนิดที่สอง ได้มา " + countitem(1070) + " ชิ้น";
 		next;
-		mes "[Comrade]";
-		mes "So that would";
-		mes "bring your total to...";
+		mes "^0066FF[ Comrade ]^000000";
+		mes "คะแนนทั้งหมด";
+		mes "ของคุณคือ...";
 		next;
-		mes "[Comrade]";
-		mes "Hmmm. " + .@total_thief + " degrees, multiplied by the speed of light, divided by the integral of pi times height plus the absolute value of politics...";
+		mes "^0066FF[ Comrade ]^000000";
+		mes "ฮืมมม " + .@total_thief + " คะแนน   แจ่มมากเลย  กว่าจะได้มาแต่ละชิ้นมันยากใช่ไหมล่ะ...";
 		next;
-		mes "[Comrade]";
-		mes "Okay!";
-		mes "I got it.";
+		mes "^0066FF[ Comrade ]^000000";
+		mes "โอเค!";
+		mes "เรียบร้อย";
 		next;
-		mes "[Comrade]";
+		mes "^0066FF[ Comrade ]^000000";
 		if (.@total_thief > 25) {
-			mes "You got more";
-			mes "than 25 points!";
-			mes "Awesome!";
+			mes "คุณมีมากกว่า";
+			mes "25 แต้ม!";
+			mes "สวดยอดไปเลย!";
 		}
 		else if (.@total_thief == 25) {
-			mes "Exactly 25 points!";
-			mes "You did it! Badass!";
+			mes "โอเค ครบ 25 แต้ม";
+			mes "ผ่าน!";
 		}
 		else {
-			mes "Definitely less than the 25 points you need to pass. Go out there and get me more Mushrooms!";
+			mes "แต่ท่านยังหาเห็ดยังไม่ครบเลย ออกไปหามาอีก";
 			close;
 		}
 		next;
-		mes "[Comrade]";
+		mes "^0066FF[ Comrade ]^000000";
 		mes strcharinfo(0) + "...";
-		mes "You have passed the official Thief Test. You are now one of us.";
+		mes "ตอนนี้ท่านได้ผ่านการทดสอบแล้ว ยินดีต้อนรับสู่กลุ่มของเรา";
 		if (countitem(1069) != 0) delitem 1069,countitem(1069); //Mushroom_Of_Thief_1
 		if (countitem(1070) != 0) delitem 1070,countitem(1070); //Mushroom_Of_Thief_2
 		callfunc "Job_Change",Job_Thief;
 		callfunc "F_ClearJobVar";
 		completequest 1013;
 		next;
-		mes "[Comrade]";
-		mes "Congratulations on becoming a Thief! From now, be an honorable representative of the Thief's Guild.";
+		mes "^0066FF[ Comrade ]^000000";
+		mes "ยินดีด้วยนะ  ถ้ามีอะไรก็เข้ามาหาพวกข้าได้";
 		next;
-		mes "[Comrade]";
-		mes "If you bring disgrace to our guild, you will be killed. I expect you to bring our comrades pride.";
+		mes "^0066FF[ Comrade ]^000000";
+		mes "หรือมีปัญหาอะไร ก็เข้ามาเถอะ ข้ายินดีให้คำแนะนำ";
 		next;
-		mes "[Brad]";
-		mes "*Ahem* Welcome to the Guild, comrade! I'm Brad, and I'm in charge of human resources here.";
+		mes "^0066FF[ Brad ]^000000";
+		mes "*อะแฮ่ม* ยิน  ดี  ต้อน  รับ  สู่";
+		mes "สมาคม  โจร  แห่ง  ประ  เทศ  ไทย";
 		next;
-		mes "[Brad]";
-		mes "Here is a small subsidy for a Newbie like you. Spend it whereever you want. Alright then, I'll see you around~";
-		set Zeny, Zeny+.@money_thief;
+		mes "^0066FF[ Brad ]^000000";
+		mes "อะ นี่เป็นของชำร่วยเล็กๆน้อยๆ ที่ข้าจะมอบแก่ท่าน โปรดรับไว้";
+		set zeny,zeny+.@money_thief;
 		close;
 	}
 }
 
 moc_ruins,141,125,3	script	Mr. Irrelevant	83,{
 	if (BaseJob == Job_Thief) {
-		mes "[Mr. Irrelevant]";
-		mes "Ah, I see that you are now a Thief. I always knew you'd join us.";
+		mes "^0066FF[ Mr. Irrelevant ]^000000";
+		mes "อ่า คุณดูเหมือนโจร  ที่จะเข้ามากลุ่มพวกเราใช่มั้ย";
 		next;
-		mes "[Mr. Irrelevant]";
-		mes "Stealing from a Mushroom farm is too easy for you now. You should build up your skills and master our craft.";
+		mes "^0066FF[ Mr. Irrelevant ]^000000";
+		mes "ขโมยเห็ดมันช่างง่ายดายเหลือเกิน  เป็นการฝึกไปในตัวด้วยนะ";
 		close;
 	}
 	else if (BaseJob != Job_Novice && BaseJob != Job_Thief) {
-		mes "[Mr. Irrelevant]";
+		mes "^0066FF[ Mr. Irrelevant ]^000000";
 		switch(rand(4)) {
 		case 1:
-			mes "I could use a good, hard drink.";
+			mes "ข้าต้องการจะจัดหนักเจงๆ.";
 			close;
 		case 2:
-			mes "Gimme your money.";
+			mes "ส่งเงินมาให้หมด.";
 			next;
-			mes "[Mr. Irrelevant]";
-			mes "Kidding, I'm off the clock.";
+			mes "^0066FF[ Mr. Irrelevant ]^000000";
+			mes "ถอดนาฬิกามาให้ข้า";
 			close;
 		case 3:
-			mes "WHO YOU CALLING A PSYCHO?!?!";
+			mes "จะโทรไปหาใครน่ะ?!?!";
 			close;
 		case 4:
-			mes "I've got nothing to say to you. Would you mind leaving me alone?";
+			mes "ข้าไม่มีอะไรจะพูด..!";
 			close;
 		default:
-			mes "Today looks like a good day to go to the pyramids and hunt with some of my friends.";
+			mes "วันนี่ช่างเป็นวันที่อากาศดีจริงๆ";
 			close;
 		}
 	}
 	if (job_thief_q == 3) {
-		mes "[Mr. Irrelevant]";
-		mes "Hahahahaha~!";
-		mes "You haven't";
-		mes "passed the test yet?";
-		mes "Alright, I'll let you in...";
+		mes "^0066FF[ Mr. Irrelevant ]^000000";
+		mes "ฮ่าๆๆๆๆ";
+		mes "ท่านยังไม่ผ่าน";
+		mes "การทดสอบใช่มั้ย?";
+		mes "เอาล่ะ ข้าจะส่งเข้าไปอีกรอบ...";
 		close2;
 		switch(rand(5)) {
 		case 1: warp "job_thief1",228,106; end;
@@ -498,12 +468,12 @@ moc_ruins,141,125,3	script	Mr. Irrelevant	83,{
 		}
 	}
 	else if (job_thief_q == 2) {
-		mes "[Mr. Irrelevant]";
-		mes "Hmm...";
-		mes "You've come to take the test, right? I can see in your eyes that you know something.";
+		mes "^0066FF[ Mr. Irrelevant ]^000000";
+		mes "ฮึ่มม...";
+		mes "คุณมาเพื่อทดสอบใช่มั้ย  ข้ามองตาท่านเห็นบางสิ่ง";
 		next;
-		mes "[Mr. Irrelevant]";
-		mes "Your name is " + strcharinfo(0) + "? Ah, it's on the list. Alright, I'll let you into the Mushroom Farm , but I can't guarantee your safety...";
+		mes "^0066FF[ Mr. Irrelevant ]^000000";
+		mes "คุณชื่อ " + strcharinfo(0) + "? อ่า มีอยู่ในรายชื่อ ข้าจะส่งท่านเข้าไปในฟาร์ม แต่จะไม่รับรองความปลอดภัยนะ...";
 		close2;
 		set job_thief_q,3;
 		switch(rand(5)) {
@@ -515,24 +485,24 @@ moc_ruins,141,125,3	script	Mr. Irrelevant	83,{
 		}
 	}
 	else if (job_thief_q == 1) {
-		mes "[Mr. Irrelevant]";
-		mes "There is this strange smell coming from... You. Now why would that be?";
+		mes "^0066FF[ Mr. Irrelevant ]^000000";
+		mes "มีอะไร?";
 		close;
 	}
-	mes "[Mr. Irrelevant]";
-	mes "Hey Novice! Why don't you join the ranks of the Thief Guild? You newbies are always welcome to join us and our selfish cause.";
+	mes "^0066FF[ Mr. Irrelevant ]^000000";
+	mes "เฮ้ ! เด็กใหม่ ทำไมท่านไม่ไปที่ Thief Guild ก่อนล่ะ เฮ้อ ! ฉลาดน้อยจริงๆ";
 	next;
-	mes "[Mr. Irrelevant]";
-	mes "You can get more information in the Underground Room in the Pyramid 1 BF.";
+	mes "^0066FF[ Mr. Irrelevant ]^000000";
+	mes "ท่านจะทราบข้อมูลทั้งหมดได้ที่ห้องใต้ดินใน Pyramid 1BF.";
 	close;
 }
 
 // Monsters
 //============================================================
-job_thief1,0,0	monster	Orange Mushroom	1182,180
-job_thief1,0,0	monster	Fabre	1184,50
-job_thief1,0,0	monster	Chonchon	1183,50
-job_thief1,0,0	monster	Spore	1014,30
+job_thief1,0,0,0,0	monster	Orange Mushroom	1182,200,0,0,0
+job_thief1,0,0,0,0	monster	Fabre	1184,50,0,0,0
+job_thief1,0,0,0,0	monster	Chonchon	1183,50,0,0,0
+job_thief1,0,0,0,0	monster	Spore	1014,30,0,0,0
 
 //============================================================
 // mapflag

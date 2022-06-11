@@ -1,0 +1,1152 @@
+//===== Hercules Script ======================================
+//= Rogue Skills Quests
+//===== By: ==================================================
+//= Lupus, Reddozen
+//===== Current Version: =====================================
+//= 1.8
+//===== Description: =========================================
+//= [Official Conversion]
+//= Quests for skills: CLose Confine
+//===== Additional Comments: =================================
+//= 1.4 Rescripted to Aegis 10.3 stadards. [L0ne_W0lf]
+//= 1.5 Fixed bad NPC header data to comply with rev. 11603. [L0ne_W0lf]
+//= 1.6 Bug fixes as pointed out by Brainstorm in bugreport:351 [L0ne_W0lf]
+//= 1.6a Fixed(?) antoher problem (NPCs not disabling) hopefully. [L0ne_W0lf]
+//= 1.6b Corrected a Typo error with "rouge". (bugreport:909) [Samuray22]
+//= 1.7 Replaced effect numerics with constants. [L0ne_W0lf]
+//= 1.8 Some cleaning. [Euphy]
+//============================================================
+
+in_rogue,359,177,0	script	#killershow01	-1,{
+OnInit:
+	disablenpc "#killershow01";
+	end;
+
+OnEnable:
+	enablenpc "#killershow01";
+	initnpctimer;
+	end;
+
+OnDisable:
+	stopnpctimer;
+	disablenpc "#killershow01";
+	end;
+
+OnTimer1000:
+	enablenpc "Assassin#Rogueguild";
+	end;
+
+OnTimer120000:
+	disablenpc "Assassin#Rogueguild";
+	end;
+
+OnTimer150000:
+	disablenpc "Assassin#Rogueguild";
+	disablenpc "#killershow01";
+	end;
+}
+
+in_rogue,357,174,2	script	Assassin#Rogueguild	705,1,1,{
+OnInit:
+	disablenpc "Assassin#Rogueguild";
+	end;
+
+OnTouch:
+	if (ROG_SK == 10) {
+		specialeffect2 EF_CHANGECOLD;
+		specialeffect EF_CHANGEWIND;
+		specialeffect2 EF_LIGHTSPHERE;
+		set ROG_SK,11;
+		mes "[Killer]";
+		mes " ท่านทำอะไรกับข้าหรือเปล่า?";
+		mes " ทำไมขยับไม่ได้... อึ๊ก!";
+		next;
+		mes "[Haijara Greg]";
+		mes " ใช่แล้ว! นี่เป็นทักษะ";
+		mes " ที่ท่านต้องการ มันมีชื่อว่า Close Confine!!";
+		next;
+		mes "[Haijara Greg]";
+		mes " ข้าอยากให้ท่านฝึกฝนล๊อคศัตรู";
+		mes " จากการเคลื่อนไหวของ Assassin";
+		next;
+		mes "[Haijara Greg]";
+		mes " สังเกตุไม่ยาก ถ้าหาก...";
+		mes "-Assassin- ขยับซ้ายคือสีขาว!!";
+		mes "-Assassin- ขยับขวาคือสีเหลือง";
+		mes "-Assassin- ขยับข้างหลังคือสีชมพู";
+		mes " ท่านจะเห็นแสงสว่างอยู่ข้างหลัง เมื่อเจ้าใช้";
+		mes "Close Confine สำเร็จ";
+		mes " จงหาหนังสือทักษะผ่านไปหาเขา";
+		next;
+		setarray .@Effects[1],EF_CHANGECOLD,EF_CHANGEWIND,EF_CHANGEEARTH;
+		for(set .@lim_1,0; .@lim_1<10; set .@lim_1,.@lim_1+1) {
+			set .@move_1,rand(1,3);
+			specialeffect .@Effects[.@move_1];
+			if (select(" ล๊อคทางซ้าย: ล๊อคทางขวา:ล๊อคด้านหลัง") == .@move_1) {
+				mes "^3355FFAssassin ยังคงไม่สามารถ";
+				mes " เคลื่อนย้ายไปไหนได้";
+				mes " และมีท่าที ที่สับสน";
+				mes " ท่านได้ใช้ทักษะ Close Confine";
+				mes " อย่างสมบูรณ์แบบจริงๆ!^000000";
+				specialeffect EF_POTION1;
+				specialeffect2 EF_POTION7;
+			}
+			else {
+				mes "^3355FFล็อคล้มเหลว^000000";
+			}
+			next;
+		}
+		mes "^3355FF=== คุณได้รับหนังสือทักษะของ Chea T.B ===^000000";
+		close2;
+		disablenpc "Assassin#Rogueguild";
+		donpcevent "#killershow01::OnDisable";
+		end;
+	}
+	else if (ROG_SK == 11) {
+		mes "[Killer]";
+		mes " กระ..........";
+		mes " ขยับไม่ได้.. อึ๊ก.. อึ๊ก..";
+		mes " นั่น.. อะไรน่ะ..";
+		close2;
+		disablenpc "Assassin#Rogueguild";
+		donpcevent "#killershow01::OnDisable";
+		end;
+	}
+	end;
+}
+
+
+in_rogue,355,179,0	script	Haijara Greg#rogueguild	46,{
+	if (BaseJob == Job_Rogue) {
+		if (ROG_SK == 12 && Upper == 1) {
+			mes "[Haijara Greg]";
+			mes " หืมม์? อ้า, ความทรงจำ";
+			mes " ของท่านหายไป จากการ";
+			mes " เปลี่ยนอาชีพ";
+			mes " เอ๊ะ ถ้าอย่างนั้น ข้าจะสอนทักษะ Close Confine ให้กับท่านอีกครั้ง";
+			specialeffect2 EF_LIGHTSPHERE;
+			skill 1005,1,0;
+			set ROG_SK,13;
+			close;
+		}
+		else if (ROG_SK == 13 && Upper == 1) {
+			mes "[Haijara Greg]";
+			mes " เอ๊ะ Stalker, ใช่ไหม?";
+			mes " ใช้ความสามารถที่ท่านมี";
+			mes " จัดการกับศัตรูเหล่าร้าย";
+			mes " ให้ได้รับบทเรียน ที่ดีที่สุด";
+			mes " ขอให้โชคดีกับการผจญภัย";
+			close;
+		}
+		else {
+			if (ROG_SK < 1) {
+				mes "[Haijara Greg]";
+				mes " เจ้าหาที่นี่พบได้อย่างไร";
+				mes " มันเป็นสถานที่ซ่อนตัวของข้า";
+				mes " แม้แต่คนของสมาคมเอง ก็หาข้าไม่พบ!";
+				next;
+				mes "[Haijara Greg]";
+				mes " นี่ไม่ใช่เรื่องที่ดีแน่ๆ!";
+				mes " มันจะเกิดเรื่องขึ้นได้";
+				mes " หากพวกเขาตามหาข้าพบ...";
+				close;
+			}
+			else if (ROG_SK == 1) {
+				mes "[Haijara Greg]";
+				mes " ท่านเป็นใคร?";
+				mes " ท่านพบห้องนี้ได้อย่างไรกัน?";
+				mes " ใช่พวกที่พยายาม";
+				mes " จะมาคุกคามข้าหรือเปล่า?";
+				mes " แนะนำตัวเองหน่อยสิ!!!";
+				next;
+				if (select(" ข้าไม่ได้เกี่ยวข้องกับวกนั้น: ฮู้..ท่านไม่รู้หรือว่าข้าต้องการอะไร?") == 1) {
+					mes "[Haijara Greg]";
+					mes " ไม่รู้เหรอ...?";
+					mes " แล้ว... แล้ว";
+					mes " ท่านมาทำไมที่นี่?";
+					mes " มันต้องไม่ใช่เรื่องบังเอิญ";
+					mes " ที่ท่านหาข้าพบ";
+					next;
+					if (select(" ข้ามาที่นี่ เพื่อช่วยเหลือท่าน: โอ้, จริงๆ แล้ว, ข้าไม่ได้ตามหาท่าน") == 1) {
+						mes "[Haijara Greg]";
+						mes " อืม... ดี, ข้าคิดว่า";
+						if (Upper == 1)
+							mes " Stalker เป็นคนที่ไว้วางใจได้";
+						else
+							mes " Rogue เป็นคนที่ไว้วางใจได้";
+						mes " ด้วยสถานการณ์ตอนนี้";
+						mes " ที่อยู่ท่ามกลางโจรและศัตรู";
+						mes " ท่านเคยได้ยินตำนานของ Chae Takbae ไหม?";
+						next;
+						if (select(" ตำนานอะไรรึ: ข้าเคยได้ยิน") == 1) {
+							mes "[Haijara Greg]";
+							mes " เมื่อ 100 ที่แล้ว, Chae Takbae";
+							mes " เขาคือคนแรกที่สามารถ";
+							mes " ก้ามข้ามขีดจำกันของเขาเอง";
+							mes " และยังเป็นคนที่เลือกเส้นทาง";
+							mes " ของตัวเอง มากกว่าที่จะสนใจงานที่ได้รับคำสั่งจากสมาคม";
+							next;
+							mes "[Haijara Greg]";
+							mes " แต่ก่อนนั้นเขาคือ Monk,";
+							mes " แต่หลังจากนั้น เมื่อเขาเปลี่ยนอาชีพ";
+							mes " เขาก็เลือกที่จะเป็น Stalker.";
+							mes " โดยใช้ความรู้ทั้งหมดที่มี";
+							mes " พื้นฐานจาก Monk's มาดัดแปลง^FFFFFF ^000000 เพื่อใช้ในอาชีพ Rogues.";
+							next;
+							mes "[Haijara Greg]";
+							mes " Chae Takbae ได้บันทึก";
+							mes " ข้อมูลทั้งหมดของทักษะใหม่";
+							mes " ของ Rogue ลงในหนังสือ";
+							mes " ข้าโชคดีพอ ที่จะได้รับมัน";
+							mes " แต่แล้ว ข้าก็ถูกกล่าวหาหลังจาก..";
+							next;
+							mes "[Haijara Greg]";
+							mes " ข้าได้รับหนังสือทักษะนั่น";
+							mes " และสอนมันให้กับลูกชายทั้งสาม";
+							mes " หลังจากนั้น การคุุกคามก็เริ่มขึ้น";
+							mes " อนิจจา ตอนนี้ข้าไม่มีพลังเพียงพอ";
+							mes " ลูกชายทั้งสามของข้าได้ไหม?";
+							next;
+							if (select(" ได้!!!: ข้าก็ไม่มีพลังมากพอ") == 1) {
+								mes "[Haijara Greg]";
+								mes " ขอบคุณมาก ได้โปรดส่งจดหมายด่วนให้กับ Ragreg ด้วยขอบคุณจริงๆ!";
+								mes "^FF0000=== คุณได้รับจดหมายของ Haijara ===^000000?";
+								set ROG_SK,2;
+								close;
+							}
+							mes "[Haijara Greg]";
+							mes " ข้ารู้ดี";
+							mes " แต่ได้โปรดเถอะ";
+							mes " นอกจากท่านแล้ว";
+							mes " ข้าก็ไม่สามารถไว้วางใจใครได้อีก";
+							close;
+						}
+						mes "[Haijara Greg]";
+						mes " ข้าได้รับหนังสือทักษะนั่น";
+						mes " และสอนมันให้กับลูกชายทั้งสาม";
+						mes " หลังจากนั้น การคุุกคามก็เริ่มขึ้น";
+						mes " อนิจจา ตอนนี้ข้าไม่มีพลังเพียงพอ";
+						mes " ลูกชายทั้งสามของข้าได้ไหม?";
+						next;
+						if (select(" ได้!!!: ข้าก็ไม่มีพลังมากพอ") == 1) {
+							mes "[Haijara Greg]";
+							mes " ขอบคุณมาก ได้โปรดส่งจดหมายด่วนให้กับ Ragreg ด้วยขอบคุณจริงๆ!";
+							mes "^FF0000=== คุณได้รับจดหมายของ Haijara ===^000000?";
+							set ROG_SK,2;
+							close;
+						}
+						mes "[Haijara Greg]";
+						mes " ข้ารู้ดี";
+						mes " แต่ได้โปรดเถอะ";
+						mes " นอกจากท่านแล้ว";
+						mes " ข้าก็ไม่สามารถไว้วางใจใครได้อีก";
+						close;
+					}
+					mes "[Haijara Greg]";
+					mes " อืม...?";
+					mes " ดูเหมือนจะไม่ใช่ที่นี่";
+					mes " ข้าหวังว่าท่านจะสามารถ";
+					mes " หาทางออกไปจากที่นี่ได้นะ";
+					close;
+				}
+				mes "[Haijara Greg]";
+				mes " ข้าจะแสดงทักษะ";
+				mes " ที่ท่านต้องการ";
+				mes " เอาล่ะ.....";
+				mes "^FF0000Close Confine^000000!";
+				specialeffect EF_CHANGECOLD;
+				specialeffect2 EF_CHANGEWIND;
+				next;
+				mes "[Haijara Greg]";
+				mes " หืมม์ ตอนนี้ท่านมัวทำอะไรอยู่";
+				mes " ทำไมถึงปล่อยให้เป็นเช่นนี้ ^FF0000Back Stab^000000!";
+				specialeffect2 EF_COMBOATTACK5;
+				percentheal -95,0;
+				next;
+				mes "[Haijara Greg]";
+				mes " รีบออกไปจากที่นี่";
+				mes " ใบหน้าที่เต็มไปด้วยความโลภ";
+				mes " ของเจ้า อย่ามาให้ข้าเห็นหน้าอีก";
+				mes " ข้ารู้สึกดีใจนะ ที่ไม่ได้";
+				mes " ฆ่าคนเช่นเจ้า !!";
+				set ROG_SK,1;
+				close;
+			}
+			else if (ROG_SK == 2) {
+				mes "[Haijara Greg]";
+				mes " Ragreg อยู่ในสมาคม!";
+				mes " ข้างๆ ^FF0000Hollgrehenn Junior^000000 โปรดส่งจดหมายนี้ ให้เขาโดยเร็ว";
+				close;
+			}
+			else if (ROG_SK == 3) {
+				mes "[Haijara Greg]";
+				mes " ^FF0000Thor^000000? อยู่ในสมาคม";
+				mes " ข้างๆ ^FF0000Hermanthorn Jr.^000000 โปรดส่งจดหมายนี้ ให้เขาโดยเร็ว";
+				close;
+			}
+			else if (ROG_SK == 4) {
+				mes "[Haijara Greg]";
+				mes "^FF0000Jay^000000 อยู่ในสมาคม?";
+				mes " ข้างๆ ^FF0000Antonio Jr.^000000 โปรดส่งจดหมายนี้ ให้เขาโดยเร็ว";
+				close;
+			}
+			else if (ROG_SK == 5) {
+				mes "[Haijara Greg]";
+				mes " โอ้, ท่านกลับมาแล้ว!";
+				mes " พร้อมกับจดหมายจาก Jay";
+				mes " ดี, ดีมาก ให้ข้าอ่าน";
+				mes " ถูกสิ่งที่เขาได้กล่าวถึง...";
+				set ROG_SK,6;
+				next;
+				mes "[Haijara Greg]";
+				mes " อ้า, ข่าวดีคือเขาสามารถ";
+				mes " ติดต่อกับสมาคมเพื่อขอ";
+				mes " ความคุ้มครองพิเศษและ";
+				mes " แจ้งเตือนกับยาม เพื่อให้";
+				mes " พวกเรารู้สึกสบายใจมากขึ้น";
+				next;
+				mes "[Haijara Greg]";
+				mes " ขอบคุณมากสำหรับความช่วยเหลือของท่าน";
+				mes " มันคงเป็นไปได้หากข้าต้องหลบซ่อนตัวอยู่คลอด";
+				mes " ข้าจะให้ท่านได้มีโอกาสเรียนรู้";
+				mes " ทักษะพิเศษของ Chae Takbae's";
+				mes " สำหรับการกลับมาของท่าน";
+				next;
+				mes "[Haijara Greg]";
+				mes " การเรียนทักษะนี้ ก่อนอื่นท่านต้องไปพบ ^FF0000Thor^000000";
+				close;
+			}
+			else if (ROG_SK == 6) {
+				mes "[Haijara Greg]";
+				mes " การเรียนทักษะนี้ ก่อนอื่นท่านต้องไปพบ ^FF0000Thor^000000";
+				close;
+			}
+			else if (ROG_SK == 7) {
+				mes "[Haijara Greg]";
+				mes " การเรียนทักษะนี้ ก่อนอื่นท่านต้องไปพบ ^FF0000Thor^000000";
+				mes " และดำเนินการทดสอบให้สำเร็จ^FFFFFF ^000000";
+				close;
+			}
+			else if (ROG_SK == 8) {
+				mes "[Haijara Greg]";
+				mes " การทดสอบสำเร็จแล้วรึ?";
+				mes " แต่ก่อนอื่นท่านต้องไปพบ ^FF0000Thor^000000";
+				close;
+			}
+			else if (ROG_SK == 9) {
+				mes "[Haijara Greg]";
+				mes " อ่า.. ท่านมาแล้วรึ?";
+				mes " เยี่ยมมาก.. โย่ว";
+				mes " หนังสือนี่.......";
+				next;
+				mes "[Haijara Greg]";
+				mes " ถูกขโมยโดย.. Assassin รึ.. หนังสือนั่น........";
+				specialeffect EF_COMBOATTACK5;
+				donpcevent "Assassin#Rogueguild::OnEnable";
+				set ROG_SK,10;
+				close;
+			}
+			else if (ROG_SK == 10) {
+				mes "[Haijara Greg]";
+				mes " ถูกขโมยโดย.. Assassin รึ.. หนังสือนั่น........";
+				donpcevent "#killershow01::OnEnable";
+				close;
+			}
+			else if (ROG_SK == 11) {
+				donpcevent "Assassin#Rogueguild::OnDisable";
+				donpcevent "#killershow01::OnDisable";
+				mes "^3355FF=== คุณได้ส่งหนังสือทักษะ Chea T.B ===^000000";
+				next;
+				mes "[Haijara Greg]";
+				mes " ข้าหวังว่าท่านจะเรียนทักษะในหนังสือ Chea T.B สำเร็จนะ";
+				mes " มันเหมือนเป็นการข้ามเหนือเขตแดนการจุติใหม่ทีเดียว";
+				mes " ข้าหวังว่าวันนั้นจะมาถึง";
+				mes " อันดับแรก ข้าต้องบอกเจ้าถึงผลของทักษะ Close Confine";
+				mes " เจ้าต้องการรู้รายละเอียดเกี่ยวกับมันหรือไม่?";
+				next;
+				if (select(" โปรดบอกข้าเถิด: ไม่เป็นไร, ขอบคุณ") == 1) {
+					mes "[Haijara Greg]";
+					mes " สิ่งที่ท่านต้องรู้ไว้คือ,";
+					mes " Close Confine ทำให้ศัตรู";
+					mes " ที่อยู่ใกล้ หยุดอยู่กับที่";
+					mes " แต่ก็มีความแตกต่างระหว่าง";
+					mes " ผู้เล่นและมอนสเตอร์";
+					mes " อยู่พอสมควร";
+					next;
+					mes "[Haijara Greg]";
+					mes " เมื่ออยู่ในสถานะ, Close Confine";
+					mes " จะมีผลคล้ายกับทักษะ Root ของ  Monk's,";
+					mes " แต่ไม่สามารถโจมตีได้";
+					next;
+					mes "[Haijara Greg]";
+					mes " ยกเว้น Back Stab";
+					mes " ซึ่งสามารถใช้ได้เพียงครั้งเดียว";
+					mes " เมื่ออยู่ในสถานะ Close Confine";
+					next;
+					mes "[Haijara Greg]";
+					mes " ศัตรูที่ได้รับผลกระทบจาก";
+					mes "Close Confine สามารถใช้";
+					mes " ไอเท็ม Fly Wing, Butterfly";
+					mes "Wings, หรือ Teleport และ";
+					mes "Hiding ในขณะนั้นได้ ยกเว้นก็แต่ช่วงเวลา Guild War เท่านั้น";
+					next;
+					mes "[Haijara Greg]";
+					mes " ดังนั้น, Close Confine";
+					mes " จึงเป็นทักษะที่มีประโยชน์มาก";
+					mes " ในช่วงส่งคราม Guild War";
+					mes " เพราะสามารถป้องกันให้ศัตรู";
+					mes " ไม่สามารถใช้ทักษะ Hiding ได้";
+					next;
+					mes "[Haijara Greg]";
+					mes " แต่สำหรับมอนสเตอร์";
+					mes "Close Confine จะไม่มีผลกับ";
+					mes " มอนสเตอร์จำพวกบอส";
+					mes " ส่วนมอนสเตอร์ธรรมดา";
+					mes " จะติดอยู่ในสถานะเป็นเวลา 10 วินาที";
+					mes " มันช่วยได้มากในการใช้งานในปาร์ตี้";
+					next;
+					mes "[Haijara Greg]";
+					mes " นั่นคือทั้งหมดที่ข้าสามารถบอกได้เกี่ยวกับ Close Confine";
+					mes " แต่เรื่องผลของสกิลที่เกิดขึ้นนั้น";
+					mes " ท่านจะได้เรียนรู้รายละเอียดของมันหลังจากท่านได้ใช้มันแล้ว";
+					mes " มานี่สิ ข้าต้องการจะบอกท่านว่า";
+					mes " เมื่อท่านเรียนทักษะนี้สำเร็จ";
+					mes " ข้าจะคอยดูวันที่ท่านกลายเป็นตำนานของ Rogue คนใหม่";
+					set ROG_SK,12;
+					skill 1005,1,0;
+					specialeffect2 EF_LIGHTSPHERE;
+					close;
+				}
+				mes "[Haijara Greg]";
+				mes " ท่านจะได้เรียนรู้รายละเอียดของมันหลังจากท่านได้ใช้มันแล้ว";
+				mes " มานี่สิ ข้าต้องการจะบอกท่านว่า";
+				mes " เมื่อท่านเรียนทักษะนี้สำเร็จ";
+				mes " ข้าจะคอยดูวันที่ท่านกลายเป็นตำนานของ Rogue คนใหม่";
+				set ROG_SK,12;
+				skill 1005,1,0;
+				specialeffect2 EF_LIGHTSPHERE;
+				close;
+			}
+			mes "[Haijara Greg]";
+			mes " ขอบคุณสำหรับการช่วยเหลือ";
+			mes " ให้ข้าสามารถปกป้องหนังสือ";
+			mes " เล่นนี้ได้ ข้าหวังว่าครั้งต่อไป";
+			mes " ที่เราเจอกัน เราจะเจอกันในสนามรบนะ...";
+			close;
+		}
+	}
+	else {
+		mes "[Haijara Greg]";
+		mes " เจ้าหาที่นี่พบได้อย่างไร";
+		mes " มันเป็นสถานที่ซ่อนตัวของข้า";
+		mes " แม้แต่คนของสมาคมเอง ก็หาข้าไม่พบ!";
+		next;
+		mes "[Haijara Greg]";
+		mes " นี่ไม่ใช่เรื่องที่ดีแน่ๆ!";
+		mes " มันจะเกิดเรื่องขึ้นได้";
+		mes " หากพวกเขาตามหาข้าพบ...";
+		next;
+		mes "[Haijara Greg]";
+		mes " ได้โปรด...";
+		mes " ช่วยตามหา Stalker";
+		mes " หรือ Rogue ที่ข้าสามารถ";
+		mes " จะไว้วางใจเขาได้และ";
+		mes " ส่งเขาไปช่วยเหลือข้า";
+		mes " เวลาตอนนี้เหลือไม่มากแล้ว...";
+		close;
+	}
+}
+
+
+in_rogue,152,29,0	script	Ragreg#rogueguild	84,{
+	if (BaseJob == Job_Rogue || Class == Job_Thief_High) {
+		if (ROG_SK < 1) {
+			mes "[Louis Greg]";
+			mes " พ่อ... ได้หายตัวไป";
+			mes " เพราะหวาดระแวงอะไรบางอย่าง...";
+			mes " หลังจากที่เขาได้สอนทักษะ";
+			mes " ใหม่ให้กับพี่น้องของเรา";
+			next;
+			mes "[Louis Greg]";
+			mes " พ่อ น่าจะยังซ่อนอยู่ที่ไหนซักแห่ง";
+			mes " ในห้องที่ซ่อนอยู่ของสมาคม...";
+			mes " เขาเคยพูดถึงห้อง";
+			mes " ถัดไปของน้องสาว Makki...";
+			set ROG_SK,1;
+			close;
+		}
+		else if (ROG_SK == 1) {
+			mes "[Louis Greg]";
+			mes " พ่อ น่าจะยังซ่อนอยู่ที่ไหนซักแห่ง";
+			mes " ในห้องที่ซ่อนอยู่ของสมาคม...";
+			mes " เขาเคยพูดถึงห้อง";
+			mes " ถัดไปของน้องสาว Makki...";
+			close;
+		}
+		else if (ROG_SK == 2) {
+			mes "[Louis Greg]";
+			mes " === คุณส่งจดหมาย Hijara ===";
+			set ROG_SK,3;
+			next;
+			mes "[Louis Greg]";
+			mes " โอ้ ไม่นะ, ตอนนี้เขาอาจจะปลอดภัยก็จริง";
+			mes " แต่พ่อจะถูกตามล่าโดยคนบางคนที่อันตราย";
+			mes " Thor จะต้องรู้เรื่องนี้โดยเร็ว";
+			mes " ข้าจะเขียนจดหมายและฝากไปถึงเขา...";
+			next;
+			mes "[Louis Greg]";
+			mes " ข้ารู้ดี, ข้าไม่ได้มีความสำคัญอะไร";
+			mes " กับท่าน แต่พ่อก็ไว้วางใจท่าน";
+			mes " ได้โปรดนำจดหมายฉบับนี้";
+			mes " ส่งมอบให้กับพี่ชายข้าได้ไหม?";
+			next;
+			mes "[Louis Greg]";
+			mes " พ่อบอกว่า....";
+			mes " จะบอกความจริงกับพี่ชายข้าทันทีที่เป็นไปได้";
+			mes " โปรดส่งจดหมายนี้ให้กับ ^FF0000Thor^000000 ขอบคุณมาก";
+			mes " === คุณได้รับจดหมายของ Ragreg ===";
+			close;
+		}
+		else if (ROG_SK == 3) {
+			mes "[Louis Greg]";
+			mes " ^FF0000Thor^000000 พี่ชายข้า";
+			mes " จะต้องรู้เกี่ยวกับเรื่องนี้";
+			mes " โปรดส่งจดหมายนี้ให้กับเขาด้วย";
+			mes " เขาอยู่ข้างๆ ^FF0000Hermanthorn Jr.^000000 ในสมาคม";
+			close;
+		}
+		else if (ROG_SK == 4) {
+			mes "[Louis Greg]";
+			mes " ^FF0000Jay^000000 อยู่ในสมาคม";
+			mes " ข้างๆ Argham Jr. โปรดส่งจดหมายนี้ให้เขาโดยเร็ว";
+			close;
+		}
+		else if (ROG_SK == 5) {
+			mes "[Louis Greg]";
+			mes " พ่อ น่าจะยังซ่อนอยู่ที่ไหนซักแห่ง";
+			mes " ในห้องที่ซ่อนอยู่ของสมาคม...";
+			mes " เขาเคยพูดถึงห้อง";
+			mes " ถัดไปของน้องสาว Makki...";
+			close;
+		}
+		else if (ROG_SK == 6) {
+			mes "[Louis Greg]";
+			mes " การเรียนทักษะนี้ ก่อนอื่นท่านต้องไปพบ ^FF0000Thor^000000";
+			close;
+		}
+		else if (ROG_SK == 7) {
+			mes "[Louis Greg]";
+			mes " หืมม์? ท่านถึงช่วงสำคัญ ในการ";
+			mes "เรียนรู้ความลับของ Rogue แล้ว";
+			mes " การเรียนทักษะนี้ ก่อนอื่นท่านต้องไปพบ ^FF0000Thor^000000 อีกครั้งได้ไหม";
+			close;
+		}
+		else if (ROG_SK == 8) {
+			mes "[Louis Greg]";
+			mes " โอ้, โอ้!";
+			mes " ท่านกำลังทำการทดสอบใช่ไหม?";
+			mes " การเรียนทักษะนี้ ก่อนอื่นท่านต้องไปพบ ^FF0000Thor^000000 อีกครั้งได้ไหม";
+			close;
+		}
+		else if (ROG_SK == 9) {
+			mes "[Louis Greg]";
+			mes " ท่านต้องการเรียนรู้รายละเอียด";
+			mes " เกี่ยวกับ Close Confine ใช่ไหม?";
+			mes " อ้า, พ่อ บอกกับข้าว่า";
+			mes " เขาจะสอนท่านด้วยตัวเขาเอง";
+			close;
+		}
+		else if (ROG_SK == 11) {
+			mes "[Louis Greg]";
+			mes " ข้าได้ยินจากพี่น้องของข้า";
+			mes " Close Confine คือทักษะ";
+			mes " ที่โจมตีศัตรูให้ไม่สามารถ";
+			mes " เคลื่อนที่ไปไหนได้";
+			mes " และจัดการกับพวกเขา";
+			mes " อย่างไร้ปราณี จริงหรือ?";
+			close;
+		}
+		mes "[Louis Greg]";
+		mes " ว้าว, ท่านยอดเยี่ยมจริงๆ";
+		mes " ข้าหวังว่าท่านจะเติบโตขึ้นไปอีก";
+		mes " เพราะข้าเกลียดการเป็นเด็ก!";
+		close;
+	}
+	mes "[Louis Greg]";
+	mes " ทำไมข้าถึงเลือกที่จะเป็น Rogue รึ?";
+	mes " ข้าคิดว่าความเจ้าเล่ห์";
+	mes " ก็เหมือนกับคุณธรรม";
+	mes " หรือไม่ก็กฏหมาย";
+	mes " เพียงแต่มันยากเกินไปที่จะเรียนรู้?";
+	close;
+}
+
+in_rogue,268,125,2	script	Thor Greg#rogueguild	86,{
+	if (BaseJob == Job_Rogue || Class == Job_Thief_High) {
+		if (ROG_SK < 1) {
+			mes "[Thor Greg]";
+			mes " พ่อข้าหายไปไหน?";
+			mes " ข้าหวังว่าคนแปลกหน้าพวกนั้น";
+			mes " จะไม่ทำอะไรกับเขาหรอกนะ";
+			mes " โชคยังดี ที่เขาเข้าไปหลบซ่อน";
+			mes " อยู่ในห้องลับของสมาคมได้ทันเวลา..";
+			set ROG_SK,1;
+			close;
+		}
+		else if (ROG_SK == 1) {
+			mes "[Thor Greg]";
+			mes " พ่อ น่าจะยังซ่อนอยู่ที่ไหนซักแห่ง";
+			mes " ในห้องที่ซ่อนอยู่ของสมาคม...";
+			mes " เขาเคยพูดถึงห้อง";
+			mes " ถัดไปของน้องสาว Makki...";
+			close;
+		}
+		else if (ROG_SK == 2) {
+			mes "[Thor Greg]";
+			mes " Ragreg อยู่ในสมาคม!";
+			mes " ข้างๆ ^FF0000Hollgrehenn Junior^000000 โปรดส่งจดหมายนี้ ให้เขาโดยเร็ว";
+			close;
+		}
+		else if (ROG_SK == 3) {
+			mes "[Thor Greg]";
+			mes " === คุณส่งจดหมาย Ragreg ===";
+			set ROG_SK,4;
+			next;
+			mes "[Thor Greg]";
+			mes " ^FF0000Jay^000000 อยู่ในสมาคม";
+			mes " ข้างๆ ^FF0000Antonio Jr.^000000 โปรดส่งจดหมายนี้ให้เขาโดยเร็ว";
+			mes " === คุณได้รับจดหมายของ Thorgreg ===";
+			close;
+		}
+		else if (ROG_SK == 4) {
+			mes "[Thor Greg]";
+			mes " ^FF0000Jay^000000 อยู่ในสมาคม";
+			mes " ข้างๆ ^FF0000Antonio Jr.^000000 โปรดส่งจดหมายนี้ให้เขาโดยเร็ว";
+			mes " === คุณได้รับจดหมายของ Thorgreg ===";
+			close;
+		}
+		else if (ROG_SK == 5) {
+			mes "[Thor Greg]";
+			mes " พ่อ น่าจะยังซ่อนอยู่ที่ไหนซักแห่ง";
+			mes " ในห้องที่ซ่อนอยู่ของสมาคม...";
+			mes " เขาเคยพูดถึงห้อง";
+			mes " ถัดไปของน้องสาว Makki...";
+			close;
+		}
+		else if (ROG_SK == 6) {
+			mes "[Thor Greg]";
+			mes " ท่านมาที่นี่เพื่อเรียนทักษะนี้หรือ?";
+			mes " ข้าเห็นว่าท่านค่อนข้างจะเหนื่อยนะ";
+			mes " ก่อนการเรียน ^FF0000Close Confine^000000";
+			mes " ท่านต้องเรียนเรียนเรื่องการล๊อคซะก่อน";
+			mes " นั่นไม่ง่ายหรอกนะ จิตใจเจ้าจะต้องพร้อมด้วย";
+			mes " เจ้าต้องการจะเรียนมันก่อนใช่ไหม?";
+			next;
+			if (select(" ใช่แล้ว: ไม่ล่ะ") == 1) {
+				mes "[Thor Greg]";
+				mes " เอาล่ะ, ขั้นตอนแรก";
+				mes " การเรียน ^FF0000Close Confine^000000";
+				mes " คือการล๊อคการเคลื่นไหว";
+				mes " ของศัตรู ข้าจะพาท่านไป";
+				mes " สู่การอบรมพิเศษ เพื่อให้";
+				mes " ท่านสามารถทดสอบได้ด้วยตนเอง";
+				next;
+				mes "[Thor Greg]";
+				mes " เมื่อท่านไปถึงแล้ว ท่านจะพบ";
+				mes " กับครูฝึกที่คอยสอนท่านอย่าง";
+				mes " ใกล้ชิด เพื่อให้แน่ใจว่าท่านจะ";
+				mes " สามารถล๊อคการเคลี่ยนไหวได้";
+				mes " ^FFFFFF ^000000 พร้อมแล้วนะ, ข้าจะพาท่านไปทันที...";
+				close2;
+				warp "in_rogue",89,114;
+				end;
+			}
+			warp "in_rogue",89,114;
+			end;
+		}
+		else if (ROG_SK == 7) {
+			mes "[Thor Greg]";
+			mes " ท่านต้องการเข้าสู่การทดสอบอีกครั้งไหม?";
+			mes " ก่อนการเรียน ^FF0000Close Confine^000000";
+			mes " ท่านต้องเรียนเรียนเรื่องการล๊อคซะก่อน";
+			mes " นั่นไม่ง่ายหรอกนะ จิตใจเจ้าจะต้องพร้อมด้วย";
+			mes " เจ้าต้องการจะเรียนมันก่อนใช่ไหม?";
+			next;
+			if (select(" ใช่แล้ว: ไม่ล่ะ") == 1) {
+				mes "[Thor Greg]";
+				mes " เอาล่ะ, ขั้นตอนแรก";
+				mes " การเรียน ^FF0000Close Confine^000000";
+				mes " คือการล๊อคการเคลื่นไหว";
+				mes " ของศัตรู ข้าจะพาท่านไป";
+				mes " สู่การอบรมพิเศษ เพื่อให้";
+				mes " ท่านสามารถทดสอบได้ด้วยตนเอง";
+				next;
+				mes "[Thor Greg]";
+				mes " เมื่อท่านไปถึงแล้ว ท่านจะพบ";
+				mes " กับครูฝึกที่คอยสอนท่านอย่าง";
+				mes " ใกล้ชิด เพื่อให้แน่ใจว่าท่านจะ";
+				mes " สามารถล๊อคการเคลี่ยนไหวได้";
+				mes " ^FFFFFF ^000000 พร้อมแล้วนะ, ข้าจะพาท่านไปทันที...";
+				set ROG_SK,6;
+				close2;
+				warp "in_rogue",89,114;
+				end;
+			}
+			mes "[Thor Greg]";
+			mes " ไม่เป็นไร, ไม่เป็นไร";
+			mes " เมื่อท่านพร้อมเมื่อใด";
+			mes " เพียงแค่แจ้งให้เราทราบ";
+			close;
+
+		}
+		else if (ROG_SK == 8) {
+			mes "[Thor Greg]";
+			mes " โอ้, ข้าทราบช่าวจาก Kienna แล้ว";
+			mes " ท่านผ่านการทดสอบทั้งหมด";
+			mes " ขอแสดงความยินดีด้วย!";
+			mes " ตอนนี้, กลับไปพูดคุยกับพ่อ";
+			mes " เขาสามารถอธิบาย^FFFFFF ^000000รายละเอียดของสกิล Close Confine ได้";
+			set ROG_SK,9;
+			close;
+		}
+		else if (ROG_SK == 9) {
+			mes "[Thor Greg]";
+			mes " ท่านผ่านการทดสอบทั้งหมด";
+			mes " ขอแสดงความยินดีด้วย!";
+			mes " ตอนนี้, กลับไปพูดคุยกับพ่อ";
+			mes " เขาสามารถอธิบาย^FFFFFF ^000000รายละเอียดของสกิล Close Confine ได้";
+			close;
+		}
+		else if (ROG_SK == 11) {
+			mes "[Thor Greg]";
+			mes " Chae Takbae เขาคือตำนาน";
+			mes " วีรบุรุษในหมู่ Rogues";
+			mes " จริงๆ...!";
+			close;
+		}
+		mes "[Thor Greg]";
+		mes " หืมม์...?";
+		mes " ดูเหมือนท่านแข็งแกร่งขึ้นมาก";
+		mes " แม้แต่ข้า ยังคิดว่าไม่ควร";
+		mes " เข้าไปยุ่งกับท่าน...";
+		close;
+	}
+	mes "[Thor Greg]";
+	mes " อืม, gank นี่แหละ, gank";
+	mes " นี่แหละ. *เฮ้อ* มันเป็นความผิด";
+	mes " พลาดที่น่าอายที่สุดของข้า";
+	mes " ข้าใช้ Zeny หมดไปอย่างรวดเร็ว";
+	mes " และข้าก็ขโมยมันมาใช้อีก...";
+	close;
+}
+
+in_rogue,181,114,3	script	Jay Greg#rogueguild	85,{
+	if (BaseJob == Job_Rogue || Class == Job_Thief_High) {
+		if (ROG_SK < 1) {
+			mes "[Jay Greg]";
+			mes " พ่อ ต้องซ่อนตัวด้วยความกลัว";
+			mes " อยู่ในห้องลับของสมาคม";
+			mes " แม้แต่พี่น้องข้าก็ยังหาเขาไม่พบ";
+			mes " ข้าคิดว่าเขาน่าจะปลอดภัย...";
+			set ROG_SK,1;
+			next;
+			mes "[Jay Greg]";
+			mes " ก่อนหน้านี้, เขาถูกตามล่า";
+			mes " จากคนแปลกหน้าและยัง";
+			mes " คุกคามครอบครัวของเรา";
+			mes " เพราะเขาได้สอนทักษะใหม่";
+			mes " ที่สามารถใช้ปกป้องตัวเองได้...";
+			close;
+		}
+		else if (ROG_SK == 1) {
+			mes "[Jay Greg]";
+			mes " พ่อ น่าจะยังซ่อนอยู่ที่ไหนซักแห่ง";
+			mes " ในห้องที่ซ่อนอยู่ของสมาคม...";
+			mes " เขาเคยพูดถึงห้อง";
+			mes " ถัดไปของน้องสาว Makki...";
+			close;
+		}
+		else if (ROG_SK == 2) {
+			mes "[Jay Greg]";
+			mes " Ragreg อยู่ในสมาคม!";
+			mes " ข้างๆ ^FF0000Hollgrehenn Junior^000000 โปรดส่งจดหมายนี้ ให้เขาโดยเร็ว";
+			close;
+		}
+		else if (ROG_SK == 3) {
+			mes "[Jay Greg]";
+			mes " ^FF0000Thor^000000 พี่ชายข้า";
+			mes " จะต้องรู้เกี่ยวกับเรื่องนี้";
+			mes " โปรดส่งจดหมายนี้ให้กับเขาด้วย";
+			mes " เขาอยู่ข้างๆ ^FF0000Hermanthorn Jr.^000000 ในสมาคม";
+			close;
+		}
+		else if (ROG_SK == 4) {
+			mes "[Jay Greg]";
+			mes " จดหมายถึงข้า...?";
+			mes " โอ้ Thor, งั้นหรือ";
+			mes " ข้าจะรีบอ่านมันโดยเร็ว";
+			mes " เอาล่ะ อืมมมม...";
+			set ROG_SK,5;
+			next;
+			mes "[Jay Greg]";
+			mes " ดูเหมือนว่า";
+			mes " จะต้องบอกเรื่องนี้ให้สมาคมโดยเร็ว";
+			mes " และช่วยส่งจดหมายให้ พ่อ";
+			mes " ข้าต้องรบกวนท่านอีกครั้งและล่ะ";
+			mes " === คุณได้รับจดหมายของ Jaygreg ===";
+			close;
+		}
+		else if (ROG_SK == 5) {
+			mes "[Jay Greg]";
+			mes " ดูเหมือนว่า";
+			mes " จะต้องบอกเรื่องนี้ให้สมาคมโดยเร็ว";
+			mes " และช่วยส่งจดหมายให้ พ่อ";
+			mes " ข้าต้องรบกวนท่านอีกครั้งและล่ะ";
+			close;
+		}
+		else if (ROG_SK == 6) {
+			mes "[Jay Greg]";
+			mes " การเรียนทักษะนี้ ก่อนอื่นท่านต้องไปพบ ^FF0000Thor^000000";
+			close;
+		}
+		else if (ROG_SK == 7) {
+			mes "[Jay Greg]";
+			mes " การเรียนทักษะนี้ ก่อนอื่นท่านต้องไปพบ ^FF0000Thor^000000";
+			close;
+		}
+		else if (ROG_SK == 8) {
+			mes "[Jay Greg]";
+			mes " โอ้, โอ้ ท่านผ่านการทดสอบแล้ว!!";
+			mes " การเรียนทักษะนี้ ก่อนอื่นท่านต้องไปพบ ^FF0000Thor^000000";
+			close;
+		}
+		else if (ROG_SK == 9) {
+			mes "[Jay Greg]";
+			mes " ท่านต้องการเรียนรู้รายละเอียด";
+			mes " เกี่ยวกับ Close Confine ใช่ไหม?";
+			mes " อ้า, พ่อ บอกกับข้าว่า";
+			mes " เขาจะสอนท่านด้วยตัวเขาเอง";
+			close;
+		}
+		else if (ROG_SK == 12) {
+			mes "[Jay Greg]";
+			mes " ข้าเคยมั่นใจว่า Chae Takbae คือคนประหลาด";
+			mes " แต่ในที่สุดเขาก็ทำได้อย่างกล้าหาญ";
+			mes " เขาเป็นคนเดียวที่สามารถเรียนรู้ทักษะใหม่ด้วยตนเอง";
+			close;
+		}
+		mes "[Jay Greg]";
+		mes " ข้ารู้สึกได้ว่า";
+		mes " ที่ที่ท่านกำลังจะ";
+		mes " อาจจะทำให้ท่านกลายเป็น";
+		mes " Rogue ที่ยิ่งใหญ่ ข้าเชื่อเช่นนั้น";
+		close;
+	}
+	mes "[Jay Greg]";
+	mes " นับตั้งแต่ที่ข้าได้เรียนรู้";
+	mes " สกิล Intimdate, ข้าเคยใช้";
+	mes " กับศัตรูที่ร้ายที่สุด";
+	mes " และพามันกลับมาที่นี่";
+	mes " พร้อมกันกับข้า โฮ่ๆ !!";
+	close;
+}
+
+prt_are01,150,150,0	script	#1strecog	-1,10,10,{
+OnTouch:
+	donpcevent "#1st5min::OnEnable";
+	donpcevent "#1stmove::OnEnable";
+	disablenpc "#1strecog";
+	end;
+}
+
+prt_are01,135,135,0	script	#1st5min	-1,{
+OnInit:
+	disablenpc "#1st5min";
+	end;
+
+OnEnable:
+	enablenpc "#1st5min";
+	initnpctimer;
+	end;
+
+OnDisable:
+	stopnpctimer;
+	disablenpc "#1st5min";
+	end;
+
+OnTimer1000:
+	mapannounce "prt_are01","ยินดีต้อนรับสู่พื้นที่ฝึกอบรมสกิล Close Confine ท่านจะถูกย้ายออกไปจากที่นี่ภายใน 5 นาที",bc_map,"0x00ff00";
+	end;
+
+OnTimer290000:
+	mapannounce "prt_are01","ท่านจะถูกย้ายออกไปจากที่นี่ภายใน 20 วินาที",bc_map,"0x00ff00";
+	end;
+
+OnTimer310000:
+	mapannounce "prt_are01","ท่านจะถูกย้ายออกไปจากที่นี่ภายใน 5 วินาที",bc_map,"0x00ff00";
+	end;
+
+OnTimer315000:
+	mapannounce "prt_are01","ท่านจะถูกย้ายออกไปจากที่นี่ เดี๋ยวนี้",bc_map,"0x00ff00";
+	disablenpc "Kienna#1st";
+	disablenpc "Kienna#2nd";
+	disablenpc "Kienna#3rd";
+	disablenpc "Kienna#4th";
+	disablenpc "Kienna#5th";
+	disablenpc "Kienna#6th";
+	disablenpc "Kienna#7th";
+	disablenpc "Kienna#8th";
+	donpcevent "#1stmove::OnDisable";
+	enablenpc "#1strecog";
+	donpcevent "Waiting Room#rogue10::OnEnable";
+	stopnpctimer;
+	mapwarp "prt_are01","in_rogue",264,124;
+	end;
+}
+
+prt_are01,135,135,0	script	#1stmove	-1,{
+OnInit:
+	disablenpc "#1stmove";
+	end;
+
+OnEnable:
+	enablenpc "#1stmove";
+	initnpctimer;
+	end;
+
+OnTimer3000:
+	mapannounce "prt_are01","Kienna จะปรากฏขึ้นภายใน 1 วินาที ชนะ Kiena ให้ได้",bc_map,"0x00ff00";
+	end;
+
+OnTimer5000:
+	switch(rand(1,8)) {
+	case 1:
+		enablenpc "Kienna#1st";
+		break;
+	case  2:
+		enablenpc "Kienna#2nd";
+		break;
+	case  3:
+		enablenpc "Kienna#3rd";
+		break;
+	case  4:
+		enablenpc "Kienna#4th";
+		break;
+	case  5:
+		enablenpc "Kienna#5th";
+		break;
+	case  6:
+		enablenpc "Kienna#6th";
+		break;
+	case  7:
+		enablenpc "Kienna#7th";
+		break;
+	case 8:
+		enablenpc "Kienna#8th";
+	}
+	end;
+
+OnTimer8000:
+	disablenpc "Kienna#1st";
+	disablenpc "Kienna#2nd";
+	disablenpc "Kienna#3rd";
+	disablenpc "Kienna#4th";
+	disablenpc "Kienna#5th";
+	disablenpc "Kienna#6th";
+	disablenpc "Kienna#7th";
+	disablenpc "Kienna#8th";
+	end;
+
+OnTimer9000:
+	stopnpctimer;
+	donpcevent "#1stmove::OnEnable";
+	mapwarp "prt_are01","prt_are01",150,150;
+	end;
+
+OnDisable:
+	stopnpctimer;
+	disablenpc "#1stmove";
+	end;
+}
+
+prt_are01,149,162,0	script	Kienna#1st	700,1,1,{
+	end;
+OnTouch:
+	callfunc "F_Kienna",strnpcinfo(2);
+	end;
+}
+prt_are01,136,150,0	duplicate(Kienna#1st)	Kienna#2nd	700,1,1
+prt_are01,150,138,0	duplicate(Kienna#1st)	Kienna#3rd	700,1,1
+prt_are01,163,147,0	duplicate(Kienna#1st)	Kienna#4th	700,1,1
+prt_are01,134,140,0	duplicate(Kienna#1st)	Kienna#5th	700,1,1
+prt_are01,161,140,0	duplicate(Kienna#1st)	Kienna#6th	700,1,1
+prt_are01,161,160,0	duplicate(Kienna#1st)	Kienna#7th	700,1,1
+prt_are01,138,159,0	duplicate(Kienna#1st)	Kienna#8th	700,1,1
+
+function	script	F_Kienna	{
+	if (ROG_SK == 6) {
+		donpcevent "#1stmove::OnDisable";
+		mes "[Kienna]";
+		mes " ผู้เข้าร่วม โปรดเลือกเส้นทางที่ข้าจะให้";
+		mes " และบอกข้า";
+		mes " ถึงทิศทางที่ท่านจะล๊อค";
+		set ROG_SK,7;
+		next;
+		for(set .@lim_1,0; .@lim_1<10; set .@lim_1,.@lim_1+1) {
+			set .@move_1,rand(1,3);
+			if (select(" ล๊อคทางซ้าย: ล๊อคทางขวา: ล๊อคด้านหลัง") == .@move_1) {
+				mes "[Kienna]";
+				mes " ล๊อคสำเร็จ~";
+				specialeffect EF_POTION1;
+				specialeffect2 EF_POTION7;
+				set .@suc_1,.@suc_1 + 1;
+			}
+			else {
+				mes "[Kienna]";
+				mes " เสียใจด้วย, ข้าไม่ได้ไปทางนั้น";
+				mes " ท่านล้มเหลวในการล๊อค...";
+			}
+			next;
+		}
+		mes "[Kienna]";
+		mes "---จบการทดสอบ---";
+		mes "-เลเวลของท่านคือ-";
+		switch(.@suc_1) { 
+		case 10:
+			mes "------ ''^0000FFS^000000'' ------";
+			break;
+		case 9:
+			mes "------ ''^0000FFA^000000'' ------";
+			break;
+		case 8:
+			mes "------ ''^0000FFB +^000000'' ------";
+			break;
+		case 7:
+			mes "------ ''^0000FFB^000000'' ------";
+			break;
+		case 6:
+			mes "------ ''^0000FFC +^000000'' ------";
+			break;
+		case 5:
+			mes "------ ''^FF0000C^000000'' ------";
+			break;
+		case 4:
+			mes "------ ''^FF0000D+^000000'' ------";
+			break;
+		case 3:
+			mes "------ ''^FF0000D^000000'' ------";
+			break;
+		case 2:
+			mes "training grade of ''^FF0000F^000000.''";
+			break;
+		case 1:
+			mes "------ ''^FF0000F -^000000'' ------";
+			break;
+		case 0:
+			mes " เกิดอะไรขึ้น...?";
+			mes " ข้าไม่สามารถคำนวณอะไรได้ทั้งนั้น";
+		}
+		next;
+		if (.@suc_1 > 5) {
+			mes "[Kienna]";
+			mes " ดีมาก";
+			mes " ท่านมีคุณสมบัติพอ";
+			mes " ที่จะได้รับทักษะนี้";
+			mes " ข้าจะส่งท่านไปหา Thor Greg";
+			set ROG_SK,8;
+			disablenpc "Kienna#"+getarg(0);
+			donpcevent "#1st5min::OnDisable";
+			enablenpc "#1strecog";
+			close2;
+			donpcevent "Waiting Room#rogue10::OnEnable";
+			warp "in_rogue",264,124;
+			end;
+		}
+		else {
+			mes "[Kienna]";
+			mes " อืมม์ ข้าคิดว่าท่านยังไม่พร้อม";
+			mes " ที่จะเรียนรู้ Close Confine";
+			mes " คะแนนการทดสอบของท่าน";
+			mes " ไม่ถึงตามที่กำหนด";
+			mes " ท่านต้องการทดสอบ";
+			mes " ใหม่อีกครั้งไหม?";
+			next;
+			if (select(" แน่นอน!: ไม่ล่ะ") == 1) {
+				disablenpc "Kienna#"+getarg(0);
+				donpcevent "#1stmove::OnEnable";
+				set ROG_SK,6;
+				warp "prt_are01",150,150;
+				end;
+			}
+			disablenpc "Kienna#"+getarg(0);
+			donpcevent "#1st5min::OnDisable";
+			enablenpc "#1strecog";
+			set ROG_SK,6;
+			donpcevent "Waiting Room#rogue10::OnEnable";
+			warp "in_rogue",264,124;
+			end;
+		}
+	}
+	else if (ROG_SK == 7) {
+		mes "[Kienna]";
+		mes " ท่านได้ยกเลิกการฝึกอบรม";
+		mes " ในช่วงเวลาการทดสอบ";
+		mes " ไม่เป็นไร, ไม่เป็นไร";
+		mes " ข้าจะส่งท่านไปเข้ารับ";
+		mes " การทดสอบใหม่ทันที";
+		set ROG_SK,6;
+		close2;
+		disablenpc "Kienna#"+getarg(0);
+		donpcevent "#1stmove::OnEnable";
+		warp "prt_are01",150,150;
+		end;
+	}
+	else if (ROG_SK == 8) {
+		mes "[Kienna]";
+		mes " การทดสอบเสร็จสมบูรณ์";
+		mes " หน้าที่ของข้า ได้จบลงแล้ว";
+		close2;
+		donpcevent "Waiting Room#rogue10::OnEnable";
+		warp "in_rogue",264,124;
+		end;
+	}
+	else {
+		mes "[Kienna]";
+		mes " ข้าเสียใจด้วย, ";
+		mes " แต่ท่านไม่ควรอยู่ที่นี่";
+		mes " ข้าจะพาท่านไปยัง";
+		mes " สมาคม หากท่านหลงทาง...";
+		close2;
+		donpcevent "Waiting Room#rogue10::OnEnable";
+		warp "in_rogue",264,124;
+		end;
+	}
+
+OnInit:
+	disablenpc "Kienna#1st";
+	disablenpc "Kienna#2nd";
+	disablenpc "Kienna#3rd";
+	disablenpc "Kienna#4th";
+	disablenpc "Kienna#5th";
+	disablenpc "Kienna#6th";
+	disablenpc "Kienna#7th";
+	disablenpc "Kienna#8th";
+	end;
+}
+
+in_rogue,88,119,3	script	Waiting Room#rogue10	828,{
+OnEnable:
+	enablenpc "Waiting Room#rogue10";
+	enablewaitingroomevent "Waiting Room#rogue10";
+	end;
+
+OnInit:
+	waitingroom "Training Ground",10,"Waiting Room#rogue10::OnStartArena",1;
+	enablewaitingroomevent "Waiting Room#rogue10";
+	end;
+
+OnStartArena:
+	warpwaitingpc "prt_are01",150,150;
+	disablewaitingroomevent "Waiting Room#rogue10";
+	end;
+}

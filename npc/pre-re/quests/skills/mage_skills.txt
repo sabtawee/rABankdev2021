@@ -1,0 +1,150 @@
+//===== Hercules Script ======================================
+//= Mage Skill Quest
+//===== By: ==================================================
+//= kobra_k88
+//===== Current Version: =====================================
+//= 1.8
+//===== Description: =========================================
+//= Quest for skills: Energy Coat
+//===== Additional Comments: =================================
+//= 1.5 Rescripted to Aegis 10.3 stadards. [L0ne_W0lf]
+//= 1.6 Fixed a typo in job check. (Bugreport:1531) [L0ne_W0lf]
+//= 1.7 Updated to latest available official file. [Masao]
+//= 1.8 Fixed JobLevel requirements. [Euphy]
+//============================================================
+
+geffen_in,151,119,4	script	Great Wizard	64,{
+	mes "[BLIZZARDRISS]";
+	mes "เฮ้ สหาย !";
+	mes "ถ้าท่านเป็นนักเวทย์";
+	mes "จงเพิ่มกำลังใจให้ตนเอง";
+	mes "และเผยพลังที่ซ่อนอยู่ออกมา!";
+	next;
+	switch (select("หมายถึงอะไรที่ให้เผย 'พลังที่ซ่อนอยู่'?:ปลุกพลัง ^3355FF' Energy Coat '^000000:ข้าฟังพอแล้ว")) {
+	case 1:
+		mes "[BLIZZARDRISS]";
+		mes "หลายปีที่ผ่านมา";
+		mes "ข้าเรียนประวัติศาสตร์มา";
+		mes "magic's of Geffen.";
+		mes "เร็วๆนี้, ข้าค้นพบ";
+		mes "เวทมนต์เจ๋งๆอันนึง! ! !";
+		mes "เจ๋งดีใช่ใหมล้ะ?";
+		next;
+		mes "[BLIZZARDRISS]";
+		mes "หลายปีที่ผ่านมา";
+		mes "ข้าเรียนประวัติศาสตร์มา";
+		mes "magic's of Geffen.";
+		mes "เร็วๆนี้, ข้าค้นพบ";
+		mes "เวทมนต์เจ๋งๆอันนึง! ! !";
+		mes "เจ๋งดีใช่ใหมล้ะ?";
+		next;
+		mes "[BLIZZARDRISS]";
+		mes "แต่ที่น่าตกใจทีสุดก็คือ";
+		mes "ข้าใช้เวทมนต์นี้ได้ ฮ่าฮ่าฮ่า! ! !";
+		mes "ข้าใช้มันปกป้องตัวข้าเองได้ ฮ่าฮ่าฮ่า !";
+		mes "ฟุ ฮ่าฮ่าฮ่า !!";
+		next;
+		mes "[BLIZZARDRISS]";
+		mes "โอเคๆ, อย่าเพิ่งตื่นเต้นไป.";
+		mes "ฟังให้ดีๆนะ ในสิ่งที่ข้าจะพูด.";
+		mes "คนที่จะใช้เวทมนต์นี้งัดเอา";
+		mes "พลังแฝงออมาจากร่างกาย";
+		mes "นำมารวมเข้ากับร่างกายให้ได้ !";
+		next;
+		mes "[BLIZZARDRISS]";
+		mes "ถ้าเจ้าอยากเรียนเวทมนต์นี้, เจ้า";
+		mes "จำเป็นต้องหาของเหล่านี้มา เพื่อ";
+		mes "ดำเนินตามขั้นตอน";
+		next;
+		mes "[BLIZZARDRISS]";
+		mes "3 ^3355FFGlass Bead^000000 ";
+		mes "1 ^3355FF1 carat Diamond^000000 ";
+		mes "5 ^3355FFShell^000000 ";
+		mes "1 ^3355FFSolid Shell^000000 ";
+		mes "นำของเหล่านี้มาให้ข้า.";
+		next;
+		mes "[BLIZZARDRISS]";
+		mes "อีกอย่างหนึ่งนะ. . .";
+		mes "เจ้าต้องมีประสบการณ์อย่างมาก";
+		mes "ในด้านศิลปะเวทมนต์. นั้นหมายความว่า";
+		mes "ต้องเป็น Wizard หรือ mage job level 35+.";
+		next;
+		mes "[BLIZZARDRISS]";
+		mes "Wizards สามารถเรียนได้ทันที";
+		mes "ประสบการณ์สำหรับ Mage ยังน้อย";
+		mes "จึงต้องการ  job level.";
+		mes "ในกรณีที่อยากเรียนนั้น จะต้อง";
+		mes "ฝึกควาแข็งแกร่งทางวิญญาณ";
+		mes "และสภาพร่างกายให้แข็งแรง";
+		next;
+		mes "[BLIZZARDRISS]";
+		mes "โอเค . .";
+		mes "ข้าไม่มีอะไรจะพูดอีกแล้ว, เจ้าสนใจใหมล้ะ";
+		close;
+	case 2:
+		if (getskilllv("MG_ENERGYCOAT") == 1) {
+			mes "[BLIZZARDRISS]";
+			mes "ข้าคิดว่าท่านได้เรียนรู้ทักษะการปลุกพลังนั้นแล้ว";
+			mes "เพราะว่าท่าน";
+			mes "มีทักษะ 'Energy Coat' ";
+			mes "อย่างเห็นได้ชัด";
+			mes "ข้าขอโทษด้วยจริงๆ";
+			mes "ข้าไม่มีอะไรจะสอนท่านแล้ว ...";
+			close;
+		}
+		if ((countitem(746) > 2) && (countitem(730) > 0) && (countitem(935) > 4) && (countitem(943) > 0) && (JobLevel > 34 || (BaseJob == Job_Wizard || BaseJob == Job_Sage)) && (BaseClass == Job_Mage)) {
+			mes "[BLIZZARDRISS]";
+			mes "เอาล่ะข้าจะลองปลุกพลังให้ท่าน";
+			mes "พลังที่ซุกซ่อนอยู่ภายในตัวของท่าน . .";
+			mes ". . . . . .";
+			mes ". . . . . . . . . . . . .";
+			mes ". . . . . . . . . . . . . . . . . . . . . . . . . .";
+			next;
+			mes "[BLIZZARDRISS]";
+			mes "ขอพลังจงอยู่กับท่าน!";
+			mes "สูดลมหายใจเข้าลึกๆ";
+			mes "พลังกาย! พลังใจ!";
+			mes ". . . . . . . . . . . .";
+			mes "ENERGY COAT! ! !";
+			next;
+			mes "[BLIZZARDRISS]";
+			mes "Grant me your power!";
+			mes "Release your spirit";
+			mes "Mana Shield! Metal Armor!";
+			mes ". . . . . . . . . . . .";
+			mes "ENERGY COAT! ! !";
+			next;
+			delitem 746,3; //Glass_Bead
+			delitem 730,1; //Crystal_Jewel
+			delitem 935,5; //Shell
+			delitem 943,1; //Solid_Shell
+			skill "MG_ENERGYCOAT",1,0;
+			mes "[BLIZZARDRISS]";
+			mes ". . . . .";
+			mes "เรียบร้อย. . .";
+			mes "ท่านได้เรียนรู้";
+			mes "ทักษะ ^3355FF' Energy Coat '^000000 .";
+			mes "ใช้มันให้เต็มที่";
+			close;
+		}
+		mes "[BLIZZARDRISS]";
+		mes "ดูนั่น!!";
+		mes "ท่านไม่ได้ฟังข้าอธิบายเลยหรอ? !";
+		mes "ท่านยังไม่ได้เตรียมของมาให้ข้า";
+		mes "แล้วข้าจะสอนท่านได้ยังไง";
+		mes "โปรดตรวจสอบของที่ท่านเตรียมมาให้เรียบร้อยก่อน";
+		next;
+		mes "[BLIZZARDRISS]";
+		mes "ถ้าท่านต้องการอะไรเพิ่มเติม";
+		mes "ก็สอบถามข้าได้";
+		mes "ข้ายินดีที่จะตอบ";
+		mes "ถ้าท่านยินดีที่จะฟัง. . .";
+		close;
+	case 3:
+		mes "[BLIZZARDRISS]";
+		mes "คนฉลาดต้องมีความอดทน !";
+		mes "ท่านต้องปรับปรุงตัวเอง";
+		mes "กลับมาเมื่อท่านพร้อม";
+		close;
+	}
+}

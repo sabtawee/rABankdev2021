@@ -1,11 +1,11 @@
-//===== rAthena Script =======================================
+//===== eAthena Script =======================================
 //= Morocc Sphinx Dungeon Monster Spawn Script
 //===== By: ==================================================
 //= Athena (1.0)
 //===== Current Version: =====================================
 //= 1.4
 //===== Compatible With: =====================================
-//= rAthena Project
+//= Any Athena Version
 //===== Additional Comments: =================================
 //= 1.1 Official kRO 10.1 spawns [Playtester]
 //= 1.2 Replaced Marduk with Anubis on F4 and F5 [Playtester]
@@ -16,41 +16,59 @@
 //==================================================
 // In_sphinx1 - Sphinx F1
 //==================================================
-in_sphinx1,0,0	monster	Drainliar	1111,40
-in_sphinx1,0,0	monster	Requiem	1164,20
-in_sphinx1,0,0	monster	Zerom	1178,20
-in_sphinx1,0,0	monster	Matyr	1146,10
+in_sphinx1,0,0,0,0	monster	Anacondaq	1030,35,0,0,0
+in_sphinx1,0,0,0,0	monster	Requiem	1164,35,0,0,0
+in_sphinx1,0,0,0,0	monster	Zerom	1178,30,0,0,0
+in_sphinx1,0,0,0,0	monster	Drainliar	1111,20,0,0,0
+
+in_sphinx1,0,0,0,0	monster	Requiem	1164,40,20000,10000,0
+in_sphinx1,0,0,0,0	monster	Zerom	1178,40,20000,10000,0
 
 //==================================================
 // In_sphinx2 - Sphinx F2
 //==================================================
-in_sphinx2,0,0	monster	Drainliar	1111,15
-in_sphinx2,0,0	monster	Requiem	1164,50
-in_sphinx2,0,0	monster	Zerom	1178,50
-in_sphinx2,0,0	monster	Matyr	1146,20
+in_sphinx2,0,0,0,0	monster	Drainliar	1111,20,0,0,0
+in_sphinx2,0,0,0,0	monster	Requiem	1164,35,0,0,0
+in_sphinx2,0,0,0,0	monster	Zerom	1178,30,0,0,0
+in_sphinx2,0,0,0,0	monster	Matyr	1146,25,0,0,0
+in_sphinx2,0,0,0,0	monster	Whisper	1179,15,0,0,0
+
+in_sphinx2,0,0,0,0	monster	Requiem	1164,35,20000,10000,0
+in_sphinx2,0,0,0,0	monster	Zerom	1178,40,20000,10000,0
+in_sphinx2,0,0,0,0	monster	Matyr	1146,25,20000,10000,0
+in_sphinx2,0,0,0,0	monster	Whisper	1179,5,20000,10000,0
+
 
 //==================================================
 // In_sphinx3 - Sphinx F3
 //==================================================
-in_sphinx3,0,0	monster	Matyr	1146,15
-in_sphinx3,0,0	monster	Pasana	1154,5
-in_sphinx3,0,0	monster	Marduk	1140,65
-in_sphinx3,0,0	monster	Mimic	1191,5,600000,300000
+in_sphinx3,0,0,0,0	monster	Drainliar	1111,20,0,0,0
+in_sphinx3,0,0,0,0	monster	Matyr	1146,20,0,0,0
+in_sphinx3,0,0,0,0	monster	Marduk	1140,20,0,0,0
+in_sphinx3,0,0,0,0	monster	Mimic	1191,2,600000,300000,1
+in_sphinx3,0,0,0,0	monster	Requiem	1164,40,0,0,0
+in_sphinx3,0,0,0,0	monster	Whisper	1179,10,0,0,0
+
+in_sphinx3,0,0,0,0	monster	Matyr	1146,20,20000,10000,0
+in_sphinx3,0,0,0,0	monster	Marduk	1140,20,20000,10000,0
+in_sphinx3,0,0,0,0	monster	Requiem	1164,30,20000,10000,0
+in_sphinx3,0,0,0,0	monster	Whisper	1179,10,20000,10000,0
 
 //==================================================
 // In_sphinx4 - Sphinx F4
 //==================================================
-in_sphinx4,0,0	monster	Minorous	1149,50
-in_sphinx4,0,0	monster	Anubis	1098,15
-in_sphinx4,0,0	monster	Mimic	1191,4,600000,300000
-in_sphinx4,0,0	monster	Pasana	1154,20
-
+in_sphinx4,0,0,0,0	monster	Side Winder	1037,15,0,0,0
+in_sphinx4,0,0,0,0	monster	Evil Druid	1117,1,0,0,0
+in_sphinx4,0,0,0,0	monster	Minorous	1149,115,0,0,0
+in_sphinx4,0,0,0,0	monster	Marduk	1140,25,0,0,0
+in_sphinx4,0,0,0,0	monster	Mimic	1191,4,600000,300000,1
 //==================================================
 // In_sphinx5 - Sphinx F5
 //==================================================
-in_sphinx5,0,0	monster	Pasana	1154,70
-in_sphinx5,0,0	monster	Matyr	1146,10
-in_sphinx5,0,0	monster	Side Winder	1037,20
-in_sphinx5,0,0	monster	Anubis	1098,10
-in_sphinx5,0,0	monster	Mimic	1191,7,600000,300000
-in_sphinx5,0,0,0,0	boss_monster	Pharaoh	1157,1,3600000,600000,1
+in_sphinx5,0,0,0,0	monster	Side Winder	1037,30,0,0,0
+in_sphinx5,0,0,0,0	monster	Marduk	1140,30,0,0,0
+in_sphinx5,0,0,0,0	monster	Matyr	1146,30,0,0,0
+in_sphinx5,0,0,0,0	monster	Requiem	1164,45,0,0,0
+in_sphinx5,0,0,0,0	monster	Whisper	1179,10,0,0,0
+in_sphinx5,0,0,0,0	monster	Mimic	1191,7,600000,300000,1
+in_sphinx5,0,0,0,0	monster	Wraith	1192,5,0,0,0

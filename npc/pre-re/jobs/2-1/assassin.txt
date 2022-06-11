@@ -1,0 +1,1766 @@
+	//============================================================================//
+//				Job Changer
+//****************************************************************************//
+
+in_moc_16.gat,19,33,4	script	Guildsman#1	55,{
+
+	if(JobLevel == 50) {
+	if (Class!=6) goto Notache;
+	if(SkillPoint >0) goto L_notUseAll;
+
+	 mes "[ Jobchanger ]";
+	 mes "ท่านต้องการเปลื่ยนอาชีพเป็นassassin ใช่หรือไม่";
+	 next;
+	 menu "ใช่",-,"ไม่ใช่",L_close;
+	 mes "[ Jobchanger ]";
+	 mes "ถ้าเป็นอย่างนั้น ข้าก็จะเปลื่ยนให้เจ้าทันที";
+	 next;
+	 JobChange 12;
+	set zeny,zeny+50000;
+	 mes "เจ้าได้เป็น assassinเรียบร้อยแล้ว";
+	 close;
+
+	L_close:
+	 mes "[ Jobchanger ]";
+	 mes "เราคงมีโอกาศได้พบกันใหม่อีกแน่ บาย";
+	 close;
+
+	L_notUseAll:
+	 mes "[ Jobchanger ]";
+	 mes "ท่านยังใช้ Skill Point ไม่หมด";
+	 close;
+
+	Notache:
+	 mes "[ Jobchanger ]";
+	 mes "คุณไม่ได้ โจรนิ";
+	 close;
+
+
+	}
+	if(Class==Job_Assassin) goto L_JobSin;
+	mes "[Angry looking man]";
+	if(Class==Job_Thief) goto L_Thief;
+	if(baseClass == Job_Swordman) goto L_JobSwo;
+	if(baseClass == Job_Mage) goto L_JobMag;
+	if(baseClass == Job_Archer) goto L_JobArch;
+	if(baseClass == Job_Acolyte) goto L_JobAco;
+	if(baseClass == Job_Merchant) goto L_JobMerc;
+	if(baseClass == Job_Thief) goto L_JobOther;
+
+L_JobNov:
+	mes "....เฮ้ เจ้า Novice!!! เจ้าไม่ควรมาที่นี่เจ้าต้องรีบไปซะ เพราะที่นี่อันตรายมากสำหรับเจ้า ข้าจะไม่รับผิดชอบหากมีอะไรเกิดขึ้นกับเจ้า.......";
+	emotion 0;
+	close;
+L_JobSwo:
+	mes "....เจ้ามาทำอะไรที่นี่รึ???";
+	emotion 1;
+	next;
+	mes "[Angry looking man]";
+	mes "นี่มันไม่ใช่ที่สำหรับ Sowrdman อย่างเจ้าหรอกนะ.............";
+	emotion 32;
+	close;
+L_JobMag:
+	mes "...อะไร !! ข้าว่าเจ้าควรรีบไปฝึกฝนทักษะที่อื่นนะ ไม่ใช่ที่นี่??";
+	emotion 20;
+	close;
+L_JobArch:
+	mes "อ้าา.... เจ้านักธนู นี่ไม่ใช่ที่ที่เจ้าจะสมควรมาเดินเล่นแถวนี้หรอกนะ";
+	emotion 4;
+	close;
+L_JobAco:
+	mes "...โอ้ พระเจ้าช่วย? นี่ไม่มีสำหรับผู้ศีลธรรมอย่างเจ้าหรอกนะ";
+	emotion 20;
+	close;
+L_JobMerc:
+	mes "....โอ้ว!! นี่ไม่ใช่ที่ที่เจ้าจะมานั่งตั้งร้านอยู่แถวนี้หรอกนะ";
+	emotion 29;
+	close;
+L_JobOther:
+	mes ".... หืม.... แม้ว่าเจ้าจะไม่ใช่ Assassin แต่ข้าว่าเจ้าก็น่าจะมีแววอยู่ล่ะ!";
+	close;
+L_JobSin:
+	mes "[Assassin Huey]";
+	mes "โอ้.. นี่ .." + strcharinfo(0) + " เจ้าเองใช่มั้ย?";
+	next;
+	mes "[Assassin Huey]";
+	mes "เจ้าคงไม่ได้ทำไรที่เลวร้ายเกินไปหรอกนะ.. ข้าว่าเจ้าควรจำกลับไปฝึกทักษะต่อจะดีกว่า";
+	close;
+
+L_Thief:
+	if(JobLevel >= 40) goto L_Start;
+	mes "หืม..? ลมอะไรพัดเจ้ามีที่นี่อย่างงั้นเหรอ?.... ข้าไม่ชอบที่เจ้ามองข้าด้วยสายตาแบบนั้นหรอกนะ?!";
+	emotion 1;
+	next;
+	mes "[Angry looking man]";
+	mes ".... หืมม.... เจ้ายังไม่ได้ผ่านการรับรองที่เจ้าจะได้เป็น Assassin เจ้าจะต้องผ่านการทดสอบของเรา";
+	next;
+	mes "[Angry looking man]";
+	mes "ทำไมเจ้าไม่รีบไปฝึกทักษะของเจ้าให้มากขึ้นซะหล่ะ.. เจ้าจำเป็นต้องมีจ๊อบเลเวลระดับ 40 ขึ้นไป ถึงเจ้าจะมาเป็นส่วนหนึ่งกับเราได้";
+	close;
+
+L_Start:
+	if(ASSIN_Q == 1) goto L_Failed1;
+	if(ASSIN_Q == 2) goto L_Failed2;
+	if(ASSIN_Q == 4) goto L_Change;
+	mes "....อ่า เจ้าโจรน้อย?..... นี่คือบททดสอบแรกสำหรับเจ้า ข้ากำลังตามหาของบางอย่าง!";
+	emotion 18;
+	next;
+	mes "[Angry looking man]";
+	mes "เราต้องการคนที่สามารถนำของสิ่งนั้นกลับมาให้ข้าได้ แล้วข้าจะพาเจ้าไปยังบทสอบขั้นต่อไป เพื่อกลายเป็น Assassin?";
+	M_Menu:
+	next;
+	menu "ข้ามาสมัครเป็น Assassin",M_0, "ข้าอยากรู้รายละเอียดเพิ่ม?",M_1, "บางทีข้าว่า ข้าควรจะไปขโมยของอย่างอื่นก่อน",M_2;
+
+	M_0:
+		mes "[Angry looking man]";
+		mes "นี่คงเป็นเวลานานมากแล้ว ตั้งแต่ที่ข้าได้เห็นผู้สมัครเป็น Assasin..... ข้าจะพาเจ้าไปที่ ^5533FFAssassin 'Khai'^000000.";
+		mes "เขาจะเป็นคนดูแลการละเบียนของเจ้า";
+		enablenpc "Assassin Kai#1";
+		disablenpc "Assassin Kai#2";
+		savepoint "in_moc_16.gat", 19, 27;
+		close2;
+		warp "in_moc_16.gat", 19, 76;
+		end;
+	M_1:
+		mes "[Angry looking man]";
+		mes "นี่คือสิ่งที่เจ้าจำเป็นจะต้องมี.. !!";
+		mes "#1. เจ้าจะต้องเป็นอาชีพ Thief.";
+		mes "#2. เจ้าต้องมีเลเวลจ๊อบ 40.";
+		mes "#3. และเจ้าต้องผ่านการทดสอบของข้าทั้งหมด";
+		next;
+		mes "[Angry looking man]";
+		mes "นี่คือสิ่งที่เจ้าจำเป็นต้องมีทั้งหมด มันคงจะไม่ยากเกินไปสำหรับเจ้าหรอกนะ?!";
+		goto M_Menu;
+	M_2:
+		mes "[Angry looking man]";
+		mes "หืม..? ไม่เป็นไร ช่างมันเหอะ........";
+		close;
+
+L_Failed1:
+	mes "ห๊ะ? ข้าไม่อยากจะเชื่อว่า เจ้าจะล้มเหลวในบททดสอบแรก !!";
+	close2;
+	disablenpc "Assassin Kai#1";
+	enablenpc "Assassin Kai#2";
+	warp "in_moc_16.gat", 19, 76;
+	end;
+
+L_Failed2:
+	mes "เจ้าไม่ควรจะมาที่! บททดสอบที่ข้าให้เจ้า เจ้ายังไม่ผ่านอีกเหรอ!";
+	close2;
+	warp "in_moc_16.gat", 21, 160;
+	end;
+
+L_Change:
+	if (skillpoint > 0) goto L_SkPoints;
+	if(countitem(1008) < 1) goto L_NoNecklace;
+	mes "อ้าา... นี่คงเป็น Necklace of Oblivion..... นี่คงหมายความว่า Guild Master ได้ยอมรับเจ้าให้เข้าร่วมสมาคม Assassin";
+	next;
+	mes "[Assassin Huey]";
+	mes "หึหึ... ยินดีด้วย ในที่สุดเจ้าก็เปลี่ยนอาชีพได้เสียที";
+	mes "อา.. แต่เดี๋ยวก่อน.. ข้าขอตรวจสอบใบรับรองจากหัวหน้าสมาคมก่อน";
+	emotion 21;
+	next;
+	mes "[Assassin Huey]";
+	mes "เจ้าทำได้ดีมาก ตอนนี้เจ้าได้เป็น Assassin แล้ว...เจ้าสามารถมาที่นี่ได้ทุกเมื่อ";
+	setlook 7,0;
+	jobchange Job_Assassin;
+	callfunc "F_ClearJobVar";		// clears all job variables for the current player
+	set kaitrig, 0;
+	next;
+	mes "[Assassin Huey]";
+	mes "เยี่ยม เจ้าจงมีชีวิตอยู่อย่าง Assassin และอย่าลืมศรัทธาในตัวเจ้า ถ้าว่าง กลับมาหาข้าบ้างก็ได้ ยินดีก้วยที่เปลี่ยนอาชีพได้";
+	close;
+
+	L_SkPoints:
+	       	mes "เจ้าจำเป็นต้องใช้คะแนนทักษะทั้งหมดก่อน หากเจ้าต้องการจะเป็น Assassin";
+	       	close;
+
+	L_NoNecklace:
+		mes "หืม? เจ้าต้องการให้ข้าเปลี่ยนเจ้าเป็น Assassin ใช่มั้ย? ดีเจ้าต้องแสดงให้ข้าดูว่าเจ้ามี ^5544FF'Necklace of Oblivion'^000000 แล้ว";
+		next;
+		mes "[Assassin Huey]";
+		mes "ข้าจะทำให้เจ้าเป็นได้? หากเจ้ามี 'Necklace of Oblivion' ซึ่งได้รับจาก Guild Master แล้วข้าจำทำให้เจ้าเป็น Assassins.";
+		next;
+		menu "โอ้ใช่.. มันอยู่ในกระเป๋ากางเกงของข้าเอง",-, "หึ.. มันถูกขโมยไปแล้ว",M_Restart;
+
+			mes "[Assassin Huey]";
+			mes "ข้าไม่สนใจว่ามันอยู่ไหน หากเจ้าอยากเป็น Assassin เจ้าจำเป็นต้องมีสิ่งนั้น";
+			close;
+
+		M_Restart:
+			mes "[Assassin Huey]";
+			mes "........................................";
+			next;
+			mes "[Assassin Huey]";
+			mes "ข้าจะให้โอกาสเจ้ากลับไปเริ่มทดสอบใหม่อีกครั้งละกัน!";
+			set ASSIN_Q, 0;
+			set ASSIN_Q2, 0;
+			close2;
+			warp "moc_fild16.gat", 206, 155;
+			end;
+}
+
+
+//============================================================================//
+//				Registrar
+//****************************************************************************//
+
+// Assassin Kai: First Position =================================
+in_moc_16.gat,21,91,4	script	Assassin Kai#1	730,4,4,{
+	end;
+
+OnTouch:
+	mes "[Assassin Kai]";
+	mes "อืมมม???....";
+	disablenpc "Assassin Kai#1";
+	enablenpc "Assassin Kai#2";
+	close;
+}
+
+// Assassin Kai: Second Position ==============================
+in_moc_16.gat,25,90,4	script	Assassin Kai#2	730,2,1,{
+	if(kaitrig == 1) goto OnTouch;
+	mes "[Assassin Kai]";
+	mes "เอ่อ..? ท่านมาเพื่อเปลี่ยนอาชีพหรือเปล่า";
+	mes "ข้ามักมีนิสัยชอบซ่อนตัวเมื่อมีคนเข้ามาใกล้ข้า";
+	mes "อืม.. แต่ยังไง ก็ต้องขอบคุณท่านมาก ที่อุตส่าห์ลำบากมาหาข้าถึงที่นี่";
+	close;
+
+OnTouch:
+	set kaitrig, 1;
+	mes "[Assassin Kai]";
+	if(ASSIN_Q==1) goto L_Failed;
+	mes "หืมม ผู้มาเยือน";
+	mes "-คิ คิ-.. ไม่มีประโยชน์ที่จะมองไปรอบๆ หรอก";
+	mes "ข้าซ่อนตัวได้อย่างสมบูรณ์แบบ";
+	mes "-อิ อิ-...นี่เป็นพื้นฐายของ Assassin";
+	mes "-คิ คิ-...";
+	next;
+	mes "[Assassin Kai]";
+	mes "ดังนั้นนั้นยินดีต้อนรับ ท่านคงต้องการจะเป็น Assassin ล่ะสิ?";
+	next; 
+	menu "ใช่ ตกลง",M_Yes, "ไม่.. ",M_No;
+
+	M_Yes:
+		mes "[Assassin Kai]";
+		mes "เอาล่ะ.. กรอกแบบฟอร์มนี่ซะ และตรวจสอบให้แน่นอนว่าชื่อและระดับจ๊อบท่านนั้นถูกต้อง";
+		next;
+		mes "[AssassinKai]";
+		mes "ข้าขอดูซิ นี่คงเป็น ^5533FF" +strcharinfo(0)+ "^000000 ชื่อของเจ้า และนี่จ๊อบของท่านคือ "+JobLevel+"....";
+		next;
+		mes "[AssassinKai]";
+		if(JobLevel == 50) goto sL_HighLvl;
+		mes "ดี ระดับจ๊อบของท่านผ่านข้อกำหนด ข้าจะดูข้อกำหนดต่อไป..";
+		next;
+		mes "[Assassin Kai]";
+		mes "หืม? ไม่มีอะไร? นี่เป็นเพียงแค่การสัมภาษณ์เท่านั้น!!";
+		mes "แต่ข้าจะพาท่าน ส่งไปที่ห้องถัดไป เพื่อเริ่มบททดสอบแรกของท่าน";
+		set JBLVL, 40;
+		close2;
+		warp "in_moc_16.gat", 19, 141;
+		end;
+
+		sL_HighLvl:
+			mes "ว้าวว นี่ท่านมีเลเวลจ๊อบถึง 50! ท่านคงได้รับการฝึกฝนอย่างหนักเลยใช่มั้ย?";
+			mes "Guild Master ของเรายินดีที่จะได้เห็นคนที่คุณสมบัติอย่างท่าน";
+			set JBLVL, 50;
+			close2;
+			warp "in_moc_16.gat", 19, 141;
+			end;
+
+	M_No:
+		mes "[Assassin Kai]";
+		mes "หือ?? You don't?........";
+		emotion 1;
+		next;
+		mes "[Assassin Kai]";
+		mes "ท่านต้องการจะเล่นเกมส์กับข้างั้นเหรอ??";
+		mes "แล้วท่านมาทำอะไรที่นี่ หากท่านไม่ต้องการเป็น Assassin?............";
+		next;
+		menu "ข้าไม่มีอะไรจริงๆ",-, "ใช่ ข้าตองการเป็น Assassin",sM_Yes;
+
+			mes "[Assassin Kai]";
+			mes "ดี เจ้ารีบๆ ออกไปจากที่นี่ซะ!!";
+			close2;
+			warp "moc_fild16.gat", 206, 229;
+			end;
+		sM_Yes:
+			mes "[Assassin Kai]";
+			mes "หืมม.. ได้เสมอ......";
+			next;
+			goto M_Yes;
+
+L_Failed:
+	mes "หา? นี่มันเพิ่งผ่านไปไม่กี่นาทีเองนะ?";
+	emotion 1;
+	next;
+	mes "[Assassin Kai]";
+	mes "นี่มันอะไร?..... ท่านล้มเหลวในบททดสอบแล้วงั้นเหรอ?";
+	next;
+	mes "[Assassin Kai]";
+	mes "ฮ่า ฮ่า ฮ่า ฮ่าาาาา!!!!";
+	emotion 18;
+	next;
+	mes "[Assassin Kai]";
+	mes "ฮ่า ฮ่า...นี่มันเป็นเวลานานมากแล้ว ที่ข้าไม่ผมคนขีแพ้อย่างท่าน";
+	emotion 18;
+	next;
+	mes "[Assassin Kai]";
+	mes "โอ้ ข้าต้องขอโทษด้วยละกัน ที่ค่าเผลอหัวเราะเยาะท่าน แต่ท่านทำให้ข้ารู้สึกตลกนี่ ฮี่ ฮี่ ฮี่";
+	emotion 18;
+	next;
+	mes "[Assassin Kai]";
+	mes "เอาล่ะ ข้าว่าท่านคงอยากจะได้รับคำแนะนำจากข้านะ?";
+	next;
+	menu "ใช่ ช่วยข้าด้วย",-, "หยุดหัวเราะข้า แล้วให้คำแนะนำข้า",M_1, "เงียบไปเลย ข้าไม่จำเป็นต้องช่วย!",M_2;
+
+		mes "[Assassin Kai]";
+		mes "ฮ่า ฮ่า!!! อย่างน้อยเจ้าก็มีความจริงใจมั่งล่ะ";
+		mes "ฮ่า ฮ่า...ท้องข้า...อุ๊บ.. ท้องของข้าเจ็บ!! ท่านกำลังจะฆ่าข้า! ฮ่า ฮ่า!!!";
+		emotion 18;
+		next;
+		mes "[Nameless One]";
+		mes ".....ฮ่าาา";
+		next;
+		mes "[Assasin Kai]";
+		mes "ฮ่าาา!! Nameless One ข้าคิดว่ามันตลกซะจริง?";
+		emotion 18;
+		next;
+		mes "[Nameless One]";
+		mes "ฮี่ ฮี่ ฮี่..... มันใช่ ซะจริงๆ.....";
+		next;
+		mes "[Assassin Kai]";
+		mes "..... เอาล่ะ ท่านคงจะอยาได้รับคำแนะนำบางอย่างซะละ?";
+		next;
+		mes "[Assassin Kai]";
+		mes "...";
+		next;
+		mes "[Assassin Kai]";
+		mes ".....";
+		next;
+		mes "[Assassin Kai]";
+		mes "........";
+		next;
+		mes "[Assassin Kai]";
+		mes "...............";
+		next;
+		mes "[Assassin Kai]";
+		mes "......หืม.....เสียใจด้วย ข้ารู้สึกว่าข้าไม่ชอบเจ้า";
+		next;
+		mes "[Assassin Kai]";
+		mes "ฮ่า ฮ่า ฮ่า ข้าไม่อยากจะเชื่อเจ้าอีก....";
+		emotion 18;
+		close2;
+		warp "in_moc_16.gat", 19, 141;
+		end;
+	M_1:
+		mes "[Assassin Kai]";
+		mes "อืมม.....ข้ารู้... ข้าเสียใจกับเสียงหัวเราะของข้า...... คนเรามักทำผิดพลาดได้เสมอ..... ข้อนี้ข้าเข้าใจ";
+		next;
+		mes "[Assassin Kai]";
+		mes "ถึงแม้ว่าข้าจะไม่สามารถให้คำตอบสำหรับการทดสอบนี้ แต่ข้ายังมีข้อมูลที่เป็นประโยชน์เกี่ยวกับ Assassin ที่อาจจะช่วยท่านได้";
+		next;
+		mes "[Assassin Kai]";
+		mes "สำหรับ Assassin นั้น มีเกียรติและความภาคภูมิใจสูงสุด";
+		mes "...วันหนึ่งคงจะมีใครบางคนที่จะสามารถกลายเป็น Assassin ได้ด้วยโชคชะตาของเขา";
+		next;
+		mes "[Assassin Kai]";
+		mes "Assassins นั้นมีชีวิตที่โดดเดี่ยว เราไม่สามารถเข้าใกล้ชิดกับทุกๆ คนได้";
+		mes "เพราะท่านลองคิดดูสิ ถ้าคนที่คุณรักเห็นมือที่เปื้อนไปด้วยเลือดของท่านล่ะ......";
+		next;
+		mes "[Assassin Kai]";
+		mes "..... ไม่ต้องคิดมากเลย พวกเขาคงจะต้องตกใจและกลัวท่าน..";
+		mes "พวกเขาจะไม่สามารถอยู่เคียงข้างท่านได้ มีเพียงท่านเท่านั้นที่สามารถจัดการกับเรื่องเหล่านี้ได้";
+		next;
+		mes "[Assassin Kai]";
+		mes "แม้ว่าท่านต้องอยู่อย่างสันโดษ แต่มันก็ยังคุ้มค่า";
+		mes "เพราะว่าการเป็น Assassin ท่านจะมีชีวิตที่เป็นอิสระ ไม่มีใครจะรู้ได้ว่าท่านจะทำอะไรต่อไป";
+		next;
+		mes "[Assassin Kai]";
+		mes "นี่คือเรื่องทั้งหมดสำหรับ Assassins...... ข้าหวังว่าสิ่งที่ข้าพูดคงไม่ทำให้ท่านลำบากใจ?";
+		close2;
+		warp "in_moc_16.gat", 19, 141;
+		end;
+	M_2:
+		mes "[Assassin Kai]";
+		mes "...หืม.....";
+		next;
+		mes "[Assassin Kai]";
+		mes "ดี  เพราะจิตวิญญาณไม่เคยจะเชื่อสิ่งใดง่ายๆ";
+		mes "Assassins ต้องมีความมุ่งมั่น อดทนและข้าเสียใจสำหรับสิ่งที่ข้าได้หัวเราะท่านไปก่อนหน้านี้";
+		next;
+		mes "[Assassin Kai]";
+		mes "การที่พวกเขาลืมการต่อสู้เพราะกลัวว่าจะต้องกลายมาเป็น Assasin??!!  มันเป็นเรื่องที่น่าอายยิ่งนัก......";
+		next;
+		mes "[Assassin Kai]";
+		mes "เพราะฉะนั้น. กรุณา............";
+		next;
+		mes "[Assassin Kai]";
+		mes "ท่านจงจำไว้เสมอว่านี่คือความภาคภูมิใจสูงสุดสำหรับ Assassin.";
+		mes "ด้วยเลือดที่ไหลหยดมาจาก katars และ daggers!!";
+		next;
+		menu "โอเค ข้ามั่นใจ",-, "เอ่อ ข้ารู้สึกสับสนไปหมดแล้ว",sM_End;
+
+			mes "[Assassin Kai]";
+			mes ".... ดีล่ะ! ข้าดีใจที่ท่านเข้าใจในสิ่งที่ข้าพูด ข้าจะให้เคล็ดลับกับท่านบางอย่างละกันสำหรับใช้ในการทดสอบแรก";
+			next;
+			callsub sF_Quiz;
+			next;
+			mes "[Assassin Kai]";
+			mes "ข้าจะส่งท่านไปในห้องโถงนั้นอีกครั้ง";
+			close2;
+			warp "in_moc_16.gat", 19, 141;
+			close;
+
+		sM_End:
+			mes "[Assassin Kai]";
+			mes ".... หืมม์... ท่านสามารถเป็นคนที่งี่เง่าขนาดนี้เลยเหรอ??? เรื่องแค่นี้ท่านยังจะไม่เข้าใจอีก??";
+			emotion 23;
+			next;
+			mes "[Assassin Kai]";
+			mes "การเป็น Assassin's อย่างมีเกียรติที่สำคัญคืออะไร?!";
+			next;
+			mes "[Assassin Kai]";
+			mes "อ่าา!!! นี่ท่านไม่รู้อะไรเลยใช่มั้ย ข้าว่าทท่านคงจะสติไม่ดี...........";
+			emotion 6;
+			next;
+			mes "[Assassin Kai]";
+			mes "ไป ออกไป! รีบออกไปจากที่นี้ ท่านไม่เหมาะหรอกที่จะมาเป็น Assassin!!!";
+			emotion 32;
+			close2;
+			warp "c_tower4.gat", 64, 76;
+			close;
+
+sF_Quiz:
+	if(@temp == 1) goto sL_Quiz2;
+	if(@temp == 2) goto sL_Quiz3;
+
+	sL_Quiz1:
+		mes "[Assassin Kai]";
+		mes "เริ่มต้นด้วยสกิลแรกl ^554433Grimtooth^000000 สามารถใช้ได้โดย ^554433Katar^000000 เท่านั้น  มันจะไม่มีประโยชน์หากใช้ด้วย Daggers.";
+		next;
+		mes "[Assassin Kai]";
+		mes "สกิลพิษทั้งหมดสามารถใช้ได้โดย Assassin";
+		next;
+		mes "[Assassin Kai]";
+		mes "ท่านสามารถใช้ ^554433Double Attack^000000? โจมตีมอนสเตอร์ โดยไม่ต้องใช้^554433 sp^000000.";
+		next;
+		mes "[Assassin Kai]";
+		mes "^554433Red Gemstones^000000 เป็นอัญมณีที่สามารถใช้ได้โดย Assassins เท่านั้นและ  Blue Gemstones มีประโยชน์ต่อ Assassins! อย่างมาก";
+		next;
+		mes "[Assassin Kai]";
+		mes "น้ำสามารถชนะไฟ... หากท่านมีอาวุธธาตุน้ำ ท่านควรนำไปใช้ต่อสู้กับมอนสเตอร์ธาตุไฟ";
+		next;
+		mes "[Assassin Kai]";
+		mes "แต่น้ำนั้นจะถูกพัดไปโดยลมซึ่งทำให้ ^554433น้ำนั้นด้อยกว่าลม^000000.";
+		next;
+		mes "[Assassin Kai]";
+		mes "ท่านสามารถใช้ ^554433Cloak เมื่ออยู่ใกล้กับกำแพงเท่านั้น^000000 หากคุณอยู่ห่างเกิน 1 ช่องจากกำแพงคุณสกิลจะยกเลิก";
+		return;
+	sL_Quiz2:
+		mes "[Assassin Kai]";
+		mes "จะมี Katars บางอันที่มีธาตุแฝงอยู่";
+		next;
+		mes "[Assassin Kai]";
+		mes "Katars เป็นอาวุธที่สามารถหาดรอปได้จากแผนที่ทะเลทราย มันจะเป็นประโยชน์มากหากใช้มัน";
+		next;
+		mes "[Assassin Kai]";
+		mes "Katar เป็นอาวุธชนิดหนึ่งที่แข็งแรงที่สุดสำหรับ Assassin";
+		next;
+		mes "[Assassin Kai]";
+		mes "^554433Fire^000000 มีความสามารถโจมตี ^554433มอนสเตอร์บนพื้นดิน^000000 ได้แรงกว่าปกติ";
+		next;
+		mes "[Assassin Kai]";
+		mes "หากท่านต้องการรู้ ธาตุของอาวุธ ท่านต้องสังเกตุที่ชื่อนำหน้าของมัน";
+		return;
+	sL_Quiz3:
+		mes "[Assassin Kai]";
+		mes "The ^554433Elder willow card จะเพิ่ม intelligence ให้กับท่าน^000000.";
+		next;
+		mes "[Assassin Kai]";
+		mes "Assassins มีความสามารถพิเศษด้านการหลบหลีกและการโจมตีแต่พลังป้องกันของเราจะน้อยมาก  ที่สำคัญคือเราจน.. !!";
+		next;
+		mes "[Assassin Kai]";
+		mes "......";
+		next;
+		mes "[Assassin Kai]";
+		mes "Dagger อาวุธประเภทมีดสามารถถือได้ 2 มือ!";
+		next;
+		mes "[Assassin Kai]";
+		mes "ข้าไม่ได้ไป Morroc มาเป็นเวลานานมากแล้ว.... ตั้งแต่ที่ข้าได้เปลี่ยนเป็น Thief ตอนนั้น......";
+		next;
+		mes "[Assassin Kai]";
+		mes "ทั้งขโมย mushrooms..... จนได้ orange gooey mushrooms เป็นสิ่งที่น่าจดจำมากสำหรับข้า";
+		next;
+		mes "[Assassin Kai]";
+		mes "^554433Baphomet Jr. card จะเพิ่ม 3 agility และ 1 critical^000000 ใน status ของท่าน";
+		next;
+		mes "[Assassin Kai]";
+		mes "พวกเรา Assassins มี agility ที่สูงกว่า Class อื่นๆ  เราสามารถเพิ่ม ^5533FF10 agility^000000 ได้เกินจำนวนมากกว่าอาชีพอื่นๆ";
+		return;
+}
+
+
+
+//============================================================================//
+//				First Test
+//****************************************************************************//
+
+// ----------------------------------------------------------------
+// Keeps the player from moving to far into the room.
+// This is to avoid cheaters who might try to take Bakardi's test first.
+in_moc_16.gat,19,144,1	script	getbacker	139,8,0,{
+	if(ASSIN_Q > 1) end;
+	warp "in_moc_16.gat",19,142;
+	addtimer 700, "Nameless One::OnTimer700";
+	end;
+}
+
+// Namelss One ====================================================
+in_moc_16.gat,19,150,1	script	Nameless One	139,{
+
+OnTimer700:
+	if(ASSIN_Q == 1) goto L_ReTest;
+	set @LISTEN, 0;
+
+	mes "[Nameless One]";
+	mes "ฮ่า ฮ่า!!!...... ไม่มีประโยชน์หรอกที่เจ้าจะมองหาข้า!";
+	mes "ข้าซ่อนตัวได้อย่างสมบูรณ์แบบนี่คือ พื้นฐานของ Assassin!!";
+	next;
+	mes "[Nameless One]";
+	mes "หืม? ทำไมข้าจึงไม่มีชื่ออย่างนั้นเหรอ? ฮ่า ฮ่า ฮ่า!!!... เป็นคำถามที่ดีและนี่คือเหตุผลที่ข้าซ่อนตัวไว้.....";
+	next;
+	mes "[Nameless One]";
+	mes "ข้าอาจจะข้าท่านโดยที่เจ้าไม่รู้ตัว!!........ ท่านคงไม่กลัวหรอกนะ?";
+	next;
+	menu "อ่า..ข้ากลัว กางเกงข้าเปียกหมดแล้ว",-, "ออกมาพูดกับข้า ข้าชอบความท้าทาย!!",M_1;
+
+		mes "[Nameless One]";
+		mes "ฮ่าห์...ข้าไม่แปลกใจเลย  ที่ข้าคนน่าเบื่ออย่างท่านจะเป็นเช่นนี้!";
+		next;
+		mes "[Nameless One]";
+		mes "หืออ..... ข้าไม่มีเวลากับคนอย่างท่าน..ออกไปซะ...";
+		close2;
+		disablenpc "Assassin Kai#1";
+		enablenpc "Assassin Kai#2";
+		warp "in_moc_16.gat", 19, 76;
+		end;
+	M_1:
+		mes "[Nameless One]";
+		mes "อะไร?.... ท่านคงคิดว่ามันยากมาเลยใช่มั้ย?............";
+		next;
+		mes "[Nameless One]";
+		mes "................";
+		next;
+		mes "[Nameless One]";
+		mes "หือ..............";
+		next;
+		mes "[Nameless One]";
+		mes "ข้าจะบอกท่านบางอย่าง...........";
+		next;
+		mes "[Nameless One]";
+		mes "ข้าเป็นนักฆ่าเลือดเย็น.... นี่คงเป็นเส้นทางแห่งเลือดเพื่อที่จะก้าวต่อไปสู่ขั้นต่อไป.....";
+		next;
+		mes "[Nameless One]";
+		mes "Assasin ที่แท้จริงไม่จำเป็นต้องเปิดเผยชื่อ..... แต่จะรู้ได้โดยคมมีดของเรา";
+		next;
+		mes "[Nameless One]";
+		mes "แม้ว่าท่านจะพูดคุยกับข้าและเข้าใจเรื่องนี้.........";
+		next;
+		mes "[Nameless One]";
+		mes "นี่จะเหมาะสมเฉพาะผู้ที่มีความเย็นชา มุ่งมัน และต้องไม่กลัวสิ่งใดๆ จะทำให้ท่านเป็น Assassin....";
+		next;
+		mes "[Nameless One]";
+		mes "ก่อนที่ข้าจะเริ่มการทดสอบท่าน ข้าจะช่วยท่านด้วยการบอกคำถามพื้นฐานบางอย่าง";
+		sM_Menu:
+		next;
+		menu "ท่านมีทักษะอะไรบ้าง?",-, "อะไรคือสิ่งที่สำคัญที่สุดสำหรับ Assassin?",sM_1, "ข้าต้องการเริ่มการทดสอบ",sM_End;
+
+			mes "[Nameless One]";
+			mes "ใช่ ทักษะที่มีประโยชน์แก่ Assassin ที่สุดก็คือทักษะ masteries ข้าจะแนะนำท่านต่อจากนี้";
+			next;
+			mes "[Nameless One]";
+			mes "ทักษะแรกคือ ^5533FFKatar mastery^000000 มันจะเป็นการเพิ่มความรุนแรงในการโจมตีเมื่อท่านใช่อาวุธ Katar.";
+			mes "ทักษะนี้จะเป็นประโยชน์อย่างมากหากท่านใช้ Katar";
+			next;
+			mes "[Nameless One]";
+			mes "Assassins มีความสามารถในการใช้อาวุธทั้งสองชนิดในเวลาเดียวกัน ซึ่งจะทำให้เขาเป็นนักรบที่มีพลังโจมตีสูง";
+			mes "แต่การใช้อาวุธทั้งสอง ก็จะมีข้อเสียของมันเล็กน้อย.";
+			next;
+			mes "[Nameless One]";
+			mes "มันคงเป็นการยากที่ท่านจะใช้อาวุธพร้อมกันทั้ง 2 ชนิดในครั้งเดียวเพราะความเสียหายที่ท่านทำได้จะลดลงหากท่านใช้ในมือที่ไม่ถนัด";
+			next;
+			mes "[Nameless One]";
+			mes "นั่นคือเหตุผลที่ท่านต้องมีทักษะ ^5533FF'Left hand mastery' และ 'Right hand mastery'^000000.";
+			mes "โดยการเรียนรู้ทั้งสองทักษะนี้ จะสามารถทำให้พลังโจมตีของท่านในมือทั้งสองข้างนั้นสมดุล";
+			next;
+			mes "[Nameless One]";
+			mes "Left hand mastery จะสามารถเรียนได้หากท่านมี Right hand mastery เลเวล 2 ขึ้นไป";
+			mes "และยังใช้ร่วมกับ Katar mastery จะทำให้ท่านกลายเป็น Assassin ที่มีการโจมตีสูงมากขึ้นอีกด้วย";
+			next;
+			mes "[Nameless One]";
+			mes "^5533FF'Sonic Blow'^000000 เป็นทักษะที่โจมตีได้อย่างรวดเร็ว จะช่วยให้คุณไปตีศัตรูได้สูงสุดถึง 8 ครั้งภายในพริบตา";
+			next;
+			mes "[Nameless One]";
+			mes "สกิลนี้จะสามารถใช้ได้ด้วย Katar เท่านั้น นอกจากนี้ท่านยังต้องมีทักษะ Katar Mastery ที่เลเวล 4 ขึ้นไป";
+			mes "ความเสียหายจากการใช้ Sonic Blow depends จะขึ้นอยู่กับ strength ที่ท่านมี";
+			next;
+			mes "[Nameless One]";
+			mes "^5533FF'Grimtooth^000000 .... สามารถโจมตีได้โดยที่ไม่มีใครเห็น?";
+			mes "Grimtooth ทักษะนี้จะใช้เมื่อท่านหายตัวและโจมตีในระยะไกลโดยสาดความเสียหายด้วย Grimtooth.";
+			next;
+			mes "[Nameless One]";
+			mes "ซึ่งเป็นโจมตีเป็นกลุ่ม Grimtooth จะมีประโยชน์มากเมื่อโจมตีคนเป็นกลุ่ม";
+			mes "ระดับสกิล Grimtooth จะสามารถทำให้ท่านโจมตีได้ไกลขึ้นและแรงขึ้น";				
+			next;
+			mes "[Nameless One]";
+			mes "'เพื่อที่จะใช้ ^5533FFCloak^000000 ท่านต้องมี  hide เลเวล 2";
+			mes "Cloak จะช่วยให้ท่านสามารถซ่อนตัวได้ และยังสามารถเดินไปรอบๆ ในขณะกำลังซ่อนตัว";
+			next;
+			mes "[Nameless One]";
+			mes "แต่ท่านจะสามารถย้ายไปไหนมาไหนได้ ต่อเมื่ออยู่ริมกำแพงเท่านั้น";
+			next;
+			mes "[Nameless One]";
+			mes "'นี่เป็นเทคนิคพิเศษที่ช่วยให้ท่านสามารถเปลี่ยนอาวุธของท่านให้ถูกเคลือบด้วยพิษ เรียกว่า ^5533FFEnchant Poison^000000.";
+			next;
+			mes "[Nameless One]";
+			mes "เมื่อถูกเคลือบด้วยพิษที่อาวุธแล้ว มีโอกาสที่จะทำให้คู่ต่อสู้ติดพิษตามไปด้วย";
+			mes "แต่ทานจะต้องมีทักษะ Envenom อย่างน้อยระดับเลเวล 1 เพื่อใช้ทักษะนี้";
+			next;
+			mes "[Nameless One]";
+			mes "^5533FF'Poison React'^000000 ทักษะนี้จะช่วยสะท้อนการโจมตีของมอนสเตอร์ด้วยพิษ";
+			mes "หากท่านต้องการเรียน Poison React ท่านต้องมีทักษะ Enchant posion อย่างน้อยเลเวล 3";
+			next;
+			mes "[Nameless One]";
+			mes "^5533FF'Vemon Dust'^000000 ด้วยความสามารถนี้ท่านสามารถจะวางกับดักพิษไว้ได้บนพื้นดิน";
+			mes "เมื่อมอนสเตอร์เข้าสู่พื้นที่ที่คุณวางกับดักพิษไว้ มีโอกาสที่จะทำให้มอนสเตอร์ติดพิษได้เหมือนกัน";
+			next;
+			mes "[Nameless One]";
+			mes "หากระดับของทักษะสูงระยะส่งผลของพิษก็จะนานขึ้น  แต่ท่านจำเป็นต้องมี Red Gemstone ในการใช้ทักษะนี้";
+			mes "Level 5 Enchant Poison เพื่อจะสามารถเรียน Venom Dust";
+			next;
+			mes "[Nameless One]";
+			mes "^5533FF'Venom Splasher'^000000 ไม่เพียงแค่จะทำให้เป้าหมายติดพิษ แต่ยังทำให้เป้าหมายถูกระเบิดด้วยพิษและกระจายไปทั่ว";
+			next;
+			mes "[Nameless One]";
+			mes "มอนสเตอร์ที่ถูกสกิล Venom Splasher จะระเบิดเมื่อ HP เหลือเพียง 1/3 จากทั้งหมด";
+			next;
+			mes "[Nameless One]";
+			mes "นี่เป็นทักษะที่ยากที่สุดในการฝึกฝนของ Assassin ท่านจะต้องมี 5 Venom Dust และ level 5 Poison React เพื่อจะเรียนทักษะนี้";
+			next;
+			mes "[Nameless One]";
+			mes "และนี่คือสกิลทั้งหมดของ Assassin";
+			set @LISTEN, @LISTEN + 1;
+			goto sM_Menu;
+		sM_1:
+			mes "[Nameless One]";
+			mes "หืม... สิ่งสำคัญของ Assassins คือการอัพ Agility เพื่อเพิ่มความว่องไว";
+			mes "ด้วย Agility จะเพิ่มความสามารถในการหลบหลีกและเพิ่มความเร็วในการโจมตีอย่างมาก";
+			next;
+			mes "[Nameless One]";
+			mes "อีกหนึ่งสิ่งที่เป็น Status ที่สำคัญนั่นก็คือ Strength สิ่งนี้จะเพิ่มการโจมตีของท่านให้แรงขึ้น";
+			next;
+			mes "[Nameless One]";
+			mes "นี่คือสิ่งเล็กน้อยที่ข้าจะสามารถบอกท่านได้ ส่วน Status ที่เหลือท่านต้องทำการทดลองเอาเองละกัน";
+			set @LISTEN, @LISTEN + 1;
+			goto sM_Menu;
+		sM_End:
+			set ASSIN_Q, 1;
+			if(@LISTEN > 0) goto L_Test;
+			mes "[Nameless One]";
+			mes "ฮ่า ฮ่า! ท่านอวดดีกับข้ามากไปแล้ว ท่านไม่อยากฟังสิ่งที่ข้าจะบอกใช่มั้ย?!";
+			next;
+			mes "[Nameless One]";
+			mes "แล้วแต่เจ้านะ.. ข้าจะคอยดูว่าเจ้าจะผ่านการทดสอบนี้ได้มั้ย";
+			next;
+
+L_Test:
+	mes "[Nameless One]";
+	mes "โอเค ตอนนี้ก็ได้เวลาสำหรับการทดสอบแล้ว  ท่านตอบ ^FF5533ผิด^000000 มากกว่า 1 ข้อท่านก็จะล้มเหลวในการทดสอบ";
+	next;
+	set @temp, rand(3);
+	set @score, 0;
+	mes "[Nameless One]";
+	mes "เอาล่ะ มาเริ่มกัน...";
+	next;
+	if(@temp == 1) goto L_Quiz2;
+	if(@temp == 2) goto L_Quiz3;
+
+	L_Quiz1:
+		mes "[Nameless One]";
+		mes "1. ทักษะใดไม่จำเป็นต้องมีเพื่อให้ได้ทักษะ Grimtooth?";
+		next;
+		menu "Cloaking Lv 2",sM_1a, "Sonic Blow Lv 5",sM_1a, "Hiding Lv 2",sM_1a, "Left hand mastery Lv 2",-;
+
+			set @score, @score + 10;
+		sM_1a:
+
+		mes "[Nameless One]";
+		mes "2. Enchant Poison เป็นทักษะในการเพิ่มคุณสมบัติบางอย่างลงในอาวุธ คุณสมบัตินั้นคือ?";
+		next;
+		menu "Poison",-, "Earth",sM_2a, "Fire",sM_2a, "Wind",sM_2a;
+
+			set @score, @score + 10;
+		sM_2a:
+
+		mes "[Nameless One]";
+		mes "3. จากการเรียนรู้ทักษะ Right Hand Mastery  Level 4 คืออะไร?";
+		next;
+		menu "พลังโจมตีกลับคืนเป็น 80% ",sM_3a, "พลังโจมตีกลับคืนเป็น 70%",-, "พลังโจมตีกลับคืนเป็น 90%",sM_3a, "พลังโจมตีกลับคืนเป็น 108%!!",sM_3a;
+
+			set @score, @score + 10;
+		sM_3a:
+
+		mes "[Nameless One]";
+		mes "4. ไอเท็มใดที่ใช้ในทักษะ Venom Dust?";
+		next;
+		menu "Green Gemstone",sM_4a, "Blue Gemstone",sM_4a, "Yellow Gemstone",sM_4a, "Red Gemstone",-;
+
+			set @score, @score + 10;
+		sM_4a:
+
+		mes "[Nameless One]";
+		mes "5. ทักษะใดที่สามารถเรียนรู้ได้หลังจากมี Enchant Posion Lv 5?";
+		next;
+		menu "Venom Splasher",sM_5a, "Grimtooth",sM_5a, "Sonic Blow",sM_5a, "Venom Dust",-;
+
+			set @score, @score + 10;
+		sM_5a:
+
+		mes "[Nameless One]";
+		mes "6. ทักษะใดที่ทำให้ล่องหน?";
+		next;
+		menu "Hide",sM_6a, "Backslide",sM_6a, "Cloaking",-, "Throw Sand",sM_6a;
+
+			set @score, @score + 10;
+		sM_6a:
+
+		mes "[Nameless One]";
+		mes "7. เมื่อใดที่ท่านไม่สามารถใช้งาน Venom Splasher?";
+		next;
+		menu "เมื่อศัตรูมีค่า HP ต่ำ",sM_7a, "ต้องใข้ Red Gemstone.",-, "ต้องมีค่า HP เล็กน้อย",sM_7a;
+
+			set @score, @score + 10;
+		sM_7a:
+
+		mes "[Nameless One]";
+		mes "8. เมื่ออาวุธใส่ Vadon Card จะโจมตีมอนสเตอร์ใดได้อย่างมีประสิทธิภาพมากที่สุด?";
+		next;
+		menu "Steel Chonchon",sM_8a, "Deviruchi",sM_8a, "Elder Willow",-, "Baphomet",sM_8a;
+
+			set @score, @score + 10;
+		sM_8a:
+
+		mes "[Nameless One]";
+		mes "9. เมื่อใช้ทักษะ Double Attack ด้วย Dagger จะใช้ค่า SP เท่าไร?";
+		next;
+		menu "15",sM_9a, "0 เพราะเป็นความสามารถติดตัว",-, "10",sM_9a, "54",sM_9a;
+
+			set @score, @score + 10;
+		sM_9a:
+
+		mes "[Nameless One]";
+		mes "10. อาวุธที่ใช้งานได้อย่างมีประสิทธิภาพที่สุดใน Byala?";
+		next;
+		menu "Wind Gladius",-, "Ice Gladius",sM_10a, "Earth Gladius",sM_10a, "Fire Gladius",sM_10a;
+
+			set @score, @score + 10;
+		sM_10a:
+		goto L_Score;
+
+	L_Quiz2:
+		mes "[Nameless One]";
+		mes "1. มอนสเตอร์ใดที่ดรอป Katar ที่มี Slot?";
+		next;
+		menu "Male Thief Bug",sM_1b, "PecoPeco",sM_1b, "Desert wolf",-, "Kobold",sM_1b;
+
+			set @score, @score + 10;
+		sM_1b:
+
+		mes "[Nameless One]";
+		mes "2. มอนสเตอร์ใดที่ดรอป Jur ที่มี Slot?";
+		next;
+		menu "Caramel",-, "Ghostring",sM_2b, "Baphomet Jr",sM_2b, "DoppelGanger",sM_2b;
+
+			set @score, @score + 10;
+		sM_2b:
+
+		mes "[Nameless One]";
+		mes "3. อาชีพใดที่สร้างอาวุธได้?";
+		next;
+		menu "Merchant",sM_3b, "Blacksmith",-, "Thief",sM_3b, "Priest",sM_3b;
+
+			set @score, @score + 10;
+		sM_3b:
+
+		mes "[Nameless One]";
+		mes "4. อาวุธใดที่ไม่ใช่ประเภท Katar?";
+		next;
+		menu "Jur",sM_4b, "Jamadhar",sM_4b, "Infiltrator",sM_4b, "Gladius",-;
+
+			set @score, @score + 10;
+		sM_4b:
+
+		mes "[Nameless One]";
+		mes "5. มอนสเตอร์เกือบทั้งหมดที่อยู่ใน Byalan มีธาตุใด?";
+		next;
+		menu "Water",-, "Fire",sM_5b, "Wind",sM_5b, "Earth",sM_5b;
+
+			set @score, @score + 10;
+		sM_5b:
+
+		mes "[Nameless One]";
+		mes "6. มอนสเตอร์ใดที่ทำ Q pet ไม่ได้?";
+		next;
+		menu "Poring",sM_6b, "Roda Frog",-, "Lunatic",sM_6b, "Poison Spore",sM_6b;
+
+			set @score, @score + 10;
+		sM_6b:
+
+		mes "[Nameless One]";
+		mes "7. Dagger ธาตุไฟ สังหารมอนสเตอร์ใดได้อย่างมีประสิทธิภาพมากที่สุด";
+		next;
+		menu "Kobold (Sword)",sM_7b, "Kobold (Mace)",sM_7b, "Kobold (Hammer)",sM_7b, "Kobold (Axe)",-;
+
+			set @score, @score + 10;
+		sM_7b:
+
+		mes "[Nameless One]";
+		mes "8. Katar ชนิดใดไม่มีธาตุ";
+		next;
+		menu "Katar of Raging Blaze",sM_8b, "Katar of Dusty Thornbush",sM_8b, "Sharpened Legbone of Ghoul",sM_8b, "Infiltrator",-;
+
+			set @score, @score + 10;
+		sM_8b:
+
+		mes "[Nameless One]";
+		mes "9.  เลือกมอนสเตอร์ที่ต่างออกไป";
+		next;
+		menu "Poring",sM_9b, "Pupa",sM_9b, "Ghostring",-, "Drops",sM_9b;
+
+			set @score, @score + 10;
+		sM_9b:
+
+		mes "[Nameless One]";
+		mes "10. มอนสเตอร์ต่อไปนี้ตัวใดไม่ใช่ธาตุ Undead";
+		next;
+		menu "Drake",sM_10b, "Archer Skeleton",sM_10b, "Poison Spore",-, "Ancient Mummy",sM_10b;
+
+			set @score, @score + 10;
+		sM_10b:
+		goto L_Score;
+
+	L_Quiz3:
+		mes "[Nameless One]";
+		mes "1. อัตราการหลบหลีกจะเพิ่มขึ้นเท่าไหร่ หากท่านมีทักษะ Improve Dodge เต็ม?";
+		next;
+		menu "20",sM_1c, "30",-, "140",sM_1c, "15",sM_1c;
+
+			set @score, @score + 10;
+		sM_1c:
+
+		mes "[Nameless One]";
+		mes "2. มอนสเตอร์ใดสามารถมองเห็น Thief / Assassin ที่ใช้ทักษะ Hiding / Cloaking?";
+		next;
+		menu "Hodes",sM_2c, "Whispers",-, "Porings",sM_2c, "Munaks",sM_2c;
+
+			set @score, @score + 10;
+		sM_2c:
+
+		mes "[Nameless One]";
+		mes "3. อาวุธผสมกลุ่มใดที่ Assassin สามารถถือทั้งสองมือได้?";
+		next;
+		menu "Jur + Mace",sM_3c, "Damascus + Claymore",sM_3c, "Damascus + Stiletto",-, "Axe + Stiletto",sM_3c;
+
+			set @score, @score + 10;
+		sM_3c:
+
+		mes "[Nameless One]";
+		mes "4. สถานที่เปลี่ยนอาชีพของ Thief คือที่ใด?";
+		next;
+		menu "Prontera",sM_4c, "Lutie",sM_4c, "AldeBaren",sM_4c, "Morroc",-;
+
+			set @score, @score + 10;
+		sM_4c:
+
+		mes "[Nameless One]";
+		mes "5. การ์ดใดที่ไม่เกี่ยวข้องกับ AGI?";
+		next;
+		menu "Baphomet Jr card",sM_5c, "Whisper Card",-, "Male Thief Bug card",sM_5c, "Chonchon card",sM_5c;
+
+			set @score, @score + 10;
+		sM_5c:
+
+		mes "[Nameless One]";
+		mes "6.  ความสามารถใดของ Assassin ที่ดีกว่าอาชีพอื่น?";
+		next;
+		menu "เก่งด้านร้องเพลง",sM_6c, "เก่งด้านการแสดง",sM_6c, "เก่งด้านการเต้นรำ",sM_6c, "เก่งด้านหลบหลีก",-;
+
+			set @score, @score + 10;
+		sM_6c:
+
+		mes "[Nameless One]";
+		mes "7. ค่า AGI บวกเพิ่มจะเป็นเท่าใดเมื่อท่านมี Job Lv 50?";
+		next;
+		menu "7",sM_7c, "8",sM_7c, "9",sM_7c, "10",-;
+
+			set @score, @score + 10;
+		sM_7c:
+
+		mes "[Nameless One]";
+		mes "8. Assassin ไม่สามารถใช้ไอเท็มใด?";
+		next;
+		menu "Sword",sM_8c, "Bow",-, "Dagger",sM_8c, "Jur",sM_8c;
+
+			set @score, @score + 10;
+		sM_8c:
+
+		mes "[Nameless One]";
+		mes "9. หาก Novice ต้องการจะเป็น Thief จะต้องเก็บเห็ดชนิดใด?";
+		next;
+		menu "Orange Net Mushrooms",-, "Red Gooey Mushrooms",sM_9c, "Orange Gooey Mushrooms",-, "Hairy Orange Mushrooms",sM_9c;
+
+			set @score, @score + 10;
+		sM_9c:
+
+		mes "[Nameless One]";
+		mes "10. การ์ดใดที่ไม่เกี่ยวข้องกับ Assassin?";
+		next; 
+		menu "Ghostring card",sM_10c, "Elder willow card",-, "Skeleton Soldier card",sM_10c, "Kobold card",sM_10c;
+
+			set @score, @score + 10;
+		sM_10c:
+
+L_Score:
+	mes "[Nameless One]";
+	mes "โคเค นี่คือคะแนนทั้งหมดของท่าน..";
+	next;
+	mes "[Nameless One]";
+	mes "คะแนนของท่านคือ ^FF5544" +@score+ "^000000/100....";
+	if(@score < 90) goto L_Failed;
+	mes "ดีมาก ท่านผานการตอบคำถาม";
+	next;
+	mes "[Nameless One]";
+	mes "ข้าว่าท่านคงจะรู้สึกตื่นเต้นกับทดสอบนี้ แต่ยังคงมีการทดสอบอื่นอีก ไปพูดคุยกับ Barkadi และเธอจะบอกเกี่ยวกับทดสอบถัดไป";
+	savepoint "in_moc_16.gat", 21, 160;
+	set ASSIN_Q, 2;
+	close;
+
+	L_Failed:
+		mes "ท่านล้มเหลวในการทดสอบ!";
+		mes "ข้าเสียใจด้วย ท่านจงกลับไปเตรียมตัวมาใหม่ ข้ายินดีจะทดสอบท่านอีกครั้ง. ?";
+		close2;
+		disablenpc "Assassin Kai#1";
+		enablenpc "Assassin Kai#2";
+		warp "in_moc_16.gat", 19, 76;
+		end;
+
+L_ReTest:
+	mes "[Nameless One]";
+	mes "หืมท่านกลับมา... ท่านคงมีความมุ่งมั่นจริงๆ ที่จะเป็น Assassin ซินะ?";
+	next;
+	mes "[Nameless One]";
+	mes "ถ้ามันเป็นความต้องจริงๆ ของท่าน ข้าก็บินดีที่จะช่วยท่านเสมอ";
+	next;
+	mes "[Nameless One]";
+	mes "แต่ถ้าหากท่านยังล้มเหลวอีกครั้ง ข้าว่าท่านควรถอดใจจากการเป็น Assassin ซะเถอะ!";
+	next;
+	menu "โอ้ ข้าว่าข้าควรจะออกจากที่นี่",-, "ข้าไม่มีวันยอมแพ้!",M_Retry;
+
+		mes "[Nameless One]";
+		mes "นั่นคงจะเป็นทางเลือกที่ดี การเป็น Assassin ต้องอยู่อย่างโดเดียว";
+		next;
+		mes "[Nameless One]";
+		mes "ออกจากสมาคม assassin เดี๋ยวนี้.. กลับไปยังเมืองที่ท่านจากมา!";
+		close2;
+		warp "moc_fild16.gat", 206, 241;
+		end;
+	M_Retry:
+		mes "[Nameless One]";
+		mes "เยี่ยมมาก เอาล่ะ... ข้าจะพยายามช่วยเจ้าให้เจ้าเป็น ฮ่า ฮ่า ฮ่า";
+		next;
+		goto L_Test;
+}
+
+
+//============================================================================//
+//				Second Test
+//****************************************************************************//
+
+//=====================================================//
+// Part 1: Eliminate the Target
+//=====================================================//
+
+// Barcardi ==============================>\\
+in_moc_16.gat,21,165,4	script	Barcardi	725,{
+
+	mes "[Barcardi]";
+	mes "ข้าเห็นว่าท่าน ^5533FF" + strcharinfo(0) + "^000000 คงผ่านการทดสอบมาแล้วใช่มั้ย";
+	M_Menu:
+	next;
+	menu "การทดสอบต่อไปคืออะไร?",M_0, "ข้าต้องการเริ่มการทดสอบ",M_1, "ข้าอยากพักผ่อนบ้าง",M_End;
+
+	M_0:
+		mes "[Barcardi]";
+		mes "ข้าจะบอกท่านเกี่ยวกับการทดสอบขั้นต่อไป.. ซึ่งการทดสอบนี้จะมีอยู่ 2 ส่วนคือ 1. จะทดสอบความสามารถของคนเพื่อค้นหาและจัดการกับเป้าหมาย";
+		mes "ท่านจะมีความกล้าตัดสินใจและความอดทน ในการเลือกเป้าหมายจากกลุ่มของของมอนสเตอร์";
+		next;
+		mes "[Barcardi]";
+		mes "สิ่งที่ท่านต้องตามหาก็คือมอนสเตอร์ที่ชื่อว่า ^5533FF'Sample for Job Test'^000000 หากท่านโจมตีผิดตัวท่านจะล้มเหลวในการทดสอบ";
+		mes "ท่านยังคงจะมีเวลาที่กำหนดสำหรับในการทดสอบหากการใช้เวลานานกว่า ^FF55333 นาที^000000 การทดสอบของท่านจะล้มเหลว";
+		next;
+		mes "[Barcardi]";
+		mes "ความสามารถในการโจมตีเป้าหมายอย่างถูกต้องและรวดเร็วคือพื้นฐานสำหรับการเป็น Assassin.";
+		mes "และการโจมตีโดยความเงียบ ไม่มีใครเห็น!";
+		next;
+		mes "[Barcardi]";
+		mes "ส่วนสุดท้ายของการทดสอบท่าจะต้องเดินหลบฝ่าฝูงมอนสเตอร์ที่ดุร้ายและอันตราย";
+		mes "^5544FFhide^000000 ทักษะนี้จะจำเป็นสำหรับท่านและท่านจะมีเวลา ^FF55333 นาที^000000 เพื่อที่จะผ่านบทสอบนี้";
+		next;
+		mes "[Barcardi]";
+		mes "หากมอนสเตอร์หาท่านพบและถูกฆ่า ท่านจะถูกพาออกจากการทดสอบและการทดสอบจะล้มเหลว";
+		next;
+		mes "[Barcardi]";
+		mes "ท่านจะต้องผ่านการทดสอบทั้งสองส่วนนี้ เพื่อที่ขะไปสู่บททดสอบถัดไป";
+		mes "แต่ถ้าหากล้มเหลว ท่านจะต้องเริ่มภารกิจใหม่ทั้งหมด.. !";
+		goto M_Menu;
+	M_1:
+		mes "[Barcardi]";
+		mes "การทดสอบนี้จะสามารถทดสอบเพียงครั้งละ 1 คนเท่านั้น เมื่อท่านพร้อมแล้วให้เข้าห้อง waiting room";
+		mes "การทดสอบจะเริ่มขึ้นโดยอัติโนมัติ... และห้องทดสอบจะเปิดขึ้น";
+		close;
+	M_End:
+		mes "[Barcardi]";
+		mes "....โอเค ท่านกลับมาได้เสมอ หากท่านคิดว่าท่านได้พักผ่อนเพียงพอแล้ว.....";
+		next;
+		warp "moc_fild16.gat", 206, 241;
+		close;
+
+OnInit:
+	waitingroom "Assasin Test Waitingroom",8,"Barcardi::OnStart",1;
+	end;
+OnStart:
+	set $@SinUsers, getareausers("in_moc_16.gat", 60, 136, 93, 177);
+	set $@SinUsers, $@SinUsers + getareausers("in_moc_16.gat", 64, 46, 111, 105);
+	if ($@SinUsers > 0) end;		// stops the rest of the script from running if there is somebody taking the test
+
+	if ((getwaitingroomstate(33)) == 0) end;		// stops the rest of the script from running if there is no one in the waiting room
+	killmonsterall "in_moc_16.gat";
+	warpwaitingpc "in_moc_16.gat", 65, 150;
+	donpcevent "SinTest2::OnStart";
+	end;
+}
+
+// Job Change Monsters ======================>\\
+in_moc_16.gat,1,1,0	script	SinTest2	-1,{
+
+OnStart:
+	set $@SinMob, 6;
+	disablenpc "sinWarp1";
+	// Target Monsters
+	monster "in_moc_16.gat",62,161,"Sample for Job Test",1002,1,"SinTest2::OnMobDead"; 
+	monster "in_moc_16.gat",85,169,"Sample for Job Test",1063,1,"SinTest2::OnMobDead";
+	monster "in_moc_16.gat",88,152,"Sample for Job Test",1002,1,"SinTest2::OnMobDead";
+	monster "in_moc_16.gat",90,143,"Sample for Job Test",1113,1,"SinTest2::OnMobDead";
+	monster "in_moc_16.gat",74,167,"Sample for Job Test",1031,1,"SinTest2::OnMobDead";
+	monster "in_moc_16.gat",77,173,"Sample for Job Test",1002,1,"SinTest2::OnMobDead";
+	// Decoy Monsters
+	monster "in_moc_16.gat",62,161,"Jabs change target",1063,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",85,169,"Warrior test target",1031,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",79,174,"Target",1113,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",85,156,"Job quest target",1063,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",74,171,"bouncer",1002,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",68,173,"I got yours right here!",1113,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",65,158,"Battle Target",1002,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",60,158,"Soldiet Target",1113,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",64,169,"Target",1002,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",71,173,"Job change ready",1063,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",77,172,"Don't hit me",1002,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",76,172,"Target",1063,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",75,172,"Not me",1113,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",67,167,"Keep up the good work",1063,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",86,170,"Job target change",1031,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",86,171,"Target",1002,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",86,170,"Target",1113,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",86,173,"Hope you can become an assassin..",1031,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",85,170,"Battle Monster",1031,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",89,156,"Target",1002,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",89,156,"Speed182",1113,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",89,156,"Battle Target",1063,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",89,156,"Battlefield Tears",1113,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",89,156,"Job Change Tears",1031,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",83,169,"Evil Servant",1002,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",63,158,"Dead soul",1063,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",63,157,"Target",1002,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",64,159,"Battle Target",1002,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",63,159,"Target",1063,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",63,159,"Archer Target",1002,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",63,159,"Swordman Target",1002,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",83,148,"Thief Target",1002,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",82,148,"Acolyte Target",1002,1,"SinTest2::OnFailed";
+	monster "in_moc_16.gat",84,148,"Merchant Target",1002,1,"SinTest2::OnFailed";
+	set $@sinRmX1, 60;
+	set $@sinRmY1, 136;
+	set $@sinRmX2, 93;
+	set $@sinRmY2, 177;
+	set $@wrpX, 19;
+	set $@wrpY, 161;
+	initnpctimer;
+	initnpctimer "TimerSin";
+	end;
+
+OnTimer500:
+	stopnpctimer;
+	areaannounce "in_moc_16.gat", 60, 136, 93, 177, "เริ่มเลย มีเวลา 3 นาที ไปได้! 'Sample for Job Test'",8;
+	end;
+OnMobDead:
+	set $@SinMob, $@SinMob -1;
+	areaannounce "in_moc_16.gat", 60, 136, 93, 177, "ดี.. ยังเหลือเป้าหมายอีก " + $@SinMob + " ตัว",8;
+	if($@SinMob > 0) end;
+
+	stopnpctimer "TimerSin";
+	killmonsterall "in_moc_16.gat";
+	enablenpc "sinWarp1";
+	areaannounce "in_moc_16.gat", 60, 136, 93, 177,"ห้องทดสอบประตูถัดไป จะเป็นที่พิกัด 87 137",8;
+	addtimer 30000, "sinWarp1::OnTimer30000";		// warps player after 30 sec to move test along
+	end;
+OnFailed:
+	stopnpctimer "TimerSin";
+	areaannounce "in_moc_16.gat", 60, 136, 93, 177,"การทดสอบล้มเหลว!",8;
+	addtimer 3000, "TimerSin::OnTimer188000";
+	end;
+}
+
+// Observer ===========================>\\
+in_moc_16.gat,62,153,1	script	Observer	55,{
+	mes "[Observer]";
+	mes "ถ้าไม่รังเกียจ ข้าอยากจะขอดูวิธีที่ท่านผ่านการทดสอบมา...";
+	close;
+}
+
+// Warp ==============================>\\
+in_moc_16.gat,87,137,0	script	sinWarp1	45,2,1,{
+OnTimer30000:
+	killmonsterall "in_moc_16.gat";
+	enablenpc "Thomas";
+	warp "in_moc_16.gat", 87, 102;
+	end;
+}
+
+// Booby Traps ========================>\\
+in_moc_16.gat,68,158,0	script	01_1::SinTrap	139,0,0,{
+	stopnpctimer "TimerSin";
+	warp "in_moc_16.gat", 19, 161;
+	killmonsterall "in_moc_16.gat";
+	donpcevent "Barcardi::OnStart";
+	end;
+}
+in_moc_16.gat,69,158,0	duplicate(SinTrap)	01_2	139,0,0
+in_moc_16.gat,68,159,0	duplicate(SinTrap)	01_3	139,0,0
+in_moc_16.gat,69,159,0	duplicate(SinTrap)	01_4	139,0,0
+in_moc_16.gat,64,162,0	duplicate(SinTrap)	02_1	139,0,0
+in_moc_16.gat,65,162,0	duplicate(SinTrap)	02_2	139,0,0
+in_moc_16.gat,64,163,0	duplicate(SinTrap)	02_3	139,0,0
+in_moc_16.gat,65,163,0	duplicate(SinTrap)	02_4	139,0,0
+in_moc_16.gat,62,168,0	duplicate(SinTrap)	03_1	139,0,0
+in_moc_16.gat,63,168,0	duplicate(SinTrap)	03_2	139,0,0
+in_moc_16.gat,62,169,0	duplicate(SinTrap)	03_3	139,0,0
+in_moc_16.gat,63,169,0	duplicate(SinTrap)	03_4	139,0,0
+in_moc_16.gat,66,170,0	duplicate(SinTrap)	04_1	139,0,0
+in_moc_16.gat,67,170,0	duplicate(SinTrap)	04_2	139,0,0
+in_moc_16.gat,66,171,0	duplicate(SinTrap)	04_3	139,0,0
+in_moc_16.gat,67,171,0	duplicate(SinTrap)	04_4	139,0,0
+in_moc_16.gat,64,174,0	duplicate(SinTrap)	05_1	139,0,0
+in_moc_16.gat,64,175,0	duplicate(SinTrap)	05_2	139,0,0
+in_moc_16.gat,65,174,0	duplicate(SinTrap)	05_3	139,0,0
+in_moc_16.gat,65,175,0	duplicate(SinTrap)	05_4	139,0,0
+in_moc_16.gat,72,174,0	duplicate(SinTrap)	06_1	139,0,0
+in_moc_16.gat,72,175,0	duplicate(SinTrap)	06_2	139,0,0
+in_moc_16.gat,73,174,0	duplicate(SinTrap)	06_3	139,0,0
+in_moc_16.gat,73,175,0	duplicate(SinTrap)	06_4	139,0,0
+in_moc_16.gat,72,166,0	duplicate(SinTrap)	07_1	139,0,0
+in_moc_16.gat,72,167,0	duplicate(SinTrap)	07_2	139,0,0
+in_moc_16.gat,73,166,0	duplicate(SinTrap)	07_3	139,0,0
+in_moc_16.gat,73,167,0	duplicate(SinTrap)	07_4	139,0,0
+in_moc_16.gat,72,168,0	duplicate(SinTrap)	08_1	139,0,0
+in_moc_16.gat,72,169,0	duplicate(SinTrap)	08_2	139,0,0
+in_moc_16.gat,73,168,0	duplicate(SinTrap)	08_3	139,0,0
+in_moc_16.gat,73,169,0	duplicate(SinTrap)	08_4	139,0,0
+in_moc_16.gat,78,168,0	duplicate(SinTrap)	09_1	139,0,0
+in_moc_16.gat,78,169,0	duplicate(SinTrap)	09_2	139,0,0
+in_moc_16.gat,79,168,0	duplicate(SinTrap)	09_3	139,0,0
+in_moc_16.gat,79,169,0	duplicate(SinTrap)	09_4	139,0,0
+in_moc_16.gat,80,172,0	duplicate(SinTrap)	10_1	139,0,0
+in_moc_16.gat,81,172,0	duplicate(SinTrap)	10_2	139,0,0
+in_moc_16.gat,82,172,0	duplicate(SinTrap)	10_3	139,0,0
+in_moc_16.gat,83,172,0	duplicate(SinTrap)	10_4	139,0,0
+in_moc_16.gat,80,173,0	duplicate(SinTrap)	10_5	139,0,0
+in_moc_16.gat,81,173,0	duplicate(SinTrap)	10_6	139,0,0
+in_moc_16.gat,82,173,0	duplicate(SinTrap)	10_7	139,0,0
+in_moc_16.gat,83,173,0	duplicate(SinTrap)	10_8	139,0,0
+in_moc_16.gat,88,174,0	duplicate(SinTrap)	11_1	139,0,0
+in_moc_16.gat,88,175,0	duplicate(SinTrap)	11_2	139,0,0
+in_moc_16.gat,89,174,0	duplicate(SinTrap)	11_3	139,0,0
+in_moc_16.gat,86,166,0	duplicate(SinTrap)	12_1	139,0,0
+in_moc_16.gat,86,167,0	duplicate(SinTrap)	12_2	139,0,0
+in_moc_16.gat,87,166,0	duplicate(SinTrap)	12_3	139,0,0
+in_moc_16.gat,87,167,0	duplicate(SinTrap)	12_4	139,0,0
+in_moc_16.gat,90,164,0	duplicate(SinTrap)	13_1	139,0,0
+in_moc_16.gat,90,165,0	duplicate(SinTrap)	13_2	139,0,0
+in_moc_16.gat,91,164,0	duplicate(SinTrap)	13_3	139,0,0
+in_moc_16.gat,91,165,0	duplicate(SinTrap)	13_4	139,0,0
+in_moc_16.gat,84,160,0	duplicate(SinTrap)	14_1	139,0,0
+in_moc_16.gat,85,160,0	duplicate(SinTrap)	14_2	139,0,0
+in_moc_16.gat,86,160,0	duplicate(SinTrap)	14_3	139,0,0
+in_moc_16.gat,87,160,0	duplicate(SinTrap)	14_4	139,0,0
+in_moc_16.gat,88,160,0	duplicate(SinTrap)	14_5	139,0,0
+in_moc_16.gat,89,160,0	duplicate(SinTrap)	14_6	139,0,0
+in_moc_16.gat,84,161,0	duplicate(SinTrap)	14_7	139,0,0
+in_moc_16.gat,85,161,0	duplicate(SinTrap)	14_8	139,0,0
+in_moc_16.gat,86,161,0	duplicate(SinTrap)	14_9	139,0,0
+in_moc_16.gat,87,161,0	duplicate(SinTrap)	14_10	139,0,0
+in_moc_16.gat,88,161,0	duplicate(SinTrap)	14_11	139,0,0
+in_moc_16.gat,89,161,0	duplicate(SinTrap)	14_12	139,0,0
+in_moc_16.gat,86,154,0	duplicate(SinTrap)	15_1	139,0,0
+in_moc_16.gat,86,155,0	duplicate(SinTrap)	15_2	139,0,0
+in_moc_16.gat,87,154,0	duplicate(SinTrap)	15_3	139,0,0
+in_moc_16.gat,87,155,0	duplicate(SinTrap)	15_4	139,0,0
+in_moc_16.gat,84,150,0	duplicate(SinTrap)	16_1	139,0,0
+in_moc_16.gat,84,151,0	duplicate(SinTrap)	16_2	139,0,0
+in_moc_16.gat,85,150,0	duplicate(SinTrap)	16_3	139,0,0
+in_moc_16.gat,85,151,0	duplicate(SinTrap)	16_4	139,0,0
+in_moc_16.gat,90,150,0	duplicate(SinTrap)	17_1	139,0,0
+in_moc_16.gat,90,151,0	duplicate(SinTrap)	17_2	139,0,0
+in_moc_16.gat,91,150,0	duplicate(SinTrap)	17_3	139,0,0
+in_moc_16.gat,91,151,0	duplicate(SinTrap)	17_4	139,0,0
+in_moc_16.gat,86,146,0	duplicate(SinTrap)	18_1	139,0,0
+in_moc_16.gat,86,147,0	duplicate(SinTrap)	18_2	139,0,0
+in_moc_16.gat,87,146,0	duplicate(SinTrap)	18_3	139,0,0
+in_moc_16.gat,87,147,0	duplicate(SinTrap)	18_4	139,0,0
+
+
+//=========================================================//
+// Part 2: Hide and Sneak
+//=========================================================//
+
+// Thomas ===============================>\\
+in_moc_16.gat,89,98,1	script	Thomas	118,4,2,{
+OnTimer600:
+	if(ASSIN_Q2 == 1) goto L_ReTest;
+	mes "[Thomas]";
+	mes "ข้าคือ Thomas ข้ามีหน้าที่รับผิดชอบการทดสอบนี้";
+	next;
+	mes "[Thomas]";
+	mes "เป้าหมายของการทดสอบนี้คือ การหลบหลีกจากศัตรู ที่ท่านต้องทำคือการเดินผ่านศัตรูโดยที่ศัตรูไม่รู้ตัว";
+	next;
+	mes "[Thomas]";
+	mes "ท่านต้องไม่ตายในขณะที่ทดสอบและท่านต้องไม่ฆ่ามอนสเตอร์พวกนี้เพราะเขาไม่ใช่เป้าหมายของท่าน";
+	mes "ใช้ความสามารถของท่านเพื่อหนีและหลบซ่อน เพื่อที่จะช่วยให้ท่านผ่านการทดสอบนี้";
+	next;
+	mes "[Thomas]";
+	mes "เอาล่ะ.. เริ่มได้";
+	next;
+	set ASSIN_Q2, 1;
+	disablenpc "Thomas";
+	donpcevent "SinTest2_2::OnStart";
+	close;
+L_ReTest:
+	mes "[Thomas]";
+	mes "~เห้อ~.... ข้าบอกท่านให้ใช้ทักษะ Hide เพื่อหลบซ่อน ข้าจะฟื้นพลังให้ท่าน....";
+	next;
+	mes "[Thomas]";
+	mes "เอาล่ะ....คงพร้อมที่จะเริ่มทดสอบใหม่แล้วนะ.....";
+	percentheal 100, 100;
+	next;
+	disablenpc "Thomas";
+	donpcevent "SinTest2_2::OnStart";
+	close;
+OnTouch:
+	warp "in_moc_16.gat",87,99;
+	addtimer 600, "Thomas::OnTimer600";
+	end;
+}
+
+
+// SinTest2_2 ===============================>\\
+in_moc_16.gat,1,1,1	script	SinTest2_2	-1,{
+OnStart:
+	monster "in_moc_16.gat", 81, 77, "MUMMY", 1041,1, "SinTest2_2::OnMobDead";
+	monster "in_moc_16.gat", 83, 77, "MUMMY", 1041,1, "SinTest2_2::OnMobDead";
+	monster "in_moc_16.gat", 85, 77, "MUMMY", 1041,1, "SinTest2_2::OnMobDead";
+	monster "in_moc_16.gat", 88, 77, "MUMMY", 1041,1, "SinTest2_2::OnMobDead";
+	monster "in_moc_16.gat", 90, 77, "MUMMY", 1041,1, "SinTest2_2::OnMobDead";
+	monster "in_moc_16.gat", 78, 56, "MUMMY", 1041,1, "SinTest2_2::OnMobDead";
+	monster "in_moc_16.gat", 80, 56, "MUMMY", 1041,1, "SinTest2_2::OnMobDead";
+	monster "in_moc_16.gat", 91, 56, "MUMMY", 1041,1, "SinTest2_2::OnMobDead";
+	monster "in_moc_16.gat", 93, 56, "MUMMY", 1041,1, "SinTest2_2::OnMobDead";
+	monster "in_moc_16.gat", 95, 56, "MUMMY", 1041,1, "SinTest2_2::OnMobDead";
+	monster "in_moc_16.gat", 97, 56, "MUMMY", 1041,1, "SinTest2_2::OnMobDead";
+	monster "in_moc_16.gat", 79, 62, "Hydra", 1068,1, "SinTest2_2::OnMobDead";
+	monster "in_moc_16.gat", 76, 65, "Hydra", 1068,1, "SinTest2_2::OnMobDead";
+	monster "in_moc_16.gat", 96, 65, "Hydra", 1068,1, "SinTest2_2::OnMobDead";
+	monster "in_moc_16.gat", 99, 65, "Hydra", 1068,1, "SinTest2_2::OnMobDead";
+	set $@sinRmX1, 64;
+	set $@sinRmY1, 46;
+	set $@sinRmX2, 111;
+	set $@sinRmY2, 105;
+	set $@wrpX, 87;
+	set $@wrpY, 102;
+	areawarp "in_moc_16.gat", $@sinRmX1, $@sinRmY1, $@sinRmX2, $@sinRmY2, "in_moc_16.gat", $@wrpX, $@wrpY;
+	initnpctimer "TimerSin";
+	end;
+OnMobDead:
+	stopnpctimer "TimerSin";
+	announce ". . . ท่านโจมตีเป้าหมายที่ข้าไม่ได้รับอนุญาติ! ท่านไม่ผ่านการทดสอบ",8;
+	enablenpc "Thomas";
+	addtimer 3000, "TimerSin::OnTimer188000";
+	end;
+}
+
+// Warp ================================>\\
+in_moc_16.gat,87,48,2	script	sinWarp2	45,2,2,{
+	mes "[Thomas]";
+	mes "เยี่ยมมาก! ยังเหลือการทดสอบสุดท้ายอีกหนึ่งอย่าง ขอให้ท่านโชคดี!";
+	stopnpctimer "TimerSin";
+	killmonster "in_moc_16.gat","SinTest2_2::OnMobDead";
+	set ASSIN_Q, 3;
+	set ASSIN_Q2, 0;
+	savepoint "in_moc_16.gat", 182, 180;
+	close2;
+	warp "in_moc_16.gat", 181, 183;
+	donpcevent "Barcardi::OnStart";
+	end;
+}
+
+
+//=======================================================//
+// Timer for Sin Test 2
+//=======================================================//
+in_moc_16.gat,1,1,0	script	TimerSin	-1,{
+OnTimer3000:
+	areaannounce "in_moc_16.gat", $@sinRmX1, $@sinRmY1, $@sinRmX2, $@sinRmY2, " ข้าจะบอกเวลาที่เหลือ เพื่อเตือนท่านให้รู้",8;
+	end;
+OnTimer5000:
+	areaannounce "in_moc_16.gat", $@sinRmX1, $@sinRmY1, $@sinRmX2, $@sinRmY2, "เริ่มเลย มีเวลา 3 นาที! ไปได้",8;
+	end;
+OnTimer35000:
+	donpcevent "Barcardi::OnStart";
+	end;
+OnTimer65000:
+	areaannounce "in_moc_16.gat", $@sinRmX1, $@sinRmY1, $@sinRmX2, $@sinRmY2, "มีเวลา 2 นาที ที่เหลือ!  ",8;
+	donpcevent "Barcardi::OnStart";
+	end;
+OnTimer95000:
+	donpcevent "Barcardi::OnStart";
+	end;
+OnTimer125000:
+	areaannounce "in_moc_16.gat", $@sinRmX1, $@sinRmY1, $@sinRmX2, $@sinRmY2, "มีเวลา 1 นาที ที่เหลือ!",8;
+	donpcevent "Barcardi::OnStart";
+	end;
+OnTimer155000:
+	areaannounce "in_moc_16.gat", $@sinRmX1, $@sinRmY1, $@sinRmX2, $@sinRmY2, "เหลือเวลา 30 วินาที!",8;
+	donpcevent "Barcardi::OnStart";
+	end;
+OnTimer180000:
+	areaannounce "in_moc_16.gat", $@sinRmX1, $@sinRmY1, $@sinRmX2, $@sinRmY2, "การทดสอบจะจบลงอีก 5 วินาที....",8;
+	end;
+OnTimer181000:
+	areaannounce "in_moc_16.gat", $@sinRmX1, $@sinRmY1, $@sinRmX2, $@sinRmY2, "4 วินาที....",8;
+	end;
+OnTimer182000:
+	areaannounce "in_moc_16.gat", $@sinRmX1, $@sinRmY1, $@sinRmX2, $@sinRmY2, "3 วินาที...",8;
+	end;
+OnTimer183000:
+	areaannounce "in_moc_16.gat", $@sinRmX1, $@sinRmY1, $@sinRmX2, $@sinRmY2, "2 วินาที..",8;
+	end;
+OnTimer184000:
+	areaannounce "in_moc_16.gat", $@sinRmX1, $@sinRmY1, $@sinRmX2, $@sinRmY2, "1 วินาที.",8;
+	end;
+OnTimer185000:
+	areaannounce "in_moc_16.gat", $@sinRmX1, $@sinRmY1, $@sinRmX2, $@sinRmY2, "โอเด หมดเวลาแล้ว ล้มเหลวในการทดสอบ!",8;
+	end;
+OnTimer188000:
+	stopnpctimer;
+	areawarp "in_moc_16.gat", $@sinRmX1, $@sinRmY1, $@sinRmX2, $@sinRmY2, "in_moc_16.gat", 21, 160;
+	killmonsterall "in_moc_16.gat";
+	donpcevent "Barcardi::OnStart";
+	end;
+}
+
+
+//============================================================================//
+//				Final Test
+//****************************************************************************//
+
+//=============================================//
+// Warp
+//=============================================//
+in_moc_16.gat,182,169,1	script	sinWarp3	45,1,1,{
+	if(getareausers(("in_moc_16.gat"),148,74,187,117) > 0) goto L_Wait;
+	disablenpc "Huey#End";
+	disablenpc "Kai#End";
+	disablenpc "Nameless One#End";
+	disablenpc "Barcardi#End";
+	disablenpc "Observer#End";
+	disablenpc "Thomas#End";
+	warp "in_moc_16.gat", 167, 116;
+	end;
+
+	L_Wait:
+		mes "~ ข้ามีข้อความจาก Guild Master...~";
+		mes "ข้ากำลังยุ่งอยู่กับ Assassin กรุณารอจนกว่าข้าจะทำสำเร็จเป็นคนๆ ไป";
+		close;
+}
+
+//==============================================//
+// Guild Master
+//==============================================//
+
+// Start Trigger ------------------------------------------------------------------
+in_moc_16.gat,167,114,3	script	guildmaster_Trig#0	139,4,0,{
+		mes "[Guild Master]";
+		mes "ยินต้อนรับ ^5533FF" + strcharinfo(0) + "^000000 สู่ห้องรับของข้า";
+		next;
+		mes "[Guild Master]";
+		mes "ข้าจะให้ท่านได้รับการทดสอบแบบง่าย ที่ท่านต้องทำคือต้องมาพบข้า";
+		mes "และแน่นอนท่านจะต้องผ่านเขาวงกตของกำแพงที่มองไม่เห็๋น ที่จะทำให้....";
+		close;
+}
+
+// Guild Master -----------------------------------------------------------------------------
+in_moc_16.gat,149,80,4	script	Guild Master#2	106,1,1,{
+	end;
+
+OnTouch:
+	mes "[Guild Master]";
+	mes "โอ้ะ ท่าน ^5533FF" + strcharinfo(0) + "^000000 มาถึงแล้ว นี่คือห้องของ Guild Master สถานที่ลึกลับที่สุดใน Assassin";
+	next;
+	callsub sF_Questions1;
+	next;
+
+	mes "[Guild Master]";
+	mes "สุดท้ายสิ่งที่ท่านควรระวัง คือการเป็น Assassin นั้นไม่มีวันที่จะหวนกลับคือสู้ชีวิตเดิมได้";
+	next;
+	callsub sF_Questions2;
+	next;
+
+	mes "[Guild Master]";
+	mes "มันคงเป็นคำพูดที่ดีสำหรับท่าน ที่จะคอยตักเตือนท่าน";
+	next;
+	mes "[Guild Master]";
+	mes "ทุกๆคน ที่ผ่านมาการทดสอบ " + strcharinfo(0) + " ต้องเขามาที่สำนักงานของข้า";
+	next;
+	enablenpc "Huey#End";
+	enablenpc "Kai#End";
+	enablenpc "Nameless One#End";
+	enablenpc "Barcardi#End";
+	enablenpc "Observer#End";
+	enablenpc "Thomas#End";
+	mes "[Nameless One]";
+	mes "I am here.";
+	next;
+	mes "[Guild Master]";
+	mes "ข้าต้องการรู้ว่า^5533FF" + strcharinfo(0) + "^000000 ท่านมีความคิดอย่างไรเกียวกับ Assassin.";
+	next;
+	mes "[Nameless One]";
+	mes "ข้าคิดว่า ^5533FF" + strcharinfo(0) + "^000000 น่าจะเป็นคนที่ดี";
+	next;
+	mes "[Guild Master]";
+	mes "ข้าเห็นเจ้ามีนิสัยคล้าย Nameless One ข้าจะคอยสนับสนุนท่าน?";
+	next;
+	mes "[Huey]";
+	//if( == 1) mes "...สิ่งที่ข้าสามารถพูดได้ว่าท่านเป็นหนึ่งในผู้สมัครที่จะเป็น Assassin ที่ดีคนหนึ่ง ในไม่กี่สัปดาห์ที่ผ่านมาก";
+	//if( == 0) mes "... ถึงแม้เจ้าจะดูอ่อนแอและอ่อนไหวเกินไป จนมีนิสัยคล้าย ๆ กับแมว ฮ่า ฮ่า ฮ่า....";
+	mes "ข้าคิดว่า ^5533FF" + strcharinfo(0) + "^000000 จะได้กลายเป็น Assassin.";
+	next;
+	mes "[Guild Master]";
+	mes "เอาล่ะ...ขอบคุณมาก";
+	mes "ข้าอยากทราบความคิดเห็นของพวกท่านเกี่ยวกับการเปลี่ยนอาชีพของ Assassin-Boy เป็นอย่างไร?";
+	disablenpc "Huey#End";
+	next;
+	mes "[Guild Master]";
+	mes "เอาล่ะ! ที่ข้าสัญญาไว้ เลือกของ";
+	next;
+	if(JBLVL == 40) goto L_LowLvl;
+
+	L_HighLvl:
+		menu "Jur",sM_Jur, "Katar",sM_Kat, "Main Gauche",sM_Main, "Gladius",sM_Glad;
+
+		sM_Jur:
+			getitem 1251,1;
+			goto L_Cont1;
+		sM_Kat:
+			getitem 1253, 1;
+			goto L_Cont1;
+		sM_Main:
+			getitem 1208, 1;
+			goto L_Cont1;
+		sM_Glad:
+			getitem 1220, 1;
+			goto L_Cont1;
+
+	L_LowLvl:
+		set @temp, rand(1, 3);
+		if(@temp==1) getitem 1250, 1;
+		if(@temp==2) getitem 1217, 1;
+		if(@temp==3) getitem 1252, 1;
+
+	L_Cont1:
+	mes "[Guild Master]";
+	mes "ท่าน ^5533FFAssassin Boy...^000000";
+	mes "ท่านต้องการเข้าสู่เส้นทางของ Assassin..";
+	mes "แม้ว่ามัน จะเป็นเส้นทางที่ปล่าวเปลี่ยวและโดดเดียว..";
+	mes "จงอย่าหมดกำลังใจ!";
+	getitem 1008, 1;
+	next;
+	mes "[Guild Master]";
+	mes "ได้.. กลับไปยังพื้นที่ที่ท่านจากมาข้าจะไปส่งท่านที่ทางออก ไปกันเลย ทุกคน";
+	set ASSIN_Q, 4;
+	set ASSIN_Q2, 0;
+	disablenpc "Kai#End";
+	disablenpc "Nameless One#End";
+	disablenpc "Barkadi#End";
+	disablenpc "Observer#End";
+	disablenpc "Dante#End";
+	disablenpc "Gail#End";
+	savepoint "in_moc_16.gat", 18, 28;
+	close2;
+	warp "in_moc_16.gat", 18, 28;
+	end;
+
+
+sF_Questions1:
+	mes "[Guild Master]";
+	mes "สิ่งแรกสำหรับสิ่งที่ท่านคิดว่าเป็นสิ่งสำคัญที่สุดคืออะไร?";
+	next;
+	menu "พลังมากขึ้น",M_1, "เกียรติยศของ Assassin",M_2, "การฝึกฝน",M_3;
+
+	M_1:
+		mes "[Guild Master]";
+		mes "ในความเป็นจริงแล้ว Assassin นั้นแข็งแรงยิ่งกว่า Thief.";
+		mes "ด้วยการเป็น Assassin มีเพียงสิ่งเดียวที่ท่านไม่สามารถจะทำได้คือการขโมยความฝัน";
+		next;
+		mes "[Guild Master]";
+		mes "แต่ท่านจะต้องการพลังไปเพื่ออะไร?";
+		next;
+		menu	"ข้าจะแก้แค้นกับผู้ที่ทำร้ายข้า",sM_1a, "พลังที่มากขึ้นจะทำให้ข้ามีอำนาจ",sM_1b, 
+			"เพื่อเดินทางไป พื้นที่ต่างๆ",sM_1c;
+
+		sM_1a:
+			mes "[Guild Master]";
+			mes "แต่ข้าว่าการแก้แค้นมันเป็นเพียงแค่อารมณ์เพียงชัววูบ ที่เต็มด้วยความโกรธ";
+			mes "ซึ่งสิ่งเหล่านี้ มันไม่สมควรจะมีอยู่ใน Assassin การจะเป็น Assassin นั้นต้องมีความเลือดเย็ด ใจเย็นแต่ดุดัน";
+			next;
+			mes "[Guild Master]";
+			mes "การแสดงออกทางอารมณ์ อาจทำให้เกิดปัญหาใหญ่สำหรับตัว Assassin มันจะทำให้สับสน และไม่สบายใจ";
+			mes "การเป็น Assassin ต้องฝึกฝนให้หนักเพื่อไม่ให้ใช้อารมณ์มาก่อนเหตุ เพื่อจะนำพาให้ท่านไปสู่ความสำเร็จ";
+			return;
+		sM_1b:
+			mes "[Guild Master]";
+			mes "เงินและอำนาวจมันเป็นส่วนสำคัญจริงๆ ของโลก แต่มันไม่จำเป็นสำหรับ Assassin";
+			mes "การเป็น Assassin ต้องอยู่โดยสันโดษไม่เกี่ยวข้องกับใคร และต้องไม่ให้มีใครรู้จักเรา";
+			return;
+		sM_1c:
+			mes "[Guild Master]";
+			mes "มันเป็นความคิดที่ดีทีเดียว ที่ท่านจะพยามยามท่องไปทั่วทุกมุมโลก";
+			mes "เพื่อที่ท่านจะรู้ในสิ่งที่ท่านยังไม่เคยรู้.. ด้วยตัวท่านเอง";
+			next;
+			mes "[Guild Master]";
+			mes "แต่จงอย่าลืมว่า เส้นทางของท่านจะเต็มไปด้วยความโดดเดี่ยว ซึ่ง Assassin ทุกๆ คนต้องพบกับมัน";
+			return;
+
+	M_2:
+		mes "[Guild Master]";
+		mes "เกียรติยศ? นี่คือสิ่งที่ท่านต้องการจาก Assassin งั้นเหรอ?.....";
+		next;
+		mes "[Guild Master]";
+		mes "แต่น่าเสียดายที่ Assassin ไม่จำเป็นต้องมีสิ่งนี้ การจะเป็น Assassin จะต้องทำเมื่อได้รับคำสั่งเท่านั้น?"; 
+		next;
+		mes "[Guild Master]";
+		mes "ความหมายของเกียรติยศสำหรับ Assassin ที่ท่านว่า มันคืออะไร";
+		next;
+		menu "เพื่อจัดการกับความเหงาของข้า",sM_2a, "ข้าจะหาเงินได้ง่ายขึ้น",sM_2b, "พวกเขาจะดูเย็นชา",sM_2c;
+
+		sM_2a:
+			mes "[Guild Master]";
+			mes "ใช่ ชีวิตของ Assassin นั้นเปล่าเปลี่ยว ท่านจะต้องทำใจ..";
+			mes "และต้องไม่พูดคุยกับใคร แม้แต่ผู้ว่าจ้างของเรา";
+			return;
+		sM_2b:
+			mes "[Guild Master]";
+			mes "ใช่ เงินเป็นสิ่งที่สำคัญ";
+			mes "แต่ท่านคิดว่ามันจะมีประโยชน์กับ Assassin อย่างนั้นเหรอ?";
+			return;
+		sM_2c:
+			mes "[Guild Master]";
+			mes "มันเป็นเรื่องที่เศร้า ที่ Assassin จะต้องดูเย็นชาและใจร้าย แต่ก็ไม่มีใครที่อยากจะต้องมาเป็นเช่นนี้";
+			return;
+	M_3:
+		mes "[Guild Master]";
+		mes "ข้ามีเรื่องที่น่าสนใจ ข้าจะให้ท่านได้รับการฝึกเพิ่ม โดยที่ท่านจะไม่รู้สึกสูญเสียหรืออื่นๆ เลย";
+		next;
+		mes "[Guild Master]";
+		mes "ท่านว่าเมื่อท่านเป็น Assassin ท่านจะมีความเปลี่ยนแปลงเรื่องใดบ้าง?";
+		next;
+		menu "เทคนิค",sM_3a, "เป้าหมายที่ท้าทาย",sM_3b, "ความมุ่งมั่น",sM_3c;
+
+		sM_3a:
+			mes "[Guild Master]";
+			mes "การเป็น Assassin จะสามารถเข้าถึงทักษะใหม่ ๆ มากขึ้น หากท่านฝึกฝน โดยใช้ทักษะท่านมีอยู่นี่จนคล่องแคล่ว";
+			return;
+		sM_3b:
+			mes "[Guild Master]";
+			mes "ความท้าทายนี้ จะทำให้ความสามารถของท่านก้าวหน้ายิ่งขึ้น";
+			mes "แต่หากท่านมัวแต่ทำสิ่งเดิมๆ ความก้าวหน้าของท่านก็จะหยุดอยู่ที่เดิม";
+			return;
+		sM_3c:
+			mes "[Guild Master]";
+			mes "นี้เป็นสิ่งสำคัญมากสำหรับงานของ Assassin";
+			mes "เพราะ ไม่เพียงแต่จะฝึกฝนทางด้านร่างกายพละกำลัง แต่สิ่งที่สำคัญต้องอย่าลืมการฝึกฝนทางด้านจิตใจของท่านด้วย";
+			return;
+
+sF_Questions2:
+	mes "[Guild Master]";
+	mes "เมื่อท่านเป็น Assassin สิ่งแรกที่ท่านจะทำคืออะไร?";
+	next;
+	menu "ข้าอยากต่อสู้!",M_4, "กลับไปหาคนที่รอข้า",M_5, "ข้าอยากฝึกฝน Assassins เพิ่ม",M_6;
+
+	M_4:
+		mes "[Guild Master]";
+		mes "การต่อสู้ ของท่านคืออะไร?";
+		next;
+		menu "ข้าจะเพิ่มเลเวลอย่างรวดเร็ว",sM_4a, "ข้าจะทดสอบความสามารถใหม่",sM_4b, "ข้าจะสำรวจพื้นที่ใหม่",sM_4c;
+
+		sM_4a:
+			mes "[Guild Master]";
+			mes "การเป็น Assassin ไม่จำเป็นที่จะต้องเพิ่มเลเวลอย่างเร็ว";
+			mes "แต่ท่านควรฝึกฝนมันไปอย่างชัาๆ เพื่อให้เข้าใจถึงมันจริงๆ?";
+			return;
+		sM_4b:
+			mes "[Guild Master]";
+			mes "การหาความสามารถใหม่นั้น เป็นสิ่งที่ดีมาก";
+			mes "ข้ายังรู้สึกตื่นเต้นหากข้าได้พบมันจริงๆ เมื่อข้าเป็น Assassin";
+			return;
+		sM_4c:
+			mes "[Guild Master]";
+			mes "การสำรวจพื้นที่ใหม่ เป็นสิ่งที่ดี เพราะใครๆ หลายคนๆ ก็คงคิดแบบท่าน";
+			return;
+
+	M_5:
+		mes "[Guild Master]";
+		mes "ใครกันที่รอท่าน?";
+		next;
+		menu "ใช่ คนที่ข้าเจอในสมาคม",sM_5a, "เพื่อน ๆ ของข้า",sM_5b, "คนที่ข้ารัก",sM_5c;
+
+		sM_5a:
+			mes "[Guild Master]";
+			mes "ฮ่า ฮ่า ข้าว่าพวกเขาคงจะรู้สึกดี ที่รู้ว่าท่านมีความคิดเช่นนี้";
+			mes "ไม่ว่าท่านไปจะไปที่ไหน แต่ยังไงที่นี่ก็ยังจดจำท่านได้เสมอ";
+			return;
+		sM_5b:
+			mes "[Guild Master]";
+			mes "เยี่ยม เพื่อนที่ดีจริงๆ คงจะหาได้ยาก ท่านสามารถไปหาเพื่อนที่ท่านสามารถเชื่อใจเขาได้เพื่อให้เขาช่วยท่านทำงาน.";
+			return;
+		sM_5c:
+			mes "[Guild Master]";
+			if(sex == 1) mes "โอ้ แฟนของท่าน.. !! ท่านคงจะกลายเป็นความมืดที่คอยปกต้องเธอ";
+			if(sex == 0) mes "โอ้ แฟนของท่าน.. !! ท่านคงจะกลายเป็นความมืดที่คอยปกต้องเขา";
+			next;
+			mes "[Guild Master]";
+			mes "การเป็น Assassin มันคงยากมาก ที่ท่านจะไปพบกับใครๆ ที่ท่านรัก.. !!";
+			return;
+
+	M_6:
+		mes "[Guild Master]";
+		mes "โอเค อะไรคือสิ่งที่จำเป็น ที่ท่านอยากจะรู้?";
+		next;
+		menu 	"การฝึกฝนที่ง่ายที่สุด?",sM_6a, "Assassins ควรจะเป็นเก็บเลเวลที่ใด?",sM_6b, 
+			"ข้าสามารถหาเงินได้ยังไง?",sM_6c;
+
+		sM_6a:
+			mes "[Guild Master]";
+			mes "ท่านจะต้องเรียนการอยู่รอด และเลิกใช้ชีวิตที่หรูหราเช่นนี้";
+			return;
+		sM_6b:
+			mes "[Guild Master]";
+			mes "ท่านสามารถหาค่าประสบการณ์ได้ Rune-Midgard พวกเขาจะคอยให้ความรู้สำหรับท่านอยู่เสมอ";
+			return;
+		sM_6c:
+			mes "[Guild Master]";
+			mes "เสื้อผ้า.. เงินคงไม่จำเป็นสำหรับ Assassin หรอกนะข้าว่า";
+			return;
+
+}
+
+
+//=============================================//
+// Maze Triggers
+//=============================================//
+in_moc_16.gat,170,90,0	script	maze_trig#1	139,0,0,{
+	mes "[Guild Master]";
+	mes "มีวิธีที่เดินไปที่นั่นมั้น รึไม่ก็ควรจะไปทางอื่น";
+	close;
+}
+in_moc_16.gat,150,85,0	script	maze_trig#2	139,0,0,{
+	mes "[Guild Master]";
+	mes ".... นี่คือการเดินทางที่อบอุ่น.....";
+	close;
+}
+in_moc_16.gat,153,85,0	script	maze_trig#3	139,0,0,{
+	mes "[Guild Master]";
+	mes "ท่านไม่ควรไปที่นั่น.";
+	mes "ดีนะที่ข้าเห็นท่านก่อน.. !!";
+	close;
+}
+in_moc_16.gat,160,85,0	script	maze_trig#4	139,0,0,{
+	mes "[Guild Master]";
+	mes "มีวิธีที่เดินไปที่นั่นมั้น รึไม่ก็ควรจะไปทางอื่น";
+	close;
+}
+in_moc_16.gat,175,89,0	script	maze_trig#5	139,0,0,{
+	mes "[Guild Master]";
+	mes "วิธีที่จะไปสู่ Botogun..";
+	close;
+}
+in_moc_16.gat,164,88,0	script	maze_trig#6	139,0,0,{
+	mes "[Guild Master]";
+	mes "เยี่ยม...";
+	close;
+}
+in_moc_16.gat,149,95,0	script	maze_trig#7	139,0,0,{
+	mes "[Guild Master]";
+	mes "เยี่ยม ท่านเดินมาถูกทาง";
+	close;
+}
+in_moc_16.gat,180,101,0	script	maze_trig#8	139,0,0,{
+	mes "[Guild Master]";
+	mes "...ดูเหมือนท่านยังไม่พบเส้นทางนั้น";
+	close;
+}
+in_moc_16.gat,186,107,0	script	maze_trig#9	139,0,0,{
+	mes "[Guild Master]";
+	mes "...ไม่ใช่ทางนี้...";
+	close;
+}
+
+
+//================================================//
+// Decoy Chief
+//================================================//
+in_moc_16.gat,186,81,0	script	Guild Master#3	55,{
+	mes "[Guild Master Botogun]";
+	mes "ข้าเสียใจ แต่ข้าไม่ได้เป็นคนใช้จ่ายที่นี่";
+	close;
+}
+
+
+//=================================================//
+// Guild Npcs
+//=================================================//
+in_moc_16.gat,156,85,1	script	Huey#End	55,{end;}
+in_moc_16.gat,156,83,1	script	Kai#End	730,{end;}
+in_moc_16.gat,156,81,1	script	Nameless One#End	106,{end;}
+in_moc_16.gat,156,79,1	script	Barcardi#End	725,{end;}
+in_moc_16.gat,156,77,1	script	Observer#End	55,{end;}
+in_moc_16.gat,156,75,1	script	Thomas#End	118,{end;}
+

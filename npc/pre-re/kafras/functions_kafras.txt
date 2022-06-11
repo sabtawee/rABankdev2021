@@ -1,0 +1,490 @@
+//—>===============================================================<—|
+// -- # Ragnarok Online EP 4.0 BY Kelberwitz Blade's
+// -- # Function HiSo Kafra Corparation !!
+//—>===============================================================<—|
+
+// Main Function ==================================================<—|
+//=   arg(0): Used to determine which welcome message to show.
+//=   arg(1): Used to determine which menu to display.
+//=   arg(2): Used to determine if the info menu is shown in F_KafInfo.
+//=   arg(3): Cost to use Storage
+//=   arg(4): Cost to Rent a Pushcart
+//=================================================================<—|
+
+function	script	F_Kafra	{
+// - - > ล้างค่าที่ไม่ได้ใช้งาน - ยกเลิกการใช้งานไปแล้ว
+	callfunc "F_ClearGarbage";
+// - - > พนักงาน Kafra กล่าวทักทายลูกค้า
+	switch(getarg(0)){
+// - - > ข้อความทักทายพื้นฐาน
+		default:
+		case 0:
+			mes "^0066FF[ Kafra Express ]^000000";
+			mes "สวัสดีค่ะ ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+			mes "Kafra Corporation ยินดีให้บริการ";
+			mes "ต้องการให้ข้าช่วยเหลืออะไรไหมคะ ?";
+			break;
+
+// - - > ข้อความทักทายสำหรับพนักงาน Kafra ประจำเมือง Niflheim.
+		case 1:
+			mes "^0066FF[ Kafra Express ]^000000";
+			mes "สวัสดีค่ะ ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+			mes "Kafra Corporation ยินดีให้บริการ";
+			mes "ต้องการให้ข้าช่วยเหลืออะไรไหมคะ ?";
+			break;
+
+// - - > ข้อความทักทายสำหรับพนักงาน Kafra ประจำปราสาทกิลด์ 
+		case 2:
+			set @GID,getcharid(2);
+			mes "^0066FF[ Kafra Express ]^000000";
+			mes "สวัสดีค่ะ ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+	 		mes "แห่งกิลด์ ^ff0000" + GetGuildName(@GID) + "^000000";
+			mes "Kafra Corporation ยินดีให้บริการ";
+			mes "ต้องการให้ข้าช่วยเหลืออะไรไหมคะ ?";
+			break;
+
+// - - > ข้อความทักทายสำหรับพนักงาน Kafra ประจำเมือง Amaztu
+		case 3:
+			mes "^0066FF[ Kafra Express ]^000000";
+			mes "สวัสดีค่ะ ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+			mes "Kafra Corporation ยินดีให้บริการ";
+			mes "ต้องการให้ข้าช่วยเหลืออะไรไหมคะ ?";
+			break;
+
+// - - > ข้อความทักทายสำหรับพนักงาน Kafra ประจำเมือง Louyang และ  Ayothaya
+		case 4:
+			mes "^0066FF[ Kafra Express ]^000000";
+			mes "สวัสดีค่ะ ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+			mes "Kafra Corporation ยินดีให้บริการ";
+			mes "ต้องการให้ข้าช่วยเหลืออะไรไหมคะ ?";
+			break;
+
+// - - > หากพนักงาน Kafra มี คำกล่าวทักทายส่วนตัวแล้ว
+		case 5:
+			break;
+	}
+	next;
+
+// - - > เมนูหลักสำหรับพนักงาน Kafra ที่จะให้เลือกใช้งาน
+M_Menu:
+	cleararray @K_Menu0$[0],"",7;
+	switch(getarg(1)){
+// - - > บันทึกจุดเซฟ และ บริการเปิดคลังเก็บของ
+		case 1:
+			setarray @K_Menu0$[0],"บันทึกเป็นจุดเซฟ","เปิดคลังเก็บของ","ไม่มีอะไรแค่เดินผ่านมา..";
+			break;
+// - - > บริการเปิดคลังเก็บของ
+		case 2:
+			setarray @K_Menu0$[0],"เปิดคลังเก็บของ","ไม่มีอะไรแค่เดินผ่านมา..";
+			break;
+
+// - - > ไม่มีบริการเทเลพอร์ต
+		case 3: 
+			setarray @K_Menu0$[0],"บันทึกเป็นจุดเซฟ","เปิดคลังเก็บของ","ข้าต้องการเช่ารถเข็น","แนะนำสถานที่","ตรวจสอบข้อมูลอื่น ๆ","ไม่มีอะไรแค่เดินผ่านมา..";
+			break;
+
+// - - > ตัดออก เป็นของเมือง Einbroch
+
+// - - > ไม่มีบริการ บันทึกจุดเซฟ และ บริการเทเลพอร์ต
+		case 5:
+			setarray @K_Menu0$[0],"เปิดคลังเก็บของ","ข้าต้องการเช่ารถเข็น","ตรวจสอบข้อมูลอื่น ๆ","แนะนำสถานที่","ไม่มีอะไรแค่เดินผ่านมา..";
+			break;
+
+// - - > บริการเปิดคลังเก็บของ และ บริการตรวจสอบข้อมูล
+		case 6:
+			setarray @K_Menu0$[0],"เปิดคลังเก็บของ","ตรวจสอบข้อมูลอื่น ๆ","ไม่มีอะไรแค่เดินผ่านมา..";
+			break;
+
+// - - > บันทึกจุดเซฟ , บริการเปิดคลังเก็บของ , และเช่ารถเข็น
+		case 7:
+			setarray @K_Menu0$[0],"บันทึกเป็นจุดเซฟ","เปิดคลังเก็บของ","ข้าต้องการเช่ารถเข็น","ไม่มีอะไรแค่เดินผ่านมา..";
+			break;
+
+// - - > บันทึกจุดเซฟ , บริการเปิดคลังเก็บของ , และตรวจสอบข้อมูลอื่น ๆ
+		case 8:
+			setarray @K_Menu0$[0],"บันทึกเป็นจุดเซฟ","เปิดคลังเก็บของ","ตรวจสอบข้อมูลอื่น ๆ","ไม่มีอะไรแค่เดินผ่านมา..";
+			break;
+
+// - - > เมนูบริการหลัก
+		default:
+			setarray @K_Menu0$[0],"บันทึกเป็นจุดเซฟ","เปิดคลังเก็บของ","ใช้บริการเทเลพอร์ต","ข้าต้องการเช่ารถเข็น","ตรวจสอบข้อมูลอื่น ๆ","ไม่มีอะไรแค่เดินผ่านมา..";
+			break;
+	}
+
+// - - >  บริการเปิดคลังเก็บของส่วนตัว และ คลังเก็บของกิลด์ , เช่ารถเข็น และ บริการเทเลพอร์ต ( ฟรี )
+	if(getarg(0)==2) {
+		cleararray @K_Menu0$[0],"",7;
+		setarray @K_Menu0$[0],"เปิดคลังเก็บของ","เก็บของกิล","ข้าต้องการเช่ารถเข็น","ใช้บริการเทเลพอร์ต","ไม่มีอะไรแค่เดินผ่านมา..";
+	}
+	menu 	@K_Menu0$[0],K_Menu0,@K_Menu0$[1],K_Menu1,@K_Menu0$[2],K_Menu2,
+		@K_Menu0$[3],K_Menu3,@K_Menu0$[4],K_Menu4,@K_Menu0$[5],K_Menu5,
+		@K_Menu0$[6],K_Menu6;
+	K_Menu0:
+		set @num,0;
+		goto K_Menuf;
+	K_Menu1:
+		set @num,1;
+		goto K_Menuf;
+	K_Menu2:
+		set @num,2;
+		goto K_Menuf;
+	K_Menu3:
+		set @num,3;
+		goto K_Menuf;
+	K_Menu4:
+		set @num,4;
+		goto K_Menuf;
+	K_Menu5:
+		set @num,5;
+		goto K_Menuf;
+	K_Menu6:
+		set @num,6;
+	K_Menuf:
+		if (@K_Menu0$[@num] == "บันทึกเป็นจุดเซฟ") return;
+		if (@K_Menu0$[@num] == "เปิดคลังเก็บของ"){
+			// Do not charge for Guild Storage
+			if(getarg(0) == 2) callfunc "F_KafStor",2,0,0;
+			else callfunc "F_KafStor",0,getarg(3),getarg(0);
+			next;
+			goto M_Menu;
+		}
+		if (@K_Menu0$[@num] == "ใช้บริการเทเลพอร์ต"){
+			// Display Einbroch "No Teleport Service" notice.
+			if(getarg(1) == 4){
+				mes "^0066FF[ Kafra Express ]^000000";
+				mes "Because of the ^FF0000Limited";
+				mes "Transport Agreement^000000, the";
+				mes "Kafra Corporation cannot";
+				mes "provide Teleport Services";
+				mes "in the Schwaltzvalt Republic.";
+				next;
+				mes "^0066FF[ Kafra Express ]^000000";
+				mes "We ask that you please";
+				mes "use the Airship Service";
+				mes "instead. Thank you for your";
+				mes "understanding and cooperation.";
+				next;
+				goto M_Menu;
+			}
+			callfunc "F_KafTele",getarg(0);
+			goto M_Menu;
+		}
+		if (@K_Menu0$[@num] == "ข้าต้องการเช่ารถเข็น"){
+			if(callfunc("F_KafCart",getarg(0),getarg(4)) == 1) next;
+			goto M_Menu;
+		}
+		if (@K_Menu0$[@num] == "ตรวจสอบข้อมูลอื่น ๆ"){
+			callfunc "F_KafInfo",getarg(2);
+			goto M_Menu;
+		}
+		if (@K_Menu0$[@num] == "ไม่มีอะไรแค่เดินผ่านมา.."){
+			callfunc "F_KafEnd",getarg(0),0;
+			close;
+		}
+		if (@K_Menu0$[@num] == "เก็บของกิล"){
+			callfunc "F_KafStor",1,0;
+			next;
+			goto M_Menu;
+		}
+
+}
+
+
+// - - > ฟังชั่น คลังเก็บของ
+function	script	F_KafStor	{
+// - - > ไม่สามารถใช้งานได้ หรือ มีสมาชิกกิลด์ท่านอื่น ใช้งานอยู่
+	if(getarg(0) == 1){
+		if(guildopenstorage() == 1){
+			mes "^0066FF[ Kafra Express ]^000000";
+			mes "ดิฉัน..ต้องขออภัยด้วยค่ะ";
+			mes "แต่ว่ายังมีสมาชิกท่านอื่นใช้งานอยู่";
+			mes "รบกวน ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+			mes "กลับมาใช้บริการใหม่ภายหลังค่ะ";
+			close2;
+			cutin "", 255;
+			close;
+		}
+		cutin "", 255;
+		close;
+	}
+
+// - - > ไม่สามารถใช้งานได้เนื่องจากทักษะพื้นฐานไม่ถึง
+	if(basicskillcheck() && getskilllv("NV_BASIC") < 6){
+		mes "^0066FF[ Kafra Express ]^000000";
+// - - > คำขออภัยพนักงาน Kafra ประจำเมือง Niflheim
+		if (getarg(2) == 1) {
+		mes "ดิฉัน..ต้องขออภัยด้วยค่ะ";
+		mes "แต่ว่า ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+		mes "ยังดูเหมือนไม่พร้อมที่จะใช้บริการ";
+		mes "แนะนำให้ฝึกทักษะพื้นฐานอย่างน้อย";
+		mes "ที่ระดับเลเวล 6 ก่อนนะคะ..";
+		cutin "", 255;
+		close;
+		}
+			mes "ดิฉัน..ต้องขออภัยด้วยค่ะ";
+			mes "แต่ว่า ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+			mes "ยังดูเหมือนไม่พร้อมที่จะใช้บริการ";
+			mes "แนะนำให้ฝึกทักษะพื้นฐานอย่างน้อย";
+			mes "ที่ระดับเลเวล 6 ก่อนนะคะ..";
+			cutin "", 255;
+			close;
+	}
+
+// - - > ระบบการเข้าถึงการใช้งานคลังเก็บของ ( ข้ามจุดนี้ หากใช้งานจากปราสาทกิลด์ )
+	if(getarg(0) != 2){
+// - - > คิดค่าบริการจากบัตรผ่านใช้งานระบบคลังเก็บของฟรี
+		if(countitem(7059)) delitem 7059,1;
+		else {
+			if(Zeny<getarg(1)){
+				mes "^0066FF[ Kafra Express ]^000000";
+// - - > คำขออภัยพนักงาน Kafra ประจำเมือง Niflheim
+				if (getarg(2) == 1) {
+					percentheal -50,-50;
+					mes "ท่านมี... zeny... ไม่พอ";
+					mes "ค่าใช้บริการ......คือ150 zeny........";
+					mes "ถ้าท่านมี Zeny ไม่พอ........";
+					mes "มอบชีวิตท่านมา.......ให้ข้า.........";
+					cutin "", 255;
+					end;
+				}
+// - - > คำขออภัยพนักงาน Kafra กรณีเงินไม่พอใช้บริการเปิดคลังเก็บของ
+				mes "ดิฉัน..ต้องขออภัยด้วยค่ะ";
+				mes "แต่ว่า ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+				mes "มีเงินไม่เพียงพอสำหรับค่าบริการ";
+				mes "ดิฉันไม่สามารถให้บริการได้ค่ะ  ~";
+				mes "กรุณาเตรียมเงินมาจำนวน^FF0000 "+getarg(1)+" ^000000z "; 
+				mes "หากต้องการใช้บริการคลังเก็บของค่ะ";
+				cutin "", 255;
+				close;
+			}
+			set Zeny, Zeny-getarg(1);
+			set RESRVPTS, RESRVPTS + (getarg(1)/5);
+		}
+	}
+
+	// Surpress the "End" message if in guild castle.
+	if (getarg(0) != 2) {
+		// Niflheim specific Message
+		if (getarg(2) == 1) {
+			percentheal 0,-10;
+			mes "^0066FF[ Kafra Express ]^000000";
+			mes "ขอบคุณ........ที่........ใช้บริการ";
+			mes "ขอบคุณ........ที่........ใช้บริการ";
+			mes "ขอบคุณ........ที่........ใช้บริการ";
+			mes "ขอบคุณ........ที่........ใช้บริการ";
+			mes "ขอบคุณ........ที่........ใช้บริการ";
+		}
+// - - > คำขอบคุณจาก พนักงาน Kafra  กรณีใช้บริการคลังเก็บของ 
+		else {
+			mes "^0066FF[ Kafra Express ]^000000";
+			mes "เปิดโกดังเก็บของเรียบร้อยแล้ว...";
+			mes "ขอขอบคุณ ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+			mes "ที่ไว้วางใจเลือกใช้บริการของเรา";
+			mes "เราจะอยู่เคียงข้างท่านตลอดไป  ~";
+		}
+	}
+// - - > เปิดคลังเก็บของ
+	openstorage;
+	cutin "", 255;
+	close;
+}
+
+
+// Teleport Function ==================================================
+function	script	F_KafTele	{
+	mes "^0066FF[ Kafra Express ]^000000";
+	mes "ยินดีต้อนรับสู่บริการเทเลพอร์ต";
+	mes "โปรดเลือกจุดหมายปลายทาง..";
+	next;
+
+	menu 	@wrpC$[0],M_Wrp0, @wrpC$[1],M_Wrp1, @wrpC$[2],M_Wrp2, @wrpC$[3],M_Wrp3, 
+		@wrpC$[4],M_Wrp4, @wrpC$[5],M_Wrp5, @wrpC$[6],M_Wrp6;
+
+	M_Wrp0:
+		set @num, 0;
+		goto L_Warp;
+	M_Wrp1:
+		set @num, 1;
+		goto L_Warp;
+	M_Wrp2:
+		set @num, 2;
+		goto L_Warp;
+	M_Wrp3:
+		set @num, 3;
+		goto L_Warp;
+	M_Wrp4:
+		set @num, 4;
+		goto L_Warp;
+	M_Wrp5:
+		set @num, 5;
+		goto L_Warp;
+	M_Wrp6:
+		set @num, 6;
+
+	L_Warp:
+		if (@wrpC$[@num] == "ยกเลิก") return;
+		// Consume "Free Ticket for Kafra Transportation" if available.
+		// Do not consume if in Guild castle
+		if(countitem(7060) > 0 && getarg(0) != 2) delitem 7060,1;
+		else {
+			if (Zeny<@wrpP[@num]){
+				mes "^0066FF[ Kafra Express ]^000000";
+				mes "ดิฉันไม่สามารถให้บริการได้ค่ะ  ~";
+				mes "หาก ท่าน , ^FF0000"+strcharinfo(0)+" ^000000 จะไป.."; 
+				mes "ที่ ^FF0000"+@wrpD$[@num]+"^000000";
+				mes "จะต้องเสียค่าใช้จ่ายจำนวน ^FF0000 "+@wrpP[@num]+" ^000000z "; 
+				mes "โปรดเตรียมค่าบริการมาด้วยค่ะ..";
+				close2;
+				cutin "", 255;
+				end;
+			}
+			set Zeny, Zeny-@wrpP[@num];
+			set RESRVPTS, RESRVPTS + (@wrpP[@num]/16);
+		}
+		if (@wrpD$[@num] == "Alberta") warp "alberta", 117, 56;
+		if (@wrpD$[@num] == "Al De Baran") warp "aldebaran",168,112;
+		if (@wrpD$[@num] == "Aldebaran") warp "aldebaran",168,112;
+		if (@wrpD$[@num] == "Comodo") warp "comodo", 209, 143;
+		if (@wrpD$[@num] == "Izlude") warp "izlude", 91, 105;
+		if (@wrpD$[@num] == "Geffen") warp "geffen", 120, 39;
+		if (@wrpD$[@num] == "Morroc") warp "morocc", 156, 46;
+		if (@wrpD$[@num] == "Payon") warp "payon", 73, 101;
+		if (@wrpD$[@num] == "Prontera") warp "prontera", 116, 72;
+		if (@wrpD$[@num] == "Mjolnir Dead Pit") warp "mjolnir_02", 99, 351;
+		if (@wrpD$[@num] == "Comodo Pharos Beacon") warp "cmd_fild07", 127, 134;
+		if (@wrpD$[@num] == "Orc Dungeon") warp "gef_fild10", 52, 326;
+		if (@wrpD$[@num] == "Umbala") warp "umbala", 100, 154;
+		if (@wrpD$[@num] == "Juno") warp "yuno", 158, 125;
+		if (@wrpD$[@num] == "Glast Helm") warp "glast_01", 200, 288;
+
+		cutin "", 255;
+		end;
+}
+
+
+// - - > ฟังชั่นระบบเช่ารถเข็น
+function	script	F_KafCart	{
+// - - > เช็คเงื่อนไขอาชีพ
+	if(baseClass != Job_Merchant){
+		mes "^0066FF[ Kafra Express ]^000000";
+		mes "ดิฉัน..ต้องขออภัยด้วยค่ะ";
+		mes "แต่ว่า ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+		mes "ไม่เหมาะสมที่จะมีรถเข็นนะคะ";
+		mes "ดิฉันไม่สามารถให้บริการได้ค่ะ  ~";
+		cutin "", 255;
+		close;
+	}
+	// Make sure the invoking character does not have a cart already
+	else if(checkcart() == 1){
+		mes "^0066FF[ Kafra Express ]^000000";
+		mes "ดิฉัน..ต้องขออภัยด้วยค่ะ";
+		mes "แต่ว่า ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+		mes "มีรถเข็นอยู่แล้วนะคะ !!";
+		mes "รถสองคันท่านจะลากยังไงคะ โธ่ !";
+		cutin "", 255;
+		close;
+	}
+
+	// Consume "Free Ticket for the Cart Service" if available.
+	// Do not consume if in Guild castle.
+	if(countitem(7061) > 0 && getarg(0) != 2) delitem 7061,1;
+	else {
+		mes "^0066FF[ Kafra Express ]^000000";
+		mes "ค่าบริการเช่ารถเข็นอยู่ที่ ^FF0000"+getarg(1)+"^000000 z";
+		mes "ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+		mes "ต้องการเช่าตอนนี้เลยไหมคะ ?";
+		next;
+		menu "จัดมาให้ไวเลยน้องสาว..",-, "ยังก่อนดีกว่า..",M_End;
+			if(Zeny<getarg(1)){
+				mes "^0066FF[ Kafra Express ]^000000";
+				mes "ดิฉันไม่สามารถให้บริการได้ค่ะ  ~";
+				mes "หาก ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+				mes "ต้องการที่จะเช่ารถเข็นจากเรา";
+				mes "จะต้องเสียค่าใช้จ่ายจำนวน ^FF0000 "+getarg(1)+" ^000000z "; 
+				mes "โปรดเตรียมค่าบริการมาด้วยค่ะ..";
+				cutin "", 255;
+				close;
+			}
+			set Zeny,Zeny-getarg(1);
+			set RESRVPTS, RESRVPTS + 48;
+	}
+	setcart;
+	return 1;
+
+M_End:
+	return 0;
+}
+
+
+// Pass Function ===============================================================
+function	script	F_KafGuide	{
+	mes "^0066FF[ Kafra Express ]^000000";
+	mes "สวัสดีค่ะ ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+	mes "เรายังไม่เปิดให้บริการในส่วนนี้นะคะ";
+	return;
+}
+
+// Special Reserve Points Function ===========================================
+function	script	F_KafInfo	{
+
+	sM_Menu:
+	if(getarg(0) == 0) menu "ตรวจสอบคะแนนสะสม",sM_ResChk, "บริการด้านอื่น ๆ",sM_KafLoc,"ย้อนกลับ",sM_End;
+
+	sM_ResChk:
+		mes "^0066FF[ Kafra Express ]^000000";
+		mes "ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+		mes "มีคะแนนสะสมจำนวน ^0066FF"+RESRVPTS+"^000000 แต้ม";
+		mes "Kafra Corporation ขอขอบพระคุณ";
+		mes "ที่ไว้วางใจเลือกใช้บริการของเรา..";
+		mes "เราจะอยู่เคียงข้างท่านตลอดไปค่ะ ~";
+		cutin "", 255;
+		close;
+
+	sM_KafLoc:
+		mes "^0066FF[ Kafra Express ]^000000";
+		mes "สวัสดีค่ะ ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+		mes "เรายังไม่เปิดให้บริการในส่วนนี้นะคะ";
+		cutin "", 255;
+		close;
+
+	sM_End:
+		return;
+}
+
+
+// End Function =====================================================
+//  arg(0): used to determine what message to display.
+//  arg(1): used to determine if save message is displayed.
+//  arg(2): used to display the name of the area you're saving in.
+//===================================================================
+function	script	F_KafEnd	{
+	mes "^0066FF[ Kafra Express ]^000000";
+	//Save
+	if(getarg(1)==1) {
+		mes "บันทึกพิกัดเรียบร้อย";
+		mes "ขอขอบคุณ ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+		mes "ที่ไว้วางใจเลือกใช้บริการของเรา";
+		mes "เราจะอยู่เคียงข้างท่านตลอดไป  ~";
+	}
+
+	// Generic End
+	else if(getarg(0)==0 || getarg(0)==5) {
+		mes "Kafra Corparation ยินดีให้บริการ";
+		mes "ขอขอบคุณ ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+		mes "ที่ไว้วางใจเลือกใช้บริการของเรา";
+		mes "เราจะอยู่เคียงข้างท่านตลอดไป  ~";
+	}
+
+	// Niflheim End
+	else if(getarg(0)==1) {
+		percentheal 0,- 25;
+		mes "Kafra Corparation ยินดีให้บริการ";
+		mes "ขอขอบคุณ ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+		mes "ที่ไว้วางใจเลือกใช้บริการของเรา";
+		mes "เราจะอยู่เคียงข้างท่านตลอดไป  ~";
+	}
+
+	close2;
+	cutin "", 255;
+	close;
+}

@@ -1,0 +1,1552 @@
+// Panama  --------------------------------------------------------------
+aldebaran,46,129,4	script	Panama	97,{
+	mes "[Panama]";
+	mes "Al De Baran เป็นเมืองที่ทุกคนต้องรู้ใน Rune-Midgard.";
+	next;
+	menu "ข้อมูลเกี่ยวกับเมือง",M_0,"จบการสนทนา",M_End;
+	
+	M_0:
+		mes "[Panama]";
+		mes "เมืองแห่งนี้เป็นคลองที่ใช้ในการขนส่งสินค้า.";
+		next;
+		mes "[Panama]";
+		mes "เพราะแม่น้ำแห่งนี้อาจมีสิ่งสกปรกค่อนข้างมาก.";
+		close;
+	M_End:
+		mes "[Panama]";
+		mes "ที่นี่ควรจะมีน้ำตกที่สะอาด";
+		next;
+		mes "[Panama]";
+		mes "เจ้าช่วยข้าได้ไหมหล่ะ...";
+		close;
+}
+
+// Miller ------------------------------------------------------------------------
+aldebaran,49,93,4	script	Miller	83,{
+	mes "[Miller]";
+	mes "เจ้ารู้มั้ยว่า อาวุธ ระดับ 4 อยู่ที่ไหน?";
+	next;
+	mes "[Miller]";
+	mes "ข้าไม่เคยพบ แต่มีคนบอกว่า มันอยู่ในมอนสเตอร์ระดับบอส.";
+	close;
+}
+
+// Senorita Sylvia -----------------------------------------------------------
+aldebaran,60,70,4	script	Senorita Sylvia	69,{
+	mes "[Senorita Sylvia]";
+	mes "ข้าได้ออกเดินทางจาก Pronteraเพราะข้าได้ยินว่า สำนักงานหลักของ Kafra อยู่ที่ Al De Baran";
+	next;
+	mes "[Senorita Sylvia]";
+	mes "5 ชั่วโมงแล้ว ที่ข้าได้เดินทาง";
+	emotion 28;
+	next;
+	mes "[Senorita Sylvia]";
+	mes "ข้ายังไม่พบและไม่รู้ว่ามันอยู่ที่ไหน";
+	emotion 6;
+	next;
+	mes "[Senorita Sylvia]";
+	mes "ข้ามีความพร้อมแต่คิดว่า ตอนนี้ข้าหลงทาง";
+	next;
+	mes "[Senorita Sylvia]";
+	mes "เจ้าสามารถบอกข้าได้ไหม ว่าที่นี่คือที่ไหน?";
+	next;
+	menu "พูดคุยต่อไป.",M_0,"ไม่อ่ะ.",M_End;
+	
+	M_0:
+		mes "[Senorita Sylvia]";
+		mes "เจ้าสามารถหาแว่นขยายที่มันจะหล่นจากมอนสเตอร์.";
+		next;
+		mes "[Senorita Sylvia]";
+		mes "แว่นขยายที่ข้าว่านั้น มันคือ ^0000FFMagnifier^000000.";
+		mes "เมื่อเจ้าใช้มัน เจ้าจะไม่เดินหลงทางอีกต่อไป.";
+		close;
+	M_End:
+		mes "[Senorita Sylvia]";
+		mes "ข้าก็หลงทางเหมือนกัน.....";
+		emotion 32;
+		close;
+}
+
+// Quatro ----------------------------------------------------------------
+aldebaran,64,104,4	script	Quatro	55,{
+	mes "[Quatro]";
+	mes "ข้าเคยได้ยินว่ามี blacksmith มือดี ที่มาจากเมือง Geffen...";
+M_Menu:
+	next;
+	menu "ชื่อเสียงของ Blacksmith?",M_0,"เกี่ยวกับอัพเกรดอาวุธ",M_1,"จบการสนทนา",M_End;
+
+	M_0:
+		mes "[Quatro]";
+		mes "ตอนนี้ข้ามีภรรยาที่ป่วยอยู่ ซึ่งเขามีลูก.";
+		mes "และเขาต้องการให้ลูกของเขา.";
+		next;
+		mes "[Quatro]";
+		mes "เป็นดั้ง blacksmith ที่มีอนาคต.";
+		goto M_Menu;
+	
+	M_1:
+		mes "[Quatro]";
+		mes "หากทำการอัพเกรดอาวุธ การโจมตีจะเพิ่มขึ้น.";
+		next;
+		mes "[Quatro]";
+		mes "เช่น ^0000fflevel 1^000000 การโจมตีจะเพิ่มขึ้นทีละ ^ff00002^000000 จากการอัพเกรด 1 ระดับ.";
+		mes "เช่น ^0000fflevel 2^000000 การโจมตีจะเพิ่มขึ้นทีละ ^ff00003^000000.";
+		mes "เช่น ^0000fflevel 3 และ level 4^000000 การโจมตีจะเพิ่มขึ้นทีละ ^ff00005^000000!";
+		goto M_Menu;
+
+	M_End:
+		close;
+}
+
+// Isenberg ---------------------------------------------------------------------
+aldebaran,67,154,4	script	Isenberg	98,{
+	mes "[Isenberg]";
+	mes "Mount Mjolnir และป่า Payon Forest เป็นป่าดิบชื่น.";
+M_Menu:
+	next;
+	menu "Mt. Mjolnir",M_0,"Payon Forest",M_1,"จบการสนทนา",M_End;
+	
+	M_0:
+		mes "[Isenberg]";
+		mes "Mt. Mjolnir !";
+		next;
+		mes "[Isenberg]";
+		mes "ภูเขาที่เจ้าได้เคยผ่านมาเช่น Prontera หรือ Geffen.";
+		next;
+		mes "[Isenberg]";
+		mes "มันเป็นเส้นทางที่มีความอันตราย.";
+		mes "เช่นมอนสเตอร์ที่จะคอยทำร้ายผู้คนที่เดินนทาง.";
+		next;
+		mes "[Isenberg]";
+		mes "เจ้าต้องดูแลตัวเองให้ดี.";
+	emotion 21;
+		goto M_Menu;
+	M_1:
+		mes "[Isenberg]";
+		mes "เจ้าจะต้องเดินในป่า Payon Forest หากเจ้าต้องการที่จะไป Alberta หรือ Payon.";
+		next;
+		mes "[Isenberg]";
+		mes "ป่า Payon Forest นั้นมีขนาดใหญ่และอันตรายมาก.";
+		next;
+		mes "[Isenberg]";
+		mes "แต่ถ้าเจ้ามีความเข้มแข็งพอ เจ้าก็จะสามารถผ่านมันไปได้.";
+		next;
+		mes "[Isenberg]";
+		mes "ป่าของ Payon, ในสมัยก่อนยังเป็นป่าดิบชื่น.";
+		next;
+		mes "[Isenberg]";
+		mes "และเมื่อผู้คนมากขึ้น จากป่าของ Payon ก็ถูกสร้งเมืองที่เรียกว่าเมือง Payon.";
+		next;
+		mes "[Isenberg]";
+		mes "และเป็นป่าที่มีมอนสเตอร์ดุร้ายแต่อุดมสมบูรณ์ไปด้วยไม้พันธุ์ต่างๆ.";
+		goto M_Menu;
+	M_End:
+		mes "[Isenberg]";
+		mes "เอาล่ะ Mnt. Mjolnir คือการเดินทางที่อันตราย แต่มันก็เป็นสีสันของนักผจนภัยอย่างหนึ่ง.";
+		close;
+}
+
+// Joanne ------------------------------------------------------------------------------
+aldebaran,81,61,4	script	Joanne	101,{
+	mes "[Joanne]";
+	mes "เจ้ามักจะรวบรวม shells. สินะ";
+	next;
+	menu "การรวบรวม Shell",M_0,"จบการสนทนา",M_End;
+
+	M_0:
+		mes "[Joanne]";
+		mes "พ่อข้าข้าเคยเล่าให้ฟังว่า.";
+		mes "เปลือกหอยมักจะปกป้องตัวเองด้วยการปิดเปลือกของมัน.";
+		next;
+		mes "[Joanne]";
+		mes "หอยที่พ่อข้าว่า มันคือ Ambernite.";
+		mes "สามารถพบได้ใน Comodo.";
+		next;
+		mes "[Joanne]";
+		mes "มันคือเปลือกหอยที่น่ากลัว";
+		close;
+	M_End:
+		mes "[Joanne]";
+		mes "ข้าเคยได้ลิ้มรส ปลาในถ้ำแห่งหนึ่งที่อันตรายมาก!!";
+		mes "มันอร่อย และ คุ้มค่ากับความเสี่ยง";
+		close;
+}
+
+aldebaran,86,228,4	script	Little Kid#alde	62,{
+	mes "[Bebe]";
+	mes "เมื่อ 2-3 วันก่อนข้าได้พา Baby piggy 'Bei-Bei piggy' ของข้า";
+	mes "ไปที่ภูเขา Mjolnir Mountains เพื่อเดินเล่น...";
+	mes "เจ้า Babe นี่เป็น Savage ตัวเล็กๆ ชนิดหนึ่ง ที่น่ารักมาก แถมมีขนสีชมพูด้วย";
+	next;
+	switch(select("เกี่ยวกับ Bei-Bei piggt:ภูเขา Mjolnir เป็นยังไง?:สิ้นสุดการสนทนา")) {
+	case 1:
+		mes "[Bebe]";
+		mes "เราเดินไปตามเส้นทาง และเราก็ได้พบดอกไม้แสนสวย";
+		mes "แต่จริงๆแล้วมันเป็น monster พืชขนาดยักษ์";
+		mes "มันพยายามจะเขมือบข้าและ Bei-Bei piggt ของข้า...";
+		next;
+		mes "[Bebe]";
+		mes "ข้ากลัวมาก และหนีออกมา จากนั้นข้าก็ได้หยิบหินจากพื้น";
+		mes "และขว้างใส่มัน!";
+		mes "(แต่ข้าก็ยังกลัวมากอยู่)";
+		mes "แต่ดูเหมือนจะไม่ได้ระคายผิวมันเลย!";
+		mes "ช่างทรหดอะไรเช่นนี้!";
+		next;
+		mes "[Bebe]";
+		mes "ที่น่าประหลาดใจยิ่งกว่านั้น คือมันมีหน้าเหมือนเราเลย! จริงๆ นะ!!";
+		mes "เจ้าเดินเข้าไปใกล้ๆ";
+		mes "แล้วมันจะอ้าปากกว้างเหมือนกับจะกัดเจ้า!";
+		close;
+	case 2:
+		mes "[Bebe]";
+		mes "ตอนแรกข้าคิดว่าแถบเทือกเขา Mjolnir จะมีพืชสวยๆทุกชนิด";
+		mes "แต่ข้าไม่คิดว่ามันจะมีแมลง และสัตว์ร้ายพวกนี้เลย...";
+		mes " ดอกไม้...แมลง...โดยเฉพาะผึ้งและผีเสื้อ";
+		mes " เป็นปัญหาสำหรับเจ้าถ้าเจ้าไปแตะถูกปีกของมันเข้า";
+		next;
+		mes "[Bebe]";
+		mes "ใช่แล้ว สัตว์และแมลงป่าส่วนใหญ่ จะไม่ทำร้ายเราก่อน";
+		mes "แต่ถ้าเจ้าไปทำให้มันตกใจ";
+		mes "เจจ้าจะหัวเราะไม่ออก...";
+		close;
+	case 3:
+		mes "[Bebe]";
+		mes "ข้านึกขึ้นมาได้ Bei-Bei piggt ของข้าอยู่ไหนนะ...?";
+		mes "Bei-Bei piggy! มานี่เร็ว!";
+		close;
+	}
+}
+
+// Epthiel -----------------------------------------------------------------
+aldebaran,90,170,4	script	Epthiel	47,{
+	mes "[Epthiel]";
+	mes "อาวุธและชุดเกราะหากมี slot มันสามารถที่จะใส่ Card เพื่อเพิ่มความสามารถ.";
+M_Menu:
+	next;
+	menu "เกี่ยวกับ slots..",M_0,"ระหว่าง Card และ Slots",M_1,"จบการสนทนา",M_End;
+
+	M_0:
+		mes "[Epthiel]";
+		mes "มักจะหล่นจากมอนสเตอร์และมี Slot มากกว่า ซื้อในร้านค้าจาก NPC shop.";
+		next;
+		mes "[Epthiel]";
+		mes "มันมีความสำคัญมากในการเพิ่มความสามารถให้อาวุธ หรือ ชุดเกราะ.";
+		goto M_Menu;
+	M_1:
+		mes "[Epthiel]";
+		mes "หากใส่ Card ลงในอาวุธหรือชุดเกราะ เจ้าจะได้รับทักษะ หรือ เพิ่มความสามารถไอเทมนั้น.";
+		next;
+		mes "[Epthiel]";
+		mes "และหากจะใส่ card เข้าไปในไอเทมนั้น เจ้าต้องทำการถอดไอเทมนั้นเสียก่อน.";
+		next;
+		mes "[Epthiel]";
+		mes "เมื่อสวมใส่ card เข้าไปในไอเทมแล้ว เจ้าจะไม่สามารถถอดมันออกได้.";
+		next;
+		mes "[Epthiel]";
+		mes "เจ้าต้องคิดให้ดีก่อนว่า เจ้าจำเป็นต้องการความสามารถนั้นจริงหรือไม่.";
+		goto M_Menu;
+	M_End:
+		mes "[Epthiel]";
+		mes "เจ้าามี card?";
+		close;
+}
+
+// Daniel --------------------------------------------------------------------------
+aldebaran,93,80,4	script	Issei#alde	48,{
+	mes "[Issei]";
+	mes " มีกระแสน้ำขึ้นทั่วทุกแห่งใน Al De Baran";
+	mes " มันเป็นภาพที่สวยจริงๆ";
+	mes " แต่ว่า!";
+	next;
+	mes "[Issei]";
+	mes " เมื่อคืนนี้ ระหว่างที่ข้าออกเดทกับแฟนสาวอยู่";
+	mes " ข้าได้เดินไปที่ลำห้วย";
+	mes " มันทำให้บรรยากาศโรแมนติกของเราพังทลายหมด";
+	next;
+	if (select("เสียใจด้วยนะ:โอ้ ทำไมล่ะ?") == 1) {
+		mes "[Issei]";
+		mes " นี่เป็นสิ่งที่ข้าได้ยินจากแฟนสาว";
+		mes " เธอเป็นลูกสาวคนเล็กของเจ้าของร้านขายชุดเกราาะ";
+		mes " เหมือนกับสินค้าต่างๆ";
+		mes " เธออยู่อย่างโดดเดียวในร้านขายอาวุธและชุดเกราะ";
+		next;
+		mes "[Issei]";
+		mes " ความสามารถ";
+		mes " ในการเก็บไอเท็มที่ตกจาก monster";
+		mes " ดีกว่าจริงๆ";
+		next;
+		mes "[Issei]";
+		mes " พูดอีกอย่าง";
+		mes " มันเหมอืน 'คุณสมบัติเยอะกว่า' ฉันว่างั้นนะ";
+		mes " แม้ว่าข้าจะ";
+		mes " ไม่แน่ใจว่าจริงๆ แล้วว่าจะเป็นยังไงก็ตาม...";
+		close;
+	}
+	mes "[Issei]";
+	mes "*ฮือๆ*";
+	mes "เจ้าต้องคิดว่าข้าเป็นคนโตที่โง่เง่าแน่ๆ เลย ใช่ไหม?";
+	close;
+}
+
+aldebaran,113,70,4	script	Forger Munster#alde	48,{
+	mes "[Munster]";
+	mes "ข้าเคยอาศัยอยู่ใน Geffen เพิ่งย้ายมาอยู่ Aldebaran";
+	mes "เมื่อฤดูหนาวที่แล้วนี่เอง";
+	mes "มาอยู่ที่นี่...";
+	next;
+	if (select("เกี่ยวกับ ^3355FFการสกัด^000000:จบการสนทนา") == 1) {
+		mes "[Munster]";
+		mes "บิดาข้า เป็นช่างตีเหล็กที่โด่งดังมากใน Geffen เมืองที่ขึ้นชื่อเรื่องการตีเหล็ก เราย้ายมาอยู่ที่เมืองเกิดของแม้ของข้า";
+		next;
+		mes "[Munster]";
+		mes "บางทีข้าก็ช่วยพ่อข้า เมื่อไม่นานมานี้ข้าได้เรียนรู้ การกำหนดเลเวลความแข็งแกร่งของอาวุธและความสัมพันธ์กับโอกาสในการตีอาวุธสำเร็จ";
+		next;
+		mes "[Munster]";
+		mes "อาวุธเลเวล 1 จะตีสำเร็จที่ระดับ 7";
+		mes "อาวุธเลเวล 2 จะตีสำเร็จที่เลเวล 6";
+		mes "อาวุธเลเวล 3 จะตีสำเร็จที่เลเวล 5";
+		mes "เช่นเดียวกับอาวุธเลเวล 4";
+		next;
+		mes "[Munster]";
+		mes "จะตีสำเร็จหรือที่ประมาณเลเวล 4 สำหรับชุดเกราะ";
+		mes "ปกริจะไปได้ถึงเลเวล 4";
+		mes "ถ้าการตีล้มเหลว";
+		mes "อาวุธก็จะไม่อาจทนความแข็งแกร่งนั้นได้";
+		mes "และจะพัง";
+		close;
+	}
+	mes "[Munster]";
+	mes "แม้ว่าจะมีคนมากมาย ไม่แน่ใจ หรือ กระทั่งไม่รู้ว่า ที่ทำงานของบิดาของข้าอยู่ที่ไหน";
+	mes "แต่หากบิดาของข้าจะโด่งดังใน Al de Baran นั่นก็เป็นเรื่องที่ดีมาก";
+	close;
+}
+
+// Phracon Guy --------------------------------------------------------------
+aldebaran,117,181,4	script	Pharacon Guy	48,{
+	mes "[Phracon Guy]";
+	mes "อาวุธระดับ 1 สามารถอัพเกรดได้ด้วย 'Pharacon'.";
+	next;
+	menu "เกี่ยวกับ Pharacon",M_0,"Phracon หาได้ที่ไหน",M_1,"จบการสนทนา",M_End;
+
+	M_0:
+		mes "[Pharacon Guy]";
+		mes "คือวัสดุในการอัพเกรดอาวุธระดับ 1.";
+		next;
+		mes "[Pharacon Guy]";
+		mes "มันอาจเป็นวัสดุที่ไม่แข็งแรงมาก แต่มันเหมาะกับการอัพเกรดอาวุธระดับต่ำๆ.";
+		next;
+		mes "[Pharacon Guy]";
+		mes "ไอเทม Pharacon สามารถหาได้จากมอนสเตอร์และซื้อจาก Forging Workshops ภายในเมือง.";
+		next;
+		mes "[Pharacon Guy]";
+		mes "หากเจ้าต้องการ Pharacon ในการอัพเกรด สามารถซื้อได้ในราคา 100 zeny จาก NPC's!";
+		close;
+	M_1:
+		mes "[Pharacon Guy]";
+		mes "เจ้าสามารถหา Pharacon.  ได้โดยการล่ามอนสเตอร์?";
+		mes "เจ้า Pharacon คือวัสดุที่ใช้ในการอัพเกรดอาวุธ.";
+		next;
+		mes "[Pharacon Guy]";
+		mes "แต่ตอนนี้ข้าจะบอกว่า Pharacon สามารถล่าได้จากเจ้า Bebe Savage.";
+		close;
+	M_2:
+		mes "[Pharacon Guy]";
+		mes "ขอให้โชคดีในการใช้ Pharacon ในการอัพเกรด-";
+		close;
+}
+
+// Alchemy Guy Chemirre -----------------------------------------------------------
+aldebaran,121,231,4	script	Alchemy Guy#alde	49,{
+	mes "[Chemirre]";
+	mes "นักเล่นแร่แปรธาตุก็คือนักเคมีใน Al de Baran ยุคเก่าก่อน ผู้ซึ่งมุ่งมั่นที่จะแปรสภาพโลหะคุณภาพต่ำและไม่เป็นที่ต้องการ";
+	mes "ให้เป็นโลหะที่มีคุณภาพสูง นั่นคืออีกชื่อหนึ่งของนักวิทยาศาสตร์";
+	next;
+	switch(select("เกี่ยวกับนักเล่นแร่แปรธาตุใน Payon:นักเล่นแร่แปรธาตุเหรอ?:. . . . :สิ้นสุดการสนทนา")) {
+	case 1:
+		mes "[Chemirre]";
+		mes "ในกรณีเดียวกัน มียาชนิดหนึ่งในเรื่องเล่าของ Payon";
+		mes "ที่ช่วยให้คนเยาว์วัยตลอดไป และ เกิดขึ้นในโลกอื่น";
+		next;
+		mes "[Chemirre]";
+		mes "มันมาจาก วิธีการสกัดโลหะนี้";
+		mes "ทฤษฏีเล่นแร่แปรธาตุของ Payon";
+		mes "คือทฤษฏีที่รวมเคมีและการเล่นแร่แปลธาตุเข้าด้วยกัน";
+		next;
+		mes "[Chemirre]";
+		mes "แต่ในทางเคมีไม่ก้าวหน้าใน Payon เลย";
+		mes "ตรงกันข้ามกับใน Al de Baran";
+		mes "ไม่เพียงแต่จะเป็นเพราะสภาพแวดล้อมทางธรรมชาติเท่านั้น";
+		mes "แต่จำเป็นต้องใช้วัตถุดิบสำหรับการวิจัยทางการเล่นแร่แปรธาตุ";
+		mes "แน่นอน วัตถุดิบก็เป็นสิ่งสำคัญยิ่ง";
+		next;
+		mes "[Chemirre]";
+		mes "นับจากนี้ จะไม่มีที่ไหนที่เทียบกับ Al de Baran ได้ เมื่อมันเป็นที่รู้จักในด้านการเล่นแร่แปรธาตุ";
+		close;
+	case 2:
+		mes "[Chemirre]";
+		mes "นักเล่นแร่แปรธาตุ";
+		mes "สามารถใช้ความรู้ในทางเคมีของพวกเขาและผสมวัตุดิบทุกชนิด";
+		mes "เพื่อผลิต ไอเท็มที่มีคุณสมบัติหลายอย่าง";
+		close;
+	case 3:
+		mes "[Chemirre]";
+		mes "เรื่องพวกนี้ดูจะน่าเบื่อ";
+		mes "มาพูดกันเรื่องความสัมพันธ์ระหว่างการ์ด monster กับ slot กันเถอะ";
+		mes "ข้าคิดว่าเจ้ารู้แล้ว ว่าการ์ด monster แต่ละชนิด";
+		next;
+		mes "[Chemirre]";
+		mes "มีตำแหน่งเฉพาะตัว นั่นคือมี slot ที่ตายตัว";
+		mes "เจ้าต้องใส่การ์ดไปใน slot ที่ตรงกัน";
+		mes "เพื่อให้ใช้งานได้ อย่างเช่น ถ้าเจ้ามีการ์ด Poring...";
+		next;
+		mes "[Chemirre]";
+		mes "การ์ด Poring จะมีคุณสมบัติ LUK+1 และสามารถใส่ได้ใน 'ชุดเกราะ'";
+		mes "กล่าวได้ว่า";
+		next;
+		mes "[Chemirre]";
+		mes "ฉะนั้นถ้าเจ้าจะพยายามใส่มันใน slot ของ dagger";
+		mes "มันก็จะไร้ประโยชน์";
+		mes "และจะไม่ส่งผลอะไรเลย";
+		next;
+		mes "[Chemirre]";
+		mes "และชุดเกราะส่วนมาก ที่ขายกันในร้านค้าอาจจะไม่มี slot เลยก็ได้";
+		mes "มีเพียงไอเท็มที่ได้จาก monster เท่านั้น";
+		mes "ที่สามารถใส่การ์ดได้";
+		next;
+		mes "[Chemirre]";
+		mes "อ้า ใช่แล้ว การใส่การ์ดลงไปในอุปกรณ์";
+		mes "ขั้นแรกให้เปิดรายการสิ่งของของเจ้าขึ้นมาก่อน";
+		mes "ซึ่งจะพบไอเท็มต่างๆ";
+		mes "จากนั้นให้ดิบเบิ้ลคลิก";
+		mes "บนกร์ดที่เจ้าต้องการใช้";
+		next;
+		mes "[Chemirre]";
+		mes "รายการสิ่งของที่สามารถใส่การ์ดได้ จะปรากฏขึ้น";
+		mes "และเจ้าก็สามารถใส่การ์ดลงไปได้";
+		close;
+	case 4:
+		mes "[Chemirre]";
+		mes "ถ้าจะพูดถึงนักเล่นแร่แปรธาตุที่โด่งดังที่สุดในภูมิภาคนี้...";
+		mes "มันก็ต้องเป็น Alchemist Guild ของ Al de Baran ! นี่เอง";
+		mes "Alchemist Guild จงเจริญ!!";
+		close;
+	}
+}
+
+// Nastasia --------------------------------------------------------------
+aldebaran,146,124,4	script	สาวชาวบ้าน#alde	101,{
+	mes "[สาวชาวบ้าน]";
+	mes "ข้าได้ยินมาว่ามีสถานที่ที่เรียกว่า ^3355FFสมาคม Assassin^000000 อยู่ที่ไหนสักแห่งในโลกนี้";
+	mes "ที่นั่นสอนวิธีลอบสังหารโดยไม่ใครใครพบเห็นตัว";
+	mes "ที่นั่น...";
+	next;
+	mes "[สาวชาวบ้าน]";
+	mes "น่าจะผิดกฏหมาย ใช่ไหม?";
+	mes "......";
+	mes "โรงเรียนที่ผิดกฏหมายจะเก็บค่าเล่าเรียนหรือเปล่านะ?";
+	next;
+	if (select("สนทนาต่อ:ยกเลิก") == 1) {
+		mes "[สาวชาวบ้าน]";
+		mes "มอนสเตอร์ที่มีปีกสามารถบินได้ พวกมันส่วนใหญ่";
+		mes "จะเคลื่อนที่และโจมตีได้เร็วมาก มันจึงเป็นเรื่องยาก";
+		mes "ที่เจ้าจะโจมตีมันได้";
+		next;
+		mes "[สาวชาวบ้าน]";
+		mes "ดังนั้นเวลาที่สู้กับมอนสเตอร์พวกนี้";
+		mes "เจ้าจะต้องมี dexterity (DEX)";
+		mes "สูงกว่าปกติ";
+		mes " ถูกต้องไหม? ?";
+		close;
+	}
+	mes "[สาวชาวบ้าน]";
+	mes "โลกนี้ไม่มีอะไรฟรีหรอกแน่นอนว่าเจ้าอาจจะเรียนฟรีแต่กรณียังงั้นไม่ได้มีบ่อยหรอกนะ อืมมม...";
+	close;
+}
+
+aldebaran,159,242,4	script	Insect Guy#alde	119,{
+	mes "[Stromme]";
+	mes " ถ้่าเจ้าเดินทาง";
+	mes " ไปตามแนวเขา Mjolnir...";
+	mes " ทุกคนรู้ดี!";
+	mes " พวกแมลงจะแบ่งได้หลายประเภท";
+	mes " ตามพฤติกรรมและความสามารถในการดำรงชีวิตของพวกมัน";
+	mes " เจ้ารู้จักพวกมันหมดไหม?";
+	next;
+	if (select("เกี่ยวกับแมลง:สิ้นสุดการสนทนา") == 1) {
+		mes "[Stromme]";
+		mes " แมลงดอกไม้ หรือ...ผีเสื้อ...และอื่นๆ";
+		mes " บินจากดอกไม้อีกหนึ่งดอกไปอีกดอกเพื่อเก็บเกสร";
+		mes " เมื่อมีเกสรดอกไม้ติดเต็มขาและบินไปมา";
+		mes "พวกมันจะทำการแพร่กระจายเกสร? น่ารักเหลือเกิน...";
+		next;
+		mes "[Stromme]";
+		mes " อ้า แต่เรื่องนั้นอาจทำให้ถูกหลอกได้";
+		mes "อย่าลืมล่ะ";
+		mes "เพื่อเอาชีวิตรอด พวกมันจะมีความสามารถในการต่อสู้ของตัวเอง";
+		mes "และพวกมันก็จะขยายพันธุ์อย่างไม่หยุดยั้ง";
+		next;
+		mes "[Stromme]";
+		mes "ในอีกแง่หนึ่ง ยังมีอีกพวกหนึ่ง ที่กินแมลงเหล่านี้เป็นอาหาร";
+		mes "อย่าง Matis, Agros, Argiope...และอื่นๆ";
+		mes "แมลงพวกนี้แหละ";
+		next;
+		mes "[Stromme]";
+		mes "monster บางตัวจะมาในรูปแมลงพวกมันมีพลังเลเวลสูง ความแข็งแกร่งมาก";
+		mes "อย่าง Argiope หรือ Agros หรือแม้แต่ชนิดที่ยังไม่รู้จัก!";
+		next;
+		mes "[Stromme]";
+		mes "จงระวังให้หนัก! เจ้าน่าจะอยู่ห่างๆพวกมันไว้!";
+		mes "เพราะมีอยู่สิ่งหนึ่งที่เรายังพอสบายใจได้บ้าง";
+		mes "monster พวกนี้... สายตาไม่ค่อยดีเท่าไหร่";
+		next;
+		mes "[Stromme]";
+		mes "แค่เดินหนีไปนิดหนึ่ง";
+		mes "พวกมันก็ไม่เห็นเจ้าแล้ว";
+		close;
+	}
+	mes "[Stromme]";
+	mes "เจ้าควรจะระวังเอาไว้ แม้แต่พวกที่สวยงามหรือ่อนแอที่สุด";
+	mes "ในแหล่าแมลงด้วยกัน มิฉะนั้นแล้วเจ้าเจอปัญหาใหญ่แน่!";
+	mes "อย่า...ประมาท";
+	mes "สภาพแวดล่อมของภูเขา Mjolnir.";
+	close;
+}
+
+aldebaran,180,46,4	script	Joo Jahk#alde	88,{
+	mes "[Joo Jahk]";
+	mes " ข้าเป็นนักท่องเที่ยวจากเมืองป่า Payon";
+	mes " ที่นี่...น้ำทุกแห่ง...";
+	mes " ทำให้ข้ารู้สึกหนาวเหลือเกิน";
+	next;
+	mes "[Joo Jahk]";
+	mes " แต่ง..น้ำนี่...";
+	mes "ดื่มได้ไหมนะ?";
+	mes "ที่จริง...ข้าก็ลองไปมั่งแล้วล่ะ";
+	next;
+	if (select("สนทนาต่อไป:ยกเลิก") == 1) {
+		mes "[Joo Jahk]";
+		mes " ตอนนี้ข้ากำลังท่องเที่ยวอยู่และหวังว่าจะเดินทางไปได้ทั่วทั้งทวีปนี้";
+		mes " นี่เป็นสิ่งที่ผู้วิเศษชั้นสูงบอกข้า";
+		mes " ก่อนที่ข้าจะถึง Al de Baran";
+		next;
+		mes "[Joo Jahk]";
+		mes " การสู้กับ monster พวก ^3355FFGhost attribute^000000 ที่ไม่มีร่างกายจริงๆ";
+		mes " เจ้าไม่สามารถสู้อย่างง่ายๆ";
+		mes " ด้วยการโจมตีหรือเวทมนตร์ธรรมดา";
+		next;
+		mes "[Joo Jahk]";
+		mes " หวังว่านี่จะช่วยเจ้าได้นะ";
+		mes " เอาล่ะ งั้น...";
+		close;
+	}
+	mes "[Joo Jahk]";
+	mes " ไม่รู้่ว่าเป็นเพราะสภาพแวดล้อมรอบๆ Al de Baran";
+	mes " นี่สะอาดมากหรือเปล่า";
+	mes " น้ำมีรสหวานเป็นพิเศษ";
+	mes " ดูเหมือนว่าเราสามารถดื่นน้ำได้แม้กระทั่งขณะเรือแล่นผ่าน...";
+	close;
+}
+
+// Gavin -------------------------------------------------------------------
+aldebaran,212,122,4	script	ชาว Al De Baran#alde	97,{
+	mes "[ชาว Al De Baran]";
+	mes " ขอต้อนรับ! ที่นี่คือ Al de Baran!";
+	mes " พวกเรา พลเมืองแห่ง Al de Baran ขอต้อนรับผู้มาเยือน!";
+	mes " .....";
+	next;
+	mes "[ชาว Al De Baran]";
+	mes " อย่างเป็นทางการเลยเหรอ? ข้อเป็นตัวแทน...";
+	mes " เอาล่ะ งั้น";
+	mes "ให้ข้าได้พูดเองดีกว่าา...";
+	next;
+	mes "[ชาว Al De Baran]";
+	mes "ขอต้อนรับท่านผู้มาเยือน !";
+	next;
+	if (select("สนทนาต่อ:ยกเลิก") == 1) {
+		mes "[ชาว Al De Baran]";
+		mes " อ้า";
+		mes "เจ้าเคยเห็นพวกเขามาก่อนงั้นเหรอ?";
+		mes " พวกสิ่งมีชีวิตอันน่าขัน!";
+		mes " นั่นเมื่อ 2-3 วันมาแล้ว";
+		mes " ใกล้กับป่าภูเขา Mjolnir";
+		next;
+		mes "[ชาว Al De Baran]";
+		mes " ที่อยู่รอบๆ Al de Baran";
+		mes " ข้าเห็น Poring ที่มีปีกเทวดา!";
+		mes " สาบานได้ !";
+		next;
+		mes "[ชาว Al De Baran]";
+		mes " ข้าเห็นมันปะปนอยู่กับ Poring ธรรมดา";
+		mes " ป่วนเปี้ยนๆ อยู่แถวนั้น";
+		mes " ข้าได้ยินมาว่าพวกมันเรียกว่า Angeling...";
+		mes " ข้าอยากรู้นักเชียวว่ามันเป็นอะไรกันแน่...?";
+		close;
+	}
+	mes "[ชาว Al De Baran]";
+	mes " Al de Baran เป็นเมืองที่มีเสน่ห์";
+	mes " สะอาด และรายล้อมด้วยแนวเขา Mjolnir อันงดงาม";
+	mes " เราขอต้อนรับผู้มาเยือนอย่างจริงใจ";
+	mes " สู่ Al de Baran";
+	close;
+}
+
+
+// Giddy Fellow ------------------------------------------------------------------
+aldeba_in,152,47,4	script	Fussy Man#alde	97,{
+	mes "[Fussy Man]";
+	mes "โอ้ ม่าาาาาาาาย!";
+	mes "ไก่ที่รักของข้า!";
+	mes "มันหายไปแล้ว!!";
+	next;
+	if (select("ไก่นั่นชื่ออะไร?:. . . . .") == 1) {
+		mes "[Fussy Man]";
+		mes "มันชื่อ 'The Great Picky'...";
+		mes "โอ้";
+		mes "พระเจ้า...ตอนนี้ข้าจะทำยังไงดี?";
+		mes "เจ้าช่วยข้าหา picky";
+		mes "ที่แสนน่ารักนั่นได้ไหม~~";
+		next;
+		if (select("อะไรกัน! นั่นมันชื่อพื้นๆ เลยนะ!:. . . . .") == 1) {
+			mes "[Fussy Man]";
+			mes "เจ้าพูดอะไรกัน!?";
+			mes "'The Great Picky'";
+			mes "ของเราไม่เหมือนใครนะ!";
+			mes "มีเพียงตัวเดียวในโลกเลย!";
+			mes " มันน่ารักมากกกกกก! เจ้า!";
+			mes "เจ้าช่างไม่มีรสนิยมเอาเสียเลย!";
+			close;
+		}
+		mes "[Fussy Man]";
+		mes "อย่าดูถูกข้าสิ!";
+		mes "ข้าไม่มีพี่น้อง";
+		mes "ดังนั้นข้าเลยเลี้ยงมันเหมือนน้องชายเลย!";
+		mes "*ฮือๆ*";
+		close;
+	}
+	mes "[Fussy Man]";
+	mes "อย่าดูถูกข้าสิ!";
+	mes "ข้าไม่มีพี่น้อง";
+	mes "ดังนั้นข้าเลยเลี้ยงมันเหมือนน้องชายเลย!";
+	mes "*ฮือๆ*";
+	close;
+}
+
+// Master ----------------------------------------------------------
+aldeba_in,156,179,4	script	Master#alde	61,{
+	mes "[Master]";
+	mes " สำนักงานใหญ่ของ Kafra อยู่ใน Al de Baran";
+	mes " บางทีพนักงานสาวๆ ที่มาที่ผับของเรา";
+	mes " ดูพวกเธอสดชื่นและร่าเริงกันมากเลย";
+	next;
+	mes "[Master]";
+	mes " งั้นของให้เราทดสอบอไะรหน่อยนะ!";
+	mes " และนี่ก็ถึงเวลา 'ขอบใจ Playmate' แล้ว!";
+	mes "เราจะทดสอบว่าคู่ที่เหมาะสมที่สุดของเจ้าคือใคร!";
+	mes " ฮ่าฮ่า...ไม่สำคัญหรอกว่าเจ้าจะเป็นชายหรือหญิง";
+	next;
+	mes "[Master]";
+	mes " แค่เลือก";
+	mes " สาว Kafra";
+	mes " ที่เจ้าคิดว่ามีเสน่ห์ที่สุดเท่านั้นเอง!";
+	mes "favorite Kafra girl?";
+	next;
+	if (select("โอ้! มันต้องสนุกแน่ๆ เลย!:ไม่...ข้าไม่อยากเล่น...") == 1) {
+		mes "[Master]";
+		mes "งั้น เลือกดีๆ ล่ะ!";
+		mes "เลือกแบบที่เจ้าชอบสิ!";
+		next;
+		mes "[Master]";
+		mes "สาว Kafra ดั้งเดิมจะมีผมสีน้ำเงิน";
+		mes "หมายเลข  (1)^3355FF'Deprotai'^000000!!";
+		mes "ความเรียบร้อยของเธอเป็นเสน่ห์ดึงดูดเด็กมัธยมจอมซนได้มากมาย!";
+		mes "หมายเลข (2)^5533FF'Tayelin'^000000!!";
+		mes "ผมยาวตรงและแสนสุภาพ! มาจาก Payon!";
+		next;
+		mes "[Master]";
+		mes "หมายเลข (3)^555555'Solin'^000000!!";
+		mes "ผมสั้นอย่างเด็กผู้ชายทำให้เธอดูสดชื่น!";
+		mes "หมายเลข (4)^1133DD'Penny'^000000!!";
+		mes "ดูเรียบร้อยและเป็นสาวทำงาน! ดูเหมือนสาวชั้นสูง!";
+		next;
+		mes "[Master]";
+		mes "หมายเลข (5)^33FF55'Claris'^000000!!";
+		mes "ผมเปีย, อ่อนเยาว์ ~ เธอดูเด็ก แต่จรืงๆ แล้วเธอเป็นผู้ใหญ่แล้วนะ!";
+		mes "หมายเลข (6)^AAAA00'Debril'^000000!!";
+		mes "สนับสนุนโดย: ศูนย์บริการ Kafra Service Center...";
+		next;
+		mes "[Master]";
+		mes "เจ้าหน้าที่ Jonda";
+		mes "สิ้นสุดการนำเสนอ";
+		next;
+		switch(select("(1) Deprotai:(2) Tayelin:(3) Solin:(4) Penny:(5) Claris:(6) Debril")) {
+		case 1:
+			mes "[Master]";
+			mes "โอ้~";
+			mes "คนจำเจอะไรเช่นนี้!";
+			mes "เจ้าต้องลองอะไรใหม่ๆ บ้างนะ!";
+			mes "ไม่มีประโยชน์หรอกที่จะวิ่งหนีความเป็นจริงน่ะ!";
+			close;
+		case 2:
+			mes "[Master]";
+			mes "ทำไมเจ้าไม่ตั้งใจหน่อยล่ะ?";
+			mes "ถ้าคู่หู่ของเจ้าไม่มีสมาธิเหมือนเจ้าล่ะก็...";
+			mes "เจ้าจะไปรบกวนคนรอบข้างนะ!";
+			close;
+		case 3:
+			mes "[Master]";
+			mes "การใช้ชีวิตอย่างหรูหรา...";
+			mes "จะทำให้เจ้าถูกเรียกว่าพวกเสเพลนะ";
+			mes "เจ้าต้องตั้งเป้าหมายให้ชีวิต";
+			mes "และมุ่งมั่นไปให้ถึงจุดนั่น!";
+			close;
+		case 4:
+			mes "[Master]";
+			mes "เจ้าคิดว่าจะเลิกฝันได้เมื่อไหร่กัน?";
+			mes "เจ้าคิดว่าจะมองหาคู่ในฝันอย่างงี้ไปเรื่อยๆ น่ะเหรอ?";
+			mes "กล้าสู่ความจริงหน่อยสิ!";
+			close;
+		case 5:
+			mes "[Master]";
+			mes "ข้าจะพูดกับเจ้าอย่างเปิดอกนะ";
+			mes "เจ้าก็ช่วยเปิดให้ด้วยได้ไหม?!";
+			mes "อย่าล้อเล่นกับตัวเองอีกเลย!";
+			close;
+		case 6:
+			mes "[Master]";
+			mes "โอ้~โอ้โอ้~!!";
+			mes "เจ้าอยากคบกับเด็กหรอ!";
+			mes "นี่...นี่มันไม่ถูกต้อง!";
+			close;
+		}
+	}
+	mes "[Master]";
+	mes "โอ้ เอาน่า!!";
+	mes "เมื่อคืนเราไม่ได้นอนกันทั้งคืนเพื่อเตรียมนี่!";
+	mes "แค่ลองดูหน่อยว่าเจ้าชอบหรือเปล่า!";
+	mes " โอ้..ยังไงก็ได้...";
+	close;
+}
+
+// RS125 ------------------------------------------------------------------------
+aldeba_in,232,241,4	script	RS125#alde	48,{
+	mes "[RS125]";
+	mes "แม้ว่าข้าจะมีหัวใจที่ไม่เหมือนใคร...";
+	mes "มันมี 2 ห้องเหมือนกับมอเตอร์ไซค์";
+	mes "ฉันไม่รู้ว่าเสียงหัวใจเต้นของข้าจะไปรบกวนคนอื่นหรือเปล่า...";
+	mes " แต่เพื่ออนาคตของ Al de Baran แล้ว ข้าจะพยายาม!";
+	next;
+	if (select("เล่าเรื่องต่อไป:สิ้นสุดการสนทนา") == 1) {
+		mes "[RS125]";
+		mes "...3 ปีมาแล้ว...";
+		mes "3 ปีมาแล้ว นับแต่ 996";
+		mes "พี่ชายของข้าได้รับเลือกให้เป็นตัวแทนวิ่งระยะสั้นของ Al de Baran...";
+		mes "ย้อนกลับไปตอนนั้น ทุกคนเรียกเขาว่า 'Pecopeco แห่ง Al de Baran'";
+		mes "เขาเป็นนักวิ่งระยะไกลที่ยอดเยี่ยมจริงๆ";
+		next;
+		mes "[RS125]";
+		mes "ใน 'Al de Baran Races'";
+		mes "ซึ่งจัดขึ้นในทุกๆ 4 ปีที่ Al de Baran แห่งนี้";
+		mes "จะมีแฟนๆ.";
+		mes "นักกรีฑาจากทั่วทุกมุมโลกมาดูพี่ชายของข้า...";
+		mes "ทำให้เขาแทบบ้า";
+		mes "เขาเป็นที่ชื่นชอบของแฟนๆ มาก...";
+		next;
+		mes "[RS125]";
+		mes "แต่ว่าไม่มีอะไรในโลกที่จะคงอยู่ได้ตลอดกาล";
+		mes "พี่ชายของข้าแพ้การแข่งขัน...";
+		mes "แพ้แก่เด็กสาวจากหมู่บ้านใน 'ป่า Payon'";
+		next;
+		mes "[RS125]";
+		mes "นับแต่นั้น";
+		mes "พี่ชายของข้าก็ฝึกซ่อมอย่างบ้าคลั่ง แล้วเขาก็เป็นโรคหัวใจ";
+		mes " ตอนนี้เขาได้แต่มองดูข้าจากบนเตียง...";
+		next;
+		mes "[RS125]";
+		mes "ข้าคืออนาคตแห่ง Al de Baran เป็นหเมือนความหวังของพี่ชายข้า!";
+		mes "รอดูเอาเถอะ! ข้าจะปราบ 'Hapana' นักวิ่งที่เร็วที่สุดแห่ง Payon ให้ได้!";
+		close;
+	}
+	mes "[RS125]";
+	mes "สักวันข้าจะท่องไปทั่วโลก!";
+	mes "ข้าอยากรู้ว่าทิวทัศน์จะงดงามเพียงใดเมื่อมองผืนทะเลจากเมืองท่าแท่ง Alberta...";
+	mes "เมื่อการแข่งขันสิ้นสุดลงในปีหน้า ข้าจะไปท่องรอบโลกกับพี่ชายของข้า!";
+	close;
+}
+
+// Nice Looking Guy ----------------------------------------------------------
+aldeba_in,219,61,4	script	Nice Looking Guy	109,{
+	mes "[Nice Looking Guy]";
+	mes "มีเรื่องเล่าเกี่ยวในป่า.";
+	next;
+	mes "[Nice Looking Guy]";
+	mes "2 ปีก่อน มีชายผู้หนึ่ง ลงมาจากต้นไม้.";
+	mes "และพยายามจะเก็บผลไม้จากต้นไม้นนั้น.";
+	next;
+	mes "[Nice Looking Guy]";
+	mes "ข้าคิดว่าเขาคงหิวน่าดูเลยนะ!";
+	close;
+}
+
+// Evil Looking Guy --------------------------------------------------------------
+aldeba_in,223,121,4	script	Threatening-Looking Man	63,{
+	mes "[Threatening-Looking Man]";
+	mes "เฮ้ แกน่ะ!";
+	mes "แก้เข้ามาในบ้านคนอื่นได้ยังไงกัน!";
+	mes "มันไม่ถูกต้องนะ!";
+	mes "แกมีสิทธิ์อะไรที่เข้ามาในบ้านข้าและมาพูดกับข้ายังงี้?";
+	next;
+	mes "[Threatening-Looking Man]";
+	mes "ฮีฮีฮี...ข้ารู้ ข้ารู้";
+	mes "ข้ามีโลกจริงและโลกจำลองปะปนกัน...";
+	next;
+	if (select("สนทนาต่อไป:สิ้นสุดการสนทนา") == 1) {
+		mes "[Threatening-Looking Man]";
+		mes "เด็กน้อย";
+		mes "ข้าไม่รู้ว่าเจ้าจะรู้หรือเปล่า";
+		mes "ว่าโลกนี้มีระบบทหารรับจ้างอยู่";
+		mes "และข้าก็เป็นหนึ่งในนั้น";
+		next;
+		mes "[Threatening-Looking Man]";
+		mes "ทหารรับจ้างและระบบทหารรับจ้างเป็นเรื่องที่เข้าใจได้ไม่ยาก";
+		mes "มันก็คือการจ่ายเงินให้คนอื่นมาต่อสู้ให้ไงล่ะ";
+		mes "ยิ่งเก่งเท่าไหร่ก็ค่าจ้างแพงเท่านั้น...";
+		next;
+		mes "[Threatening-Looking Man]";
+		mes "หยุดพูดเรื่องน่าเบื่อนี่ซักที!";
+		mes "ข้าบอกเจ้าได้เลยว่าการเลือกทหารรับจ้างดีๆ";
+		mes "เป็นเรื่องง่ายอยู่แล้ว";
+		next;
+		mes "[Threatening-Looking Man]";
+		mes "ขั้นแรก เจ้าจงดูที่จมูกก่อน ทหารรับจ้างชั้นดีจะต้องมีจมูกเปียก";
+		mes "ถ้ามันแห้งล่ะก็";
+		mes "แสดงว่าเขาเป็นหวัดแล้วล่ะ...";
+		next;
+		mes "[Threatening-Looking Man]";
+		mes "และข้อเท้าต้องเล็ก!";
+		mes "เมื่อเป็นทหารรับจ้างแล้ว เขาต้องมีข้อเท้าเล็กและคอที่ขาวสะอาด!";
+		mes "และจะดีขึ้นไปอีกถ้ามีผลตรงยาวและน่ม หรือ ให้เงินเขาไปตัดผมมั่งก็ได้";
+		next;
+		mes "[Threatening-Looking Man]";
+		mes "สุดท้าย ในฐานะทหารรับจ้าง มันเป็นงานบริการ!";
+		mes "ที่ต้องทำให้ลูกค้าสบายใจ";
+		mes "ทหารรับจ้างที่แท้จริง";
+		mes "จะต้องทำสิ่งที่เจ้าต้องการและพร้อมจะให้คำปรึกษา!";
+		mes " เจ้าจะไม่มีวันลืมช่วงเวลาเช่นนั้นแน่!";
+		close;
+	}
+	mes "[Threatening-Looking Man]";
+	mes "ยังอยู่อีกเหรอ?";
+	mes "ถ้าเจ้าเป็นตำรวจ ก็แสดงตรามาซิ!";
+	mes "ถ้าเจ้าเป็นสมาชิกในครอบครัวของเราก็เปิดรอยแผลเป็นให้ข้าดูสิ!";
+	close;
+}
+
+
+//<=================================================== Kafra Corp. Headquarters ==========================================================>\\
+// Kafra Jasmine  -------------------------
+aldeba_in,24,245,4	script	Kafra Jasmine#alde	115,{
+	cutin "kafra_03",2;
+	mes "[Kafra Jasmine]";
+	mes "ดีค่ะ~ ข้าคือ Kafra หมายเลข 1 ชื่อ Solin ค่ะ";
+	mes " ยินดีต้อนรับสู่ สำนักงานใหญ่ Kafra";
+	mes "ในเมือง Al de Baran!";
+	next;
+	mes "[Kafra Jasmine]";
+	mes " พวกเรา ศูนย์บริการ Kafra จะอยู่กับท่านเสมอ!";
+	mes " พวกเราคือศูนย์บริการ Kafra";
+	mes "ที่มีประวัติยาวนานกว่า 5800 ปี~";
+	mes "แป่ว-แป่ว~";
+	next;
+	switch(select("5800 ปีเชียวหรือ? ไม่อยากจะเชื่อ!:เอาล่ะ เอาละ พอได้แล้ว:มีแฟนหรือยังจ้ะ?")) {
+	case 1:
+		mes " ฟังให้ดีนะ!";
+		mes "ฉันใช้เวลาทั้งอาทิตย์ท่องจำคำพวกนี้!";
+		mes " ฉันไม่เหมือน Kafra คนอื่นๆ นะ ฉันขี้ลืมจะตายไป!";
+		mes "...อ้า...นี่ฉันพูดถึงไหนแล้วเนี่ย...?...";
+		next;
+		mes "["+ strcharinfo(0) +"]";
+		mes " *คิกคิก* โอ้";
+		mes "นั่นแค่การแสดงเท่านั้น...";
+		mes " ใช่แล้ว!";
+		mes "มันเป็นการแสดง...โดยพวกเราเองให้ลูกค้าที่ศูนย์บริการ Kafra ดูกัน!";
+		mes " การแสดงแห่งความฝัน!";
+		mes "(...แต่มีนักแสดงครั้งละคนเดียวเอง)";
+		break;
+	case 2:
+		mes "[Kafra Jasmine]";
+		mes "......";
+		mes " ก่อนที่ฉันจะเข้าทำงานในศูนย์บริการ Kafra";
+		mes " ฉันเคยเป็นสมาชิกของกองทัพ Kafra มาก่อน";
+		mes " ฉันถนัดเรื่องการโจมตี!";
+		mes " ...แต่ฉันก็ตัดสินใจที่จะหยุดพักและใช้ชีวิตอย่างสงบซะที...";
+		mes " ดังนั้น";
+		mes "ลูกค้าที่รักของฉัน...โปรดอย่ายั่วโมโห...";
+		break;
+	case 3:
+		mes "[Kafra Jasmine]";
+		mes "*เฮ้อ*...เราทีมงาน Kafra มีแฟนไม่ได้...";
+		mes " มันเป็นกฏที่ไร้สาระจริงๆ!";
+		mes "......";
+		mes "..........";
+		mes "ล้อเล่นน่า! ฮีฮี!";
+		break;
+	}
+	close2;
+	cutin "",255;
+	end;
+}
+
+// Special Reserve ----------------------------------------------
+aldeba_in,79,161,6	script	Kafra	115,{
+	cutin "kafra_03",2;
+	mes "[Kafra]";
+	mes "ยินดีต้อนรับ, ^6666FF" + strcharinfo(0) + "^000000. ที่นี่เจ้าสามารถแลกเปลี่ยนคะแนนพิเศษ เพื่อเป็นไอเทมอื่นๆ.";
+	next;
+	mes "[Kafra]";
+	mes "บริการจาก Kafra สามารถแลกเปลี่ยนคะแนนพิเศษได้ตั้งแต่.  ^2222FF100 คะแนน จนถึง 3000 คะแนน^000000.";
+	next;
+	mes "[Kafra]";
+	mes "คะแนนพิเศษรวมของเจ้าคือ: ^FF0000"+RESRVPTS+"^000000 คะแนน. การเลือกขึ้นอยู่กับคะแนนพิเศษรวมของเจ้า.";
+M_Menu:
+	next;
+	menu 	"100- Sweet Potato 7 ea",M_1a, "200- Sweet Potato 15 ea",M_1b, "300- Sweet Potato 25 ea",M_1c, "400- Sweet Potato 35 ea",M_1d,
+		"500- Sweet Potato 50 ea",M_1e, "600- Sweet Potato 60 ea",M_1f, "700- Sweet Potato 75 ea",M_1g, "800- Sweet Potato 85 ea",M_1h,
+		"900- Sweet Potato 100 ea",M_1i, "1000- จับฉลากที่ 1!",M_1j, "รายกายต่อไป",M_2, "Cancel",M_End;
+
+	M_1a:
+		if(RESRVPTS < 100) goto sL_LowPts1;
+		mes "[Kafra]";
+		mes "ขอมอบไอเทม.";
+		getitem 516, 7;
+		set RESRVPTS, RESRVPTS - 100;
+		close;
+	M_1b:
+		if(RESRVPTS < 200) goto sL_LowPts1;
+		mes "[Kafra]";
+		mes "ขอมอบไอเทม.";
+		getitem 516, 15;
+		set RESRVPTS, RESRVPTS - 200;
+		close;
+	M_1c:
+		if(RESRVPTS < 300) goto sL_LowPts1;
+		mes "[Kafra]";
+		mes "ขอมอบไอเทม.";
+		getitem 516, 25;
+		set RESRVPTS, RESRVPTS - 300;
+		close;
+	M_1d:
+		if(RESRVPTS < 400) goto sL_LowPts1;
+		mes "[Kafra]";
+		mes "ขอมอบไอเทม.";
+		getitem 516, 35;
+		set RESRVPTS, RESRVPTS - 400;
+		close;
+	M_1e:
+		if(RESRVPTS < 500) goto sL_LowPts1;
+		mes "[Kafra]";
+		mes "ขอมอบไอเทม.";
+		getitem 516, 50;
+		set RESRVPTS, RESRVPTS - 500;
+		close;
+	M_1f:
+		if(RESRVPTS < 600) goto sL_LowPts1;
+		mes "[Kafra]";
+		mes "ขอมอบไอเทม.";
+		getitem 516, 60;
+		set RESRVPTS, RESRVPTS - 600;
+		close;
+	M_1g:
+		if(RESRVPTS < 700) goto sL_LowPts1;
+		mes "[Kafra]";
+		mes "ขอมอบไอเทม.";
+		getitem 516, 75;
+		set RESRVPTS, RESRVPTS - 700;
+		close;
+	M_1h:
+		if(RESRVPTS < 800) goto sL_LowPts1;
+		mes "[Kafra]";
+		mes "ขอมอบไอเทม.";
+		getitem 516, 85;
+		set RESRVPTS, RESRVPTS - 800;
+		close;
+	M_1i:
+		if(RESRVPTS < 900) goto sL_LowPts1;
+		mes "[Kafra]";
+		mes "ขอมอบไอเทม.";
+		getitem 516, 100;
+		set RESRVPTS, RESRVPTS - 900;
+		close;
+	M_1j:
+		if(RESRVPTS < 1000) goto sL_LowPts1;
+		set RESRVPTS, RESRVPTS - 1000;
+		mes "[Kafra]";
+		mes "^0000FFจับฉลากที่ 1!!^000000";
+		set @Lotto, 1;
+		next;
+		callfunc "F_Lottery";
+		goto M_End;
+
+	sL_LowPts1:
+		mes "[Kafra]";
+		mes "เจ้ามีคะแนนพิเศษไม่เพียงพอในการเลือก.";
+		goto M_Menu;
+
+	M_2:
+		menu 	"1100- Red Potion 7 ea",M_2a, "1300- Red Potion 15 ea",M_2b, "1500- Red Potion 25 ea",M_2c,
+			"1700- Red Potion 35 ea",M_2d, "1900- Red Potion 50 ea",M_2e, "2100- Red Potion 60 ea",M_2f,
+			"2300- Red Potion 75 ea",M_2g, "2500- Red Potion 85 ea",M_2h, "2800- Red Potion 100 ea",M_2i,
+			"3000- จับฉลากที่ 2!",M_2j, "รายการก่อนหน้า",M_Menu, "ยกเลิก",M_End;
+		
+		M_2a:
+			if(RESRVPTS < 1100) goto sL_LowPts2;
+			mes "[Kafra]";
+			mes "ขอมอบไอเทม.";
+			getitem 502, 7;
+			set RESRVPTS, RESRVPTS - 1100;
+			close;
+		M_2b:
+			if(RESRVPTS < 1300) goto sL_LowPts2;
+			mes "[Kafra]";
+			mes "ขอมอบไอเทม.";
+			getitem 502, 15;
+			set RESRVPTS, RESRVPTS - 1300;
+			close;
+		M_2c:
+			if(RESRVPTS < 1500) goto sL_LowPts2;
+			mes "[Kafra]";
+			mes "ขอมอบไอเทม.";
+			getitem 502, 25;
+			set RESRVPTS, RESRVPTS - 1500;
+			close;
+		M_2d:
+			if(RESRVPTS < 1700) goto sL_LowPts2;
+			mes "[Kafra]";
+			mes "ขอมอบไอเทม.";
+			getitem 502, 35;
+			set RESRVPTS, RESRVPTS - 1700;
+			close;
+		M_2e:
+			if(RESRVPTS < 1900) goto sL_LowPts2;
+			mes "[Kafra]";
+			mes "ขอมอบไอเทม.";
+			getitem 502, 50;
+			set RESRVPTS, RESRVPTS - 1900;
+			close;
+		M_2f:
+			if(RESRVPTS < 2100) goto sL_LowPts2;
+			mes "[Kafra]";
+			mes "ขอมอบไอเทม.";
+			getitem 502, 60;
+			set RESRVPTS, RESRVPTS - 2100;
+			close;
+		M_2g:
+			if(RESRVPTS < 2300) goto sL_LowPts2;
+			mes "[Kafra]";
+			mes "ขอมอบไอเทม.";
+			getitem 502, 75;
+			set RESRVPTS, RESRVPTS - 2300;
+			close;
+		M_2h:
+			if(RESRVPTS < 2500) goto sL_LowPts2;
+			mes "[Kafra]";
+			mes "ขอมอบไอเทม.";
+			getitem 502, 85;
+			set RESRVPTS, RESRVPTS - 2500;
+			close;
+		M_2i:
+			if(RESRVPTS < 2800) goto sL_LowPts2;
+			mes "[Kafra]";
+			mes "ขอมอบไอเทม.";
+			getitem 502, 100;
+			set RESRVPTS, RESRVPTS - 2800;
+			close;
+		M_2j:
+			if(RESRVPTS < 3000) goto sL_LowPts2;
+			set RESRVPTS, RESRVPTS - 3000;
+			mes "[Kafra]";
+			mes "^0000FFจับฉลากที่ 2!!^000000";
+			set @Lotto, 2;
+			next;
+			callfunc "F_Lottery";
+			goto M_End;
+
+		sL_LowPts2:
+			mes "[Kafra]";
+			mes "เจ้ามีคะแนนพิเศษไม่เพียงพอในการเลือก.";
+			next;
+			goto M_2;
+
+	M_End:
+		mes "[Kafra]";
+		mes "เจ้ากลับมาได้เสมอ เมื่อเจ้าต้องการใช้คะแนนพิเศษ.";
+		cutin "kafra_03",255;
+		close;
+}
+
+// Special Reserve 2 ----------------------------------------------
+aldeba_in,88,161,3	script	Kafra#alde1	115,{
+	cutin "kafra_03",2;
+	mes "[Kafra]";
+	mes "ยินดีต้อนรับ สำนึกงานหลักของ Kafra Corp.";
+	cutin "",255;
+	close;
+
+// will implement this part when I find out what items to use for the prizes
+	cutin "kafra_03",2;
+	mes "[Kafra]";
+	mes "ยินดีต้อนรับ ^5577FF"+strcharinfo(0)+"^000000.  ตอนนี้เราจัดกิจกรรมพิเศษสำหรับลูกค้า.";
+	mes "เจ้าจะได้รับของขวัญฟรีจาก ^FF5533คะแนนพิเศษ^000000 ใน ^3355FFของขวัญพิเศษจาก Kafra^000000!!";
+	next;
+	mes "[Kafra]";
+	mes "เจ้าต้องการใช้คะแนนพิเศษ?";
+	next;
+	menu "ใช่.",-, "ไว้โอกาสหน้า.",M_End;
+
+		mes "[Kafra]";
+		mes "คะแนนของเจ้ารวมทั้งหมดคือ: ^5544FF"+RESRVPTS+"^000000.";
+		mes "เจ้าจะได้รับไอเทม จากการสุ่ม!";
+		next;
+		menu "5000 คะแนน = ฉลากชั้น 1!",sM_1st, "7000คะแนน = ฉลากชั้น 2!",sM_2nd, "10000 คะแนน = ฉลากชั้น 3!",sM_3rd, "ยกเลิก",M_End; 
+
+		sM_1st:
+			if(RESRVPTS < 5000) goto sL_NotEnuf;
+			set RESRVPTS, RESRVPTS - 5000;
+			set @Lotto, 3;
+			callfunc "F_Lottery";
+			goto M_End;
+		sM_2nd:
+			if(RESRVPTS < 7000) goto sL_NotEnuf;
+			set RESRVPTS, RESRVPTS - 7000;
+			set @Lotto, 4;
+			callfunc "F_Lottery";
+			goto M_End;
+		sM_3rd:
+			if(RESRVPTS < 10000) goto sL_NotEnuf;
+			set RESRVPTS, RESRVPTS - 10000;
+			set @Lotto, 5;
+			callfunc "F_Lottery";
+			goto M_End;
+
+			sL_NotEnuf:
+				mes "[Kafra]";
+				mes "คะแนนพิเศษเจ้าไม่เพียงพอในการเลือก.";
+				cutin "kafra_03",255;
+				close;
+	M_End:
+		mes "[Kafra]";
+		mes "เจ้าสามารถสะสมคะแนนพิเศษได้ตลอดโดยการใช้บริการKafraใน Rune Midgard.";
+		mes "ขอบคุณที่ใช้บริการ Kafra Corp.";
+		cutin "kafra_03",255;
+		close;
+}
+
+// Function F_Lottery ------------------------------------------------------------------------------------------
+function	script	F_Lottery	{
+	mes "[Kafra]";
+	mes"คุณมีโอกาสที่จะชนะรางวัลประทานลงมาจากชั้นฟ้าทั้งหลาย!!";
+	next;
+	mes "[Kafra]";
+	mes"คุณไม่ควรพลาดนี้และโอกาสเดียวตอนนี้ที่รักคุณพร้อม?";
+	next;
+	mes "[Kafra]";
+	mes"กี่ครั้งคุณต้องการเครื่องสลากกินแบ่งหมุนคุณสามารถเลือกได้ถึง 5 ครั้ง.";
+	next;
+	input @input;
+	if(@input < 1 || @input > 5) set @input, rand(1,5); //Lupus's fix
+	callsub sF_Spin;
+	mes "[Kafra]";
+	mes "Ok~ Let me check the results~ guess what it is?";
+	next;
+	mes "[Kafra]";
+	mes "^FF0000Lets see.... This is...!!^000000";
+	next;
+	if(@temp <  1) goto sL_Prize1;
+	if(@temp <  2) goto sL_Prize2;
+	if(@temp <  3) goto sL_Prize3;
+	if(@temp <=  4) goto sL_Prize4;
+	goto sL_Prize5;
+
+	sL_Prize1:
+		mes "[Kafra]";
+		mes "โอ้ คุณได้ 1st ยินดีด้วย!!";
+		if(@Lotto == 1) getitem 2328,1;//Items: Wooden_Mail,
+		if(@Lotto == 2) getitem 2307,1;//Items: Mantle,
+		if(@Lotto == 3) getitem 657,10;//Items: Berserk_Potion,
+		if(@Lotto == 4) {
+			getitem 607,2;//Items: Yggdrasilberry,
+			getitem 608,1;//Items: Yggdrasil_Seed,
+		}
+		if(@Lotto == 5) getitem 607,3;//Items: Yggdrasilberry,
+		return;
+	sL_Prize2:
+		mes "[Kafra]";
+		mes "โอ้ คุณได้ 2nd ยินดีด้วย!!";
+		if(@Lotto == 1) getitem 2403,1;//Items: Shoes,
+		if(@Lotto == 2) getitem 2226,1;//Items: Cap,
+		if(@Lotto == 3) getitem 2201,1;//Items: Sunglasses,
+		if(@Lotto == 4) getitem 526,3;//Items: Royal_Jelly,
+		if(@Lotto == 5) {
+			getitem 608,1;//Items: Yggdrasil_Seed,
+			getitem 526,10;//Items: Royal_Jelly,
+		}
+		return;
+	sL_Prize3:
+		mes "[Kafra]";
+		mes "โอ้ คุณได้ 3rd ยินดีด้วย!!";
+		if(@Lotto == 1) getitem 602,4;//Items: Butterfly_Wing,
+		if(@Lotto == 2) getitem 505,3;//Items: Blue_Potion,
+		if(@Lotto == 3) getitem 2203,1;//Items: Glasses,
+		if(@Lotto == 4) getitem 504,15;//Items: White_Potion,
+		if(@Lotto == 5) getitem 504,30;//Items: White_Potion,
+		return;
+	sL_Prize4:
+		mes "[Kafra]";
+		mes "โอ้ คุณได้ 4th ยินดีด้วย!!";
+		if(@Lotto == 1) getitem 516,100;//Items: Sweet_Potato,
+		if(@Lotto == 2) getitem 501,150;//Items: Red_Potion,
+		if(@Lotto == 3) getitem 502,150;//Items: Orange_Potion,
+		if(@Lotto == 4) getitem 505,5;//Items: Blue_Potion,
+		if(@Lotto == 5) getitem 505,10;//Items: Blue_Potion,
+		return;
+	sL_Prize5:
+		mes "[Kafra]";
+		mes "โอ้ คุณได้ 5th ยินดีด้วย!!";
+		if(@Lotto == 1) getitem 516,50;//Items: Sweet_Potato,
+		if(@Lotto == 2) getitem 501,100;//Items: Red_Potion,
+		if(@Lotto == 3) getitem 501,200;//Items: Red_Potion,
+		if(@Lotto == 4) getitem 501,250;//Items: Red_Potion,
+		if(@Lotto == 5) getitem 501,300;//Items: Red_Potion,
+		return;
+
+sF_Spin:
+	mes "[Lottery Machine]";
+	mes "จำนวนที่เหลือหมุน: "+@input;
+	next;
+	mes "[Lottery Machine]";
+	mes "(ตุ้ม ตุ้ม ตุ้ม~)...";
+	next;
+	set @temp, rand(10);
+	set @input, @input -1;
+	if(@input <= 0) return;
+	goto sF_Spin;
+}
+
+
+// Kafra Pavianne -----------------------------
+aldeba_in,81,166,4	script	Kafra Pavianee	117,{
+	cutin "kafra_01",2;
+	mes "[Kafra Pavianne]";
+	mes "ยินดีต้อนรับสู่บริการ Kafraข้าชื่อ 'Pavianne'";
+	next;
+	mes "[Kafra Pavianne]";
+	mes "บริการของ Kafra สามารถทำให้ลูกค้ามีความพึงพอใจได้ถึง 100% และข้ามี 3 บริการหลัก จะนำเสนอ.";
+	next;
+	mes "[Kafra Pavianne]";
+	mes "Kafra ได้ฝึกฝนการบริการสำหรับลูกค้าโดยเฉพาะ.";
+	next;
+	menu "ซื้อบัตร Kafra Pass",M_0,"บัตร Kafra Pass คืออะไร",M_1,"ข้าไม่มีอะไร",M_3;
+	
+	M_0:
+		if(Zeny < 2000) goto sL_Zeny;
+		mes "[Kafra Pavianne]";
+		mes "ขอบคุณที่ใช้บริการ kafra ในวันนี้!";
+		getitem 1084,1;
+		set Zeny, Zeny-2000;
+		emotion 15;
+		cutin "kafra_01",255;
+		close;
+
+		sL_Zeny:
+			mes "[Kafra Pavianne]";
+			mes "ขอภัย เจ้ามีเงินไม่เพียงพอ.";
+			close;
+
+	M_1:
+		mes "[Kafra Pavianne]";
+		mes "มันคือของขวัญที่ตอบแทนลูกค้าที่ใช้บริการของ Kafra และสามารถรับของขวัญได้ที่สำนักงานหลักของ Kafra!";
+		next;
+		mes "[Kafra Pavianne]";
+		mes "เจ้าจะสามาถใช้บริการที่สะดวกสบายของ Kafra ได้ฟรีในราคา 2000 zeny~~";
+		next;
+		mes "[Kafra Pavianne]";
+		mes "การบริการของ Kafra ใน Rune-Midgard, หากพบ Kafra ที่ใดเจ้าสามารถขอใช้บริการได้ที่นั้น.";
+		mes "การใช้งานบัตร Kafra Pass จะหมดลงเมื่อเจ้าได้ใช้งานมัน.";
+		cutin "kafra_01",255;
+		close;
+	M_3:
+		mes "[Kafra Pavianne]";
+		mes "ขอบคุณที่ใช้บริการ Kafra ข้าชื่อ Pavianne, กลับมาเมื่อเจ้ามีความต้องการจะใช้บริการของเรา.";
+		emotion 15;
+		cutin "kafra_01",255;
+		close;
+}
+
+// Kafra Blossom -----------------------------------
+aldeba_in,83,245,4	script	Kafra Service#2alde	116,{
+	cutin "kafra_02",2;
+	mes "[Kafra Blossom]";
+	mes "...Deprotai เป็นแบบนั้นเสมอเลย!.....";
+	mes " เธอเป็นคนละเอียดอ่อน";
+	mes " แต่นั่นก็เป็นความแตกต่างระหว่างสำนักงายใหญ่กับสาขาย่อย...";
+	mes " แต่ละที่จะมีรูปแบบเป็นของตัวเอง";
+	next;
+	mes "[Kafra Blossom]";
+	mes " เอาล่ะ ยินดีต้อนรับ~~ข้าชื่อ Tayelin!";
+	mes " โอกาสต่อไป";
+	mes "อย่าลืมกลับมาใช้บริการที่ศูนย์บริการ Kafra!";
+	mes " โปรดอย่าลืมข้าล่ะ~ ข้า Tayelin~";
+	next;
+	switch(select("ข้าชอบเจ้าจริงๆ! สาวน้อย Kafra!:ฮี ฮี ฮี...?")) {
+	case 1:
+		mes "[Kafra Blossom]";
+		mes "ว้าว!";
+		mes "ขอบคุณมากค่ะ~";
+		mes "โปรด...เซ็นชื่อตรงนี้";
+		next;
+		mes "[Kafra Blossom]";
+		mes "^3355FF- (เซ็นชื่อ) -^000000";
+		next;
+		mes "[Kafra Blossom]";
+		mes "ฮี";
+		mes "ฮี่...ไม่ต้องกลับไปตรวจที่เก็บของหรอกค่ะ...";
+		mes " ข้าไม่ได้ใส่อะไรให้ที่นั่น";
+		mes " เพราะข้าทำสัญลักษณ์ไว้ที่หัวใจของท่านต่างหาก";
+		next;
+		break;
+	case 2:
+		mes "[Kafra Blossom]";
+		mes "อะไรคะ?";
+		mes ".....";
+		mes "แค่นี้หรอคะ?";
+		mes "ไม่มีอไะรจะทำหรือไง...?";
+		next;
+		break;
+	}
+	close2;
+	cutin "",255;
+	end;
+}
+
+// Kafra Curly Sue ---------------------------------
+aldeba_in,91,244,4	script	Kafra Service#4alde	112,{
+	cutin "kafra_06",2;
+	mes "[Kafra Curly Sue]";
+	mes "หวัดดี หวัดดี!!";
+	mes "ฉันเป็นน้องสาวคนเล็กที่แสนน่ารักของศูนย์บริการ Kafra!";
+	mes "ฉันชื่อ Debril ~";
+	next;
+	mes "[Kafra Curly Sue]";
+	mes " แต่ฉันเป็นพนักงานใหม่นะ บอกไว้ก่อน";
+	mes " อีกไม่นานฉันจะบริการเธอให้ดีที่สุด เลย!";
+	mes " ยินดีที่ได้บริการมากค่ะ";
+	next;
+	if (select("อายุเท่าไหร่แล้วจ๊ะ?:ยกเลิก") == 1) {
+		mes "[Kafra Curly Sue]";
+		mes ".....";
+		mes "โอ้!";
+		mes "อย่าทำเหมือนฉันเป็นเด็กสิ?";
+		close2;
+		cutin "",255;
+		end;
+	}
+	mes "[Kafra Curly Sue]";
+	mes " พวกเราศูนย์บริการ Kafra";
+	mes " จะบริการอย่างดีที่สุด";
+	mes "และสุดความสามารถค่ะ!";
+	mes " ขอบคุณที่มาอุดหนุนนะคะ!";
+	close2;
+	cutin "",255;
+	end;
+}
+
+// Kafra Roxie --------------------------------------
+aldeba_in,148,244,4	script	Kafra Roxie	114,{
+	cutin "kafra_04",2;
+	mes "[Kafra Roxie]";
+	mes "ยินดีต้อนรับ ข้าคือ Kafra ชื่อของข้าคือ 'Roxie'.  ที่นี่คือที่ลึกลับของ Kafras!";
+	next;
+	mes "[Kafra Roxie]";
+	mes "เจ้าคงไม่ได้เคยได้ยินว่า ในสมัยก่อนอาจเรียก Kafra Service แต่ตอนนี้คนรู้จักกันมากในชื่อ Kafra....?~";
+	next;
+	mes "[Kafra Roxie]";
+	mes "ไม่ว่าจะเปลี่ยนชื่อยังไง";
+	next;
+	mes "[Kafra Roxie]";
+	mes "การบริการก็ยังคงเหมือนเดิม";
+	next;
+	mes "[Kafra Roxie]";
+	mes "แต่ยังไงข้าก็คือ Kafra และข้าก็ชื่อ Roxie เจ้าเข้าใจข้าใช่ไหม!";
+	next;
+	mes "[Kafra Roxie]";
+	mes "อ่ะ ข้าคิดว่าเจ้าเข้าใจนะ";
+	next;
+	mes "[Kafra Roxie]";
+	mes "ฮิ ฮิ ฮิ";
+	next;
+	mes "[Kafra Roxie]";
+	mes "ว่าคิดว่า ข้าเบื่อ ก็เลยบ่นๆให้เจ้าฟังไปอย่างนั้นหล่ะ";
+	emotion 4;
+	cutin "kafra_04",255;
+	close;
+}
+
+
+//<====================================================== Clock Tower ==============================================================>\\
+// Clock Keeper ---------------------------------------------------------------
+aldebaran,143,136,4	script	Clock Keeper	89,{
+	mes "[Clock Keeper]";
+	mes "ข้าขอแนะนำตัว ข้าคือ 'มอนสเตอร์ A' จาก Al De Baran Clock Tower, และเป็นส่วนหนึ่งของ 'Heaven on Earth'.";
+	next;
+	mes "[Clock Keeper]";
+	mes "ตอนนี้เหมือนเจ้าจะสนใจอะไรบางอย่างนะ?";
+	next;
+	menu "เกี่ยวกับ Clock Tower.",M_0,"เกี่ยวกับ 'Heaven on Earth'.",M_1,"ออก.",M_End;
+	
+	M_0:
+		mes "[Clock Keeper]";
+		mes "หอคอยแห่งนี้มีหลายชั้น แต่หากจะเข้าไปในชั้นอื่น เจ้าต้องเข้าไปในส่วนของ 'วาร์ป'.";
+		mes "แต่ส่วนใหญ่ในหอคอยนี้จะประกอบไปด้วย 'สุ่มวาร์ป'.";
+		next;
+		mes "[Clock Keeper]";
+		mes "หากเจ้าใช้ 'สุ่มวาร์ป'  เป็นการสุ่มพื้นที่ภายในหอนาฬิกาแห่งนี้.";
+		next;
+		mes "[Clock Keeper]";
+		mes "เจ้าต้องระวังมอนสเตอร์ด้วย เพราะไม่รู้ว่าเจ้าจะถูกสุ่มไปที่ไหน.";
+		next;
+		mes "[Clock Keeper]";
+		mes "แต่การสุ่มวาร์ปนั้น เพียงแค่สุ่มภายในแผนที่แบบย่อเท่านั้นนะ.";
+		next;
+		mes "[Clock Keeper]";
+		mes "ขอให้เจ้าเดินทางโดยสวัสดิภาพ.";
+		close;
+	M_1:
+		mes "[Clock Keeper]";
+		mes "เจ้าเคยได้ยิน 'Heaven on Earth'?!";
+		next;
+		menu "ใช่",sM_0,"มันคืออะไร",sM_1;
+		
+		sM_0:
+			mes "[Clock Keeper]";
+			mes "ข้าคิดว่าคนทั่ว Rune-Midgard คงรู้จักเหมือนเจ้า.";
+			mes "มันเป็นสถานที่ดี ในการผจนภัย.....";
+			next;
+			mes "[Clock Keeper]";
+			mes "เจ้าคงจะรู้";
+			next;
+			mes "[Clock Keeper]";
+			mes "สถานที่แห่งนี้มีทั้งหมด 4 ชั้น มอนสเตอร์แต่ละชั้น แตกต่างกันออกไป.";
+			mes "แต่หากเจ้าต้องการฟังอีก เจ้าก็กลับมาได้เสมอเลยนะ.";
+			close;
+		sM_1:
+			mes "[Clock Keeper]";
+			mes "ข้ารู้ว่า คนที่รู้เกี่ยวกับเราจะมีแค่ไม่กี่คน!";
+			next;
+			mes "[Clock Keeper]";
+			mes "และ Heaven on Earth. เป็นหน่วยพิเศษใน AL De Baran.  เป็นผู้ก่อสร้าง clock tower.";
+			next;
+			mes "[Clock Keeper]";
+			mes "และตอนนี้คิดว่าจะสร้าง Glast Helm เป็นสิ่งต่อไป.";
+			mes "มันอาจจะเป็นความคิดที่ดีก็ได้.";
+			close;
+	M_End:
+		close;
+}
+
+// Inside Clock Tower
+//============================================================
+c_tower3,10,249,4	script	Gatekeeper#ct	84,{
+	//Key_Of_Clock_Tower
+	callfunc "F_ClockTowerGate","4th",7026,"c_tower4",185,44; 
+}
+
+alde_dun03,264,16,4	script	Gatekeeper#ct1	101,{
+	//Underground_Key
+	callfunc "F_ClockTowerGate","B4th",7027,"alde_dun04",79,267; 
+}
+
+function	script	F_ClockTowerGate	{
+	mes "[Gatekeeper Boy]";
+	mes"ยินดีต้อนรับสู่";
+ 	mes"Kinase -- Gallino Blue";
+ 	mes"หนึ่งในลักษณะเฉพาะของท้องถิ่นใน Aldebaran.";
+	mes "คุณไม่สามารถไปถึงจาก "+getarg(0)+" Floor,";
+	mes "โปรดกลับไป.";
+	next;
+	switch(select("ข้อมูล Clock Tower:ข้อมูล the "+getarg(0)+" Floor:ย้ายไปที่ the "+getarg(0)+" Floor:End Dialogue")) {
+	case 1:
+		mes "[Gatekeeper Boy]";
+		mes"Specialre Romero!";
+ 		mes"นี่เป็นสถาปัตยกรรม";
+ 		mes"ผลงานชิ้นเอกของพวกเขา.";
+ 		mes"ผมถือว่าคุณจะรู้สึกบางสิ่งบางอย่างผิดปกติ";
+ 		mes"ในขณะที่ทางไปชั้นนี้";
+ 		mes"ของนี้ทุก Clocktower";
+		next;
+		mes "[Gatekeeper Boy]";
+		mes"ประกอบด้วย เวทมนตร์ โบราณลึกลับ.";
+ 		mes"ถ้าคุณเพียงแค่เดินในบริเวณนี้";
+ 		mes"โดยไม่มีความตั้งใจใด ๆ ";
+		next;
+		mes "[Gatekeeper Boy]";
+		mes"โดยวิธีใด ๆ ";
+ 		mes"คุณจะได้พบกับอุบัติเหตุ";
+ 		mes"โดยสัตว์.";
+ 		mes"โปรดระวัง .. ";
+		close;
+	case 2:
+		mes "[Gatekeeper Boy]";
+		mes"Alchemists โบราณ";
+ 		mes"ประตูที่ปิดสนิทของชั้น 4 โดยใช้อุปกรณ์ Alchemistic";
+ 		mes"หากต้องการให้บางสิ่งบางอย่าง";
+ 		mes"จากสัตว์ร้ายและศัตรูของมนุษย์.";
+ 		mes"จะต้องผ่านประตูนี้";
+		next;
+		mes "[Gatekeeper Boy]";
+		mes"เป็นความต้องการที่สำคัญ.";
+ 		mes"ที่สำคัญที่มีข่าวลือที่จะครอบครองโดยสัตว์";
+ 		mes"Prowling around นี้.";
+		next;
+		mes "[Gatekeeper Boy]";
+		mes"สิ่งสำคัญก็คือ Intensivenes ของขลังโบราณ,";
+ 		mes"ตามคำบอกเล่าเมื่อใช้ครั้งเดียวให้";
+ 		mes"มันจะออกจากการถูกสะกด";
+		mes"และจะหายไป.";
+		next;
+		mes "[Gatekeeper Boy]";
+		mes"ถ้าคีย์ที่";
+ 		mes"เข้ามาใน porssession ของคุณ";
+ 		mes"กรุณาให้ฉันดู.";
+ 		mes"คนที่มีคุณสมบัติที่สำคัญ";
+		mes"จะสามารถเข้าถึงผ่าน";
+		mes"ประตูกับเขาเองนี้จะ!";
+		next;
+		mes "[Gatekeeper Boy]";
+		mes"ผมจะทำให้คุณมีโอกาส.";
+		close;
+	case 3:
+		if (countitem(getarg(1)) > 0) {
+			mes "[Gatekeeper Boy]";
+			mes"อืมผมแล้วรู้สึกว่าคุณไม่ใช่คนธรรมดา,";
+ 			mes"ตอนนี้ดูเหมือนว่าจะประสบความสำเร็จในการเก็งกำไร.";
+ 			mes"คุณสามารถเข้า.";
+			close2;
+			delitem getarg(1),1; 
+			warp getarg(2),getarg(3),getarg(4);
+			end;
+		}
+		else {
+			mes "[Gatekeeper Boy]";
+ 			mes"แต่น่าเสียดายที่คุณไม่ได้รับสิทธิ์";
+ 			mes"ในการเข้าสู่ประตูนี้ .. ";
+ 			mes"คุณจะไม่สามารถผ่านไป";
+ 			mes"ตราบใดที่ Alchemists โบราณ";
+			close;
+		}
+	case 4:
+		mes "[Gatekeeper Boy]";
+		mes "หอ Clock Tower";
+		mes"คือสถานที่ที่ 3 Alchemists โบราณตำนาน";
+ 		mes"ได้ออกจากสุราและทักษะของพวกเขา.";
+		close;
+	}
+}

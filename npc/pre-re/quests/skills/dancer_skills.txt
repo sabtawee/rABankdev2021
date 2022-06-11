@@ -1,0 +1,590 @@
+//===== Hercules Script ======================================
+//= Dancer Skills Quests
+//===== By: ==================================================
+//= Lupus, Reddozen
+//===== Current Version: =====================================
+//= 1.5
+//===== Description: =========================================
+//= [Official Conversion]
+//= Quests for skills: Charming Wink
+//===== Additional Comments: =================================
+//= 1.4 Rescripted to Aegis 10.3 stadards. [L0ne_W0lf]
+//= 1.4a Changed NPC location [Yommy]
+//= 1.5 Replaced effect numerics with constants. [L0ne_W0lf]
+//============================================================
+
+comodo,204,172,5	script	Canell#qsk_dan01	724,{
+	if (BaseJob == Job_Dancer && JobLevel > 39) {
+		if (DANCER_SK == 0) {
+			mes "[Canell]";
+			mes " ก็อย่างที่รู้กันดีว่าเราจะต้องดูดี";
+			mes " จับใจผู้ที่ชมเราแสดง";
+			mes " แต่เอาจริงๆ การเต้นไม่ได้พึ่งพาแต่รูปลักษณ์ภายนอก";
+			mes " เราต้องใช้ศักยภาพของนักแสดงอย่างแท้จริง";
+			next;
+			mes "[Canell]";
+			mes " ถึงแม้ว่ามันจะมีอยู่แล้ว เจ้าก็น่าจะรู้สึกดี";
+			mes " อย่างมากที่คู่กับผู้หญิง";
+			mes " เจ้าก็น่ารู้ว่านั่นคือเด็กผู้หญิง";
+			mes " ต้องไม่คิดที่จะหยุดที่จำทำให้ตังดูดี";
+			mes " และเจ้าจะมั่นใจมากถึงความสวยของตัวเจ้าซินะ";
+			mes " ว่าเจ้าจะแสดงมันออกมาได้ดี..?";
+			next;
+			if (select(" แน่นอน!: ...ฉันขอโทษ...") == 1) {
+				mes "[Canell]";
+				mes " โฮ่ โฮ่~ ข้าเชื่อว่าตอนนี้";
+				mes " เจ้าคงสับสนเกี่ยวกับความเชื่อไร้เดียงสาของเจ้า";
+				mes " ที่เชื่อสิ่งผิดเช่นนี้";
+				mes " ตอนนี้ข้าเตรียมความพร้อมสำหรับการลงโทษเจ้าไว้แล้ว";
+				next;
+				mes "["+ strcharinfo(0) +"]";
+				mes "Ow...!";
+				mes "Th-that whip!";
+				mes "I-i-it huuuurts!";
+				specialeffect2 EF_HIT2;
+				percentheal -5,0;
+				close;
+			}
+			mes "[Canell]";
+			mes " การที่เจ้ารู้ความบกพร่องข้อตัวเอง";
+			mes " เป็นสิ่งที่ยอดเยี่ยม";
+			mes " เพื่อที่เจ้าจะได้นำมาปรับปรุง";
+			mes " และหาเจ้าละเลยในหน้าที่";
+			mes " เจ้าก็จะได้รับบทลงโทษ...";
+			next;
+			mes "["+ strcharinfo(0) +"]";
+			mes " อะไร...? อัค!";
+			mes " หยุด หยุด ฟาดข้าซะที";
+			specialeffect2 EF_HIT2;
+			percentheal -10,0;
+			next;
+			mes "[Canell]";
+			mes " เจ้าต้องการข้าไหมที่จะคอยแนะนำและ";
+			mes " เปลี่ยนเจ้าเป็นสตรีที่เลอโฉมที่สุด?";
+			next;
+			if (select(" ไม่!!: ใช่") == 1) {
+				mes "[Canell]";
+				mes " เจ้ายังไม่เข้าใจถึงศิลปะการแสดงที่ดี";
+				mes " และก่อนอ่อนน้อมถ่อมตน";
+				mes " สำหรับการที่เจ้าเมินข้า!";
+				mes " ข้าจะขอลงโทษเจ้าอีกครั้ง!";
+				next;
+				mes "["+ strcharinfo(0) +"]";
+				mes " อย่า--!";
+				mes " อย่าฟาดข้าได้แล้ว";
+				mes " อ้าา, มันเจ็บ--";
+				mes " มันทำให้ข้าโกรธ!";
+				specialeffect2 EF_HIT2;
+				percentheal -10,0;
+				close;
+			}
+			mes "[Canell]";
+			mes " โฮ่-โฮ่~ มันเป็นเรื่องดีมากๆ";
+			mes " ที่เจ้าให้ข้าแนะนำให้";
+			mes " เพื่อไม่ให้เสียเวลา";
+			mes " ข้าจะเริ่มบทเรียนแรก^FFFFFF ^000000 แต่ก่อนอื่น";
+			mes " เจ้าต้องมีอุปกรณ์บางอย่าง เพื่อจะได้มองเห็นตัวเองในฝึก...";
+			next;
+			mes "[Canell]";
+			mes " ^FF00001 Crystal Mirror^000000 และ ^FF00001 Crystal Mirror^000000!!!";
+			mes " เอามันมาเดี๋ยวนี้!";
+			set DANCER_SK,1;
+			close;
+		}
+		else if (DANCER_SK == 1) {
+			if (countitem(747) > 0) {
+				mes "[Canell]";
+				mes " โอ้วว เจ้าจะพบ Crystal Mirror";
+				mes " ดูเหมือนว่าเจ้าจะต้องระมัดระวังเป็นพิเศษ";
+				mes " แล้วทำแบบนี้ซ้ำๆ";
+				mes " ช้าช่างสวยงาม!! ข้าช่างมีเสน่ห์";
+				next;
+				mes "[Canell]";
+				mes "''ข้าช่างสวยงาม...";
+				mes "ช่างมีเสน่ห์..''";
+				next;
+				mes "["+ strcharinfo(0) +"]";
+				mes "''ข้าช่างสวยงาม...";
+				mes "ช่างมีเสน่ห์..''";
+				next;
+				mes "[Intoxicated Canell]";
+				mes "''ข้าช่างสวยงาม...";
+				mes "ช่างมีเสน่ห์..''";
+				mes "ข้าน่าในใจที่สุด";
+				mes "กว่าสาวคนใดในโลก!''";
+				next;
+				mes "["+ strcharinfo(0) +"]";
+				mes "''ข้าช่างสวยงาม...";
+				mes "ช่างมีเสน่ห์..''";
+				mes "ข้าน่าในใจที่สุด";
+				mes "กว่าสาวคนใดในโลก!''";
+				specialeffect2 EF_FLASHER;
+				next;
+				mes "^3355FFโอ้ววว";
+				mes " เห็นแล้วๆ";
+				mes " ข้าเห็นแล้วววว^000000";
+				delitem 747,1; //Crystal_Mirror
+				set DANCER_SK,2;
+				close;
+			}
+			else {
+				mes "[Frustrated Canell]";
+				mes " ^FF00001 Crystal Mirror^000000 และ ^FF00001 Crystal Mirror^000000!!!";
+				mes " เอามันมาเดี๋ยวนี้!";
+				specialeffect EF_CLAYMORE;
+				close;
+			}
+		}
+		else if (DANCER_SK == 2) {
+			mes "[Canell]";
+			mes " ใช่แล้ว ขั้นแรก";
+			mes " ที่สำคัญที่สุด ที่เจ้าจะกลายเป็นสาวงาม";
+			mes " เจ้าจะตระหนักและยอมรับถึงความมั่นใจ";
+			mes " ของตัวเจ้าเอง";
+			next;
+			mes "[Canell]";
+			mes " ตอนนี้เจ้าก็คงมีทัศนคติ";
+			mes " ที่เดียวเกี่ยวกับความงาม";
+			mes " คราวนี้เจ้าก็ถึงเวลาที่เจ้า";
+			mes " จะได้เรียนรู้ถึงวิธีที่ดีกว่านี้";
+			mes " ข้าจะขอแนะนำผู้เชี่ยวชาญให้เจ้าได้รูจัก";
+			next;
+			mes "[Canell]";
+			mes " ไปหาพี่สาวของข้าเดี๋ยวนี้";
+			mes " เธออยู่ใกล้ๆแถวโบสถ์เมืองพรอนเทร่า";
+			mes " และข้ามั่นใจว่าเขาจะให้คำแนนนำบางอย่าง";
+			mes " กับเจ้าอย่างมาก";
+			emotion e_ag,1;
+			set DANCER_SK,3;
+			close;
+		}
+		else if (DANCER_SK > 2 && DANCER_SK < 7) {
+			mes "[Canell]";
+			mes " ไปหาพี่สาวของข้าเดี๋ยวนี้";
+			mes " เธออยู่ใกล้ๆแถวโบสถ์เมืองพรอนเทร่า";
+			mes " และข้ามั่นใจว่าเขาจะให้คำแนนนำบางอย่าง";
+			mes " กับเจ้าอย่างมาก";
+			emotion e_go;
+			close;
+		}
+		else if (DANCER_SK == 7) {
+			mes "[Canell]";
+			mes " อ้า เจ้าไปพบเธอมาแล้วรึ?";
+			mes " เจ้าได้คำแนะนำอะไรมาบ้างล่ะ?";
+			next;
+			mes "["+ strcharinfo(0) +"]";
+			mes " จริงๆ แล้วฉันรู้แค่การ Wink แค่นั้นเอง";
+			mes " เธอให้ดื่มมากไปและสอนอะไรฉันไม่ได้เลย";
+			next;
+			mes "[Canell]";
+			mes " โอ ข้ารู้ว่าหากมันเป็นอย่างนี้จะมีอะไรเกิดขึ้น";
+			mes " ยังดี ที่ไม่มีใครอยู่แถวๆ นั้น";
+			mes " แต่เจ้าก็รุ้นี่ว่าถ้าดื่มแล้วจะต้องถูกลงโทษ";
+			next;
+			mes "[Canell]";
+			mes "Bam!";
+			specialeffect2 EF_HIT2;
+			percentheal -5,0;
+			next;
+			mes "["+ strcharinfo(0) +"]";
+			mes "?!";
+			mes " อะไรล่ะ?";
+			next;
+			mes "[Canell]";
+			mes " การเป็นนักแสดง";
+			mes " ต้องรู้ว่าการ Wink";
+			mes " มันเหมือนการปกปิดความลับ";
+			mes " แต่ไม่เป็นเมื่อมันมาถึงขั้นนี้";
+			mes " ข้าคงต้องอธิบายให้เจ้าฟัง โฮ่ โฮ่~";
+			set DANCER_SK,8;
+			close;
+		}
+		else if (DANCER_SK == 8) {
+			mes "[Canell]";
+			mes " เอาล่ะ ความลับก Wink";
+			mes " นั่นก็เพื่อให้ดูน่าเย้ายวน";
+			mes " เป็นจังหวะ เคลื่อนย้ายไปอย่างเป็นธรรมชาติ";
+			next;
+			mes "[Canell]";
+			mes " จุดมุ่งหมายคือ~";
+			mes " นับหนึ่ง 1วินาที แล้วปิดตาช้าอย่าช้าๆ และ";
+			mes " อีก 2 วินาทีถึงค่อยลืมตาทำแบบนี้";
+			mes " เป็นไงมั่ง";
+			emotion ET_BEST;
+			next;
+			switch(select(" เป็นไงมั่ง: เป็นไงมั่ง~: เป็นไงมั่ง~")) {
+			default:
+				mes "[Canell]";
+				mes " ไม่ ไม่!";
+				mes " นั่นไม่ใช่";
+				mes " คำตอบที่ถูกต้อง!";
+				next;
+				mes "["+ strcharinfo(0) +"]";
+				mes " โอวว!";
+				mes " ได้โปรด..!";
+				mes " อย่าทำอะไรข้าเลย!";
+				specialeffect2 EF_HIT2;
+				percentheal -5,0;
+				close;
+			case 3:
+				mes "["+ strcharinfo(0) +"]";
+				mes " เป็นไงมั่ง~";
+				emotion ET_BEST,1;
+				specialeffect2 EF_FLASHER;
+				next;
+				mes "[Canell]";
+				mes " ดีมาก แล้วอย่าลืมจังหว่ะ";
+				mes " ที่ต้องเป็นไปอย่างธรรมชาติ";
+				emotion e_kis;
+				next;
+				mes "[Canell]";
+				mes " เจ้าได้เข้าใจถึงการ";
+				mes " skills winking แล้ว";
+				mes " แต่มันจะไม่มีผลหากเจ้า";
+				mes " นำไปใช้กับผู้ที่แข็งแกร่งกว่าเจ้า";
+				next;
+				mes "[Canell]";
+				mes " แน่นอน winks มันต้องมีจุดอ่อน Ho-ho~ ";
+				mes " อย่างไรก็ตามถึงเวลาแล้วที่เจ้าจะเติบโตขึ้น";
+				mes " เป็นนักแสดงที่มีเสน่ห์และต่อๆ ไป";
+				emotion ET_SMILE;
+				next;
+				mes "^3355FF-Learned Wink Charm!^000000";
+				set DANCER_SK,9;
+				specialeffect2 EF_ABSORBSPIRITS;
+				skill "DC_WINKCHARM",1,0;
+				close;
+			}
+		}
+		else if (DANCER_SK > 8 && getskilllv("DC_WINKCHARM")) {
+			mes "[Canell]";
+			mes " หืมม์...?";
+			mes " ยังมีอะไรที่เจ้าต้องการอยากรู้อีก?";
+			mes " เจ้าอยากสนุกกับความสวยของข้าล่ะสิ?";
+			emotion e_pif;
+			next;
+			mes "[Canell]";
+			mes " โอ้ ข้าควรจะไปทำงานที่โบสถ์กับพี่สาวของข้า~";
+			close;
+		}
+
+		else if (DANCER_SK == 9 && getskilllv("DC_WINKCHARM") == 0) {
+			mes "[Canell]";
+			mes " หืมม์? ข้าจำเจ้าได้!";
+			mes " ตอนนี้เจ้าเป็น Gypsy แล้ว ข้าเห็นในการแต่งกายของเจ้า";
+			next;
+			mes "[Canell]";
+			mes " เจ้ามาที่นี่คงอยากจะรู้เรื่อง skills Wink ใช้มั้ย?";
+			mes " รูปโฉมของเจ้าตอนนี่ช่างดูน่าหลงไหลซะจริง...";
+			next;
+				mes "^3355FF-Learned Wink Charm!^000000";
+			specialeffect2 EF_ABSORBSPIRITS;
+			skill "DC_WINKCHARM",1,0;
+			close;
+		}
+	}
+	else if (BaseJob == Job_Dancer && JobLevel < 40) {
+		mes "[Canell]";
+		mes " โอ้ เสียใจด้วยนะสาวน้อย";
+		mes " แต่เจ้าต้องมี Job level 40 ขึ้นไปเท่านั้น";
+		mes " แล้วเจ้าจะได้คำแนะนำอะไรบางอย่าง~";
+		close;
+	}
+
+	else if (BaseJob != Job_Dancer) {
+		if (Sex == 0) {
+			mes "[Canell]";
+			mes " โอ้ สาวสวยย...";
+			mes "little girl~! Such";
+			mes "a chubby lil' belly,";
+			mes "so cuuuuuuuuuuute~";
+			close;
+		}
+		else {
+			mes "[Canell]";
+			mes " เฮ้ เจ้าหนุ่ม..";
+			mes "handsome~";
+			mes "^333333*Wink~*^000000";
+			emotion e_kis;
+			specialeffect2 EF_VALLENTINE2;
+			next;
+			mes "^3355FFStrangely enough,";
+			mes "her wink has made";
+			mes "your heart throb.^000000";
+			close;
+		}
+	}
+}
+
+prontera,183,333,1	script	Aelle#qsk_dan02	79,{
+	if (BaseJob == Job_Dancer) {
+		if (DANCER_SK == 3) {
+			mes "[Aelle]";
+			mes "Pssst, เฮ้! สามารถช่วยให้เจ้าประหยัด";
+			mes " จากการไปถึง Orc";
+			mes "Dungeon, Glast Heim";
+			mes " และ Dead Pit";
+			mes " เจ้าต้องการมันมั้ยล่ะ?";
+			next;
+			mes "["+ strcharinfo(0) +"]";
+			mes " ทีจริง เอ่อ, ข้ามาที่นี่เพื่อบางหาใครสักคน";
+			mes " ข้าอยากรู้สิ่งที่เกิดขึ้นจากพี่สาวของ Canelle's ท่านพอรู้ไหม?";
+			next;
+			mes "[Aelle]";
+			mes " อ้า นั่นข้าเอง";
+			mes " น้องสาวข้าส่งเจ้ามางั้นรึ?";
+			mes " ข้าเห็นเจ้าก็พอดูอีกแล้ว";
+			mes " จากเครื่องแต่งกายที่เจ้าใส่";
+			mes " เจ้าต้องการจะมีเสน่ห์มากขึ้นใช่ไหม?";
+			next;
+			mes "[Aelle]";
+			mes " อ้าวว...";
+			mes " ช่างน่าผิดหวัง";
+			mes " เจ้าไม่มาที่นี่เพื่อซื้อ Warp ราคาถูก?";
+			mes " ข้าขอถามอีกรอบว่าเจ้าต้องการไหม?";
+			set DANCER_SK,4;
+			close;
+		}
+		else if (DANCER_SK == 4) {
+			mes "[Aelle]";
+			mes " โอเค โอเค...";
+			mes " เจ้าเดินทางมาไกลถึงที่นี่?";
+			next;
+			mes "[Aelle]";
+			mes " เจ้าอยากรู้เกี่ยวกับวิธีการยั่วยวนสินะ?";
+			mes " แต่ถ้าข้าจะอะไรอธิบายมันก็ยาวเกินไป";
+			mes " เจ้าช่วยหาอะไรมาให้ข้าดื่มสักนิดก่อนได้ไหม.?";
+			next;
+			mes "["+ strcharinfo(0) +"]";
+			mes " โอ.. โอเค.";
+			mes " ข้าว่า ข้าสามารถช่วยท่านได้";
+			mes " แล้วท่านต้องการดื่มอะไรล่ะ?";
+			next;
+			mes "[Aelle]";
+			mes " เจ้าโง่อะไรอย่างนี้";
+			mes " ข้าจะดื่มอันนี้";
+			mes " แต่ต้องน้อยนะ ^FF0000Alcohol^000000";
+			mes " หรือบางอย่างที่คล้ายๆ กัน";
+			next;
+			mes "[Aelle]";
+			mes " โอ และข้าก็อยากได้อะไรมาเคี้ยวเล่น";
+			mes " เป็นพลังงานเพื่อจะได้สอนเจ้าได้สะดวก";
+			next;
+			mes "[Aelle]";
+			mes " ถ้าเจ้ามีอาการตอบสนองไว";
+			mes " ข้าเชื่อว่าเจ้าจะได้มันมากกว่านั้น";
+			mes " เจ้าจะต้องเอามาด้วยคือ  ^FF0000Fruits^000000,";
+			mes " ข้องที่ต้องนำมา ^FF0000Apple x1^000000 ^FF0000Bananas x3^000000^ และ FF0000Well-Baked Cookies x5^000000";
+			mes " และนำมันใส่ไปใน ^FF0000White Platter^000000";
+			set DANCER_SK,5;
+			close;
+		}
+		else if (DANCER_SK == 5) {
+			if (countitem(970) > 0 && countitem(512) > 0 && countitem(513) > 2 && countitem(538) > 4 && countitem(736) > 0) {
+				mes "[Aelle]";
+				mes " ดีมาก เจ้านำมันมาให้ข้าครบทั้งหมด";
+				mes " เพราะข้ากำลังหิว แล้วข้าจะสอนเจ้าเองทั้งหมด";
+				next;
+				mes " ^3355FFAelle กินอาหาร";
+				mes " เหมือนสัตว์ร้าย";
+				mes " ที่หิวโหยและเหมือน";
+				mes " ผู้ที่ขาดอาหารมานาน^000000";
+				next;
+				mes "[Aelle]";
+				mes " มันยอดเยี่ยมมาก!";
+				mes " ข้าไม่ได้กินอาหารพวกนี้";
+				mes " มานานมากแล้ว!";
+				mes " และข้ายังไม่เคยได้โอกาสที่จะออกไปจากโบสถ์แห่งนี้";
+				mes " อ้า นั่นคือสิ่งที่ข้าจะต้องสอนเจ้า";
+				next;
+				mes "[Aelle]";
+				mes " ตอนนี้ ท่าทางที่ง่ายที่สุด";
+				mes " และน่าหลงใหล";
+				mes " มันจะทำให้เจ้าดูน่าสนใจ";
+				mes " นั่นคือ ^FF0000wink^000000";
+				mes " มันจะช่วยเพิ่มเสน่ห์ให้เจ้า";
+				mes " เมื่อเจ้าอยู่ในช่วงวิกฤติ";
+				next;
+				mes "[Aelle]";
+				mes " มันไม่ได้มีอะไรยากมากมาย";
+				mes " เพียงแค่เจ้าหลับตาข้างหนึ่ง";
+				mes " อย่างรวดเร็ว( ขยิบตา )";
+				mes " ";
+				mes " ... ถ้าาา เจ้า.......";
+				next;
+				mes "[Aelle]";
+				mes " โอ้.. ข้าไม่ได้ดื่มมานานมากแล้ว";
+				mes " ความรู้สึกนี้.. ?!";
+				mes " ^333333*burp*^000000";
+				mes " วิธี  wink มันง่ายมากๆ wink";
+				next;
+				mes "[Drunken Aelle]";
+				mes " เจ้าลองทำตามข้านะ";
+				mes "^333333*Wiiiiiiiiiiiiiink*^000000";
+				mes " เห็นมั้ย? เจ้าทำได้มั้ย?";
+				emotion ET_BEST;
+				next;
+				mes "["+ strcharinfo(0) +"]";
+				mes " วู้ววว...";
+				mes " นั่นเหรอ...";
+				mes " มันช่างสวยงาม!";
+				mes " เพียงแค่ wink!";
+				next;
+				mes "[Totally Drunk Aelle]";
+				mes " ใช่แล้ว... นั่น..";
+				mes " นั่นคือความลับ...";
+				mes " *เอ่อ*--";
+				mes " ฮา ฮา ฮา!";
+				mes " หัวข้าหมุนไปหมด!";
+				emotion ET_SMILE;
+				next;
+				mes " -หล่อนตีเจ้าด้วยมือ-";
+				mes " -และหัวเราะอย่างมีความสุขอย่างดัง-";
+				mes " -ถึงแม้ว่าเจ้าจะไม่ชอบแบบนั้นก็ตาม-";
+				mes " -เจ้าก็ไม่ควรพูดอะไรออกไป-";
+				percentheal -10,0;
+				specialeffect2 EF_HIT2;
+				emotion e_dots,1;
+				delitem 970,1; //Alchol
+				delitem 512,1; //Apple
+				delitem 513,3; //Banana
+				delitem 538,5; //Well_Baked_Cookie
+				delitem 736,1; //White_Platter
+				set DANCER_SK,6;
+				close;
+			}
+			else {
+				mes "[Aelle]";
+				mes " หากเจ้าต้องการให้ข้า";
+				mes " สอนบทเรียนนี้กับเจ้า";
+				mes " เจ้าก็ต้องนำมันมาให้ข้า";
+				mes " หรือว่าเจ้าต้องการให้ข้าเป็นลมอยู่ตรงนี้รึยังไง?";
+				next;
+				mes "[Aelle]";
+				mes " ดังนั้น นี่คือสิ่งที่เจ้าต้องนำมาให้ข้า";
+				mes " ^FF00001 Apple^000000, ^FF00003 Bananas^000000 และ";
+				mes " ^FF00005 Well-Baked Cookies^000000. อ้า,";
+				mes " ^FF0000China^000000 ด้วยล่ะ";
+				mes " และสิ่งที่สำคัญที่สุด";
+				mes " ^FF0000Alcohol^000000, อย่าลืมล่ะ เข้าใจมั้ย?";
+				close;
+			}
+		}
+		else if (DANCER_SK == 6) {
+			mes "["+ strcharinfo(0) +"]";
+			mes " ท่านยังไม่ได้บอกความลับ";
+			mes " เกี่ยวกับสิ่งที่ทำให้มีเสน่ห์";
+			mes " เร้าใจกับข้าเลย";
+			next;
+			mes "[Totally Hammered Aelle]";
+			mes "ZzzZzz... หือ?";
+			mes " ใช่  ข้ารู้ ข้า...";
+			mes "...ZzzzZzzzZzZzzzZZZzz...";
+			next;
+			mes "["+ strcharinfo(0) +"]";
+			mes " ตื่น ลุกขึ้น!";
+			mes " ข้ามาถึงที่นี่";
+			mes " ข้าอยากรู้เทคนิคใหม่!";
+			next;
+			mes "[Annoyed Aelle]";
+			mes " หุบปาก!";
+			mes " ข้าอยากจะนอน!";
+			mes " ไปให้พ้น";
+			mes " ไปหา Canell, น้องสาวข้า...";
+			mes "...ZzzzzZzZZZzzzZZ....";
+			set DANCER_SK,7;
+			close2;
+			warp "prontera",156,272;
+			end;
+		}
+		else if (DANCER_SK > 6 && DANCER_SK < 8) {
+			mes "["+ strcharinfo(0) +"]";
+			mes " Aelle, ข้าต้องการ";
+			mes " ให้ท่านช่วยสอน";
+			mes " ทุกสิ่งที่ข้าจำเป็นต้องรู้";
+			mes " เกี่ยวกับ winking และ--";
+			next;
+			mes "[Aelle]";
+			mes "^333333*สะอึก*^000000 Zzz--อะไร?";
+			mes " ให้ช่วย ส... สอน ให้เจ้า";
+			mes " ไปซะ ไปหาน้องสาวข้า";
+			mes " ข้าเหนื่อยมากแล้ว";
+			mes " ไปหาน้องสาวคนเดียวของข้า!";
+			close2;
+			warp "prontera",156,272;
+			end;
+		}
+		else if (DANCER_SK > 8) {
+			mes "[Sober Aelle]";
+			mes " โอ้...";
+			mes " ปวดหัวจริงๆ...";
+			emotion e_an;
+			next;
+			mes "[Aelle]";
+			mes " โอ้, ว้าว, ข้าเห็นเจ้า!";
+			mes " เจ้าสามารถสวยขึ้นได้";
+			mes " ใช่แล้ว จะเติบโตขึ้น";
+			mes " และสง่างาม....";
+			next;
+			mes "[Aelle]";
+			mes " ข้าเชื่อในตัวเจ้า";
+			mes " ความงาม และเสน่ห์";
+			mes " มันจะเป็นอาวุธ... และ";
+			mes " ทุกสิ่งที่เจ้าต้องการ";
+			mes " มันจะเป็นของเจ้า! Bwahahahahaha!";
+			close;
+		}
+		else {
+			mes "[Aelle]";
+			mes " เฮ้.. ข้าสามารถช่วยลดค่าใช้จ่าย";
+			mes " จากการไปถึง Orc";
+			mes "Dungeon, Glast Heim";
+			mes " และ Dead Pit";
+			mes " เจ้าต้องการมันมั้ยล่ะ?";
+			next;
+			mes "[Aelle]";
+			mes " นี่ท่านต้องการจะขาย warps อย่างนั้นเหรอ?";
+			mes " ";
+			next;
+			mes "[Aelle]";
+			mes " โอ้, !";
+			mes " ใครให้เจ้ามาถามล่ะ หลวงพ่อใช่มั้ย?";
+			mes " ข้าไม่ได้ทำอะไรนะ!";
+			emotion e_omg;
+			next;
+			mes "[Aelle]";
+			mes " ขอบคุณมากที่รัก...";
+			mes " ข้ารู้ว่าเจ้าจะช่วยข้า";
+			mes " เก็บเรื่องนี้เป็นความลับ";
+			mes " สำหรับเราได้ใช่มั้ย ^333333*Wink*^000000";
+			emotion ET_BEST;
+			close;
+		}
+	}
+	else {
+		mes "[Aelle]";
+			mes " เฮ้.. ข้าสามารถช่วยลดค่าใช้จ่าย";
+			mes " จากการไปถึง Orc";
+			mes "Dungeon, Glast Heim";
+			mes " และ Dead Pit";
+			mes " เจ้าต้องการมันมั้ยล่ะ?";
+			next;
+			mes "[Aelle]";
+			mes " นี่ท่านต้องการจะขาย warps อย่างนั้นเหรอ?";
+			mes " ";
+			next;
+			mes "[Aelle]";
+			mes " โอ้, !";
+			mes " ใครให้เจ้ามาถามล่ะ หลวงพ่อใช่มั้ย?";
+			mes " ข้าไม่ได้ทำอะไรนะ!";
+			emotion e_omg;
+			next;
+			mes "[Aelle]";
+			mes " ขอบคุณมากที่รัก...";
+			mes " ข้ารู้ว่าเจ้าจะช่วยข้า";
+			mes " เก็บเรื่องนี้เป็นความลับ";
+			mes " สำหรับเราได้ใช่มั้ย ^333333*Wink*^000000";
+			emotion ET_BEST;
+			close;
+	}
+}

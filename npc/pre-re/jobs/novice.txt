@@ -1,0 +1,217 @@
+// -- # Ragnarok Online BY Kelberwitz Blade's
+// -- # Training Ground
+// -- # =============================================
+
+// Training Ground Mobs
+new_1-3,0,0,0,0	monster	Poring	1002,40,0,0,0
+new_1-3,0,0,0,0	monster	Drops	1113,40,0,0,0
+new_1-3,0,0,0,0	monster	Lunatic	1063,40,0,0,0
+new_1-3,0,0,0,0	monster	ChonChon	1011,35,0,0,0
+new_1-3,0,0,0,0	monster	Condor	1009,30,0,0,0
+new_1-3,0,0,0,0	monster	Picky	1050,35,0,0,0
+new_1-3,0,0,0,0	monster	Willow	1010,35,0,0,0
+new_1-3,0,0,0,0	monster	Roda Frog	1012,55,0,0,0
+new_1-3,0,0,0,0	monster	Rocker	1052,15,0,0,0
+new_1-3,0,0,0,0	monster	Thief Bug	1051,20,0,0,0
+new_1-3,0,0,0,0	monster	Spore	1014,30,0,0,0
+new_1-3,0,0,0,0	monster	Fabre	1184,50,0,0,0 
+//new_1-3,0,0,0,0	monster	Gold Poring	2248,20,0,0,0 
+
+
+new_2-3,0,0,0,0	monster	Poring	1002,45,0,0,0
+new_2-3,0,0,0,0	monster	Drops	1113,45,0,0,0
+new_2-3,0,0,0,0	monster	Lunatic	1063,40,0,0,0
+new_2-3,0,0,0,0	monster	ChonChon	1011,45,0,0,0
+new_2-3,0,0,0,0	monster	Condor	1009,40,0,0,0
+new_2-3,0,0,0,0	monster	Picky	1050,45,0,0,0
+new_2-3,0,0,0,0	monster	Willow	1010,45,0,0,0
+new_2-3,0,0,0,0	monster	Roda Frog	1012,45,0,0,0
+new_2-3,0,0,0,0	monster	Rocker	1052,15,0,0,0
+new_2-3,0,0,0,0	monster	Thief Bug	1051,40,0,0,0
+new_2-3,0,0,0,0	monster	Spore	1014,40,0,0,0
+new_2-3,0,0,0,0	monster	Fabre	1184,40,0,0,0 
+//new_2-3,0,0,0,0	monster	Gold Poring	2248,20,0,0,0 
+
+
+// Bulletin Board
+new_1-1,66,114,4	script	Bulletin Board#nv	111,{
+	mes "^FF0000=================================^000000";
+	mes "^FF0000 ^000000 ^E40CAAยินดีต้อนรับสู่ Ragnarok^000000";
+	mes "^FF0000=================================^000000";
+	close;
+}
+
+// Receptionist
+new_1-2,100,29,4	script	Receptionist#nv1	86,{
+	
+	if(getskilllv("NV_BASIC") > 1)
+	{
+		mes "^0066FF[ Training Grounds Receptionist ]^000000";
+		mes "ท่านไม่ได้รับอนุญาติ";
+		mes "ให้เข้าสู่ Training Grounds";
+		clearitem;
+		close;
+	}
+
+	mes "^0066FF[ Training Grounds Receptionist ]^000000";
+	mes "ยินดีต้อนรับ!";
+	mes "เข้าสู่ ^3355FFTraining Grounds^000000.";
+	mes "เจ้าพร้อมที่จะผจญภัยหรือยัง ?";
+	next;
+	while (1) {
+		switch(select("^ff0000•^000000 แน่นอน! ข้าพร้อมแล้ว ~:^ff0000•^000000 ข้าขอคิดสักครู่..")) {
+		case 1:
+			mes "^0066FF[ Training Grounds Receptionist ]^000000";
+			mes "โอเค! เยี่ยมมาก";
+			mes "ขอให้คุณโชคดี";
+			close2;
+			set nov_1st_cos,0;
+			set nov_2nd_cos,0;
+			set nov_3_swordman,0;
+			set nov_3_archer,0;
+			set nov_3_thief,0;
+			set nov_3_magician,0;
+			set nov_3_acolyte,0;
+			set nov_3_merchant,0;
+			switch(6) {
+			case 0:
+				savepoint "prontera",119,91;
+				warp "prontera",119,91;
+				break;
+			case 1:
+				savepoint "morocc",158,49;
+				warp "morocc",158,49;
+				break;
+			case 2:
+				savepoint "geffen",120,100;
+				warp "geffen",120,100;
+				break;
+			case 3:
+				savepoint "payon",70,100;
+				warp "payon",70,100;
+				break;
+			case 4:
+				savepoint "alberta",116,57;
+				warp "alberta",116,57;
+				break;
+			case 5:
+				savepoint "izlude",94,103;
+				warp "izlude",94,103;
+				break;
+			case 6:
+				clearitem;
+				getitem 569,300;
+				getitem 12323,50;
+				getitem 12324,10;
+				getitem 2352,1;
+				getitem 5055,1;
+				getitem 2414,1;
+				getitem 2510,1;
+				getitem 2112,1;
+				getitem 1243,1;
+				getitem 7059,30;
+				getitem 7060,30;
+				getitem 24001,5;
+				getitem 24002,5;
+				getitem 24003,5;
+				
+				set .@rand_new,rand(1,2);
+				savepoint "new_"+.@rand_new+"-3",96,21;
+				warp "new_"+.@rand_new+"-3",96,21;
+				
+				//savepoint "new_1-3",96,21;
+				//warp "new_1-3",96,21;
+				break;
+			}
+			end;
+
+		case 2:
+			mes "^0066FF[ Training Grounds Receptionist ]^000000";
+			mes "โอเค..ได้ !";
+			mes "ข้าให้เวลาเจ้าตัดสินใจ";
+			close;
+		}
+	}
+}	
+
+
+new_1-3,96,174,3	script	Gate Keeper#nv1::NovKeyman	85,{
+	mes "^0066FF[ Gate Keeper ]^000000";
+	mes "ข้าจะไม่อนุญาติให้ Novice";
+	mes "ที่ยังไม่พร้อมเผชิญโลกกว้างผ่าน";
+	mes "ไปเด็ดขาดเพื่อความปลอดภัยของเจ้าเอง";
+	next;
+	mes "^0066FF[ Gate Keeper ]^000000";
+	mes "เจ้าจะต้องมี Joblv 10 ขึ้นไป";
+	mes "และทำการอัพ Basic Skill Lv 9";
+	mes "และมีพื้นฐานในการใช้ชีวิตเสียก่อน!";
+	next;
+	mes "^0066FF[ Gate Keeper ]^000000";
+	mes "เมื่อก่อนผู้คนมากมาย";
+	mes "ได้ตายลงเพราะเราไม่มีการคัดกรอง";
+	mes "ไหนตอบมาสิ! เจ้าพร้อมหรือไม่!";
+	next;
+	switch(select("^ff0000•^000000 ข้าพร้อมแล้ว!:^ff0000•^000000 ข้าขออยู่อีกซักพัก")) {
+	case 1:
+		
+		if(getskilllv("NV_BASIC")< 9)
+		{
+			mes "^0066FF[ Gate Keeper ]^000000";
+			mes "เจ้ายังไม่มีคุณสมบัติพอ!";
+			mes "Basic Skill เลเวล 9";
+			mes "นั่นคือสิ่งที่ข้าต้องการ!";
+			close2;
+			end;
+
+		}
+		else
+		{
+			mes "^0066FF[ Gate Keeper ]^000000";
+			mes "โชคดีนะ";
+			close2;
+			savepoint "morocc",158,49;
+			warp "morocc",158,49;
+			end;
+		}
+	case 2:
+		mes "^0066FF[ Gate Keeper ]^000000";
+		mes "หากเจ้าคิดว่าพร้อมเดิน";
+		mes "ที่จะเดินผ่านประตูนี้ไปจงมาหาข้า!";
+		close;
+	}
+}
+
+new_2-3,96,174,3	duplicate(NovKeyman)	Gate Keeper#nv2	85
+
+//============================================================================
+// Trainer (Real Combat Training)
+//============================================================================
+-	script	Level 1 Trainer#nv::NvBrutus	84,{
+	mes "^0066FF[ Trainer Brutus ]^000000";
+	mes "สวัสดี.. เห้อออ ที่นี่ช่างน่าเบื่อเสียจริง ~";
+	mes "เจ้าคิดว่าอย่างนั้นใหม่..";
+	next;
+	switch(select("^ff0000•^000000 ข้าก็ว่าอย่างนั้น.. พาข้าไปที่อื่นทีเถอะ!:^ff0000•^000000 ข้าชอบที่นี่้..")) {
+	case 1:
+		mes "^0066FF[ Trainer Brutus ]^000000";
+		mes "ตกลง, ข้าจะพาเจ้าไปที่อื่นแล้วกัน";
+		mes "ไหน...ยืนยันกับข้าอีกรอบสิ๊ !!";
+		next;
+		for(set .@i,1; .@i<3; set .@i,.@i+1) {
+			if (!compare(strnpcinfo(2),"nv"+.@i))
+				set .@menu$, .@menu$+"^ff0000•^000000 พาไปยังห้องที่ "+.@i;
+			set .@menu$, .@menu$+":";
+		}
+		set .@i, select(.@menu$+"^ff0000•^000000 ยกเลิก");
+		if (.@i < 3) warp "new_"+.@i+"-3",96,21;
+		close;
+	case 2:
+		mes "^0066FF[ Trainer Brutus ]^000000";
+		mes "อืม...";
+		mes "ขอให้เจ้าสนุกกับที่นี่แล้วกันนะ";
+		close;
+	}
+}
+
+new_1-3,91,34,4	duplicate(NvBrutus)	Level 1 Trainer#nv1	84
+new_2-3,91,34,4	duplicate(NvBrutus)	Level 2 Trainer#nv2	84

@@ -1,0 +1,1249 @@
+//==================================================================================================//
+//					Registration and First Test
+//==================================================================================================//
+alde_alche.gat,27,185,4	script	Parmry Gianino	744,{
+	mes "[Parmry Gianino]";
+	if(Class == 5) goto L_Merc;
+	if(Class == Job_Alchem) goto L_Alch;
+L_Other:	
+	mes " ยินดีต้อนรับสู่สมาคม Alchemist อ้า ข้าเสียใจด้วยแต่ตอนนี้ข้าไม่ว่าง";
+	close;
+L_Alch:
+	mes "เฮ้ เพื่อน Alchemist ของข้า ท่านกำลังจะไปทำการค้าที่ใด?  ข้าหวังว่าท่านคงโชคดี";
+	close;
+L_Merc:	
+	if(ALCH_Q == 1) goto L_Check;
+	if(ALCH_Q == 2) goto L_Test2;
+	if(ALCH_Q == 3) goto L_Test3;
+	if(ALCH_Q == 4) goto L_Test4;
+	if(ALCH_Q == 5) goto L_Test5;
+	if(ALCH_Q == 6) goto L_Test6;
+	if(ALCH_Q == 7) goto L_GoChange;
+	mes " ยินดีต้อนรับสู่สมาคม Alchemist";
+	mes " ท่านมีอะไรให้ช่วยมั้ย?";
+	next;
+	menu " ข้าต้องการเรียนรู้เกี่ยวกับ Alchemey",M_Learn, " ข้าต้องการเป็น Alchemist.",L_Start, "ไม่มีอะไร",M_End;
+
+	M_Learn:
+		mes "[Parmry Gianino]";
+		mes " Alchemists คือการศึกษาเกี่ยวกับการสร้างวัสดัใหม่ๆ โดยใช้ความหลากหลายของสารที่มีอยู่";
+		mes " พวกเขาทำการวิจัยอะตอมของสารเคมีและทดสอบการเปลี่ยนแปลงคุณสมบัคิของสาร";
+		next;
+		mes "[Parmry Gianino]";
+		mes " คนส่วนใหญ่คิดว่าเป้าหมายสุดท้ายคือการสร้างทอง แต่นั่นไม่ใช่เรื่อง";
+		mes " พวกเขาสามารถสร้างยาได้ง่ายๆ จากวัสดุใหม่ๆ";
+		next;
+		mes "[Parmry Gianino]";
+		mes " ในบางครั้งการที่สร้างงานวิจัยของมีชีวิตบางอย่าง ถือว่านั่นเป็นดินแดนของพระเจ้า";
+		mes " ที่มีเขตข้อมูลที่ซับซ้อน เพื่อให้ทุกคนได้ศึกษาสำหรับงานตอนนี้";
+		next;
+		mes "[Parmry Gianino]";
+		mes " ถ้าท่านมีความสนใจในการเป็น Alchemist ข้าอยากแนะนำท่าน ให้ท่านมีประสบการณ์ทางด้านพ่อค้ามาก่อน Merchant.";
+		mes " การเป็น merchant มีโอกาสที่จะเรียนรู้เกี่ยวกับวัสดุ ในขณะที่ท่านทำการแลกเปลี่ยนกับเขา";
+		next;
+		mes "[Parmry Gianino]";
+		mes " ท่านเท่านั้นที่จะสามารถตัดสินใจ";
+		mes " ว่าท่านจะมาเดินบนถนนแห่ง Alchemist ที่มีความท้าทายมาก";
+		mes " ท่านจะต้องมุ่งเน้นเกี่ยวกับการทดลองและการทำวิจัยมากกว่าการค้า";
+		close;
+	M_End:
+		mes "[Parmry Gianino]";
+		mes "อืม..กรุณาพูดอะไรบางอย่างว่าท่านต้องการอะไร";
+		close;
+L_Start:
+	mes "[Parmry Gianino]";
+	if(JobLevel < 40) goto L_LowLvl;
+	mes " ชื่อของข้าคือ Parmry Gianino แห่งสมาคม Alchemist";
+	mes " ยินได้ที่ได้รู้จัก";
+	next;
+	mes "[Parmry Gianino]";
+	mes " หากท่านเข้าร่วมสมาคมของเราท่านจะต้องได้รับการฝึกอบรมเพื่อยอมรับในตัวท่านว่า";
+	mes " ท่านเป็น Alchemist และสามารถเข้าร่วมงานวิจัยของเรา";
+	next;
+	mes "[Parmry Gianino]";
+	mes " แต่ข้าไม่ได้เปิดรับสมัครทุกๆ คนหรอกนะ";
+	mes " ท่านจะต้องมีความพยายามอย่างมาก และสามารถยอมอุทิศตนเพื่อการวิจัย";
+	next;
+	mes "[Parmry Gianino]";
+	mes " มีอยู่สองสิ่ง ที่จะทำให้ท่านเข้าสู่สมาคมของเรา....";
+	mes " แต่เราจะคิดดูอีกที หลังจากที่ท่านตกลง";
+	next;
+	mes "[Parmry Gianino]";
+	mes " แล้วท่านต้องการที่จะละเบียนเลยหรือไม่?";
+	next;
+	menu " ข้าต้องการลงเบียน",M_Apply," ไว้ทีหลังดีกว่า",-;
+
+		mes "[Parmry Gianino]";
+		mes " หากท่านเป็น Merchant ที่มีความสามารถ";
+		mes " ที่นี่จะยินดีต้อนรับ";
+		mes " หากท่านกลับมายังที่นี่อีกครั้ง";
+		close;
+	M_Apply:
+		mes "[Parmry Gianino]";
+		mes " กรอกแบบฟอร์มใบสมัครนี้.....";
+		next;
+		mes "[Parmry Gianino]";
+		mes " ยอดเยี่ยมมาก.. ในการที่จะเข้าร่วมสมาคม Alchemist ก่อนอื่นท่านต้องจ่ายเงิน ^5533FF50,000^000000 เซนี เพื่อเป็นค่าสมาชิก";
+		mes " และท่านจะต้องนำไอเท็ม อีกนิดหน่อยมาให้ข้าด้วยเช่นกัน";
+		next;
+		mes "[Parmry Gianino]";
+		mes " และแน่นอนนี่คือสิ่งที่เราที่ต้องการ ^5533FFOld Magic Book^000000 และ ^5533FFHammer of Blacksmith^000000...";
+		mes " หากท่านมี ท่านจะไม่ต้องเสียค่าธรรมเนียม";
+		next;
+		mes "[Parmry Gianino]";
+		mes " ข้าจะขอดู.... ท่านจะต้องนำ....^5533FF100 Mini Furnaces^000000.";
+		mes " กลับมาให้่ข้า ข้าจะรอท่านอยู่";
+		next;
+		mes "[Parmry Gianino]";
+		mes " หลังจากที่ท่านกลับมาท่านจงอย่าลืมเงิน ^5533FF50,000^000000 เซนี ของข้าด้วยล่ะ";
+		mes " แล้วเจอกันใหม่ ";
+		set ALCH_Q,1;
+		close;
+L_LowLvl:
+	mes " ท่านต้องมีเลเวลจ๊อบที่ 40";
+	close;
+
+L_Check:
+	mes " โอ้ ท่านกลับมาแล้ว... ข้าขอดูก่อน....";
+	next;
+	mes "[Parmry Gianino]";
+	if(countitem(612) < 100) goto L_NoItems;
+	if(countitem(1005) > 0 && countitem(1006) > 0) goto L_Skip;
+	if(zeny < 50000) goto L_NoZeny;
+ 	set zeny,zeny - 50000;
+	delitem 612, 100;
+	mes " ท่านมีเงิน 50,000 เซนี..... พร้อมกับ 100 mini furnaces.... ยอดเยี่ยม!";
+	mes " ตอนนี้ท่านคงพร้อมที่จะเรียนรู้ขั้นพื้นฐานเกี่ยวกับ Achemist แล้ว";
+	next;
+
+	L_Cont:
+	mes "[Parmry Gianino]";
+	mes " แต่ก่อนอื่น... ^5533FFRaspuchin^000000 ต้องการจะพบท่าน....";
+	mes " อืม..... ข้าไม่แน่ใจว่าสิ่งนี้มันเกี่ยวกับอะไร....";
+	next;
+	mes "[Parmry Gianino]";
+	mes " ท่านควรจะไอหาเขาตอนนี้ เดินลงบรรไดเหล่านั้นไปทางขวามือของห้องพัก เขาอยู่ตรงมุมทางทิศตะออกเฉียดใต้";
+	set ALCH_Q,2;
+	close;
+
+	L_NoZeny:
+		mes " ท่านจะต้องจ่ายเงิน ^FF553350,000^000000 เซนี เพื่อเป็นค่าสมาชิก";
+		mes " ไว้กลับมาใหม่ หากท่านรู้ว่าท่านมีเงินเพียงพอ";
+		close;
+	L_NoItems:
+		mes " ที่ข้าได้บอกไปก่อนหน้านั้น ท่านต้องมี ^FF3355100 Mini Furnaces^000000 เพื่อเข้าร่วมสมาคม";
+		mes " กรุณากลับมาใหม่เมื่อท่านพร้อม";
+		close;
+L_Skip:
+	mes " โอ้ นี่ท่านมี ^5533FFOld Magic Book^000000 และ ^5533FFHammer of Blacksmith^000000........";
+	mes " นั่นหมายความว่า ท่านไม่ต้องจ่ายค่าสมาชิกอีก";
+	next;
+	mes "[Parmy Gianino]";
+	mes " เยี่ยมมากๆ  ตอนนี้ข้าก็มี Book Hammer และ 100 mini furnaces เท่านี้ท่านก็จะสามารถเรียนรู้พื้นฐานของการเป็น Achemist ได้";
+	next;
+	delitem 1005,1;
+	delitem 1006,1;
+ 	delitem 612, 100;
+	goto L_Cont;
+
+L_Test2:	
+	mes " ตามหา ^5533FFRaspuchin^000000 เดี๋ยวนี้!";
+	close;
+L_Test3:	
+	mes " ตามหา ^5533FFDarwin^000000  เดี๋ยวนี้!";
+	close;
+L_Test4:	
+	mes " ตามหา ^5533FFVan Helmont^000000  เดี๋ยวนี้!";
+	close;
+L_Test5:	
+	mes " ตามหา ^5533FFNicholas Flamel^000000  เดี๋ยวนี้!";
+	close;
+L_Test6:	
+	mes " กลับไปหา ^5533FFNicholas Flamel^000000  เดี๋ยวนี้!";
+	mes " เขาจะทำการทดสอบท่านบางอย่า";
+	close;
+L_GoChange:	
+	mes " ว้าว ท่านผ่านการทดสอบทั้งหมดแล้ว? ตอนนี้ท่านควรกลับไปหา ^5533FFVincent Carsciallo^000000.";
+	mes " เขาเป็นคนหนึ่งที่จะเปลี่ยนให้ท่านเป็น Achemist ได้";
+	close;
+}
+
+
+//==================================================================================================//
+//					2nd Test: Math test :(
+//==================================================================================================//
+alde_alche.gat,175,107,4	script	Alchemist จอมจู้จี้	749,{
+	mes "[Raspuchin Gregory]";
+	if(class == 5) goto L_Merc;
+L_Other:
+	mes " นี่มันอะไร คิคิคิคิ  ท่านอยากรู้อะไรกับสิ่งที่ข้ากำลังทำ...?";
+	mes " โดยเฉพาะสิ่งที่ข้าได้ทำให้ท่านให้...คิ คิ คิ..";
+	next;
+	mes "[Raspuchin Gregory]";
+	mes " อืม มันคืองานค้นคว้าเกี่ยวกับ Potion ของข้าที่ใกล้สำเร็จแล้ว... ท่านจะต้องใช้มันทั่วทั้งประเทศ!!";
+	next;
+	mes "[Raspuchin Gregory]";
+	mes " คิคิคิคิ  มันเป็นความลับของคนใน Prontera.....";
+	close;
+L_Merc:
+	if(ALCH_Q == 2) goto L_Start;
+	if(ALCH_Q == 3) goto L_Done;
+	mes " คิคิ คุคุ";
+	mes " นี่มันอะไร! ท่านเหลวไหล";
+	next;
+	mes "[Raspuchin Gregory]";
+	mes " Merchant อย่าท่านควรไปตั้งร้านค้าขาย";
+	mes " ท่านที่สถานที่แห่งนี้ทำไมกัน!?";
+	mes " ท่านกำลังมาหาใครบางคนอย่างนั้นเหรอ?";
+	next;
+	mes "[Raspuchin Gregory]";
+	mes " คิคิคิ... ไป... ออกจากที่แห่งนี้";
+	mes " อย่ามัวแต่เดินเที่ยวเตร่";
+	close;
+L_Start:
+	if(ALCH_Q2 == 1) goto L_ReTest;
+	if(JobLevel == 50) goto L_Skip;
+	mes " ท่านคงเดินมาถึงที่นี่";
+	mes " เพื่อที่จะต้องการสู่สมาคม?";
+	next;
+	mes "[Raspuchin Gregory]";
+	mes " ไม่ข้าไม่ชอบมัน...ข้าเพียงแค่...!";
+	mes "  ทุกๆ ครั้งที่ข้าเข้ามาร่วมกับ Alchemist เพียงเพราะข้าอยากรู้วิธีการสมุนไพร!!!";
+	next;
+	mes "[Raspuchin Gregory]";
+	mes " และนี่คือเหตุผลที่การสัมภาษณ์ของข้านั้นเป็นสิ่งจำเป็น!";
+	mes " ข้าวางแผนไว้ว่า ข้าจะไล่พวกคนที่ไร้ความสามารถออกไปจากสมาคมนี้!!";
+	next;
+	mes "[Raspuchin Gregory]";
+	mes " ตอนนี้ก็คงต้องแก้ปัญหาที่ข้าทำให้ท่าน";
+	mes " พวกเราอยากเห็นความรอบรู้ของท่าน";
+	next;
+	set @score,0;
+
+	//set of question 1
+	q1:
+		mes "[Raspuchin Gregory]";
+		mes " 12+23+34+45 =?";
+		next;
+		input @num;
+		if(@num == 114) set @score,@score+10;
+	q2:	
+		mes "[Raspuchin Gregory]";
+		mes " 1000-36-227-348 =?";
+		next;
+		input @num;
+		if(@num == 389) set @score,@score+10;
+	q3:
+		mes "[Raspuchin Gregory]";
+		mes " 9765/3/5/7 =?";
+		next;
+		input @num;
+		if(@num == 93) set @score,@score+10; 
+	q4:
+		mes "[Raspuchin Gregory]";
+		mes " (2646/7) + (13*28) =?";
+		next;
+		input @num;
+		if(@num == 742) set @score,@score+10;
+	q5:
+		mes "[Raspuchin Gregory]";
+		mes " หากท่านลดราคาได้ 24%";
+		mes " 12 Red Potions";
+		mes " 5 Fly Wings และ ";
+		mes " 1 Butterfly Wing จะมีราคารวมทั้งหมดเท่าไหร่?";
+		next;
+		input @num;
+		if(@num == 909) set @score,@score+10;
+	q6:
+		mes "[Raspuchin Gregory]";
+		mes " น้ำหนักรวมของ 3";
+		mes " Scimiters";
+		mes " 2 Helms และ 1 Coat  เป็นเท่าไหร่";
+		next;
+		input @num;
+		if(@num == 450) set @score,@score+10;
+	q7:	
+		mes "[Raspuchin Gregory]";
+		mes " ค่าการป้องกันทั้งหมดของ ";
+		mes " Biretta Mantle Opera Mask";
+		mes " Ribbon";
+		mes " Muffler Boots และ Ear Muffs?";
+		next;
+		input @num;
+		if(@num == 22) set @score,@score+10;
+	q8:	
+		mes "[Raspuchin Gregory]";
+		mes " ท่านจะได้กำไรเท่าไหร่  ถ้าซื้อ ";
+		mes " 5 Helm จากการลดราคา 24% และ";
+		mes " ขายไปด้วยการลดราคา 20%";
+		mes " จากราคาปกติ?";
+		next;
+		input @num;
+		if(@num == 1760) set @score,@score+10;
+		goto L_Total;
+
+L_ReTest:
+	mes " อะไร นี่ท่านต้องการทดสอบใหม่อีกครั้ง?";
+	mes " ข้าคิดว่า ข้าไม่ควรให้ท่านผ่านไปได้";
+	next;
+	mes "[Raspuchin Gregory]";
+	mes " ดีล่ะ ข้าจะให้โอกาสท่านอีกครั้งหนึ่ง";
+	mes " ข้าจะยกโทษให้ ... คิคิคิ";
+	mes " หากท่านทำได้ดีในครั้งนี้...";
+	next;
+	mes "[Raspuchin Gregory]";
+	mes " ตอบคำถามนี้่ตามที่ข้าได้ถาม";
+	mes " และใช้สมองของท่านคิดมันให้ดี ๆ";
+	next;
+	set @score,0;
+
+	//set of question 2
+	q11:
+		mes "[Raspuchin Gregory]";
+		mes " 13+25+37+48=?";
+		next;
+		input @num;
+		if(@num == 123) set @score,@score+10;
+	q12:
+		mes "[Raspuchin Gregory]";
+		mes " 1000-58-214-416 =?";
+		next;
+		input @num;
+		if(@num == 312) set @score,@score+10;
+	q13:
+		mes "[Raspuchin Gregory]";
+		mes " 12*24*3=?";
+		next;
+		input @num;
+		if(@num == 864) set @score,@score+10;
+	q14:
+		mes "[Raspuchin Gregory]";
+		mes " 10530/3/5/2=?";
+		next;
+		input @num;
+		if(@num == 351) set @score,@score+10;
+	q15:
+		mes "[Raspuchin Gregory]";
+		mes " (35*19) - (1792/7) =?";
+		next;
+		input @num;
+		if(@num == 400) set @score,@score+10;
+	q16:
+		mes "[Raspuchin Gregory]";
+		mes " (2368/8) + (24*17) = ?";
+		next;
+		input @num;
+		if(@num == 704) set @score,@score+10;
+	q17:
+		mes "[Raspuchin Gregory]";
+		mes " (2646/7) + (13*28)=?";
+		next;
+		input @num;
+		if(@num == 742) set @score,@score+10;
+	q18:
+		mes "[Raspuchin Gregory]";
+		mes " หากท่านลดราคาได้ 24%";
+		mes " 15 Green Potions,";
+		mes " 6 Magnifiers และ 4 Traps";
+		mes " จะมีราคารวมทั้งหมดเท่าไหร่ ?";
+		next;
+		input @num;
+		if(@num == 934) set @score,@score+10;
+	q19:
+		mes "[Raspuchin Gregory]";
+		mes " น้ำหนักรวมของ";
+		mes " 3 Ring Pommels Saber,";
+		mes " 4 Caps และ 2 Boots เป็นเท่าไหร่?";
+		next;
+		input @num;
+		if(@num == 550) set @score,@score+10;
+	q20:
+		mes "[Raspuchin Gregory]";
+		mes " ค่าการป้องกันรวมของ";
+		mes " Bucler Coat Gas Mask Big";
+		mes " Ribbon Ribbon Sakkat และ";
+		mes " Glasses เป็นเท่าไหร่?";
+		next;
+		input @num;
+		if(@num == 16) set @score,@score+10;
+	q21:
+		mes "[Raspuchin Gregory]";
+		mes " ท่านจะได้รับเงิน Zeny เท่าไหร่";
+		mes " ถ้าซื้อ  3 Tight  จากการลดราคา 24%";
+		mes " และ ขายไปด้วยการลดราคา";
+		mes " 20% จากราคาปกติ  ?";
+		next;
+		input @num;
+		if(@num == 2840) set @score,@score+10;
+L_Total:
+	mes "[Raspuchin Gregory]";
+	if(@score < 80) goto L_Failed;
+	set ALCH_Q,3;
+	set ALCH_Q2, 0;
+	mes " คิคิคิ...ข้าจะพาท่านไป";
+	mes " ข้าจะให้ท่านไปช่วย Raspuchin ค้นคว้าอะไรบางอย่าง!";
+	next;	
+	mes "[Raspuchin Gregory]";
+	mes " เอาล่ะ ออกไปได้! จงไปหา Darwin^5533FFDarwin^000000.";
+	mes " เขาจะสอนเจ้าเกี่ยวกับการทดลอง";
+	mes " บอก Darwin ว่าข้าส่งเจ้ามา";
+	next;
+	mes "[Raspuchin Gregory]";
+	mes " แล้วอย่าคิดว่านี่มันคืองานสุดท้ายของเจ้านะ!";
+	close;
+
+	L_Failed:
+		set ALCH_Q2,1;
+		mes "...เจ้างี่เง่า";
+		mes " ข้ารู้สึกว่าเจ้าจะตอบไม่ได้สักถาม!";
+		mes " เจ้าตอบมันผิดทั้งหมด!!!";
+		next;
+		mes "[Raspuchin Gregory]";
+		mes " คนที่ไม่สามารถแม้จะตอบคำถามเหล่านี้ ตามคิดของข้า จะมาเป็น Alchemist ได้อย่างไร!";
+		next;
+		mes "[Raspuchin Gregory]";
+		mes " ไป! ออกไปจากที่นี่ซะ!";
+		close;
+L_Done:
+	mes " เจ้ายังมัวทำอะไรอยู่ที่นี่ ? ไปได้แล้ว";
+	mes " ไปหา ^5533FFDarwin^000000.";
+	mes " เขาจะสอนเจ้าเกี่ยวกับการทดลอง";
+	mes " บอก Darwin ว่าข้าส่งเจ้ามา";
+	next;
+	mes "[Raspuchin Gregory]";
+	mes " แล้วอย่าคิดว่านี่มันคืองานสุดท้ายของเจ้านะ!";
+	close;
+L_Skip:
+	mes " หืมท่านมีเลเวลจ๊อบที่สูงมาก.....วันนี้คงเป็นวันที่ดีอีกวันหนึ่ง ข้าจะให้เจ้าผ่าน";
+	mes " ขั้นต่อไปเจ้าต้องไปหา ^5533FFDarwin^000000.";
+	mes " เขาจะสอนเจ้าเกี่ยวกับการทดลอง.";
+	mes " บอก Darwin ว่าข้าส่งเจ้ามา";
+	set ALCH_Q,3;
+	set ALCH_Q2, 0;
+	close;
+}
+
+
+//==================================================================================================//
+//					3rd Test: Mix some medicine
+//==================================================================================================//
+alde_alche.gat,13,15,8	script	นักวิจัย	750,{
+	mes "[Darwin]";
+	if(class == 5) goto L_Merc;
+L_Other:
+	mes " ทั้งหมดนี้คือสายตาที่มองผ่านการสาปแช่งของข้า";
+	mes " มันคือภาพแห่งความทรงจำที่ผ่านมาจากอดีต";
+	mes " อาฮ่าาาา...";
+	close;
+
+L_Merc:
+	if(ALCH_Q == 3) goto L_Start;
+	if(ALCH_Q == 4) goto L_Done;
+	goto L_Other;
+
+L_Start:
+	if(ALCH_Q2 == 1) goto L_Check;
+	mes "...........";
+	mes ".........";
+	mes "....นั่นใคร...";
+	next;
+	mes "[Darwin]";
+	mes " มนุษย์หมาป่า? หรือว่ามนุษย์...";
+	mes " เจ้าคงกำลังมองหาบางอย่างเช่นกัน";
+	next;
+	mes "[Darwin]";
+	mes " หากเจ้ามีสิ่งที่เจ้าจะต้องควรระวัง";
+	mes " เจ้าอาจจะต้องสูญเสียสิ่งนั้นไปในขณะที่เจ้าออกไปจากที่นี่...";
+	next;
+	mes "[Darwin]";
+	mes "..........";
+	next;
+	mes "[Darwin]";
+	mes "... แล้ว ท่านมาทำอะไรที่นี่?";
+	mes " อุตส่าห์ดั้นด้นมาถึงที่นี่";
+	next;
+	menu " ข้าต้องการเรียนรู้เกี่ยวกับการทดลอง",M_Exp, " บอกข้าเกี่ยวกับดอกไม้",M_Flow;
+
+	M_Flow:	
+		mes "[Darwin]";
+		mes ".......";
+		mes "......";
+		mes "...เจ้าคงกำลังคิดถึงสิ่้งที่มีค่า...";
+		next;
+		mes "[Darwin]";
+		mes ".... มีดอกไม้บางชนิดที่ข้าจำได้ราง ๆ....";
+		next;
+		mes "[Darwin]";
+		mes " ข้าจะเปิดเผยการค้นคว้าบางอย่าง.....";
+		mes " สำหรับคนที่ข้ารัก...";
+		next;
+		mes "[Darwin]";
+		mes " โดยมีความสัมพันธ์เกี่ยวกับหมาป่าและดอกไม้...";
+		mes " ข้าจะบอกเจ้าเกี่ยวกับรายละเอียด";
+		next;
+		mes "[Darwin]";
+		mes " แต่..ใช่ มันคือดอกไม้";
+		mes " ความงามของมันคือการกล่าวให้เจ้าเห็นถึงดอกไม้ที่เป็นภาพลวงตาจากสวรรค์...";
+		next;
+		mes "[Darwin]";
+		mes " ข้าสร้าง homunculus.";
+		mes " ไม่มีใครที่เชื่อข้า ว่าข้าสร้างมันมีชีวิตขึ้นมาจากดอกไม้!!!";
+		mes " ด้วยการค้นคว้าของข้ส!";
+		next;
+		mes "[Darwin]";
+		mes " แต่ตอนนี้ ข้าไม่เหลืออะไร";
+		mes " ทุกอย่างมันจบลงไปแล้ว";
+		mes " เวลาของชีวิตข้ามันได้หยุดลงแล้ว...";
+		close;
+	M_Exp:
+		mes "[Darwin]";
+		mes " เจ้าต้องการเรียนรู้ถึงการเป็น Alchemy...";
+		mes " ความรู้ทั้งหมดที่ข้ามี..";
+		mes " ข้าจะสร้างฝันของข้าให้กลายเป็นตริง...";
+		next;
+		mes "[Darwin]";
+		mes " ข้าจะสอนเจ้าเกี่ยวกับพื้นฐานของทั้งษะ...";
+		mes " แต่ข้าจะต้องดูความพยายามของเจ้า";
+		next;
+		mes "[Darwin]";
+		mes " และนี่เป็นพื้นฐาน";
+		mes " สำหรับวิธีที่เจ้าสามารถทำยาได้ง่ายๆ...";
+		mes " เจ้าต้องจัดเตรียมบางอย่าง...";
+		next;
+		mes "[Darwin]";
+		mes "^5533FF3 Medicine Bowls";
+		mes "3 Empty Bottles";
+		mes "1 Red Herb";
+		mes "1 Yellow Herb";
+		mes "1 White Herb^000000";
+		next;
+		mes "[Darwin]";
+		mes " เมื่อท่านมีของครบทั้งหมดแล้ว ให้กลับมาหาข้า";
+		set ALCH_Q2, 1;
+		close;
+
+L_Check:
+	mes "...........";
+	mes ".........";
+	mes "...นั่นใคร...";
+	next;
+	mes "[Darwin]";
+	mes " เจ้าต้องการเรียนรู้ที่จะเป็น Alchemy...";
+	mes " เจ้าคงจะเตรียมทุกอย่างมาแล้ว?";
+	next;
+	if(countitem(7134) < 3 || countitem(713) < 3 || countitem(507) < 1 || countitem(508) < 1 || countitem(509) < 1) goto L_NotEnuf;
+	delitem 7134,3;
+	delitem 713,3;
+	delitem 507,1;
+	delitem 508,1;
+	delitem 509,1;
+	mes "[Darwin]";
+	mes " ดูเหมือนว่าเจ้ามีทุกอย่างครบแล้ว";
+	mes " และนี่เป็นสัญญาที่ข้าจะสอนวิธีการทำยาให้กับเจ้า";
+	next;
+	mes "[Darwin]";
+	mes " ขั้นแรกให้เตรียม Medicine Bowl แล้วใส่สมุนไพรลงไปในนั้น";
+	next;
+	mes "[Darwin]";
+	mes " เทน้ำที่สะอากลงไปจำนวนหนึ่ง จนกว่ามันจะเริ่มเข้ากัน ";
+	mes " แล้วเพิ่มสมุนไพรบางอย่างลงไป";
+	next;
+	mes "[Darwin]";
+	mes " และนั่นคือวิธีที่เจ้าสามารถทำมันได้หากท่านมีวัสดุเพียงพอ";
+	mes " แล้วเทมันลงไปใน empty bottle";
+	next;
+	mes "[Darwin]";
+	mes " เอาล่ะ เสร็จสมบูรณ์";
+	mes " ข้าแสดงวิธีทำให้ท่านดู แล้ว..";
+	mes " ลองทำตามนั้น แล้วท่านจะทำได้อย่างข้า";
+	mes " ง่ายจะตาย?";
+	next;
+	set @score,0;
+	menu " เตรียมภาชนะ medicine bowl",-, " สวมใส่ภาชนะ medicine bowl",M_0, " เตะภาชนะ medicine bowl",M_0;
+
+		set @score,@score+10;
+	M_0:
+
+	menu " ใส่ดินลงไปในภาชนะ",M_1, " ใส่สมุนไพรลงในภาชนะ",-, " ใส่สมุหบัญชีลงในภาชะ",M_1;
+
+		set @score,@score+10;
+	M_1:
+
+	menu " บดสมุนไพร",-, " บดถ้วยยา",M_2, " บดอุ้งตีนหมี",M_2;
+
+		set @score,@score+10;
+	M_2:
+
+	menu " พรมน้ำบริสุทธิ์ลงไป",M_3, " ดื่้มน้ำบริสุทธิ์",M_3, " เทน้ำบริสุทธิ์ลงไป",-;
+
+		set @score,@score+10;
+	M_3:
+
+	menu " บดสมุนไพรไปเรื่อยๆ",-, " กินสมุนไพรไปเรื่อยๆ",M_4, " ร้องและเต้นรำไปเรื่อยๆ",M_4;
+
+		set @score,@score+10;
+	M_4:
+
+	menu " ใส่ลงในก๋วยเตี๋ยว",M_5, " ใส่ลงในขวดเปล่า",-, " ดื่มของเหลวในถ้วยยา",M_5;
+
+		set @score,@score+10;
+	M_5:
+
+	mes "[Darwin]";
+	if(@score < 60) goto L_Failed;
+	mes " ... ดีมาก";
+	mes " ทำออกมาได้ดีมากทั้งที่เป็นการลงมือทำครั้งแรก";
+	mes " เก็บไว้เป็นของที่ระลึกเถอะ";
+	getitem 501,1;
+	getitem 503,1;
+	getitem 504,1;
+	set ALCH_Q,4;
+	set ALCH_Q2,0;
+	next;
+	mes "[Darwin]";
+L_Done:
+	mes " แล้วไปหา ^5533FFVan Helmont^000000...";
+	mes " เขาจะสอนรายละเอียดต่างๆ ให้ท่านเอง";
+	mes " ฟังที่เขาสอนให้ดีล่ะ";
+	next;
+	mes "[Darwin]";
+	mes " อย่าลืม..";
+	mes " เจ้าจงปกป้องพรสวรรค์ข้าเจ้าที่มีค่าที่สุด.....";
+	close;
+
+	L_Failed:
+		mes "... เจ้าผสมส่วนผสมบางอย่างผิดพลาด";
+		mes "... ไปหาบางอย่างมาเพิ่มเติม";
+		close;
+L_NotEnuf:
+	mes "[Darwin]";
+	mes " เจ้าคงจะลืมไปแล้วเกี่ยวกับ";
+	mes " วัสดุที่เจ้าจะต้องนำมา";
+	next;
+	mes "[Darwin]";
+	mes "^5533FF3 Medicine Bowls";
+	mes "3 Empty Bottles";
+	mes "1 Red Herb";
+	mes "1 Yellow Herb";
+	mes "1 White Herb^000000";
+	next;
+	mes "[Darwin]";
+	mes " กลับมาที่นี่อีกครั้ง หากเจ้ามีของที่ข้าต้องการครบ..";
+	close;	
+}
+
+
+//==================================================================================================//
+//					4th Test: Learn from Morgenstein
+//==================================================================================================//
+/*
+alde_alche.gat,79,19,4	script	นักทดลองผู้เชี่ยวชาญ	748,{
+	mes "[Van Helmont]";
+	if(class == 5) goto L_Merc;
+L_Other:
+	mes " ทำไม ทำไม ข้าถึงทำพลาด!!!";
+	mes " ทั้งที่มันไม่มีอะไรผิด!";
+	mes " ทำไม! ทำไม!";
+	close;
+L_Merc:
+	if(ALCH_Q == 4) goto L_Start;
+	if(ALCH_Q == 5) goto L_Done;
+	goto L_Other;
+L_Start:
+	if(ALCH_Q2 == 1) goto L_Check;
+	mes " แย่ละ... สูตรอาจผิดพลาด";
+	mes " เกิดอะไรขึ้น...";
+	mes " ทฤษฏีถูกต้อง... อย่างแน่นอน";
+	mes " นี่จะเกิดความผิดพลาดขึ้นที่";
+	mes " สูตร... สักอย่าง...";
+	next;
+	mes "[Van Helmont]";
+	mes " ใช่ ข้าต้องการแก้ไขข้อผิดพลาดเรื่องนี้";
+	mes " โดยที่ข้าไม่จำเป็นต้องเริ่มต้นใหม่";
+	mes " เพียงแค่แก้ไขปัญเท่านั้น...";
+	mes "....แต่ รอ รอ";
+	next;
+	mes "[Van Helmont]";
+	mes ".....................";
+	next;
+	mes "[Van Helmont]";
+	mes "....เจ้าเป็นใครกัน?";
+	next;
+	menu " ข้าสมัครเรียนวิชาเล่นแร่แปรธาตุ",-,".....",M_Bye;
+
+		mes "[Van Helmont]";
+		mes " ดีแล้ว แต่ขำกำลังทำการทดลอง";
+		mes " ที่ยากยิ่งอยู่";
+		mes " โปรดอย่ารบกวน";
+		next;
+		menu " สวนข้าหน่อยสิ",-,"..........",M_Bye;
+
+			mes "[Van Helmont]";
+			mes " อ๊ะ... ข้าไม่ได้บอกว่าข้ารำคาญเจ้า?";
+			mes " ทำไมเจ้าไม่เข้าใจสิ่งที่ข้าพูดไป!";
+			next;
+			mes "[Van Helmont]";
+			mes " โอเค ข้าจะกำหนดบางอย่างให้เจ้า";
+			mes " เจ้าต้องไปศีกษาดูกลับมาลองดู";
+			mes " ว่าสิ่งที่เจ้าทำนั้นดีหรือไม่...หืม...";
+			next;
+			mes "[Van Helmont]";
+			mes " โอ้ ข้าเคยได้ไปเรียนรู้จาก ^5533FFMorgenstein^000000 เป็นวิธที่จะสร้าง ^009500Counteragent^000000 และ ^FF3355Mixture^000000.";
+			mes " เจ้าสามารถหาเขาได้ใน ^5533FFGeffen^000000.";
+			next;
+			mes "[Van Helmont]";
+			mes " เจ้าไม่จำเป็นต้องนำอะไรไป เพียงแค่ไปดูวิธีการที่เขาใช้ผสมยาเท่านั้น";
+			mes "Got it?";
+			next;
+			mes "[Van Helmont]";
+			mes " ดีล่ะ ไว้เจอกัน";
+			mes " เจ้าจะพบทางออกที่ดีที่สุดที่เจ้าจะสามารถทำได้";
+			set ALCH_Q2,1;
+			close;
+	M_Bye:
+		mes "[Van Helmont]";
+		mes " ถ้าเจ้าไม่มีธุระอะไรเจ้าก็ไม่ควรมาที่นี่!!!";
+		close;
+L_Check:	
+	if(al_morgen != 1) goto L_NotRdy;
+	mes " อย่างนั้นแหละ ตัด Tentacle ตรงนี้ออก";
+	mes " แล้วผสมกับ Sticku Mucus,";
+	mes " น้ำยา Jellopy อยู่ในหลอดทดลอง";
+	mes " ...ตานล่ะ ถ้วยยาอยู่ไหนเนี้ย";
+	next;
+	mes "[Van Helmont]";
+	mes " อ่า เจ้าคงจะเคยเป็น merchant มาก่อนและเจ้าคงยังไม่ได้เรียนรู้อะไรมากมาก?";
+	mes " นี่คือสิ่งที่ข้าจะถามเจ้า ไม่ใช่คำถามเล่นๆ";
+	next;
+	mes "[Van Helmont]";
+	mes " ให้ข้าถามเจ้าซัก 2 คำถาม ข้าอยากจะรู้ตำตอบของเจ้ามาเจ้าได้เรียนรู้อะไรมาบ้างแล้ว";
+	next;
+	set @score,0;
+
+	Q_1a:
+		mes "[Van Helmont]";
+		mes " ไอเท็มใดที่จำเป็นต้องมีในการทำ Counteragent?";
+		next;
+		menu "Feather",-,"Sticky Mucus",-,"Animal Blood",-;
+
+	Q_1b:
+		mes "[Van Helmont]";
+		mes " ไอเท็มใดที่ไม่จำเป็นต้องมีในการทำ Counteragent?";
+		next;
+		menu "Karvodailnirol",-,"Detrimindexta",Q_2a,"Alchol",Q_2a;
+
+			set @score,@score+10;
+
+	Q_2a:
+		mes "[Van Helmont]";
+		mes " ไอเท็มใดที่จำเป็นต้องมีในการทำ?";
+		next;
+		menu "Monster's Feed",-,"Lip of Ancient Fish",-,"Rotten Bandage",-;
+
+	Q_2b:
+		mes "[Van Helmont]";
+		mes " ไอเท็มใดที่ไม่จำเป็นต้องมีในการทำ Mixture?";
+		next;
+		menu "Karvodailnirol",L_Result,"Detrimindexta",-,"Alchol",L_Result;
+
+			set @score,@score+10;
+
+L_Result:
+	mes "[Van Helmont]";
+	if(@score < 20) goto L_Failed;
+	mes " หืม เจ้าได้เรียนรู้มาดีตอนนี้เจ้าคงรู้เกี่ยวกับการทำจัวยาบางอย่าง?";
+	mes " เอ๊ะ?";
+	mes " ข้าหลายรู็เจ้ายังมีหลายอย่าง ที่อยากจะถามข้า แต่ข้ายังมีการทดสอบที่เหลืออยู่อีก";
+	next;
+	mes "[Van Helmont]";
+	mes " ไปที่ห้องถัดไป  ^5533FFNicholas^000000 รอที่จะสอนอะไรหลายๆ อย่างแก่ท่าน ...";
+	set ALCH_Q,5;
+	set ALCH_Q2,0;
+	set al_morgen, 0;
+	close;
+
+	L_Failed:
+		mes "...ข้าเพิ่งรู้ว่าเจ้าไม่มีความซื่อสัตย์เลย";
+		mes " นี่เจ้า? ข้าบอกให้เจ้าไปเรียนรู้จาก Morgenstein...";
+		close;
+L_NotRdy:
+	mes " ข้าบอกเจ้าแล้ว ให้เจ้าไปหา Morgenstein ใน Geffen!?!";
+	mes " เขาเป็นคนฉลาด เจ้าควรจะไปคุยกับเขา!";
+	close;
+L_Done:
+	mes " เจ้ายังทำอะไรอยู่? ไปที่ห้องถัดไป  ^5533FFNicholas^000000 รอที่จะสอนอะไรหลายๆ อย่างแก่ท่าน ...";
+	mes " ข้ายังมีธุระที่ต้องทำ";
+	close;
+
+}
+*/
+alde_alche,79,19,5	script	นักทดลองผู้เชี่ยวชาญ#am	748,{
+	mes "[Van Helmont]";
+	if (BaseJob != Job_Merchant) {
+		if (BaseJob == Job_Alchemist) {
+			mes "นายต้องการอะไร?";
+			mes "ฉันกำลังยุ่ง!! อย่ารบกวน";
+			mes "ฉันและออกไป";
+			mes "ตามทางของนาย.";
+			next;
+			mes "[Van Helmont]";
+			mes "เอาหละ...";
+			mes "นายจะไม่มีวัน";
+			mes "ได้งานวิจัยที่สมบูรณ์ถ้านายขี้เกียจ ออกไปและเรียนรู้สิ่งที่นายสามารถเรียนได้.";
+			next;
+			mes "[Van Helmont]";
+			mes "การอ่านวารสารวิทยาศาสตร์และการทดลอง. นั่นเป็นสิ่งที่เกี่ยวกับ Alchemy ทั้งหมด . ตอนนี้ปล่อยฉันกลับไปทำงานNow!";
+			close;
+		}
+		else {
+			mes "อีกนิด...";
+			mes "อีกนิดนึง...";
+			mes "ไม่! แค่อีกนิด";
+			mes "นึง มันก็";
+			mes "จะเสร็จ!";
+			next;
+			mes "[Van Helmont]";
+			mes "ทำไม...?!";
+			mes "ทำไมถึงได้ล้มเหลวอีก?!";
+			mes "การคำนวณของฉัน";
+			mes "ก็ถูกต้องหมดนี่! เดี๋ยวก่อน...!";
+			next;
+			mes "[Van Helmont]";
+			mes "บางที, ถ้าฉันให้อำนาจการไหลความร้อนโดยใช้การไล่ระดับสี neutronic, มันอาจจะใช้ได้...!";
+			close;
+		}
+	}
+	if (ALCH_Q == 8) {
+		mes "เกรอออ...!";
+		mes "ทำไมสูตรนี้ถึงใช้ไม่ได้นะ? เกิดอะไรขึ้น? ในทางทฤษฎี, มันก็ถูกต้องหมดนี่ มันต้องมีข้อผิดพลาดอะไรสักอย่างแน่...";
+		next;
+		mes "[Van Helmont]";
+		mes "ฉันเทมันลงไปในนี้, มันควรจะหยุดสิ. เดี๋ยวก่อน, นี่มันผิดสารละลายนี่! นี่ฉันทำผิดพลาด";
+		mes "ได้ยังไงเนี่ย?! สิ่งเหล่านี้";
+		mes "มันถูกเปลี่ยนไปตั้งแต่เมื่อไหร่?!";
+		next;
+		mes "[Van Helmont]";
+		mes "โอเค, โอเค...";
+		mes "ฉันแค่ต้องแก้ไขส่วนนี้.";
+		mes "ไม่จำเป็นต้องเริ่มต้นใหม่. ฉันแค่";
+		mes "ต้องแก้ไขมัน... แต่เดี๋ยวก่อน...";
+		next;
+		mes "[Van Helmont]";
+		mes ".................";
+		next;
+		mes "[Van Helmont]";
+		mes "อืม...";
+		mes "นายเป็นใคร?";
+		next;
+		if (select("ฉันต้องการที่จะเป็น Alchemist.:.......") == 2) {
+			mes "[Van Helmont]";
+			mes "ฮืม...?";
+			mes "อะไรนะ, นายแค่อยากจะดูใช่มั้ย? ได้ , แต่ทำมันเงียบๆและออกไปถ้าเสร็จแล้ว.";
+			next;
+			mes "[Van Helmont]";
+			mes "อย่าขวางมางฉันและก็อย่าแต่ต้องสิ่งของใดๆทั้งสิ้น. อาจจะมีวัสดุที่มีความผันผวน ดังนั้น มันอาจจะเป็นอันตรายได้.";
+			close;
+		}
+		mes "[Van Helmont]";
+		mes "นาย...?";
+		mes "จะเป็น Alchemist?";
+		mes "ช่างเป็นพ่อค้าที่ตลกซะจริง.";
+		next;
+		mes "[Van Helmont]";
+		mes "อืม, ดี, แต่ฉันมีการทอลองเร่งด่วน";
+		mes "ที่ต้องทำ, ดังนั้น อย่าขวางทางฉัน";
+		next;
+		if (select("สอนฉันบางสิ่งบางอย่าง.:...") == 1) {
+			mes "[Van Helmont]";
+			mes "กราาา...!";
+			mes "นี่ฉันไม่ได้บอกนายหรอว่าอย่ารบกวน? มีอะไรที่เข้าใจยากงั้นหรือ?";
+			next;
+			mes "[Van Helmont]";
+			mes "งั้นก็ได้ ฉันจะมอบหมายงานให้นาย. เรียนรู้สิ่งใหม่ๆ";
+			mes "แล้วกลับมา.";
+			mes "แล้วมาดูกันว่าจะเป็นอย่างไร ...";
+			next;
+			mes "[Van Helmont]";
+			mes "โอเค, เข้าใจแล้ว.";
+			mes "ไปเรียนรู้วิธี";
+			mes "การทำ Counteragent และ Mixture";
+			mes "จาก Molgenstein.";
+			next;
+			mes "[Van Helmont]";
+			mes "นายไม่จำเป็นต้องนำอะไรไปด้วย. แค่ไปดูเขาและทำให้เขาบอกนายถึงวิธีการทำน้ำยาเหล่านั้น. เข้าใจมั้ย?";
+			next;
+			mes "[Van Helmont]";
+			set ALCH_Q,9;
+			changequest 2035,2036;
+			mes "งั้นดี, แล้วเจอกัน.";
+			mes "นายควรจะไปโดยเร็ว";
+			mes "ดีกว่า.";
+			close;
+		}
+		mes "[Van Helmont]";
+		mes "...";
+		next;
+		mes "[Van Helmont]";
+		mes "...";
+		mes "......";
+		next;
+		mes "[Van Helmont]";
+		mes "...";
+		mes "......";
+		next;
+		mes "[Van Helmont]";
+		mes "ดังนั้นถ้าฉันปรับอัตราการเผาไหม้ของสารนี้ที่ควรจะปฏิเสธแนวโน้มใด ๆ ในการไหลของอนุภาคนี้...";
+		next;
+		mes "[Van Helmont]";
+		mes "นี่ฉันกำลังจะทำอะไร";
+		mes "กับสิ่งธรรมชาติทั้งหมดนี้เนี่ย";
+		mes "การตกผลึก?! ";
+		next;
+		mes "[Van Helmont]";
+		mes "โธ่เว้ย!";
+		mes "นี่ฉันกำลัง";
+		mes "จะทำอะไรเนี่ย?!";
+		close;
+	}
+	else if (ALCH_Q == 9) {
+		mes "โอเค, ถ้าฉันทำรอยบากตรงกิ่งก้าน และเพิ่มเจล และ สารละลายที่มีความเหนียวลงไปใน... นี่ชามปรุงยาฉันไปไหนเนี่ย?";
+		next;
+		mes "[Van Helmont]";
+		mes "นี่ฉันใช้มันไปแล้วหรอเนี่ย?! ฉันคิดว่า Nicholas น่าจะมีเหลือ.";
+		next;
+		mes "[Van Helmont]";
+		mes "...";
+		next;
+		mes "[Van Helmont]";
+		mes "...";
+		mes "......";
+		mes "นายเป็นใคร?";
+		next;
+		if (select("ฉันต้องการที่จะเป็น Alchemist?:.......") == 2) {
+			mes "[Van Helmont]";
+			mes "ฮืม...?";
+			mes "อะไรนะ, นายแค่อยากจะดูใช่มั้ย? ได้ , แต่ทำมันเงียบๆและออกไปถ้าเสร็จแล้ว.";
+			next;
+			mes "[Van Helmont]";
+			mes "อย่าขวางทางฉันและก็อย่าแต่ต้องสิ่งของใดๆทั้งสิ้น. อาจจะมีวัสดุที่มีความผันผวน ดังนั้น มันอาจจะเป็นอันตรายได้.";
+			close;
+		}
+		mes "[Van Helmont]";
+		mes "อ้า! แน่นอน. จากการค้าขายมาก่อน. นายเรียนอะไรมาจาก Molgenstein? ฉันไม่ได้ส่งนายไปเล่นนะ, รู้ใช่มั้ย.";
+		next;
+		mes "[Van Helmont]";
+		mes "ฉันขอถาม";
+		mes "คำถามนายสักหน่อย";
+		mes "เพื่อเป็นการทดสอบว่า";
+		mes "นายได้เรียนรู้อะไรมาบ้าง.";
+		next;
+		if(MISC_QUEST & 4) {
+			mes "[Van Helmont]";
+			mes "ไอเท็มไหนที่";
+			mes "ไม่จำเป็นที่จะนำมาทำ";
+			mes "Counteragent?";
+			next;
+			if (select("Karvodailnirol:Detrimindexta:Alcohol") != 1) set .@w_point,.@w_point+1;
+			mes "[Van Helmont]";
+			mes "ไอเท็มไหนที่";
+			mes "ไม่จำเป็นที่จะนำมาทำ";
+			mes "Mixture?";
+			next;
+			if (select("Karvodailnirol:Detrimindexta:Alcohol") != 2) set .@w_point,.@w_point+1;
+			if (.@w_point > 0) {
+				mes "[Van Helmont]";
+				mes "นายไม่ได้ฟัง Molgenstein เลยใช่มั้ย?บางที นาย";
+				mes "ต้องดูเขาทำอีกครั้ง.";
+				next;
+				mes "[Van Helmont]";
+				mes "ถ้านายบอกไม่ได้เกี่ยวกับไอเทมที่ถูกต้องที่นายจำเป้นในการทดสอบ,";
+				mes "นายอาจจะเจ็บตัว!";
+				close;
+			}
+			mes "[Van Helmont]";
+			mes "ดี, นายเรียนรู้มาดี.";
+			mes "โอเค ตอนนี้นายรู้บางอย่างเกี่ยวกับการทอสอบ. ดังนั้น ตอนนี้ฉันสามารถดำเนินการทดสอบของฉันต่อไป.";
+			next;
+			mes "[Van Helmont]";
+			mes "ไปหาห้องถัดไป";
+			mes "เพื่อพูดคุยกับ Nicholas. เขาจะสอนนายบทต่อไป.";
+			next;
+			set ALCH_Q,20;
+			changequest 2036,2037;
+			mes "[Van Helmont]";
+			mes "นายยังมาทำ";
+			mes "อะไรที่นี่อีก?";
+			mes "ไป! เราทั้งสอง";
+			mes "มีสิ่งที่สำคัญกว่า";
+			mes "ต้องทำ!";
+			close;
+		}
+		else {
+			mes "[Van Helmont]";
+			mes "ไอเท็มอะไรที่";
+			mes "จำเป็นในการทำ";
+			mes "Counteragent?";
+			next;
+			select("Feather:Sticky Mucus:Animal Gore");
+			mes "[Van Helmont]";
+			mes "ไอเท็มไหนที่จำเป็น";
+			mes "ในการทำ";
+			mes "Mixture?";
+			next;
+			select("Monster Feed:Ancient Lips:Rotten Bandage");
+			mes "[Van Helmont]";
+			mes "จงซื่อสัตย์. นี่นายไม่รู้ใช่มั้ย?! นี่ฉันไม่ได้บอกนายให้ไปหา Molgenstein และให้เขาสอนนายใช่มั้ย?!";
+			next;
+			mes "[Van Helmont]";
+			mes "อย่าคิดที่จะกลับมาจนกว่าจะได้พูดคุยกับเขา! ตอนนี้เลิกรบกวนฉันและออกไป!";
+			close;
+		}
+	}
+	else if (ALCH_Q == 20) {
+		mes "อะไรนะ...?";
+		mes "ฉันคิดว่าฉันบอกให้นาย";
+		mes "ไปคุยกับ Nicholas ห้องถัดไปใช่มั้ย?";
+		next;
+		mes "[Van Helmont]";
+		mes "ฉันต้องทำงานวิจัยต่อ";
+		mes "และนายจำเป็นต้องเสร็จสิ้นการเป็น Alchemist. เร็วเข้า, ไปได้แล้ว!";
+		close;
+	}
+	else {
+			mes "อีกนิด...";
+			mes "อีกนิดนึง...";
+			mes "ไม่! แค่อีกนิด";
+			mes "นึง มันก็";
+			mes "จะเสร็จ!";
+			next;
+			mes "[Van Helmont]";
+			mes "ทำไม...?!";
+			mes "ทำไมถึงได้ล้มเหลวอีก?!";
+			mes "การคำนวณของฉัน";
+			mes "ก็ถูกต้องหมดนี่! เดี๋ยวก่อน...!";
+			next;
+			mes "[Van Helmont]";
+			mes "บางที, ถ้าฉันให้อำนาจการไหลความร้อนโดยใช้การไล่ระดับสี neutronic, มันอาจจะใช้ได้...!";
+		close;
+	}
+}
+
+
+//==================================================================================================//
+//				Test 5 & 6: Word Scramble, Help the Baijin Bros.
+//==================================================================================================//
+alde_alche.gat,145,19,4	script	หัวหน้านักผจญภัย	57,{
+	mes "[Nicholas Flamel]";
+	if(class == 5) goto L_Merc;
+L_Other:
+	mes " ข้ามีความเชี่ยวชาญทางด้านส่วนผสม";
+	mes " แต่ที่ที่เจ้าต้องมาไม่ควรจะเป็นที่นี่";
+	mes " เพราะที่เป็นที่ของพวกเรา Achemist....";
+	close;
+L_Merc:
+	if(ALCH_Q == 5) goto L_Start;
+	if(ALCH_Q == 6) goto L_Start2;
+	if(ALCH_Q == 7) goto L_Done;
+	goto L_Other;
+L_Start:
+	if(ALCH_Q2 == 1) goto L_ReTest;
+	mes " โอ... ท่านต้องการเป็น Alchemist?";
+	mes " แต่... มีน้อยคนเท่านั้นที่ได้เป็น Alchemist.";
+	next;
+	mes "[Nicholas Flamel]";
+	mes " ข้าไม่ชอบผู้จะเปลี่ยนเป็น Alchemist โดยไม่มีเป้าหมายที่จะต้องทำเร็จ";
+	mes " ดังนั้น เพื่อดูคุณสมบัติของเจ้า ข้าจะทดสอบเจ้าว่าเจ้ามีความฉลาดเพียงใด";
+	next;
+	mes "[Nicholas Flamel]";
+	mes " การที่เจ้าจะเป็น Alchemist เจ้าจะต้องจดจำสมการ";	
+	mes " ของสารเคมีโดยใช้สมการรวมกับข้อมูลจากแหล่งอื่นๆ";
+	mes " หากเจ้าทำไม่ได้ละก็ ข้าว่าเจ้าคงจะไม่เป็นอย่างที่ต้องการ..";
+	next;
+	mes "[Nicholas Flamel]";
+	mes " ในความคิดของข้าเพียงต้องการแค่ ไม่อยากให้สมาคมของเรามี Alchemists ที่ไร้ความสามารถ!";
+	next;
+	mes "[Nicholas Flamel]";
+	mes " Ok... ข้าจะมีคำถาม!";
+	mes " นี่คือการทดสอบ เพื่อจะทดสอบเจ้าเกี่ยวกับบางอย่าง เจ้าจงมองไปที่กระดาษ";
+	next;
+	mes "[Nicholas Flamel]";
+	mes " ค้าหาคำจากตารางตัวอักษรที่มีให้ทั้ง";
+	mes " แนวนอน แนวตั้ง ทแยงมุม และกลับหลัง";
+	next;
+	mes "[Nicholas Flamel]";
+	mes " ท่านจะผ่านการทดสอบ หากเลือกคำถามที่มีอยู่ 'ใน' ตาราง";
+	next;
+
+	Q_1:
+		set @score,0;
+		mes "[Nicholas Flamel]";
+		mes "s m i e x b w u n e n t a g l r";
+		next;
+		menu "tiger",-,"wolf",Q_2,"pumpkin",Q_2,"tripped",Q_2;
+
+			set @score,@score+10; 
+
+	Q_2:
+		mes "[Nicholas Flamel]";
+		mes "n i e g b o p d s o a u w r v";
+		next;
+		menu "bash",Q_3,"provoke",Q_3,"endure",-,"stun",Q_3,"abracadabra",Q_3;
+
+			set @score,@score+10; 
+
+	Q_3:
+		mes "[Nicholas Flamel]";
+		mes "l r m g r e x t a v i n e d e";
+		next;
+		menu "alberta",Q_4,"latifoliate",Q_4,"crimson",Q_4,"maple",Q_4,"evergreen",-;
+
+			set @score,@score+10; 
+
+	Q_4:
+		mes "[Nicholas Flamel] ";
+		mes "r o e h n r o m c a i n p t t";
+		next;
+		menu "forgemerchant",L_Score,"potionmerchant",-,"dcmerchant",L_Score,"vendingmerchant",L_Score;
+	
+			set @score,@score+10; 
+L_Score:
+	if(@score < 40) goto L_Failed;
+	set ALCH_Q,6;
+	set ALCH_Q2,0;
+	mes "[Nicholas Flamel]";
+	mes " ท่านดูเหมือนจะผ่านแล้ว..";
+	next;
+	mes "[Nicholas Flamel]";
+	mes " ข้าขอดูก่อน";
+	mes "...ดีมาก ยอดเยี่ยมจริงๆ";
+	next;
+	mes "[Nicholas Flamel]";
+	mes " ก็คงเป็นตามที่ท่านพบมันทั้งหมด";
+	mes " กับชนิดของยาที่ท่านได้เจอมันในพจนานุกรมมันอย่างง่ายดาย";
+	mes " เอาล่ะ ลองดูขั้นตอนไป..";
+	next;
+	mes "[Nicholas Flamel]";
+	mes " กลับมาหาข้าบ้างล่ะ เผื่อข้าจะมีงานให้ท่านบ้าง";
+	close;
+
+	L_Failed:
+		mes "[Nicholas Flamel]";
+		mes " หืมม์... ท่านไม่ผ่านการทดสอบ!";
+		mes " ท่านควรจะใช้แว่นตา มันอาจจะช่วยให้ท่านผ่านการทดสอบก็ได้นะ";
+		set ALCH_Q2,1;
+		close;
+L_ReTest:
+	mes " หืม ท่านกลับมา";
+	mes " ดี ข้าอยากเห็นการเปลี่ยน"; 
+	next;
+	goto Q_1;	
+
+L_Start2:
+	if(ALCH_Q2 > 0) goto L_Check2;
+	mes " ขั้นต่อไปคือ.... ท่านจะต้องไปที่แห่งหนึ่ง";
+	mes " เพื่อพบกับนักวิขัยวิชาเล่นแร่แปรธาตุ พี่น้อง ^FF3355Bain และ Bajin^000000 กับเหล่า Sages ใน ^5533FF'Juno เมืองแห่งผู้รอบรู็'^000000";
+	next;
+	mes "[Nicholas Flamel]";
+	mes " ไปช่วยเขาและกลับมาที่นี่ ข้าจะมอบของให้เจ้าบางอย่างแล้วนำไปให้เขา";
+	next;
+	getitem 974,1;
+	getitem 7068,5;
+	getitem 7043,5;
+	getitem 756,3;
+	getitem 757,3;
+	mes "[Nicholas Flamel]";
+	mes "1 Mixture";
+	mes "5 Burnt Tree";
+	mes "5 Fine Sand ";
+	mes "3 Rough Oridecon ";
+	mes "3 Rough Elunium";
+	set ALCH_Q2,1;
+	next;
+	mes "[Nicholas Flamel]";
+	mes " เดินทางโดยปลอดภัย";
+	close;
+L_Check2:
+	if(ALCH_Q2 < 2) goto L_NotDone;
+	set ALCH_Q, 7;
+	set ALCH_Q2, 0;
+	mes " โอ้... เป็นการเดินทางที่ยาวไกลใช่ไหมล่ะ... ขอบคุณ";
+	mes " ข้าได้รับจดหมายจากพี่น้อง Bain และ Bajin พวกเขายินดีมาก";
+	next;
+	mes "[Nicholas Flamel]";
+	mes " ท่านจงไปช่วยเขาให้ประสบความสำเร็จ";
+	mes " หากท่านทำได้ดีเพื่อที่จะช่วยพี่น้องทั้งคู่แล้ว ข้าคิดว่าท่านคงมีคุณสมบัติที่เพียงพอแล้ว";
+	next;
+	mes "[Nicholas Flamel]";
+L_Done:
+	mes " ไปหาเจ้าหน้าที่สมาคมที่อยู่ชั้น 2!";
+	mes " ข้าภูมิใจในตัวท่านมาก การเปลี่ยนอาชีพใกล้มากแล้ว!";
+	close;
+
+	L_NotDone:
+		mes " พี่น้อง Bain และ Bajin อยู่ใน Juno ท่านต้องรีบไปช่วยเขา";
+		close;
+
+}
+
+
+//==================================================================================================//
+//					Job Changer
+//==================================================================================================//
+alde_alche.gat,101,184,4	script	เจ้าแห่ง Alchemist	122,{
+	mes "[Vincent Carsciallo]";
+	if(Class == 5) goto L_Merc;
+	if(Class == Job_Alchem) goto L_Alch;
+L_Other:
+	mes " หืม? มาถึงที่นี่ทำไมกัน ข้ามีธุรของข้าเจ้าควรไปซะ";
+	close;
+L_Alch:
+	mes " ท่าน Alchemy มาทำอะไรที่? เพื่อให้แน่ใจว่าท่านปลอดถัยอยู่";
+	mes " ข้าจะคอยดูแลและฟังข่าวคราวจากท่านเสมอ.....";
+	close;
+L_Merc:
+	if(ALCH_Q == 7) goto L_Change;
+	mes " หืมม์? ท่าน merchant";
+	mes " ท่านคงสนใจในการเป็น Alchemy?";
+	next;
+	mes "[Vincent Carsciallo]";
+	mes " นี่คือสมาคมการเล่นแร่แปรธาตุ";
+	mes " เราได้ทำการค้นคว้าหลายอย่างที่แตกต่างกันไป";
+	mes " แต่เป้าหมายของเราคือการสร้างสิ่งใหม่โดยที่ไม่ใช้เวทมนตร์";
+	next;
+	mes "[Vincent Carsciallo]";
+	mes " สร้างชีวิตใหม่และวิธีการศีกษาเพื่อการมีชีวิตที่ยืนยาวขึ้น";
+	mes " เรายังสามารถสร้างวัตถุบางส่วนที่อยู่";
+	mes " ให้กลายเป็นบางอย่างที่สามารถใช้งานได้";
+	next;
+	mes "[Vincent Carsciallo]";
+	mes " หลังจากที่ท่านเป็น Merchant มาเป็นเวลานาน";
+	mes " นี่คงจะเป็นเวลาที่ท่านจะได้เริ่มสิ่งใหม่";
+	mes " หากท่านต้องการเรียนการเล่นแร่แปลธาตุ";
+	mes " ท่านควรเข้ามาร่วมกับเรา";
+	close;
+L_Change:
+	if(skillpoint != 0) goto L_Skpoint;
+	mes " ดีมาก ท่านลงทะเบียนแล้ว";
+	mes " และได้เรียนรู้ความรู้พื้นฐานของวิชาเล่นแร่แปรธาตุ เยี่ยมมาก";
+	next;
+	jobchange 18;
+	emotion 46;
+	mes "[Vincent Carsciallo]";
+	mes " ตอนนี้ท่านเป็นหนึ่งในสมาชิกของสมาคมของเราแล้ว";
+	mes " ท่านได้เป็น Alchemist จงเรียนรู้ต่อไป...";
+	next;
+	getitem 7127,1;
+	mes "[Vincent Carsciallo]";
+	mes " นี่คือสิ่งเล็กน้อยเท่านั้น";
+	mes " ที่จะใช้มันสำหรับการเริ่มต้นค้นคว้าอะไรบางอย่าง";
+	next;
+	mes "[Vincent Carsciallo]";
+	mes " ข้าคงจะได้เจอท่านอีก";
+	mes " นี่คือภูมิใจของ Alchemist!";
+	callfunc "F_ClearJobVar";
+	close;
+
+	L_Skpoint:
+		mes "ท่านควรอัพสกิลพ้อยท์ที่เหลือก่อน..";
+		close;
+}

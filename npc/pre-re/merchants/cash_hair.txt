@@ -1,0 +1,181 @@
+//===== eAthena Script ======================================= 
+//= Cash Hair Stylist
+//===== By: ================================================== 
+//= Kisuka
+//===== Current Version: ===================================== 
+//= 1.0
+//===== Compatible With: ===================================== 
+//= eAthena SVN
+//===== Description: ========================================= 
+//= Exchange cash item, New_Style_Coupon, for new hair styles.
+//===== Additional Comments: ================================= 
+//= 1.0 First Version. [Kisuka]
+//============================================================
+
+morocc,113,92,5	script	Stylist#cash	87,{
+	mes "[Stylist]";
+	mes "สวัสดี";
+	mes "เรียกข้าว่า Kaniki";
+	mes "ข้ามานี่เพื่อ";
+	mes "โชว์ทรงผมแนวใหม่";
+	mes "และสร้างทรงผมที่นิยมแบบใหม่";
+	next;
+	mes "[Kaniki]";
+	mes "ใครก็ตามที่มี ^FF0000New Style Coupon^000000";
+	mes "ก็จะสามารถใช้บริการได้";
+	mes "มีทรงผมให้เลือก";
+	mes "ผู้ชาย 2 แบบ ผู้หญิง 4 แบบ";
+	next;
+	mes "[Kaniki]";
+	mes "ลองชมดูก่อนได้";
+	mes "ข้ามั่นใจว่าเจ้า";
+	mes "จะต้องชอบอย่างแน่นอน";
+	next;
+	if (Sex == 1) {
+		mes "[Kaniki]";
+		mes "สำหรับผู้ชาย ข้าอยากจะแนะนำทรง";
+		mes "Emergency Heal Perm, Aura Blade Cut,";
+		mes "แต่ละทรงเท่ห์ระเบิด!";
+		next;
+
+		cutin "hair_m_24.bmp",4;
+		mes "[Kaniki]";
+		mes "Emergency Heal Perm...";
+		next;
+		mes "[Kaniki]";
+		mes "นี่เป็นทรงผม";
+		mes "แนวใหม่";
+		mes "เจ้าชอบไหมล่ะ...";
+		next;
+
+		cutin "",255;
+		cutin "hair_m_25.bmp",4;
+		mes "[Kaniki]";
+		mes "และต่อไปก็คือทรง...";
+		mes "Aura Blade Cut";
+		next;
+
+		cutin "",255;
+		mes "[Kaniki]";
+		mes "ว่าไง";
+		mes "เจ๋งใช่ไหมล่ะ?";
+		next;
+		mes "[Kaniki]";
+		mes "เลือกทรงตาม";
+		mes "ที่เจ้าชอบได้เลย...";
+		next;
+
+	}else{
+		mes "[Kaniki]";
+		mes "สำหรับผู้หญิง ข้าอยากจะแนะนำทรง";
+		mes "Assumptio Perm, Soul Changer Cut";
+		mes "X Tornado Cut และ Oratio Cut";
+		mes "ทุกทรงสวยบาดใจ! แบบที่ผู้หญิงต้องการ!";
+		next;
+
+		cutin "hair_f_24.bmp",4;
+		mes "[Kaniki]";
+		mes "Assumptio Perm...";
+		next;
+		mes "[Kaniki]";
+		mes "เป็นไง ชอบไหม";
+		mes "นี่เป็นทรงใหม่ล่าสุดเลยนะ";
+		mes "ต่อไปก็...";
+		next;
+
+		cutin "",255;
+		cutin "hair_f_25.bmp",4;
+		mes "[Kaniki]";
+		mes "Soul Changer Cut";
+		mes "เจ๋งไหมล่ะ?";
+		next;
+
+		cutin "",255;
+		cutin "hair_f_26.bmp",4;
+		mes "[Kaniki]";
+		mes "และนี่ก็ทรง X tornado Cut...";
+		next;
+
+		cutin "",255;
+		cutin "hair_f_27.bmp",4;
+		mes "[Kaniki]";
+		mes "และทรงสุดท้ายเรียกว่า";
+		mes "Oratio Cut";
+		next;
+
+		cutin "",255;
+		mes "[Kaniki]";
+		mes "ว่าไง";
+		mes "เจ๋งใช่ไหมล่ะ?";
+		next;
+		mes "[Kaniki]";
+		mes "เลือกทรงตาม";
+		mes "ที่เจ้าชอบได้เลย...";
+		next;
+	}
+	mes "[Kaniki]";
+	mes "สนใจที่จะเปลี่ยน";
+	mes "ทรงผมเลยไหม?";
+	next;
+	if(select("เปลี่ยนเลย:ยังก่อน") == 1) {
+		if (countitem(7622) > 0) {
+			mes "[Kaniki]";
+      			mes "เจ้ามี New Style Coupon อยู่แล้ว..";
+      			mes "เจ้าอยากทำทรงไหนล่ะ?";
+      			mes "บอกข้ามาได้เลย";
+			next;
+			if (Sex == 1) {
+				switch(select("Emergency Heal Perm:Aura Blade Cut"))
+				{
+					case 1:
+						delitem 7622,1;	// New_Style_Coupon
+						setlook 1,24;
+						break;
+					case 2:
+						delitem 7622,1;	// New_Style_Coupon
+						setlook 1,25;
+						break;
+				}
+			}else{
+				switch(select("Assumptio Perm:Soul Changer Cut:X Tornado Cut:Oratio Cut"))
+				{
+					case 1:
+						delitem 7622,1;	// New_Style_Coupon
+						setlook 1,24;
+						break;
+					case 2:
+						delitem 7622,1;	// New_Style_Coupon
+						setlook 1,25;
+						break;
+					case 3:
+						delitem 7622,1;	// New_Style_Coupon
+						setlook 1,26;
+						break;
+					case 4:
+						delitem 7622,1;	// New_Style_Coupon
+						setlook 1,27;
+						break;
+				}		
+			}
+			mes "[Kaniki]";
+      			mes "เรียบร้อยแล้ว";
+      			mes "ขอบคุณมาก แล้วพบกันใหม่โอกาสหน้า";
+			close;
+		}else{
+			mes "[Kaniki]";
+      			mes "ไม่ได้ๆ เจ้ายังไม่มี";
+      			mes "ตั๋วสำหรับใช้บริการ";
+      			mes "เจ้าคงไม่สามารถเปลี่ยนทรงผมได้";
+      			next;
+      			mes "[Kaniki]";
+      			mes "ไว้เจ้ามี New Style Coupon";
+      			mes "แล้วค่อยมาหาข้าละกัน";
+			close;
+		}
+	}
+	mes "[Kaniki]";
+      	mes "ว้า แย่จัง..";
+      	mes "หากเจ้าเปลี่ยนใจเมื่อไหร่";
+      	mes "ก็กลับมาหาข้าได้นะ";
+	close;
+}

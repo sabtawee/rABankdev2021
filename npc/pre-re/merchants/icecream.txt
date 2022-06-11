@@ -1,0 +1,51 @@
+-	script	Ice Cream Maker::IceCreamer	-1,{
+	mes "[Ice Cream Maker]";
+	mes "ข้ามีไอศครีมดีๆ ที่ทำมาจากหิมะจาก Lutie!";
+	mes "เจ้าสนใจไหมหล่ะ!";
+	mes "ข้าขายให้เจ้าในราคา ^3355FF100 Zeny^000000 ต่อ 1 อัน,";
+	mes "Ice Cream!";
+	next;
+	menu "ซื้อ Ice Cream!",-,"ข้าเพียงแค่เดินผ่านมา",L_End;
+	
+		mes "[Ice Cream Maker]";
+		mes "ไอศครีมสดที่ทำมาจากหิมะ จาก Lutie!";
+		mes "แต่สินค้าเรามีจำกัดนะ";
+		mes "เจ้าสามารถซื้อได้เพียงครั้งละ 5 อัน";
+		next;
+		input @input;
+		if(@input<1) goto L_inpC;
+		if(@input>5) goto L_inpM;
+		if(Zeny< @input*100) goto L_NoZ;
+		getitem 536,@input;
+		set Zeny,Zeny-100*@input;
+		mes "[Ice Cream Maker]";
+		mes "จำนวน  " +@input+ "  Ice Cream ของเจ้า.";
+		close;
+		
+		L_inpC:
+			mes "[Ice Cream Maker]";
+			mes "Deal is canceled.";
+			close;
+		L_inpM:
+			mes "[Ice Cream Maker]";
+			mes "เจ้าสามารถซื้อได้เพียงครั้งละ 5 อันเท่านั้น.";
+			close;
+		L_NoZ:
+			mes "[Ice Cream Maker]";
+			mes "ขอภัย เจ้ามีเงินไม่เพียงพอ.";
+			close;
+	L_End:
+		mes "[Ice Cream Maker]";
+		mes "เจ้าแน่ใจหรือ ว่าเจ้าไม่ต้องการ?";
+		mes "ที่จะไม่ซื้อ Ice Cream แสนอร่อยจากข้า";
+		close;
+}
+
+// Alberta
+alberta,120,45,2	duplicate(IceCreamer)	Ice Cream Maker#1	85
+
+// Morroc Field
+moc_fild16,88,304,4	duplicate(IceCreamer)	Ice Cream Maker#2	85
+
+// Morroc
+//morocc,160,144,4	duplicate(IceCreamer)	Ice Cream Maker#3	85

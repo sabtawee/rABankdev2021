@@ -1,16 +1,75 @@
-//===== rAthena Script ======================================= 
-//= Mr. Smile Quest
-//===== By: ================================================== 
-//= Daegaladh
-//===== Current Version: ===================================== 
-//= 1.0
-//===== Compatible With: ===================================== 
-//= rAthena Project
-//===== Description: ========================================= 
-//= [Official Conversion]
-//= Trade Clover, Fluff and Jellopy for a Mr. Smile mask.
-//===== Additional Comments: ================================= 
-//= 1.0 First version.
-//============================================================ 
 
-izlude,129,118,4	duplicate(SmileHelper)	Smile Assistance#iz	92
+// Alberta ------------------------------------------------------------------------------------------
+alberta,113,53,3	script	Smile Assistance::SmileAT	92,{
+	mes "[Smile Assistant]";
+	mes "สวัสดี, ฉันคือผู้สันบสนุก Mr. Smile.  มีอะไรให้ข้าช่วยไหม?";
+	next;
+	menu "^0099FFข้อมูล Mr. Smile^000000?",M_0, "ทำ ^0099FFMr. Smile^000000",M_1, "ยกเลิก",M_End;
+	
+	M_0:
+		mes "[Smile Assistant]";
+		mes "โอ้, ในการทำเกมส์ Ragnarok Online เราต้องการให้ทุกคนสนุกสนานและมีรอยยิ้ม เราจึงทำ Mr. Smile ขึ้นมาด้วยบารมีของ ^0099FFTristram ที่ 3^000000.";
+		mes "งานนี้ได้เริ่มขึ้นแล้ว เริ่มขึ้นที่อาณาจัก Rune Midgard อยากให้ทุกคนมีรอยยิ้มเมื่อสวมใส่หน้ากาก Mr. Smile";
+		next;
+		mes "[Smile Assistance]";
+		mes "ข้าเป็นผู้จัดทำงาน, ข้อต้องการให้ท่านสนุกสนานในอาณาจักร Rune Midgard และอยากให้ทุกคนมีร้อยยิ้ม!";
+		mes "ข้าจึงจัดงานนี้ขึ้นมา, Mr. Smile เป็นหน้ากากยิ้มอันแรกของเกมส์.";
+		next;
+		mes "[Smile Assistance]";
+		mes "บางคนอาจจะไม่มีรอยยิ้ม แต่เมื่อท่านได้ใส่หน้ากากนี้ก็อาจจะยิ้มได้!....";
+		mes "ข้าทำแค่เพียงอยากให้ทุกท่านท่านมีความสุข!";
+		next;
+		mes "[Smile Assistant]";
+		mes "ข้าคือผู้สนับสนุก Mr. Smile, ด้วยไอเทมที่ทำหน้ากาก Mr. Smile ไม่ยากมาก.";
+		mes "ทั้งหมดที่ข้าต้องการมันมีน้อยมากเลย, ไอเทมที่ข้าต้องการคือ:";
+		mes "^5555FF10 Jellopy^000000";
+		mes "^5555FF10 Fluff^000000";
+		mes "^5555FF10 Clover^000000";
+		next;
+		mes "[Smile Girl]";
+		mes "ข้าหวังว่าทุกคนบนโลกนี้จะยิ้มให้แก่กัน ช่วยเหลือกัน.  และยิ้มให้แก่กัน.";
+		close;
+	M_1:
+		mes "[Smile Assistant]";
+		if((countitem(705) < 10) | (countitem(909) < 10) | (countitem(914) < 10)) goto sL_NoItems;
+		mes "โอ้, เยี่ยมมาก! ท่านนำไอเทมที่ฉันต้องการกลับมา.  รอสักครู่นะข้าจะทำหน้ากากให้เด๋วนี้เลย.....";
+		next;
+		mes "~!แก๊ง!~!!~!แก๊ง!~!แก๊ง!~!ตึ๊ก!~!ตึ๊ก!~";
+		next;
+		mes "[Smile Assistant]";
+		mes "อ่ะนี่, มันเป็นของคุณแล้วนะ Mr. Smile!";
+		delitem 705,10;
+		delitem 909,10;
+		delitem 914,10;
+		getitem 2278,1;
+		next;
+		mes "[Smile Assistant]";
+		mes "Mr. Smile ถูดจักทำขึ้นด้วยบารมีของ Tristam ที่ 3 เขาพยายามทำให้ทุกคนในอาณาจัก Rune Midgard มีความสุข.";
+		next;
+		mes "[Smile Assistant]";
+		mes "และหวังว่าคุณจะมีรอยยิ้มและสวมใส Mr. Smile ตลอดเวลานะ.";
+		close;
+	
+		sL_NoItems:
+			mes "โอ้...โชคไม่ดีเลย ไอเทมเหล่านี้จำเป็นมากในการทำ Mr. Smile.  สิ่งที่ฉันต้องการคือ:";
+			mes "^5555FF10 Jellopy^000000,";
+			mes "^5555FF10 Fluff^000000,";
+			mes "^5555FF10 Clover^000000,";
+			mes "กลับมาหาข้าใหม่นะเมื่อมีไอเทม.";
+			close;
+	M_End:
+		close;
+}
+
+// Aldebaran --------------------------------------------------------------------------------
+aldebaran,136,135,4	duplicate(SmileAT)	Smile Assistance#2	92
+// Geffen -----------------------------------------------------------------------------------
+geffen,119,107,4	duplicate(SmileAT)	Smile Assistance#3	92
+// Izlude -----------------------------------------------------------------------------------
+izlude,129,118,4	duplicate(SmileAT)	Smile Assistance#4	92
+// Morroc -----------------------------------------------------------
+//morocc,158,97,4	duplicate(SmileAT)	Smile Assistance#5	92
+// Payon ------------------------------------------------------------------------------------
+payon,102,118,4	duplicate(SmileAT)	Smile Assistance#6	92
+// Prontera -----------------------------------------------------------------
+prontera,157,187,4	duplicate(SmileAT)	Smile Assistance#7	92

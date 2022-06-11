@@ -1,0 +1,1078 @@
+//= Warning Warp to escape the quest if need be
+job_duncer,69,165,1	script	wwarp	45,1,1,{
+	mes "[Warning]";
+	mes " นี่จะเป็นวิธีที่ท่านจะยกเลิกเควสทั้งหมด หากท่านต้องการ?";
+	next;
+	menu " ยกเลิกเควส",-," ไม่มีอะไร",L_Can;
+	Warp	"comodo",193,149;
+L_Can:
+	close;
+}
+//= Warp man, takes you to the quest map (Comodo Theater)
+comodo,186,162,4	script	เปลี่ยน Dancer	646,{
+	if(JobLevel == 50) {
+	if (Class!=3) goto Notache;
+	if(Sex==1) goto L_noDance;
+	if(SkillPoint >0) goto L_notUseAll;
+
+	 mes "[ Jobchanger ]";
+	 mes "ท่านต้องการเปลื่ยนอาชีพเป็นDance ใช่หรือไม่";
+	 next;
+	 menu "ใช่",-,"ไม่ใช่",L_close;
+	 mes "[ Jobchanger ]";
+	 mes "ถ้าเป็นอย่างนั้น ข้าก็จะเปลื่ยนให้เจ้าทันที";
+	 next;
+	 JobChange 20;
+	set zeny,zeny+50000;
+	 mes "เจ้าได้เป็น dancerเรียบร้อยแล้ว";
+	 close;
+
+	L_close:
+	 mes "[ Jobchanger ]";
+	 mes "เราคงมีโอกาศได้พบกันใหม่อีกแน่ บาย";
+	 close;
+
+	L_notUseAll:
+	 mes "[ Jobchanger ]";
+	 mes "ท่านยังใช้ Skill Point ไม่หมด";
+	 close;
+
+	Notache:
+	 mes "[ Jobchanger ]";
+	 mes "คุณไม่ได้ นักธนูนิ";
+	 close;
+
+	L_noDance:
+	mes "[ Jobchanger ]";
+ 	mes "คุณจะเป็นผู้ชายนะครับ";
+ 	close;
+
+
+	}
+
+	//callfunc "F_BlockHigh",27,"High Archer",44,"Gypsy","Bor Robin";
+
+	mes "[Bor Robin]";
+	mes " ดี...... ดูเหมือนจะมีคนจำนวนมากที่เข้ามาที่นี่";
+	mes " ";
+	mes " พวกเขาต้องเข้ามาเพื่อที่จะเป็น dancers";
+	mes " ข้าได้มองไปที่ดวงตาของพวกเขาและข้าสามารถนับได้ว่า";
+	mes " จะมีเพียงคนที่มีความสามารถเท่านั้นที่จะมีค่าพอที่จะเป็น dancers";
+	next;
+	mes "[Bor Robin]";
+	mes " การจะกลายเป็น dancer จะพาท่านไปสู่ความสุขที่แท้จริง";
+	mes " มันคงจะดีหากท่านได้เต้นไปรอบๆ";
+	next;
+	mes "[Bor Robin]";
+	mes " ข้าสามารถพาท่านไปยังโรงละครที่ Comodo หากท่านต้องการได้";
+	mes " ";
+	mes " ท่านต้องการอะไรที่ข้าได้กล่าวเอาไว้?";
+	next;
+	menu " ท่านพาข้าไปที่โรงละครได้มั้ย?",L1," ข้าต้องการออกจากที่นี่",-;
+		mes "[Bor Robin]";
+		mes " ไว้กลับมาใหม่หากท่านรู้สึกว่าท่านพร้อม";
+		close;
+L1:
+		mes "[Bor Robin]";
+		mes " ข้าจะพาท่านไปจากที่นี่";
+		close2;
+		warp "job_duncer",70,49;
+		end;
+}
+//= 1st quest NPC, asks for Items and/or money, then passes you onto the next NPC
+job_duncer,43,93,4	script	Aire	724,{
+	if ((basejob == 3) && (Sex == 0)) goto Larcher;
+	if (basejob == 20) goto Ldancer;
+	if (Upper==1) goto LUpper1;
+	mes "[Aire]";
+	mes " สวัสดี "+strcharinfo(0)+" ผู้ได้รับอนุญาติเท่านั้นที่จะเข้าไปพักในห้องแห่งนี้ได้";
+	mes "";
+	next;
+	mes "[Aire]";
+	mes " พวกเราไม่เพียงที่จะให้ท่านกลายเป็น Dancer เรายังมีอย่างอื่นที่จะทำกันในที่แห่งนี้";
+	next;
+	mes "[Aire]";
+	mes " ท่านสามารถจะเข้าไปชมการเต้นรำได้ในห้องหากท่านต้องการ พวกเขากำลังมีการออดิชั้นในเวลานี้";
+	mes " ไว้เจอกันคราวหน้า";
+	close;
+Ldancer:
+	mes "[Aire]";
+	mes " ท่านดูดีมาก กลับการกับมาครั้งนี้";
+	mes " ท่านคงทำให้คนมากมายได้มีความสุขเช่นท่าน?";
+	close;
+Larcher:
+	if (Upper == 1) goto LUpper1;
+	if (DANC_Q == 1) goto LStart2;
+	if (DANC_Q == 2) goto LItem1;
+	if (DANC_Q == 3) goto LItem2;
+	if (DANC_Q == 4) goto LItem3;
+	if ((DANC_Q == 5) || (DANC_Q == 6)) goto LStart3;
+	if (DANC_Q >= 7) goto LStart4;
+	mes "[Aire]";
+	mes " ยินดีต้อนรับสู่โรงละคร";
+	mes " นี่คือที่ที่จะใช้สอนการเต้นรำต่างๆ";
+	next;
+	mes "[Aire]";
+	mes " ที่แห่งนี้จะได้รับการเยี่ยมชมจากผู้คนทั่วไปในการเต้นรำที่งดงามนี้";
+	next;
+	mes "[Aire]";
+	mes " และพวกเรายังมีหน้าที่คอยสอนผู้ที่ต้องการจะเป็น Dancer พวกเราต้องการให้ท่านออกไปเพื่อทำธุรกิจ";
+	next;
+	mes "[Aire]";
+	mes " ขั้นแรกท่านต้องกรอกข้อมูลในแบบฟอร์มใบสมัครนี้";
+	mes " กรุณาเขียนรายละเอียดของท่านลงในใบสมัคร";
+	next;
+	mes "[Aire]";
+	mes " และนี่ก็จะเป็นสิ่งที่ข้าพูด?";
+	mes " ท่านกำลังต้องการที่จะเป็น dancer? หรือท่านต้องการจะออกไปจากที่นี่มากกว่า?";
+	next;
+	menu " กรอกข้อมูลในแบบฟอร์ม",L1," ออกจากที่นี่",-;
+		mes "[Aire]";
+		mes " หากท่านมีความคิดใหม่ค่อยกลับมาหาข้า";
+		mes " ไว้เจอกันคราวหน้า";
+		close;
+L1:
+		if (JobLevel < 40) goto Llowlv;
+		mes "[Aire]";
+		mes " ดังนั้นหากท่านพร้อมที่จะผจญภัย!";
+		mes " กรุณาป้อนลงในชื่อของท่านลงในใบสมัครนี้";
+		next;
+		mes "......";
+		next;
+		mes "......กรอกข้อมูล......";
+		next;
+		mes "......";
+		next;
+		mes "[Aire]";
+		mes " ชื่อของท่าน......";
+		mes strcharinfo(0)+"......";
+		mes " นั่นเป็นชื่อที่น่ารักมาก!";
+		next;
+		mes "[Aire]";
+		mes " ท่านจะต้องรอสักเดี๋ยว";
+		mes " แบบฟอร์มดังกล่าวจะถูกส่งไปให้ครูสอนเต้นที่โรงเรียนได้อ่าน";
+		next;
+		mes "[Aire]";
+		mes " เมื่อท่านท่านมีเวลาพอที่เริ่มในส่วนถัดไป ให้ท่านกลับมาพูดคุยกับข้าอีกครั้ง";	
+		set DANC_Q,1;
+		close;
+LStart2:
+	mes "[Aire]";
+	mes " ท่านได้รับการรับรองแล้ว แต่ท่านต้องนำไอเท็มบางอย่างและเงินจำนวนหนึ่งเพื่อใช้ในการสอนการเต้นสำหรับท่าน";
+	next;
+	mes "[Aire]";
+	mes " นี่จะเป็นไอเท็มที่ท่านจะต้องนำมาให้ข้าเพื่อใช้ในการเรียนการสอนเต้นแห่งนี้";
+	mes " ";
+	mes " โอเค...";
+	next;
+//3 Random sets
+	mes "[Aire]";
+	set @itemset, rand(1,3);
+	if (@itemset == 2) goto ItemSet2;
+	if (@itemset == 3) goto ItemSet3;
+
+	mes " ค่าใช้จ่ายสำหรับการลงทะเบียน :-";
+	mes "^0000FF10,000 Zeny^000000";
+	mes "^0000FFUnslotted Shoes^000000";
+	mes "^0000FF20 Sticky Mucus^000000";
+	mes "^0000FF5 Red Potions^000000";
+	mes "^0000FF3 Jellopy^000000";
+	next;
+	mes "[Aire]";
+	mes " เมื่อท่านนำพวกมันมาครบทั้งหมด ข้าจะเริ่มสอนบทเรียนให้แก่ท่าน";
+	mes " ";
+	mes " กลับมาพูดคุยกับข้าอีกครั้ง เมื่อท่านคิดว่าท่านพร้อมแล้ว!";
+	set DANC_Q,2;
+	close;
+ItemSet2:
+	mes " ค่าใช้จ่ายสำหรับการลงทะเบียน :-";
+	mes "^0000FF10,000 Zeny^000000";
+	mes "^0000FFUnslotted Boots^000000";
+	mes "^0000FF5 earthworm skins^000000";
+	next;
+	mes "[Aire]";
+	mes " เมื่อท่านนำพวกมันมาครบทั้งหมด ข้าจะเริ่มสอนบทเรียนให้แก่ท่าน";
+	mes " ";
+	mes " กลับมาพูดคุยกับข้าอีกครั้ง เมื่อท่านคิดว่าท่านพร้อมแล้ว!";
+	set DANC_Q,3;
+	close;
+ItemSet3:
+	mes " ค่าใช้จ่ายสำหรับการลงทะเบียน :-";
+	mes "^0000FFUnslotted Sandals^000000";
+	mes "^0000FF2 Clam Shells^000000";
+	mes "^0000FF5 Yellow Potions^000000";
+	mes "^0000FF20 Jellopy^000000";
+	mes "^0000FF10 Black Hair^000000";
+	next;
+	mes "[Aire]";
+	mes " เมื่อท่านนำพวกมันมาครบทั้งหมด ข้าจะเริ่มสอนบทเรียนให้แก่ท่าน";
+	mes " ";
+	mes " กลับมาพูดคุยกับข้าอีกครั้ง เมื่อท่านคิดว่าท่านพร้อมแล้ว!";
+	set DANC_Q,4;
+	close;
+
+LItem1:
+	if ((Countitem(938) >= 20) && (Countitem(501) >= 5) && (Countitem(909) >= 3) && (Countitem(2403) >= 1) && (Zeny >= 10000)) goto LItem1OK;
+	mes "[Aire]";
+	mes " มีบางอย่างผิดพลาด";
+	mes " ดูเหมือนว่าท่านจะมีไอเท็มที่ข้าต้องการไม่ครบ ข้าจะบอกเกี่ยวกับสิ่งที่ท่านต้องนำมาใหข้าอีกครั้ง";
+	mes " สิ่งนี้จะเป็นสิ่งที่จำเป็นที่หมดที่จะใช้ในการสอนท่าน";
+	mes " ค่าใช้จ่ายสำหรับการลงทะเบียน :10000";
+	next;
+	mes "[Aire]";
+	mes "^0000FF10000 Zeny^000000";
+	mes "^0000FFUnslotted Shoes^000000";
+	mes "^0000FF20 Sticky Mucus^000000";
+	mes "^0000FF5 Red Potions^000000";
+	mes "^0000FF3 Jellopy^000000";
+	next;
+	mes "[Aire]";
+	mes " ท่านคงจะไม่ลืมทุกอย่างที่ข้าบอกนะ";
+	mes " แล้วท่านจะยังรออะไรอยู่?";
+	mes " ข้าหวังว่าจะเห็นท่านอีกครั้งเร็วๆ นี้";
+	close;
+LItem2:
+	if ((Countitem(1055) >= 5) && (Countitem(2405) >= 1) && (Zeny >= 10000)) goto LItem2OK;
+	mes " มีบางอย่างผิดพลาด";
+	mes " ดูเหมือนว่าท่านจะมีไอเท็มที่ข้าต้องการไม่ครบ ข้าจะบอกเกี่ยวกับสิ่งที่ท่านต้องนำมาใหข้าอีกครั้ง";
+	mes " สิ่งนี้จะเป็นสิ่งที่จำเป็นที่หมดที่จะใช้ในการสอนท่าน";
+	mes " ค่าใช้จ่ายสำหรับการลงทะเบียน :10000";
+	next;
+	mes "[Aire]";
+	mes "^0000FF10000 Zeny^000000";
+	mes "^0000FFUnslotted Boots^000000";
+	mes "^0000FF5 earthworm skins^000000";
+	next;
+	mes "[Aire]";
+	mes " ท่านคงจะไม่ลืมทุกอย่างที่ข้าบอกนะ";
+	mes " แล้วท่านจะยังรออะไรอยู่?";
+	mes " ข้าหวังว่าจะเห็นท่านอีกครั้งเร็วๆ นี้";
+	close;
+LItem3:
+	if ((Countitem(965) >= 2) && (Countitem(503) >= 5) && (Countitem(909) >= 20) && (Countitem(1020) >= 10) && (Countitem(2401) >= 1)) goto LItem3OK;
+	mes " มีบางอย่างผิดพลาด";
+	mes " ดูเหมือนว่าท่านจะมีไอเท็มที่ข้าต้องการไม่ครบ ข้าจะบอกเกี่ยวกับสิ่งที่ท่านต้องนำมาใหข้าอีกครั้ง";
+	mes " สิ่งนี้จะเป็นสิ่งที่จำเป็นที่หมดที่จะใช้ในการสอนท่าน";
+	mes " ค่าใช้จ่ายสำหรับการลงทะเบียน :-";
+	next;
+	mes "[Aire]";
+	mes "^0000FFUnslotted Sandals^000000";
+	mes "^0000FF2 Clam Shells^000000";
+	mes "^0000FF5 Yellow Potions^000000";
+	mes "^0000FF20 Jellopy^000000";
+	mes "^0000FF10 Black Hair^000000";
+	next;
+	mes "[Aire]";
+	mes " ท่านคงจะไม่ลืมทุกอย่างที่ข้าบอกนะ";
+	mes " แล้วท่านจะยังรออะไรอยู่?";
+	mes " ข้าหวังว่าจะเห็นท่านอีกครั้งเร็วๆ นี้";
+	close;
+LItem1OK:
+	mes "[Aire]";
+	mes " โอ้ นี่ท่านเตรียมทุกอย่างมาครบแล้ว";
+	mes " ข้าจะยอมรับการชำระเงินของท่าน!";
+	set Zeny,Zeny-10000;
+	delitem 938,20;
+	delitem 501,5;
+	delitem 909,3;
+	delitem 2403,1;
+	next;
+	goto LStart3;
+LItem2OK:
+	mes "[Aire]";
+	mes " โอ้ นี่ท่านเตรียมทุกอย่างมาครบแล้ว";
+	mes " ข้าจะยอมรับการชำระเงินของท่าน!";
+	set Zeny,Zeny-10000;
+	delitem 1055,5;
+	delitem 2405,1;
+	next;
+	goto LStart3;
+LItem3OK:
+	mes " โอ้ นี่ท่านเตรียมทุกอย่างมาครบแล้ว";
+	mes " ข้าจะยอมรับการชำระเงินของท่าน!";
+	delitem 965,2;
+	delitem 503,5;
+	delitem 909,20;
+	delitem 1020,10;
+	delitem 2401,1;
+	next;
+LStart3:
+	mes "[Aire]";
+	mes " ตอนนี้ท่านได้ชำระค่าละเบียนทั้งหมดแล้ว คราวนี้ท่านต้องสอบสัมภาษณ์ที่เป็นการทดสอบเล็กเพื่อที่จะดูว่าท่านเหมาะสมที่จะเป็น Dancer หรือไม่";
+	next;
+	mes "[Aire]";
+	mes " ไป ^0000FF'Borwaju'^000000 ผู้สัมภาษณ์เขามีคำถาม 2 - 3 ข้อจะถามท่าน";
+	if (DANC_Q < 5) set DANC_Q,5;
+	close;
+LStart4:
+	mes "[Aire]";
+	mes " การฝึกต้องเป็นไปด้วยความกระตือรือร้น เพื่อจะมีท่าเต้นที่น่ารัก";
+	mes " เมื่อท่านเสร็จสิ้นการทดสอบทั้งหมด โปรดกลับมาโชว์ว่าท่านทำได้เพียงใด!";
+	close;
+Llowlv:
+	mes "[Aire]";
+	mes " ฮึ......";
+	mes " ข้าเสียใจที่เลเวล job ของท่านนั้นยังน้อยเกินไป";
+	next;
+	mes "[Aire]";
+	mes " ท่านต้องมีเลเวล Job Lvl 40 ขึ้นไป";
+	mes " กลับมาหาข้าใหม่เมื่อท่านมี Job level 40 เท่านั้นหรือมากกว่า";
+	close;
+LUpper1:
+	mes "[Aire]";
+	mes " ไว้กลับมาใหม่";
+	emotion 2;
+	close;
+
+}
+//= 2nd "Quest" and Job changer for after the 3rd Quest
+job_duncer,95,93,4	script	Borwaju	101,{
+	if ((basejob == 3) && (Sex == 0)) goto LArcher;
+	if (basejob == 20) goto LDancer;
+	mes "[Borwaju]";
+	mes " ยินดีต้อนรับสู่โรงละครการเต้นรำมีเรามีการแสดงโชว์หลายรอบที่นี่";
+	next;
+	mes "[Borwaju]";
+	mes " ส่วนที่ยากที่สุดของการเต้นคือการทดสอบทางกายภาพและความเร็วในทดสอบในแต่ละการขั้น";
+	close;
+LDancer:
+	mes "[Borwaju]";
+	mes " ท่านมาทำนทำอะไรที่นี่วันนี้?";
+	next;
+	mes "[Borwaju]";
+	mes " ไปมอบความสุขให้กับทุกๆ คน ที่ท่านได้เห็น";
+	mes " การสร้างความประทับใจควรสร้างให้กับใครหลายๆ คน";
+	mes " และช่วยเหลือผู้อื่น มากที่สุดเท่าที่ท่านจะทำได้";
+	mes " และอย่าลืมการที่ท่านได้มาฝึกที่นี่";
+	mes " ขอจะรอดูท่านอยู่ที่นี่!";
+	close;
+LArcher:
+	if (Skillpoint != 0) goto LErrorA;
+	if (DANC_Q == 5) goto Ltest1;
+	if (DANC_Q == 6) goto Ltest2;
+	if ((DANC_Q == 7) || (DANC_Q == 8)) goto LStart2;
+	if (DANC_Q == 10) goto Ljobchange;
+	mes "[Borwaju]";
+	mes " ท่านต้องการที่จะกลายเป็น dancer อือ?";
+	next;
+	mes "[Borwaju]";
+	mes " ก่อนอื่นท่านต้องกรอกข้อมูลในใบสมัครนี่และท่านจะได้การยอมรับ";
+	mes " เมื่อท่านได้รับการยอมรับท่านจะต้องจ่ายค่าชำระเงินพร้อมกับไอเท็มทั้งหมดหรือแค่บางอย่าง";
+	mes " หลังจากนั้นคนที่ท่านต้องไปคุยก็คือ 'Aire' เธอเป็นผู้สอนเกี่ยวกับส่วนอื่นๆ ของ Dancer";
+	mes " เมื่อท่านคิดว่าทุกอย่างพร้อมแล้วก็กลับมาหาข้าที่นี่";
+	close;
+LErrorA:
+	mes "[Borwaju]";
+	mes " ท่านยังเหลือสกิลพ้อยท์ที่ยังไม่ใช้เหลืออยู่";
+	close;
+Ltest1:
+	mes "[Borwaju]";
+	mes " ท่านคงต้องการจะเป็น dancer ใช่มั้ย?";
+	next;
+	mes "[Borwaju]";
+	mes " ......ท่านได้จ่ายเงินทั้งหมดไปแล้ว ตอนนี้ข้าจะสามารถให้ท่านได้ดำเนินการต่อ";
+	next;
+	mes "[Borwaju]";
+	mes " ก่อนที่ข้าจะทำให้ท่านได้กลายเป็นนักเต้น ข้าจำเป็นจะต้องมีการสอบสัมภาษณ์ท่านก่อนโดยจะถามคำถามเพียงไม่กี่คำถาม";
+	mes " มันเป็นทางเลือกที่หลากหลายและต้องใช้ไหวพริบร่วมกับทัศนคติของท่านเพื่อที่จะเป็น Dancer";
+	next;
+	mes "[Borwaju]";
+	mes " มีทั้งหมด 10 คำถามสำหรับการตอบถูกหนึ่งข้อท่านจะได้รับ 10 คะแนน";
+	mes " ";
+	next;
+	goto LsetQ;
+Ltest2:
+	mes "[Borwaju]";
+	if(DANC_Q == 6) mes " กลับไปลองใหม่?";
+	mes " โชคดีตอนนี้ข้าจะเริ่มการทดสอบ";
+	next;
+LsetQ:
+	set @rand,rand(2);
+	set @dcpoint,0;
+	if (@rand == 1) goto LQuestion2;
+//-------
+LQuestion1:
+	mes "[Borwaju]";
+	mes "1. ท่าเต้นของ 'Classical Pluck/Lokis Veil' ของ Dancer + bard ให้ผลอย่างไร?";
+	next;
+	menu " เพิ่มพลังโจมตีของอาวุธเลเวล  4 ",L1_2," ความเสียหายเพิ่มขึ้น 2 เท่า",L1_2," ไม่สามารถใช้ skills และเวทมนตร์ได้",-," Attack speed เพิ่มขึ้น",L1_2;
+		set @dcpoint,@dcpoint+10;
+L1_2:
+//I am unsure about the translated meaning on Question 2, I tried to adapt it with my own question, 
+//I will put a asterisk (*) next to all I have done this for, I done this so other people who might understand it better can correct it.
+	mes "[Borwaju]";
+	mes "2.";
+	mes "^00FF00Subject:^000000 หลังจากการเต้น";
+	mes "ท่านไม่ควรทำสิ่งใด หลังจากที่ใช้สกิล Ensemble กับคู่เต้นของท่าน?";
+	//mes "After you have finished using an Ensemble skill with a partner what should you never do?";
+	next;
+	menu "พูดเพื่อให้อีกฝ่ายสำนึกบุญคุณ",L1_3,"ชื่นชมการเต้นของอีกฝ่าย",L1_3,"เชิญอีกฝ่ายมาร่วมเต้นอีกครั้ง",L1_3,"บอกกับคู่เต้นว่ายังฝึกมาไม่ดีพอ",-;
+	//menu "Use words of appreciation towards the partner",L1_3,"The dance is praised",L1_3,"Invite the partner to dance again",L1_3,"You tell the partner they did an insufficient job",-;
+		set @dcpoint,@dcpoint+10;
+L1_3:
+// *
+	mes "[Borwaju]";
+	mes "3.";
+	mes "^00FF00Subject:^000000 ก่อนการเต้น";
+	mes "ท่านควรทำอย่างไร หากคู่เต้นของท่านเกิดเต้นผิดเพลงขึ้นมา?";
+	//mes "When a partner activates the incorrect dance what should you do?";
+	next;
+	menu "ยิ้มแย้มเข้าไว้และเต้นต่อไป",L1_4,"บอกจุดที่ผิดพลาด",-,"ยกเลิกการเต้นและเดินจากไป",L1_4,"ซ่อนความรู้สึกยิ้มเยาะของท่านไว้",L1_4;
+	//menu "Smile and just continue to dance",L1_4,"Point out the mistake",-,"Cancel the dance and walk away",L1_4,"Hide your smerk",L1_4;
+		set @dcpoint,@dcpoint+10;
+L1_4:
+	mes "[Borwaju]";
+	mes "4.";
+	mes "^00FF00Subject:^000000 ความรู้ทั่วไป";
+	mes "ชื่อของหมู่บ้านที่คุณต้องการเปลี่ยนอาชีพเป็นนักเต้น?";
+	//mes "What is the name of the village where you can designate the change of your occupation to that of a dancer?";
+	next;
+	menu "Prontera",L1_5,"Morroc",L1_5,"Al De Baran",L1_5,"Comodo",-;
+		set @dcpoint,@dcpoint+10;
+L1_5:
+	mes "[Borwaju]";
+	mes "5.";
+	mes "^00FF00Subject:^000000 สถานที่รอบๆ Comodo.";
+	mes "มีกี่ถ้ำที่สามารถเชื่อมต่อมายังหมู่บ้าน Comodo ?";
+	//mes "How many caves are directally connect to Comodo Village?";
+	next;
+	menu "1",L1_6,"2",L1_6,"3",-,"4",L1_6;
+		set @dcpoint,@dcpoint+10;
+L1_6:
+	mes "[Borwaju]";
+	mes "6.";
+	mes "^00FF00Subject:^000000 สัตว์เลี้ยง.";
+	mes "ตัวเลือกต่อจากนี้ อันไหนไม่สามารถนำมาเป็นสัตว์เลี้ยงได้?";
+	//mes "Which of the following is not able to be tamed?";
+	next;
+	menu "Isis",L1_7,"Argiope",-,"Dokebi",L1_7,"Deviruchi",L1_7;
+		set @dcpoint,@dcpoint+10;
+L1_7:
+	mes "[Borwaju]";
+	mes "7.";
+	mes "^00FF00Subject:^000000 ความรู้ทั่วไป";
+	mes "ใครเป็นนักเต้นที่เก่งที่สุด?";
+	//mes "Who is the best dancer?";
+	next;
+	menu strcharinfo(0),L1_7a,"Borwaju",-,"Isis",L1_8,"Flora",L1_8;
+		set @dcpoint,@dcpoint+10;
+		goto L1_8;
+	L1_7a:
+		set @dcpoint,@dcpoint-100;
+		mes ".........";
+		next;
+L1_8:
+// *
+	mes "[Borwaju]";
+	mes "8.";
+	mes "^00FF00Subject:^000000 สถานที่รอบๆ Comodo.";
+	mes "หนึ่งในสถานที่ท่องเที่ยวหลักของ Comodo คืออะไร?";
+	//mes "What is one of the main attractions of Comodo?";
+	next;
+	menu "โบสถ์",L1_9,"ร้านค้าดีเด่น",L1_9,"สุดยอดไก่ที่ท่านสามารถหาได้ในทุกๆที่",L1_9,"Casino",-;
+	//menu "A Church",L1_9,"Exceptionally good shops",L1_9,"The best chicken you can get anywhere",L1_9,"The Casino",-;
+		set @dcpoint,@dcpoint+10;
+L1_9:
+	mes "[...]";
+	mes "9.";
+	mes "^00FF00Subject:^000000 ความรู้ทั่วไป";
+	mes "เรามีชื่อว่าอะไร?";
+	//mes "What is my name?";
+	next;
+	menu "Gijou",L1_10,"Bijon",L1_10,"Borwaju",-,"Bojou",L1_10;
+		set @dcpoint,@dcpoint+10;
+// *
+L1_10:
+	mes "[Borwaju]";
+	mes "10.";
+	mes "^00FF00Subject:^000000 การเต้นร่วมกันของ นักเต้น + นักดนตรี .";
+	mes "ผลของสกิล ^777777'Lullaby'^000000 คืออะไร?";
+	//mes "What is the effect of ^777777'Lullaby'^000000 ?";
+	next;
+	menu "ทำให้ศัตรูหลับในบริเวณ 5x5 ช่อง",Lcheckpt,"ทำให้ศัตรูหลับในบริเวณ 9x9 ช่อง",-,"ทำให้ศัตรูติดมึนในบริเวณ 5x5 ช่อง",Lcheckpt,"ทำให้ศัตรูติดมึนในบริเวณ 9x9 ช่อง",Lcheckpt;
+	//menu "Put enemy to sleep, in a 5x5 area",Lcheckpt,"Put enemy to sleep, in a 9x9 area",-,"Stun the enemy, in a 5x5 area",Lcheckpt,"Stun the enemy, in a 9x9 area",Lcheckpt;
+		set @dcpoint,@dcpoint+10;
+		goto Lcheckpt;
+//-------
+LQuestion2:
+	mes "[Borwaju]";
+	mes "1. ท่าเต้น 'Dancing Lessons' ของ Dancer ให้ผลอย่างไร?";
+	next;
+	menu "ค่า INT ของท่านเพิ่มขึ้น",L2_2,"เพิ่มความแรงการโจมตีประเภท แซ่",-,"เพิ่มความแรงการโจมตีประเภท คฑา",L2_2,"เพิ่มความแรงการโจมตีประเภท ระยะไกล",L2_2;
+	//menu "Your INT is increased",L2_2,"The damage of whip type attacks are raised",-,"The damage of rod type attacks are raised",L2_2,"The damage of ranged type attacks are raised",L2_2;
+		set @dcpoint,@dcpoint+10;
+L2_2:
+	mes "[Borwaju]";
+	mes "2.";
+	mes "^00FF00Subject:^000000 ประเภทของการเต้น.";
+	mes "'คุณใส่รองเท้าสุดวิเศษที่ทำให้เกิดเสียง' เป็นประโยคที่ออกมาตลอดการเต้น ";
+	//mes "While doing this type of dance, 'you wear special shoes that make loud sounds'";
+	mes "การเต้นแบบนี้จัดอยู่ในถูกเรียกว่าอะไร?";
+	//mes "What is this type of dancing called?";
+	next;
+	menu "Tap dance",-,"Improved Concentration",L2_3,"Tango",L2_3,"Salsa",L2_3;
+		set @dcpoint,@dcpoint+10;
+L2_3:
+	mes "[Borwaju]";
+	mes "3.";
+	mes "^00FF00Subject:^000000 คุณสมบัตินักเต้น";
+	mes "เลือกสิ่งที่ นักเต้น ไม่สามารถทำได้มา 1 อย่าง";
+	//mes "Choose the thing a dancer cannot do";
+	next;
+	menu "จัดแสดงการเต้น",L2_4,"โจมตีระยะไกล",L2_4,"ใช้ Whip",L2_4,"ใช้ดาบ2มือ",-;
+		set @dcpoint,@dcpoint+10;
+L2_4:
+	mes "[Borwaju]";
+	mes "4.";
+	mes "^00FF00Subject:^000000 ความรู้ทั่วไป";
+	mes "เมืองที่นักเต้นอยู่มากที่สุดคือเมืองอะไร?";
+	//mes "What is the town where dancers stay the most?";
+	next;
+	menu "Al De Baran",L2_5,"Yuno",L2_5,"Morroc",L2_5,"Comodo",-;
+		set @dcpoint,@dcpoint+10;
+L2_5:
+	mes "[Borwaju]";
+	mes "5.";
+	mes "^00FF00Subject:^000000 ความรู้ทั่วไป";
+	mes "ใครเป็นผู้ที่แสดงการเต้นได้งดงามที่สุด?";
+	//mes "What person can perfrom the most beautiful dances?";
+	next;
+	menu strcharinfo(0),L2_5a,"Borwaju",-,"Isis",L2_6,"Emralhandas",L2_6;
+		set @dcpoint,@dcpoint+10;
+		goto L2_6;
+	L2_5a:
+		set @dcpoint,@dcpoint-100;
+L2_6:
+	mes "[Borwaju]";
+	mes "6.";
+	mes "^00FF00Subject:^000000 คุณสมบัตินักเต้น";
+	mes "อะไรคือข้อดีของนักเต้น เมื่อเทียบกับสายอาชีพอื่น?";
+	//mes "The dancer, in comparison with other occupations, has what advantage?";
+	next;
+	menu "ทางกายภาพ",L2_7,"ทักษะการไฟฟ้า",L2_7,"ความสามารถในการเต้นรำ",-,"ความสามารถในการใช้เวทย์",L2_7;
+	//menu "Physical strength",L2_7,"Performing skill power",L2_7,"Dance Capability",-,"Magic Capability",L2_7;
+		set @dcpoint,@dcpoint+10;
+L2_7:
+	mes "[Borwaju]";
+	mes "7.";
+	mes "^00FF00Subject:^000000 สถานที่รอบๆ Comodo.";
+	mes "ผู้จัดการประจำ Casino มีชื่อว่าอะไร?";
+	//mes "What is the Casino managers name?";
+	next;
+	menu "Martine",L2_8,"Roberto",L2_8,"Moo",-,"Deniroz",L2_8;
+		set @dcpoint,@dcpoint+10;
+L2_8:
+	mes "[Borwaju]";
+	mes "8.";
+	mes "^00FF00Subject:^000000 คุณสมบัตินักเต้น.";
+	mes "ไอเทมชิ้นไหนที่นักเต้นไม่สามารถใช้ได้?";
+	//mes "As for the item which the dancer cannot equip?";
+	next;
+	menu "Hair band of cat",L2_9,"Two-handed Sword",-,"Sandals",L2_9,"Earring",L2_9;
+		set @dcpoint,@dcpoint+10;
+L2_9:
+	mes "[Borwaju]";
+	mes "9.";
+	mes "^00FF00Subject:^000000 ความคิดเห็น.";
+	mes "คุณคิดว่าการทดสอบน่าเบื่อไหม?";
+	next;
+	menu "น่าเบื่อสุดๆ",L2_10,"เอาคำถามมาอีกสิ",-;
+		set @dcpoint,@dcpoint+10;
+L2_10:
+	mes "[Borwaju]";
+	mes "10.";
+	mes "^00FF00Subject:^000000 สถานที่รอบๆ Comodo.";
+	mes "มีประภาคารกี่แห่งบน Comodo Island?";
+	//mes "How many lighthouses exist on Comodo Island?";
+	next;
+	menu "1",-,"2",Lcheckpt,"3",Lcheckpt;
+		set @dcpoint,@dcpoint+10;
+		goto Lcheckpt;
+//-------
+Lcheckpt:
+	mes "[Borwaju]";
+	mes " ท่านผ่านการทดสอบทั้งหมดแล้ว........";
+	next;
+		mes "[Borwaju]";
+		mes " นี่คือ "+@dcpoint+" คะแนนทั้งหมดของท่าน......";
+	if ((@dcpoint >= 80) && (DANC_Q == 5)) goto LpointOK;
+	if ((@dcpoint >= 70) && (DANC_Q == 6)) goto LpointOK;
+		mes " ข้าจะต้องตัดสิทธิ์ท่าน ที่ท่านมีคะแนนไม่ถึงตามที่ข้ากำหนด";
+		next;
+		mes "[Borwaju]";
+		mes " ข้าจะอนุญาติให้ท่านได้ลองทดสอบใหม่อีกครั้ง  โดยไม่มีค่าใช้จ่ายใดๆ";
+		if (DANC_Q==5) mes " ครั้งต่อไปในการทดสอบของท่านข้าจะเพิ่มคะแนนที่ได้รับของแต่ละข้อเพื่อที่จะทำให้ท่านได้ผ่านได้ง่ายขึ้น";
+		mes " โชคดีสำหรับการทดสอบครั้งต่อไป!";
+		set DANC_Q,6;
+		close;
+	LpointOK:
+		if (@dcpoint == 100) mes " มันเป็นเรื่องทีชื่อชมที่ท่านทำคะแนน 100% เต็ม";
+		if (@dcpoint != 100) mes " ถึงแม้ท่านจะไม่รู้รู้เกี่ยวกับคำถามทุกๆ ข้อที่ถูกต้องที่ท่านก็ยังสามารถผ่านมันมาได้";
+		next;
+		mes "[Borwaju]";
+		mes " การทดสอบขั้นต่อไปคือการทดสอบทางกายภาพเกี่ยวกับความเร็วในระยะเวลาที่ถูกกำหนด";
+		mes " เมื่อท่านพร้อมให้กับมาพูดคุยกับข้าอีกครั้ง ข้าบอกท่านเพิ่มเติมเกี่ยวกับราบละเอียดของการทดสอบที่ท่านจะต้องทำมัน";
+		set DANC_Q,7;
+		close;
+LStart2:
+	mes "[Borwaju]";
+	mes " ท่านพร้อมสำหรับการทดสอบนี้หรือไม่? หรือว่าท่านต้องการจะพูดคุยกับข้าก่อนเท่านั้น?";
+	next;
+	menu " กรุณาบอกรายละเอียดให้ข้าฟัง",-," เข้ารับการทดสอบ",Lwarp;
+		mes "[Borwaju]";
+		mes " เจ้าจะต้องคิดวิธีออดิชั่นเผื่อที่จะใช้ในการทดสอบ";
+		mes " ข้าจะมีเวลาให้ท่าน ^0000FF1 นาที^000000 ท่านต้องสร้างความประใจให้ข้า";
+		next;
+		mes "[Borwaju]";
+		mes " มีเพียง ^0000FF 1 คน^000000 เท่านั้นที่จะสามารถเต้นอยู่บนเวทีได้";
+		next;
+		mes "[Borwaju]";
+		mes " หากมีผู้อื่นอยู่ก่อน ท่านต้องไปรอที่ห้อง ^0000FFwaiting room^000000 จนกว่าท่านจะได้ยินเสียงว่า มีใครผ่านหรือไม่ผ่านการทดสอบของพวกเขาหรือไม่";
+		next;
+		mes "[Borwaju]";
+		mes " คลิ๊กที่หน้าต่าง waiting room เขาจะพาท่านไปสู่รับรอง หลังจากนั้นข้าจะส่งท่านไปเต้นรำบนเวทีหากทีใครอยู่ก่อนหน้าแล้ว ท่านจะต้องรอก่อน";
+		next;
+		mes "[Borwaju]";
+		mes " หลังจากนั้นข้าพาท่านเข้าสู่ขั้นตอนการทดสอบ";
+		next;
+		mes "[Borwaju]";
+		mes " เมื่อท่านได้ขึ้นไปบนเวทีแล้วจะได้ยินเสียงประกาศว่า การทดสอบได้เริ่มขั้นแล้ว";
+		mes " จากนั้นท่านจะเริ่มต้นการเต้นรำของท่านได้เลย";
+		next;
+		mes "[Borwaju]";
+		mes " ท่านต้องเต้นตามจังหวะอย่างถูกต้องและรวดเร็วที่สุด";
+		mes "^FF0000[ < ]^000000 = ย้ายไปทางซ้าย";
+		mes "^FF0000[ > ]^000000 = ย้ายไปทางขวา";
+		mes "^FF0000[ * ]^000000 = ย้ายกลับไปตรงกลาง";
+		mes "^FF0000[ \\/ ]^000000 = ชุดคำสั่งเดินติดกันอย่างเร็วไปด่านล่าง";
+		mes "^FF0000[ /\\ ]^000000 = ชุดคำสั่งเดินติดกันอย่างเร็วไปด่านบน";
+		close;
+	Lwarp:
+		mes "[Borwaju]";
+		mes " ข้าจะพานท่านไปที่เวที ที่จะใช้สำหรับการทดสอบ!";
+		set DANC_Q,8;
+		close2;
+		warp "job_duncer",104,109;
+		end;
+Ljobchange:
+	mes "[Borwaju]";
+	mes " ท่านทำได้ดีมากท่านผ่านการทดสอบทั้งหมด";
+	mes " ตอนนี้ข้าคิดท่านมีความรู้เพียงพอที่จะเป็น dancer!";
+	mes " ท่านคงจะรู้สึกสบายใจที่สามารถผ่านการทดสอบนี้มาได้ทั้งหใด";
+	next;
+	mes "[Borwaju]";
+	mes " งานของท่านคือการนำความสุขให้กับทุกๆ คนใน Rune Midgard.";
+	next;
+	if (JobLevel == 50) set @item,1;
+	if (JobLevel != 50) set @item,0;
+	mes "[Borwaju]";
+	mes " จงใช้เวลาทั้งหมดสำหรับการเต้นรำ";
+	next;
+	callfunc "Job_Change",Job_Dancer;
+	callfunc "F_ClearJobVar";
+	mes "[Borwaju]";
+	mes " ผู้คนจะได้รับความสุขและเสียงหัวเราะไม่รู้จบ!......";
+	next;
+	mes "[Borwaju]";
+	mes " นี่คือของขวัญจากข้า โปรดรับไป!";
+	if (@item == 0) getitem 1950,1;
+	if (@item == 0) mes "...";	
+	if (@item == 1) getitem 1953,1;
+	if (@item == 1) mes "...";
+	if (@item == 1) mes "...";
+	close;
+
+}
+//=Start of the 3rd quest is here, once complete you go back to Borwaju to change job
+job_duncer,32,152,6	script	Guide::dancew	69,{
+	close;
+OnWarp:
+	warpwaitingpc "job_duncer",70,112,1;
+	disablewaitingroomevent;
+	initnpctimer "jobDq";
+	end;
+OnInit:
+	waitingroom "Dance lesson waiting room",20,"dancew::OnWarp",1;
+	end;
+}
+job_duncer,0,0,0	script	jobDq	-1,{
+	end;
+OnTimer1000:
+	mapannounce "job_duncer","Borwaju: เริ่มกันเลยไหม~? หายใจลึกๆ มีเวลาเพียง 1 นาทีเท่านั้น ~",8;
+	end;
+OnTimer3000:
+	mapannounce "job_duncer","Borwaju: Step Up! [ /\\ ]",8;
+	callsub L_SUB1,2000;
+	end;
+OnTimer7000:
+	donpcevent "::OnDE1";
+	mapannounce "job_duncer","Borwaju: ล่าง  [ \\/ ]",8;
+	callsub L_SUB5,2000;
+	end;
+OnTimer11000:
+	donpcevent "::OnDE1";
+	mapannounce "job_duncer","Borwaju: ซ้าย [ < ]",8;
+	callsub L_SUB2,2000;
+	end;
+OnTimer15000:
+	donpcevent "::OnDE1";
+	mapannounce "job_duncer","Borwaju: ขวา [ > ]",8;
+	callsub L_SUB4,2000;
+	end;
+OnTimer19000:
+	donpcevent "::OnDE1";
+	mapannounce "job_duncer","Borwaju: กลาง. [ * ]",8;
+	callsub L_SUB3,3000;
+	end;
+OnTimer21000:
+	donpcevent "::OnDE1";
+	mapannounce "job_duncer","Borwaju: Stay หยุดนิ่งรอแป๊บหนึ่ง!",8;
+	end;
+OnTimer26000:
+	//set @skillcheck,Sp;
+	//mapannounce "job_duncer","Borwaju: ใช้ 'Improved Concentration'!",8;
+	end;
+OnTimer29000:
+	//if (@skillcheck==Sp) goto OnTimer80000;
+	donpcevent "::OnDE1";
+	mapannounce "job_duncer","Borwaju: ซ้าย  [ < ]",8;
+	callsub L_SUB2,2000;
+	end;
+OnTimer33000:
+	donpcevent "::OnDE1";
+	mapannounce "job_duncer","Borwaju: ล่าง  [ \\/ ]",8;
+	end;
+OnTimer35000:
+	mapannounce "job_duncer","Borwaju: ขวา! [ > ]",8;
+	callsub L_SUB4,3000;
+	end;
+OnTimer38000:
+	donpcevent "::OnDE1";
+	mapannounce "job_duncer","Borwaju: หยุดนิ่งรอแป๊บหนึ่ง!",8;
+	end;
+OnTimer41000:
+	mapannounce "job_duncer","Borwaju: ซ้าย * กลาง * ขวา * บน [ < ] [ * ] [ > ] [ /\\ ]",8;
+	callsub L_SUB1,0;
+	end;
+OnTimer47000:
+	donpcevent "::OnDE1";
+	mapannounce "job_duncer","Borwaju: ขวา  [ > ] ",8;
+	callsub L_SUB4,3000;
+	end;
+OnTimer50000:
+	donpcevent "::OnDE1";
+	mapannounce "job_duncer","Borwaju: ซ้าย * กลาง * ล่าง * บน:   [ < ] [ * ] [ \\/ ] [ /\\ ] ",8;
+	callsub L_SUB1,0;
+	end;
+OnTimer56000:
+	donpcevent "::OnDE1";
+	mapannounce "job_duncer","Borwaju: อีกครั้ง ซ้าย * กลาง * ล่าง * บน:  [ < ] [ * ] [ \\/ ] [ /\\ ]",8;
+	callsub L_SUB1,0;
+	end;
+OnTimer62000:
+	donpcevent "::OnDE1";
+	mapannounce "job_duncer","Borwaju: ล่าง!  [ \\/ ]",8;
+	callsub L_SUB5,2500;
+	end;
+OnTimer65000:
+	donpcevent "::OnDE1";
+	mapannounce "job_duncer","Borwaju: ซ้าย!  [ < ]",8;
+	callsub L_SUB2,2500;
+	end;
+OnTimer68000:
+	donpcevent "::OnDE1";
+	mapannounce "job_duncer","Borwaju: กลับไป กลาง [ * ]",8;
+	callsub L_SUB3,2500;
+	end;
+OnTimer71000:
+	donpcevent "::OnDE1";
+	mapannounce "job_duncer","Borwaju: หยุดการเคลื่อนไหว~ แล้ว Arrow Shower!",8;
+	//set @skillcheck,Sp;
+	monster "job_duncer",69,106,"Poring",1002,1,"jddie::OnMobDied";
+	end;
+OnTimer76000:
+	killmonsterall "job_duncer";
+	end;
+OnTimer80000:
+	mapannounce "job_duncer","Dancer:  ท่านขยับตัวช้าเกินไป ข้าเสียใจการทดสอบล้มเหลว",8;
+	disablenpc "uppertile";
+	disablenpc "lefttile";
+	disablenpc "righttile";
+	disablenpc "lowertile";
+	disablenpc "middletile";
+	if (getareausers("job_duncer",68,106,70,114) != 0) areawarp "job_duncer",68,106,70,114,"job_duncer",69,102;
+	if (getareausers("job_duncer",65,109,73,111) != 0) areawarp "job_duncer",65,109,73,111,"job_duncer",69,102;
+	stopnpctimer;
+	enablewaitingroomevent "dancew";
+	end;
+L_SUB1:
+	disablenpc "lefttile";
+	disablenpc "middletile";
+	disablenpc "righttile";
+	disablenpc "lowertile";
+	setnpctimer getarg(0),"jdt1";
+	startnpctimer "jdt1";
+	return;
+L_SUB2:
+	disablenpc "uppertile";
+	disablenpc "middletile";
+	disablenpc "righttile";
+	disablenpc "lowertile";
+	setnpctimer getarg(0),"jdt2";
+	startnpctimer "jdt2";
+	return;
+L_SUB3:
+	disablenpc "uppertile";
+	disablenpc "lefttile";
+	disablenpc "righttile";
+	disablenpc "lowertile";
+	setnpctimer getarg(0),"jdt3";
+	startnpctimer "jdt3";
+	return;
+L_SUB4:
+	disablenpc "lefttile";
+	disablenpc "middletile";
+	disablenpc "uppertile";
+	disablenpc "lowertile";
+	setnpctimer getarg(0),"jdt4";
+	startnpctimer "jdt4";
+	return;
+L_SUB5:
+	disablenpc "lefttile";
+	disablenpc "middletile";
+	disablenpc "righttile";
+	disablenpc "uppertile";
+	setnpctimer getarg(0),"jdt5";
+	startnpctimer "jdt5";
+	return;
+}
+job_duncer,0,0,0	script	jddie	-1,{
+OnMobDied:
+	set @check,0;
+	if (@skillcheck==Sp) set @check,1;
+	if (@check==0) mapannounce "job_duncer","Dancer: ดีมาก ดีมาก ข้ายินดีด้วย ท่านผ่านการทดสอบแล้ว.. !!",8;
+	if (@check==1) mapannounce "job_duncer","Dancer: ข้าเสียใจ "+strcharinfo(0)+" ล้มเหลวในการใช้ arrow shower เพื่อจัดการกับมอนสเตอร์",8;
+	disablenpc "uppertile";
+	disablenpc "lefttile";
+	disablenpc "righttile";
+	disablenpc "lowertile";
+	disablenpc "middletile";
+	if (@check==0)	set DANC_Q,10;
+	stopnpctimer "jobDq";
+	enablewaitingroomevent "dancew";
+	if (@check==1)	set @check,0;
+	warp "job_duncer",69,102;
+	end;
+}
+job_duncer,63,110,4	script	Back dancer #1::jdt1	724,{
+	end;
+OnTimer5000:
+	enablenpc "lefttile";
+	enablenpc "middletile";
+	enablenpc "righttile";
+	enablenpc "lowertile";
+	stopnpctimer;
+	end;
+OnDE1:
+	emotion	21;
+	end;
+OnDE2:
+	emotion e_omg;
+	end;
+}
+job_duncer,66,113,4	script	Back dancer #2::jdt2	724,{
+	end;
+OnTimer5000:
+	enablenpc "uppertile";
+	enablenpc "middletile";
+	enablenpc "righttile";
+	enablenpc "lowertile";
+	stopnpctimer;
+	end;
+OnDE1:
+	emotion	21;
+	end;
+OnDE2:
+	emotion e_omg;
+	end;
+}
+job_duncer,72,113,4	script	Back dancer #3::jdt3	724,{
+	end;
+OnTimer5000:
+	enablenpc "lefttile";
+	enablenpc "uppertile";
+	enablenpc "righttile";
+	enablenpc "lowertile";
+	stopnpctimer;
+	end;
+OnDE1:
+	emotion	21;
+	end;
+OnDE2:
+	emotion e_omg;
+	end;
+}
+job_duncer,75,110,4	script	Back dancer #4::jdt4	724,{
+	end;
+OnTimer5000:
+	enablenpc "lefttile";
+	enablenpc "middletile";
+	enablenpc "uppertile";
+	enablenpc "lowertile";
+	stopnpctimer;
+	end;
+OnDE1:
+	emotion	21;
+	end;
+OnDE2:
+	emotion e_omg;
+	end;
+}
+job_duncer,75,110,4	script	jdt5	139,{
+	end;
+OnTimer5000:
+	enablenpc "lefttile";
+	enablenpc "middletile";
+	enablenpc "righttile";
+	enablenpc "uppertile";
+	stopnpctimer;
+	end;
+}
+job_duncer,69,113,4	script	uppertile	139,1,1,{
+	end;
+OnTouch:
+	mapannounce "job_duncer","Dancer: Sorry "+strcharinfo(0)+" the failed to make it in time.",8;
+	disablenpc "uppertile";
+	disablenpc "lefttile";
+	disablenpc "righttile";
+	disablenpc "lowertile";
+	disablenpc "middletile";
+	enablewaitingroomevent "dancew";
+	stopnpctimer "jobDq";
+	areawarp "job_duncer",68,112,70,114,"job_duncer",69,102;
+	donpcevent "::OnDE2";
+	end;
+OnDE1:
+OnInit:
+	disablenpc "uppertile";
+	end;
+}
+job_duncer,66,110,4	script	lefttile	139,1,1,{
+	end;
+OnTouch:
+	mapannounce "job_duncer","Dancer: ข้าเสีย "+strcharinfo(0)+" ท่านช้าเกินไป... ",8;
+	disablenpc "uppertile";
+	disablenpc "lefttile";
+	disablenpc "righttile";
+	disablenpc "lowertile";
+	disablenpc "middletile";
+	enablewaitingroomevent "dancew";
+	stopnpctimer "jobDq";
+	areawarp "job_duncer",65,109,67,111,"job_duncer",69,102;
+	donpcevent "::OnDE2";
+	end;
+OnDE1:
+OnInit:
+	disablenpc "lefttile";
+	end;
+}
+job_duncer,69,110,4	script	middletile	139,1,1,{
+	end;
+OnTouch:
+	mapannounce "job_duncer","Dancer: ข้าเสียใจ "+strcharinfo(0)+" ท่านช้าเกินไป... ",8;
+	disablenpc "uppertile";
+	disablenpc "lefttile";
+	disablenpc "righttile";
+	disablenpc "lowertile";
+	disablenpc "middletile";
+	enablewaitingroomevent "dancew";
+	stopnpctimer "jobDq";
+	areawarp "job_duncer",68,109,70,111,"job_duncer",69,102;
+	donpcevent "::OnDE2";
+	end;
+OnDE1:
+OnInit:
+	disablenpc "middletile";
+	end;
+}
+job_duncer,72,110,4	script	righttile	139,1,1,{
+	end;
+OnTouch:
+	mapannounce "job_duncer","Dancer: ข้าเสียใจ "+strcharinfo(0)+" ท่านช้าเกินไป... ",8;
+	disablenpc "uppertile";
+	disablenpc "lefttile";
+	disablenpc "righttile";
+	disablenpc "lowertile";
+	disablenpc "middletile";
+	enablewaitingroomevent "dancew";
+	stopnpctimer "jobDq";
+	areawarp "job_duncer",71,109,73,111,"job_duncer",69,102;
+	donpcevent "::OnDE2";
+	end;
+OnDE1:
+OnInit:
+	disablenpc "righttile";
+	end;
+}
+job_duncer,69,107,4	script	lowertile	139,1,1,{
+	end;
+OnTouch:
+	mapannounce "job_duncer","Dancer: ข้าเสียใจ "+strcharinfo(0)+" ท่านช้าเกินไป... ",8;
+	disablenpc "uppertile";
+	disablenpc "lefttile";
+	disablenpc "righttile";
+	disablenpc "lowertile";
+	disablenpc "middletile";
+	enablewaitingroomevent "dancew";
+	stopnpctimer "jobDq";
+	areawarp "job_duncer",68,106,70,108,"job_duncer",69,102;
+	donpcevent "::OnDE2";
+	end;
+OnDE1:
+OnInit:
+	disablenpc "lowertile";
+	end;
+}
+
+comodo,182,165,4	script	แก้ไขเปลี่ยนDancer	86,{
+
+if (Class!=3) goto Notache;
+if(SkillPoint >0) goto L_notUseAll;
+if(Sex==1) goto L_noDance;
+ mes "[ Jobchanger ]";
+ mes "ท่านต้องการเปลื่ยนอาชีพเป็น Dance ใช่หรือไม่";
+ next;
+ menu "ใช่",-,"ไม่ใช่",L_close;
+ mes "[ Jobchanger ]";
+ mes "ถ้าเป็นอย่างนั้น ข้าก็จะเปลื่ยนให้เจ้าทันที";
+ next;
+ JobChange 20;
+ mes "เจ้าได้เป็น Dancerเรียบร้อยแล้ว";
+ close;
+
+L_close:
+ mes "[ Jobchanger ]";
+ mes "เราคงมีโอกาศได้พบกันใหม่อีกแน่ บาย";
+ close;
+
+L_notJ40:
+ mes "[ Jobchanger ]";
+ mes "Job Lv ของท่านยังไม่ถึง 40";
+ close;
+
+L_notUseAll:
+ mes "[ Jobchanger ]";
+ mes "ท่านยังใช้ Skill Point ไม่หมด";
+ close;
+
+Notache:
+ mes "[ Jobchanger ]";
+ mes "คุณไม่ได้ นักธนูนิ";
+ close;
+
+L_noDance:
+mes "[ Jobchanger ]";
+ mes "คุณจะเป็นผู้ชายนะครับ";
+ close;
+
+}

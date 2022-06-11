@@ -1,0 +1,48 @@
+//—>===============================================================<—|
+// -- # Ragnarok Online EP 4.0 BY Kelberwitz Blade's
+// -- # Alberta HiSo Kafra Corparation !!
+//—>===============================================================<—|
+
+// - - > บริเวณ ซ้ายบน
+alberta,28,229,0	script	Kafra Express::alberta#01	116,{
+	cutin "kafra_02",2;
+	callfunc "F_KafSetAlb";
+	mes "^0066FF[ Kafra Express ]^000000";
+	mes "สวัสดีค่ะ ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+	mes "Kafra Corporation ยินดีให้บริการ";
+	mes "ต้องการให้ข้าช่วยเหลืออะไรไหมคะ ?";
+	callfunc "F_Kafra",5,0,0,50,850;
+
+	M_Save:
+		savepoint "alberta",31,231;
+		callfunc "F_KafEnd",0,1,"in the city of Alberta";
+}
+
+// - - > บริเวณ กลางล่าง
+alberta,113,60,6	script	Kafra Express::alberta#02	112,{
+	cutin "kafra_06",2;
+	callfunc "F_KafSetAlb";
+	mes "^0066FF[ Kafra Express ]^000000";
+	mes "สวัสดีค่ะ ท่าน , ^FF0000"+strcharinfo(0)+" ^000000"; 
+	mes "Kafra Corporation ยินดีให้บริการ";
+	mes "ต้องการให้ข้าช่วยเหลืออะไรไหมคะ ?";
+	callfunc "F_Kafra",5,0,0,50,850;
+
+	M_Save:
+		savepoint "alberta",117,57;
+		callfunc "F_KafEnd",0,1,"in the city of Alberta";
+}
+
+// - - > ฟังชั่น  Alberta Kafra
+function	script	F_KafSetAlb	{
+	cleararray @wrpC$[0],"",getarraysize(@wrpC$);
+	setarray @wrpP[0], 1200, 1800, 1800;
+	setarray @wrpD$[0], "Payon", "Morroc", "Prontera";
+	set @wrpC$[0], @wrpD$[0]+" [ "+@wrpP[0]+" z ]";
+	set @wrpC$[1], @wrpD$[1]+" [ "+@wrpP[1]+" z ]";
+	set @wrpC$[2], @wrpD$[2]+" [ "+@wrpP[2]+" z ]";
+	set @wrpC$[3], "ยกเลิก";
+	setarray @viewpX[0], 28, 113, 0, 0;
+	setarray @viewpY[0], 229, 60, 0, 0;
+	return;
+}

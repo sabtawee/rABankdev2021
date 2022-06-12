@@ -1,0 +1,73 @@
+-	script	gachapon_core	-1,{
+
+OnGachaponConfig:
+L_Main:
+	mes .npcname$;
+	if($gacha_zeny == 1)
+		mes "Gachapon Zeny : ^0011ffเปิด^000000";
+	else
+		mes "Gachapon Zeny : ^ff0000ปิด^000000";
+
+	if($gacha_cash == 1)
+		mes "Gachapon Cash : ^0011ffเปิด^000000";
+	else
+		mes "Gachapon Cash : ^ff0000ปิด^000000";
+
+	if($gacha_zeny == 0 && $gacha_cash == 0){ menu "^FF0000•^000000 [ เปิด Gachapon Zeny ]",-,"^FF0000•^000000 [ เปิด Gachapon Cash ]",-; }
+	else if($gacha_zeny == 1 && $gacha_cash == 0){ menu "^FF0000•^000000 [ ปิด Gachapon Zeny ]",-,"^FF0000•^000000 [ เปิด Gachapon Cash ]",-; }
+	else if($gacha_zeny == 0 && $gacha_cash == 1){ menu "^FF0000•^000000 [ เปิด Gachapon Zeny ]",-,"^FF0000•^000000 [ ปิด Gachapon Cash ]",-; }
+	else{ menu "^FF0000•^000000 [ ปิด Gachapon Zeny ]",-,"^FF0000•^000000 [ ปิด Gachapon Cash ]",-; }
+
+	next;
+
+	set .@menu_selected,@menu;
+	if(.@menu_selected == 1){
+		if($gacha_zeny == 0){
+			mes .npcname$;
+			mes "ทำการสั่งเปิดระบบ Gachapon Zeny แล้ว";
+			$gacha_zeny = 1;
+			announce "[GM] ได้ทำการเปิดระบบ Gachapon Zeny",bc_blue|bc_all;
+			next;
+			goto L_Main;
+			end;
+		}
+		if($gacha_zeny == 1){
+			mes .npcname$;
+			mes "ทำการสั่งปิดระบบ Gachapon Zeny แล้ว";
+			$gacha_zeny = 0;
+			announce "[GM] ได้ทำการปิดระบบ Gachapon Zeny",bc_blue|bc_all;
+			next;
+			goto L_Main;
+			end;
+		}
+	}
+	if(.@menu_selected == 2){
+		if($gacha_cash == 0){
+			mes .npcname$;
+			mes "ทำการสั่งเปิดระบบ Gachapon Cash แล้ว";
+			$gacha_cash = 1;
+			announce "[GM] ได้ทำการเปิดระบบ Gachapon Cash",bc_blue|bc_all;
+			next;
+			goto L_Main;
+			end;
+		}
+		if($gacha_cash == 1){
+			mes .npcname$;
+			mes "ทำการสั่งปิดระบบ Gachapon Cash แล้ว";
+			$gacha_cash = 0;
+			announce "[GM] ได้ทำการปิดระบบ Gachapon Cash",bc_blue|bc_all;
+			next;
+			goto L_Main;
+			end;
+		}
+	}
+	end;
+
+OnInit:
+	.npcname$ = "[^FF0000•^000000 ^2f00ffGachapon Config^000000 ^FF0000•^000000]";
+	bindatcmd "gachapon",strnpcinfo(0)+"::OnGachaponConfig",99;
+	end;
+
+}
+
+// $toggle_afk_fishing

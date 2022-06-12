@@ -1,0 +1,155 @@
+izlude,112,91,6	script	Hotweek Cash	506,{
+
+.@cash_price = 100;
+
+setarray @hwc1[0],11501,11502,12211,12221,11518,12209,6293;
+setarray @hwc2[0],12426,12901,12208;
+setarray @hwc3[0],12009,12008;
+setarray @hwc4[0],12403,36015,7620,7619,6635,1100003,1100005,18642,18643,18644,18754,5362;
+
+
+set @hwc1rand,rand( getarraysize(@hwc1) ); // Randomize Common Items; just change max amount if you add items
+set @hwc2rand,rand( getarraysize(@hwc2) ); // Randomize Items; just change max amount if you add items
+set @hwc3rand,rand( getarraysize(@hwc3) ); //Randomize Rare Items; just change max amount if you add items
+set @hwc4rand,rand( getarraysize(@hwc4) ); //Randomize Rare Items; just change max amount if you add items
+set @hwc5rand,rand( getarraysize(@hwc5) ); //Randomize Rare Items; just change max amount if you add items
+
+	if($gacha_cash==0){
+		mes "^000099[Hotweek Cash]^000000";
+		mes "ขณะนี้ระบบ Gachapon Cash ปิดให้บริการ";
+		mes "ขอบคุณ";
+		next;
+		menu "^009933•^000000 จัดอันดับ",L_show,"^009933•^000000 ตัวอย่างของรางวัล",L_view,"^009933•^000000 ไว้ก่อน",L_no;
+		end;
+	}else{
+		mes "^000099[Hotweek Cash]^000000";
+		mes "คุณ ^FF0000[ "+ strcharinfo(0) +" ] มีค่าบริการ 100 Cash อยากเสี่ยงดวงไหม^000000";
+		query_sql ("SELECT `point_jackpot` FROM `char` WHERE `char_id` = '"+ getcharid(0) +"'", .@ref);
+		mes "ตอนนี้ท่านหมุนไปแล้ว ^FF0000[ "+ .@ref +" ]^000000 รอบ";
+		mes "ตู้นี้มีรางวัลสะสมทั้งหมด ^FF0000[ "+ $cash_jackpot +" ]^000000 Cash";
+		next;
+		menu "^009933•^000000 อย่ารอช้าปั่นเลย",L_ok,"^009933•^000000 ตัวอย่างของรางวัล",L_view,"^009933•^000000 จัดอันดับ",L_show,"^009933•^000000 ไว้ก่อน",L_no;
+	}
+
+L_view:
+	callfunc "preview_gacha_shop10";
+	end;
+
+
+L_ok:
+
+	{
+		callfunc("IsCashEnough",.@cash_price,"",1);
+		query_sql "UPDATE `char` SET `point_jackpot`=(`point_jackpot` + 1) WHERE `char_id`='"+getcharid(0)+"' LIMIT 1";
+
+		$cash_jackpot += 5;
+
+		mes "^000099[Hotweek Cash]^000000";
+		mes "^FF0000ใช้ : 100 Cash^000000";
+		mes "^FF0000แคชที่เหลือ: " + #CASHPOINTS + " Cash^000000";
+		query_sql ("SELECT `point_jackpot` FROM `char` WHERE `char_id` = '"+ getcharid(0) +"'", .@ref);
+		//announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Hotweek Cash ไปแล้ว [ "+ .@ref +" ] ครั้ง ",bc_all,0xFFFF00;
+		.chance = rand(0,1000);
+
+
+
+		// Super Rare Item 0.9%	แจ๊คพ็อตแตก
+		if (.chance < 2) {
+			switch( rand(1) ) {
+				case 0:
+				.chance2 = rand(1,50);
+				$jackpot = $cash_jackpot * .chance2/100;
+				set #CASHPOINTS,  #CASHPOINTS + $jackpot;
+				specialeffect2 10;
+				announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Hotweek Cash แจ็คพ็อตแตก  " + (.chance2) + " % ได้รับเงิน [ "+ $jackpot +" ] Cash ",bc_all,0xFFFF00;
+				$cash_jackpot = $cash_jackpot - $jackpot;
+				end;
+			}
+		}
+
+		// Super Rare Item 1%	โครตแรร์
+		if (.chance < 60) {
+			announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Hotweek Cash ได้รับ "+getitemname(@hwc4[@hwc4rand])+" ",bc_all,0xFFFF00;
+			getitem @hwc4[@hwc4rand],1;
+			specialeffect2 10;
+			end;
+		}
+
+		// Rare Item 3%	โครตแรร์
+		if (.chance < 70) {
+			//announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Hotweek Cash ได้รับ "+getitemname(@hwc3[@hwc3rand])+" ",bc_all,0xFFFF00;
+			getitem @hwc3[@hwc3rand],1;
+			specialeffect2 10;
+			end;
+		}
+
+		// Rare Item 10%
+		if (.chance < 109) {
+		    //announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Hotweek Cash ได้รับ "+getitemname(@hwc2[@hwc2rand])+" ",bc_all,0xFFFF00;
+			getitem @hwc2[@hwc2rand],1;
+			specialeffect2 10;
+			end;
+		}
+
+		// Common Items
+		else {
+			getitem @hwc1[@hwc1rand],1;
+			specialeffect2 10;
+			//announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Hotweek Cash ได้รับ "+getitemname(@hwc1[@hwc1rand])+" ",bc_all,0xFFFF00;
+			end;
+		}
+    }
+
+L_no:
+	mes "^000099[Hotweek Cash]^000000";
+	mes "พร้อมแล้วก็มาใหม่นะ^000000";
+	close;
+
+L_not:
+	mes "^000099[Hotweek Cash]^000000";
+	mes "ท่านมี Zeny ไม่เพียงพอ^000000";
+	close;
+
+	end
+	;
+L_show:
+		query_sql "SELECT `name`,`point_jackpot` FROM `char` ORDER BY `point_jackpot` DESC LIMIT 10",.@name$,.@point;
+		mes"===================== CASH RANKING =====================";
+		for (set .@i,0; .@i < 10; set .@i,.@i+1) {
+			if (.@point[.@i] == 0) set .@name$[.@i],"None";
+			mes "["+(.@i+1)+"]  "+.@name$[.@i]+" : คะแนน " +.@point[.@i]+"";
+		}
+		mes "-----------------------------------------------------";
+		dispbottom"======================= CASH RANKING =======================";
+		for (set .@i,0; .@i < 10; set .@i,.@i+1) {
+			if (.@point[.@i] == 0) set .@name$[.@i],"None";
+		dispbottom "["+(.@i+1)+"]  "+.@name$[.@i]+" : คะแนน " +.@point[.@i]+"";
+		}
+		dispbottom "========================================================";
+
+
+		query_sql "SELECT `point_jackpot` FROM `char` WHERE `char_id`='"+getcharid(0)+"'",.@cpoint;
+		mes "คุณมีคะแนน : "+.@cpoint;
+		mes "==============================================";
+		dispbottom "คุณมีคะแนน : "+.@cpoint;
+		dispbottom "========================================================";
+		close;
+OnInit:
+do {
+delwaitingroom;
+waitingroom "[ "+callfunc("F_InsertComma",($cash_jackpot))+" ] Cash ",0;
+sleep 80; // Evites super infinity loop
+} while(1); // End Loop
+end;
+}
+
+
+
+function	script	preview_gacha_shop10	{
+
+	deletearray @i[0],getarraysize(@i);
+	for(set .@i,0; .@i<getargcount(); set .@i,.@i+1)
+		set @i[.@i],getarg(.@i);
+	doevent "preview_mushroom::OnMainMenu";
+	end;
+}

@@ -34,10 +34,9 @@ new_2-3,0,0,0,0	monster	Fabre	1184,40,0,0,0
 
 
 // Bulletin Board
-new_1-1,66,114,4	script	Bulletin Board#nv	111,{
-	mes "^FF0000=================================^000000";
-	mes "^FF0000 ^000000 ^E40CAAยินดีต้อนรับสู่ Ragnarok^000000";
-	mes "^FF0000=================================^000000";
+new_1-1,66,114,4	script	Bulletin Board#nv	98,{
+	mes "^FF0000================^000000";
+	mes "^FF0000 ^000000 ^E40CAAยินดีต้อนรับสู่ Oscar Ragnarok^000000";
 	close;
 }
 
@@ -99,7 +98,6 @@ new_1-2,100,29,4	script	Receptionist#nv1	86,{
 				warp "izlude",94,103;
 				break;
 			case 6:
-				clearitem;
 				getitem 569,300;
 				getitem 12323,50;
 				getitem 12324,10;
@@ -111,9 +109,6 @@ new_1-2,100,29,4	script	Receptionist#nv1	86,{
 				getitem 1243,1;
 				getitem 7059,30;
 				getitem 7060,30;
-				getitem 24001,5;
-				getitem 24002,5;
-				getitem 24003,5;
 				
 				set .@rand_new,rand(1,2);
 				savepoint "new_"+.@rand_new+"-3",96,21;

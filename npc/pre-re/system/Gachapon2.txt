@@ -1,0 +1,162 @@
+
+izlude,106,91,6	script	Hotweek Zeny	506,{
+
+
+setarray @hwz1[0],12403,36015,7620,7619,6635,1100003,1100005,18642,18643,18644,18754,5362;
+setarray @hwz2[0],12426,12901,12208;
+setarray @hwz3[0],12009,12008;
+setarray @hwz4[0],11501,11502,12211,12221,11518,12209,6293;
+
+
+set @hwz1rand,rand( getarraysize(@hwz1) ); // Randomize Common Items; just change max amount if you add items
+set @hwz2rand,rand( getarraysize(@hwz2) ); // Randomize Items; just change max amount if you add items
+set @hwz3rand,rand( getarraysize(@hwz3) ); //Randomize Rare Items; just change max amount if you add items
+set @hwz4rand,rand( getarraysize(@hwz4) ); //Randomize Rare Items; just change max amount if you add items
+
+	if($gacha_zeny==0){
+		mes "^000099[Hotweek Zeny]^000000";
+		mes "ขณะนี้ระบบ Gachapon Zeny ปิดให้บริการ";
+		mes "ขอบคุณ";
+		next;
+		menu "^009933•^000000 จัดอันดับ",L_show,"^009933•^000000 ตัวอย่างของรางวัล",L_view,"^009933•^000000 ไว้ก่อน",L_no;
+		end;
+	}else{
+		mes "^000099[Hotweek Zeny]^000000";
+		mes "คุณ ^FF0000[ "+ strcharinfo(0) +" ] มีค่าบริการ 80,000 zeny อยากเสี่ยงดวงไหม^000000";
+		query_sql ("SELECT `point_gacha` FROM `char` WHERE `char_id` = '"+ getcharid(0) +"'", .@ref);
+		mes "ตอนนี้ท่านหมุนไปแล้ว ^FF0000[ "+ .@ref +" ]^000000 รอบ";
+		mes "ตู้นี้มีรางวัลสะสมทั้งหมด ^FF0000[ "+ $zeny_jackpot +" ]^000000 zeny";
+		next;
+		menu "^009933•^000000 อย่ารอช้าปั่นเลย",L_ok,"^009933•^000000 ตัวอย่างของรางวัล",L_view,"^009933•^000000 จัดอันดับ",L_show,"^009933•^000000 ไว้ก่อน",L_no;
+	}
+
+L_view:
+	callfunc "preview_gacha_shop10";
+	end;
+
+
+L_ok:
+	 if(Zeny<80000)goto L_not;{
+		query_sql "UPDATE `char` SET `point_gacha`=(`point_gacha` + 1) WHERE `char_id`='"+getcharid(0)+"' LIMIT 1";
+		$zeny_jackpot += 5000;
+
+		mes "^000099[Hotweek Zeny]^000000";
+		mes "ขอให้โชคดี";
+		query_sql ("SELECT `point_gacha` FROM `char` WHERE `char_id` = '"+ getcharid(0) +"'", .@ref);
+		//announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Hotweek Zeny ไปแล้ว [ "+ .@ref +" ] ครั้ง ",bc_all,0xFFFF00;
+		.chance = rand(0,1000);
+
+		// Super Rare Item 0.1%	แจ๊คพ็อตแตก
+		if (.chance < 3) {
+			switch( rand(1) ) {
+				case 0:
+				.chance2 = rand(1,40);
+				set Zeny, Zeny - 80000;
+				set Zeny, Zeny + $zeny_jackpot*.chance2/100;
+				$zeny_jackpot2 = $zeny_jackpot-$zeny_jackpot*.chance2/100;
+				announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Hotweek Zeny แจ็คพ็อตแตก " + (.chance2) + "%  ได้รับเงิน [ "+ ($zeny_jackpot*.chance2/100) +" ] zeny  ",bc_all,0xFFFF00;
+				$zeny_jackpot = $zeny_jackpot2;
+				specialeffect2 10;
+				specialeffect2 100;
+				end;
+			}
+
+		}
+
+		// Super Rare Item 1%	โครตแรร์
+		if (.chance < 40) {
+			set Zeny, Zeny - 80000;
+			announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Hotweek Zeny ได้รับ "+getitemname(@hwz1[@hwz1rand])+" ",bc_all,0xFFFF00;
+			getitem @hwz1[@hwz1rand],1;
+			specialeffect2 10;
+			specialeffect2 100;
+			end;
+		}
+
+		// Rare Item 3%	โครตแรร์
+		if (.chance < 50) {
+			set Zeny, Zeny - 80000;
+			//announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Hotweek Zeny ได้รับ "+getitemname(@hwz2[@hwz2rand])+" ",bc_all,0xFFFF00;
+			getitem @hwz2[@hwz2rand],1;
+			specialeffect2 10;
+			specialeffect2 100;
+			end;
+		}
+
+		// Rare Item 10%
+		if (.chance < 100) {
+			set Zeny, Zeny - 80000;
+		    //announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Hotweek Zeny ได้รับ "+getitemname(@hwz3[@hwz3rand])+" ",bc_all,0xFFFF00;
+			getitem @hwz3[@hwz3rand],1;
+			specialeffect2 10;
+			specialeffect2 100;
+			end;
+		}
+
+		// Common Items
+		else {
+			set Zeny, Zeny - 80000;
+			getitem @hwz4[@hwz4rand],1;
+			specialeffect2 10;
+			specialeffect2 100;
+			//announce "[ ระบบ ]  :  ผู้เล่น ["+strcharinfo(0)+"] หมุนตู้  Hotweek Zeny ได้รับ "+getitemname(@hwz4[@hwz4rand])+" ",bc_all,0xFFFF00;
+			end;
+		}
+    }
+
+L_no:
+	mes "^000099[Hotweek Zeny]^000000";
+	mes "พร้อมแล้วก็มาใหม่นะ^000000";
+	close;
+
+L_not:
+	mes "^000099[Hotweek Zeny]^000000";
+	mes "ท่านมี Zeny ไม่เพียงพอ^000000";
+	close;
+
+	end
+	;
+L_show:
+		query_sql "SELECT `name`,`point_gacha` FROM `char` ORDER BY `point_gacha` DESC LIMIT 10",.@name$,.@point;
+		mes"===================== ZENY RANKING =====================";
+		for (set .@i,0; .@i < 10; set .@i,.@i+1) {
+			if (.@point[.@i] == 0) set .@name$[.@i],"None";
+			mes "["+(.@i+1)+"]  "+.@name$[.@i]+" : คะแนน " +.@point[.@i]+"";
+		}
+		mes "-----------------------------------------------------";
+		dispbottom"======================= ZENY RANKING =======================";
+		for (set .@i,0; .@i < 10; set .@i,.@i+1) {
+			if (.@point[.@i] == 0) set .@name$[.@i],"None";
+		dispbottom "["+(.@i+1)+"]  "+.@name$[.@i]+" : คะแนน " +.@point[.@i]+"";
+		}
+		dispbottom "========================================================";
+
+
+		query_sql "SELECT `point_gacha` FROM `char` WHERE `char_id`='"+getcharid(0)+"'",.@cpoint;
+		mes "คุณมีคะแนน : "+.@cpoint;
+		mes "==============================================";
+		dispbottom "คุณมีคะแนน : "+.@cpoint;
+		dispbottom "========================================================";
+		close;
+OnInit:
+do {
+delwaitingroom;
+waitingroom "[ "+callfunc("F_InsertComma",($zeny_jackpot))+" ] Zeny ",0;
+sleep 80; // Evites super infinity loop
+} while(1); // End Loop
+end;
+}
+
+
+
+function	script	preview_gacha_shop10	{
+
+	deletearray @i[0],getarraysize(@i);
+	for(set .@i,0; .@i<getargcount(); set .@i,.@i+1)
+		set @i[.@i],getarg(.@i);
+	doevent "preview_mushroom::OnMainMenu";
+	end;
+}
+
+
+

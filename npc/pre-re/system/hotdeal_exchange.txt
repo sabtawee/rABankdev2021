@@ -1,15 +1,15 @@
 ////////////////////////////////////////////////////////////////////////////////////////
 ////-- Whipsering Rain
 
-// NPC ไว้เรียก เมนูคราฟท์
+// NPC ไว้เรียก เมนูวิจัย
 morocc,156,164,6	script	HotWeekCraft	112,{
 	
 	callfunc "F_HotWeekCraft";
 	end;
 	
 OnInit:
-	.npcname$ = " ^0004ff•:[ HotWeekCraft ]:• ^000000";
-	waitingroom "Craft ต่างๆ",0;
+	.npcname$ = " ^0004ff•:[ วิจัย Item ]:• ^000000";
+	waitingroom " วิจัย Item",0;
 	end;	
 	
 }
@@ -26,15 +26,15 @@ OnInit:
 	}
 	deletearray $hdc_itemlist,getarraysize($hdc_itemlist);
 
-	set .npc_name$," ^0004ff•:[ HotWeekCraft ]:• ^000000";
+	set .npc_name$," ^0004ff•:[ วิจัย Item ]:• ^000000";
 	freeloop(1);
 
 	setarray .Shops$[1],
-	" • Craft";
+	" • วิจัย Item";
 
 // -----------------------------------------------------------
 //	อธิบาย
-//  Add_Item(<item ID ที่จะคราฟท์>,<พ้อยท์ ที่ใช้แลก>,<zeny>,< % ติด 1000 = 100%>,<จำนวนที่จะคราฟท์ได้>,<ID วัตถุดิบ 1>,<จำนวนของ วัตถุดิบ 1>,<0 ไม่หาย,1 หาย เวลาคราฟท์ไม่ติด>{,<ID วัตถุดิบ 2>,<จำนวนของ วัตถุดิบ 2>,<0 ไม่หาย,1 หาย เวลาคราฟท์ไม่ติด>});
+//  Add_Item(<item ID ที่จะวิจัย>,<พ้อยท์ ที่ใช้แลก>,<zeny>,< % ติด 1000 = 100%>,<จำนวนที่จะวิจัยได้>,<ID วัตถุดิบ 1>,<จำนวนของ วัตถุดิบ 1>,<0 ไม่หาย,1 หาย เวลาวิจัยไม่ติด>{,<ID วัตถุดิบ 2>,<จำนวนของ วัตถุดิบ 2>,<0 ไม่หาย,1 หาย เวลาวิจัยไม่ติด>});
 // -----------------------------------------------------------
 
 	Add_Item(501,1,100000,600,10000,502,1,0,503,1,0);
@@ -67,7 +67,7 @@ OnMenu:
 	message strcharinfo(0), "เลือกทำได้เพียง 1 ชิ้น.";
 	callshop "S_HWCSHOP",1;
 	npcshopattach "S_HWCSHOP";
-	announce "Point Shop List: '#EXCHANGEPOINTS', พ้อยท์ปัจจุบัน " + #EXCHANGEPOINTS + " พ้อยท์",bc_self|bc_blue;
+	announce "คุณมีแต้มวิจัย: " + #EXCHANGEPOINTS + " พ้อยท์",bc_self|bc_blue;
 	callfunc "F_DisplayCrafted";
 	end;
 
@@ -98,19 +98,19 @@ OnBuyItem:
 		}
 	}
 	next;
-	switch(select(" • คราฟท์ ^0055FF" + getitemname(.@q[0]) + "^000000: • ยกเลิก")) {
+	switch(select(" • วิจัย ^0055FF" + getitemname(.@q[0]) + "^000000: • ยกเลิก")) {
 		case 1:
 			addtimer 10, strnpcinfo(0)+"::OnEnd";
 			if(Zeny < .@q[2]){
 				mes .npc_name$;
-				mes "มี Zeny ไม่พอในการคราฟท์";
+				mes "มี Zeny ไม่พอในการวิจัย";
 				end;
 			}
 			
 			if (@chk_amt[0]) {
 				mes .npc_name$;
 				mes "มีครบที่ต้องการไม่ครบ";
-				mes "ไม่สามารถคราฟท์ได้";
+				mes "ไม่สามารถวิจัยได้";
 				end;
 			}
 			
@@ -121,8 +121,8 @@ OnBuyItem:
 
 			if(.@craft_max == .@check_craft){
 				mes .npc_name$;
-				mes "ไม่สามารถคราฟท์ไอเท็มชิ้นนี้ได้";
-				mes "เต็มโควต้าการคราฟท์แล้ว";
+				mes "ไม่สามารถวิจัยไอเท็มชิ้นนี้ได้";
+				mes "เต็มโควต้าการวิจัยแล้ว";
 				end;				
 			}
 			
@@ -133,7 +133,7 @@ OnBuyItem:
 			if(.@chance < .@q[3]){
 				specialeffect2 154;
 				mes .npc_name$;
-				mes "การคราฟท์เสร็จสิ้น";
+				mes "การวิจัยเสร็จสิ้น";
 				close2;
 				getitem .@q[0],1;
 				.@success = 1;
@@ -142,7 +142,7 @@ OnBuyItem:
 				specialeffect2 155;
 				mes .npc_name$;
 				mes "โทษที, มือพี่ลั่น";
-				mes "เสียใจด้วย คราฟท์ไม่ติด";
+				mes "เสียใจด้วย วิจัยไม่ติด";
 				close2;
 				.@success = 0;
 			}
@@ -220,7 +220,7 @@ function	script	F_DisplayCrafted	{
 		.@arr_data[getarraysize(.@arr_data)] = getd(sprintf("$hdc_%d[0]", $hdc_itemlist[.@z]));
 	}	
 
-	dispbottom "--------------------------------[ Hot Craft ]--------------------------------";
+	dispbottom "--------------------------------[ Item/จำนวน ]--------------------------------";
 	for(.@x=0;.@x<getarraysize(.@arr_data); set .@x,.@x+3){
 		dispbottom " >> ไอเท็ม : '" + getitemname(.@arr_data[.@x]) + "' คงเหลือ ["+(.@arr_data[.@x+1]-1)+"|"+.@arr_data[.@x+2]+"]";
 	}

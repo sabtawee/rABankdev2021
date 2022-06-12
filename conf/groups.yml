@@ -180,6 +180,7 @@ Body:
       Player: true
     Level: 0
     Commands:
+      mobinfo: true
       rates: true
       who: true
   - Id: 10

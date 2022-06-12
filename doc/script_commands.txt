@@ -5261,7 +5261,7 @@ as unidentified item (as defined by itemdb_isidentified in src/map/itemdb.cpp) e
 if 'identify' is defined with value 1.
 
 More info, see doc/item_group.txt.
-
+ 
 ---------------------------------------
 
 *getgroupitem <group_id>{,<identify>{,<char_id>}};
@@ -7926,7 +7926,7 @@ placement of the illustration and takes following values:
 	4	middle of screen without the window header, but still movable
 	255	clear all displayed cutins
 
-The picture is read from data\texture\μ μ €μΈν„°νμ΄μ¤\illust, from both the GRF archive
+The picture is read from data\texture\μÿ μ €μÿΈνÿ°νÿÿμÿ΄μÿ¤\illust, from both the GRF archive
 and data folder, and is required to be a bitmap. The file extension .bmp can be
 omitted. Magenta color (#ff00ff) is considered transparent. There is no limit
 placed on the size of the illustrations by the client, although loading of large

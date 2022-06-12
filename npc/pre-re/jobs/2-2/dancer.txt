@@ -877,7 +877,7 @@ OnDE1:
 	emotion	21;
 	end;
 OnDE2:
-	emotion e_omg;
+	emotion ET_HUK;
 	end;
 }
 job_duncer,66,113,4	script	Back dancer #2::jdt2	724,{
@@ -893,7 +893,7 @@ OnDE1:
 	emotion	21;
 	end;
 OnDE2:
-	emotion e_omg;
+	emotion ET_HUK;
 	end;
 }
 job_duncer,72,113,4	script	Back dancer #3::jdt3	724,{
@@ -909,7 +909,7 @@ OnDE1:
 	emotion	21;
 	end;
 OnDE2:
-	emotion e_omg;
+	emotion ET_HUK;
 	end;
 }
 job_duncer,75,110,4	script	Back dancer #4::jdt4	724,{
@@ -925,7 +925,7 @@ OnDE1:
 	emotion	21;
 	end;
 OnDE2:
-	emotion e_omg;
+	emotion ET_HUK;
 	end;
 }
 job_duncer,75,110,4	script	jdt5	139,{

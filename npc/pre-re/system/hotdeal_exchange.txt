@@ -1,0 +1,251 @@
+////////////////////////////////////////////////////////////////////////////////////////
+////-- Whipsering Rain
+
+// NPC ไว้เรียก เมนูคราฟท์
+morocc,156,164,6	script	HotWeekCraft	112,{
+	
+	callfunc "F_HotWeekCraft";
+	end;
+	
+OnInit:
+	.npcname$ = " ^0004ff•:[ HotWeekCraft ]:• ^000000";
+	waitingroom "Craft ต่างๆ",0;
+	end;	
+	
+}
+
+-	script	HOTCRAFT_CONTROL	-1,{
+
+	function Add_Item;
+	function Chk_Req;
+	function Get_Itemname;
+
+OnInit:
+	for(.@z=0;.@z<getarraysize($hdc_itemlist);.@z++){
+		deletearray getd(sprintf("$hdc_%d", $hdc_itemlist[.@z])),2;
+	}
+	deletearray $hdc_itemlist,getarraysize($hdc_itemlist);
+
+	set .npc_name$," ^0004ff•:[ HotWeekCraft ]:• ^000000";
+	freeloop(1);
+
+	setarray .Shops$[1],
+	" • Craft";
+
+// -----------------------------------------------------------
+//	อธิบาย
+//  Add_Item(<item ID ที่จะคราฟท์>,<พ้อยท์ ที่ใช้แลก>,<zeny>,< % ติด 1000 = 100%>,<จำนวนที่จะคราฟท์ได้>,<ID วัตถุดิบ 1>,<จำนวนของ วัตถุดิบ 1>,<0 ไม่หาย,1 หาย เวลาคราฟท์ไม่ติด>{,<ID วัตถุดิบ 2>,<จำนวนของ วัตถุดิบ 2>,<0 ไม่หาย,1 หาย เวลาคราฟท์ไม่ติด>});
+// -----------------------------------------------------------
+
+	Add_Item(501,1,100000,600,10000,502,1,0,503,1,0);
+	
+	
+// -----------------------------------------------------------
+
+	freeloop(0);
+	set .menu$,"";
+	for(set .@i,1; .@i<=getarraysize(.Shops$); set .@i,.@i+1) {
+		set .menu$, .menu$+.Shops$[.@i]+":";
+	}
+	npcshopdelitem "S_HWCSHOP",909;
+	end;
+
+OnMenu:
+	set .@size, getarraysize(@i);
+	if (!.@size) set @shop_index, select(.menu$);
+	else if (.@size == 1) set @shop_index, @i[0];
+	else {
+		for(set .@j,0; .@j<.@size; set .@j,.@j+1)
+			set .@menu$, .@menu$+.Shops$[@i[.@j]]+":";
+		set @shop_index, @i[select(.@menu$)-1];
+	}
+	deletearray @i[0],getarraysize(@i);
+	if (.Shops$[@shop_index] == "") {
+		message strcharinfo(0),"เกิดข้อผิดพลาดบางอย่าง.";
+		end;
+	}
+	message strcharinfo(0), "เลือกทำได้เพียง 1 ชิ้น.";
+	callshop "S_HWCSHOP",1;
+	npcshopattach "S_HWCSHOP";
+	announce "Point Shop List: '#EXCHANGEPOINTS', พ้อยท์ปัจจุบัน " + #EXCHANGEPOINTS + " พ้อยท์",bc_self|bc_blue;
+	callfunc "F_DisplayCrafted";
+	end;
+
+OnBuyItem:
+	if(@bought_quantity[1]){
+		mes .npc_name$;
+		mes "เลือกทำได้เพียง 1 ชิ้น.";
+		end;
+	}
+	
+	setarray .@q[0],@bought_nameid[0];
+	copyarray .@q[1],getd(".sHDC_"+.@q[0]+"[0]"),getarraysize(getd(".sHDC_"+.@q[0]));
+	mes .npc_name$;
+	mes "Charm : ^0320fc" + getitemname(.@q[0]) + "^000000";
+	mes "ต้องใช้ :";
+	mes "พ้อยท์ : ^ff0000" + .@q[1] + "^000000 พ้อยท์";
+	mes "Zeny : ^ff0000" + .@q[2] + "^000000 Zeny";
+
+	if(#EXCHANGEPOINTS < .@q[1]){
+		mes "พ้อยท์ไม่พอ";
+		end;
+	}
+	
+	disable_items;
+	if (.@q[5]){
+		for(set .@i,5; .@i<getarraysize(.@q); set .@i,.@i+3){
+			mes "> " + Chk_Req(countitem(.@q[.@i]),.@q[.@i+1]) + Get_Itemname(.@q[.@i]) + " [" + countitem(.@q[.@i]) + "/" + (.@q[.@i+1]) + "] ea.^000000";
+		}
+	}
+	next;
+	switch(select(" • คราฟท์ ^0055FF" + getitemname(.@q[0]) + "^000000: • ยกเลิก")) {
+		case 1:
+			addtimer 10, strnpcinfo(0)+"::OnEnd";
+			if(Zeny < .@q[2]){
+				mes .npc_name$;
+				mes "มี Zeny ไม่พอในการคราฟท์";
+				end;
+			}
+			
+			if (@chk_amt[0]) {
+				mes .npc_name$;
+				mes "มีครบที่ต้องการไม่ครบ";
+				mes "ไม่สามารถคราฟท์ได้";
+				end;
+			}
+			
+			progressbar "0xffffff",3;
+			
+			.@craft_max = getd(sprintf("$hdc_%d[0]", .@q[0]));
+			.@check_craft = getd(sprintf("$hdc_%d[1]", .@q[0]));
+
+			if(.@craft_max == .@check_craft){
+				mes .npc_name$;
+				mes "ไม่สามารถคราฟท์ไอเท็มชิ้นนี้ได้";
+				mes "เต็มโควต้าการคราฟท์แล้ว";
+				end;				
+			}
+			
+			#EXCHANGEPOINTS -= .@q[1];
+			Zeny -= .@q[2];
+			
+			.@chance = rand(1000);
+			if(.@chance < .@q[3]){
+				specialeffect2 154;
+				mes .npc_name$;
+				mes "การคราฟท์เสร็จสิ้น";
+				close2;
+				getitem .@q[0],1;
+				.@success = 1;
+				setd (sprintf("$hdc_%d[1]", .@q[0])),.@check_craft+1;
+			}else{
+				specialeffect2 155;
+				mes .npc_name$;
+				mes "โทษที, มือพี่ลั่น";
+				mes "เสียใจด้วย คราฟท์ไม่ติด";
+				close2;
+				.@success = 0;
+			}
+			
+			if (.@q[5]){
+				for(set .@i,5; .@i<getarraysize(.@q); set .@i,.@i+3){
+					if(.@success == 1){
+						delitem .@q[.@i],.@q[.@i+1];
+					}
+					if(.@success == 0){
+						if(.@q[.@i+2] == 1){
+							delitem .@q[.@i],.@q[.@i+1];
+						}
+					}
+				}
+			}					
+			end;
+			break;
+			
+		case 2:
+			end;
+			break;
+	}
+	end;
+	
+OnEnd:
+	deletearray @chk_amt,getarraysize(@chk_amt);
+	end;	
+
+function Add_Item {
+	if (getitemname(getarg(0)) == "null" || getarg(0) < 0 || getarg(0) < 501) {
+		debugmes "Item ID [" + getarg(0) + "] invaild (skipped).";
+		return;
+	}
+	setarray .@j[0],getarg(1),getarg(2),getarg(3),getarg(4);
+	for(set .@i,5; .@i<getargcount(); set .@i,.@i+3) {
+		if (getitemname(getarg(.@i)) == "null" || getarg(.@i) < 0) {
+			debugmes "Item ID [" + getarg(0) + "] requirement ID [" + getarg(.@i) + "] invaild (skipped).";
+			return;
+		} else
+			setarray .@j[.@i-1],getarg(.@i),getarg(.@i+1),getarg(.@i+2);
+	}
+	copyarray getd(".sHDC_"+getarg(0)+"[0]"),.@j[0],getarraysize(.@j);
+	setd (sprintf("$hdc_itemlist[%d]", getarraysize($hdc_itemlist))),getarg(0);
+	setd (sprintf("$hdc_%d[%d]", getarg(0),0)),getarg(4);
+	npcshopadditem "S_HWCSHOP",getarg(0),getarg(1);
+	return;
+}
+
+function Chk_Req {
+	if (getarg(0) < getarg(1)) {
+		set @chk_amt[0],1;
+		return "^FF0000";
+	} else {
+		return "^0320fc";
+	}
+
+}
+
+function Get_Itemname {
+	set .@itemname$,getitemname(getarg(0));
+	switch(.ShowSlot) {
+		case 1: if (!getitemslots(getarg(0))) return .@itemname$;
+		case 2: if (getiteminfo(getarg(0),2) == 4 || getiteminfo(getarg(0),2) == 5) return .@itemname$+" ["+getitemslots(getarg(0))+"]";
+		default: return .@itemname$;
+	}
+}
+
+}
+
+function	script	F_DisplayCrafted	{
+	for(.@z=0;.@z<getarraysize($hdc_itemlist);.@z++){
+		.@arr_data[getarraysize(.@arr_data)] = $hdc_itemlist[.@z];
+		.@arr_data[getarraysize(.@arr_data)] = getd(sprintf("$hdc_%d[1]", $hdc_itemlist[.@z])) + 1;
+		.@arr_data[getarraysize(.@arr_data)] = getd(sprintf("$hdc_%d[0]", $hdc_itemlist[.@z]));
+	}	
+
+	dispbottom "--------------------------------[ Hot Craft ]--------------------------------";
+	for(.@x=0;.@x<getarraysize(.@arr_data); set .@x,.@x+3){
+		dispbottom " >> ไอเท็ม : '" + getitemname(.@arr_data[.@x]) + "' คงเหลือ ["+(.@arr_data[.@x+1]-1)+"|"+.@arr_data[.@x+2]+"]";
+	}
+	dispbottom "------------------------------------------------------------------------------------------";
+	end;	
+}
+
+function	script	F_HotWeekCraft	{
+	deletearray @i[0],getarraysize(@i);
+	for(set .@i,0; .@i<getargcount(); set .@i,.@i+1)
+		set @i[.@i],getarg(.@i);
+	doevent "HOTCRAFT_CONTROL::OnMenu";
+	end;
+}
+
+
+-	script	hotweekcraft_CONTROL	-1,{
+
+OnInterIfInit:
+	debugmes "\033[0;35m>> Whispering Rain : Hot Week Craft";
+	end;
+	
+}
+
+// Dummy shop data -- copy as needed.
+//============================================================
+-	shop	S_HWCSHOP	-1,909:-1
+//============================================================

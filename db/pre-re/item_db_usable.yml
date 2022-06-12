@@ -1527,7 +1527,7 @@ Body:
       BuyingStore: true
       Container: true
     Script: |
-      getrandgroupitem(IG_GiftBox,1);
+      getgroupitem(IG_GiftBox,1);
   - Id: 645
     AegisName: Center_Potion
     Name: Concentration Potion

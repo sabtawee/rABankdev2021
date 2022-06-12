@@ -1,0 +1,41 @@
+-	script	sdjflsdf	-1,{
+OnInit:
+	bindatcmd "mapinfo", strnpcinfo(0)+"::Onaaa";
+	end;
+Onaaa:
+	if ( .@atcmd_numparameters ) {
+		if ( getmapusers(.@atcmd_parameters$) == -1 ) {
+			dispbottom "ไม่มีแผนที่นี้";
+			end;
+		}
+		.@map$ = .@atcmd_parameters$;
+	}
+	else
+		.@map$ = strcharinfo(3);
+	.@size = getmapunits( BL_MOB, .@map$, .@bl );
+	freeloop true;
+	for ( .@i = 0; .@i < .@size; ++.@i ) {
+		.@string$ = rid2name(.@bl[.@i]);
+		if ( !getd(".@"+ .@string$) ) {
+			.@mobname$[.@c] = .@string$;
+			getunitdata .@bl[.@i], .@unitdata;
+			.@mobx[.@c] = .@unitdata[UMOB_X];
+			.@moby[.@c] = .@unitdata[UMOB_Y];
+			.@mobhp[.@c] = .@unitdata[UMOB_HP];
+			.@mobmaxhp[.@c] = .@unitdata[UMOB_MAXHP];
+			++.@c;
+		}
+		setd ".@"+ .@string$, getd(".@"+ .@string$) +1;
+	}
+	dispbottom " === รายชื่อ Monster ในแผนที่ : "+ .@map$ +" ===";
+	for ( .@i = 0; .@i < .@c; ++.@i )
+		if ( getd(".@"+ .@mobname$[.@i]) > 1 || .@mobhp[.@i] )
+			dispbottom ( ++.@j )+". "+ .@mobname$[.@i] +" :  "+ getd(".@"+ .@mobname$[.@i])+" ตัว";
+	if ( getgmlevel() < 99 ) end; // admin only access, lucky you mention it so I make extra checks
+	dispbottom " === Monster หายาก === ";
+	for ( .@i = 0; .@i < .@c; ++.@i )
+		if ( getd(".@"+ .@mobname$[.@i]) == 1 && .@mobhp[.@i] )
+		//	dispbottom .@mobname$[.@i] +" --> X = "+ .@mobx[.@i] +" Y = "+ .@moby[.@i] +" | Hp left = "+ .@mobhp[.@i] +"/"+ .@mobmaxhp[.@i];	//	ส่อง Monster แบบเห็นตำแหน่ง x/y (ไม่แนะนำ)
+			dispbottom .@mobname$[.@i] +" --> Hp คงเหลือ = "+ .@mobhp[.@i] +"/"+ .@mobmaxhp[.@i];	//	ส่องมอนแบบปกติ
+	end;
+}

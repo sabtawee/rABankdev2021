@@ -27,7 +27,7 @@
 
 prontera,174,328,3	script	Young Man#bard_q1	89,3,3,{
 	if (BaseJob == Job_Bard) {
-		emotion e_omg;
+		emotion ET_HUK;
 		mes "[Timid Young Man]";
 		mes " เอ๊ะ? ว้าววว--!";
 		mes " นี่เจ้าคือ.....--";
@@ -321,7 +321,7 @@ prontera,174,328,3	script	Young Man#bard_q1	89,3,3,{
 
 OnTouch:
 	if (BaseJob == Job_Bard) {
-		emotion e_omg;
+		emotion ET_HUK;
 	}
 	end;
 }
@@ -525,7 +525,7 @@ morocc_in,169,72,7	script	Spiteful-Looking Bard#bs	741,3,3,{
 			mes "[Riott]";
 			mes "Hmmrmpf!";
 			mes "Eh heh heh heh!";
-			emotion e_gg;
+			emotion ET_KIK;
 			next;
 			mes "[" + strcharinfo(0) + "]";
 			mes " อืม...";
@@ -678,7 +678,7 @@ morocc_in,169,72,7	script	Spiteful-Looking Bard#bs	741,3,3,{
 		mes "[Riott]";
 		mes "Hmmrmpf!";
 		mes "Eh heh heh heh!";
-		emotion e_gg;
+		emotion ET_KIK;
 		next;
 		mes "[" + strcharinfo(0) + "]";
 		mes " อืม...";
@@ -731,15 +731,15 @@ morocc_in,169,72,7	script	Spiteful-Looking Bard#bs	741,3,3,{
 	}
 
 OnTouch:
-	emotion e_gg;
+	emotion ET_KIK;
 	end;
 }
 
 // Yhelle the Chicken
 //============================================================
 niflheim,239,70,1	script	Yhelle#bard_chick1	800,3,3,{
-	emotion e_omg,1;
-	emotion e_omg;
+	emotion ET_HUK,1;
+	emotion ET_HUK;
 	mes "[Hen Yhelle]";
 	mes "Cluck-Cluuuck?";
 	mes "Cluck cluck cluck!";
@@ -769,8 +769,8 @@ OnTouch:
 }
 
 niflheim,185,205,3	script	Yhelle#bard_chick2	800,3,3,{
-	emotion e_omg,1;
-	emotion e_omg;
+	emotion ET_HUK,1;
+	emotion ET_HUK;
 	mes "[Hen Yhelle]";
 	mes "Cluck-Cluuuck?";
 	mes "Cluck cluck cluck!";
@@ -793,8 +793,8 @@ OnTouch:
 }
 
 niflheim,85,203,5	script	Yhelle#bard_chick3	800,3,3,{
-	emotion e_omg,1;
-	emotion e_omg;
+	emotion ET_HUK,1;
+	emotion ET_HUK;
 	mes "[Hen Yhelle]";
 	mes "Cluck-Cluuuck?";
 	mes "Cluck cluck cluck!";
@@ -817,8 +817,8 @@ OnTouch:
 }
 
 niflheim,149,81,7	script	Yhelle#bard_chick4	800,3,3,{
-	emotion e_omg,1;
-	emotion e_omg;
+	emotion ET_HUK,1;
+	emotion ET_HUK;
 	mes "[Hen Yhelle]";
 	mes "Cluck-Cluuuck?";
 	mes "Cluck cluck cluck!";
@@ -841,8 +841,8 @@ OnTouch:
 }
 
 niflheim,209,144,3	script	Yhelle#bard_chick5	800,3,3,{
-	emotion e_omg,1;
-	emotion e_omg;
+	emotion ET_HUK,1;
+	emotion ET_HUK;
 	mes "[Hen Yhelle]";
 	mes "Cluck-Cluuuck?";
 	mes "Cluck cluck cluck!";
@@ -1026,8 +1026,8 @@ function	script	F_BardSkillYhelle	{
 		mes " น้ำหนักในตัวเจ้ามีมากเกินไป กรุณาตรวจสอบสัมภาระภายในตัวของเจ้าแล้วกลับมาหาข้าใหม่อีกครั้ง";
 		close;
 	}
-	emotion e_omg,1;
-	emotion e_omg;
+	emotion ET_HUK,1;
+	emotion ET_HUK;
 	mes "[Hen Yhelle]";
 	mes "Cluck-Cluuuck?";
 	mes "Cluck cluck cluck!";

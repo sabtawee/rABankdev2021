@@ -1,0 +1,23 @@
+-	script	NPC_CONTROL	-1,{
+
+OnClock0102:
+	enablenpc "เข้าดันบอส";
+	end;
+
+OnClock0103:
+	disablenpc "เข้าดันบอส";
+	end;
+}
+
+morocc,163,73,6	script	เข้าดันบอส	112,{
+	mes "เจ้าต้องการเข้าดันไหม";
+	
+
+
+	end;
+
+OnInit:
+	disablenpc "เข้าดันบอส";
+	end;
+}
+

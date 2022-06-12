@@ -1,0 +1,33 @@
+-	script	VIP_STATUS	-1,{
+	
+OnPCLoginEvent:
+	.@acc_id = getcharid(3);
+	sc_end SC_VIPSTATUS;
+	query_sql "SELECT `vip_time` FROM `login` where account_id = '"+.@acc_id+"';",.@t_vip_time;
+	if(.@t_vip_time){
+		.@vip_time = (.@t_vip_time - gettimetick(2)) *1000;
+		sc_start SC_VIPSTATUS,.@vip_time,0;
+	}
+	end;
+	
+}
+
+function	script	F_GIVEVIP	{
+
+	if(!getarg(0)){return;}
+	if(!getarg(1)){return;}
+	
+	if(getarg(0) == 1){
+		.@time = getarg(1) * 60;
+		.@new_time = getarg(1) * 3600;
+		vip_time .@time;
+		sc_start SC_VIPSTATUS,(.@new_time*1000),0;
+	}
+	if(getarg(0) == 2){
+		.@time = getarg(1) *60*24;
+		.@new_time = getarg(1) *86400;
+		vip_time .@time;
+		sc_start SC_VIPSTATUS,(.@new_time*1000),0;
+	}
+	return;
+}

@@ -53,10 +53,15 @@ Body:
     Items:
       - Index: 0
         Item: Arrow_Container
+        Stock: 10
+        Zeny: 10000
         RequiredItems:
           - Index: 0
             Item: Arrow
             Amount: 500
+          - Index: 1
+            Item: Rod
+            Amount: 2
       - Index: 1
         Item: Iron_Arrow_Container
         RequiredItems:

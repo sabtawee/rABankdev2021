@@ -32,7 +32,7 @@ pay_arche,109,169,3	script	Arpesto	712,{
 				next;
 				mes "[Reidin Corse]";
 				mes " ฮ่าๆ! เจ้ากำลังมองหาคน หรือเจ้ากำลังจะพูดกับใครงั้นรึ..";
-				emotion e_gg,"Reidin Corse#tu";
+				emotion ET_KIK,"Reidin Corse#tu";
 				close;
 			} else {
 				mes "[Arpesto]";
@@ -60,7 +60,7 @@ pay_arche,109,169,3	script	Arpesto	712,{
 				mes " เดี๋ยวก่อน! เดี๋ยว...";
 				mes " รึเจ้ายังไม่ได้บอก";
 				mes " Arpesto's 3rd ว่าเจ้าต้องมีสิ่งบางอย่างที่จำเป็นด้วยรึ?";
-				emotion e_swt,"Reidin Corse#tu";
+				emotion ET_SWEAT,"Reidin Corse#tu";
 				next;
 				mes "[Arpesto]";
 				mes " อ่า, ใช่, Arpesto's 3rd";
@@ -70,9 +70,9 @@ pay_arche,109,169,3	script	Arpesto	712,{
 				mes " ว้าวว, ยอด!";
 				mes "''Emergency Arrow?!''";
 				mes "นั่นคือชื่อเก่าของ skill ที่เจ้าเคยใช้ใช่มั้ย?";
-				emotion e_omg;
+				emotion ET_HUK;
 				next;
-				emotion e_omg;
+				emotion ET_HUK;
 				mes "[Arpesto]";
 				mes " อะไรนะ";
 				mes " ท่านพูดอะไร--";
@@ -83,12 +83,12 @@ pay_arche,109,169,3	script	Arpesto	712,{
 				mes " ว่าเราจะเปลี่ยนชื่อเรียกของมัน";
 				mes " พวกเราจะขอเรียกมันว่า";
 				mes "''Phantasmic Arrow?''";
-				emotion e_dots;
+				emotion ET_THINK;
 				next;
 				mes "[Arpesto]";
 				mes "...";
 				mes "......";
-				emotion e_sob;
+				emotion ET_CRY;
 				next;
 				mes "[Reidin Corse]";
 				mes " อืม....";
@@ -98,7 +98,7 @@ pay_arche,109,169,3	script	Arpesto	712,{
 				mes " ใช้แล้ว นี่ไงล่ะ!";
 				mes "''^3131FFPhantasmic Arrow^000000'' ";
 				mes " ฟังดูดี มากๆ เลย!";
-				emotion e_ic,"Reidin Corse#tu";
+				emotion ET_AHA,"Reidin Corse#tu";
 				next;
 				mes "[Arpesto]";
 				mes " มันคงจะเป็นประโยชน์กับเจ้าในบางครั้ง";
@@ -123,8 +123,8 @@ pay_arche,109,169,3	script	Arpesto	712,{
 				mes "^3355FF*Swwwwwww!*";
 				mes "*Bang!*^000000";
 				specialeffect EF_HIT2;
-				emotion e_omg;
-				emotion e_omg,1;
+				emotion ET_HUK;
+				emotion ET_HUK,1;
 				next;
 				mes "[Arpesto]";
 				mes "^333333*Pant Pant*";
@@ -133,7 +133,7 @@ pay_arche,109,169,3	script	Arpesto	712,{
 				next;
 				mes "[Arpesto]";
 				mes "WHHHHHHHY MEEEEE?!";
-				emotion e_omg,"Reidin Corse#tu";
+				emotion ET_HUK,"Reidin Corse#tu";
 				next;
 				mes "^3355FF*Thump*^000000";
 				next;
@@ -193,9 +193,9 @@ pay_arche,109,169,3	script	Arpesto	712,{
 					mes "[Reidin Corse]";
 					mes " เฮ้! เจ้าโกหก!";
 					mes " ข้าเห็นเจ้าทำมันได้เพราะความบังเอิญ ที่เจ้าเบื่อและเหงาที่ไม่มีใครอยู่ข้างๆ เจ้า";
-					emotion e_gg,"Reidin Corse#tu";
+					emotion ET_KIK,"Reidin Corse#tu";
 					next;
-					emotion e_omg;
+					emotion ET_HUK;
 					mes "[Arpesto]";
 					mes "^333333*แฮ่ม*^000000 ได้โปรดเถอะ Reidin เจ้าอย่าไปสนใจกับข่าวลือเลย ข้าต้องต่อสู้กับ Eddga มานับครั้งไม่ถ้วน เพื่อสร้าง Emergency Arrow skill ที่สมบูรณ์แบบเช่นนี้";
 					next;
@@ -227,7 +227,7 @@ pay_arche,109,169,3	script	Arpesto	712,{
 					mes "......";
 					mes ".........";
 					mes "......เข้าใจแล้ว";
-					emotion e_dots,"Reidin Corse#tu";
+					emotion ET_THINK,"Reidin Corse#tu";
 					set qskill_hunter,1;
 					close;
 				case 2:
@@ -242,7 +242,7 @@ pay_arche,109,169,3	script	Arpesto	712,{
 		mes "[Arpesto]";
 		mes " ท้องฟ้ามองชั่งดูสะอาดตา เแต่เมื่อไม่นานนี้เองข้าได้รู้สึกถึงลมที่พัดผ่านผืนดินแห่งนี้มาพร้อมกับความโชคร้าย";
 		next;
-		emotion e_swt2;
+		emotion ET_SWEAT2;
 		mes "[Arpesto]";
 		mes " โฮ่ โฮ่...";
 		mes " ดังนั้นบางทีข้าต้องระวังตัวขึ้นกว่าเดิมแล้ว...";

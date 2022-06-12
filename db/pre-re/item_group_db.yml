@@ -3393,10 +3393,13 @@ Body:
         List:
           - Item: Red_Potion
             Rate: 1
+            Announced: true           
           - Item: Orange_Potion
             Rate: 1
+            Announced: true
           - Item: Yellow_Potion
             Rate: 1
+            Announced: true
           - Item: White_Potion
             Rate: 1
           - Item: Blue_Potion
@@ -3419,6 +3422,7 @@ Body:
             Rate: 1
           - Item: Gift_Box
             Rate: 19
+            Announced: true
           - Item: Four_Leaf_Clover
             Rate: 1
           - Item: Dark_Red_Jewel
@@ -3531,6 +3535,7 @@ Body:
             Rate: 1
           - Item: Red_Socks_With_Holes
             Rate: 1
+            Announced: true
   - Group: GIFTBOXCHINA
     SubGroups:
       - SubGroup: 1

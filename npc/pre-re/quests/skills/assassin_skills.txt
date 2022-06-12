@@ -530,7 +530,7 @@ in_moc_16,23,27,4	script	Assassin#realgirl	885,{
 				mes " ทำให้เจ้าสามารถสร้างพลังความเสียหาย";
 				mes " เพื่มขึ้นประมาณสองเท่า ด้วย skills Sonic Blow";
 				mes " หากเจ้าถนัดการใช้ Sonic Blow skills นี้จะเป็นประโยชน์ต่อตัวเจ้ามาก";
-				emotion e_lv;
+				emotion ET_THROB;
 				next;
 				break;
 			case 2:
@@ -620,7 +620,7 @@ OnTouch:
 				mes " จับมือคุณเอาไว้!^000000";
 				sc_start SC_POISON,30000,0;
 				sc_start SC_BLOODING,10000,0;
-				emotion e_omg,1;
+				emotion ET_HUK,1;
 				close;
 			case 2:
 				mes "^3355FF มองดูที่หลุมศพ";
@@ -690,7 +690,7 @@ OnTouch:
 					mes " จับมือคุณเอาไว้!^000000";
 					sc_start SC_POISON,30000,0;
 					sc_start SC_BLOODING,10000,0;
-					emotion e_omg,1;
+					emotion ET_HUK,1;
 					close;
 				}
 				else {
@@ -799,7 +799,7 @@ OnTouch:
 			mes " กลั้นหายใจได้ทันเวลา";
 			mes " ก๊าซไม่มีผลกระทบต่อตัวเจ้า";
 			mes " น่าเสียใจ สิ่งที่พบเป็นเศษแก้ว^000000";
-			emotion e_omg,1;
+			emotion ET_HUK,1;
 		}
 		close;
 	}

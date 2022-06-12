@@ -1,0 +1,55 @@
+morocc,166,166,3	script	CP Exchanger	112,{
+	
+	query_sql "SELECT `current_price` FROM `cp_price`;",.@current_price;
+	
+	mes .npcname$;
+	mes "ยินดีต้อนรับค่าสู่ร้านแลกเหรียญ CP";
+	mes "เรทปัจจุบัน : ^0515ff" + .@current_price + "^000000 Zeny/^ff03ab 1 CP^000000";
+	mes "โปรดระบุจำนวนที่ต้องการแลก";
+	
+	input .@pc_want_number,0;
+	
+	if(.@pc_want_number == 0){
+		mes "เลขที่ระบุผิดพลาด";
+		end;
+	}
+	
+	mes "ต้องการแลก : ^0515ff" + .@pc_want_number + "^000000 CP";
+	
+	.@total_zeny = .@current_price * .@pc_want_number;
+	
+	mes "ตองการ Zeny : ^ff0000" + .@total_zeny + "^000000 Zeny";
+	
+	if(Zeny < .@total_zeny){
+		mes "คุณมี Zeny ไม่เพียงพอ";
+		end;
+	}
+	
+	menu "^FF0000•^000000 ยืนยัน ",-,"^FF0000•^000000 ยกเลิก",-;
+	set .@menu2,@menu;
+	
+	if(.@menu2 == 2) {end;}
+	
+	Zeny -= .@total_zeny;
+
+	// แก้ ID เหรียญ CP
+	getitem 6242,.@pc_want_number;
+	
+	specialeffect2 100;	
+	
+	end;	
+	
+OnSqlINIT:
+	query_sql "DROP TABLE IF EXISTS `cp_price`;";
+	query_sql "CREATE TABLE IF NOT EXISTS `cp_price` (`current_price` int(20) DEFAULT NULL);";
+	dispbottom "สร้าง Table สำหรับกำหนดราคาเหรียญ CP เสร็จสิ้น",0xff0808;
+	end;	
+	
+Oninit:
+
+	.npcname$ = "[^FF0000•^000000 ^2f00ffCP Exchanger^000000 ^FF0000•^000000]";
+	bindatcmd "cp_price",strnpcinfo(0)+"::OnSqlINIT",99;
+	waitingroom "แลกเหรียญ CP",0;
+	end;	
+	
+}

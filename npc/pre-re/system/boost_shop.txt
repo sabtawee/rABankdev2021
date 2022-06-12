@@ -1,4 +1,4 @@
-prt_fild08,180,355,3	script	Boost Shop	112,{
+morocc,163,164,3	script	Boost Shop	112,{
 	
 	mes .npcname$;
 	mes "เลือก Boost ที่ท่านต้องการ";

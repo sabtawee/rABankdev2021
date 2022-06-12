@@ -154,7 +154,7 @@ comodo,204,172,5	script	Canell#qsk_dan01	724,{
 			mes " เธออยู่ใกล้ๆแถวโบสถ์เมืองพรอนเทร่า";
 			mes " และข้ามั่นใจว่าเขาจะให้คำแนนนำบางอย่าง";
 			mes " กับเจ้าอย่างมาก";
-			emotion e_ag,1;
+			emotion ET_ANGER,1;
 			set DANCER_SK,3;
 			close;
 		}
@@ -164,7 +164,7 @@ comodo,204,172,5	script	Canell#qsk_dan01	724,{
 			mes " เธออยู่ใกล้ๆแถวโบสถ์เมืองพรอนเทร่า";
 			mes " และข้ามั่นใจว่าเขาจะให้คำแนนนำบางอย่าง";
 			mes " กับเจ้าอย่างมาก";
-			emotion e_go;
+			emotion ET_GO;
 			close;
 		}
 		else if (DANCER_SK == 7) {
@@ -235,7 +235,7 @@ comodo,204,172,5	script	Canell#qsk_dan01	724,{
 				mes "[Canell]";
 				mes " ดีมาก แล้วอย่าลืมจังหว่ะ";
 				mes " ที่ต้องเป็นไปอย่างธรรมชาติ";
-				emotion e_kis;
+				emotion ET_CHUP;
 				next;
 				mes "[Canell]";
 				mes " เจ้าได้เข้าใจถึงการ";
@@ -261,7 +261,7 @@ comodo,204,172,5	script	Canell#qsk_dan01	724,{
 			mes " หืมม์...?";
 			mes " ยังมีอะไรที่เจ้าต้องการอยากรู้อีก?";
 			mes " เจ้าอยากสนุกกับความสวยของข้าล่ะสิ?";
-			emotion e_pif;
+			emotion ET_HNG;
 			next;
 			mes "[Canell]";
 			mes " โอ้ ข้าควรจะไปทำงานที่โบสถ์กับพี่สาวของข้า~";
@@ -305,7 +305,7 @@ comodo,204,172,5	script	Canell#qsk_dan01	724,{
 			mes " เฮ้ เจ้าหนุ่ม..";
 			mes "handsome~";
 			mes "^333333*Wink~*^000000";
-			emotion e_kis;
+			emotion ET_CHUP;
 			specialeffect2 EF_VALLENTINE2;
 			next;
 			mes "^3355FFStrangely enough,";
@@ -444,7 +444,7 @@ prontera,183,333,1	script	Aelle#qsk_dan02	79,{
 				mes " -เจ้าก็ไม่ควรพูดอะไรออกไป-";
 				percentheal -10,0;
 				specialeffect2 EF_HIT2;
-				emotion e_dots,1;
+				emotion ET_THINK,1;
 				delitem 970,1; //Alchol
 				delitem 512,1; //Apple
 				delitem 513,3; //Banana
@@ -518,7 +518,7 @@ prontera,183,333,1	script	Aelle#qsk_dan02	79,{
 			mes "[Sober Aelle]";
 			mes " โอ้...";
 			mes " ปวดหัวจริงๆ...";
-			emotion e_an;
+			emotion ET_FRET;
 			next;
 			mes "[Aelle]";
 			mes " โอ้, ว้าว, ข้าเห็นเจ้า!";
@@ -550,7 +550,7 @@ prontera,183,333,1	script	Aelle#qsk_dan02	79,{
 			mes " โอ้, !";
 			mes " ใครให้เจ้ามาถามล่ะ หลวงพ่อใช่มั้ย?";
 			mes " ข้าไม่ได้ทำอะไรนะ!";
-			emotion e_omg;
+			emotion ET_HUK;
 			next;
 			mes "[Aelle]";
 			mes " ขอบคุณมากที่รัก...";
@@ -577,7 +577,7 @@ prontera,183,333,1	script	Aelle#qsk_dan02	79,{
 			mes " โอ้, !";
 			mes " ใครให้เจ้ามาถามล่ะ หลวงพ่อใช่มั้ย?";
 			mes " ข้าไม่ได้ทำอะไรนะ!";
-			emotion e_omg;
+			emotion ET_HUK;
 			next;
 			mes "[Aelle]";
 			mes " ขอบคุณมากที่รัก...";

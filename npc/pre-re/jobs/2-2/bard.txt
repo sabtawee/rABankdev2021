@@ -176,7 +176,7 @@ L_UGLYFLOWER:
 	mes " นี่มันอะไร?! เอามันออกไปห่างๆ จากหน้าของข้า";
 	mes " ข้าเกลียด maneater blossoms!!!";
 	mes " มันดูน่าเกลียดมาก!";
-	emotion e_omg;
+	emotion ET_HUK;
 	close;
 
 M_NOTHAVE:
@@ -439,7 +439,7 @@ L_CHANGE:
 			getitem 1901,1;
 	}
 
-	emotion e_grat;
+	emotion ET_CONGRATULATION;
 	mes "[Lalo]";
 	mes " นี่คือของขวัญของท่าน เมื่อท่านร้องเพลงมัน จะมีเสียงคลอไป";
 	mes " หวังว่าท่านจะร้องเพลงที่มอบความสุข";

@@ -87,3 +87,13 @@ Header:
   Type: ITEM_DB
   Version: 2
 
+Body:
+  - Id: 20502
+    AegisName: C_Devil_Wing
+    Name: Costume Little Devil Wings
+    Type: Armor
+    Locations:
+      Costume_Garment: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    View: 12

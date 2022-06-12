@@ -2,6 +2,7 @@ morocc,163,164,3	script	Boost Shop	112,{
 	
 	mes .npcname$;
 	mes "เลือก Boost ที่ท่านต้องการ";
+	mes "^0000ffCrypto Points^000000 คุณมี ^FF0000"+ callfunc("F_InsertComma",#CRYPTOPOINTS) +"^000000 Points";
 
 	for(.@i=0; .@i<getarraysize(.sc_name$); .@i++){
 		set .@sc_menu$, .@sc_menu$ + " ^FF0000•^000000 " + .sc_name$[.@i] + "^000000 [^ff03ab" + .sc_rate[.@i] + "CP^000000/^0307ff1%^000000]:";
@@ -9,15 +10,15 @@ morocc,163,164,3	script	Boost Shop	112,{
 	set .@sc_sel, select(.@sc_menu$) - 1;	
 	
 	mes "Boost ที่เลือก : ^000dff" + .sc_name$[.@sc_sel] + "^000000 [^ff03ab" + .sc_rate[.@sc_sel] + "CP^000000/^0307ff1%^000000]";
-	input .@pc_want_number,0,20;
+	input .@pc_want_number,0,31;
 	
 	if(.@pc_want_number == 0){
 		mes "เลขที่ระบุผิดพลาด";
 		end;
 	}
 	
-	if(.@pc_want_number >= 20){
-		mes "ไม่สามารถระบุเกิน 20% ได้";
+	if(.@pc_want_number >= 31){
+		mes "ไม่สามารถระบุเกิน 30% ได้";
 		end;
 	}
 	

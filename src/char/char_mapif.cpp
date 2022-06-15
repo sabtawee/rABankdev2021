@@ -986,6 +986,7 @@ int chmapif_parse_reqauth(int fd, int id){
 		uint32 account_id;
 		uint32 char_id;
 		uint32 login_id1;
+		uint32 donate_level;
 		unsigned char sex;
 		uint32 ip;
 		struct auth_node* node;
@@ -1012,7 +1013,7 @@ int chmapif_parse_reqauth(int fd, int id){
 				cd = (struct mmo_charstatus*)uidb_get(char_db_,char_id);
 		}
 		if( runflag == CHARSERVER_ST_RUNNING && autotrade && cd ){
-			uint16 mmo_charstatus_len = sizeof(struct mmo_charstatus) + 25;
+			uint16 mmo_charstatus_len = sizeof(struct mmo_charstatus) + 29;
 
 			WFIFOHEAD(fd,mmo_charstatus_len);
 			WFIFOW(fd,0) = 0x2afd;
@@ -1023,7 +1024,8 @@ int chmapif_parse_reqauth(int fd, int id){
 			WFIFOL(fd,16) = 0;
 			WFIFOL(fd,20) = 0;
 			WFIFOB(fd,24) = 0;
-			memcpy(WFIFOP(fd,25), cd, sizeof(struct mmo_charstatus));
+			WFIFOL(fd,25) = node->donate_level;
+			memcpy(WFIFOP(fd,29), cd, sizeof(struct mmo_charstatus));
 			WFIFOSET(fd, WFIFOW(fd,2));
 
 			char_set_char_online(id, char_id, account_id);
@@ -1039,7 +1041,7 @@ int chmapif_parse_reqauth(int fd, int id){
 #endif
 			)
 		{// auth ok
-			uint16 mmo_charstatus_len = sizeof(struct mmo_charstatus) + 25;
+			uint16 mmo_charstatus_len = sizeof(struct mmo_charstatus) + 29;
 
 			WFIFOHEAD(fd,mmo_charstatus_len);
 			WFIFOW(fd,0) = 0x2afd;
@@ -1050,7 +1052,8 @@ int chmapif_parse_reqauth(int fd, int id){
 			WFIFOL(fd,16) = (uint32)node->expiration_time; // FIXME: will wrap to negative after "19-Jan-2038, 03:14:07 AM GMT"
 			WFIFOL(fd,20) = node->group_id;
 			WFIFOB(fd,24) = node->changing_mapservers;
-			memcpy(WFIFOP(fd,25), cd, sizeof(struct mmo_charstatus));
+			WFIFOL(fd,25) = node->donate_level;
+			memcpy(WFIFOP(fd,29), cd, sizeof(struct mmo_charstatus));
 			WFIFOSET(fd, WFIFOW(fd,2));
 
 			// only use the auth once and mark user online

@@ -1250,7 +1250,7 @@ void pc_setrestartvalue(struct map_session_data *sd, char type);
 void pc_makesavestatus(struct map_session_data *sd);
 void pc_respawn(struct map_session_data* sd, clr_type clrtype);
 void pc_setnewpc(struct map_session_data *sd, uint32 account_id, uint32 char_id, int login_id1, t_tick client_tick, int sex, int fd);
-bool pc_authok(struct map_session_data *sd, uint32 login_id2, time_t expiration_time, int group_id, struct mmo_charstatus *st, bool changing_mapservers);
+bool pc_authok(struct map_session_data *sd, uint32 login_id2, time_t expiration_time, int group_id,int donate_level, struct mmo_charstatus *st, bool changing_mapservers);
 void pc_authfail(struct map_session_data *sd);
 void pc_reg_received(struct map_session_data *sd);
 void pc_close_npc(struct map_session_data *sd,int flag);

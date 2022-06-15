@@ -2488,6 +2488,9 @@ int mob_getdroprate(struct block_list *src, std::shared_ptr<s_mob_db> mob, int b
 
 			if (sd->sc.data[SC_EXPBOOK_DROP])
 				drop_rate_bonus += sd->sc.data[SC_EXPBOOK_DROP]->val1;
+				
+			if (sd->sc.data[SC_VIP_LEVEL_DROP])
+				drop_rate_bonus += sd->sc.data[SC_VIP_LEVEL_DROP]->val1;
 			///////////////////////////////////////////////////////////////////
 
 			int cap;

@@ -539,6 +539,7 @@ struct mmo_charstatus {
 	uint32 father;
 	uint32 mother;
 	uint32 child;
+	uint32 donate_level;
 
 	t_exp base_exp,job_exp;
 	int zeny;

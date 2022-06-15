@@ -687,7 +687,7 @@ void chrif_authreq(struct map_session_data *sd, bool autotrade) {
  * Auth confirmation ack
  *------------------------------------------*/
 void chrif_authok(int fd) {
-	uint32 account_id, group_id, char_id;
+	uint32 account_id, group_id, char_id, donate_level;
 	uint32 login_id1,login_id2;
 	time_t expiration_time;
 	struct mmo_charstatus* status;
@@ -696,8 +696,8 @@ void chrif_authok(int fd) {
 	TBL_PC* sd;
 
 	//Check if both servers agree on the struct's size
-	if( RFIFOW(fd,2) - 25 != sizeof(struct mmo_charstatus) ) {
-		ShowError("chrif_authok: Data size mismatch! %d != %" PRIuPTR "\n", RFIFOW(fd,2) - 25, sizeof(struct mmo_charstatus));
+	if( RFIFOW(fd,2) - 29 != sizeof(struct mmo_charstatus) ) {
+		ShowError("chrif_authok: Data size mismatch! %d != %" PRIuPTR "\n", RFIFOW(fd,2) - 29, sizeof(struct mmo_charstatus));
 		return;
 	}
 
@@ -707,9 +707,10 @@ void chrif_authok(int fd) {
 	expiration_time = (time_t)(int32)RFIFOL(fd,16);
 	group_id = RFIFOL(fd,20);
 	changing_mapservers = (RFIFOB(fd,24)) > 0;
-	status = (struct mmo_charstatus*)RFIFOP(fd,25);
+	donate_level = RFIFOL(fd,25);
+	status = (struct mmo_charstatus*)RFIFOP(fd,29);
 	char_id = status->char_id;
-
+	
 	//Check if we don't already have player data in our server
 	//Causes problems if the currently connected player tries to quit or this data belongs to an already connected player which is trying to re-auth.
 	if ( ( sd = map_id2sd(account_id) ) != NULL )
@@ -738,7 +739,7 @@ void chrif_authok(int fd) {
 		node->char_id == char_id &&
 		node->login_id1 == login_id1 )
 	{ //Auth Ok
-		if (pc_authok(sd, login_id2, expiration_time, group_id, status, changing_mapservers))
+		if (pc_authok(sd, login_id2, expiration_time, group_id, donate_level, status, changing_mapservers))
 			return;
 	} else { //Auth Failed
 		pc_authfail(sd);

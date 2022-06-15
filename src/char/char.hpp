@@ -214,6 +214,7 @@ struct auth_node {
 	uint32 login_id1;
 	uint32 login_id2;
 	uint32 ip;
+	uint32 donate_level;
 	int sex;
 	time_t expiration_time; // # of seconds 1/1/1970 (timestamp): Validity limit of the account (0 = unlimited)
 	int group_id;
@@ -234,7 +235,7 @@ DBMap* char_get_onlinedb(); // uint32 account_id -> struct online_char_data*
 
 struct char_session_data {
 	bool auth; // whether the session is authed or not
-	uint32 account_id, login_id1, login_id2, sex;
+	uint32 account_id, login_id1, login_id2, sex ,donate_level;
 	int found_char[MAX_CHARS]; // ids of chars on this account
 	char email[40]; // e-mail (default: a@a.com) by [Yor]
 	time_t expiration_time; // # of seconds 1/1/1970 (timestamp): Validity limit of the account (0 = unlimited)

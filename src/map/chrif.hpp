@@ -27,7 +27,7 @@ enum e_chrif_save_opt {
 };
 
 struct auth_node {
-	uint32 account_id, char_id;
+	uint32 account_id, char_id, donate_level;
 	int login_id1, login_id2, sex, fd;
 	time_t expiration_time; // # of seconds 1/1/1970 (timestamp): Validity limit of the account (0 = unlimited)
 	struct map_session_data *sd;	//Data from logged on char.

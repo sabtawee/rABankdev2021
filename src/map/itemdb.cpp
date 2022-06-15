@@ -30,6 +30,7 @@ ComboDatabase itemdb_combo;
 ItemGroupDatabase itemdb_group;
 
 struct s_roulette_db rd;
+struct s_donateperks_db donateperks;
 
 static void itemdb_jobid2mapid(uint64 bclass[3], e_mapid jobmask, bool active);
 
@@ -2380,6 +2381,23 @@ static bool itemdb_read_noequip(char* str[], int columns, int current) {
 	return true;
 }
 
+/**
+* Donate Perks Read
+**/
+static bool itemdb_read_donateperks(char* fields[], int columns, int current)
+{
+	int level,percent;
+
+	level = atoi(fields[0]);
+	percent = atoi(fields[1]);
+
+	donateperks.level[current] = level;
+	donateperks.percent[current] = percent;
+
+	return true;
+}
+
+
 const std::string ComboDatabase::getDefaultLocation() {
 	return std::string(db_path) + "/item_combos.yml";
 }
@@ -3448,6 +3466,7 @@ static void itemdb_read(void) {
 		}
 
 		sv_readdb(dbsubpath2, "item_noequip.txt",       ',', 2, 2, -1, &itemdb_read_noequip, i > 0);
+		sv_readdb(dbsubpath1, "donate_perks.txt",		',', 2, 2, -1, &itemdb_read_donateperks, i > 0);
 		aFree(dbsubpath1);
 		aFree(dbsubpath2);
 	}

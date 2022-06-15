@@ -1874,7 +1874,10 @@
 	export_constant(SC_EXTRABOOST_USABLE);
 	export_constant(SC_EXTRABOOST_ETC);
 	export_constant(SC_EXTRABOOST_EQUIPMENT);
-	export_constant(SC_EXTRABOOST_CARD);	
+	export_constant(SC_EXTRABOOST_CARD);
+		
+	export_constant(SC_VIP_LEVEL_EXP);
+	export_constant(SC_VIP_LEVEL_DROP);	
 ///////////////////////////////////////////////////////////////////
 
 	/* status icons */

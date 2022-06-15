@@ -1209,7 +1209,10 @@ enum sc_type : int16 {
 	SC_EXTRABOOST_USABLE,
 	SC_EXTRABOOST_ETC,
 	SC_EXTRABOOST_EQUIPMENT,
-	SC_EXTRABOOST_CARD,	
+	SC_EXTRABOOST_CARD,
+	
+	SC_VIP_LEVEL_EXP,
+	SC_VIP_LEVEL_DROP,
 ///////////////////////////////////////////////////////////////////
 
 	SC_MAX, //Automatically updated max, used in for's to check we are within bounds.
@@ -2586,7 +2589,10 @@ enum efst_type : short{
 	EFST_EXTRABOOST_USABLE,
 	EFST_EXTRABOOST_ETC,
 	EFST_EXTRABOOST_EQUIPMENT,
-	EFST_EXTRABOOST_CARD,	
+	EFST_EXTRABOOST_CARD,
+	
+	EFST_VIP_LEVEL_EXP,
+	EFST_VIP_LEVEL_DROP,
 ///////////////////////////////////////////////////////////////////
 
 	EFST_MAX,

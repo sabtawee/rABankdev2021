@@ -939,6 +939,7 @@ int chclif_parse_charselect(int fd, struct char_session_data* sd,uint32 ipl){
 		node->expiration_time = sd->expiration_time;
 		node->group_id = sd->group_id;
 		node->ip = ipl;
+		node->donate_level = sd->donate_level;
 		idb_put(auth_db, sd->account_id, node);
 
 	}

@@ -334,7 +334,7 @@ int chlogif_parse_ackaccreq(int fd){
  * AH 0x2717 <aid>.L <email>.40B <expiration_time>.L <group_id>.B <birthdate>.11B <pincode>.5B <pincode_change>.L <isvip>.B <char_vip>.B <char_billing>.B
  **/
 int chlogif_parse_reqaccdata(int fd){
-	if (RFIFOREST(fd) < 75)
+	if (RFIFOREST(fd) < 79)
 		return 0;
 	int u_fd; //user fd
 	struct char_session_data* sd;
@@ -358,6 +358,8 @@ int chlogif_parse_reqaccdata(int fd){
 		sd->isvip = RFIFOB(fd,72);
 		sd->chars_vip = RFIFOB(fd,73);
 		sd->chars_billing = RFIFOB(fd,74);
+		sd->donate_level = RFIFOB(fd,75);
+		
 		// continued from char_auth_ok...
 		if(((charserv_config.max_connect_user == 0 || charserv_config.char_maintenance == 1) ||
 			(charserv_config.max_connect_user > 0 && char_count_users() >= charserv_config.max_connect_user)) &&
@@ -372,7 +374,7 @@ int chlogif_parse_reqaccdata(int fd){
 #endif
 		}
 	}
-	RFIFOSKIP(fd,75);
+	RFIFOSKIP(fd,79);
 	return 1;
 }
 

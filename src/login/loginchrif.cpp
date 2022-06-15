@@ -195,7 +195,8 @@ int logchrif_send_accdata(int fd, uint32 aid) {
 	WFIFOB(fd,72) = isvip;
 	WFIFOB(fd,73) = char_vip;
 	WFIFOB(fd,74) = char_billing;
-	WFIFOSET(fd,75);
+	WFIFOB(fd,75) = acc.donate_level;
+	WFIFOSET(fd,79);
 	return 1;
 }
 

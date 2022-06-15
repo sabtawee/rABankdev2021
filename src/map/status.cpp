@@ -10780,6 +10780,8 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		case SC_EXTRABOOST_ETC:
 		case SC_EXTRABOOST_EQUIPMENT:
 		case SC_EXTRABOOST_CARD:
+		case SC_VIP_LEVEL_EXP:
+		case SC_VIP_LEVEL_DROP:
 			if (val1 < 0)
 				val1 = 0;
 			break;

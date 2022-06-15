@@ -31,6 +31,9 @@ const t_itemid CARD0_FORGE = 0x00FF;
 const t_itemid CARD0_CREATE = 0x00FE;
 const t_itemid CARD0_PET = 0x0100;
 
+/// Define Max donate_perks
+#define MAX_DONATE_LEVEL 10
+
 ///Marks if the card0 given is "special" (non-item id used to mark pets/created items. [Skotlex]
 #define itemdb_isspecial(i) (i == CARD0_FORGE || i == CARD0_CREATE || i == CARD0_PET)
 
@@ -1172,6 +1175,13 @@ struct s_roulette_db {
 	int items[MAX_ROULETTE_LEVEL]; /// Number of items in the list for each
 };
 extern struct s_roulette_db rd;
+
+/// Struct of Donate Perks
+struct s_donateperks_db {
+	int level[MAX_DONATE_LEVEL];
+	int percent[MAX_DONATE_LEVEL];
+};
+extern struct s_donateperks_db donateperks;
 
 ///Main item data struct
 struct item_data

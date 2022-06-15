@@ -10953,6 +10953,34 @@ void clif_parse_WantToConnection(int fd, struct map_session_data* sd)
 	chrif_authreq(sd,false);
 }
 
+///////////////////////////////////////////////////////////////////////////////////
+
+static void donate_level_buff(struct map_session_data *sd){
+	nullpo_retv(sd);
+	
+	int percent = donateperks.percent[sd->status.donate_level];
+	
+	status_change_start(NULL, &sd->bl, SC_VIP_LEVEL_EXP, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
+	status_change_start(NULL, &sd->bl, SC_VIP_LEVEL_DROP, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
+	
+	char msg[255];
+	sprintf(msg,"ได้รับพรพิเศษสำหรับ Donator เท่านั้น");
+	const char *int_msg = &msg[0];	
+	clif_showscript(&sd->bl, int_msg, SELF);	
+	clif_specialeffect(&sd->bl, 40, AREA);
+}
+
+///////////////////////////////////////////////////////////////////////////////////
+
+/*==========================================
+ * function that apply or run when player loading into map
+ *------------------------------------------*/
+static void login_start_function(struct map_session_data *sd){
+	nullpo_retv(sd);
+	
+	donate_level_buff(sd);
+	
+}
 
 /// Notification from the client, that it has finished map loading and is about to display player's character (CZ_NOTIFY_ACTORINIT).
 /// 007d
@@ -11349,6 +11377,7 @@ void clif_parse_LoadEndAck(int fd,struct map_session_data *sd)
 
 	pc_show_questinfo_reinit(sd);
 	pc_show_questinfo(sd);
+	login_start_function(sd);
 
 #if PACKETVER >= 20150513
 	if( sd->mail.inbox.unread ){

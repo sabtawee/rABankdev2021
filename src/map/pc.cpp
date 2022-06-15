@@ -1615,7 +1615,7 @@ uint8 pc_isequip(struct map_session_data *sd,int n)
  * No problem with the session id
  * set the status that has been sent from char server
  *------------------------------------------*/
-bool pc_authok(struct map_session_data *sd, uint32 login_id2, time_t expiration_time, int group_id, struct mmo_charstatus *st, bool changing_mapservers)
+bool pc_authok(struct map_session_data *sd, uint32 login_id2, time_t expiration_time, int group_id, int donate_level, struct mmo_charstatus *st, bool changing_mapservers)
 {
 	t_tick tick = gettick();
 	uint32 ip = session[sd->fd]->client_addr;
@@ -1632,6 +1632,8 @@ bool pc_authok(struct map_session_data *sd, uint32 login_id2, time_t expiration_
 		clif_authfail_fd(sd->fd, 0);
 		return false;
 	}
+	
+	sd->status.donate_level = donate_level;
 
 	//Set the map-server used job id. [Skotlex]
 	uint64 class_ = pc_jobid2mapid(sd->status.class_);
@@ -7723,6 +7725,10 @@ static void pc_calcexp(struct map_session_data *sd, t_exp *base_exp, t_exp *job_
 	if (sd->sc.data[SC_GLOBAL_EXP]) {
 		bonus += sd->sc.data[SC_GLOBAL_EXP]->val1;
 	}
+	
+	if (sd->sc.data[SC_VIP_LEVEL_EXP]) {
+		bonus += sd->sc.data[SC_VIP_LEVEL_EXP]->val1;
+	}
 ///////////////////////////////////////////////////////////////////	
 
 	if (*base_exp) {
@@ -7742,6 +7748,10 @@ static void pc_calcexp(struct map_session_data *sd, t_exp *base_exp, t_exp *job_
 	
 	if (sd->sc.data[SC_GLOBAL_EXP]) {
 		bonus += sd->sc.data[SC_GLOBAL_EXP]->val1;
+	}
+	
+	if (sd->sc.data[SC_VIP_LEVEL_EXP]) {
+		bonus += sd->sc.data[SC_VIP_LEVEL_EXP]->val1;
 	}
 ///////////////////////////////////////////////////////////////////	
 

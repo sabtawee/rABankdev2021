@@ -7735,6 +7735,9 @@ ACMD_FUNC(mobinfo)
 				
 			if (sd->sc.data[SC_EXPBOOK_DROP])
 				droprate += droprate * sd->sc.data[SC_EXPBOOK_DROP]->val1 / 100;
+				
+			if (sd->sc.data[SC_VIP_LEVEL_DROP])
+				droprate += droprate * sd->sc.data[SC_VIP_LEVEL_DROP]->val1 / 100;
 
 			if (item_data->slots)
 				sprintf(atcmd_output2, " - %s[%d]  %02.02f%%", item_data->ename.c_str(), item_data->slots, (float)droprate / 100);

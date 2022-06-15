@@ -510,7 +510,7 @@ static bool mmo_auth_fromsql(AccountDB_SQL* db, struct mmo_account* acc, uint32 
 	// retrieve login entry for the specified account
 	if( SQL_ERROR == Sql_Query(sql_handle,
 #ifdef VIP_ENABLE
-		"SELECT `account_id`,`userid`,`user_pass`,`sex`,`email`,`group_id`,`state`,`unban_time`,`expiration_time`,`logincount`,`lastlogin`,`last_ip`,`birthdate`,`character_slots`,`pincode`, `pincode_change`, `vip_time`, `old_group` FROM `%s` WHERE `account_id` = %d",
+		"SELECT `account_id`,`userid`,`user_pass`,`sex`,`email`,`group_id`,`state`,`unban_time`,`expiration_time`,`logincount`,`lastlogin`,`last_ip`,`birthdate`,`character_slots`,`pincode`, `pincode_change`, `vip_time`, `old_group`, `donate_level` FROM `%s` WHERE `account_id` = %d",
 #else
 		"SELECT `account_id`,`userid`,`user_pass`,`sex`,`email`,`group_id`,`state`,`unban_time`,`expiration_time`,`logincount`,`lastlogin`,`last_ip`,`birthdate`,`character_slots`,`pincode`, `pincode_change` FROM `%s` WHERE `account_id` = %d",
 #endif
@@ -546,6 +546,7 @@ static bool mmo_auth_fromsql(AccountDB_SQL* db, struct mmo_account* acc, uint32 
 	Sql_GetData(sql_handle, 16, &data, NULL); acc->vip_time = atol(data);
 	Sql_GetData(sql_handle, 17, &data, NULL); acc->old_group = atoi(data);
 #endif
+	Sql_GetData(sql_handle, 18, &data, NULL); acc->donate_level = atoi(data);
 	Sql_FreeResult(sql_handle);
 	acc->web_auth_token[0] = '\0';
 

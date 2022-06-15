@@ -42,6 +42,7 @@ struct mmo_account {
 	int old_group;
 	time_t vip_time;
 #endif
+	uint32 donate_level;
 };
 
 

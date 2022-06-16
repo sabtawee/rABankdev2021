@@ -394,6 +394,7 @@ struct map_session_data {
 		t_itemid laphine_synthesis;
 		t_itemid laphine_upgrade;
 		bool roulette_open;
+		bool donate_buff;
 	} state;
 	struct {
 		unsigned char no_weapon_damage, no_magic_damage, no_misc_damage;

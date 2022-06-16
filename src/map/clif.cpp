@@ -10960,14 +10960,16 @@ static void donate_level_buff(struct map_session_data *sd){
 	
 	int percent = donateperks.percent[sd->status.donate_level];
 	
-	status_change_start(NULL, &sd->bl, SC_VIP_LEVEL_EXP, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
-	status_change_start(NULL, &sd->bl, SC_VIP_LEVEL_DROP, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
-	
-	char msg[255];
-	sprintf(msg,"ได้รับพรพิเศษสำหรับ Donator เท่านั้น");
-	const char *int_msg = &msg[0];	
-	clif_showscript(&sd->bl, int_msg, SELF);	
-	clif_specialeffect(&sd->bl, 40, AREA);
+	if(percent > 0){
+		status_change_start(NULL, &sd->bl, SC_VIP_LEVEL_EXP, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
+		status_change_start(NULL, &sd->bl, SC_VIP_LEVEL_DROP, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
+		
+		char msg[255];
+		sprintf(msg,"Donator : ได้รับบัฟ EXP/DROP +%d%%",percent);
+		const char *int_msg = &msg[0];	
+		clif_showscript(&sd->bl, int_msg, SELF);	
+		clif_specialeffect(&sd->bl, 40, AREA);
+	}
 }
 
 ///////////////////////////////////////////////////////////////////////////////////

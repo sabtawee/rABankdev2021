@@ -4052,6 +4052,8 @@
 	export_constant(EFST_EXTRABOOST_EQUIPMENT);
 	export_constant(EFST_EXTRABOOST_CARD);	
 	
+	export_constant(EFST_VIP_LEVEL_EXP);
+	export_constant(EFST_VIP_LEVEL_DROP);
 ///////////////////////////////////////////////////////////////////
 
 	export_constant(EFST_MAX);

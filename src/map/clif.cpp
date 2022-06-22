@@ -10963,7 +10963,7 @@ static void donate_level_buff(struct map_session_data *sd){
 	if(percent > 0 && sd->state.donate_buff == false){
 		status_change_start(NULL, &sd->bl, SC_VIP_LEVEL_EXP, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
 		status_change_start(NULL, &sd->bl, SC_VIP_LEVEL_DROP, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
-		sd->state.donate_buff == true;
+		sd->state.donate_buff = true;
 		char msg[255];
 		sprintf(msg,"Donator : ได้รับบัฟ EXP/DROP +%d%%",percent);
 		const char *int_msg = &msg[0];	

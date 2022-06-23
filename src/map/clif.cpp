@@ -10958,9 +10958,11 @@ void clif_parse_WantToConnection(int fd, struct map_session_data* sd)
 static void donate_level_buff(struct map_session_data *sd){
 	nullpo_retv(sd);
 	
+	if(sd->status.donate_level == 0){return;}
+	
 	int percent = donateperks.percent[sd->status.donate_level];
 	
-	if(percent > 0 && sd->state.donate_buff == false){
+	if(sd->state.donate_buff == false){
 		status_change_start(NULL, &sd->bl, SC_VIP_LEVEL_EXP, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
 		status_change_start(NULL, &sd->bl, SC_VIP_LEVEL_DROP, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
 		sd->state.donate_buff = true;

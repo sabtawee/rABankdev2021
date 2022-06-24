@@ -14253,7 +14253,7 @@ void pc_show_version(struct map_session_data *sd) {
 		else
 			sprintf(buf,"%s",msg_txt(sd,1296)); //Cannot determine SVN/Git version.
 	}
-	clif_displaymessage(sd->fd,buf);
+	//clif_displaymessage(sd->fd,buf);
 }
 
 /**

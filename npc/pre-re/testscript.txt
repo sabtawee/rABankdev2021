@@ -1,0 +1,29 @@
+-	script	TESTSCRIPT	-1,{
+	
+OnTest:
+	sc_start SC_VIPSTATUS,1000000,10;
+	end;
+	
+OnTest2:
+	callfunc "F_collection";
+	end;
+	
+OnTest3:
+	end;
+	
+OnTest4:
+	end;
+	
+OnTest5:
+	end;	
+	
+Oninit:
+	bindatcmd "@aaa",""+strnpcinfo(0)+"::OnTest",0;
+	bindatcmd "@bbb",""+strnpcinfo(0)+"::OnTest2",0;
+	bindatcmd "@ccc",""+strnpcinfo(0)+"::OnTest3",0;
+	bindatcmd "@ddd",""+strnpcinfo(0)+"::OnTest4",0;
+	bindatcmd "@zzz",""+strnpcinfo(0)+"::OnTest5",0;
+	end;
+	
+}
+

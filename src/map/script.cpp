@@ -26009,6 +26009,67 @@ BUILDIN_FUNC(fakeIcon)
 	return SCRIPT_CMD_SUCCESS;
 }
 
+
+BUILDIN_FUNC(cos_type){
+	int item_id;
+	std::string c_type;
+	char c_type_return[256];
+	
+	item_id = script_getnum(st, 2);
+	
+	c_type = collectable_type(item_id);
+	std::sprintf(c_type_return, "%s", c_type.c_str());
+	
+	script_pushstrcopy(st, c_type_return);
+	return SCRIPT_CMD_SUCCESS;
+	
+}
+
+BUILDIN_FUNC(cos_sys){
+	struct map_session_data *sd;
+	const char *shopname;
+	int flag = 0;
+	const char *mode;
+	
+	if( !script_rid2sd( sd ) ){
+		return SCRIPT_CMD_FAILURE;
+	}
+	
+	struct npc_data *nd = npc_name2id("costume_system");
+	
+	if(nd == nullptr ){
+		ShowError("npc shop : costume_system is not exist");
+		return SCRIPT_CMD_FAILURE;
+	}
+	
+	sd->state.costume_open = true;
+	sd->state.callshop = 1;
+	
+	mode = script_getstr(st, 2);
+	if(strcmpi(mode,"add") == 0 ){
+		flag = 1;
+	}else if(strcmpi(mode,"remove") == 0 ){
+		flag = 2;
+	}else{
+		ShowDebug("cos_sys : argument invalid\n");
+		return SCRIPT_CMD_FAILURE;
+	}	
+	
+	switch (flag) {
+		case 1: 
+			npc_buysellsel(sd,nd->bl.id,1);
+			break; //Sell window
+		
+		case 2: 
+			npc_buysellsel(sd,nd->bl.id,0);
+			break; //Buy window
+	}
+	
+	sd->npc_shopid = nd->bl.id;
+	
+	return SCRIPT_CMD_SUCCESS;
+}
+
 #include "../custom/script.inc"
 
 // declarations that were supposed to be exported from npc_chat.cpp
@@ -26730,6 +26791,9 @@ struct script_function buildin_func[] = {
 	BUILDIN_DEF(getjobexp_ratio, "i??"),
 	
 	BUILDIN_DEF(fakeIcon,"iiii"),
+	
+	BUILDIN_DEF(cos_type,"i"),
+	BUILDIN_DEF(cos_sys,"s"),	
 	
 #include "../custom/script_def.inc"
 

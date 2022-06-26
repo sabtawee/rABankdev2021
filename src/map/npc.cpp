@@ -2712,7 +2712,10 @@ e_purchase_result npc_buylist( struct map_session_data* sd, std::vector<s_npc_bu
 	w = 0;
 	new_ = 0;
 
-	shop = nd->u.shop.shop_item;
+	if(sd->state.costume_open == true)
+		shop = sd->cos_sys.cos_detail;
+	else
+		shop = nd->u.shop.shop_item;
 
 	memset(market_index, 0, sizeof(market_index));
 	// process entries in buy list, one by one
@@ -2722,11 +2725,26 @@ e_purchase_result npc_buylist( struct map_session_data* sd, std::vector<s_npc_bu
 		int value;
 		item_data *id;
 
-		// find this entry in the shop's sell list
-		ARR_FIND( 0, nd->u.shop.count, j,
-			item_list[i].nameid == shop[j].nameid || //Normal items
-			item_list[i].nameid == itemdb_viewid(shop[j].nameid) //item_avail replacement
-		);
+		if(sd->state.costume_open == true){
+			// find this entry in the shop's sell list
+			ARR_FIND( 0, sd->cos_sys.count, j,
+				item_list[i].nameid == shop[j].nameid || //Normal items
+				item_list[i].nameid == itemdb_viewid(shop[j].nameid) //item_avail replacement
+			);
+			
+			if( j == sd->cos_sys.count )
+				return e_purchase_result::PURCHASE_FAIL_COUNT; // no such item in shop
+				
+		}else{
+			// find this entry in the shop's sell list
+			ARR_FIND( 0, nd->u.shop.count, j,
+				item_list[i].nameid == shop[j].nameid || //Normal items
+				item_list[i].nameid == itemdb_viewid(shop[j].nameid) //item_avail replacement
+			);
+			
+			if( j == nd->u.shop.count )
+				return e_purchase_result::PURCHASE_FAIL_COUNT; // no such item in shop
+		}
 
 		if( j == nd->u.shop.count )
 			return e_purchase_result::PURCHASE_FAIL_COUNT; // no such item in shop

@@ -1,0 +1,78 @@
+-	script	COSTUME_COLLECTION	-1,{
+	
+OnAdd:
+	cos_sys("add");
+	npcshopattach "costume_system";
+	end;
+	
+OnDel:
+	cos_sys("remove");
+	npcshopattach "costume_system";
+	end;	
+	
+// cos_sys("add");	
+OnSellItem:
+	for(.@i = 0;.@i< getarraysize(@sold_nameid);.@i++){
+		query_sql "SELECT COUNT(`costume_id`) FROM `costume_collection` WHERE `aid` = "+getcharid(3)+" and `costume_id` = "+@sold_nameid[.@i]+";",.@dup_check;
+		if(!.@dup_check){
+			query_sql "INSERT INTO `costume_collection` SET `aid`="+getcharid(3)+",`costume_id`="+@sold_nameid[.@i]+",`type`='"+cos_type(@sold_nameid[.@i])+"';";
+			delitem @sold_nameid[.@i],1;
+		}
+	}
+	callsub OnGiveBuff;
+	end;	
+	
+// cos_sys("remove");	
+OnBuyItem:
+	for(.@i = 0;.@i< getarraysize(@bought_nameid);.@i++){
+		query_sql "DELETE FROM `costume_collection` WHERE `aid` = "+getcharid(3)+" and `costume_id` = "+@bought_nameid[.@i]+"";
+		getitem @bought_nameid[.@i],1;
+	}
+	callsub OnGiveBuff;
+	end;	
+	
+OnGiveBuff:
+	dispbottom "true";
+	end;	
+	
+OnInit:
+	npcshopdelitem "costume_system",909;
+	end;	
+	
+}
+
+function	script	F_collection	{
+	
+	setarray .@costume_type$[0],"Costume_I","Costume_II","Costume_III","Costume_MVP";
+	
+	.@npcname$ = "[^FF0000•^000000 ^2f00ffCostume Collection^000000 ^FF0000•^000000]";
+	
+	query_sql "SELECT count(`costume_id`) from `costume_collection` where `aid`="+getcharid(3)+" and `type`='"+.@costume_type$[0]+"';",.@c_type1;
+	query_sql "SELECT count(`costume_id`) from `costume_collection` where `aid`="+getcharid(3)+" and `type`='"+.@costume_type$[1]+"';",.@c_type2;
+	query_sql "SELECT count(`costume_id`) from `costume_collection` where `aid`="+getcharid(3)+" and `type`='"+.@costume_type$[2]+"';",.@c_type3;
+	query_sql "SELECT count(`costume_id`) from `costume_collection` where `aid`="+getcharid(3)+" and `type`='"+.@costume_type$[3]+"';",.@c_type4;
+	
+	mes .@npcname$;
+	mes "Costume ใน Collection ขณะนี้";
+	mes "^1100fa>^000000 " + .@costume_type$[0] + " ^1100fa|^000000 " + .@c_type1 + " ชิ้น";
+	mes "^1100fa>^000000 " + .@costume_type$[1] + " ^1100fa|^000000 " + .@c_type2 + " ชิ้น";
+	mes "^1100fa>^000000 " + .@costume_type$[2] + " ^1100fa|^000000 " + .@c_type3 + " ชิ้น";
+	mes "^1100fa>^000000 " + .@costume_type$[3] + " ^1100fa|^000000 " + .@c_type4 + " ชิ้น";
+	
+	menu "^2b00ff~^000000 ฝาก Costume ลงใน Collection",-,"^2b00ff~^000000 ถอด Costume ออกจาก Collection",-,"^FF0000•^000000 ยกเลิก",-;
+	set .@menu2,@menu;
+	
+	if(.@menu2 == 1){
+		doevent "COSTUME_COLLECTION::OnAdd";
+	}
+	if(.@menu2 == 2){
+		doevent "COSTUME_COLLECTION::OnDel";
+	}
+	
+	end;
+}
+
+// Dummy shop data
+//============================================================
+-	shop	costume_system	-1,909:-1
+//============================================================

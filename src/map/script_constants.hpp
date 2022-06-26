@@ -1878,6 +1878,17 @@
 		
 	export_constant(SC_VIP_LEVEL_EXP);
 	export_constant(SC_VIP_LEVEL_DROP);	
+	
+	export_constant(SC_DONATE_LEVEL_1);
+	export_constant(SC_DONATE_LEVEL_2);
+	export_constant(SC_DONATE_LEVEL_3);
+	export_constant(SC_DONATE_LEVEL_4);
+	export_constant(SC_DONATE_LEVEL_5);
+	export_constant(SC_DONATE_LEVEL_6);
+	export_constant(SC_DONATE_LEVEL_7);
+	export_constant(SC_DONATE_LEVEL_8);
+	export_constant(SC_DONATE_LEVEL_9);
+	export_constant(SC_DONATE_LEVEL_10);	
 ///////////////////////////////////////////////////////////////////
 
 	/* status icons */
@@ -4054,6 +4065,17 @@
 	
 	export_constant(EFST_VIP_LEVEL_EXP);
 	export_constant(EFST_VIP_LEVEL_DROP);
+	
+	export_constant(EFST_DONATE_LEVEL_1);
+	export_constant(EFST_DONATE_LEVEL_2);
+	export_constant(EFST_DONATE_LEVEL_3);
+	export_constant(EFST_DONATE_LEVEL_4);
+	export_constant(EFST_DONATE_LEVEL_5);
+	export_constant(EFST_DONATE_LEVEL_6);
+	export_constant(EFST_DONATE_LEVEL_7);
+	export_constant(EFST_DONATE_LEVEL_8);
+	export_constant(EFST_DONATE_LEVEL_9);
+	export_constant(EFST_DONATE_LEVEL_10);
 ///////////////////////////////////////////////////////////////////
 
 	export_constant(EFST_MAX);

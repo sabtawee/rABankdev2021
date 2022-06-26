@@ -10782,6 +10782,16 @@ int status_change_start(struct block_list* src, struct block_list* bl,enum sc_ty
 		case SC_EXTRABOOST_CARD:
 		case SC_VIP_LEVEL_EXP:
 		case SC_VIP_LEVEL_DROP:
+		case SC_DONATE_LEVEL_1:
+		case SC_DONATE_LEVEL_2:
+		case SC_DONATE_LEVEL_3:
+		case SC_DONATE_LEVEL_4:
+		case SC_DONATE_LEVEL_5:
+		case SC_DONATE_LEVEL_6:
+		case SC_DONATE_LEVEL_7:
+		case SC_DONATE_LEVEL_8:
+		case SC_DONATE_LEVEL_9:
+		case SC_DONATE_LEVEL_10:		
 			if (val1 < 0)
 				val1 = 0;
 			break;

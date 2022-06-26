@@ -1187,7 +1187,7 @@ extern struct s_donateperks_db donateperks;
 struct item_data
 {
 	t_itemid nameid;
-	std::string name, ename;
+	std::string name, ename, costume_type;
 
 	uint32 value_buy;
 	uint32 value_sell;
@@ -1238,6 +1238,7 @@ struct item_data
 		bool broadcast; ///< Will be broadcasted if someone obtain the item [Cydh]
 		bool bindOnEquip; ///< Set item as bound when equipped
 		e_item_drop_effect dropEffect; ///< Drop Effect Mode
+		bool collectable;
 	} flag;
 	struct {// item stacking limitation
 		uint16 amount;
@@ -1435,6 +1436,8 @@ bool itemdb_isstackable2(struct item_data *id);
 bool itemdb_isNoEquip(struct item_data *id, uint16 m);
 
 bool itemdb_parse_roulette_db(void);
+
+std::string collectable_type(t_itemid nameid);
 
 void itemdb_reload(void);
 

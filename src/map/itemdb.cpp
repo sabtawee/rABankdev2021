@@ -602,6 +602,23 @@ uint64 ItemDatabase::parseBodyNode(const ryml::NodeRef& node) {
 		if (!exists)
 			item->view_id = 0;
 	}
+	
+	if (this->nodeExists(node, "Collectable") && this->nodeExists(node, "Costume_Type")) {
+		bool collectable;
+		std::string type;
+
+		if (!this->asBool(node, "Collectable", collectable))
+			return 0;
+			
+		if (!this->asString(node, "Costume_Type", type))
+			return 0;			
+
+		item->flag.collectable = collectable;
+		item->costume_type = type;
+	} else {
+		if (!exists){}
+			item->flag.collectable = false;
+	}		
 
 	if (this->nodeExists(node, "Flags")) {
 		const auto& flagNode = node["Flags"];
@@ -1938,6 +1955,21 @@ struct item_data* itemdb_search(t_itemid nameid) {
 		id = item_db.find(ITEMID_DUMMY);
 	}
 	return id.get();
+}
+
+/*==========================================
+ * look through item db and return collectable type
+ * @param nameid
+ *------------------------------------------*/
+std::string collectable_type(t_itemid nameid) {
+	std::shared_ptr<item_data> id;
+
+	if (!(id = item_db.find(nameid))) {
+		ShowWarning("itemdb_search: Item ID %u does not exists in the item_db. Using dummy data.\n", nameid);
+		id = item_db.find(ITEMID_DUMMY);
+	}
+	
+	return id->costume_type;
 }
 
 /** Checks if item is equip type or not

@@ -7729,6 +7729,37 @@ static void pc_calcexp(struct map_session_data *sd, t_exp *base_exp, t_exp *job_
 	if (sd->sc.data[SC_VIP_LEVEL_EXP]) {
 		bonus += sd->sc.data[SC_VIP_LEVEL_EXP]->val1;
 	}
+	
+	if (sd->sc.data[SC_DONATE_LEVEL_1]){
+		bonus += sd->sc.data[SC_DONATE_LEVEL_1]->val1;
+	}
+	if (sd->sc.data[SC_DONATE_LEVEL_2]){
+		bonus += sd->sc.data[SC_DONATE_LEVEL_2]->val1;
+	}
+	if (sd->sc.data[SC_DONATE_LEVEL_3]){
+		bonus += sd->sc.data[SC_DONATE_LEVEL_3]->val1;
+	}
+	if (sd->sc.data[SC_DONATE_LEVEL_4]){
+		bonus += sd->sc.data[SC_DONATE_LEVEL_4]->val1;
+	}
+	if (sd->sc.data[SC_DONATE_LEVEL_5]){
+		bonus += sd->sc.data[SC_DONATE_LEVEL_5]->val1;
+	}
+	if (sd->sc.data[SC_DONATE_LEVEL_6]){
+		bonus += sd->sc.data[SC_DONATE_LEVEL_6]->val1;
+	}
+	if (sd->sc.data[SC_DONATE_LEVEL_7]){
+		bonus += sd->sc.data[SC_DONATE_LEVEL_7]->val1;
+	}
+	if (sd->sc.data[SC_DONATE_LEVEL_8]){
+		bonus += sd->sc.data[SC_DONATE_LEVEL_8]->val1;
+	}
+	if (sd->sc.data[SC_DONATE_LEVEL_9]){
+		bonus += sd->sc.data[SC_DONATE_LEVEL_9]->val1;
+	}
+	if (sd->sc.data[SC_DONATE_LEVEL_10]){
+		bonus += sd->sc.data[SC_DONATE_LEVEL_10]->val1;
+	}
 ///////////////////////////////////////////////////////////////////	
 
 	if (*base_exp) {
@@ -7753,6 +7784,37 @@ static void pc_calcexp(struct map_session_data *sd, t_exp *base_exp, t_exp *job_
 	if (sd->sc.data[SC_VIP_LEVEL_EXP]) {
 		bonus += sd->sc.data[SC_VIP_LEVEL_EXP]->val1;
 	}
+	
+	if (sd->sc.data[SC_DONATE_LEVEL_1]){
+		bonus += sd->sc.data[SC_DONATE_LEVEL_1]->val1;
+	}
+	if (sd->sc.data[SC_DONATE_LEVEL_2]){
+		bonus += sd->sc.data[SC_DONATE_LEVEL_2]->val1;
+	}
+	if (sd->sc.data[SC_DONATE_LEVEL_3]){
+		bonus += sd->sc.data[SC_DONATE_LEVEL_3]->val1;
+	}
+	if (sd->sc.data[SC_DONATE_LEVEL_4]){
+		bonus += sd->sc.data[SC_DONATE_LEVEL_4]->val1;
+	}
+	if (sd->sc.data[SC_DONATE_LEVEL_5]){
+		bonus += sd->sc.data[SC_DONATE_LEVEL_5]->val1;
+	}
+	if (sd->sc.data[SC_DONATE_LEVEL_6]){
+		bonus += sd->sc.data[SC_DONATE_LEVEL_6]->val1;
+	}
+	if (sd->sc.data[SC_DONATE_LEVEL_7]){
+		bonus += sd->sc.data[SC_DONATE_LEVEL_7]->val1;
+	}
+	if (sd->sc.data[SC_DONATE_LEVEL_8]){
+		bonus += sd->sc.data[SC_DONATE_LEVEL_8]->val1;
+	}
+	if (sd->sc.data[SC_DONATE_LEVEL_9]){
+		bonus += sd->sc.data[SC_DONATE_LEVEL_9]->val1;
+	}
+	if (sd->sc.data[SC_DONATE_LEVEL_10]){
+		bonus += sd->sc.data[SC_DONATE_LEVEL_10]->val1;
+	}	
 ///////////////////////////////////////////////////////////////////	
 
 	if (*job_exp) {

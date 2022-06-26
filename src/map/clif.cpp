@@ -2185,20 +2185,46 @@ void clif_buylist( struct map_session_data *sd, struct npc_data *nd ){
 	p->packetType = HEADER_ZC_PC_PURCHASE_ITEMLIST;
 
 	int count = 0;
-	for( int i = 0, discount = npc_shop_discount( nd ); i < nd->u.shop.count; i++ ){
-		int val = nd->u.shop.shop_item[i].value;
+	
+	if(sd->state.costume_open == true){	
+		SqlStmt* stmt = SqlStmt_Malloc(mmysql_handle);
+		uint32 c_id;
+		int val = 1;
+		
+		if (SQL_ERROR == SqlStmt_Prepare(stmt, "SELECT `costume_id` FROM `costume_collection` WHERE `aid` = '%d';", sd->status.account_id) || SQL_ERROR == SqlStmt_Execute(stmt)){
+			SqlStmt_ShowDebug(stmt);
+			SqlStmt_Free(stmt);
+		}
+		
+		SqlStmt_BindColumn(stmt, 0, SQLDT_UINT32, &c_id, 0, NULL, NULL);
+		
+		RECREATE(sd->cos_sys.cos_detail, struct npc_item_list, SqlStmt_NumRows(stmt)+1);
+		sd->cos_sys.count = SqlStmt_NumRows(stmt);
+		
+		while ( SQL_SUCCESS == SqlStmt_NextRow(stmt) ) {
+			
+			sd->cos_sys.cos_detail[count].nameid = c_id;
+			sd->cos_sys.cos_detail[count].value = val;
+			sd->cos_sys.cos_detail[count].flag = val;
+			sd->cos_sys.cos_detail[count].qty = val;
+			
+			p->items[count].price = val;
+			p->items[count].discountPrice = val;
+			p->items[count].itemType = itemtype( c_id );
+			p->items[count].itemId = client_nameid( c_id );
+			count++;
+		}		
+		SqlStmt_Free(stmt);	
+	}else{
+		for( int i = 0, discount = npc_shop_discount( nd ); i < nd->u.shop.count; i++ ){
+			int val = nd->u.shop.shop_item[i].value;
 
-		p->items[count].price = val;
-		p->items[count].discountPrice = ( discount ) ? pc_modifybuyvalue( sd, val ) : val;
-		p->items[count].itemType = itemtype( nd->u.shop.shop_item[i].nameid );
-		p->items[count].itemId = client_nameid( nd->u.shop.shop_item[i].nameid );
-#if PACKETVER_MAIN_NUM >= 20210203 || PACKETVER_RE_NUM >= 20211103
-		struct item_data* id = itemdb_exists( nd->u.shop.shop_item[i].nameid );
-
-		p->items[count].viewSprite = id->look;
-		p->items[count].location = pc_equippoint_sub( sd, id );
-#endif
-		count++;
+			p->items[count].price = val;
+			p->items[count].discountPrice = ( discount ) ? pc_modifybuyvalue( sd, val ) : val;
+			p->items[count].itemType = itemtype( nd->u.shop.shop_item[i].nameid );
+			p->items[count].itemId = client_nameid( nd->u.shop.shop_item[i].nameid );
+			count++;
+		}
 	}
 
 	p->packetLength = sizeof( struct PACKET_ZC_PC_PURCHASE_ITEMLIST ) + count * sizeof( struct PACKET_ZC_PC_PURCHASE_ITEMLIST_sub );
@@ -2220,24 +2246,38 @@ void clif_selllist(struct map_session_data *sd)
 	fd=sd->fd;
 	WFIFOHEAD(fd, MAX_INVENTORY * 10 + 4);
 	WFIFOW(fd,0)=0xc7;
-	for( i = 0; i < MAX_INVENTORY; i++ )
-	{
-		if( sd->inventory.u.items_inventory[i].nameid > 0 && sd->inventory_data[i] )
-		{
-			if( !pc_can_sell_item(sd, &sd->inventory.u.items_inventory[i], nd->subtype))
-				continue;
 
-			if (battle_config.rental_item_novalue && sd->inventory.u.items_inventory[i].expire_time)
-				val = 0;
-			else {
-				val = sd->inventory_data[i]->value_sell;
-				if( val < 0 )
-					continue;
+	if(sd->state.costume_open == true){
+		for( i = 0; i < MAX_INVENTORY; i++ )
+		{
+			if( sd->inventory.u.items_inventory[i].nameid > 0 && sd->inventory_data[i]->flag.collectable == true )
+			{
+				WFIFOW(fd,4+c*10)=i+2;
+				WFIFOL(fd,6+c*10)=1;
+				WFIFOL(fd,10+c*10)=pc_modifysellvalue(sd,1);
+				c++;
 			}
-			WFIFOW(fd,4+c*10)=i+2;
-			WFIFOL(fd,6+c*10)=val;
-			WFIFOL(fd,10+c*10)=pc_modifysellvalue(sd,val);
-			c++;
+		}
+	}else{
+		for( i = 0; i < MAX_INVENTORY; i++ )
+		{
+			if( sd->inventory.u.items_inventory[i].nameid > 0 && sd->inventory_data[i] )
+			{
+				if( !pc_can_sell_item(sd, &sd->inventory.u.items_inventory[i], nd->subtype))
+					continue;
+
+				if (battle_config.rental_item_novalue && sd->inventory.u.items_inventory[i].expire_time)
+					val = 0;
+				else {
+					val = sd->inventory_data[i]->value_sell;
+					if( val < 0 )
+						continue;
+				}
+				WFIFOW(fd,4+c*10)=i+2;
+				WFIFOL(fd,6+c*10)=val;
+				WFIFOL(fd,10+c*10)=pc_modifysellvalue(sd,val);
+				c++;
+			}
 		}
 	}
 	WFIFOW(fd,2)=c*10+4;
@@ -2249,6 +2289,10 @@ void clif_selllist(struct map_session_data *sd)
 void clif_parse_NPCShopClosed(int fd, struct map_session_data *sd) {
 	// TODO: State tracking?
 	sd->npc_shopid = 0;
+	
+	if(sd->state.costume_open == true){
+		sd->state.costume_open = false;
+	}	
 }
 
 /**
@@ -10963,8 +11007,37 @@ static void donate_level_buff(struct map_session_data *sd){
 	int percent = donateperks.percent[sd->status.donate_level];
 	
 	if(sd->state.donate_buff == false){
-		status_change_start(NULL, &sd->bl, SC_VIP_LEVEL_EXP, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
-		status_change_start(NULL, &sd->bl, SC_VIP_LEVEL_DROP, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
+		
+		if(sd->status.donate_level == 1)
+			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_1, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
+			
+		if(sd->status.donate_level == 2)
+			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_2, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
+			
+		if(sd->status.donate_level == 3)
+			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_3, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
+			
+		if(sd->status.donate_level == 4)
+			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_4, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
+			
+		if(sd->status.donate_level == 5)
+			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_5, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
+			
+		if(sd->status.donate_level == 6)
+			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_6, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
+			
+		if(sd->status.donate_level == 7)
+			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_7, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
+			
+		if(sd->status.donate_level == 8)
+			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_8, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
+			
+		if(sd->status.donate_level == 9)
+			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_9, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
+			
+		if(sd->status.donate_level == 10)
+			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_10, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
+		
 		sd->state.donate_buff = true;
 		char msg[255];
 		sprintf(msg,"Donator : ได้รับบัฟ EXP/DROP +%d%%",percent);

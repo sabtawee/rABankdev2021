@@ -318,6 +318,11 @@ struct s_qi_display {
 	e_questinfo_markcolor color;
 };
 
+struct costume_shopsys {
+	struct npc_item_list *cos_detail;
+	uint16 count;	
+};
+
 struct map_session_data {
 	struct block_list bl;
 	struct unit_data ud;
@@ -395,6 +400,7 @@ struct map_session_data {
 		t_itemid laphine_upgrade;
 		bool roulette_open;
 		bool donate_buff;
+		bool costume_open;
 	} state;
 	struct {
 		unsigned char no_weapon_damage, no_magic_damage, no_misc_damage;
@@ -424,6 +430,7 @@ struct map_session_data {
 	struct s_storage storage, premiumStorage;
 	struct s_storage inventory;
 	struct s_storage cart;
+	struct costume_shopsys cos_sys;
 
 	struct item_data* inventory_data[MAX_INVENTORY]; // direct pointers to itemdb entries (faster than doing item_id lookups)
 	short equip_index[EQI_MAX];

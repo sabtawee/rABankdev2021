@@ -1213,6 +1213,17 @@ enum sc_type : int16 {
 	
 	SC_VIP_LEVEL_EXP,
 	SC_VIP_LEVEL_DROP,
+	
+	SC_DONATE_LEVEL_1,
+	SC_DONATE_LEVEL_2,
+	SC_DONATE_LEVEL_3,
+	SC_DONATE_LEVEL_4,
+	SC_DONATE_LEVEL_5,
+	SC_DONATE_LEVEL_6,
+	SC_DONATE_LEVEL_7,
+	SC_DONATE_LEVEL_8,
+	SC_DONATE_LEVEL_9,
+	SC_DONATE_LEVEL_10,
 ///////////////////////////////////////////////////////////////////
 
 	SC_MAX, //Automatically updated max, used in for's to check we are within bounds.
@@ -2593,6 +2604,17 @@ enum efst_type : short{
 	
 	EFST_VIP_LEVEL_EXP,
 	EFST_VIP_LEVEL_DROP,
+	
+	EFST_DONATE_LEVEL_1 = 1901,
+	EFST_DONATE_LEVEL_2,
+	EFST_DONATE_LEVEL_3,
+	EFST_DONATE_LEVEL_4,
+	EFST_DONATE_LEVEL_5,
+	EFST_DONATE_LEVEL_6,
+	EFST_DONATE_LEVEL_7,
+	EFST_DONATE_LEVEL_8,
+	EFST_DONATE_LEVEL_9,
+	EFST_DONATE_LEVEL_10,	
 ///////////////////////////////////////////////////////////////////
 
 	EFST_MAX,

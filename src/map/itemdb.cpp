@@ -2418,13 +2418,15 @@ static bool itemdb_read_noequip(char* str[], int columns, int current) {
 **/
 static bool itemdb_read_donateperks(char* fields[], int columns, int current)
 {
-	int level,percent;
+	int level,percent,regenrate;
 
 	level = atoi(fields[0]);
 	percent = atoi(fields[1]);
+	regenrate = atoi(fields[2]);
 
 	donateperks.level[current] = level;
 	donateperks.percent[current] = percent;
+	donateperks.regenrate[current] = regenrate;
 
 	return true;
 }
@@ -3498,7 +3500,7 @@ static void itemdb_read(void) {
 		}
 
 		sv_readdb(dbsubpath2, "item_noequip.txt",       ',', 2, 2, -1, &itemdb_read_noequip, i > 0);
-		sv_readdb(dbsubpath1, "donate_perks.txt",		',', 2, 2, -1, &itemdb_read_donateperks, i > 0);
+		sv_readdb(dbsubpath1, "donate_perks.txt",		',', 3, 3, -1, &itemdb_read_donateperks, i > 0);
 		aFree(dbsubpath1);
 		aFree(dbsubpath2);
 	}

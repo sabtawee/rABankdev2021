@@ -14422,9 +14422,18 @@ static int status_natural_heal(struct block_list* bl, va_list args)
 			if (regen->state.overweight)
 				rate >>= 1; // Half as fast when overweight.
 			sregen->tick.hp += rate;
+			
+			float regen_rate = 0;
+			int donate_regen = 0;
+			
+			if(sd->status.donate_level > 0){
+				regen_rate = (float)donateperks.regenrate[sd->status.donate_level] /100;
+				donate_regen = (int)(status->max_hp*regen_rate);
+			}			
+			
 			while(sregen->tick.hp >= (unsigned int)battle_config.natural_heal_skill_interval) {
 				sregen->tick.hp -= battle_config.natural_heal_skill_interval;
-				if(status_heal(bl, sregen->hp, 0, 3) < sregen->hp) { // Full
+				if(status_heal(bl, sregen->hp + donate_regen, 0, 3) < sregen->hp) { // Full
 					flag &= ~RGN_SHP;
 					break;
 				}
@@ -14435,9 +14444,18 @@ static int status_natural_heal(struct block_list* bl, va_list args)
 			if (regen->state.overweight)
 				rate >>= 1; // Half as fast when overweight.
 			sregen->tick.sp += rate;
+			
+			float regen_rate = 0;
+			int donate_regen = 0;
+			
+			if(sd->status.donate_level > 0){
+				regen_rate = (float)donateperks.regenrate[sd->status.donate_level] /100;
+				donate_regen = (int)(status->max_hp*regen_rate);
+			}			
+			
 			while(sregen->tick.sp >= (unsigned int)battle_config.natural_heal_skill_interval) {
 				sregen->tick.sp -= battle_config.natural_heal_skill_interval;
-				if(status_heal(bl, 0, sregen->sp, 3) < sregen->sp) { // Full
+				if(status_heal(bl, 0, sregen->sp + donate_regen, 3) < sregen->sp) { // Full
 					flag &= ~RGN_SSP;
 					break;
 				}
@@ -14477,12 +14495,20 @@ static int status_natural_heal(struct block_list* bl, va_list args)
 
 		// Our timer system isn't 100% accurate so make sure we use the closest interval
 		rate -= NATURAL_HEAL_INTERVAL / 2;
-
+		
+		float regen_rate = 0;
+		int donate_regen = 0;
+		
+		if(sd->status.donate_level > 0){
+			regen_rate = (float)donateperks.regenrate[sd->status.donate_level] /100;
+			donate_regen = (int)(status->max_hp*regen_rate);
+		}
+		
 		if(regen->tick.hp + rate <= natural_heal_prev_tick) {
 			regen->tick.hp = natural_heal_prev_tick;
 			if (status->hp >= status->max_hp)
 				flag &= ~(RGN_HP | RGN_SHP);
-			else if (status_heal(bl, regen->hp, 0, 1) < regen->hp)
+			else if (status_heal(bl, regen->hp + donate_regen, 0, 1) < regen->hp)
 				flag &= ~RGN_SHP; // Full
 		}
 	}
@@ -14505,12 +14531,20 @@ static int status_natural_heal(struct block_list* bl, va_list args)
 
 		// Our timer system isn't 100% accurate so make sure we use the closest interval
 		rate -= NATURAL_HEAL_INTERVAL / 2;
+		
+		float regen_rate = 0;
+		int donate_regen = 0;
+		
+		if(sd->status.donate_level > 0){
+			regen_rate = (float)donateperks.regenrate[sd->status.donate_level] /100;
+			donate_regen = (int)(status->max_hp*regen_rate);
+		}		
 
 		if(regen->tick.sp + rate <= natural_heal_prev_tick) {
 			regen->tick.sp = natural_heal_prev_tick;
 			if (status->sp >= status->max_sp)
 				flag &= ~(RGN_SP | RGN_SSP);
-			else if (status_heal(bl, 0, regen->sp, 1) < regen->sp)
+			else if (status_heal(bl, 0, regen->sp + donate_regen, 1) < regen->sp)
 				flag &= ~RGN_SSP; // Full
 		}
 	}

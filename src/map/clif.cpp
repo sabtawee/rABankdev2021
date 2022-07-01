@@ -11005,7 +11005,7 @@ static void donate_level_buff(struct map_session_data *sd){
 	if(sd->status.donate_level == 0){return;}
 	
 	int percent = donateperks.percent[sd->status.donate_level];
-	float regen_rate = (float)donateperks.regenrate[sd->status.donate_level] /100;
+	int regen_rate = donateperks.regenrate[sd->status.donate_level];
 	
 	if(sd->state.donate_buff == false){
 		
@@ -11041,7 +11041,7 @@ static void donate_level_buff(struct map_session_data *sd){
 		
 		sd->state.donate_buff = true;
 		char msg[255];
-		sprintf(msg,"Donator : ได้รับบัฟ EXP/DROP +%d%% | Regen + %.2f%%",percent,regen_rate);
+		sprintf(msg,"Donator : ได้รับบัฟ EXP/DROP +%d%% | Regen + %d%%",percent,regen_rate);
 		const char *int_msg = &msg[0];	
 		clif_showscript(&sd->bl, int_msg, SELF);	
 		clif_specialeffect(&sd->bl, 40, AREA);

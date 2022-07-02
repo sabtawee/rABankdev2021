@@ -87,9 +87,22 @@ Header:
   Type: ITEM_DB
   Version: 2
 
-Footer:
-  Imports:
-  - Path: db/import/item_db_usable.yml
-  - Path: db/import/item_db_equip.yml
-  - Path: db/import/item_db_etc.yml
-  - Path: db/import/item_db_collection.yml
+Body:
+  - Id: 33006
+    AegisName: Collection Book
+    Name: Collection Book
+    Type: Delayconsume
+    Flag:
+      NoConsume: true
+    Weight: 0
+    Trade:
+      Override: 100
+      NoDrop: true
+      NoTrade: true
+      NoSell: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      callfunc "F_collection";

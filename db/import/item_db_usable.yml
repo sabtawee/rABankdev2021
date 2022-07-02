@@ -123,3 +123,21 @@ Body:
     Weight: 0
     Script: |
       callfunc "F_GIVEVIP",2,30;
+  - Id: 33005
+    AegisName: Exp Book
+    Name: Exp Book
+    Type: Delayconsume
+    Flag:
+      NoConsume: true
+    Weight: 0
+    Trade:
+      Override: 100
+      NoDrop: true
+      NoTrade: true
+      NoSell: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      callfunc "F_EXPBOOK";

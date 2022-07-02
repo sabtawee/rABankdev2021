@@ -41097,6 +41097,7 @@ Body:
       SuperNovice: false
     Classes:
       All_Upper: true
+      
     Locations:
       Head_Top: true
     ArmorLevel: 1

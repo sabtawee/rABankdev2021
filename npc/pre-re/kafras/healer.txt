@@ -68,10 +68,16 @@
 		sc_start SC_DEXFood,1800000,5;
 		sc_start SC_LUKFood,1800000,5;
 	}
+	sc_start SC_STRFood,1800000,5;
+	sc_start SC_AGIFood,1800000,5;
+	sc_start SC_VITFood,1800000,5;
+	sc_start SC_INTFood,1800000,5;
+	sc_start SC_DEXFood,1800000,5;
+	sc_start SC_LUKFood,1800000,5;
 	sc_start SC_BLESSING,1800000,5;
 	sc_start SC_INCREASEAGI,1800000,10;
-	//sc_start SC_MAGNIFICAT,1800000,5;
-	//sc_start SC_GLORIA,1800000,5;
+	sc_start SC_MAGNIFICAT,1800000,5;
+	sc_start SC_GLORIA,1800000,5;
 	
 	atcommand "@identifyall";
 	

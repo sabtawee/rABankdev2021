@@ -1,13 +1,3 @@
--	script	COSMIC_TEST	-1,{
-OnCommand:
-	sc_start SC_DONATE_LEVEL_1,180000,15;
-	end;
-OnInit:
-	bindatcmd "www",strnpcinfo(0)+"::OnCommand",0;
-	end;
-}
-
-
 -	script	VIP_STATUS	-1,{
 	
 OnPCLoginEvent:
@@ -19,7 +9,6 @@ OnPCLoginEvent:
 		sc_start SC_VIPSTATUS,.@vip_time,0;
 	}
 	end;
-	
 }
 
 function	script	F_GIVEVIP	{

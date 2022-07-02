@@ -1179,7 +1179,8 @@ extern struct s_roulette_db rd;
 /// Struct of Donate Perks
 struct s_donateperks_db {
 	int level[MAX_DONATE_LEVEL];
-	int percent[MAX_DONATE_LEVEL];
+	int exp[MAX_DONATE_LEVEL];
+	int drop[MAX_DONATE_LEVEL];
 	int regenrate[MAX_DONATE_LEVEL];
 };
 extern struct s_donateperks_db donateperks;

@@ -11009,6 +11009,17 @@ static void donate_level_buff(struct map_session_data *sd){
 	
 	if(sd->state.donate_buff == false){
 		
+		status_change_end(&sd->bl, SC_DONATE_LEVEL_1, INVALID_TIMER);
+		status_change_end(&sd->bl, SC_DONATE_LEVEL_2, INVALID_TIMER);
+		status_change_end(&sd->bl, SC_DONATE_LEVEL_3, INVALID_TIMER);
+		status_change_end(&sd->bl, SC_DONATE_LEVEL_4, INVALID_TIMER);
+		status_change_end(&sd->bl, SC_DONATE_LEVEL_5, INVALID_TIMER);
+		status_change_end(&sd->bl, SC_DONATE_LEVEL_6, INVALID_TIMER);
+		status_change_end(&sd->bl, SC_DONATE_LEVEL_7, INVALID_TIMER);
+		status_change_end(&sd->bl, SC_DONATE_LEVEL_8, INVALID_TIMER);
+		status_change_end(&sd->bl, SC_DONATE_LEVEL_9, INVALID_TIMER);
+		status_change_end(&sd->bl, SC_DONATE_LEVEL_10, INVALID_TIMER);
+		
 		if(sd->status.donate_level == 1)
 			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_1, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
 			

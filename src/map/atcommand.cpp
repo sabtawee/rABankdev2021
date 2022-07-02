@@ -7739,35 +7739,11 @@ ACMD_FUNC(mobinfo)
 			if (sd->sc.data[SC_VIP_LEVEL_DROP])
 				droprate += droprate * sd->sc.data[SC_VIP_LEVEL_DROP]->val1 / 100;
 				
-			if (sd->sc.data[SC_DONATE_LEVEL_1])
-				droprate += droprate * sd->sc.data[SC_DONATE_LEVEL_1]->val1 / 100;
-				
-			if (sd->sc.data[SC_DONATE_LEVEL_2])
-				droprate += droprate * sd->sc.data[SC_DONATE_LEVEL_2]->val1 / 100;
-				
-			if (sd->sc.data[SC_DONATE_LEVEL_3])
-				droprate += droprate * sd->sc.data[SC_DONATE_LEVEL_3]->val1 / 100;
-				
-			if (sd->sc.data[SC_DONATE_LEVEL_4])
-				droprate += droprate * sd->sc.data[SC_DONATE_LEVEL_4]->val1 / 100;
-				
-			if (sd->sc.data[SC_DONATE_LEVEL_5])
-				droprate += droprate * sd->sc.data[SC_DONATE_LEVEL_5]->val1 / 100;
-				
-			if (sd->sc.data[SC_DONATE_LEVEL_6])
-				droprate += droprate * sd->sc.data[SC_DONATE_LEVEL_6]->val1 / 100;
-				
-			if (sd->sc.data[SC_DONATE_LEVEL_7])
-				droprate += droprate * sd->sc.data[SC_DONATE_LEVEL_7]->val1 / 100;
-				
-			if (sd->sc.data[SC_DONATE_LEVEL_8])
-				droprate += droprate * sd->sc.data[SC_DONATE_LEVEL_8]->val1 / 100;
-				
-			if (sd->sc.data[SC_DONATE_LEVEL_9])
-				droprate += droprate * sd->sc.data[SC_DONATE_LEVEL_9]->val1 / 100;
-				
-			if (sd->sc.data[SC_DONATE_LEVEL_10])
-				droprate += droprate * sd->sc.data[SC_DONATE_LEVEL_10]->val1 / 100;
+			if (sd->sc.data[SC_DONATE_LEVEL_1] || sd->sc.data[SC_DONATE_LEVEL_2] || sd->sc.data[SC_DONATE_LEVEL_3]
+		     || sd->sc.data[SC_DONATE_LEVEL_4] || sd->sc.data[SC_DONATE_LEVEL_5] || sd->sc.data[SC_DONATE_LEVEL_6]
+		     || sd->sc.data[SC_DONATE_LEVEL_7] || sd->sc.data[SC_DONATE_LEVEL_8] || sd->sc.data[SC_DONATE_LEVEL_9]
+		     || sd->sc.data[SC_DONATE_LEVEL_10] )
+				droprate += droprate * donateperks.drop[sd->status.donate_level] / 100;
 
 			if (item_data->slots)
 				sprintf(atcmd_output2, " - %s[%d]  %02.02f%%", item_data->ename.c_str(), item_data->slots, (float)droprate / 100);

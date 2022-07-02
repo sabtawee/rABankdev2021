@@ -2492,35 +2492,11 @@ int mob_getdroprate(struct block_list *src, std::shared_ptr<s_mob_db> mob, int b
 			if (sd->sc.data[SC_VIP_LEVEL_DROP])
 				drop_rate_bonus += sd->sc.data[SC_VIP_LEVEL_DROP]->val1;
 				
-			if (sd->sc.data[SC_DONATE_LEVEL_1])
-				drop_rate_bonus += sd->sc.data[SC_DONATE_LEVEL_1]->val1;
-				
-			if (sd->sc.data[SC_DONATE_LEVEL_2])
-				drop_rate_bonus += sd->sc.data[SC_DONATE_LEVEL_2]->val1;
-				
-			if (sd->sc.data[SC_DONATE_LEVEL_3])
-				drop_rate_bonus += sd->sc.data[SC_DONATE_LEVEL_3]->val1;
-				
-			if (sd->sc.data[SC_DONATE_LEVEL_4])
-				drop_rate_bonus += sd->sc.data[SC_DONATE_LEVEL_4]->val1;
-				
-			if (sd->sc.data[SC_DONATE_LEVEL_5])
-				drop_rate_bonus += sd->sc.data[SC_DONATE_LEVEL_5]->val1;
-				
-			if (sd->sc.data[SC_DONATE_LEVEL_6])
-				drop_rate_bonus += sd->sc.data[SC_DONATE_LEVEL_6]->val1;
-				
-			if (sd->sc.data[SC_DONATE_LEVEL_7])
-				drop_rate_bonus += sd->sc.data[SC_DONATE_LEVEL_7]->val1;
-				
-			if (sd->sc.data[SC_DONATE_LEVEL_8])
-				drop_rate_bonus += sd->sc.data[SC_DONATE_LEVEL_8]->val1;
-				
-			if (sd->sc.data[SC_DONATE_LEVEL_9])
-				drop_rate_bonus += sd->sc.data[SC_DONATE_LEVEL_9]->val1;
-				
-			if (sd->sc.data[SC_DONATE_LEVEL_10])
-				drop_rate_bonus += sd->sc.data[SC_DONATE_LEVEL_10]->val1;
+			if (sd->sc.data[SC_DONATE_LEVEL_1] || sd->sc.data[SC_DONATE_LEVEL_2] || sd->sc.data[SC_DONATE_LEVEL_3]
+		     || sd->sc.data[SC_DONATE_LEVEL_4] || sd->sc.data[SC_DONATE_LEVEL_5] || sd->sc.data[SC_DONATE_LEVEL_6]
+		     || sd->sc.data[SC_DONATE_LEVEL_7] || sd->sc.data[SC_DONATE_LEVEL_8] || sd->sc.data[SC_DONATE_LEVEL_9]
+		     || sd->sc.data[SC_DONATE_LEVEL_10] )
+				drop_rate_bonus += donateperks.drop[sd->status.donate_level];				
 				
 			///////////////////////////////////////////////////////////////////
 

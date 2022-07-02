@@ -11004,7 +11004,9 @@ static void donate_level_buff(struct map_session_data *sd){
 	
 	if(sd->status.donate_level == 0){return;}
 	
-	int percent = donateperks.percent[sd->status.donate_level];
+	int level = donateperks.level[sd->status.donate_level];
+	int exp = donateperks.exp[sd->status.donate_level];
+	int drop = donateperks.drop[sd->status.donate_level];
 	int regen_rate = donateperks.regenrate[sd->status.donate_level];
 	
 	if(sd->state.donate_buff == false){
@@ -11021,38 +11023,38 @@ static void donate_level_buff(struct map_session_data *sd){
 		status_change_end(&sd->bl, SC_DONATE_LEVEL_10, INVALID_TIMER);
 		
 		if(sd->status.donate_level == 1)
-			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_1, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
+			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_1, 10000, 1, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
 			
 		if(sd->status.donate_level == 2)
-			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_2, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
+			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_2, 10000, 1, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
 			
 		if(sd->status.donate_level == 3)
-			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_3, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
+			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_3, 10000, 1, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
 			
 		if(sd->status.donate_level == 4)
-			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_4, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
+			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_4, 10000, 1, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
 			
 		if(sd->status.donate_level == 5)
-			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_5, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
+			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_5, 10000, 1, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
 			
 		if(sd->status.donate_level == 6)
-			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_6, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
+			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_6, 10000, 1, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
 			
 		if(sd->status.donate_level == 7)
-			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_7, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
+			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_7, 10000, 1, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
 			
 		if(sd->status.donate_level == 8)
-			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_8, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
+			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_8, 10000, 1, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
 			
 		if(sd->status.donate_level == 9)
-			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_9, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
+			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_9, 10000, 1, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
 			
 		if(sd->status.donate_level == 10)
-			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_10, 10000, percent, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
+			status_change_start(NULL, &sd->bl, SC_DONATE_LEVEL_10, 10000, 1, 0, 0, 0, INFINITE_TICK, SCSTART_NOAVOID);
 		
 		sd->state.donate_buff = true;
 		char msg[255];
-		sprintf(msg,"Donator : ได้รับบัฟ EXP/DROP +%d%% | Regen + %d%%",percent,regen_rate);
+		sprintf(msg,"Donate LVL %d : EXP + %d%% | DROP +%d%% | Regen + %d%%",level,exp,drop,regen_rate);
 		const char *int_msg = &msg[0];	
 		clif_showscript(&sd->bl, int_msg, SELF);	
 		clif_specialeffect(&sd->bl, 40, AREA);

@@ -14760,7 +14760,7 @@ bool pc_job_can_entermap(enum e_job jobid, int m, int group_lv) {
  * @param sd
  **/
 void pc_set_costume_view(struct map_session_data *sd) {
-	int i = -1, head_low = 0, head_mid = 0, head_top = 0, robe = 0;
+	int i = -1, head_low = 0, head_mid = 0, head_top = 0, robe = 0, weapon = 0;
 	struct item_data *id = NULL;
 
 	nullpo_retv(sd);
@@ -14769,8 +14769,9 @@ void pc_set_costume_view(struct map_session_data *sd) {
 	head_mid = sd->status.head_mid;
 	head_top = sd->status.head_top;
 	robe = sd->status.robe;
+	weapon = sd->status.costume_weapon;
 
-	sd->status.head_bottom = sd->status.head_mid = sd->status.head_top = sd->status.robe = 0;
+	sd->status.head_bottom = sd->status.head_mid = sd->status.head_top = sd->status.robe = sd->status.costume_weapon = 0;
 
 	//Added check to prevent sending the same look on multiple slots ->
 	//causes client to redraw item on top of itself. (suggested by Lupus)
@@ -14791,6 +14792,8 @@ void pc_set_costume_view(struct map_session_data *sd) {
 		sd->status.head_top = id->look;
 	if ((i = sd->equip_index[EQI_GARMENT]) != -1 && (id = sd->inventory_data[i]))
 		sd->status.robe = id->look;
+	if ((i = sd->equip_index[EQI_HAND_R]) != -1 && (id = sd->inventory_data[i]))
+		sd->status.costume_weapon = id->look;			
 
 	// Costumes check
 	if (!map_getmapflag(sd->bl.m, MF_NOCOSTUME)) {
@@ -14810,6 +14813,8 @@ void pc_set_costume_view(struct map_session_data *sd) {
 			sd->status.head_top = id->look;
 		if ((i = sd->equip_index[EQI_COSTUME_GARMENT]) != -1 && (id = sd->inventory_data[i]))
 			sd->status.robe = id->look;
+		if ((i = sd->equip_index[EQI_SHADOW_WEAPON]) != -1 && (id = sd->inventory_data[i]))
+			sd->status.costume_weapon = id->look;			
 	}
 
 	if (sd->setlook_head_bottom)
@@ -14829,6 +14834,8 @@ void pc_set_costume_view(struct map_session_data *sd) {
 		clif_changelook(&sd->bl, LOOK_HEAD_TOP, sd->status.head_top);
 	if (robe != sd->status.robe)
 		clif_changelook(&sd->bl, LOOK_ROBE, sd->status.robe);
+	if (weapon != sd->status.costume_weapon)
+		clif_changelook(&sd->bl, LOOK_WEAPON, sd->status.weapon);
 }
 
 std::shared_ptr<s_attendance_period> pc_attendance_period(){

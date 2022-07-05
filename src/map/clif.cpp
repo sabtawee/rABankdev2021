@@ -1006,38 +1006,50 @@ void clif_clearunit_delayed(struct block_list* bl, clr_type type, t_tick tick)
 	add_timer(tick, clif_clearunit_delayed_sub, (int)type, (intptr_t)tbl);
 }
 
-void clif_get_weapon_view(struct map_session_data* sd, t_itemid *rhand, t_itemid *lhand)
-{
-	if(sd->sc.option&OPTION_COSTUME)
-	{
+void clif_get_weapon_view(struct map_session_data* sd, t_itemid *rhand, t_itemid *lhand){
+	int c_weapon = 0;
+	if(sd->sc.option&OPTION_COSTUME){
 		*rhand = *lhand = 0;
 		return;
-	}
+	}	
 
 #if PACKETVER < 4
 	*rhand = sd->status.weapon;
 	*lhand = sd->status.shield;
 #else
-	if (sd->equip_index[EQI_HAND_R] >= 0 &&
-		sd->inventory_data[sd->equip_index[EQI_HAND_R]])
-	{
-		struct item_data* id = sd->inventory_data[sd->equip_index[EQI_HAND_R]];
+	if (sd->equip_index[EQI_SHADOW_WEAPON] >= 0 &&
+		sd->inventory_data[sd->equip_index[EQI_SHADOW_WEAPON]]){
+		struct item_data* id = sd->inventory_data[sd->equip_index[EQI_SHADOW_WEAPON]];
 		if (id->view_id > 0)
 			*rhand = id->view_id;
 		else
 			*rhand = id->nameid;
+		c_weapon = 1;
 	} else
 		*rhand = 0;
+
+	if (*rhand == 0){
+		if (sd->equip_index[EQI_HAND_R] >= 0 &&
+			sd->inventory_data[sd->equip_index[EQI_HAND_R]]){
+			struct item_data* id = sd->inventory_data[sd->equip_index[EQI_HAND_R]];
+			*rhand = id->nameid;
+		} else
+			*rhand = 0;
+	}
 
 	if (sd->equip_index[EQI_HAND_L] >= 0 &&
 		sd->equip_index[EQI_HAND_L] != sd->equip_index[EQI_HAND_R] &&
 		sd->inventory_data[sd->equip_index[EQI_HAND_L]])
 	{
 		struct item_data* id = sd->inventory_data[sd->equip_index[EQI_HAND_L]];
-		if (id->view_id > 0)
-			*lhand = id->view_id;
-		else
-			*lhand = id->nameid;
+		if (c_weapon && id->type == IT_WEAPON)
+			*lhand = 0;
+		else {
+			if (id->view_id > 0)
+				*lhand = id->view_id;
+			else
+				*lhand = id->nameid;
+		}		
 	} else
 		*lhand = 0;
 #endif

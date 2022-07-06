@@ -88,15 +88,15 @@ Header:
   Version: 2
 
 Body:
-  - Id: 5909
-    AegisName: C_Valkyrie_Circlet
-    Name: C Valkyrie Circlet
-    Type: Armor
-    Locations:
-      Costume_Head_Top: true
-    ArmorLevel: 1
-    EquipLevelMin: 1
-    View: 940
+  # - Id: 5909
+  #   AegisName: C_Valkyrie_Circlet
+  #   Name: C Valkyrie Circlet
+  #   Type: Armor
+  #   Locations:
+  #     Costume_Head_Top: true
+  #   ArmorLevel: 1
+  #   EquipLevelMin: 1
+  #   View: 940
   - Id: 5911
     AegisName: C_Imperial Feather
     Name: C Imperial Feather

@@ -5,11 +5,12 @@ OnClock1136:
 	announce "[ ระบบ ]  : NPC เข้าดันบอส เปิดแล้ว",bc_all,0xFFFF00;
 	end;
 
-OnClock1137:
+OnClock215950:
 	disablenpc "เข้าดันบอส";
 	announce "[ ระบบ ]  : NPC เข้าดันบอส ปิดแล้ว",bc_all,0xFFFF00;
 	end;
 }
+
 
 morocc,163,73,6	script	เข้าดันบอส	477,{
 	mes "เจ้าต้องการเข้าดันไหม";

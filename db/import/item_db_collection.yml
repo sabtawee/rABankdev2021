@@ -106,3 +106,14 @@ Body:
       NoAuction: true
     Script: |
       callfunc "F_collection";
+  - Id: 5909
+    AegisName: C_Valkyrie_Circlet
+    Name: C Valkyrie Circlet
+    Type: Armor
+    Collectable: true
+    Costume_Type: set_agi 
+    Locations:
+      Costume_Head_Top: true
+    ArmorLevel: 1
+    EquipLevelMin: 1
+    View: 940

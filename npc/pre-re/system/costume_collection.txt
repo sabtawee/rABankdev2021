@@ -55,6 +55,8 @@ OnPCLoginEvent:
 	query_sql "SELECT count(`costume_id`) from `costume_collection` where `aid`="+getcharid(3)+" and `type`='"+ $@costume_type$[3] +"';",.@c_type4;
 	query_sql "SELECT count(`costume_id`) from `costume_collection` where `aid`="+getcharid(3)+" and `type`='"+ $@costume_type$[4] +"';",.@c_type5;
 
+	bonus_script_clear();
+	
 	if (.@c_type5 > 0){
 		bonus_script "{ bonus bStr,100;}",999999999999;
 	}

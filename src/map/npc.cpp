@@ -2746,9 +2746,6 @@ e_purchase_result npc_buylist( struct map_session_data* sd, std::vector<s_npc_bu
 				return e_purchase_result::PURCHASE_FAIL_COUNT; // no such item in shop
 		}
 
-		if( j == nd->u.shop.count )
-			return e_purchase_result::PURCHASE_FAIL_COUNT; // no such item in shop
-
 #if PACKETVER >= 20131223
 		if (nd->subtype == NPCTYPE_MARKETSHOP) {
 			if (shop[j].qty >= 0 && item_list[i].qty > shop[j].qty)

@@ -106,3 +106,5 @@
 	int Shadow_8;
 	int Shadow_9;
 	int Shadow_10;
+	int itemtype_CASH_dropeffect;
+	int show_rank;

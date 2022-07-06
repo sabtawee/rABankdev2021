@@ -17,3 +17,15 @@
 //	script_pushint(st,1);
 //	return 0;
 //}
+
+BUILDIN_FUNC(reputationupdate)
+{
+	TBL_PC* sd;
+	if( !script_rid2sd(sd) )
+		return SCRIPT_CMD_SUCCESS;
+
+    sd->status.title_id = script_getnum(st, 2);
+    clif_name_area(&sd->bl);
+    
+    return SCRIPT_CMD_SUCCESS;
+}

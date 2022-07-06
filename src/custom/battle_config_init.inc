@@ -105,3 +105,5 @@
 	{ "Shadow_8",                &battle_config.Shadow_8,                 0,   0,      INT_MAX,        },
 	{ "Shadow_9",                &battle_config.Shadow_9,                 0,   0,      INT_MAX,        },
 	{ "Shadow_10",               &battle_config.Shadow_10,                0,   0,      INT_MAX,        },
+	{ "itemtype_CASH_dropeffect",&battle_config.itemtype_CASH_dropeffect, 0,   0,	   9,              },
+	{ "show_rank",               &battle_config.show_rank,                0,   0,      1,              },

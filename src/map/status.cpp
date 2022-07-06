@@ -3245,6 +3245,12 @@ int status_calc_pc_sub(struct map_session_data* sd, uint8 opt)
 	pc_delautobonus(*sd, sd->autobonus, true);
 	pc_delautobonus(*sd, sd->autobonus2, true);
 	pc_delautobonus(*sd, sd->autobonus3, true);
+	
+	if (battle_config.show_rank > 0) {
+		struct npc_data* nd_rank = npc_name2id("RankStatus#Calc");
+		if (nd_rank)
+			run_script(nd_rank->u.scr.script,0,sd->bl.id,nd_rank->bl.id);
+	}	
 
 	// Parse equipment
 	for (i = 0; i < MAX_INVENTORY; i++)

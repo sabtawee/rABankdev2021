@@ -49,21 +49,25 @@ Body:
 ###########################################################################
 ##= Ammunition Trader Shop
 ###########################################################################
-  - Name: Quiver_Archer
+  - Name: BOOK_SHOP
     Items:
-      - Index: 0
-        Item: Arrow_Container
-        Stock: 10
+      - Index: 1
+        Item: Exp Book
         Zeny: 10000
         RequiredItems:
           - Index: 0
             Item: Arrow
             Amount: 500
-          - Index: 1
-            Item: Rod
-            Amount: 2
-      - Index: 1
-        Item: Iron_Arrow_Container
+      - Index: 2
+        Item: Rank Book
+        Zeny: 10000
+        RequiredItems:
+          - Index: 0
+            Item: Iron_Arrow
+            Amount: 500         
+      - Index: 3
+        Item: Collection Book
+        Zeny: 10000
         RequiredItems:
           - Index: 0
             Item: Iron_Arrow

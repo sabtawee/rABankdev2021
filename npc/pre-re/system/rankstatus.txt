@@ -4,12 +4,12 @@ morocc,173,86,4	script	RankStatus#Main	637,{
 	end;
 
 	OnInit:
-
-//		waitingroom "ระบบยศ", 0;
+		setunitdata getnpcid(0),UNPC_GROUP_ID,2;
+		waitingroom "[ ระบบยศ ]", 0;
 
 		setarray $@RS_Level[0]	// เลเวล,จ็อบ ที่สามารถใช้ได้
 		,99									// เลเวล
-		,70									// จ็อบเลเวล
+		,50									// จ็อบเลเวล
 		;
 
 		set $@RS_EXPRate,1000;	// การหารจาก EXP มอนสเตอร์ เช่น Poring ได้ 10 exp หาร 2 = 5 exp

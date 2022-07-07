@@ -1,4 +1,4 @@
-morocc,163,164,3	script	Boost Shop	112,{
+morocc,166,111,3	script	Boost Shop	112,{
 	
 	mes .npcname$;
 	mes "เลือก Boost ที่ท่านต้องการ";
@@ -47,11 +47,15 @@ Oninit:
 
 	.npcname$ = "[^FF0000•^000000 ^2f00ffBoost Shop^000000 ^FF0000•^000000]";
 	
-	setarray .sc_name$[0],"ดรอปปั้ม","ดรอปของกดใช้","ดรอปขยะ","ดรอปอุปกรณ์สวมใส่","ดรอปการ์ด";
-	setarray .sc_real[0],SC_EXTRABOOST_HEALING,SC_EXTRABOOST_USABLE,SC_EXTRABOOST_ETC,SC_EXTRABOOST_EQUIPMENT,SC_EXTRABOOST_CARD;
-	setarray .sc_rate[0],10,10,10,30,50;	
+	setarray .sc_name$[0],"ดรอปอุปกรณ์สวมใส่","ดรอปการ์ด";
+	setarray .sc_real[0],SC_EXTRABOOST_EQUIPMENT,SC_EXTRABOOST_CARD;
+	setarray .sc_rate[0],30,50;	
+	// setarray .sc_name$[0],"ดรอปปั้ม","ดรอปของกดใช้","ดรอปขยะ","ดรอปอุปกรณ์สวมใส่","ดรอปการ์ด";
+	// setarray .sc_real[0],SC_EXTRABOOST_HEALING,SC_EXTRABOOST_USABLE,SC_EXTRABOOST_ETC,SC_EXTRABOOST_EQUIPMENT,SC_EXTRABOOST_CARD;
+	// setarray .sc_rate[0],10,10,10,30,50;	
 
-	waitingroom "ขาย Boost ต่างๆ",0;
+	setunitdata getnpcid(0),UNPC_GROUP_ID,2;
+	waitingroom "Boost Shop",0;
 	end;	
 	
 }

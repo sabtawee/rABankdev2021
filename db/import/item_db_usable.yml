@@ -141,3 +141,21 @@ Body:
       NoAuction: true
     Script: |
       callfunc "F_EXPBOOK";
+  - Id: 33007
+    AegisName: Rank Book
+    Name: Rank Book
+    Type: Delayconsume
+    Flag:
+      NoConsume: true
+    Weight: 0
+    Trade:
+      Override: 100
+      NoDrop: true
+      NoTrade: true
+      NoSell: true
+      NoCart: true
+      NoGuildStorage: true
+      NoMail: true
+      NoAuction: true
+    Script: |
+      callfunc "RankStatus";

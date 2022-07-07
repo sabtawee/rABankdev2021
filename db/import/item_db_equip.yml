@@ -97,218 +97,218 @@ Body:
   #   ArmorLevel: 1
   #   EquipLevelMin: 1
   #   View: 940
-  - Id: 5911
-    AegisName: C_Imperial Feather
-    Name: C Imperial Feather
-    Type: Armor
-    Locations:
-      Costume_Head_Mid: true
-    ArmorLevel: 1
-    EquipLevelMin: 1
-    View: 935
-  - Id: 5912
-    AegisName: C_Devil's Servant
-    Name: C Devil's Servant
-    Type: Armor
-    Locations:
-      Costume_Head_Mid: true
-    ArmorLevel: 1
-    EquipLevelMin: 1
-    View: 1036
-  - Id: 5913
-    AegisName: C_Anemos Mask
-    Name: C Anemos Mask
-    Type: Armor
-    Locations:
-      Costume_Head_Mid: true
-    ArmorLevel: 1
-    EquipLevelMin: 1
-    View: 906
-  - Id: 5914
-    AegisName: Earmuff_Flowerform
-    Name: C Flutter Butterfly
-    Type: Armor
-    Locations:
-      Costume_Head_Low: true
-    ArmorLevel: 1
-    EquipLevelMin: 1
-    View: 1378
-    Script: |
-      hateffect HAT_EF_FLUTTER_BUTTERFLY,true;
-    UnEquipScript: |
-      hateffect HAT_EF_FLUTTER_BUTTERFLY,false;
-  - Id: 5915
-    AegisName: Roundly_Woolly_Hat
-    Name: Costume Angel Veil
-    Type: Armor
-    View: 1379
-    Buy: 20
-    Weight: 300
-    Defense: 10
-    Slots: 1
-    Locations:
-      Costume_Head_Top: true
-    ArmorLevel: 1
-    Refineable: true
-  - Id: 5977
-    AegisName: C_Poker_Card_In_Mouth
-    Name: Costume Poker Card In Mouth    # !todo check english name
-    Type: Armor
-    Locations:
-      Costume_Head_Low: true
-    ArmorLevel: 1
-    View: 889
-  - Id: 5979
-    AegisName: C_Angel_Fluttering
-    Name: C Angel Fluttering
-    Type: Armor
-    Locations:
-      Costume_Head_Low: true
-    ArmorLevel: 1
-    EquipLevelMin: 1
-    View: 1380
-    Script: |
-      hateffect HAT_EF_ANGEL_FLUTTERING,true;
-    UnEquipScript: |
-      hateffect HAT_EF_ANGEL_FLUTTERING,false;
-  - Id: 5980
-    AegisName: C_Classical_Fhat
-    Name: C Classical Fhat
-    Type: Armor
-    Locations:
-      Costume_Head_Top: true
-    ArmorLevel: 1
-    EquipLevelMin: 1
-    View: 1381
-  - Id: 18740
-    AegisName: C_Hair_Of_The_Strong
-    Name: RMSC2012 Special Costume
-    Type: Armor
-    Buy: 20
-    Locations:
-      Costume_Head_Top: true
-    ArmorLevel: 1
-    View: 879
-  - Id: 18741
-    AegisName: C_Will_O_Wisp
-    Name: Costume Will O Wisp
-    Type: Armor
-    Buy: 10
-    Locations:
-      Costume_Head_Top: true
-    ArmorLevel: 1
-    EquipLevelMin: 1
-    View: 880
-    EquipScript: |
-      sc_start SC_STRANGELIGHTS,INFINITE_TICK,0;
-    UnEquipScript: |
-      sc_end SC_STRANGELIGHTS;
-  - Id: 18742
-    AegisName: C_MoonStar_Accessory
-    Name: Costume Moon and Stars
-    Type: Armor
-    Buy: 20
-    Locations:
-      Costume_Head_Mid: true
-    ArmorLevel: 1
-    View: 881
-    Trade:
-      NoDrop: true
-    EquipScript: |
-      sc_start SC_MOONSTAR,INFINITE_TICK,0;
-    UnEquipScript: |
-      sc_end SC_MOONSTAR;
-  - Id: 18743
-    AegisName: C_Spirit_Of_Chung_E
-    Name: Costume Spirit Of Chung E
-    Type: Armor
-    Buy: 20
-    Locations:
-      Costume_Head_Top: true
-    ArmorLevel: 1
-    View: 882
-  - Id: 18744
-    AegisName: C_World_Star
-    Name: Costume Twilight
-    Type: Armor
-    Buy: 20
-    Locations:
-      Costume_Head_Mid: true
-    ArmorLevel: 1
-    View: 883
-    EquipScript: |
-      sc_start SC_SUPER_STAR,INFINITE_TICK,0;
-    UnEquipScript: |
-      sc_end SC_SUPER_STAR;
-  - Id: 19158
-    AegisName: C_Gemini_Eyes
-    Name: Costume GeminiS58 Eyes Blue
-    Type: Armor
-    Locations:
-      Costume_Head_Mid: true
-    ArmorLevel: 1
-    View: 1456
-  - Id: 480093
-    AegisName: C_Scepter
-    Name: Costume Scepter
-    Type: Armor
-    Locations:
-      Costume_Garment: true
-    ArmorLevel: 1
-    View: 97
-  - Id: 19289
-    AegisName: C_Moon_Eyepatch
-    Name: Costume Moon Eyepatch
-    Type: Armor
-    Locations:
-      Costume_Head_Mid: true
-    ArmorLevel: 1
-    View: 1370
-  - Id: 19291
-    AegisName: C_Shiba_Inu
-    Name: Costume Shiba Inu
-    Type: Armor
-    Locations:
-      Costume_Head_Mid: true
-    ArmorLevel: 1
-    View: 1669
-  - Id: 19292
-    AegisName: C_Wildcat_Knit_Cap
-    Name: Costume Smokie Knit Cap
-    Type: Armor
-    Locations:
-      Costume_Head_Top: true
-    ArmorLevel: 1
-    View: 1671
-  - Id: 19294
-    AegisName: C_CatEars_Cyber_HeadP_R
-    Name: Costume Cyber Cat Ear Headphones (Red)
-    Type: Armor
-    Locations:
-      Costume_Head_Top: true
-    ArmorLevel: 1
-    View: 1668
-  - Id: 19459
-    AegisName: C_Luna_On_Shoulder
-    Name: Costume Lunatic on Shoulder
-    Type: Armor
-    View: 1881
-    Locations:
-      Costume_Head_Low: true
-    ArmorLevel: 1
-  - Id: 19464
-    AegisName: C_Melon_Cap
-    Name: Costume Melon Bread Hat
-    Type: Armor
-    View: 1878
-    Locations:
-      Costume_Head_Top: true
-    ArmorLevel: 1
-  - Id: 19472
-    AegisName: C_S_Circlet_Of_Time
-    Name: Costume Temporal Circlet
-    Type: Armor
-    View: 1891
-    Locations:
-      Costume_Head_Top: true
-    ArmorLevel: 1
+  # - Id: 5911
+  #   AegisName: C_Imperial Feather
+  #   Name: C Imperial Feather
+  #   Type: Armor
+  #   Locations:
+  #     Costume_Head_Mid: true
+  #   ArmorLevel: 1
+  #   EquipLevelMin: 1
+  #   View: 935
+  # - Id: 5912
+  #   AegisName: C_Devil's Servant
+  #   Name: C Devil's Servant
+  #   Type: Armor
+  #   Locations:
+  #     Costume_Head_Mid: true
+  #   ArmorLevel: 1
+  #   EquipLevelMin: 1
+  #   View: 1036
+  # - Id: 5913
+  #   AegisName: C_Anemos Mask
+  #   Name: C Anemos Mask
+  #   Type: Armor
+  #   Locations:
+  #     Costume_Head_Mid: true
+  #   ArmorLevel: 1
+  #   EquipLevelMin: 1
+  #   View: 906
+  # - Id: 5914
+  #   AegisName: Earmuff_Flowerform
+  #   Name: C Flutter Butterfly
+  #   Type: Armor
+  #   Locations:
+  #     Costume_Head_Low: true
+  #   ArmorLevel: 1
+  #   EquipLevelMin: 1
+  #   View: 1378
+  #   Script: |
+  #     hateffect HAT_EF_FLUTTER_BUTTERFLY,true;
+  #   UnEquipScript: |
+  #     hateffect HAT_EF_FLUTTER_BUTTERFLY,false;
+  # - Id: 5915
+  #   AegisName: Roundly_Woolly_Hat
+  #   Name: Costume Angel Veil
+  #   Type: Armor
+  #   View: 1379
+  #   Buy: 20
+  #   Weight: 300
+  #   Defense: 10
+  #   Slots: 1
+  #   Locations:
+  #     Costume_Head_Top: true
+  #   ArmorLevel: 1
+  #   Refineable: true
+  # - Id: 5977
+  #   AegisName: C_Poker_Card_In_Mouth
+  #   Name: Costume Poker Card In Mouth    # !todo check english name
+  #   Type: Armor
+  #   Locations:
+  #     Costume_Head_Low: true
+  #   ArmorLevel: 1
+  #   View: 889
+  # - Id: 5979
+  #   AegisName: C_Angel_Fluttering
+  #   Name: C Angel Fluttering
+  #   Type: Armor
+  #   Locations:
+  #     Costume_Head_Low: true
+  #   ArmorLevel: 1
+  #   EquipLevelMin: 1
+  #   View: 1380
+  #   Script: |
+  #     hateffect HAT_EF_ANGEL_FLUTTERING,true;
+  #   UnEquipScript: |
+  #     hateffect HAT_EF_ANGEL_FLUTTERING,false;
+  # - Id: 5980
+  #   AegisName: C_Classical_Fhat
+  #   Name: C Classical Fhat
+  #   Type: Armor
+  #   Locations:
+  #     Costume_Head_Top: true
+  #   ArmorLevel: 1
+  #   EquipLevelMin: 1
+  #   View: 1381
+  # - Id: 18740
+  #   AegisName: C_Hair_Of_The_Strong
+  #   Name: RMSC2012 Special Costume
+  #   Type: Armor
+  #   Buy: 20
+  #   Locations:
+  #     Costume_Head_Top: true
+  #   ArmorLevel: 1
+  #   View: 879
+  # - Id: 18741
+  #   AegisName: C_Will_O_Wisp
+  #   Name: Costume Will O Wisp
+  #   Type: Armor
+  #   Buy: 10
+  #   Locations:
+  #     Costume_Head_Top: true
+  #   ArmorLevel: 1
+  #   EquipLevelMin: 1
+  #   View: 880
+  #   EquipScript: |
+  #     sc_start SC_STRANGELIGHTS,INFINITE_TICK,0;
+  #   UnEquipScript: |
+  #     sc_end SC_STRANGELIGHTS;
+  # - Id: 18742
+  #   AegisName: C_MoonStar_Accessory
+  #   Name: Costume Moon and Stars
+  #   Type: Armor
+  #   Buy: 20
+  #   Locations:
+  #     Costume_Head_Mid: true
+  #   ArmorLevel: 1
+  #   View: 881
+  #   Trade:
+  #     NoDrop: true
+  #   EquipScript: |
+  #     sc_start SC_MOONSTAR,INFINITE_TICK,0;
+  #   UnEquipScript: |
+  #     sc_end SC_MOONSTAR;
+  # - Id: 18743
+  #   AegisName: C_Spirit_Of_Chung_E
+  #   Name: Costume Spirit Of Chung E
+  #   Type: Armor
+  #   Buy: 20
+  #   Locations:
+  #     Costume_Head_Top: true
+  #   ArmorLevel: 1
+  #   View: 882
+  # - Id: 18744
+  #   AegisName: C_World_Star
+  #   Name: Costume Twilight
+  #   Type: Armor
+  #   Buy: 20
+  #   Locations:
+  #     Costume_Head_Mid: true
+  #   ArmorLevel: 1
+  #   View: 883
+  #   EquipScript: |
+  #     sc_start SC_SUPER_STAR,INFINITE_TICK,0;
+  #   UnEquipScript: |
+  #     sc_end SC_SUPER_STAR;
+  # - Id: 19158
+  #   AegisName: C_Gemini_Eyes
+  #   Name: Costume GeminiS58 Eyes Blue
+  #   Type: Armor
+  #   Locations:
+  #     Costume_Head_Mid: true
+  #   ArmorLevel: 1
+  #   View: 1456
+  # - Id: 480093
+  #   AegisName: C_Scepter
+  #   Name: Costume Scepter
+  #   Type: Armor
+  #   Locations:
+  #     Costume_Garment: true
+  #   ArmorLevel: 1
+  #   View: 97
+  # - Id: 19289
+  #   AegisName: C_Moon_Eyepatch
+  #   Name: Costume Moon Eyepatch
+  #   Type: Armor
+  #   Locations:
+  #     Costume_Head_Mid: true
+  #   ArmorLevel: 1
+  #   View: 1370
+  # - Id: 19291
+  #   AegisName: C_Shiba_Inu
+  #   Name: Costume Shiba Inu
+  #   Type: Armor
+  #   Locations:
+  #     Costume_Head_Mid: true
+  #   ArmorLevel: 1
+  #   View: 1669
+  # - Id: 19292
+  #   AegisName: C_Wildcat_Knit_Cap
+  #   Name: Costume Smokie Knit Cap
+  #   Type: Armor
+  #   Locations:
+  #     Costume_Head_Top: true
+  #   ArmorLevel: 1
+  #   View: 1671
+  # - Id: 19294
+  #   AegisName: C_CatEars_Cyber_HeadP_R
+  #   Name: Costume Cyber Cat Ear Headphones (Red)
+  #   Type: Armor
+  #   Locations:
+  #     Costume_Head_Top: true
+  #   ArmorLevel: 1
+  #   View: 1668
+  # - Id: 19459
+  #   AegisName: C_Luna_On_Shoulder
+  #   Name: Costume Lunatic on Shoulder
+  #   Type: Armor
+  #   View: 1881
+  #   Locations:
+  #     Costume_Head_Low: true
+  #   ArmorLevel: 1
+  # - Id: 19464
+  #   AegisName: C_Melon_Cap
+  #   Name: Costume Melon Bread Hat
+  #   Type: Armor
+  #   View: 1878
+  #   Locations:
+  #     Costume_Head_Top: true
+  #   ArmorLevel: 1
+  # - Id: 19472
+  #   AegisName: C_S_Circlet_Of_Time
+  #   Name: Costume Temporal Circlet
+  #   Type: Armor
+  #   View: 1891
+  #   Locations:
+  #     Costume_Head_Top: true
+  #   ArmorLevel: 1

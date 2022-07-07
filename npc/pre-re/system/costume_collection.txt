@@ -50,15 +50,12 @@ OnBuyItem:
 OnGiveBuff:
 OnPCLoginEvent:
 	query_sql "SELECT count(`costume_id`) from `costume_collection` where `aid`="+getcharid(3)+" and `type`='"+ $@costume_type$[0] +"';",.@c_type1;
-	query_sql "SELECT count(`costume_id`) from `costume_collection` where `aid`="+getcharid(3)+" and `type`='"+ $@costume_type$[1] +"';",.@c_type2;
-	query_sql "SELECT count(`costume_id`) from `costume_collection` where `aid`="+getcharid(3)+" and `type`='"+ $@costume_type$[2] +"';",.@c_type3;
-	query_sql "SELECT count(`costume_id`) from `costume_collection` where `aid`="+getcharid(3)+" and `type`='"+ $@costume_type$[3] +"';",.@c_type4;
-	query_sql "SELECT count(`costume_id`) from `costume_collection` where `aid`="+getcharid(3)+" and `type`='"+ $@costume_type$[4] +"';",.@c_type5;
+	
 
 	bonus_script_clear();
 	
-	if (.@c_type5 > 0){
-		bonus_script "{ bonus bStr,100;}",999999999999;
+	if (.@c_type1 >= 1){
+		bonus_script "{ bonus bLuk,3;}",999999999999;
 	}
 	
 	end;	
@@ -67,7 +64,7 @@ OnInit:
 	npcshopdelitem "costume_system",909;
 	
 	//กำหนดให้ตรง ใน item_db_collection
-	setarray $@costume_type$[0],"Costume_I","Costume_II","Costume_III","Costume_MVP","set_agi";
+	setarray $@costume_type$[0],"LUK_UP";
 	
 	// กำราคาต่อชิ้น
 	.cost_per_item = 50000;
@@ -81,20 +78,14 @@ function	script	F_collection	{
 	.@npcname$ = "[^FF0000•^000000 ^2f00ffCostume Collection^000000 ^FF0000•^000000]";
 	
 	query_sql "SELECT count(`costume_id`) from `costume_collection` where `aid`="+getcharid(3)+" and `type`='"+$@costume_type$[0]+"';",.@c_type1;
-	query_sql "SELECT count(`costume_id`) from `costume_collection` where `aid`="+getcharid(3)+" and `type`='"+$@costume_type$[1]+"';",.@c_type2;
-	query_sql "SELECT count(`costume_id`) from `costume_collection` where `aid`="+getcharid(3)+" and `type`='"+$@costume_type$[2]+"';",.@c_type3;
-	query_sql "SELECT count(`costume_id`) from `costume_collection` where `aid`="+getcharid(3)+" and `type`='"+$@costume_type$[3]+"';",.@c_type4;
-	query_sql "SELECT count(`costume_id`) from `costume_collection` where `aid`="+getcharid(3)+" and `type`='"+$@costume_type$[4]+"';",.@c_type5;
+	
 	
 	mes .@npcname$;
 	mes "Costume ใน Collection ขณะนี้";
-	mes "^1100fa>^000000 " + $@costume_type$[0] + " ^1100fa|^000000 " + .@c_type1 + " ชิ้น";
-	mes "^1100fa>^000000 " + $@costume_type$[1] + " ^1100fa|^000000 " + .@c_type2 + " ชิ้น";
-	mes "^1100fa>^000000 " + $@costume_type$[2] + " ^1100fa|^000000 " + .@c_type3 + " ชิ้น";
-	mes "^1100fa>^000000 " + $@costume_type$[3] + " ^1100fa|^000000 " + .@c_type4 + " ชิ้น";
-	mes "^1100fa>^000000 " + $@costume_type$[4] + " ^1100fa|^000000 " + .@c_type5 + " ชิ้น";
+	mes $@costume_type$[0] + " ^1100fa|^000000 " + .@c_type1 + " ชิ้น ^6666ccครบ 7 ชิ้น Luk + 3^000000" ;
 	
-	menu "^2b00ff~^000000 ฝาก Costume ลงใน Collection",-,"^2b00ff~^000000 ถอด Costume ออกจาก Collection",-,"^FF0000•^000000 ยกเลิก",-;
+	
+	menu "^6666cc~^000000 ฝาก Costume ลงใน Collection",-,"^2b00ff~^000000 ถอด Costume ออกจาก Collection",-,"^FF0000•^000000 ยกเลิก",-;
 	set .@menu2,@menu;
 	
 	if(.@menu2 == 1){

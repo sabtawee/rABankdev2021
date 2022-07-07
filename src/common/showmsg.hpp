@@ -64,7 +64,7 @@
 #define CL_WTBL			"\033[37;44m"	// white on blue
 #define CL_XXBL			"\033[0;44m"	// default on blue
 #define CL_PASS			"\033[0;32;42m"	// green on green
-
+#define CL_WHISP        "\033[1;37m"
 #define CL_SPACE		"           "	// space aquivalent of the print messages
 
 extern int stdout_with_ansisequence; //If the color ansi sequences are to be used. [flaviojs]

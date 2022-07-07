@@ -11014,15 +11014,26 @@ void clif_parse_WantToConnection(int fd, struct map_session_data* sd)
 static void donate_level_buff(struct map_session_data *sd){
 	nullpo_retv(sd);
 	
-	if(sd->status.donate_level == 0){return;}
-	
+	if(sd->status.donate_level == 0){
+		status_change_end(&sd->bl, SC_DONATE_LEVEL_1, INVALID_TIMER);
+		status_change_end(&sd->bl, SC_DONATE_LEVEL_2, INVALID_TIMER);
+		status_change_end(&sd->bl, SC_DONATE_LEVEL_3, INVALID_TIMER);
+		status_change_end(&sd->bl, SC_DONATE_LEVEL_4, INVALID_TIMER);
+		status_change_end(&sd->bl, SC_DONATE_LEVEL_5, INVALID_TIMER);
+		status_change_end(&sd->bl, SC_DONATE_LEVEL_6, INVALID_TIMER);
+		status_change_end(&sd->bl, SC_DONATE_LEVEL_7, INVALID_TIMER);
+		status_change_end(&sd->bl, SC_DONATE_LEVEL_8, INVALID_TIMER);
+		status_change_end(&sd->bl, SC_DONATE_LEVEL_9, INVALID_TIMER);
+		status_change_end(&sd->bl, SC_DONATE_LEVEL_10, INVALID_TIMER);
+		return;
+	}
+
 	int level = donateperks.level[sd->status.donate_level];
 	int exp = donateperks.exp[sd->status.donate_level];
 	int drop = donateperks.drop[sd->status.donate_level];
 	int regen_rate = donateperks.regenrate[sd->status.donate_level];
 	
-	if(sd->state.donate_buff == false){
-		
+	if(sd->state.donate_buff == false){		
 		status_change_end(&sd->bl, SC_DONATE_LEVEL_1, INVALID_TIMER);
 		status_change_end(&sd->bl, SC_DONATE_LEVEL_2, INVALID_TIMER);
 		status_change_end(&sd->bl, SC_DONATE_LEVEL_3, INVALID_TIMER);

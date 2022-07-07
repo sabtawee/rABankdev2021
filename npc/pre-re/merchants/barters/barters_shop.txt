@@ -1,34 +1,13 @@
-//= Arrow Merchant Shop
-//============================================================
--	script	#over_arrow	HIDDEN_NPC,{
-	mes "[Arrow Merchant]";
-	mes "Hi!";
-	mes "Do you want to buy arrows or exchange the quiver?";
-	next;
-	switch ( select( "Buy Arrows", "Quiver Exchange", "Sell Items", "Cancel" )) {
-	case 1:
-		close2;
-		callshop "Arrow_Archer", 1;
-		break;
-	case 2:
-		close2;
-		callshop "Quiver_Archer", 1;
-		break;
-	case 3:
-		close2;
-		callshop "Selling_Items", 2;
-		break;
-	case 4:
-		mes "[Arrow Merchant]";
-		mes "You can take a look at other things more calmly.";
-		close;
-	}
+morocc,150,107,6	Script	Book shop	4_M_ARCHER,{
+	mes "ร้านขายหนังสือ";
+	mes "1. ^6666ccExp Book^000000";
+	mes "2. ^6666ccRank Book^000000";
+	mes "3. ^6666ccCollection Book^000000";
+	close2;
+	callshop "BOOK_SHOP",1;
 	end;
-	
 OnInit:
-	setunitdata getnpcid(0),UNPC_GROUP_ID,7;
+	setunitdata getnpcid(0),UNPC_GROUP_ID,2;
+	waitingroom "[ วิจัย สมุด ]", 0;
 	end;
 }
-
-
-morocc,147,50,3	duplicate(#over_arrow)	Arrow Merchant#over_arrow_0	4_M_ARCHER

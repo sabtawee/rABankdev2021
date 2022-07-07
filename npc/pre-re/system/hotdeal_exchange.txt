@@ -2,13 +2,14 @@
 ////-- Whipsering Rain
 
 // NPC ไว้เรียก เมนูวิจัย
-morocc,156,164,6	script	HotWeekCraft	112,{
+morocc,143,89,6	script	HotWeekCraft	112,{
 	
 	callfunc "F_HotWeekCraft";
 	end;
 	
 OnInit:
 	.npcname$ = " ^0004ff•:[ วิจัย Item ]:• ^000000";
+	setunitdata getnpcid(0),UNPC_GROUP_ID,2;
 	waitingroom " วิจัย Item",0;
 	end;	
 	
@@ -25,7 +26,6 @@ OnInit:
 		deletearray getd(sprintf("$hdc_%d", $hdc_itemlist[.@z])),2;
 	}
 	deletearray $hdc_itemlist,getarraysize($hdc_itemlist);
-
 	set .npc_name$," ^0004ff•:[ วิจัย Item ]:• ^000000";
 	freeloop(1);
 
@@ -240,7 +240,7 @@ function	script	F_HotWeekCraft	{
 -	script	hotweekcraft_CONTROL	-1,{
 
 OnInterIfInit:
-	//debugmes "\033[0;35m>> Whispering Rain : Hot Week Craft";
+	debugmes "\033[0;35m>> Whispering Rain : Hot Week Craft";
 	end;
 	
 }

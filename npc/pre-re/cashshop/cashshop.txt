@@ -1,0 +1,3 @@
+morocc,129,79,6	cashshop	Kafra Shop#1	116,14003:50,11503:1,11504:1
+morocc,134,79,6	cashshop	Kafra Vip Shop#3	116,33000:20,33001:50,33002:120,33003:250,33004:400
+morocc,139,79,6	cashshop	Kafra ColorName Shop#4	116,501:1

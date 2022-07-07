@@ -1,4 +1,4 @@
-morocc,166,166,3	script	CP Exchanger	112,{
+morocc,168,107,3	script	CP Exchanger	112,{
 	
 	query_sql "SELECT `current_price` FROM `cp_price`;",.@current_price;
 	
@@ -46,7 +46,7 @@ OnSqlINIT:
 	end;	
 	
 Oninit:
-
+	setunitdata getnpcid(0),UNPC_GROUP_ID,2;
 	.npcname$ = "[^FF0000ï^000000 ^2f00ffCP Exchanger^000000 ^FF0000ï^000000]";
 	bindatcmd "cp_price",strnpcinfo(0)+"::OnSqlINIT",99;
 	waitingroom "·≈°‡À√’¬≠ CP",0;

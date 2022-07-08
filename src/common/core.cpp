@@ -341,7 +341,7 @@ int main (int argc, char **argv)
 			char *pwd = NULL; //path working directory
 			int n=0;
 			SERVER_NAME = ++p1;
-			n = p1-argv[0]; //calc dir name len
+			n = (int)(p1-argv[0]); //calc dir name len
 			pwd = safestrncpy((char*)malloc(n + 1), argv[0], n);
 			if(chdir(pwd) != 0)
 				ShowError("Couldn't change working directory to %s for %s, runtime will probably fail",pwd,SERVER_NAME);

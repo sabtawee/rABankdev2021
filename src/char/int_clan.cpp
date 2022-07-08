@@ -57,9 +57,9 @@ struct clan* inter_clan_fromsql(int clan_id){
 	memset(clan, 0, sizeof(struct clan));
 
 	clan->id = clan_id;
-	Sql_GetData(sql_handle,  0, &data, &len); memcpy(clan->name, data, min(len, NAME_LENGTH));
-	Sql_GetData(sql_handle,  1, &data, &len); memcpy(clan->master, data, min(len, NAME_LENGTH));
-	Sql_GetData(sql_handle,  2, &data, &len); memcpy(clan->map, data, min(len, MAP_NAME_LENGTH_EXT));
+	Sql_GetData(sql_handle,  0, &data, &len); memcpy(clan->name, data, min((int)len, NAME_LENGTH));
+	Sql_GetData(sql_handle,  1, &data, &len); memcpy(clan->master, data, min((int)len, NAME_LENGTH));
+	Sql_GetData(sql_handle,  2, &data, &len); memcpy(clan->map, data, min((int)len, MAP_NAME_LENGTH_EXT));
 	Sql_GetData(sql_handle,  3, &data, NULL); clan->max_member = atoi(data);
 
 	clan->connect_member = 0;

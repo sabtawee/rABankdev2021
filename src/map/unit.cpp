@@ -203,7 +203,7 @@ TIMER_FUNC(unit_teleport_timer){
 		return 0;
 	else {
 		TBL_PC *msd = unit_get_master(bl);
-		if(msd && !check_distance_bl(&msd->bl, bl, data)) {
+		if(msd && !check_distance_bl(&msd->bl, bl, (int)data)) {
 			*mast_tid = INVALID_TIMER;
 			unit_warp(bl, msd->bl.m, msd->bl.x, msd->bl.y, CLR_TELEPORT );
 		} else // No timer needed
@@ -682,7 +682,7 @@ TIMER_FUNC(unit_delay_walktoxy_timer){
  * @return 1: Success 0: Fail (No valid bl or target)
  */
 TIMER_FUNC(unit_delay_walktobl_timer){
-	struct block_list *bl = map_id2bl(id), *tbl = map_id2bl(data);
+	struct block_list *bl = map_id2bl(id), *tbl = map_id2bl((int)data);
 
 	if(!bl || bl->prev == NULL || tbl == NULL)
 		return 0;

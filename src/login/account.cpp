@@ -803,7 +803,7 @@ void mmo_send_global_accreg(AccountDB* self, int fd, uint32 account_id, uint32 c
 		plen += 1;
 
 		safestrncpy(WFIFOCP(fd,plen), data, len);
-		plen += len;
+		plen += (int)len;
 
 		Sql_GetData(sql_handle, 1, &data, NULL);
 
@@ -817,7 +817,7 @@ void mmo_send_global_accreg(AccountDB* self, int fd, uint32 account_id, uint32 c
 		plen += 1;
 
 		safestrncpy(WFIFOCP(fd,plen), data, len);
-		plen += len;
+		plen += (int)len;
 
 		WFIFOW(fd, 14) += 1;
 
@@ -870,7 +870,7 @@ void mmo_send_global_accreg(AccountDB* self, int fd, uint32 account_id, uint32 c
 		plen += 1;
 
 		safestrncpy(WFIFOCP(fd,plen), data, len);
-		plen += len;
+		plen += (int)len;
 
 		Sql_GetData(sql_handle, 1, &data, NULL);
 

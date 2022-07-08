@@ -4484,7 +4484,7 @@ enum e_mapflag map_getmapflag_by_name(char* name)
 bool map_getmapflag_name( enum e_mapflag mapflag, char* output ){
 	const char* constant;
 	const char* prefix = "mf_";
-	int i, len = strlen(prefix);
+	int i, len = (int)strlen(prefix);
 
 	// Look it up
 	constant = script_get_constant_str( prefix, mapflag );

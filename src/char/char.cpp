@@ -2831,7 +2831,7 @@ void char_config_split_startpoint(char *w1_value, char *w2_value, struct point s
 	lineitem = strtok(w2_value, ":");
 
 	while (lineitem != NULL && (*count) < MAX_STARTPOINT) {
-		int n = sv_split(lineitem, strlen(lineitem), 0, ',', fields, fields_length, SV_NOESCAPE_NOTERMINATE);
+		int n = sv_split(lineitem, (int)strlen(lineitem), 0, ',', fields, fields_length, SV_NOESCAPE_NOTERMINATE);
 
 		if (n + 1 < fields_length) {
 			ShowDebug("%s: not enough arguments for %s! Skipping...\n", w1_value, lineitem);
@@ -2874,7 +2874,7 @@ void char_config_split_startitem(char *w1_value, char *w2_value, struct startite
 	lineitem = strtok(w2_value, ":");
 
 	while (lineitem != NULL && i < MAX_STARTITEM) {
-		int n = sv_split(lineitem, strlen(lineitem), 0, ',', fields, fields_length, SV_NOESCAPE_NOTERMINATE);
+		int n = sv_split(lineitem, (int)strlen(lineitem), 0, ',', fields, fields_length, SV_NOESCAPE_NOTERMINATE);
 
 		if (n + 1 < fields_length) {
 			ShowDebug("%s: not enough arguments for %s! Skipping...\n", w1_value, lineitem);

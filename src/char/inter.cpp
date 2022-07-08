@@ -701,7 +701,7 @@ int inter_accreg_fromsql(uint32 account_id, uint32 char_id, int fd, int type)
 		plen += 1;
 
 		safestrncpy(WFIFOCP(fd,plen), data, len);
-		plen += len;
+		plen += (int)len;
 
 		Sql_GetData(sql_handle, 1, &data, NULL);
 
@@ -715,7 +715,7 @@ int inter_accreg_fromsql(uint32 account_id, uint32 char_id, int fd, int type)
 		plen += 1;
 
 		safestrncpy(WFIFOCP(fd,plen), data, len);
-		plen += len;
+		plen += (int)len;
 
 		WFIFOW(fd, 14) += 1;
 
@@ -781,7 +781,7 @@ int inter_accreg_fromsql(uint32 account_id, uint32 char_id, int fd, int type)
 		plen += 1;
 
 		safestrncpy(WFIFOCP(fd,plen), data, len);
-		plen += len;
+		plen += (int)len;
 
 		Sql_GetData(sql_handle, 1, &data, NULL);
 
@@ -1031,7 +1031,7 @@ void inter_final(void)
  * @param fd
  **/
 void inter_Storage_sendInfo(int fd) {
-	int size = sizeof(struct s_storage_table), len = 4 + interServerDb.size() * size, offset;
+	int size = sizeof(struct s_storage_table), len = 4 + (int)interServerDb.size() * size, offset;
 	// Send storage table information
 	WFIFOHEAD(fd, len);
 	WFIFOW(fd, 0) = 0x388c;
@@ -1310,7 +1310,7 @@ int mapif_parse_Registry(int fd)
 			size_t lenkey = RFIFOB( fd, cursor );
 			const char* src_key= RFIFOCP(fd, cursor + 1);
 			std::string key( src_key, lenkey );
-			cursor += lenkey + 1;
+			cursor += (int)lenkey + 1;
 
 			uint32  index = RFIFOL(fd, cursor);
 			cursor += 4;
@@ -1330,7 +1330,7 @@ int mapif_parse_Registry(int fd)
 					size_t len_val = RFIFOB( fd, cursor );
 					const char* src_val= RFIFOCP(fd, cursor + 1);
 					std::string sval( src_val, len_val );
-					cursor += len_val + 1;
+					cursor += (int)len_val + 1;
 					inter_savereg( account_id, char_id, key.c_str(), index, 0, sval.c_str(), true );
 					break;
 				}

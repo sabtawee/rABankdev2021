@@ -260,7 +260,7 @@ int chmapif_parse_getmapname(int fd, int id){
 
 	chmapif_send_misc(fd);
 	chmapif_send_fame_list(fd); //Send fame list.
-	chmapif_send_maps(fd, id, map_server[id].map.size(), mapbuf);
+	chmapif_send_maps(fd, id, (int)map_server[id].map.size(), mapbuf);
 
 	return 1;
 }
@@ -309,7 +309,7 @@ int chmapif_parse_askscdata(int fd){
 				ShowWarning("Too many status changes for %d:%d, some of them were not loaded.\n", aid, cid);
 			if (count > 0)
 			{
-				WFIFOW(fd,2) = 14 + count*sizeof(struct status_change_data);
+				WFIFOW(fd,2) = 14 + count * (uint16)sizeof(struct status_change_data);
 				WFIFOW(fd,12) = count;
 				WFIFOSET(fd,WFIFOW(fd,2));
 			}
@@ -559,7 +559,7 @@ int chmapif_parse_req_skillcooldown(int fd){
 				ShowWarning("Too many skillcooldowns for %d:%d, some of them were not loaded.\n", aid, cid);
 			if( count > 0 )
 			{
-				WFIFOW(fd,2) = 14 + count * sizeof(struct skill_cooldown_data);
+				WFIFOW(fd,2) = 14 + count * (uint16)sizeof(struct skill_cooldown_data);
 				WFIFOW(fd,12) = count;
 				WFIFOSET(fd,WFIFOW(fd,2));
 				//Clear the data once loaded.
@@ -986,7 +986,6 @@ int chmapif_parse_reqauth(int fd, int id){
 		uint32 account_id;
 		uint32 char_id;
 		uint32 login_id1;
-		uint32 donate_level;
 		unsigned char sex;
 		uint32 ip;
 		struct auth_node* node;

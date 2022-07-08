@@ -315,7 +315,7 @@ int login_mmo_auth(struct login_session_data* sd, bool isServer) {
 
 	}
 
-	len = strnlen(sd->userid, NAME_LENGTH);
+	len = (int)strnlen(sd->userid, NAME_LENGTH);
 
 	// Account creation with _M/_F
 	if( login_config.new_account_flag ) {

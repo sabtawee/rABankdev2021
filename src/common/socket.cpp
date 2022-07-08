@@ -1707,7 +1707,7 @@ void send_shortlist_do_sends()
 {
 	int i;
 
-	for( i = send_shortlist_count-1; i >= 0; --i )
+	for( i = (int)send_shortlist_count-1; i >= 0; --i )
 	{
 		int fd = send_shortlist_array[i];
 		int idx = fd/32;

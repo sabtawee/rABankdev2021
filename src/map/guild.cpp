@@ -2030,7 +2030,7 @@ int guild_gm_change(int guild_id, uint32 char_id) {
 		return 0;
 
 	//Notify servers that master has changed.
-	intif_guild_change_gm(guild_id, name, strlen(name)+1);
+	intif_guild_change_gm(guild_id, name, (int)strlen(name)+1);
 	return 1;
 }
 

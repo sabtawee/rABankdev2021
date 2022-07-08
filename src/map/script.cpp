@@ -934,7 +934,7 @@ static int add_word(const char* p)
 	int i;
 
 	// Check for a word
-	len = skip_word(p) - p;
+	len = (int)(skip_word(p) - p);
 	if( len == 0 )
 		disp_error_message("script:add_word: invalid word. A word consists of undercores and/or alphanumeric characters, and valid variable prefixes/postfixes.", p);
 
@@ -16512,7 +16512,7 @@ BUILDIN_FUNC(insertchar)
 	if(index < 0)
 		index = 0;
 	else if(index > len)
-		index = len;
+		index = (int)len;
 
 	output = (char*)aMalloc(len + 2);
 
@@ -16727,7 +16727,7 @@ BUILDIN_FUNC(implode)
 		//allocate mem
 		if( script_hasdata(st,3) ) {
 			glue = script_getstr(st,3);
-			glue_len = strlen(glue);
+			glue_len = (int)strlen(glue);
 			len += glue_len * (array_size);
 		}
 		output = (char*)aMalloc(len + 1);
@@ -16737,7 +16737,7 @@ BUILDIN_FUNC(implode)
 			temp = get_val2_str( st, reference_uid( id, i ), reference_getref( data ) );
 			len = strlen(temp);
 			memcpy(&output[k], temp, len);
-			k += len;
+			k += (int)len;
 			// Remove stack entry from get_val2_str
 			script_removetop( st, -1, 0 );
 
@@ -16750,7 +16750,7 @@ BUILDIN_FUNC(implode)
 		temp = get_val2_str( st, reference_uid( id, array_size ), reference_getref( data ) );
 		len = strlen(temp);
 		memcpy(&output[k], temp, len);
-		k += len;
+		k += (int)len;
 		output[k] = '\0';
 		// Remove stack entry from get_val2_str
 		script_removetop( st, -1, 0 );
@@ -16779,7 +16779,7 @@ BUILDIN_FUNC(sprintf)
 	// Fetch init data
 	format = script_getstr(st, 2);
 	argc = script_lastdata(st)-2;
-	len = strlen(format);
+	len = (int)strlen(format);
 
 	// Skip parsing, where no parsing is required.
 	if(len == 0) {
@@ -16805,7 +16805,7 @@ BUILDIN_FUNC(sprintf)
 	q = buf;
 	while((p = strchr(q, '%')) != NULL) {
 		if(p != q) {
-			len = p - q + 1;
+			len = (int)(p - q + 1);
 
 			if(buf2_len < len) {
 				RECREATE(buf2, char, len);
@@ -16844,7 +16844,7 @@ BUILDIN_FUNC(sprintf)
 		if((p = strchr(q+1, '%')) == NULL)
 			p = strchr(q, 0);  // EOS
 
-		len = p - q + 1;
+		len = (int)(p - q + 1);
 
 		if(buf2_len < len) {
 			RECREATE(buf2, char, len);
@@ -16925,7 +16925,7 @@ BUILDIN_FUNC(sscanf){
 	format = script_getstr(st, 3);
 	argc = script_lastdata(st)-3;
 
-	len = strlen(format);
+	len = (int)strlen(format);
 
 
 	if (len != 0 && strlen(str) == 0) {
@@ -16962,7 +16962,7 @@ BUILDIN_FUNC(sscanf){
 		if((p = strchr(q+1, '%'))==NULL){
 			p = strchr(q, 0);  // EOS
 		}
-		len = p-q;
+		len = (int)(p-q);
 		strncat(buf, q, len);
 		q = p;
 
@@ -17115,7 +17115,7 @@ BUILDIN_FUNC(replacestr)
 				numFinds++;
 				StringBuf_AppendStr(&output, replace);
 
-				i += findlen - 1;
+				i += (int)(findlen - 1);
 				break;
 			} else {
 				if(usecase) {
@@ -17179,7 +17179,7 @@ BUILDIN_FUNC(countstr)
 		for(f = 0; f <= findlen; f++) {
 			if(f == findlen) { //complete match
 				numFinds++;
-				i += findlen - 1;
+				i += (int)(findlen - 1);
 				break;
 			} else {
 				if(usecase) {
@@ -20919,7 +20919,7 @@ BUILDIN_FUNC(bg_info)
 			size_t i;
 
 			for (i = 0; i < bg->maps.size(); i++)
-				setd_sub_str(st, nullptr, ".@bgmaps$", i, mapindex_id2name(bg->maps[i].mapindex), nullptr);
+				setd_sub_str(st, nullptr, ".@bgmaps$", (int)i, mapindex_id2name(bg->maps[i].mapindex), nullptr);
 			setd_sub_num(st, nullptr, ".@bgmapscount", 0, i, nullptr);
 			script_pushint(st, i);
 			break;
@@ -26027,7 +26027,6 @@ BUILDIN_FUNC(cos_type){
 
 BUILDIN_FUNC(cos_sys){
 	struct map_session_data *sd;
-	const char *shopname;
 	int flag = 0;
 	const char *mode;
 	

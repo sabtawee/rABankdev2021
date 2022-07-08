@@ -191,7 +191,7 @@ void chlogif_send_global_accreg(const char *key, unsigned int index, int64 int_v
 	nlen += 1;
 
 	safestrncpy(WFIFOCP(login_fd,nlen), key, len);
-	nlen += len;
+	nlen += (int)len;
 
 	WFIFOL(login_fd, nlen) = index;
 	nlen += 4;
@@ -207,7 +207,7 @@ void chlogif_send_global_accreg(const char *key, unsigned int index, int64 int_v
 			nlen += 1;
 
 			safestrncpy(WFIFOCP(login_fd,nlen), string_value, len);
-			nlen += len;
+			nlen += (int)len;
 		}
 	} else {
 		WFIFOB(login_fd, nlen) = int_value ? 0 : 1;

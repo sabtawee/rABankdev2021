@@ -196,7 +196,7 @@ int mapif_parse_quest_load(int fd) {
 
 	WFIFOHEAD(fd,num_quests * sizeof(struct quest) + 8);
 	WFIFOW(fd,0) = 0x3860;
-	WFIFOW(fd,2) = num_quests * sizeof(struct quest) + 8;
+	WFIFOW(fd,2) = num_quests * (int)sizeof(struct quest) + 8;
 	WFIFOL(fd,4) = char_id;
 
 	if( num_quests > 0 )

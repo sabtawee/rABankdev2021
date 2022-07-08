@@ -293,7 +293,7 @@ int intif_main_message(struct map_session_data* sd, const char* message)
 	snprintf( output, sizeof(output), msg_txt(sd,386), sd->status.name, message );
 
 	// send the message using the inter-server broadcast service
-	intif_broadcast2( output, strlen(output) + 1, 0xFE000000, 0, 0, 0, 0 );
+	intif_broadcast2( output, (int)strlen(output) + 1, 0xFE000000, 0, 0, 0, 0 );
 
 	// log the chat message
 	log_chat( LOG_CHAT_MAINCHAT, 0, sd->status.char_id, sd->status.account_id, mapindex_id2name(sd->mapindex), sd->bl.x, sd->bl.y, NULL, message );
@@ -373,7 +373,7 @@ int intif_wis_message_to_gm(char *wisp_name, int permission, char *mes)
 	int mes_len;
 	if (CheckForCharServer())
 		return 0;
-	mes_len = strlen(mes) + 1; // + null
+	mes_len = (int)strlen(mes) + 1; // + null
 	WFIFOHEAD(inter_fd, mes_len + 8 + NAME_LENGTH);
 	WFIFOW(inter_fd,0) = 0x3003;
 	WFIFOW(inter_fd,2) = mes_len + 32;
@@ -444,7 +444,7 @@ int intif_saveregistry(struct map_session_data *sd)
 		plen += 1;
 
 		safestrncpy(WFIFOCP(inter_fd,plen), varname, len); //the key
-		plen += len;
+		plen += (int)len;
 
 		WFIFOL(inter_fd, plen) = script_getvaridx(key.i64);
 		plen += 4;
@@ -468,7 +468,7 @@ int intif_saveregistry(struct map_session_data *sd)
 				plen += 1;
 
 				safestrncpy(WFIFOCP(inter_fd,plen), p->value, len);
-				plen += len;
+				plen += (int)len;
 			} else {
 				script_reg_destroy_single(sd,key.i64,&p->flag);
 			}

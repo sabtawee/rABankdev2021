@@ -644,7 +644,7 @@ int instance_create(int owner_id, const char *name, e_instance_mode mode) {
 		sd->instance_mode = mode;
 
 	instance_wait.id.push_back(instance_id);
-	clif_instance_create(instance_id, instance_wait.id.size());
+	clif_instance_create(instance_id, (int)instance_wait.id.size());
 	instance_subscription_timer(0,0,0,0);
 
 	ShowInfo("[Instance] Created: %s (%d)\n", name, instance_id);
@@ -742,7 +742,7 @@ int instance_addmap(int instance_id) {
 			return 0;
 	}
 
-	return idata->map.size();
+	return (int)idata->map.size();
 }
 
 /**

@@ -6251,7 +6251,7 @@ bool pc_steal_item(struct map_session_data *sd,struct block_list *bl, uint16 ski
 		i_data = itemdb_search(itemid);
 		sprintf (message, msg_txt(sd,542), (sd->status.name[0])?sd->status.name :"GM", md->db->jname.c_str(), i_data->ename.c_str(), (float)md->db->dropitem[i].rate / 100);
 		//MSG: "'%s' stole %s's %s (chance: %0.02f%%)"
-		intif_broadcast(message, strlen(message) + 1, BC_DEFAULT);
+		intif_broadcast(message, (int)(strlen(message) + 1), BC_DEFAULT);
 	}
 	return true;
 }
@@ -9090,7 +9090,7 @@ void pc_damage(struct map_session_data *sd,struct block_list *src,unsigned int h
 
 TIMER_FUNC(pc_close_npc_timer){
 	TBL_PC *sd = map_id2sd(id);
-	if(sd) pc_close_npc(sd,data);
+	if(sd) pc_close_npc(sd,(int)data);
 	return 0;
 }
 /**
@@ -12426,7 +12426,7 @@ TIMER_FUNC(map_day_timer){
 	night_flag = 0; // 0=day, 1=night [Yor]
 	map_foreachpc(pc_daynight_timer_sub);
 	strcpy(tmp_soutput, (data == 0) ? msg_txt(NULL,502) : msg_txt(NULL,60)); // The day has arrived!
-	intif_broadcast(tmp_soutput, strlen(tmp_soutput) + 1, BC_DEFAULT);
+	intif_broadcast(tmp_soutput, (int)strlen(tmp_soutput) + 1, BC_DEFAULT);
 	return 0;
 }
 
@@ -12446,7 +12446,7 @@ TIMER_FUNC(map_night_timer){
 	night_flag = 1; // 0=day, 1=night [Yor]
 	map_foreachpc(pc_daynight_timer_sub);
 	strcpy(tmp_soutput, (data == 0) ? msg_txt(NULL,503) : msg_txt(NULL,59)); // The night has fallen...
-	intif_broadcast(tmp_soutput, strlen(tmp_soutput) + 1, BC_DEFAULT);
+	intif_broadcast(tmp_soutput, (int)strlen(tmp_soutput) + 1, BC_DEFAULT);
 	return 0;
 }
 
@@ -14103,7 +14103,7 @@ void pc_check_expiration(struct map_session_data *sd) {
 		char tmpstr[1024];
 
 		strftime(tmpstr,sizeof(tmpstr) - 1,msg_txt(sd,501),localtime(&exp_time)); // "Your account time limit is: %d-%m-%Y %H:%M:%S."
-		clif_wis_message(sd,wisp_server_name,tmpstr,strlen(tmpstr) + 1,0);
+		clif_wis_message(sd,wisp_server_name,tmpstr,(int)strlen(tmpstr) + 1,0);
 
 		pc_expire_check(sd);
 	}

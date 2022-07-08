@@ -1265,9 +1265,9 @@ ACMD_FUNC(kami)
 
 		sscanf(message, "%255[^\n]", atcmd_output);
 		if (strstr(command, "l") != NULL)
-			clif_broadcast(&sd->bl, atcmd_output, strlen(atcmd_output) + 1, BC_DEFAULT, ALL_SAMEMAP);
+			clif_broadcast(&sd->bl, atcmd_output, (int)strlen(atcmd_output) + 1, BC_DEFAULT, ALL_SAMEMAP);
 		else
-			intif_broadcast(atcmd_output, strlen(atcmd_output) + 1, (*(command + 5) == 'b' || *(command + 5) == 'B') ? BC_BLUE : BC_DEFAULT);
+			intif_broadcast(atcmd_output, (int)strlen(atcmd_output) + 1, (*(command + 5) == 'b' || *(command + 5) == 'B') ? BC_BLUE : BC_DEFAULT);
 	} else {
 		if(!message || !*message || (sscanf(message, "%20lx %199[^\n]", &color, atcmd_output) < 2)) {
 			clif_displaymessage(fd, msg_txt(sd,981)); // Please enter color and message (usage: @kamic <color> <message>).
@@ -1278,7 +1278,7 @@ ACMD_FUNC(kami)
 			clif_displaymessage(fd, msg_txt(sd,982)); // Invalid color.
 			return -1;
 		}
-		intif_broadcast2(atcmd_output, strlen(atcmd_output) + 1, color, 0x190, 12, 0, 0);
+		intif_broadcast2(atcmd_output, (int)strlen(atcmd_output) + 1, color, 0x190, 12, 0, 0);
 	}
 	return 0;
 }
@@ -3680,7 +3680,7 @@ ACMD_FUNC(spiritball)
 	int number;
 	nullpo_retr(-1, sd);
 
-	max_spiritballs = zmin(ARRAYLENGTH(sd->spirit_timer), 0x7FFF);
+	max_spiritballs = (int)zmin(ARRAYLENGTH(sd->spirit_timer), 0x7FFF);
 
 	if( !message || !*message || (number = atoi(message)) < 0 || number > max_spiritballs )
 	{
@@ -5578,7 +5578,7 @@ ACMD_FUNC(broadcast)
 	}
 
 	sprintf(atcmd_output, "%s: %s", sd->status.name, message);
-	intif_broadcast(atcmd_output, strlen(atcmd_output) + 1, BC_DEFAULT);
+	intif_broadcast(atcmd_output, (int)strlen(atcmd_output) + 1, BC_DEFAULT);
 
 	return 0;
 }
@@ -5599,7 +5599,7 @@ ACMD_FUNC(localbroadcast)
 
 	sprintf(atcmd_output, "%s: %s", sd->status.name, message);
 
-	clif_broadcast(&sd->bl, atcmd_output, strlen(atcmd_output) + 1, BC_DEFAULT, ALL_SAMEMAP);
+	clif_broadcast(&sd->bl, atcmd_output, (int)strlen(atcmd_output) + 1, BC_DEFAULT, ALL_SAMEMAP);
 
 	return 0;
 }
@@ -6033,7 +6033,7 @@ ACMD_FUNC(skillid) {
 		return -1;
 	}
 
-	skillen = strlen(message);
+	skillen = (int)strlen(message);
 
 	for(const auto & skill : skill_db) {
 		uint16 skill_id = skill.second->nameid;
@@ -7571,7 +7571,7 @@ ACMD_FUNC(gmotd)
 			{
 				buf[len] = 0;
 
-				intif_broadcast(buf, len+1, 0);
+				intif_broadcast(buf, (int)len+1, 0);
 			}
 		}
 		fclose(fp);
@@ -8765,7 +8765,7 @@ ACMD_FUNC(showdelay)
  *------------------------------------------*/
 ACMD_FUNC(invite)
 {
-	unsigned int did = sd->duel_group;
+	unsigned int did = (uint16)sd->duel_group;
 	struct map_session_data *target_sd = NULL;
 
 	memset(atcmd_player_name, '\0', sizeof(atcmd_player_name));
@@ -8853,7 +8853,7 @@ ACMD_FUNC(duel)
 
 			if(target_sd != NULL) {
 				unsigned int newduel;
-				if((newduel = duel_create(sd, 2)) != -1) {
+				if((newduel = (int)duel_create(sd, 2)) != -1) {
 					if(target_sd->duel_group > 0 ||	target_sd->duel_invite > 0) {
 						clif_displaymessage(fd, msg_txt(sd,353)); // "Duel: Player already in duel."
 						return 0;
@@ -9596,7 +9596,7 @@ static void atcommand_commands_sub(struct map_session_data* sd, const int fd, At
 		}
 
 
-		slen = strlen(cmd->command);
+		slen = (int)strlen(cmd->command);
 
 		// flush the text buffer if this command won't fit into it
 		if (slen + cur - line_buff >= CHATBOX_SIZE) {
@@ -9618,7 +9618,7 @@ static void atcommand_commands_sub(struct map_session_data* sd, const int fd, At
 		int i, count_bind, gm_lvl = pc_get_group_level(sd);
 		for( i = count_bind = 0; i < atcmd_binding_count; i++ ) {
 			if ( gm_lvl >= ( (type - 1) ? atcmd_binding[i]->level2 : atcmd_binding[i]->level ) ) {
-				unsigned int slen = strlen(atcmd_binding[i]->command);
+				unsigned int slen = (int)strlen(atcmd_binding[i]->command);
 				if ( count_bind == 0 ) {
 					cur = line_buff;
 					memset(line_buff,' ',CHATBOX_SIZE);
@@ -9742,7 +9742,7 @@ ACMD_FUNC(set) {
 
 	is_str = is_string_variable(name);
 
-	if( ( len = strlen(val) ) > 1 ) {
+	if( ( len = (int)strlen(val) ) > 1 ) {
 		if( val[0] == '"' && val[len-1] == '"') {
 			val[len-1] = '\0'; //Strip quotes.
 			memmove(val, val+1, len-1);
@@ -11355,7 +11355,7 @@ bool is_atcommand(const int fd, struct map_session_data* sd, const char* message
 void atcommand_db_load_groups(){
 	DBIterator *iter = db_iterator(atcommand_db);
 	AtCommandInfo* cmd;
-	int pc_group_max = player_group_db.size();
+	int pc_group_max = (int)player_group_db.size();
 
 	for (cmd = (AtCommandInfo*)dbi_first(iter); dbi_exists(iter); cmd = (AtCommandInfo*)dbi_next(iter)) {
 		cmd->at_groups = (char*)aMalloc( pc_group_max * sizeof(char) );

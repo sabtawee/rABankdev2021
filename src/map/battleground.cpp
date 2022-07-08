@@ -563,7 +563,7 @@ int bg_team_leave(struct map_session_data *sd, bool quit, bool deserter)
 		else
 			sprintf(output, "Server: %s is leaving the battlefield...", sd->status.name);
 
-		clif_bg_message(bgteam.get(), 0, "Server", output, strlen(output) + 1);
+		clif_bg_message(bgteam.get(), 0, "Server", output, (int)strlen(output) + 1);
 
 		if (!bgteam->logout_event.empty() && quit)
 			npc_event(sd, bgteam->logout_event.c_str(), 0);
@@ -575,7 +575,7 @@ int bg_team_leave(struct map_session_data *sd, bool quit, bool deserter)
 				sc_start(nullptr, &sd->bl, SC_ENTRY_QUEUE_NOTIFY_ADMISSION_TIME_OUT, 100, 1, static_cast<t_tick>(bg->deserter_time) * 1000); // Deserter timer
 		}
 
-		return bgteam->members.size();
+		return (int)bgteam->members.size();
 	}
 
 	return -1;
